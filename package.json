@@ -1,0 +1,38 @@
+{
+  "name": "gameday",
+  "version": "1.0.0",
+  "description": "Gameday UI project",
+  "author": "Mats Barkemo",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
+  },
+  "dependencies": {
+    "@dansmaculotte/nuxt-zendesk": "^0.3.3",
+    "@nuxtjs/axios": "^5.6.0",
+    "@nuxtjs/pwa": "^3.0.0-0",
+    "cookie-universal-nuxt": "^2.0.18",
+    "nuxt": "^2.10.0",
+    "nuxt-webfontloader": "^1.1.0",
+    "storyblok-nuxt": "^1.0.1",
+    "uikit": "^3.2.1"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config": "^1.0.1",
+    "@nuxtjs/eslint-module": "^1.0.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-nuxt": ">=0.4.2",
+    "eslint-plugin-prettier": "^3.0.1",
+    "node-sass": "^4.12.0",
+    "prettier": "^1.16.4",
+    "pug": "^2.0.3",
+    "pug-plain-loader": "^1.0.0",
+    "sass-loader": "^8.0.0"
+  }
+}

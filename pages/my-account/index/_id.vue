@@ -1,0 +1,44 @@
+<template>
+  <OrderDetails v-bind:order="order"></OrderDetails>
+</template>
+<script>
+import OrderDetails from "@/components/orders/OrderDetails"; 
+
+export default {
+  head () {
+    return {
+      title: "Orderdetaljer",
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: "Orderdetaljer"
+        }
+      ]
+    }
+  },
+  components: {
+    OrderDetails
+  },
+  data() {
+    return {
+      order: {}
+    };
+  },
+  async asyncData({ app, route }) {
+    try {
+      const url = `https://beta.supporterprylar.se/webapi/Order/GetOrderDetails?orderId=${
+        route.params.id
+      }`;
+      const order = await app.$axios.$get(url);
+
+      return { order };
+    } catch (err) {
+      console.log(err);
+    }
+  }
+};
+</script>
+
+<style lang="scss">
+</style>
