@@ -9,28 +9,29 @@
       :colors="colors"
       :sizes="sizes"/>
     <div class="uk-container uk-padding-small">
+      <div class="uk-margin-small-bottom"><strong>{{ article.TotalNumberOfProducts }} produkter</strong></div>
       <div
-        class="uk-grid-small uk-child-width-1-2 uk-child-width-1-4@m"
+        class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-4@m"
         uk-height-match="target: > * > .uk-card"
         uk-grid>
         <ArticleCardSimple
           v-for="article in articles"
           :key="article.Id"
           :article="article"
-          :url="`/lag/${$route.params.league}/${$route.params.team}/${article.SeoName}`"
+          :url="`/lag/nhl/${article.HeadCategorySeoName}/${article.SeoName}`"
         />
       </div>
       <ul 
-        v-if="articles.PageNum>0"
-        class="uk-pagination uk-flex-center" uk-margin>
-        <li><a href="#"><span uk-pagination-previous></span></a></li>
-        <li><nuxt-link :to="{query:{page:1}}">1</nuxt-link></li>
-        <li class="uk-disabled"><span>...</span></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">6</a></li>
-        <li class="uk-active"><span>7</span></li>
-        <li><a href="#">8</a></li>
-        <li><a href="#"><span uk-pagination-next></span></a></li>
+        class="uk-pagination uk-flex-right" uk-margin>
+        <li>
+          <a 
+            href="#"
+            @click.stop.prevent="previous()"><span uk-pagination-previous></span> Previous</a></li>
+        <li><span>{{ pageNum }}/{{ article.TotalPages }}</span></li>
+        <li>
+          <a 
+            href="#"
+            @click.stop.prevent="next()">Next <span uk-pagination-next></span></a></li>
       </ul>
     </div>
   </section>
@@ -63,26 +64,41 @@ export default {
       articles: [],
       producttypes: [], //To filter on
       colors: [],
-      sizes: []
+      sizes: [],
+      pageNum: 1,
+      totalPages:1,
+      numOfProducts: 1
     }
   },
   mounted(){
+  },
+  methods:{
+    next(){
+      if(this.pageNum<this.article.TotalPages){
+        this.$router.push({ query: { page: (parseInt(this.pageNum)+1) }})
+      } 
+    },
+    previous(){
+      if(this.pageNum>1){
+        this.$router.push({ query: { page: (parseInt(this.pageNum)-1) }})
+      } 
+    }
   },
   async asyncData (context) {
     let pageNum = context.route.query.page?context.route.query.page:1
     try {
       const [a, p, c, s] = await Promise.all([
         await context.app.$axios.$get(
-          'https://beta.supporterprylar.se/webapi/Article/GetArticleList?pageNum='+ pageNum +'&seoName=' +context.route.params.team
+          'https://beta.supporterprylar.se/webapi/Article/GetArticleList?pageNum='+ pageNum +'&seoName=nhl'
         ),
         await context.app.$axios.$get(
-          'https://beta.supporterprylar.se/webapi/Filter/GetProductTypeList?seoName='+context.route.params.league+'&teamName='+context.route.params.team
+          'https://beta.supporterprylar.se/webapi/Filter/GetProductTypeList?seoName=nhl&teamName=null'
         ),
         await context.app.$axios.$get(
-          'https://beta.supporterprylar.se/webapi/Filter/GetColourList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
+          'https://beta.supporterprylar.se/webapi/Filter/GetColourList?categoryName=nhl&teamName=null&garmentName=null'
         ),
         await context.app.$axios.$get(
-          'https://beta.supporterprylar.se/webapi/Filter/GetSizeList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
+          'https://beta.supporterprylar.se/webapi/Filter/GetSizeList?categoryName=nhl&teamName=null&garmentName=null'
         )
       ]);
       return {
@@ -90,8 +106,8 @@ export default {
         producttypes: p,
         colors: c,
         sizes: s,
-        article: a[0]
-        
+        article: a[0],
+        pageNum: pageNum
       };
     } catch (err) {
       console.log(err);

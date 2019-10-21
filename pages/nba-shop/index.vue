@@ -5,7 +5,9 @@
       <div v-html="article.SeoContentDescription"/>
     </div>
     <FilterItems
-      :product-types="producttypes"/>
+      :product-types="producttypes"
+      :colors="colors"
+      :sizes="sizes"/>
     <div class="uk-container uk-padding-small">
       <div
         class="uk-grid-small uk-child-width-1-2 uk-child-width-1-4@m"
@@ -15,7 +17,7 @@
           v-for="article in articles"
           :key="article.Id"
           :article="article"
-          :url="`/lag/${$route.params.league}/${$route.params.team}/${article.SeoName}`"
+          :url="`/lag/nba/${article.HeadCategorySeoName}/${article.SeoName}`"
         />
       </div>
     </div>
@@ -46,25 +48,34 @@ export default {
       story: { content: {} },
       article: {},
       articles: [],
-      producttypes: [] //To filter on
+      producttypes: [], //To filter on
+      colors: [],
+      sizes: []
     }
   },
   mounted(){
-
   },
   async asyncData (context) {
     try {
-      const [a,p] = await Promise.all([
+      const [a, p, c, s] = await Promise.all([
         await context.app.$axios.$get(
-          'https://beta.supporterprylar.se/webapi/Article/GetArticleList?pageNum=1&seoName=' +context.route.params.team
+          'https://beta.supporterprylar.se/webapi/Article/GetArticleList?pageNum=1&seoName=nba'
         ),
         await context.app.$axios.$get(
-          'https://beta.supporterprylar.se/webapi/Filter/GetProductTypeList?seoName='+context.route.params.league+'&teamName='+context.route.params.team
+          'https://beta.supporterprylar.se/webapi/Filter/GetProductTypeList?seoName=nba&teamName=null'
+        ),
+        await context.app.$axios.$get(
+          'https://beta.supporterprylar.se/webapi/Filter/GetColourList?categoryName=nba&teamName=null&garmentName=null'
+        ),
+        await context.app.$axios.$get(
+          'https://beta.supporterprylar.se/webapi/Filter/GetSizeList?categoryName=nba&teamName=null&garmentName=null'
         )
       ]);
       return {
         articles: a[0].ArticleList,
         producttypes: p,
+        colors: c,
+        sizes: s,
         article: a[0]
         
       };
@@ -78,8 +89,4 @@ export default {
 </script>
 <style lang="scss">
 @import '~/assets/scss/vars.scss';
-
-.lfc-green{
-  color: $global-secondary-background;
-}
 </style>

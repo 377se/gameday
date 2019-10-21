@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import Alert from '@/components/Alert'
 import ButtonSubmit from '@/components/ButtonSubmit'
 
@@ -101,10 +101,13 @@ export default {
           if(response.data.ErrorList.length>0){
             _this.errors = response.data.ErrorList
           }else{
-            _this.$router.push('/my-account/') 
+            _this.$store.commit('setCid', response.data.Id)
+            _this.$cookies.set('cid', response.data.Id)
+            _this.$router.push('/my-account') 
           }
       })
       .catch(function (error) {
+        _this.isSubmitting=false
         console.log(error)
       })
     }

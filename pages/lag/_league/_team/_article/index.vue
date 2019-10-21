@@ -1,5 +1,16 @@
 <template>
-  <ArticleDetails v-bind:article="article"></ArticleDetails>
+  <div>
+    <ul class="uk-breadcrumb uk-padding-small uk-margin-remove-bottom">
+      <li>
+        <nuxt-link to="/">
+          <span style="vertical-align: bottom;
+            margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
+      <li><nuxt-link :to="'/'+$route.params.league+'-shop'">{{ $route.params.league.toUpperCase() }}-shop</nuxt-link></li>
+      <li><nuxt-link :to="'/'+$route.params.league+'-shop/'+$route.params.team">{{ article.HeadCategory }}</nuxt-link></li>
+      <li><span>{{ article.Name }}</span></li>
+    </ul>
+    <ArticleDetails v-bind:article="article"></ArticleDetails>
+  </div>
 </template>
 
 <script>
@@ -41,5 +52,11 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+  .uk-breadcrumb > * > * {
+      font-size: 0.7rem;
+  }
+  .uk-breadcrumb > :nth-child(n+2):not(.uk-first-column):before{
+    margin: 0px 5px;
+  }
 </style>

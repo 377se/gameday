@@ -1,6 +1,6 @@
 <template>
   <section 
-    class="uk-container uk-margin-small-top uk-background-default">
+    class="uk-container uk-background-default">
     <div 
       class="uk-grid-small"
       uk-grid>
@@ -79,12 +79,6 @@
               <ArticlePageText 
                 class="uk-accordion-content"
                 v-bind:content="article.Description"/>
-            </li>
-            <li>
-              <a class="uk-accordion-title" href="#">Tvättguide</a>
-              <div class="uk-accordion-content">
-                  <p>Här kommer tvättguiden</p>
-              </div>
             </li>
           </ul>
         </div>

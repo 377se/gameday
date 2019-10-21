@@ -24,11 +24,10 @@
         <div class="uk-width-expand@m uk-width-1-2@s">               
           <h3 class="uk-h4">Shoppar</h3>
           <ul class="uk-list uk-text-small">
-            <li>NHL Shop</li>
-            <li>NBA Shop</li>
-            <li>NFL Shop</li>
-            <li>MLB Shop</li>
-            <li>Premier League Shop</li>
+            <li><nuxt-link to="/nhl-shop">NHL Shop</nuxt-link></li>
+            <li><nuxt-link to="/nba-shop">NBA Shop</nuxt-link></li>
+            <li><nuxt-link to="/nfl-shop">NFL Shop</nuxt-link></li>
+            <li><nuxt-link to="/mlb-shop">MLB Shop</nuxt-link></li>
           </ul>
         </div>
 

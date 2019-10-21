@@ -63,14 +63,9 @@ export default {
       disabled: false,
       settings: {
         webWidget: {
-          contactForm: {
-            fields: [
-              { id: 'email', prefill: { '*': 'Your mobile number' } },
-              { id: 'description', prefill: { '*': 'My custom field text' } }
-            ]
-          },
           color: {
-            theme: '#D86148'
+            theme: '#fa6900',
+            launcherText: '#ffffff',
           }
         }
       }

@@ -4,7 +4,8 @@ export const state = () => ({
   nbaMenu:[],
   nflMenu:[],
   mlbMenu:[],
-  plMenu:[],
+  plMenu:[], 
+  cid:null
 })
 
 export const mutations = {
@@ -26,6 +27,9 @@ export const mutations = {
   setPLMenu(state, menu) {
     state.plMenu = menu
   },
+  setCid(state, val){
+    state.cid = val
+  }
 }
 export const getters = {
   nhlMenu(state) {
@@ -43,6 +47,9 @@ export const getters = {
   plMenu(state) {
     return state.plMenu
   },
+  cid(state){
+    return state.cid
+  }
 }
 //NHL 202
 //NBA 327
@@ -51,6 +58,9 @@ export const getters = {
 //MLB 329
 export const actions = {
   async nuxtServerInit (vuexContext, context) {
+    if(context.app.$cookies.get('cid')!=undefined){
+      vuexContext.commit('setCid', context.app.$cookies.get('cid'))
+    } 
     await Promise.all([
       await context.app.$axios.$get('https://beta.supporterprylar.se/webapi/Filter/GetTeamListByCategory?categoryId=202'),
       await context.app.$axios.$get('https://beta.supporterprylar.se/webapi/Filter/GetTeamListByCategory?categoryId=327'),

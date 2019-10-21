@@ -14,31 +14,32 @@
       id="filter-menu" 
       class="uk-offcanvas"
       uk-offcanvas="overlay:true;flip:true">
-      <div class="uk-offcanvas-bar menu">
+      <div class="uk-offcanvas-bar">
         <div
           style="height:80px;background:#00bbe0"
           class="uk-flex">
           <h3 style="line-height:80px;margin-left:12px;">Filter</h3>
           <button 
-            id="close-sidebar" 
             class="uk-offcanvas-close uk-icon uk-close"
             style="top:27px;" 
             type="button" uk-close></button>
         </div>
-        <ul uk-accordion="multiple: true">
+        
+        <ul 
+          class="uk-nav uk-list uk-list-divider"
+          style="margin-top:10px;"
+          uk-accordion="multiple:true">
           <li 
             v-if="productTypes!=null && productTypes.length>0"
             class="uk-open">
             <a
-              style="color:#000" 
               class="uk-accordion-title" href="#">Produkttyper</a>
             <div class="uk-accordion-content">
-              <ul class="uk-list">
+              <ul class="uk-nav uk-list uk-list-divider">
                 <li 
                   v-for="pt in productTypes"
-                  :key="pt.GarmentId"
-                  style="color:#000">
-                  {{ pt.Name }}
+                  :key="pt.GarmentId">
+                  <span>{{ pt.Name }}</span>
                 </li>
               </ul>
             </div>
@@ -47,15 +48,13 @@
             v-if="colors!=null && colors.length>0">
             <a 
               class="uk-accordion-title" 
-              href="#"
-              style="color:#000">Färger</a>
+              href="#">Färger</a>
             <div class="uk-accordion-content">
-              <ul class="uk-list">
+              <ul class="uk-nav uk-list uk-list-divider">
                 <li 
                   v-for="c in colors"
-                  :key="c.SeoName"
-                  style="color:#000">
-                  {{ c.Name }}
+                  :key="c.SeoName">
+                  <span>{{ c.Name }}</span>
                 </li>
               </ul>
             </div>
@@ -64,15 +63,13 @@
             v-if="sizes!=null && sizes.length>0">
             <a 
               class="uk-accordion-title" 
-              href="#"
-              style="color:#000">Storlekar</a>
+              href="#">Storlekar</a>
             <div class="uk-accordion-content">
-              <ul class="uk-list">
+              <ul class="uk-nav uk-list uk-list-divider">
                 <li 
                   v-for="s in sizes"
-                  :key="s.Value"
-                  style="color:#000">
-                  {{ s.Name }}
+                  :key="s.Id">
+                  <span>{{ s.Id }}</span>
                 </li>
               </ul>
             </div>
@@ -114,6 +111,17 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/scss/vars.scss';
 
+#filter-menu .uk-nav a, #filter-menu .uk-nav span{
+    padding-left: 12px;
+    color: $global-color;
+}
+#filter-menu .uk-accordion-content{
+  margin-top:10px;
+}
+#filter-menu .uk-accordion-title{
+  color:$global-color;
+}
+
 .menu {
   background-color: #ffffff !important;
   width: 310px;
@@ -123,19 +131,6 @@ export default {
 .uk-offcanvas-bar{
   padding:0;
   background:#ffffff;
-}
-.uk-tab > li.uk-active > a
-{
-  background:#ffffff;
-  color:#333333;
-  border-color:#ffffff;
-}
-.uk-tab > li.uk-active > a > svg {
-  fill: #333333;
-}
-
-.uk-list > li > a{
-  color: #8c8c8c;
 }
 
 .uk-list-divider > li:nth-child(n+2){

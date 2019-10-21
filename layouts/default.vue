@@ -28,6 +28,10 @@ export default {
     /*if(localStorage.session!=undefined){
       this.$axios.setHeader('x-session', localStorage.session)
     }*/
+    this.$on('zendeskLoaded', (event) => {
+      this.$zendesk.zE('webWidget', 'setLocale', 'sv');
+    })
+    
     this.getSession()
   },
   methods:{

@@ -34,15 +34,19 @@
           <a href="#"
           @click.prevent><br>NHL</a>
         </li>
-        <li>
+        <!--li>
           <a 
             href="#"
             @click.prevent><br>PL</a>
-        </li>
+        </li-->
       </ul>
       <div class="uk-switcher">
         <div>
           <ul class="uk-list uk-list-divider">
+            <li>
+              <nuxt-link
+                to="/nba-shop">All NBA</nuxt-link>
+            </li>
             <li
               v-for="team in nbaMenu"
               :key="team.CategoryId">
@@ -53,6 +57,10 @@
         </div>
         <div>
           <ul class="uk-list uk-list-divider">
+            <li>
+              <nuxt-link
+                to="/nfl-shop">All NFL</nuxt-link>
+            </li>
             <li
               v-for="team in nflMenu"
               :key="team.CategoryId">
@@ -63,6 +71,10 @@
         </div>
         <div>
           <ul class="uk-list uk-list-divider">
+            <li>
+              <nuxt-link
+                to="/mlb-shop">All MLB</nuxt-link>
+            </li>
             <li
               v-for="team in mlbMenu"
               :key="team.CategoryId">
@@ -73,6 +85,10 @@
         </div>
         <div>
           <ul class="uk-list uk-list-divider">
+            <li>
+              <nuxt-link
+                to="/nhl-shop">All NHL</nuxt-link>
+            </li>
             <li
               v-for="team in nhlMenu"
               :key="team.CategoryId">
@@ -81,7 +97,7 @@
             </li>
           </ul>
         </div>
-        <div>
+        <!--div>
           <ul class="uk-list uk-list-divider">
             <li
               v-for="team in plMenu"
@@ -90,7 +106,7 @@
                 :to="'/lag/premier-league/'+team.SeoName">{{ team.Name }}</nuxt-link>
             </li>
           </ul>
-        </div>
+        </div-->
       </div>
     </div>
   </div>
