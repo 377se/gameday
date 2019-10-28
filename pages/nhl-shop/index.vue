@@ -89,16 +89,16 @@ export default {
     try {
       const [a, p, c, s] = await Promise.all([
         await context.app.$axios.$get(
-          'https://api.gameday.shopping/webapi/Article/GetArticleList?pageNum='+ pageNum +'&seoName=nhl'
+          'https://beta.supporterprylar.se/webapi/Article/GetArticleList?pageNum='+ pageNum +'&seoName=nhl'
         ),
         await context.app.$axios.$get(
-          'https://api.gameday.shopping/webapi/Filter/GetProductTypeList?seoName=nhl&teamName=null'
+          'https://beta.supporterprylar.se/webapi/Filter/GetProductTypeList?seoName=nhl&teamName=null'
         ),
         await context.app.$axios.$get(
-          'https://api.gameday.shopping/webapi/Filter/GetColourList?categoryName=nhl&teamName=null&garmentName=null'
+          'https://beta.supporterprylar.se/webapi/Filter/GetColourList?categoryName=nhl&teamName=null&garmentName=null'
         ),
         await context.app.$axios.$get(
-          'https://api.gameday.shopping/webapi/Filter/GetSizeList?categoryName=nhl&teamName=null&garmentName=null'
+          'https://beta.supporterprylar.se/webapi/Filter/GetSizeList?categoryName=nhl&teamName=null&garmentName=null'
         )
       ]);
       return {

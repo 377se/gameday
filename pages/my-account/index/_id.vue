@@ -27,7 +27,7 @@ export default {
   },
   async asyncData({ app, route }) {
     try {
-      const url = `https://api.gameday.shopping/webapi/Order/GetOrderDetails?orderId=${
+      const url = `https://beta.supporterprylar.se/webapi/Order/GetOrderDetails?orderId=${
         route.params.id
       }`;
       const order = await app.$axios.$get(url);

@@ -47,7 +47,7 @@ export default {
     try {
       const [a] = await Promise.all([
         await context.app.$axios.$get(
-          'https://api.gameday.shopping/webapi/Article/GetArticleListByBrand?brandName=' +context.route.params.varumarke
+          'https://beta.supporterprylar.se/webapi/Article/GetArticleListByBrand?brandName=' +context.route.params.varumarke
         )
       ]);
       return {

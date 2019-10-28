@@ -129,7 +129,7 @@ export default {
   methods:{
     async deleteFromCart(id){
       let _this = this
-      await this.$axios.delete('https://api.gameday.shopping/webapi/cart?id='+id
+      await this.$axios.delete('https://beta.supporterprylar.se/webapi/cart?id='+id
       ).then(function (response) {
       _this.$store.commit('basket/add', response.data)
       })

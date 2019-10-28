@@ -137,7 +137,7 @@ export default {
     async addToCart(){
       let _this = this
       if(this.chosenSize>-1){
-          await this.$axios.post('https://api.gameday.shopping/webapi/cart/PostAddToCart',{
+          await this.$axios.post('https://beta.supporterprylar.se/webapi/cart/PostAddToCart',{
             AddOn: null,
             ArticleId: this.article.Id,
             Quantity: 1,

@@ -36,7 +36,7 @@ export default {
     async customer(){
       var _this = this
       this.isSubmitting=true
-      await this.$axios.post('https://api.gameday.shopping/webapi/Customer/PostCustomer', {
+      await this.$axios.post('https://beta.supporterprylar.se/webapi/Customer/PostCustomer', {
         customerUserName: this.form.email,
         customerPassword: this.form.password
       }).then(function (response) {
@@ -56,7 +56,7 @@ export default {
     try {
       const [m] = await Promise.all([
         await context.app.$axios.$get(
-          'https://api.gameday.shopping/webapi/Customer/GetCustomer'
+          'https://beta.supporterprylar.se/webapi/Customer/GetCustomer'
         )
       ]);
       return {

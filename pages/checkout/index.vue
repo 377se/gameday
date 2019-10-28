@@ -40,7 +40,7 @@ export default {
   },
   async asyncData({ app, route }) {
     try {
-      const url = `https://api.gameday.shopping/webapi/klarnacheckout3`;
+      const url = `https://beta.supporterprylar.se/webapi/klarnacheckout3`;
       const klarnahtml = await app.$axios.$post(url);
 
       return { klarnahtml };

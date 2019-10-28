@@ -52,7 +52,7 @@ export default {
     async newsletter(event) {
         this.isSubmitting=true
         var _this = this
-        await this.$axios.post('https://api.gameday.shopping/webapi/Signup/PostNewsLetterSignup?email='+this.email)
+        await this.$axios.post('https://beta.supporterprylar.se/webapi/Signup/PostNewsLetterSignup?email='+this.email)
         .then(function (response) {
           _this.isSubmitting=false
           if(response.data.ErrorList.length>0){

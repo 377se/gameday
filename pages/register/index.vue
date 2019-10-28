@@ -96,7 +96,7 @@ export default {
   },
   methods: {
     async register(event) {
-      await this.$axios.post('https://api.gameday.shopping/webapi/customer/PostRegister', {
+      await this.$axios.post('https://beta.supporterprylar.se/webapi/customer/PostRegister', {
         customerUserName: this.form.email,
         customerPassword: this.form.password,
         customerRepeatPassword: this.form.repeatpassword

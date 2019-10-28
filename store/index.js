@@ -62,11 +62,11 @@ export const actions = {
       vuexContext.commit('setCid', context.app.$cookies.get('cid'))
     } 
     await Promise.all([
-      await context.app.$axios.$get('https://api.gameday.shopping/webapi/Filter/GetTeamListByCategory?categoryId=202'),
-      await context.app.$axios.$get('https://api.gameday.shopping/webapi/Filter/GetTeamListByCategory?categoryId=327'),
-      await context.app.$axios.$get('https://api.gameday.shopping/webapi/Filter/GetTeamListByCategory?categoryId=328'),
-      await context.app.$axios.$get('https://api.gameday.shopping/webapi/Filter/GetTeamListByCategory?categoryId=329'),
-      await context.app.$axios.$get('https://api.gameday.shopping/webapi/Filter/GetTeamListByCategory?categoryId=421')
+      await context.app.$axios.$get('https://beta.supporterprylar.se/webapi/Filter/GetTeamListByCategory?categoryId=202'),
+      await context.app.$axios.$get('https://beta.supporterprylar.se/webapi/Filter/GetTeamListByCategory?categoryId=327'),
+      await context.app.$axios.$get('https://beta.supporterprylar.se/webapi/Filter/GetTeamListByCategory?categoryId=328'),
+      await context.app.$axios.$get('https://beta.supporterprylar.se/webapi/Filter/GetTeamListByCategory?categoryId=329'),
+      await context.app.$axios.$get('https://beta.supporterprylar.se/webapi/Filter/GetTeamListByCategory?categoryId=421')
     ]).then(res => {
         vuexContext.commit('setNHLMenu', res[0])
         vuexContext.commit('setNBAMenu', res[1])

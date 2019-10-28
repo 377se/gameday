@@ -28,7 +28,7 @@ export default {
   },
   async asyncData({ app, route }) {
     try {
-      const url = `https://api.gameday.shopping/webapi/article/GetArticleDetails?teamName=${
+      const url = `https://beta.supporterprylar.se/webapi/article/GetArticleDetails?teamName=${
         route.params.team
       }&articleName=${route.params.article}`;
       const article = await app.$axios.$get(url);
