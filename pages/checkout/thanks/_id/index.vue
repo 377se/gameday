@@ -15,12 +15,12 @@
 export default {
   head () {
     return {
-      title: 'Checkout',
+      title: 'Tack för din order',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Checkout'
+          content: 'Tack för din order'
         }
       ]
     }
