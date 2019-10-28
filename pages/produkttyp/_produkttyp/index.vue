@@ -48,10 +48,10 @@ export default {
     try {
       const [a,m] = await Promise.all([
         await context.app.$axios.$get(
-          'https://beta.supporterprylar.se/webapi/Article/GetArticleListByProductType(string teamName, string productType)?teamName=' +context.route.params.team
+          'https://api.gameday.shopping/webapi/Article/GetArticleListByProductType(string teamName, string productType)?teamName=' +context.route.params.team
         )/*,
         await context.app.$axios.$get(
-          'https://beta.supporterprylar.se/webapi/metadata/GetFilterMetaData?pi=0&ci='+context.route.params.teamid+'&fi=0'
+          'https://api.gameday.shopping/webapi/metadata/GetFilterMetaData?pi=0&ci='+context.route.params.teamid+'&fi=0'
         )*/
       ]);
       return {

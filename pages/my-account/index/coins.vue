@@ -46,7 +46,7 @@ export default {
     try{
     const [c, s] = await Promise.all([
         await context.app.$axios.$get(
-          'https://beta.supporterprylar.se/webapi/Coins/GetCoins'
+          'https://api.gameday.shopping/webapi/Coins/GetCoins'
         ),
         await context.app.$storyapi.get(`cdn/stories/my-account/coins`, {
           version: version,

@@ -73,16 +73,16 @@ export default {
     try {
       const [a, p, c, s] = await Promise.all([
         await context.app.$axios.$get(
-          'https://beta.supporterprylar.se/webapi/Article/GetArticleList?pageNum='+ pageNum +'&seoName=' +context.route.params.team
+          'https://api.gameday.shopping/webapi/Article/GetArticleList?pageNum='+ pageNum +'&seoName=' +context.route.params.team
         ),
         await context.app.$axios.$get(
-          'https://beta.supporterprylar.se/webapi/Filter/GetProductTypeList?seoName='+context.route.params.league+'&teamName='+context.route.params.team
+          'https://api.gameday.shopping/webapi/Filter/GetProductTypeList?seoName='+context.route.params.league+'&teamName='+context.route.params.team
         ),
         await context.app.$axios.$get(
-          'https://beta.supporterprylar.se/webapi/Filter/GetColourList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
+          'https://api.gameday.shopping/webapi/Filter/GetColourList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
         ),
         await context.app.$axios.$get(
-          'https://beta.supporterprylar.se/webapi/Filter/GetSizeList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
+          'https://api.gameday.shopping/webapi/Filter/GetSizeList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
         )
       ]);
       return {
