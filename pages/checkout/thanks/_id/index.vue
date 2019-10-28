@@ -1,9 +1,14 @@
 <template>
   <section>
+    <div
+      v-if="klarnahtml" 
+      class="uk-container">
+      <h1>{{ klarnahtml.Ordernumber }}</h1>
+    </div>
     <div 
       id="klarna-checkout"
       class="uk-container"
-      v-html="klarnahtml"/>
+      v-html="klarnahtml.Html"/>
   </section>
 </template>
 <script>
@@ -40,8 +45,8 @@ export default {
   },
   async asyncData({ app, route }) {
     try {
-      const url = `https://beta.supporterprylar.se/webapi/klarnacheckout3`;
-      const klarnahtml = await app.$axios.$post(url);
+      const url = `https://beta.supporterprylar.se/webapi/klarnacheckout3?id=${route.params.id}`;
+      const klarnahtml = await app.$axios.$get(url);
 
       return { klarnahtml };
     } catch (err) {
