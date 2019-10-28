@@ -6,6 +6,7 @@
       <h1>{{ klarnahtml.Ordernumber }}</h1>
     </div>
     <div 
+      v-if="klarnahtml"
       id="klarna-checkout"
       class="uk-container"
       v-html="klarnahtml.Html"/>
@@ -31,6 +32,7 @@ export default {
     };
   },
   mounted(){
+    alert()
     var checkoutContainer = document.getElementById('klarna-checkout')
     var scriptsTags = checkoutContainer.getElementsByTagName('script')
     // This is necessary otherwise the scripts tags are not going to be evaluated
