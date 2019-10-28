@@ -32,7 +32,6 @@ export default {
     };
   },
   mounted(){
-    alert()
     var checkoutContainer = document.getElementById('klarna-checkout')
     var scriptsTags = checkoutContainer.getElementsByTagName('script')
     // This is necessary otherwise the scripts tags are not going to be evaluated
