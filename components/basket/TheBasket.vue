@@ -9,11 +9,11 @@
       <div 
         style="height:80px;background:#fa6900;"
         class="uk-flex">
-        <h3 style="line-height:80px;margin-left:12px;">Varukorg</h3>
+        <h3 style="color:#fff;line-height:80px;margin-left:12px;">Varukorg</h3>
         <button 
           id="close-basket" 
           class="uk-offcanvas-close uk-icon uk-close" 
-          style="top:27px;right:6px;"
+          style="color:#fff;top:27px;right:6px;"
           type="button" uk-close/>
       </div>
 
@@ -100,9 +100,11 @@
             </tr>
           </tfoot>
         </table>
-        <nuxt-link
-          to="/checkout"
-          class="uk-button uk-width-1-1 uk-button-default">Till betalning</nuxt-link>
+        <div class="uk-padding-small">
+          <nuxt-link
+            to="/checkout"
+            class="uk-button uk-width-1-1 uk-button-primary">Till betalning</nuxt-link>
+        </div>
       </div>
       <div
         v-else 

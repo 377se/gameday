@@ -7,11 +7,11 @@
       <div
         style="height:80px;background:#00bbe0"
         class="uk-flex">
-        <h3 style="line-height:80px;margin-left:12px;">Meny</h3>
+        <h3 style="color:#fff;line-height:80px;margin-left:12px;">Meny</h3>
         <button 
           id="close-sidebar" 
           class="uk-offcanvas-close uk-icon uk-close"
-          style="top:27px;" 
+          style="color:#fff;top:27px;" 
           type="button" uk-close></button>
       </div>
       <ul 
