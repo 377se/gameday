@@ -100,10 +100,11 @@
             </tr>
           </tfoot>
         </table>
-        <div class="uk-padding-small">
+        <div 
+          class="uk-padding-small"
+          @click="close()">
           <nuxt-link
             to="/checkout"
-            @click="close()"
             class="uk-button uk-width-1-1 uk-button-primary">Till betalning</nuxt-link>
         </div>
       </div>
@@ -131,7 +132,7 @@ export default {
   },
   methods:{
     close(){
-      let _el = document.getElementById('close-basket')
+      let _el = document.getElementById('offscreen-basket')
       UIkit.offcanvas(_el).hide();
     },
     async deleteFromCart(id){
