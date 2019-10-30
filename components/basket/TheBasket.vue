@@ -103,6 +103,7 @@
         <div class="uk-padding-small">
           <nuxt-link
             to="/checkout"
+            @click="close()"
             class="uk-button uk-width-1-1 uk-button-primary">Till betalning</nuxt-link>
         </div>
       </div>
@@ -129,6 +130,10 @@ export default {
     }
   },
   methods:{
+    close(){
+      let _el = document.getElementById('close-basket')
+      UIkit.offcanvas(_el).hide();
+    },
     async deleteFromCart(id){
       let _this = this
       await this.$axios.delete('https://beta.supporterprylar.se/webapi/cart?id='+id
