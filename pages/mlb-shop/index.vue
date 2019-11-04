@@ -2,7 +2,10 @@
   <section>
     <div class="uk-container uk-padding-small">
       <h1>{{ article.SeoTitle }}</h1>
-      <div v-html="article.SeoContentDescription"/>
+      <div
+        :class="{'read-more':readmore}" 
+        @click="setReadMore()" 
+        v-html="article.SeoContentDescription"/>
     </div>
     <FilterItems
       :product-types="producttypes"
@@ -20,6 +23,18 @@
           :url="`/lag/mlb/${article.HeadCategorySeoName}/${article.SeoName}`"
         />
       </div>
+      <ul 
+        class="uk-pagination uk-flex-right" uk-margin>
+        <li>
+          <a 
+            href="#"
+            @click.stop.prevent="previous()"><span uk-pagination-previous></span> Previous</a></li>
+        <li><span>{{ pageNum }}/{{ article.TotalPages }}</span></li>
+        <li>
+          <a 
+            href="#"
+            @click.stop.prevent="next()">Next <span uk-pagination-next></span></a></li>
+      </ul>
     </div>
   </section>
 </template>
@@ -50,10 +65,29 @@ export default {
       articles: [],
       producttypes: [], //To filter on
       colors: [],
-      sizes: []
+      sizes: [],
+      pageNum: 1,
+      totalPages:1,
+      numOfProducts: 1,
+      readmore: true
     }
   },
   mounted(){
+  },
+  methods:{
+    setReadMore(){
+      this.readmore = false
+    },
+    next(){
+      if(this.pageNum<this.article.TotalPages){
+        this.$router.push({ query: { page: (parseInt(this.pageNum)+1) }})
+      } 
+    },
+    previous(){
+      if(this.pageNum>1){
+        this.$router.push({ query: { page: (parseInt(this.pageNum)-1) }})
+      } 
+    }
   },
   async asyncData (context) {
     try {
@@ -76,7 +110,8 @@ export default {
         producttypes: p,
         colors: c,
         sizes: s,
-        article: a[0]
+        article: a[0],
+        pageNum: pageNum
         
       };
     } catch (err) {
@@ -89,4 +124,22 @@ export default {
 </script>
 <style lang="scss">
 @import '~/assets/scss/vars.scss';
+.read-more{
+  max-height: 74px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.read-more:after{
+    content: "";
+    opacity: 1;
+    display: block;
+    background: linear-gradient(rgba(255,255,255,0) 0%, rgba(255,255,255,1) 70%);
+    position: absolute;
+    bottom: 0;
+    padding: 20px 10px 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
 </style>
