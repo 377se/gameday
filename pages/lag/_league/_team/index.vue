@@ -2,7 +2,10 @@
   <section>
     <div class="uk-container uk-padding-small">
       <h1>{{ article.SeoTitle }}</h1>
-      <div v-html="article.SeoContentDescription"/>
+      <div 
+        :class="{'read-more':readmore}"
+        @click="setReadMore()"
+        v-html="article.SeoContentDescription"/>
     </div>
     <FilterItems
       :product-types="producttypes"
@@ -63,10 +66,16 @@ export default {
       articles: [],
       producttypes: [], //To filter on
       colors: [],
-      sizes: []
+      sizes: [],
+      readmore: true
     }
   },
   mounted(){
+  },
+  methods:{
+    setReadMore(){
+      this.readmore=false
+    }
   },
   async asyncData (context) {
     let pageNum = context.route.query.page?context.route.query.page:1
@@ -103,4 +112,22 @@ export default {
 </script>
 <style lang="scss">
 @import '~/assets/scss/vars.scss';
+.read-more{
+  max-height: 74px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.read-more:after{
+    content: "";
+    opacity: 1;
+    display: block;
+    background: linear-gradient(rgba(255,255,255,0) 0%, rgba(255,255,255,1) 70%);
+    position: absolute;
+    bottom: 0;
+    padding: 20px 10px 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
 </style>
