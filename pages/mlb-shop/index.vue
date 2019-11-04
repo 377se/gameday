@@ -59,16 +59,16 @@ export default {
     try {
       const [a, p, c, s] = await Promise.all([
         await context.app.$axios.$get(
-          'https://beta.supporterprylar.se/webapi/Article/GetArticleList?pageNum=1&seoName=mlb'
+          '/webapi/Article/GetArticleList?pageNum=1&seoName=mlb'
         ),
         await context.app.$axios.$get(
-          'https://beta.supporterprylar.se/webapi/Filter/GetProductTypeList?seoName=mlb&teamName=null'
+          '/webapi/Filter/GetProductTypeList?seoName=mlb&teamName=null'
         ),
         await context.app.$axios.$get(
-          'https://beta.supporterprylar.se/webapi/Filter/GetColourList?categoryName=mlb&teamName=null&garmentName=null'
+          '/webapi/Filter/GetColourList?categoryName=mlb&teamName=null&garmentName=null'
         ),
         await context.app.$axios.$get(
-          'https://beta.supporterprylar.se/webapi/Filter/GetSizeList?categoryName=mlb&teamName=null&garmentName=null'
+          '/webapi/Filter/GetSizeList?categoryName=mlb&teamName=null&garmentName=null'
         )
       ]);
       return {

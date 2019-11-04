@@ -46,7 +46,7 @@ export default {
   },
   async asyncData({ app, route }) {
     try {
-      const url = `https://beta.supporterprylar.se/webapi/klarnacheckout3?id=${route.params.id}`;
+      const url = `/webapi/klarnacheckout3?id=${route.params.id}`;
       const klarnahtml = await app.$axios.$get(url);
 
       return { klarnahtml };

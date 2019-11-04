@@ -86,7 +86,14 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    proxy: true
+  },
+  proxy: {
+    '/webapi': {
+      target: 'https://api.gameday.shopping'
+    }
+  },
   /*
    ** Build configuration
    */

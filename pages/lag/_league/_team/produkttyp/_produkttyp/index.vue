@@ -56,10 +56,10 @@ export default {
     try {
       const [a,p] = await Promise.all([
         await context.app.$axios.$get(
-          'https://beta.supporterprylar.se/webapi/Article/GetArticleList?pageNum=1&seoName=' +context.route.params.team
+          '/webapi/Article/GetArticleList?pageNum=1&seoName=' +context.route.params.team
         ),
         await context.app.$axios.$get(
-          'https://beta.supporterprylar.se/webapi/Filter/GetProductTypeList?seoName='+context.route.params.league+'&teamName='+context.route.params.team
+          '/webapi/Filter/GetProductTypeList?seoName='+context.route.params.league+'&teamName='+context.route.params.team
         )
       ]);
       return {

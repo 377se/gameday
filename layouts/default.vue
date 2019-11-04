@@ -37,7 +37,7 @@ export default {
   methods:{
     async getSession(){
       var _this = this
-      await this.$axios.$get('https://beta.supporterprylar.se/webapi/cart')
+      await this.$axios.$get('/webapi/cart')
       .then(res => {
         _this.$store.commit('basket/add', res)
         this.$cookies.set('session', res.SessionId)

@@ -44,7 +44,7 @@ export default {
     try {
       const [a] = await Promise.all([
         await context.app.$axios.$get(
-          'https://beta.supporterprylar.se/webapi/Brand/GetBrandList'
+          '/webapi/Brand/GetBrandList'
         )
       ]);
       return {
