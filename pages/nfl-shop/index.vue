@@ -12,6 +12,7 @@
       :colors="colors"
       :sizes="sizes"/>
     <div class="uk-container uk-padding-small">
+      <div class="uk-margin-small-bottom"><strong>{{ article.TotalNumberOfProducts }} produkter</strong></div>
       <div
         class="uk-grid-small uk-child-width-1-2 uk-child-width-1-4@m"
         uk-height-match="target: > a > .uk-card"
@@ -90,10 +91,11 @@ export default {
     }
   },
   async asyncData (context) {
+    let pageNum = context.route.query.page?context.route.query.page:1
     try {
       const [a, p, c, s] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Article/GetArticleList?pageNum=1&seoName=nfl'
+          '/webapi/Article/GetArticleList?pageNum='+ pageNum +'&seoName=nfl'
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetProductTypeList?seoName=nfl&teamName=null'
