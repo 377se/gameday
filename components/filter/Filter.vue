@@ -18,10 +18,10 @@
         <div
           style="height:80px;background:#00bbe0"
           class="uk-flex">
-          <h3 style="line-height:80px;margin-left:12px;">Filter</h3>
+          <h3 style="line-height:80px;margin-left:12px;color:#fff;">Filter</h3>
           <button 
             class="uk-offcanvas-close uk-icon uk-close"
-            style="top:27px;" 
+            style="top:27px;color:#fff;" 
             type="button" uk-close></button>
         </div>
         
