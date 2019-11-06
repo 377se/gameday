@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="uk-background-muted">
-      <div class="uk-container uk-padding">
+      <div class="uk-container uk-container-xsmall uk-padding">
         <form 
           method="post"
           @submit.prevent="login">

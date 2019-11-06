@@ -21,7 +21,7 @@
           <h3 style="line-height:80px;margin-left:12px;color:#fff;">Filter</h3>
           <button 
             class="uk-offcanvas-close uk-icon uk-close"
-            style="top:27px;color:#fff;" 
+            style="top:27px;right:6px;color:#fff;" 
             type="button" uk-close></button>
         </div>
         

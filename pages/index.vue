@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="uk-container uk-padding-small">
+    <div class="uk-container uk-container-large uk-padding-small">
       <component 
         v-if="story.content.component" 
         :key="story.content._uid" 

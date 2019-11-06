@@ -1,7 +1,9 @@
 <template>
   <section>
     <div class="uk-background-muted">
-      <div class="uk-container uk-padding">
+      <div 
+        v-if="!success"
+        class="uk-container uk-container-xsmall uk-padding">
         <form 
           method="post"
           @submit.prevent="register">
@@ -64,6 +66,14 @@
           </fieldset>
         </form>
       </div>
+      <div 
+        v-else
+        class="uk-container uk-container-xsmall uk-padding uk-text-center">
+        <h1>Du är nu registrerad!</h1>
+        <nuxt-link
+          to="/login"
+          class="uk-button uk-button-primary">Logga in här</nuxt-link>
+      </div>
     </div>
   </section>
 </template>
@@ -91,17 +101,19 @@ export default {
       },
       labels: {},
       errors: [],
+      success: true,
       isSubmitting: false
     }
   },
   methods: {
     async register(event) {
+      var _this = this
       await this.$axios.post('/webapi/customer/PostRegister', {
         customerUserName: this.form.email,
         customerPassword: this.form.password,
         customerRepeatPassword: this.form.repeatpassword
       }).then(function (response) {
-        alert('Registered!')
+        _this.success=true
       })
       .catch(function (error) {
         alert('Error')
