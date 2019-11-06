@@ -42,58 +42,110 @@
       </ul>
       <div class="uk-switcher">
         <div>
-          <ul class="uk-list uk-list-divider">
+          <ul class="uk-nav-default uk-nav-parent-icon" uk-nav="multiple:true">
             <li>
               <nuxt-link
-                to="/nba-shop">All NBA</nuxt-link>
+                to="/nba-shop">Till NBA Shopen</nuxt-link>
             </li>
-            <li
-              v-for="team in nbaMenu"
-              :key="team.CategoryId">
-              <nuxt-link
-                :to="'/lag/nba/'+team.SeoName">{{ team.Name }}</nuxt-link>
+            <li class="uk-parent uk-open">
+              <a href="#">Populäraste lagen</a>
+              <ul class="uk-nav-sub">
+                  <li><a href="#">Sub item</a></li>
+                  <li><a href="#">Sub item</a></li>
+              </ul>
+            </li>
+            <li class="uk-parent">
+              <a href="#">Alla lag (A-Z)</a>
+              <ul class="uk-nav-sub">
+                <li><a href="#">Visa alla</a></li>
+                <li
+                  v-for="team in nbaMenu"
+                  :key="team.CategoryId">
+                  <nuxt-link
+                    :to="'/lag/nba/'+team.SeoName">{{ team.Name }}</nuxt-link>
+                </li>
+              </ul>
             </li>
           </ul>
         </div>
         <div>
-          <ul class="uk-list uk-list-divider">
+          <ul class="uk-nav-default uk-nav-parent-icon" uk-nav="multiple:true">
             <li>
               <nuxt-link
-                to="/nfl-shop">All NFL</nuxt-link>
+                to="/nfl-shop">Till NFL Shopen</nuxt-link>
             </li>
-            <li
-              v-for="team in nflMenu"
-              :key="team.CategoryId">
-              <nuxt-link
-                :to="'/lag/nfl/'+team.SeoName">{{ team.Name }}</nuxt-link>
+            <li class="uk-parent uk-open">
+              <a href="#">Populäraste lagen</a>
+              <ul class="uk-nav-sub">
+                  <li><a href="#">Sub item</a></li>
+                  <li><a href="#">Sub item</a></li>
+              </ul>
+            </li>
+            <li class="uk-parent">
+              <a href="#">Alla lag (A-Z)</a>
+              <ul class="uk-nav-sub">
+                <li><a href="#">Visa alla</a></li>
+                <li
+                  v-for="team in nflMenu"
+                  :key="team.CategoryId">
+                  <nuxt-link
+                    :to="'/lag/nfl/'+team.SeoName">{{ team.Name }}</nuxt-link>
+                </li>
+              </ul>
             </li>
           </ul>
         </div>
         <div>
-          <ul class="uk-list uk-list-divider">
+          <ul class="uk-nav-default uk-nav-parent-icon" uk-nav="multiple:true">
             <li>
               <nuxt-link
-                to="/mlb-shop">All MLB</nuxt-link>
+                to="/mlb-shop">Till MLB Shopen</nuxt-link>
             </li>
-            <li
-              v-for="team in mlbMenu"
-              :key="team.CategoryId">
-              <nuxt-link
-                :to="'/lag/mlb/'+team.SeoName">{{ team.Name }}</nuxt-link>
+            <li class="uk-parent uk-open">
+              <a href="#">Populäraste lagen</a>
+              <ul class="uk-nav-sub">
+                  <li><a href="#">Sub item</a></li>
+                  <li><a href="#">Sub item</a></li>
+              </ul>
+            </li>
+            <li class="uk-parent">
+              <a href="#">Alla lag (A-Z)</a>
+              <ul class="uk-nav-sub">
+                <li><a href="#">Visa alla</a></li>
+                <li
+                  v-for="team in mlbMenu"
+                  :key="team.CategoryId">
+                  <nuxt-link
+                    :to="'/lag/mlb/'+team.SeoName">{{ team.Name }}</nuxt-link>
+                </li>
+              </ul>
             </li>
           </ul>
         </div>
         <div>
-          <ul class="uk-list uk-list-divider">
+          <ul class="uk-nav-default uk-nav-parent-icon" uk-nav="multiple:true">
             <li>
               <nuxt-link
-                to="/nhl-shop">All NHL</nuxt-link>
+                to="/nhl-shop">Till NHL Shopen</nuxt-link>
             </li>
-            <li
-              v-for="team in nhlMenu"
-              :key="team.CategoryId">
-              <nuxt-link
-                :to="'/lag/nhl/'+team.SeoName">{{ team.Name }}</nuxt-link>
+            <li class="uk-parent uk-open">
+              <a href="#">Populäraste lagen</a>
+              <ul class="uk-nav-sub">
+                  <li><a href="#">Sub item</a></li>
+                  <li><a href="#">Sub item</a></li>
+              </ul>
+            </li>
+            <li class="uk-parent">
+              <a href="#">Alla lag (A-Z)</a>
+              <ul class="uk-nav-sub">
+                <li><a href="#">Visa alla</a></li>
+                <li
+                  v-for="team in nhlMenu"
+                  :key="team.CategoryId">
+                  <nuxt-link
+                    :to="'/lag/nhl/'+team.SeoName">{{ team.Name }}</nuxt-link>
+                </li>
+              </ul>
             </li>
           </ul>
         </div>
