@@ -91,7 +91,7 @@ export default {
   },
   proxy: {
     '/webapi': {
-      target: 'https://api.gameday.shopping'
+      target: 'https://beta.supporterprylar.se'
     }
   },
   /*
