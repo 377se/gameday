@@ -111,7 +111,7 @@
             <li><nuxt-link to="/lag/nhl/boston-bruins">Boston Bruins</nuxt-link></li>
             <li><nuxt-link to="/lag/nhl/chicago-blackhawks">Chicago Blackhawks</nuxt-link></li>
             <li><nuxt-link to="/lag/nhl/new-york-rangers">New York Rangers</nuxt-link></li>
-            <li><nuxt-link to="/lag/nhl/pittsburg-penguins">Pittsburg Penguins</nuxt-link></li>
+            <li><nuxt-link to="/lag/nhl/pittsburgh-penguins">Pittsburgh Penguins</nuxt-link></li>
             <li class="uk-nav-header">Alla lag (A-Z)
             <li
               v-for="team in nhlMenu"
