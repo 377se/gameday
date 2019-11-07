@@ -45,6 +45,12 @@ export default {
     { src: "~/plugins/uikit.js", ssr: false },
     {src: '~/plugins/axios'}
   ],
+  render: {
+    http2: {
+      push: true
+      //,pushAssets: (req, res, publicPath, preloadFiles) => console.log(preloadFiles)
+    }
+  },
   /*
    ** Nuxt.js dev-modules
    */
