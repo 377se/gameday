@@ -53,7 +53,6 @@
             <li><nuxt-link to="/lag/nba/golden-state-warriors">Golden State Warriors</nuxt-link></li>
             <li><nuxt-link to="/lag/nba/brooklyn-nets">Brooklyn Nets</nuxt-link></li>
             <li class="uk-nav-header">Alla lag (A-Z)</li>
-            <li><a href="#">Visa alla</a></li>
             <li
               v-for="team in nbaMenu"
               :key="team.CategoryId">
