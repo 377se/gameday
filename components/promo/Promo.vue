@@ -28,10 +28,10 @@
         <h1 
           style="margin-top:0;color:#fff;font-weight:bold;text-transform:uppercase;text-shadow: 2px 2px rgba(0,0,0,0.5);"
           class="uk-animation-fade uk-animation-slide-right">San José Sharks</h1>
-        <a 
+        <nuxt-link 
           style="background:#fff;"
           class="uk-button uk-button-default"
-          href="#">Köp Sharks!</a>
+          :to="blok.promo_url.url">Köp Sharks!</nuxt-link>
       </div>
     </a>
   </div>
