@@ -1,5 +1,7 @@
 <template>
-  <div class="uk-container uk-padding-small">
+  <div 
+    v-if="false"
+    class="uk-container uk-padding-small">
     <div class="uk-text-center">
       <a 
         href="#filter-menu"

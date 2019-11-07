@@ -34,7 +34,9 @@
           <div>
             <strong>Välj storlek</strong>
           </div>
-          <div class="uk-text-right">
+          <div
+            v-if="false" 
+            class="uk-text-right">
             <a href="#">Storleksguide</a>
           </div>
         </div>
@@ -66,6 +68,7 @@
           Lägg i varukorgen
         </button>
         <button 
+          v-if="false"
           type="button"
           class="uk-button uk-button-default uk-width-1-1"
           @click.prevent>
