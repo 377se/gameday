@@ -12,6 +12,7 @@
       :colors="colors"
       :sizes="sizes"/>
     <div class="uk-container uk-container-large uk-padding-small">
+      <div class="uk-margin-small-bottom"><strong>{{ article.TotalNumberOfProducts }} produkter</strong></div>
       <div
         class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-4@m"
         uk-grid
@@ -24,16 +25,17 @@
         />
       </div>
       <ul 
-        v-if="articles.PageNum>0"
-        class="uk-pagination uk-flex-center" uk-margin>
-        <li><a href="#"><span uk-pagination-previous></span></a></li>
-        <li><nuxt-link :to="{query:{page:1}}">1</nuxt-link></li>
-        <li class="uk-disabled"><span>...</span></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">6</a></li>
-        <li class="uk-active"><span>7</span></li>
-        <li><a href="#">8</a></li>
-        <li><a href="#"><span uk-pagination-next></span></a></li>
+        v-if="article.TotalPages>1"
+        class="uk-pagination uk-flex-right" uk-margin>
+        <li>
+          <a 
+            href="#"
+            @click.stop.prevent="previous()"><span uk-pagination-previous></span> Föregående</a></li>
+        <li><span>{{ pageNum }}/{{ article.TotalPages }}</span></li>
+        <li>
+          <a 
+            href="#"
+            @click.stop.prevent="next()">Nästa <span uk-pagination-next></span></a></li>
       </ul>
     </div>
   </section>
@@ -67,6 +69,9 @@ export default {
       producttypes: [], //To filter on
       colors: [],
       sizes: [],
+      pageNum: 1,
+      totalPages:1,
+      numOfProducts: 1,
       readmore: true
     }
   },
@@ -75,6 +80,16 @@ export default {
   methods:{
     setReadMore(){
       this.readmore=false
+    },
+    next(){
+      if(this.pageNum<this.article.TotalPages){
+        this.$router.push({ query: { page: (parseInt(this.pageNum)+1) }})
+      } 
+    },
+    previous(){
+      if(this.pageNum>1){
+        this.$router.push({ query: { page: (parseInt(this.pageNum)-1) }})
+      } 
     }
   },
   async asyncData (context) {
@@ -99,7 +114,8 @@ export default {
         producttypes: p,
         colors: c,
         sizes: s,
-        article: a[0]
+        article: a[0],
+        pageNum: pageNum
         
       };
     } catch (err) {

@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="uk-container uk-padding-small">
+    <div class="uk-container uk-container-large uk-padding-small">
       <h1>{{ article.SeoTitle }}</h1>
       <div
         :class="{'read-more':readmore}" 
@@ -11,7 +11,7 @@
       :product-types="producttypes"
       :colors="colors"
       :sizes="sizes"/>
-    <div class="uk-container uk-padding-small">
+    <div class="uk-container uk-container-large uk-padding-small">
       <div class="uk-margin-small-bottom"><strong>{{ article.TotalNumberOfProducts }} produkter</strong></div>
       <div
         class="uk-grid-small uk-child-width-1-2 uk-child-width-1-4@m"
@@ -25,16 +25,17 @@
         />
       </div>
       <ul 
+        v-if="article.TotalPages>1"
         class="uk-pagination uk-flex-right" uk-margin>
         <li>
           <a 
             href="#"
-            @click.stop.prevent="previous()"><span uk-pagination-previous></span> Previous</a></li>
+            @click.stop.prevent="previous()"><span uk-pagination-previous></span> Föregående</a></li>
         <li><span>{{ pageNum }}/{{ article.TotalPages }}</span></li>
         <li>
           <a 
             href="#"
-            @click.stop.prevent="next()">Next <span uk-pagination-next></span></a></li>
+            @click.stop.prevent="next()">Nästa <span uk-pagination-next></span></a></li>
       </ul>
     </div>
   </section>
