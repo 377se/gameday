@@ -14,7 +14,6 @@
     <div class="uk-container uk-container-large uk-padding-small">
       <div
         class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-4@m"
-        uk-height-match="target: > * > .uk-card"
         uk-grid>
         <ArticleCardSimple
           v-for="article in articles"

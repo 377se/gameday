@@ -82,6 +82,7 @@
               <ArticlePageText 
                 class="uk-accordion-content"
                 v-bind:content="article.Description"/>
+              <p>Artikelnummer: {{ article.ArticleNumber }}</p>
             </li>
           </ul>
         </div>
