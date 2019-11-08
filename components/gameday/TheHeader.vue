@@ -9,7 +9,7 @@
       </div>
 
       <div class="uk-navbar-left">
-        <a class="uk-navbar-item uk-logo" href="/"><img src="~assets/gameday-logo.svg"></a>
+        <a class="uk-navbar-item uk-logo" href="/"><img src="~assets/gameday-logo.svg" class="logo"></a>
       </div>
 
       <div 
@@ -98,6 +98,10 @@ export default {
 .header {
   background-color: $global-primary-background !important;
   height: 80px;
+}
+
+.logo {
+  width: 250px;
 }
 
 .hamburger {
