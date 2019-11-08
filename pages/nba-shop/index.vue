@@ -15,8 +15,8 @@
       <div class="uk-margin-small-bottom"><strong>{{ article.TotalNumberOfProducts }} produkter</strong></div>
       <div
         class="uk-grid-small uk-child-width-1-2 uk-child-width-1-4@m"
-        uk-height-match="target: > a > .uk-card"
-        uk-grid>
+        uk-grid
+        uk-height-match="target: > a > .uk-card; row: false">
         <ArticleCardSimple
           v-for="article in articles"
           :key="article.Id"
