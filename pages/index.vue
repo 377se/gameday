@@ -1,5 +1,23 @@
 <template>
   <section>
+    <div 
+      v-if="false"
+      uk-slideshow>
+      <ul class="uk-slideshow-items">
+        <li 
+          class="uk-text-center">
+            30 dagars öppet köp!
+        </li>
+        <li 
+          class="uk-text-center">
+            Fria returer!
+        </li>
+        <li 
+          class="uk-text-center">
+            Snabba leveranser!
+        </li>
+      </ul>
+    </div>
     <div class="uk-container uk-container-large uk-padding-small">
       <component 
         v-if="story.content.component" 

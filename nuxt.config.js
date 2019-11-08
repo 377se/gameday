@@ -85,7 +85,7 @@ export default {
   ],
   webfontloader: {
     google: {
-      families: ['Lato:400,700'] //Loads Lato and Roboto fonts
+      families: ['Lato:300,400,900'] //Loads Lato
     }
   },
   /*
