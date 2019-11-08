@@ -28,6 +28,7 @@ export default {
     /*if(localStorage.session!=undefined){
       this.$axios.setHeader('x-session', localStorage.session)
     }*/
+    //UIkit.notification("", {status:'primary'})
     this.$on('zendeskLoaded', (event) => {
       this.$zendesk.zE('webWidget', 'setLocale', 'sv');
     })
