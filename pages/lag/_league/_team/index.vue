@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="uk-container uk-padding-small">
+    <div class="uk-container uk-container-large uk-padding-small">
       <h1>{{ article.SeoTitle }}</h1>
       <div 
         :class="{'read-more':readmore}"
@@ -11,9 +11,9 @@
       :product-types="producttypes"
       :colors="colors"
       :sizes="sizes"/>
-    <div class="uk-container uk-padding-small">
+    <div class="uk-container uk-container-large uk-padding-small">
       <div
-        class="uk-grid-small uk-child-width-1-2 uk-child-width-1-4@m"
+        class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-4@m"
         uk-height-match="target: > * > .uk-card"
         uk-grid>
         <ArticleCardSimple
