@@ -9,7 +9,9 @@
       </div>
 
       <div class="uk-navbar-left">
-        <a class="uk-navbar-item uk-logo" href="/"><img src="~assets/gameday-logo.svg" class="logo"></a>
+        <nuxt-link 
+          class="uk-navbar-item uk-logo" 
+          to="/"><img src="~assets/gameday-logo.svg" class="logo"></nuxt-link>
       </div>
 
       <div 
