@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="uk-container">
-      <h3>Medlemsinformation</h3>
+      <h1>Medlemsinformation</h1>
 
     </div>
   </section>
@@ -54,7 +54,7 @@ export default {
   },
   async asyncData (context) {
     try {
-      const [m] = await Promise.all([
+      const [c] = await Promise.all([
         await context.app.$axios.$get(
           '/webapi/Customer/GetCustomer'
         )

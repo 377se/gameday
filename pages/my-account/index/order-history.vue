@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="uk-container">
-      <h3>Orderhistorik</h3>
+      <h1>Orderhistorik</h1>
       <ul class="uk-list">
         <li 
           v-for="order in orders"

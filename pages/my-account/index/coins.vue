@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="uk-container">
-      <h3>Coins</h3>
+      <h1>Coins</h1>
      
       Antal coins: {{ coins.CoinsValue }}<br />
       Giltiga t.o.m.: {{ coins.ExpirationDate }}

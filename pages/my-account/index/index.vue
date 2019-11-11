@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="uk-container">
-      <h3>Mitt konto</h3>
+      <h1>Mitt konto</h1>
       <component 
         v-if="story.content.component" 
         :key="story.content._uid" 
