@@ -47,6 +47,10 @@
               <nuxt-link
                 to="/nba-shop">Till NBA Shopen</nuxt-link>
             </li>
+            <li>
+              <nuxt-link
+                to="/nba-shop/sale">NBA REA</nuxt-link>
+            </li>
             <li class="uk-nav-header">Populäraste lagen</li>
             <li><nuxt-link to="/lag/nba/chicago-bulls">Chicago Bulls</nuxt-link></li>
             <li><nuxt-link to="/lag/nba/cleveland-cavaliers">Cleveland Cavaliers</nuxt-link></li>
@@ -66,6 +70,10 @@
             <li>
               <nuxt-link
                 to="/nfl-shop">Till NFL Shopen</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link
+                to="/nfl-shop/sale">NFL REA</nuxt-link>
             </li>
             <li class="uk-nav-header">Populäraste lagen</li>
             <li><nuxt-link to="/lag/nfl/new-england-patriots">New England Patriots</nuxt-link></li>
@@ -87,6 +95,10 @@
               <nuxt-link
                 to="/mlb-shop">Till MLB Shopen</nuxt-link>
             </li>
+            <li>
+              <nuxt-link
+                to="/mlb-shop/sale">MLB REA</nuxt-link>
+            </li>
             <li class="uk-nav-header">Populäraste lagen</li>
             <li><nuxt-link to="/lag/mlb/new-york-yankees">New York Yankees</nuxt-link></li>
             <li><nuxt-link to="/lag/mlb/detroit-tigers">Detroit Tigers</nuxt-link></li>
@@ -106,6 +118,10 @@
             <li>
               <nuxt-link
                 to="/nhl-shop">Till NHL Shopen</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link
+                to="/nhl-shop/sale">NHL REA</nuxt-link>
             </li>
             <li class="uk-nav-header">Populäraste lagen</li>
             <li><nuxt-link to="/lag/nhl/boston-bruins">Boston Bruins</nuxt-link></li>
