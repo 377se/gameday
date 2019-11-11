@@ -154,6 +154,9 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+
+//To be added to store. Top team list
+//”https://beta.supporterprylar.se/webapi/Filter/GetTopTeamListBySeoName?seoName=mlb”
 export default {
   computed: {
     ...mapGetters({
