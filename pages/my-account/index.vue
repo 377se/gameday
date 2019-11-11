@@ -1,7 +1,9 @@
 <template>
   <section>
     <div class="uk-container uk-padding-small">
-      <ul uk-tab>
+      <ul
+        id="myaccountmenu" 
+        uk-tab>
         <li class="uk-active">
           <nuxt-link to="/my-account/">Mitt konto</nuxt-link>
         </li>
@@ -26,5 +28,20 @@ export default {
 }
 </script>
 <style lang="scss">
-
+#myaccountmenu{
+  overflow-y:hidden;
+  overflow-x:scroll;
+  flex-wrap:nowrap;
+  margin-right:-15px;
+  border-bottom: 1px solid #e5e5e5;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+#myaccountmenu::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+}
+#myaccountmenu::before{
+  border:none;
+}
 </style>
