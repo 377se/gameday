@@ -118,7 +118,7 @@ export default {
         await context.app.$axios.$get(
           '/webapi/Filter/GetSizeList?categoryName=nba&teamName=null&garmentName=null'
         ),
-        await context.app.$storyapi.get(`cdn/stories/nhl-shop/sale`, {
+        await context.app.$storyapi.get(`cdn/stories/nba-shop/sale`, {
           version: version,
           cv: 2
         })
