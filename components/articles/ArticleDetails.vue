@@ -1,16 +1,16 @@
 <template>
   <section 
-    class="uk-container uk-background-default">
+    class="uk-container uk-container-large uk-padding-small uk-padding-remove-top uk-background-default">
     <div 
-      class="uk-grid-small"
+      class="uk-grid uk-grid-small"
       uk-grid>
-      <section class="uk-width-1-1 uk-width-3-5@m uk-width-xlarge@l">
+      <section class="uk-width-1-1 uk-width-1-2@m">
         <ArticlePageImages
           :images="article.Images"
         />
       </section>
 
-      <section class="uk-width-1-1 uk-width-2-5@m uk-width-large@l pad-left@m">
+      <section class="uk-width-1-1 uk-width-1-2@m">
         <div class="uk-flex">
           <ArticlePageHeader 
             class="uk-width-expand"
@@ -47,7 +47,7 @@
           <div
             v-for="size in article.SizeList"
             :key="size.Value"
-            class="uk-width-1-3 uk-width-1-4@m uk-grid-margin">
+            class="uk-width-1-3 uk-width-1-4@l uk-grid-margin">
             <button 
               type="button"
               class="button-add-to-cart uk-button uk-width-1-1"
