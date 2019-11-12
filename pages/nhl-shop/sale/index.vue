@@ -1,11 +1,11 @@
 <template>
   <section>
     <div class="uk-container uk-container-large uk-padding-small">
-      <h1>{{ article.SeoTitle }}</h1>
-      <div
-        :class="{'read-more':readmore}" 
-        @click="setReadMore()"
-        v-html="article.SeoContentDescription"/>
+      <component 
+        v-if="story.content.component" 
+        :key="story.content._uid" 
+        :blok="story.content" 
+        :is="story.content.component" />
     </div>
     <FilterItems
       :product-types="producttypes"
@@ -71,16 +71,12 @@ export default {
       sizes: [],
       pageNum: 1,
       totalPages:1,
-      numOfProducts: 1,
-      readmore: true
+      numOfProducts: 1
     }
   },
   mounted(){
   },
   methods:{
-    setReadMore(){
-      this.readmore = false
-    },
     next(){
       if(this.pageNum<this.article.TotalPages){
         this.$router.push({ query: { page: (parseInt(this.pageNum)+1) }})
@@ -92,7 +88,36 @@ export default {
       } 
     }
   },
+  mounted () {
+    this.$storybridge.on(['input', 'published', 'change'], (event) => {
+      if (event.action == 'input') {
+        if (event.story.id === this.story.id) {
+          this.story.content = event.story.content
+        }
+      } else {
+        window.location.reload()
+      }
+    })
+  },
   async asyncData (context) {
+    // Check if we are in the editor mode
+    let version = context.query._storyblok || context.isDev ? 'draft' : 'published'
+    // Load the JSON from the API
+    return context.app.$storyapi.get(`cdn/stories/nhl-shop/sale`, {
+      version: version,
+      cv: 2
+    }).then((res) => {
+      return res.data
+    }).catch((res) => {
+      if (!res.response) {
+        console.error(res)
+        context.error({ statusCode: 404, message: 'Failed to receive content form api' })
+      } else {
+        console.error(res.response.data)
+        context.error({ statusCode: res.response.status, message: res.response.data })
+      }
+    })
+
     let pageNum = context.route.query.page?context.route.query.page:1
     let teamIdList = null
     try {
