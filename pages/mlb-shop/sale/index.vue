@@ -47,12 +47,12 @@ export default {
   watchQuery: ['page'],
   head () {
     return {
-      title: this.article.MetaTitle,
+      title: this.story.content.SEO.title,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.article.MetaDescription
+          content: this.story.content.SEO.description
         }
       ]
     }
@@ -64,7 +64,7 @@ export default {
   },
   data () {
     return {
-      story: { content: {} },
+      story: { content: {SEO:{title:'',description:''}} },
       article: {},
       articles: [],
       producttypes: [], //To filter on
