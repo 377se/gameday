@@ -254,7 +254,7 @@ export default {
   }
 }
 
-.menu-item-sale{
+.menu-item-sale, .menu-item-sale:hover,.menu-item-sale:active{
   color: #ec6a18;
 }
 </style>
