@@ -4,7 +4,7 @@
     <h1
       v-if="blok.title">{{ blok.title }}</h1>
     <div
-      v-if="blok.description.html"
+      v-if="blok.description"
       :class="{'read-more':readmore}" 
       @click="setReadMore()"
       v-html="blok.description.html"/>
