@@ -49,6 +49,7 @@
             </li>
             <li>
               <nuxt-link
+                class="menu-item-sale"
                 to="/nba-shop/sale">NBA REA</nuxt-link>
             </li>
             <li class="uk-nav-header">Populäraste lagen</li>
@@ -73,6 +74,7 @@
             </li>
             <li>
               <nuxt-link
+                class="menu-item-sale"
                 to="/nfl-shop/sale">NFL REA</nuxt-link>
             </li>
             <li class="uk-nav-header">Populäraste lagen</li>
@@ -97,6 +99,7 @@
             </li>
             <li>
               <nuxt-link
+                class="menu-item-sale"
                 to="/mlb-shop/sale">MLB REA</nuxt-link>
             </li>
             <li class="uk-nav-header">Populäraste lagen</li>
@@ -121,6 +124,7 @@
             </li>
             <li>
               <nuxt-link
+                class="menu-item-sale"
                 to="/nhl-shop/sale">NHL REA</nuxt-link>
             </li>
             <li class="uk-nav-header">Populäraste lagen</li>
@@ -248,5 +252,9 @@ export default {
   .sidebar-header{
     margin:-40px;
   }
+}
+
+.menu-item-sale{
+  color: #ec6a18;
 }
 </style>
