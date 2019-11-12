@@ -1,10 +1,14 @@
 <template>
   <div>
     <div class="uk-card uk-card-hover bottom-line">
-      <div class="uk-card-media-top">
+      <div class="article-image uk-card-media-top">
         <nuxt-link :to="getUrl()">
           <img 
             :src="list_src +article.ImageIdThumb" alt ref="mainImage">
+          <span
+            v-if="article.Label"
+            class="label-article"
+            :class="article.Label.LabelClass">{{ article.Label.LabelMessage }}</span>
         </nuxt-link>
       </div>
       <div class="uk-card-body uk-padding-small uk-padding-remove-bottom uk-text-small">
@@ -64,6 +68,25 @@ export default {
 }
 .bottom-line {
   border-bottom: 3px solid $global-primary-background;
+}
+
+.article-image{
+  position:relative;
+}
+.label-article{
+  font-size:0.8rem;
+  line-height:1;
+  padding: 4px 0;
+  position:absolute;
+  min-width:60px;
+  text-align:center;
+  position:absolute;
+  top:0;
+  left:0;
+}
+.label-percentage-discount{
+  background: #ec6a18;
+  color:#fff;
 }
 </style>
 
