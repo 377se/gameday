@@ -88,5 +88,9 @@ export default {
   background: #ec6a18;
   color:#fff;
 }
+.label-new-product{
+  background: $global-primary-background;
+  color:#fff;
+}
 </style>
 

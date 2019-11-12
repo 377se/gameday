@@ -47,7 +47,7 @@
           <div
             v-for="size in article.SizeList"
             :key="size.Value"
-            class="uk-width-1-3 uk-width-1-4@s uk-grid-margin">
+            class="uk-width-1-3 uk-width-1-4@m uk-grid-margin">
             <button 
               type="button"
               class="button-add-to-cart uk-button uk-width-1-1"
@@ -164,6 +164,9 @@ export default {
 .uk-button.button-add-to-cart{
   border-radius:3px;
   line-height:45px;
+  padding-left:2px;
+  padding-right:2px;
+  text-align:center;
 }
 .uk-button.uk-disabled{
   color:#ccc;
