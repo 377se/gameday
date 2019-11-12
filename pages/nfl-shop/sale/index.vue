@@ -73,16 +73,21 @@ export default {
       sizes: [],
       pageNum: 1,
       totalPages:1,
-      numOfProducts: 1,
-      readmore: true
+      numOfProducts: 1
     }
   },
   mounted(){
+    this.$storybridge.on(['input', 'published', 'change'], (event) => {
+      if (event.action == 'input') {
+        if (event.story.id === this.story.id) {
+          this.story.content = event.story.content
+        }
+      } else {
+        window.location.reload()
+      }
+    })
   },
   methods:{
-    setReadMore(){
-      this.readmore = false
-    },
     next(){
       if(this.pageNum<this.article.TotalPages){
         this.$router.push({ query: { page: (parseInt(this.pageNum)+1) }})
@@ -100,7 +105,7 @@ export default {
     let pageNum = context.route.query.page?context.route.query.page:1
     let teamIdList = null
     try {
-      const [a, p, c, s] = await Promise.all([
+      const [a, p, c, s, sb] = await Promise.all([
         await context.app.$axios.$get(
           '/webapi/Article/GetArticleListSale?pageNum='+ pageNum +'&seoName=nfl&teamIdList='+teamIdList
         ),
@@ -113,7 +118,7 @@ export default {
         await context.app.$axios.$get(
           '/webapi/Filter/GetSizeList?categoryName=nfl&teamName=null&garmentName=null'
         ),
-        await context.app.$storyapi.get(`cdn/stories/nhl-shop/sale`, {
+        await context.app.$storyapi.get(`cdn/stories/nfl-shop/sale`, {
           version: version,
           cv: 2
         })
