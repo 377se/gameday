@@ -102,26 +102,11 @@ export default {
   async asyncData (context) {
     // Check if we are in the editor mode
     let version = context.query._storyblok || context.isDev ? 'draft' : 'published'
-    // Load the JSON from the API
-    return context.app.$storyapi.get(`cdn/stories/nhl-shop/sale`, {
-      version: version,
-      cv: 2
-    }).then((res) => {
-      return res.data
-    }).catch((res) => {
-      if (!res.response) {
-        console.error(res)
-        context.error({ statusCode: 404, message: 'Failed to receive content form api' })
-      } else {
-        console.error(res.response.data)
-        context.error({ statusCode: res.response.status, message: res.response.data })
-      }
-    })
 
     let pageNum = context.route.query.page?context.route.query.page:1
     let teamIdList = null
     try {
-      const [a, p, c, s] = await Promise.all([
+      const [a, p, c, s, sb] = await Promise.all([
         await context.app.$axios.$get(
           '/webapi/Article/GetArticleListSale?pageNum='+ pageNum +'&seoName=nhl&teamIdList='+teamIdList
         ),
@@ -133,13 +118,18 @@ export default {
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetSizeList?categoryName=nhl&teamName=null&garmentName=null'
-        )
+        ),
+        await context.app.$storyapi.get(`cdn/stories/nhl-shop/sale`, {
+          version: version,
+          cv: 2
+        })
       ]);
       return {
         articles: a[0].ArticleList,
         producttypes: p,
         colors: c,
         sizes: s,
+        story: sb.data.story,
         article: a[0],
         pageNum: pageNum
       };
