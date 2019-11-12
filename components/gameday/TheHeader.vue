@@ -80,6 +80,9 @@ export default {
 
 <style lang="scss">
 @import '~/assets/scss/vars.scss';
+.uk-logo{
+  padding:0;margin:0 15px;
+}
 .basket-counter{
   position: absolute;
   top: 1px;
