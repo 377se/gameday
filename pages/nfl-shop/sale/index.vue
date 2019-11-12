@@ -1,11 +1,11 @@
 <template>
   <section>
     <div class="uk-container uk-container-large uk-padding-small">
-      <h1>{{ article.SeoTitle }}</h1>
-      <div
-        :class="{'read-more':readmore}" 
-        @click="setReadMore()" 
-        v-html="article.SeoContentDescription"/>
+      <component 
+        v-if="story.content.component" 
+        :key="story.content._uid" 
+        :blok="story.content" 
+        :is="story.content.component" />
     </div>
     <FilterItems
       :product-types="producttypes"
@@ -43,6 +43,7 @@
 <script>
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
+import Page from "@/components/Page";
 export default {
   watchQuery: ['page'],
   head () {
@@ -59,7 +60,8 @@ export default {
   },
   components:{
     ArticleCardSimple,
-    FilterItems
+    FilterItems,
+    Page
   },
   data () {
     return {
@@ -93,6 +95,8 @@ export default {
     }
   },
   async asyncData (context) {
+    // Check if we are in the editor mode
+    let version = context.query._storyblok || context.isDev ? 'draft' : 'published'
     let pageNum = context.route.query.page?context.route.query.page:1
     let teamIdList = null
     try {
@@ -108,13 +112,18 @@ export default {
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetSizeList?categoryName=nfl&teamName=null&garmentName=null'
-        )
+        ),
+        await context.app.$storyapi.get(`cdn/stories/nhl-shop/sale`, {
+          version: version,
+          cv: 2
+        })
       ]);
       return {
         articles: a[0].ArticleList,
         producttypes: p,
         colors: c,
         sizes: s,
+        story: sb.data.story,
         article: a[0],
         pageNum: pageNum
       };

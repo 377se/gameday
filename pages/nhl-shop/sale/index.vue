@@ -43,6 +43,7 @@
 <script>
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
+import Page from "@/components/Page";
 export default {
   watchQuery: ['page'],
   head () {
@@ -59,7 +60,8 @@ export default {
   },
   components:{
     ArticleCardSimple,
-    FilterItems
+    FilterItems,
+    Page
   },
   data () {
     return {

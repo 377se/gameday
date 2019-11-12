@@ -4,10 +4,10 @@
     <h1
       v-if="blok.title">{{ blok.title }}</h1>
     <div
-      v-if="blok.description"
+      v-if="blok.description.html"
       :class="{'read-more':readmore}" 
       @click="setReadMore()"
-      v-html="blok.description"/>
+      v-html="blok.description.html"/>
     <component v-for="child in blok.body" :key="child._uid" :blok="child" :is="child.component"></component>
   </div>
 </template>
