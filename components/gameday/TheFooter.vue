@@ -44,7 +44,6 @@
           <h3 class="uk-h4">Om Gameday</h3>
           <ul class="uk-list uk-text-small">
             <li><nuxt-link to="/foretagsinformation">Företagsinformation</nuxt-link></li>
-            <li><nuxt-link to="/samarbetspartners">Samarbetspartners</nuxt-link></li>
           </ul>
         </div>
 
