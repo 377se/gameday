@@ -34,12 +34,12 @@ import Page from '@/components/Page'
 export default {
   head () {
     return {
-      title: this.story.content.SEO.title,
+      title: 'Gameday',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.story.content.SEO.description
+          content: 'Gameday'
         }
       ]
     }
