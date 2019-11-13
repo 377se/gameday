@@ -51,6 +51,15 @@ export default {
       //,pushAssets: (req, res, publicPath, preloadFiles) => console.log(preloadFiles)
     }
   },
+  router: {
+    extendRoutes (routes, resolve) {
+      routes.push({
+        name: 'home',
+        path: '/home',
+        component: resolve(__dirname, 'pages/index.vue')
+      })
+    }
+  },
   /*
    ** Nuxt.js dev-modules
    */
