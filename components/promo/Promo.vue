@@ -1,12 +1,14 @@
 <template>
   <div>
+    <h1
+      v-if="blok.category_header">{{ blok.category_header }}</h1>
     <a 
       style="position:relative;display:block;"
       :href="blok.promo_url.url">
       <picture>
         <source 
           media="(max-width: 360px)" 
-          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/x_800,y_0,w_1600,h_1200,c_crop/w_360,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
+          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/x_1000,y_0,w_1200,h_1200,c_crop/w_360,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
         <source 
           media="(max-width: 768px)" 
           :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/x_800,y_0,w_1600,h_1200,c_crop/w_768,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
@@ -21,17 +23,19 @@
           :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/w_2560,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
       </picture>
       <div
-        style="position:absolute;bottom:40px;left:20px;">
+        style="position:absolute;bottom:20px;left:20px;">
         <h4 
           style="color:#fff;margin-bottom:0;text-shadow: 2px 2px rgba(0,0,0,0.5);"
-          class="uk-animation-fade uk-animation-slide-right">Welcome to the Shark tank!</h4>
+          class="uk-animation-fade">{{ blok.promo_subheader }}</h4>
         <h1 
           style="margin-top:0;color:#fff;font-weight:bold;text-transform:uppercase;text-shadow: 2px 2px rgba(0,0,0,0.5);"
-          class="uk-animation-fade uk-animation-slide-right">San José Sharks</h1>
+          class="uk-animation-fade uk-animation-slide-right">{{ blok.promo_header }}</h1>
         <nuxt-link 
+          v-for="b in blok.promo_buttons"
+          :key="b._uid"
           style="background:#fff;"
           class="uk-button uk-button-default"
-          :to="blok.promo_url.url">Köp Sharks!</nuxt-link>
+          :to="b.button_url.url">{{ b.button_text }}</nuxt-link>
       </div>
     </a>
   </div>
