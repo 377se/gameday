@@ -72,4 +72,18 @@ export default {
 .product-list-slider > div:last-child{
   padding-right:15px;
 }
+@media (min-width: 1240px){
+  .product-list-slider{
+    justify-content:center;
+  }
+  .product-list-slider > div > .uk-card{
+    max-width: 60vw;
+    width: 14rem;
+  }
+  .product-list-slider > div:last-child{
+    padding-right:0px;
+  }
+
+}
+
 </style>
