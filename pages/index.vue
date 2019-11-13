@@ -34,12 +34,12 @@ import Page from '@/components/Page'
 export default {
   head () {
     return {
-      title: 'Gameday',
+      title: this.story.content.SEO.title,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Gameday'
+          content: this.story.content.SEO.description
         }
       ]
     }
@@ -73,7 +73,7 @@ export default {
     // Load the JSON from the API
     return context.app.$storyapi.get(`cdn/stories/home`, {
       version: version,
-      cv: 2
+      cv: context.store.getters.version
     }).then((res) => {
       return res.data
     }).catch((res) => {

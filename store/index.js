@@ -5,6 +5,7 @@ export const state = () => ({
   nflMenu:[],
   mlbMenu:[],
   plMenu:[], 
+  version: 1573637448,
   cid:null
 })
 
@@ -29,6 +30,9 @@ export const mutations = {
   },
   setCid(state, val){
     state.cid = val
+  },
+  setVersion(state, version){
+    state.version = version.version
   }
 }
 export const getters = {
@@ -49,6 +53,9 @@ export const getters = {
   },
   cid(state){
     return state.cid
+  },
+  version(state){
+    return state.version
   }
 }
 //NHL 202
@@ -66,13 +73,15 @@ export const actions = {
       await context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=327'),
       await context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=328'),
       await context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=329'),
-      await context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=421')
+      await context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=421'),
+      await context.app.$axios.$get('https://api.storyblok.com/v1/cdn/spaces/me?token=rGRW1HEorfNfSoGS5CzoDwtt')
     ]).then(res => {
         vuexContext.commit('setNHLMenu', res[0])
         vuexContext.commit('setNBAMenu', res[1])
         vuexContext.commit('setNFLMenu', res[2])
         vuexContext.commit('setMLBMenu', res[3])
         vuexContext.commit('setPLMenu', res[4])
+        vuexContext.commit('setVersion', res[5])
     }).catch((err)=>{
       throw new Error("Error getting teams for menu:" + err)
     })

@@ -40,7 +40,7 @@ export default {
     // Load the JSON from the API
     return context.app.$storyapi.get(`cdn/stories/integritetspolicy`, {
       version: version,
-      cv: 2
+      cv: context.store.getters.version
     }).then((res) => {
       return res.data
     }).catch((res) => {

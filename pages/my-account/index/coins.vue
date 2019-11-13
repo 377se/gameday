@@ -50,7 +50,7 @@ export default {
         ),
         await context.app.$storyapi.get(`cdn/stories/my-account/coins`, {
           version: version,
-          cv: 2
+          cv: context.store.getters.version
         })
       ]);
       return {
