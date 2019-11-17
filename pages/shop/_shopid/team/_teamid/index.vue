@@ -6,7 +6,7 @@
     </div>
     <div class="uk-container uk-padding-small">
       <div
-        class="uk-grid-small uk-child-width-1-2 uk-child-width-1-4@m"
+        class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-4@m"
         uk-height-match="target: > a > .uk-card"
         uk-grid>
         <ArticleCardSimple

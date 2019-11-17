@@ -2,7 +2,7 @@
   <section 
     class="uk-container uk-margin-small-top uk-background-default">
     <div 
-      class="uk-grid-small"
+      class="uk-grid uk-grid-small"
       uk-grid>
       
 
