@@ -85,6 +85,19 @@ export default {
         }
       }
     }],
+    ['nuxt-i18n',
+      {
+        defaultLocale: 'sv',
+        strategy: 'prefix_except_default',
+        locales: [
+          {
+            code: 'sv',
+            iso: 'sv-SE'
+          }
+        ],
+        seo:true
+      }
+    ],
     '@nuxtjs/axios',
     'cookie-universal-nuxt',
     '@nuxtjs/pwa',
