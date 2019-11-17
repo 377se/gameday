@@ -30,6 +30,16 @@ export default {
           hid: 'description',
           name: 'description',
           content: ''//this.brands.MetaDescription
+        },
+        {
+          hid: 'og:title',
+          name:  'og:title',
+          content:  '',
+        },
+        {
+          hid: 'og:description',
+          name:  'og:description',
+          content: '',
         }
       ]
     }

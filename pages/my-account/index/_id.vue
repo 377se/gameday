@@ -13,6 +13,16 @@ export default {
           hid: 'description',
           name: 'description',
           content: "Orderdetaljer"
+        },
+        {
+          hid: 'og:title',
+          name:  'og:title',
+          content:  'Orderdetaljer',
+        },
+        {
+          hid: 'og:description',
+          name:  'og:description',
+          content: 'Orderdetaljer',
         }
       ]
     }

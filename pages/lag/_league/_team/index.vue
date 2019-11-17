@@ -53,6 +53,16 @@ export default {
           hid: 'description',
           name: 'description',
           content: this.article.MetaDescription
+        },
+        {
+          hid: 'og:title',
+          name:  'og:title',
+          content:  this.article.MetaTitle,
+        },
+        {
+          hid: 'og:description',
+          name:  'og:description',
+          content: `${this.article.MetaDescription}`.replace(/<\/?[^>]+(>|$)/g, ""),
         }
       ]
     }

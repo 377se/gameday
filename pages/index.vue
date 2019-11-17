@@ -34,12 +34,22 @@ import Page from '@/components/Page'
 export default {
   head () {
     return {
-      title: this.story.content.SEO.title,
+      title: `${this.story.content.SEO.title}`,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.story.content.SEO.description
+          content: `${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ""),
+        },
+        {
+          hid: 'og:title',
+          name:  'og:title',
+          content:  `${this.story.content.SEO.title}`,
+        },
+        {
+          hid: 'og:description',
+          name:  'og:description',
+          content: `${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ""),
         }
       ]
     }

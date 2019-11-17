@@ -22,6 +22,16 @@ export default {
           hid: 'description',
           name: 'description',
           content: 'Tack för din order'
+        },
+        {
+          hid: 'og:title',
+          name:  'og:title',
+          content:  'Tack för din order',
+        },
+        {
+          hid: 'og:description',
+          name:  'og:description',
+          content: 'Tack för din order',
         }
       ]
     }

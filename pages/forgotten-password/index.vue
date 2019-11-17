@@ -58,6 +58,16 @@ export default {
           hid: 'description',
           name: 'description',
           content: 'Glömt lösenordet?'
+        },
+        {
+          hid: 'og:title',
+          name:  'og:title',
+          content:  'Glömt lösenordet?',
+        },
+        {
+          hid: 'og:description',
+          name:  'og:description',
+          content: 'Glömt lösenordet?',
         }
       ]
     }

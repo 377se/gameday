@@ -14,6 +14,16 @@ export default {
           hid: 'description',
           name: 'description',
           content: this.article.SEO_Description
+        },
+        {
+          hid: 'og:title',
+          name:  'og:title',
+          content:  this.article.SEO_Name,
+        },
+        {
+          hid: 'og:description',
+          name:  'og:description',
+          content: `${this.article.SEO_Description}`.replace(/<\/?[^>]+(>|$)/g, ""),
         }
       ]
     }

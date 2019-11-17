@@ -16,6 +16,16 @@ export default {
           hid: 'description',
           name: 'description',
           content: "Medlemsinformation"
+        },
+        {
+          hid: 'og:title',
+          name:  'og:title',
+          content:  'Medlemsinformation',
+        },
+        {
+          hid: 'og:description',
+          name:  'og:description',
+          content: 'Medlemsinformation',
         }
       ]
     }

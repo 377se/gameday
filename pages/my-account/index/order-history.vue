@@ -24,6 +24,16 @@ export default {
           hid: 'description',
           name: 'description',
           content: "Orderhistorik"
+        },
+        {
+          hid: 'og:title',
+          name:  'og:title',
+          content:  'Orderhistorik',
+        },
+        {
+          hid: 'og:description',
+          name:  'og:description',
+          content: 'Orderhistorik',
         }
       ]
     }

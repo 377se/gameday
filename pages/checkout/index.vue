@@ -16,6 +16,16 @@ export default {
           hid: 'description',
           name: 'description',
           content: 'Checkout'
+        },
+        {
+          hid: 'og:title',
+          name:  'og:title',
+          content:  'Checkout',
+        },
+        {
+          hid: 'og:description',
+          name:  'og:description',
+          content: 'Checkout',
         }
       ]
     }
