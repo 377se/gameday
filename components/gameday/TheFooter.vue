@@ -15,9 +15,9 @@
             </nuxt-link>
           </div>
           <div class="uk-margin-small">
-            <span uk-icon="icon: instagram;ratio:1.5"></span>
-            <span uk-icon="icon: youtube;ratio:1.5"></span>
-            <span uk-icon="icon: facebook;ratio:1.5"></span>
+            <a href="https://www.instagram.com/gamedaysverige/" target="_new"><span uk-icon="icon: instagram;ratio:1.5"></span></a>
+            <a href="https://www.youtube.com/channel/UCJLMRbrjHstkG0P7Bv0-JAA" target="_new"><span uk-icon="icon: youtube;ratio:1.5"></span></a>
+            <a href="https://www.facebook.com/gameday.se/" target="_new"><span uk-icon="icon: facebook;ratio:1.5"></span></a>
           </div>    
         </div>
 
