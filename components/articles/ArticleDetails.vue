@@ -26,7 +26,10 @@
           /-->
         </div>
         <div class="uk-width-1-1 uk-margin-small">
-          <strong>{{article.PriceDisplay}}</strong>
+          <span class="your-price">{{ article.DiscountedPriceDisplay }}</span> 
+          <span 
+            class="orig-price"
+            :class="{'line-through':article.DiscountedPriceDisplay}">{{ article.PriceDisplay }}</span>
         </div>
         <div
           v-if="!article.IsOneSize" 
@@ -161,6 +164,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import '~/assets/scss/vars.scss';
 .uk-button.button-add-to-cart{
   border-radius:3px;
   line-height:45px;
@@ -180,5 +184,19 @@ export default {
   bottom:-15px;
   text-align:center;
   font-size:0.7rem;
+}
+
+.your-price{
+  color:$global-primary-background;
+  font-weight:bold;
+}
+.orig-price{
+  font-weight:bold;
+}
+.line-through{
+  text-decoration:line-through;
+}
+.orig-price.line-through{
+  font-weight:normal;
 }
 </style>
