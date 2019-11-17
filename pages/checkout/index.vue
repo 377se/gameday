@@ -2,7 +2,7 @@
   <section>
     <div 
       id="klarna-checkout"
-      class="uk-container"
+      class="uk-container uk-padding-remove"
       v-html="klarnahtml"/>
   </section>
 </template>

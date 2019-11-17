@@ -2,13 +2,13 @@
   <section>
     <div
       v-if="klarnahtml" 
-      class="uk-container">
+      class="uk-container uk-text-center">
       <h1>{{ klarnahtml.Ordernumber }}</h1>
     </div>
     <div 
       v-if="klarnahtml"
       id="klarna-checkout"
-      class="uk-container"
+      class="uk-container uk-padding-remove"
       v-html="klarnahtml.Html"/>
   </section>
 </template>
