@@ -50,7 +50,7 @@ export default {
   },
   async asyncData({ app, route }) {
     try {
-      const url = `/webapi/klarnacheckout3`;
+      const url = `https://beta.supporterprylar.se/webapi/klarnacheckout3`;
       const klarnahtml = await app.$axios.$post(url);
 
       return { klarnahtml };
