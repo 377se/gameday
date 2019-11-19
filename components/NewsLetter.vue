@@ -4,7 +4,7 @@
       v-if="message.StatusId!=0">
       <h3 class="uk-h4">Nyhetsbrev</h3>
       <p class="uk-text-small">
-        Få senaste nyheterna, tillgång till REA före alla andra och mycket, mycket mer!
+        Få senaste nyheterna, tillgång till REA före alla andra, 10% på nästa köp och mycket, mycket mer!
       </p>
       <form 
         class="uk-grid-collapse" 
