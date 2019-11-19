@@ -18,6 +18,9 @@
             <a href="https://www.instagram.com/gamedaysverige/" target="_new"><span uk-icon="icon: instagram;ratio:1.5"></span></a>
             <a href="https://www.youtube.com/channel/UCJLMRbrjHstkG0P7Bv0-JAA" target="_new"><span uk-icon="icon: youtube;ratio:1.5"></span></a>
             <a href="https://www.facebook.com/gameday.se/" target="_new"><span uk-icon="icon: facebook;ratio:1.5"></span></a>
+          </div>
+          <div class="uk-margin">
+            <img src="https://cdn.klarna.com/1.0/shared/image/generic/badge/sv_se/checkout/long-white.png?width=320" alt="Klarna">
           </div>    
         </div>
 
@@ -48,7 +51,7 @@
         </div>
 
         <div class="uk-width-expand@m uk-width-1-2@s">               
-          <NewsLetter/>
+          <NewsLetter />
         </div>
 
       </div>
