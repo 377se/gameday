@@ -8,7 +8,6 @@
     <OffscreenBasket/>
 
     <TheFooter/>
-    <div style="display:none">{{ app.$cookies.get('session') }}</div>
   </div>
 </template>
 
