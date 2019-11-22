@@ -43,7 +43,8 @@ export default {
    */
   plugins: [
     { src: "~/plugins/uikit.js", ssr: false },
-    {src: '~/plugins/axios'}
+    {src: '~/plugins/axios'},
+    { src: '~plugins/ga.js', mode: 'client' }
   ],
   render: {
     http2: {
