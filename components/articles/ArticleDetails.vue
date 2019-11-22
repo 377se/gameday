@@ -64,12 +64,16 @@
           </div>
         </div>
         <button 
+          v-if="!article.IsSoldOut"
           type="button"
           class="uk-button uk-button-primary uk-width-1-1 uk-margin-small"
           :class="{'uk-button-disabled':chosenSize!==-1 && !article.IsOneSize}"
           @click.prevent="addToCart()">
           Lägg i varukorgen
         </button>
+        <div v-else>
+          <h4 class="uk-text-center">Slutsåld</h4>
+        </div>
         <button 
           v-if="false"
           type="button"
@@ -120,7 +124,8 @@ export default {
         Description: "",
         IsOneSize: false,
         TeamName: "",
-        PriceDisplay: ""
+        PriceDisplay: "",
+        IsSoldOut: false
       }),
       required: false
     }
