@@ -3,7 +3,7 @@
     class="uk-margin-bottom">
     <h1
       v-if="blok.category_header">{{ blok.category_header }}</h1>
-    <a 
+    <nuxt-link 
       style="position:relative;display:block;"
       :href="blok.promo_url.url">
       <picture>
@@ -38,7 +38,7 @@
           class="uk-button uk-button-default uk-animation-fade"
           :to="b.button_url.url">{{ b.button_text }}</nuxt-link>
       </div>
-    </a>
+    </nuxt-link>
   </div>
 </template>
 <script>
