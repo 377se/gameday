@@ -96,7 +96,7 @@ export default {
             iso: 'sv-SE'
           }
         ],
-        seo:true
+        seo:false
       }
     ],
     '@nuxtjs/axios',

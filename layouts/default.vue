@@ -18,6 +18,9 @@ import OffscreenMenu from "@/components/gameday/menu/OffscreenMenu";
 import OffscreenBasket from "@/components/basket/TheBasket";
 
 export default {
+  head () {
+    return this.$nuxtI18nSeo()
+  },
   components: {
     TheHeader,
     TheFooter, 
