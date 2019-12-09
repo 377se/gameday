@@ -1,24 +1,38 @@
 <template>
   <section>
-    <div 
-      v-if="false"
-      uk-slideshow>
-      <ul class="uk-slideshow-items">
-        <li 
-          class="uk-text-center">
-            30 dagars öppet köp!
-        </li>
-        <li 
-          class="uk-text-center">
-            Fria returer!
-        </li>
-        <li 
-          class="uk-text-center">
-            Snabba leveranser!
-        </li>
-      </ul>
-    </div>
-    <div class="uk-container uk-container-large uk-padding-small">
+    <div class="uk-container uk-container-large uk-padding-small"> 
+      <h3>Våra shoppar</h3>
+      <div class="promo-squares uk-flex">
+        <nuxt-link 
+          class="gd-square"
+          to="/nhl-shop">
+          <div>
+            <img src="/logos/nhl_logo.png" alt="NHL Shop">
+          </div>
+        </nuxt-link>
+        <nuxt-link 
+          class="gd-square"
+          to="/nfl-shop">
+          <div>
+            <img src="/logos/nfl_logo.png" alt="NFL Shop">
+          </div>
+        </nuxt-link>
+        <nuxt-link 
+          class="gd-square"
+          to="/nba-shop">
+          <div>
+            <img src="/logos/nba_logo.png" alt="NBA Shop">
+          </div>
+        </nuxt-link>
+        <nuxt-link 
+          class="gd-square"
+          to="/mlb-shop">
+          <div>
+            <img src="/logos/mlb_logo.png" alt="MLB Shop">
+          </div>
+        </nuxt-link>
+      </div>
+      <h3>Utvalda favoriter</h3>
       <component 
         v-if="story.content.component" 
         :key="story.content._uid" 
@@ -100,4 +114,33 @@ export default {
 </script>
 <style lang="scss">
 @import '~/assets/scss/vars.scss';
+
+.gd-square{
+  position:relative;
+  width:25%;
+  padding:5px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background:#eeeeee;
+  margin:2px;
+  color:#fff;
+  text-decoration: none !important;
+  &:hover, &:active{
+    color:#fff;
+  }
+  & > div > img{
+    width:70px;
+  }
+  & > div > span{
+    margin-top:5px;
+    font-weight:bold;
+    font-size:0.85rem;
+  }
+}
+.gd-square:after{
+  content: '';
+  display: block;
+  padding-bottom: 100%;
+}
 </style>

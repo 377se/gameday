@@ -23,13 +23,13 @@
           </div>
 
           <a 
-            class="uk-position-center-left" 
+            class="uk-position-center-left uk-visible@s" 
             href="#" 
             uk-slidenav-previous
             uk-slider-item="previous"
             @click.prevent/>
           <a 
-            class="uk-position-center-right" 
+            class="uk-position-center-right uk-visible@s" 
             href="#" 
             uk-slidenav-next
             uk-slider-item="next"
