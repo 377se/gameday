@@ -1,7 +1,43 @@
 <template>
   <div>
     <TheHeader/>
+    <div>
+      <div
+        class="uk-slider gd-slider" 
+        uk-slider="autoplay:true">
+        <div 
+          style="position:relative">
+          <div uk-slider-container>
+            <ul class="uk-slider-items uk-child-width-1-1 uk-text-small">
+              <li>
+                <div class="uk-text-center gd-slider-item uk-padding-small">
+                  30 dagars öppet köp
+                </div>
+              </li>
+              <li>
+                <div class="uk-text-center gd-slider-item uk-padding-small">
+                  Fria returer
+                </div>
+              </li>
+            </ul>
+          </div>
 
+          <a 
+            class="uk-position-center-left" 
+            href="#" 
+            uk-slidenav-previous
+            uk-slider-item="previous"
+            @click.prevent/>
+          <a 
+            class="uk-position-center-right" 
+            href="#" 
+            uk-slidenav-next
+            uk-slider-item="next"
+            @click.prevent/>
+
+        </div>
+      </div>
+    </div>
     <nuxt/>
 
     <OffscreenMenu/>
@@ -56,5 +92,7 @@ export default {
 </script>
 
 <style lang="scss">
-
+.gd-slider{
+  background: #fce0cc;
+}
 </style>
