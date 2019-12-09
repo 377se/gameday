@@ -54,10 +54,11 @@ export default {
         parentNode.appendChild(newScriptTag)
     }
     if(this.klarnahtml!=null && this.klarnahtml.Order){
-      dataLayer.push({
+      try{
+        dataLayer.push({
           'event':'paymentThanks',
           'ecommerce': this.klarnahtml.Order
-      });
+        });}catch(err){console.log(err)}
     }
   },
   async asyncData({ app, route }) {
