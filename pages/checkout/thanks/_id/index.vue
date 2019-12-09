@@ -53,9 +53,14 @@ export default {
         parentNode.removeChild(scriptsTags[i])
         parentNode.appendChild(newScriptTag)
     }
+    if(this.klarnahtml!=null && this.klarnahtml.Order){
+      dataLayer.push({
+          'event':'paymentThanks',
+          'ecommerce': this.klarnahtml.Order
+      });
+    }
   },
   async asyncData({ app, route }) {
-    console.log('WUT')
     try {
       const url = `/webapi/klarnacheckout3/GetKlarnaAcknowledge?id=${route.params.id}`;
       const klarnahtml = await app.$axios.$get(url);
