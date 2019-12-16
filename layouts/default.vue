@@ -11,12 +11,12 @@
             <ul class="uk-slider-items uk-child-width-1-1 uk-text-small">
               <li>
                 <div class="uk-text-center gd-slider-item uk-padding-small">
-                  30 dagars öppet köp
+                  <strong>30 dagars öppet köp</strong>
                 </div>
               </li>
               <li>
                 <div class="uk-text-center gd-slider-item uk-padding-small">
-                  Fria returer
+                  <strong>Fria returer</strong>
                 </div>
               </li>
             </ul>

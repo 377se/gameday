@@ -114,15 +114,23 @@ export default {
 </script>
 <style lang="scss">
 @import '~/assets/scss/vars.scss';
-
-.gd-square{
-  position:relative;
-  width:25%;
-  padding:5px;
+.promo-squares{
+  background:#002A32;
   justify-content: center;
   align-items: center;
   display: flex;
-  background:#eeeeee;
+  margin-right:-15px;
+  margin-left:-15px;
+}
+.gd-square{
+  position:relative;
+  width:25%;
+  max-width:100px;
+  padding:20px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background:#002A32;
   margin:2px;
   color:#fff;
   text-decoration: none !important;

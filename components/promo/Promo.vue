@@ -4,7 +4,7 @@
     <h1
       v-if="blok.category_header">{{ blok.category_header }}</h1>
     <a 
-      style="position:relative;display:block;"
+      style="position:relative;display:block;margin-left:-15px;margin-right:-15px;"
       :href="blok.promo_url.url">
       <picture>
         <source 
