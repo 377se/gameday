@@ -1,6 +1,5 @@
 <template>
   <div 
-    v-if="false"
     class="uk-container uk-padding-small">
     <div class="uk-text-center">
       <a 
@@ -47,7 +46,7 @@
             </div>
           </li>
           <li
-            v-if="colors!=null && colors.length>0">
+            v-if="false && colors!=null && colors.length>0">
             <a 
               class="uk-accordion-title" 
               href="#">Färger</a>
@@ -62,7 +61,7 @@
             </div>
           </li>
           <li
-            v-if="sizes!=null && sizes.length>0">
+            v-if="false && sizes!=null && sizes.length>0">
             <a 
               class="uk-accordion-title" 
               href="#">Storlekar</a>

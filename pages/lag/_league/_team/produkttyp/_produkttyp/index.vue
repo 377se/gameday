@@ -1,16 +1,18 @@
 <template>
   <section>
-    <div class="uk-container uk-padding-small">
+    <div class="uk-container uk-container-large uk-padding-small">
       <h1>{{ article.SeoTitle }}</h1>
-      <div v-html="article.SeoContentDescription"/>
     </div>
     <FilterItems
-      :product-types="producttypes"/>
-    <div class="uk-container uk-padding-small">
+      :product-types="producttypes"
+      :colors="colors"
+      :sizes="sizes"/>
+    <div class="uk-container uk-container-large uk-padding-small">
+      <div class="uk-margin-small-bottom"><strong>{{ article.TotalNumberOfProducts }} produkter</strong></div>
       <div
-        class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-4@m"
-        uk-height-match="target: > a > .uk-card"
-        uk-grid>
+        class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
+        uk-grid
+        uk-height-match="target: .uk-card">
         <ArticleCardSimple
           v-for="article in articles"
           :key="article.Id"
@@ -18,6 +20,19 @@
           :url="`/lag/${$route.params.league}/${$route.params.team}/${article.SeoName}`"
         />
       </div>
+      <ul 
+        v-if="article.TotalPages>1"
+        class="uk-pagination uk-flex-right" uk-margin>
+        <li>
+          <a 
+            href="#"
+            @click.stop.prevent="previous()"><span uk-pagination-previous></span> Föregående</a></li>
+        <li><span>{{ pageNum }}/{{ article.TotalPages }}</span></li>
+        <li>
+          <a 
+            href="#"
+            @click.stop.prevent="next()">Nästa <span uk-pagination-next></span></a></li>
+      </ul>
     </div>
   </section>
 </template>
@@ -25,6 +40,7 @@
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 export default {
+  watchQuery: ['page'],
   head () {
     return {
       title: this.article.MetaTitle,
@@ -56,17 +72,37 @@ export default {
       story: { content: {} },
       article: {},
       articles: [],
-      producttypes: [] //To filter on
+      producttypes: [], //To filter on
+      producttypes: [], //To filter on
+      colors: [],
+      sizes: [],
+      pageNum: 1,
+      totalPages:1,
+      numOfProducts: 1,
+      readmore: true
     }
   },
   mounted(){
 
   },
+  methods:{
+    next(){
+      if(this.pageNum<this.article.TotalPages){
+        this.$router.push({ query: { page: (parseInt(this.pageNum)+1) }})
+      } 
+    },
+    previous(){
+      if(this.pageNum>1){
+        this.$router.push({ query: { page: (parseInt(this.pageNum)-1) }})
+      } 
+    }
+  },
   async asyncData (context) {
+    let pageNum = context.route.query.page?context.route.query.page:1
     try {
       const [a,p] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Article/GetArticleList?pageNum=1&seoName=' +context.route.params.team
+          '/webapi/Article/GetArticleListByProductType?teamName='+context.route.params.team+'&productType='+context.route.params.produkttyp+'&pageNum='+pageNum+'&seoName=' +context.route.params.league
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetProductTypeList?seoName='+context.route.params.league+'&teamName='+context.route.params.team
