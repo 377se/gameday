@@ -11,12 +11,17 @@
             <ul class="uk-slider-items uk-child-width-1-1 uk-text-small">
               <li>
                 <div class="uk-text-center gd-slider-item uk-padding-small">
-                  <strong>30 dagars öppet köp</strong>
+                  <strong>Alltid 30 Dagars öppet köp och fria returer</strong>
                 </div>
               </li>
               <li>
                 <div class="uk-text-center gd-slider-item uk-padding-small">
-                  <strong>Fria returer</strong>
+                  <strong>Snabba leveranser från vårt lager i Stockholm</strong>
+                </div>
+              </li>
+              <li>
+                <div class="uk-text-center gd-slider-item uk-padding-small">
+                  <strong>Every day is... Gameday!</strong>
                 </div>
               </li>
             </ul>
