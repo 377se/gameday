@@ -2,7 +2,8 @@
   <div 
     v-editable="blok">
     <h1
-      v-if="blok.title">{{ blok.title }}</h1>
+      v-if="blok.title"
+      class="uk-margin-remove-top">{{ blok.title }}</h1>
     <div
       v-if="blok.description"
       :class="{'read-more':readmore}" 

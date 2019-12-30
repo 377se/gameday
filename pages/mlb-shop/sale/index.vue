@@ -1,6 +1,14 @@
 <template>
   <section>
     <div class="uk-container uk-container-large uk-padding-small">
+      <ul class="uk-breadcrumb">
+        <li>
+          <nuxt-link to="/">
+            <span style="vertical-align: bottom;
+              margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
+        <li><nuxt-link to="/mlb-shop">MLB-shop</nuxt-link></li>
+        <li><nuxt-link to="/mlb-shop/sale">REA</nuxt-link></li>
+      </ul>
       <component 
         v-if="story.content.component" 
         :key="story.content._uid" 
@@ -118,7 +126,7 @@ export default {
     try {
       const [a, p, c, s, sb] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Article/GetArticleListSale?productType=null&pageNum='+ pageNum +'&seoName=mlb&teamIdList='+teamIdList
+          '/webapi/Article/GetArticleList?sale=true&productType=null&pageNum='+ pageNum +'&seoName=mlb'
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetProductTypeList?seoName=mlb&teamName=null'
