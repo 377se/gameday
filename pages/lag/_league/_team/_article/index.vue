@@ -65,10 +65,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .uk-breadcrumb > * > * {
-      font-size: 0.7rem;
-  }
-  .uk-breadcrumb > :nth-child(n+2):not(.uk-first-column):before{
-    margin: 0px 5px;
-  }
+  
 </style>

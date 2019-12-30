@@ -1,14 +1,11 @@
 <template>
-  <div 
-    class="uk-container uk-padding-small">
-    <div class="uk-text-center">
-      <a 
-        href="#filter-menu"
-        type="button"
-        class="uk-button uk-button-primary"
-        @click.prevent
-        uk-toggle><span uk-icon="icon: settings;"/> Filter</a>
-    </div>
+  <div>
+    <a 
+      href="#filter-menu"
+      type="button"
+      class="uk-button uk-button-primary uk-button-small uk-margin-small-left"
+      @click.prevent
+      uk-toggle><span uk-icon="icon: settings;"/> Filter</a>
 
 
     <div 

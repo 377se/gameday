@@ -100,4 +100,11 @@ export default {
 .gd-slider{
   background: #fce0cc;
 }
+
+.uk-breadcrumb > * > * {
+      font-size: 0.7rem;
+  }
+  .uk-breadcrumb > :nth-child(n+2):not(.uk-first-column):before{
+    margin: 0px 5px;
+  }
 </style>

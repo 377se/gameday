@@ -1,14 +1,25 @@
 <template>
   <section>
     <div class="uk-container uk-container-large uk-padding-small">
-      <h1>{{ article.SeoTitle }}</h1>
+      <ul class="uk-breadcrumb">
+        <li>
+          <nuxt-link to="/">
+            <span style="vertical-align: bottom;
+              margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
+        <li><nuxt-link :to="'/'+$route.params.league+'-shop'">{{ $route.params.league.toUpperCase() }}-shop</nuxt-link></li>
+        <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team">{{ $route.params.team }}</nuxt-link></li>
+        <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team+'/produkttyp/'+$route.params.produkttyp">{{ $route.params.produkttyp }}</nuxt-link></li>
+      </ul>
+      <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
     </div>
-    <FilterItems
-      :product-types="producttypes"
-      :colors="colors"
-      :sizes="sizes"/>
     <div class="uk-container uk-container-large uk-padding-small">
-      <div class="uk-margin-small-bottom"><strong>{{ article.TotalNumberOfProducts }} produkter</strong></div>
+      <div class="uk-flex uk-flex-middle uk-margin-small-bottom">
+        <strong>{{ article.TotalNumberOfProducts }} produkter</strong>
+        <FilterItems
+          :product-types="producttypes"
+          :colors="colors"
+          :sizes="sizes"/>
+      </div>
       <div
         class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
         uk-grid
@@ -22,7 +33,7 @@
       </div>
       <ul 
         v-if="article.TotalPages>1"
-        class="uk-pagination uk-flex-right" uk-margin>
+        class="uk-pagination uk-flex-center" uk-margin>
         <li>
           <a 
             href="#"
