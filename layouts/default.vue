@@ -127,6 +127,14 @@ export default {
 .category-list-slider > div{
   padding-left:5px;
 }
+.category-list-slider .uk-label{
+  padding-top:15px;
+  padding-bottom:15px;
+}
+.category-list-slider .uk-label:focus, .category-list-slider .uk-label:hover{
+  color:#fff;
+  text-decoration:none;
+}
 .category-list-slider > div:first-child{
   padding-left:15px;
 }
