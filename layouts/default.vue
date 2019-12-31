@@ -133,4 +133,19 @@ export default {
 .category-list-slider > div:last-child{
   padding-right:15px;
 }
+
+.team-slider-item{
+  margin-right:10px;
+  min-width:50px;
+}
+.team-slider-img{
+  width:50px;
+}
+.show-all{
+  font-size:1rem;
+  font-weight:normal;
+  text-decoration:underline;
+  margin-left:15px;
+  float:right;
+}
 </style>

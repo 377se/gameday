@@ -15,32 +15,39 @@
         v-html="article.SeoContentDescription"/>
     </div>
     <div class="uk-container uk-container-large uk-padding-small">
-      <h3>Populära lag</h3>
+      <h3>Populära lag 
+        <span class="show-all">
+          <a 
+            href="#offscreen-menu"
+            class="wrapper-menu"
+            uk-toggle
+            @click.stop.prevent>
+            Visa alla
+          </a>
+        </span>
+      </h3>
       <div
-        class="uk-flex uk-flex-center">
+        class="uk-flex uk-flex-center uk-grid-small uk-margin uk-margin-large-bottom" uk-grid>
         <nuxt-link
-          to="/lag/nhl/boston-bruins">
-          <img src="https://static.supportersplace.se/category/bostonbruins.png" alt="Boston Bruins">
+          to="/lag/nhl/boston-bruins"
+          class="team-slider-item">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/bostonbruins.png" alt="Boston Bruins">
         </nuxt-link>
         <nuxt-link
-          to="/lag/nhl/chicago-blackhawks">
-          <img src="https://static.supportersplace.se/category/chicagoblackhawks.png" alt="Chicago Blackhawks">
+          to="/lag/nhl/chicago-blackhawks"
+          class="team-slider-item">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/chicagoblackhawks.png" alt="Chicago Blackhawks">
         </nuxt-link>
         <nuxt-link
-          to="/lag/nhl/new-york-rangers">
-          <img src="https://static.supportersplace.se/category/newyorkrangers.png" alt="New York Rangers">
+          to="/lag/nhl/new-york-rangers"
+          class="team-slider-item">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/newyorkrangers.png" alt="New York Rangers">
         </nuxt-link>
         <nuxt-link
-          to="/lag/nhl/pittsburgh-penguins">
-          <img src="https://static.supportersplace.se/category/pittsburgh-penguins.png" alt="Pittsburgh Penguins">
+          to="/lag/nhl/pittsburgh-penguins"
+          class="team-slider-item">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/pittsburghpenguins.png" alt="Pittsburgh Penguins">
         </nuxt-link>
-        <a 
-          href="#offscreen-menu"
-          class="wrapper-menu"
-          uk-toggle
-          @click.stop.prevent>
-          Visa alla
-        </a>
       </div>
       <div class="uk-flex uk-flex-middle uk-margin-small-bottom">
         <strong>{{ article.TotalNumberOfProducts }} produkter</strong>
