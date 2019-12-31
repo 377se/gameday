@@ -6,7 +6,7 @@
           <nuxt-link to="/">
             <span style="vertical-align: bottom;
               margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
-        <li><nuxt-link to="/nfl-shop">NFL-shop</nuxt-link></li>
+        <li><nuxt-link to="/mlb-shop">MLB-shop</nuxt-link></li>
       </ul>
       <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
       <div
@@ -15,6 +15,40 @@
         v-html="article.SeoContentDescription"/>
     </div>
     <div class="uk-container uk-container-large uk-padding-small">
+      <h3>Populära lag 
+        <span class="show-all">
+          <a 
+            href="#offscreen-menu"
+            class="wrapper-menu"
+            uk-toggle
+            @click.stop.prevent>
+            Visa alla
+          </a>
+        </span>
+      </h3>
+      <div
+        class="uk-flex uk-flex-center uk-grid-small uk-margin uk-margin-large-bottom" uk-grid>
+        <nuxt-link
+          to="/lag/mlb/new-york-yankees"
+          class="team-slider-item">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/New-York-Yankees-Logo (1).png" alt="New York Yankees">
+        </nuxt-link>
+        <nuxt-link
+          to="/lag/mlb/detroit-tigers"
+          class="team-slider-item">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/Detroit-Tigers-logo (1).png" alt="Detroit Tigers">
+        </nuxt-link>
+        <nuxt-link
+          to="/lag/mlb/los-angeles-dodgers"
+          class="team-slider-item">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/los_angeles_dodgers.png" alt="Los Angeles Dodgers">
+        </nuxt-link>
+        <nuxt-link
+          to="/lag/mlb/new-york-mets"
+          class="team-slider-item">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/New_York_Mets.svg (1).png" alt="New York Mets">
+        </nuxt-link>
+      </div>
       <div class="uk-flex uk-flex-middle uk-margin-small-bottom">
         <strong>{{ article.TotalNumberOfProducts }} produkter</strong>
         <FilterItems

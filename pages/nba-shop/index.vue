@@ -15,6 +15,47 @@
         v-html="article.SeoContentDescription"/>
     </div>
     <div class="uk-container uk-container-large uk-padding-small">
+      <h3>Populära lag 
+        <span class="show-all">
+          <a 
+            href="#offscreen-menu"
+            class="wrapper-menu"
+            uk-toggle
+            @click.stop.prevent>
+            Visa alla
+          </a>
+        </span>
+      </h3>
+      <div
+        class="uk-flex uk-flex-center uk-grid-small uk-margin uk-margin-large-bottom" uk-grid>
+        <nuxt-link
+          to="/lag/nba/chicago-bulls"
+          class="team-slider-item">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/chicago-bulls-logo-8530A1093D-seeklogo.com.png" alt="Chicago Bulls">
+        </nuxt-link>
+        <nuxt-link
+          to="/lag/nba/cleveland-cavaliers"
+          class="team-slider-item">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/Cleveland-Cavaliers-logo (1).png" alt="Cleveland Cavaliers">
+        </nuxt-link>
+        <nuxt-link
+          to="/lag/nba/golden-state-warriors"
+          class="team-slider-item">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/golden-state-warriors (1).png" alt="Golden State Warriors">
+        </nuxt-link>
+        <nuxt-link
+          to="/lag/nba/brooklyn-nets"
+          class="team-slider-item">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/brooklyn-nets-logo (1).png" alt="Brooklyn Nets">
+        </nuxt-link>
+      </div>
+      <div class="uk-flex uk-flex-middle uk-margin-small-bottom">
+        <strong>{{ article.TotalNumberOfProducts }} produkter</strong>
+        <FilterItems
+          :product-types="producttypes"
+          :colors="colors"
+          :sizes="sizes"/>
+      </div>
       <div class="uk-flex uk-flex-middle uk-margin-small-bottom">
         <strong>{{ article.TotalNumberOfProducts }} produkter</strong>
         <FilterItems

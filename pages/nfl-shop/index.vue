@@ -15,6 +15,40 @@
         v-html="article.SeoContentDescription"/>
     </div>
     <div class="uk-container uk-container-large uk-padding-small">
+      <h3>Populära lag 
+        <span class="show-all">
+          <a 
+            href="#offscreen-menu"
+            class="wrapper-menu"
+            uk-toggle
+            @click.stop.prevent>
+            Visa alla
+          </a>
+        </span>
+      </h3>
+      <div
+        class="uk-flex uk-flex-center uk-grid-small uk-margin uk-margin-large-bottom" uk-grid>
+        <nuxt-link
+          to="/lag/nfl/new-england-patriots"
+          class="team-slider-item">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/New-England-Patriots-logo (1).png" alt="New England Patriots">
+        </nuxt-link>
+        <nuxt-link
+          to="/lag/nfl/oakland-raiders"
+          class="team-slider-item">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/oakland-raiders-logo-transparent (1).png" alt="Oakland Raiders">
+        </nuxt-link>
+        <nuxt-link
+          to="/lag/nfl/seattle-seahawks"
+          class="team-slider-item">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/Seattle-Seahawks-logo (1).png" alt="Seattle Seahawks">
+        </nuxt-link>
+        <nuxt-link
+          to="/lag/nfl/dallas-cowboys"
+          class="team-slider-item">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/dallas-cowboys-png-download-dallas-cowboys-png-images-transparent-gallery-advertisement-1000 (1).png" alt="Dallas Cowboys">
+        </nuxt-link>
+      </div>
       <div class="uk-flex uk-flex-middle uk-margin-small-bottom">
         <strong>{{ article.TotalNumberOfProducts }} produkter</strong>
         <FilterItems
