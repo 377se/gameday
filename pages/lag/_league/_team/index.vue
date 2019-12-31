@@ -17,12 +17,17 @@
     </div>
     <div class="uk-container uk-container-large uk-padding-small">
       <h3>Populära kategorier</h3>
-      <div class="uk-margin-bottom">
+      <div
+        class="uk-grid uk-grid-small uk-margin-bottom uk-margin-top category-list-slider"
+        uk-grid
+        >
         <div
           v-for="pt in producttypes"
-          :key="pt.GarmentId">
+          :key="pt.GarmentId"
+          >
           <nuxt-link
-            :to="`/lag/${$route.params.league}/${$route.params.team}/produkttyp/${pt.SeoName}`">{{ pt.Name }}</nuxt-link>
+            class="uk-label"
+            :to="`/lag/${$route.params.league}/${$route.params.team}/produkttyp/${pt.SeoName}`"><span>{{ pt.Name }}</span></nuxt-link>
         </div>
       </div>
       <div class="uk-flex uk-flex-middle uk-margin-small-bottom">
@@ -45,7 +50,7 @@
       </div>
       <ul 
         v-if="article.TotalPages>1"
-        class="uk-pagination uk-flex-right" uk-margin>
+        class="uk-pagination uk-flex-center uk-margin-large uk-margin-bottom">
         <li>
           <a 
             href="#"
@@ -126,7 +131,7 @@ export default {
     try {
       const [a, p, c, s] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Article/GetArticleList?productType=null&pageNum='+ pageNum +'&seoName=' +context.route.params.team
+          '/webapi/Article/GetArticleList?sale=false&productType=null&pageNum='+ pageNum +'&seoName=' +context.route.params.team
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetProductTypeList?seoName='+context.route.params.league+'&teamName='+context.route.params.team

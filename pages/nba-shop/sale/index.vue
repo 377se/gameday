@@ -36,7 +36,7 @@
       </div>
       <ul 
         v-if="article.TotalPages>1"
-        class="uk-pagination uk-flex-center" uk-margin>
+        class="uk-pagination uk-flex-center uk-margin-large">
         <li>
           <a 
             href="#"

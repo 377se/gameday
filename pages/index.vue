@@ -32,6 +32,20 @@
           </div>
         </nuxt-link>
       </div>
+      <h3>Populära lag</h3>
+      <div>
+        <nuxt-link
+          to="/">
+          Test
+        </nuxt-link>
+        <a 
+          href="#offscreen-menu"
+          class="wrapper-menu"
+          uk-toggle
+          @click.stop.prevent>
+          Visa alla
+        </a>
+      </div>
       <h3>Utvalda favoriter</h3>
       <component 
         v-if="story.content.component" 

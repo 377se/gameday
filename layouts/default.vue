@@ -107,4 +107,30 @@ export default {
   .uk-breadcrumb > :nth-child(n+2):not(.uk-first-column):before{
     margin: 0px 5px;
   }
+
+  .category-list-slider{
+  overflow-y:hidden;
+  overflow-x:scroll;
+  flex-wrap:nowrap;
+  margin-right:-15px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  padding-bottom:15px;
+  padding-right:15px;
+}
+
+.category-list-slider::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+}
+
+.category-list-slider > div{
+  padding-left:5px;
+}
+.category-list-slider > div:first-child{
+  padding-left:15px;
+}
+.category-list-slider > div:last-child{
+  padding-right:15px;
+}
 </style>

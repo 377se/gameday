@@ -34,7 +34,7 @@
         />
       </div>
       <ul 
-        class="uk-pagination uk-flex-center" uk-margin>
+        class="uk-pagination uk-flex-center uk-margin-large uk-margin-bottom">
         <li>
           <a 
             href="#"

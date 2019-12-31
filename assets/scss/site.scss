@@ -7,5 +7,13 @@
 // 3. Your custom mixin overwrites.
 
 @mixin hook-button() {border-radius: 30px;text-transform:none;font-size:0.875rem; white-space:nowrap;}
+@mixin hook-pagination-item(){
+  color: #fa6900;
+  font-weight:bold;
+}
+@mixin hook-pagination-item-hover(){
+  color: #fa6900;
+}
+
 // 4. Import UIkit.
 @import "uikit/src/scss/uikit-theme.scss";
