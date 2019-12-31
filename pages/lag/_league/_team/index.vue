@@ -15,9 +15,13 @@
         @click="setReadMore()"
         v-html="article.SeoContentDescription"/>
     </div>
-    <div class="uk-container uk-container-large uk-padding-small">
-      <h3>Populära kategorier</h3>
+    <div 
+      class="uk-container uk-container-large uk-padding-small">
+      <h3
+        v-if="producttypes!=null && producttypes.length>0"
+        >Populära kategorier</h3>
       <div
+        v-if="producttypes!=null && producttypes.length>0"
         class="uk-grid uk-grid-small uk-margin-bottom uk-margin-top category-list-slider"
         uk-grid
         >
