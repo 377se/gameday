@@ -38,7 +38,7 @@ export default {
     // Check if we are in the editor mode
     let version = context.query._storyblok || context.isDev ? 'draft' : 'published'
     // Load the JSON from the API
-    return context.app.$storyapi.get(`cdn/stories/editorials/${route.params.league}/${route.params.post}`, {
+    return context.app.$storyapi.get(`cdn/stories/editorials/${context.route.params.league}/${context.route.params.post}`, {
       version: version,
       cv: context.store.getters.version
     }).then((res) => {
