@@ -1,7 +1,5 @@
 <template>
-   <div>
-    <h3>{{ blok.editorial_text }}</h3>
-  </div>
+  <h3>{{ blok.editorial_text }}</h3>
 </template>
 <script>
 export default {

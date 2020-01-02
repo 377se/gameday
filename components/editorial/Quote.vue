@@ -1,6 +1,6 @@
 <template>
-   <div class="uk-margin">
-     <img :src="blok.editorial_image" />
+  <div class="quote uk-margin">
+    &raquo; {{ blok.editorial_quote }} &raquo;
   </div>
 </template>
 <script>
@@ -12,9 +12,12 @@ export default {
     }
   },
   mounted(){
+
   }
 }
 </script>
 <style lang="scss">
-
+.quote{
+  font-size:1.5rem;
+}
 </style>

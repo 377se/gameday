@@ -24,6 +24,7 @@ import editorial_header from '@/components/editorial/Header'
 import editorial_text from '@/components/editorial/Text'
 import editorial_image from '@/components/editorial/Image'
 import editorial_youtube from '@/components/editorial/Youtube'
+import editorial_quote from '@/components/editorial/Quote'
 
 export default {
   components: {
@@ -34,7 +35,8 @@ export default {
     editorial_header,
     editorial_text,
     editorial_image,
-    editorial_youtube
+    editorial_youtube,
+    editorial_quote
   },
   props: {
     blok: {
