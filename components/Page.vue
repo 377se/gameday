@@ -1,6 +1,7 @@
 <template>
   <div 
-    v-editable="blok">
+    v-editable="blok"
+    class="uk-container uk-container-large uk-padding">
     <h1
       v-if="blok.title"
       class="uk-margin-remove-top">{{ blok.title }}</h1>
@@ -19,12 +20,21 @@ import promo from '@/components/promo/Promo'
 import products_list from '@/components/promo/ProductsList'
 import promo_button from '@/components/promo/PromoButton'
 
+import editorial_header from '@/components/editorial/Header'
+import editorial_text from '@/components/editorial/Text'
+import editorial_image from '@/components/editorial/Image'
+import editorial_youtube from '@/components/editorial/Youtube'
+
 export default {
   components: {
     TextContent,
     promo,
     products_list,
-    promo_button
+    promo_button,
+    editorial_header,
+    editorial_text,
+    editorial_image,
+    editorial_youtube
   },
   props: {
     blok: {
