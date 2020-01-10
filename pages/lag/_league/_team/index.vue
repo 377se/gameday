@@ -132,10 +132,10 @@ export default {
   },
   async asyncData (context) {
     let pageNum = context.route.query.page?context.route.query.page:1
-    try {
+   try {
       const [a, p, c, s] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Article/GetArticleList?sale=false&productType=null&pageNum='+ pageNum +'&seoName=' +context.route.params.team
+          '/webapi/Article/GetArticleList?color=null&size=null&gender=null&sale=false&productType=null&pageNum='+ pageNum +'&seoName=' +context.route.params.team
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetProductTypeList?seoName='+context.route.params.league+'&teamName='+context.route.params.team
