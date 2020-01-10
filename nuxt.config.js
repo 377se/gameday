@@ -121,7 +121,7 @@ export default {
   },
   proxy: {
     '/webapi': {
-      target: 'https://api.gameday.se'
+      target: 'https://beta.gameday.se'
     }
   },
   /*
