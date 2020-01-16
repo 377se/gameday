@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="false">
+    v-if="true">
     <a 
       href="#filter-menu"
       type="button"
@@ -24,56 +24,59 @@
             type="button" uk-close></button>
         </div>
         
-        <ul 
-          class="uk-nav uk-list uk-list-divider"
-          style="margin-top:10px;"
-          uk-accordion="multiple:true">
-          <li 
-            v-if="productTypes!=null && productTypes.length>0"
-            class="uk-open">
-            <a
-              class="uk-accordion-title" href="#">Produkttyper</a>
-            <div class="uk-accordion-content">
-              <ul class="uk-nav uk-list uk-list-divider">
-                <li 
-                  v-for="pt in productTypes"
-                  :key="pt.GarmentId">
-                  <span>{{ pt.Name }}</span>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li
-            v-if="false && colors!=null && colors.length>0">
-            <a 
-              class="uk-accordion-title" 
-              href="#">Färger</a>
-            <div class="uk-accordion-content">
-              <ul class="uk-nav uk-list uk-list-divider">
-                <li 
-                  v-for="c in colors"
-                  :key="c.SeoName">
-                  <span>{{ c.Name }}</span>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li
-            v-if="false && sizes!=null && sizes.length>0">
-            <a 
-              class="uk-accordion-title" 
-              href="#">Storlekar</a>
-            <div class="uk-accordion-content">
-              <ul class="uk-nav uk-list uk-list-divider">
-                <li 
-                  v-for="s in sizes"
-                  :key="s.Id">
-                  <span>{{ s.Id }}</span>
-                </li>
-              </ul>
-            </div>
-          </li>
-        </ul>
+        <form action="" method="GET">
+          <ul 
+            class="uk-nav uk-list uk-list-divider"
+            style="margin-top:10px;"
+            uk-accordion="multiple:true">
+            <li 
+              v-if="productTypes!=null && productTypes.length>0"
+              class="uk-open">
+              <a
+                class="uk-accordion-title" href="#">Produkttyper</a>
+              <div class="uk-accordion-content">
+                <ul class="uk-nav uk-list uk-list-divider">
+                  <li 
+                    v-for="pt in productTypes"
+                    :key="pt.GarmentId">
+                    <input type="checkbox" v-model="products_list" /> <span>{{ pt.Name }}</span>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li
+              v-if="false && colors!=null && colors.length>0">
+              <a 
+                class="uk-accordion-title" 
+                href="#">Färger</a>
+              <div class="uk-accordion-content">
+                <ul class="uk-nav uk-list uk-list-divider">
+                  <li 
+                    v-for="c in colors"
+                    :key="c.SeoName">
+                    <input type="checkbox" v-model="colors_list" /> <span>{{ c.Name }}</span>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li
+              v-if="false && sizes!=null && sizes.length>0">
+              <a 
+                class="uk-accordion-title" 
+                href="#">Storlekar</a>
+              <div class="uk-accordion-content">
+                <ul class="uk-nav uk-list uk-list-divider">
+                  <li 
+                    v-for="s in sizes"
+                    :key="s.Id">
+                    <input type="checkbox" v-model="sizes_list" /> <span>{{ s.Id }}</span>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <button type="submit">Filtrera</button>
+        </form>
       </div>
     </div>    
   </div>
@@ -100,6 +103,13 @@ export default {
       type: Array,
       default: () => [],
       required: false
+    }
+  },
+  data() {
+    return{
+      colors_list:null,
+      sizes_list: null,
+      products_list:null
     }
   },
   mounted(){
