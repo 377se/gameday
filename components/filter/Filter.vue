@@ -24,14 +24,13 @@
             type="button" uk-close></button>
         </div>
         
-        <form action="" method="GET">
+        <form @submit.prevent="setFilter()">
           <ul 
             class="uk-nav uk-list uk-list-divider"
             style="margin-top:10px;"
             uk-accordion="multiple:true">
             <li 
-              v-if="productTypes!=null && productTypes.length>0"
-              class="uk-open">
+              v-if="productTypes!=null && productTypes.length>0">
               <a
                 class="uk-accordion-title" href="#">Produkttyper</a>
               <div class="uk-accordion-content">
@@ -39,13 +38,13 @@
                   <li 
                     v-for="pt in productTypes"
                     :key="pt.GarmentId">
-                    <input type="checkbox" v-model="products_list" /> <span>{{ pt.Name }}</span>
+                    <label><input type="checkbox" class="uk-checkbox" :id="pt.GarmentId" :value="pt.GarmentId" v-model="products_list" /> {{ pt.Name }}</label>
                   </li>
                 </ul>
               </div>
             </li>
             <li
-              v-if="false && colors!=null && colors.length>0">
+              v-if="colors!=null && colors.length>0">
               <a 
                 class="uk-accordion-title" 
                 href="#">Färger</a>
@@ -54,13 +53,13 @@
                   <li 
                     v-for="c in colors"
                     :key="c.SeoName">
-                    <input type="checkbox" v-model="colors_list" /> <span>{{ c.Name }}</span>
+                    <label><input type="checkbox" class="uk-checkbox" :id="c.Id" :value="c.Id" v-model="colors_list" /> {{ c.Name }}</label>
                   </li>
                 </ul>
               </div>
             </li>
             <li
-              v-if="false && sizes!=null && sizes.length>0">
+              v-if="sizes!=null && sizes.length>0">
               <a 
                 class="uk-accordion-title" 
                 href="#">Storlekar</a>
@@ -69,13 +68,15 @@
                   <li 
                     v-for="s in sizes"
                     :key="s.Id">
-                    <input type="checkbox" v-model="sizes_list" /> <span>{{ s.Id }}</span>
+                    <label><input type="checkbox" class="uk-checkbox" :id="s.Id" :value="s.Id" v-model="sizes_list" /> {{ s.Id }}</label>
                   </li>
                 </ul>
               </div>
             </li>
           </ul>
-          <button type="submit">Filtrera</button>
+          <div class="uk-padding-small uk-margin-small">
+            <button class="uk-button uk-button-primary uk-width-1-1" type="submit">Filtrera</button>
+          </div>
         </form>
       </div>
     </div>    
@@ -107,20 +108,38 @@ export default {
   },
   data() {
     return{
-      colors_list:null,
-      sizes_list: null,
-      products_list:null
+      colors_list:[],
+      sizes_list: [],
+      products_list:[]
     }
   },
   mounted(){
 
+  },
+  methods:{
+    setFilter(){
+      let c = this.colors_list.length>0?this.colors_list.join(','):null
+      let s = this.sizes_list.length>0?this.sizes_list.join(','):null
+      let p = this.products_list.length>0?this.products_list.join(','):null
+      this.$router.push(
+        {
+          path: this.$route.path, 
+          query: { 
+            color: c, 
+            size: s,
+            producttype:p
+          }
+        }
+      ) 
+      UIkit.offcanvas('#filter-menu').hide();
+    }
   }
 }
 </script>
 <style lang="scss" scoped>
 @import '~/assets/scss/vars.scss';
 
-#filter-menu .uk-nav a, #filter-menu .uk-nav span{
+#filter-menu .uk-nav a, #filter-menu .uk-nav label{
     padding-left: 12px;
     color: $global-color;
 }
