@@ -110,10 +110,14 @@ export default {
   },
   async asyncData (context) {
     let pageNum = context.route.query.page?context.route.query.page:1
+    let color = context.route.query.color?context.route.query.color:null
+    let gender = context.route.query.gender?context.route.query.gender:null
+    let size = context.route.query.size?context.route.query.size:null
+    let attribute = context.route.query.attribute?context.route.query.size:null
     try {
-      const [a,p] = await Promise.all([
+      const [a, p] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Article/getArticleList?color=null&size=null&gender=null&sale=false&seoName='+context.route.params.team+'&productType='+context.route.params.produkttyp+'&pageNum='+pageNum
+          '/webapi/Article/getArticleList?attribute=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+context.route.params.produkttyp+'&sale=false&pageNum='+ pageNum +'&seoName=' +context.route.params.team
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetProductTypeList?seoName='+context.route.params.league+'&teamName='+context.route.params.team
