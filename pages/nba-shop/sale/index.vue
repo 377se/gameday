@@ -123,14 +123,15 @@ export default {
     // Check if we are in the editor mode
     let version = context.query._storyblok || context.isDev ? 'draft' : 'published'
     let pageNum = context.route.query.page?context.route.query.page:1
-    let color = context.route.query.page?context.route.query.color:null
-    let gender = context.route.query.page?context.route.query.gender:null
-    let productType = context.route.query.page?context.route.query.producttype:null
-    let size = context.route.query.page?context.route.query.size:null
+    let color = context.route.query.color?context.route.query.color:null
+    let gender = context.route.query.gender?context.route.query.gender:null
+    let productType = context.route.query.producttype?context.route.query.producttype:''
+    let size = context.route.query.size?context.route.query.size:null
+    let attribute = context.route.query.attribute?context.route.query.size:null
     try {
       const [a, p, c, s, sb] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Article/getArticleList?color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'sale=true&pageNum='+ pageNum +'&seoName=nba'
+          '/webapi/Article/getArticleList?attribute=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'sale=true&pageNum='+ pageNum +'&seoName=nba'
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetProductTypeList?seoName=nba&teamName=null'
