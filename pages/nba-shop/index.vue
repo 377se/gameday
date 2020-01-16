@@ -156,7 +156,7 @@ export default {
     let pageNum = context.route.query.page?context.route.query.page:1
     let color = context.route.query.color?context.route.query.color:null
     let gender = context.route.query.gender?context.route.query.gender:null
-    let productType = context.route.query.producttype?context.route.query.producttype:''
+    let productType = context.route.query.producttype?context.route.query.producttype:null
     let size = context.route.query.size?context.route.query.size:null
     let attribute = context.route.query.attribute?context.route.query.size:null
     try {
