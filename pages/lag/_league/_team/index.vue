@@ -72,7 +72,7 @@
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 export default {
-  watchQuery: ['page','color','size','produttype','attribute','gender'],
+  watchQuery: ['page','color','size','producttype','attribute','gender'],
   head () {
     return {
       title: this.article.MetaTitle,

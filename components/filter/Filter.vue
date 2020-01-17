@@ -38,7 +38,7 @@
                   <li 
                     v-for="pt in productTypes"
                     :key="pt.GarmentId">
-                    <label><input type="checkbox" class="uk-checkbox" :id="pt.SeoName" :value="pt.SeoName" v-model="products_list" /> {{ pt.Name }}</label>
+                    <label><input type="checkbox" class="uk-checkbox" :id="pt.GarmentId" :value="pt.GarmentId" v-model="products_list" /> {{ pt.Name }}</label>
                   </li>
                 </ul>
               </div>
@@ -108,9 +108,9 @@ export default {
   },
   data() {
     return{
-      colors_list:[],
+      colors_list: [],
       sizes_list: [],
-      products_list:[]
+      products_list: []
     }
   },
   mounted(){
