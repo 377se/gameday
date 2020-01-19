@@ -133,7 +133,7 @@ export default {
     let size = context.route.query.size?context.route.query.size:null
     let attribute = context.route.query.attribute?context.route.query.size:null
     try {
-      const [a, p, c, s, sb] = await Promise.all([
+      const [a, p, c, s, g, sb] = await Promise.all([
         await context.app.$axios.$get(
           '/webapi/Article/getArticleList?attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'sale=true&pageNum='+ pageNum +'&seoName=mlb'
         ),
@@ -146,6 +146,9 @@ export default {
         await context.app.$axios.$get(
           '/webapi/Filter/GetSizeList?categoryName=mlb&teamName=null&garmentName=null'
         ),
+        await context.app.$axios.$get(
+          '/webapi/Filter/GetGenderList?categoryName=mlb&teamName=null&garmentName=null'
+        ),
         await context.app.$storyapi.get(`cdn/stories/mlb-shop/sale`, {
           version: version,
           cv: context.store.getters.version
@@ -156,6 +159,7 @@ export default {
         producttypes: p,
         colors: c,
         sizes: s,
+        gender: g,
         story: sb.data.story,
         article: a[0],
         pageNum: pageNum

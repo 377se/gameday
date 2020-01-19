@@ -159,7 +159,7 @@ export default {
     let sale = context.route.query.sale?context.route.query.sale:false
     sale = sale=='true'?true:false
     try {
-      const [a, p, c, s, sb] = await Promise.all([
+      const [a, p, c, s, g] = await Promise.all([
         await context.app.$axios.$get(
           '/webapi/Article/getArticleList?attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'sale='+sale+'&pageNum='+ pageNum +'&seoName=mlb'
         ),
@@ -171,6 +171,9 @@ export default {
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetSizeList?categoryName=mlb&teamName=null&garmentName=null'
+        ),
+        await context.app.$axios.$get(
+          '/webapi/Filter/GetGenderList?categoryName=mlb&teamName=null&garmentName=null'
         )
       ]);
       return {
@@ -178,6 +181,7 @@ export default {
         producttypes: p,
         colors: c,
         sizes: s,
+        gender: g,
         article: a[0],
         pageNum: pageNum
         
