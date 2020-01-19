@@ -137,7 +137,7 @@ export default {
         articles: a[0].ArticleList,
         colors: c,
         sizes: s,
-        gender: gender,
+        gender: g,
         article: a[0],
         pageNum: pageNum,
         sale: sale

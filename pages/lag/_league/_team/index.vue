@@ -173,7 +173,7 @@ export default {
         producttypes: p,
         colors: c,
         sizes: s,
-        gender: gender,
+        gender: g,
         article: a[0],
         pageNum: pageNum,
         sale: sale
