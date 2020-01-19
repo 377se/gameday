@@ -56,8 +56,7 @@
           :colors="colors"
           :sizes="sizes"
           :gender="gender"
-          :show_sale="true"
-          :sale="sale"/>
+          :show_sale="true"/>
       </div>
       <div
         class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
@@ -126,7 +125,6 @@ export default {
       colors: [],
       sizes: [],
       gender: [],
-      sale: false,
       pageNum: 1,
       totalPages:1,
       numOfProducts: 1,
@@ -158,7 +156,6 @@ export default {
     let size = context.route.query.size?context.route.query.size:null
     let attribute = context.route.query.attribute?context.route.query.size:null
     let sale = context.route.query.sale?context.route.query.sale:false
-    sale = sale=='true'?true:false
     try {
       const [a, p, c, s, g] = await Promise.all([
         await context.app.$axios.$get(
@@ -183,7 +180,6 @@ export default {
         colors: c,
         sizes: s,
         gender: g,
-        sale: sale,
         article: a[0],
         pageNum: pageNum
       };

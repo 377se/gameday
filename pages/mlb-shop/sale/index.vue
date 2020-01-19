@@ -94,7 +94,6 @@ export default {
       colors: [],
       sizes: [],
       gender: [],
-      sale: false,
       pageNum: 1,
       totalPages:1,
       numOfProducts: 1
@@ -163,7 +162,6 @@ export default {
         story: sb.data.story,
         article: a[0],
         pageNum: pageNum
-        
       };
     } catch (err) {
       console.log(err);

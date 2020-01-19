@@ -158,7 +158,6 @@ export default {
     let size = context.route.query.size?context.route.query.size:null
     let attribute = context.route.query.attribute?context.route.query.size:null
     let sale = context.route.query.sale?context.route.query.sale:false
-    sale = sale=='true'?true:false
     try {
       const [a, p, c, s, g] = await Promise.all([
         await context.app.$axios.$get(
@@ -183,7 +182,6 @@ export default {
         colors: c,
         sizes: s,
         gender: g,
-        sale: sale,
         article: a[0],
         pageNum: pageNum
       };

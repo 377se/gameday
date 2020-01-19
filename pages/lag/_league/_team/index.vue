@@ -41,7 +41,6 @@
           :colors="colors"
           :sizes="sizes"
           :gender="gender"
-          :sale="sale"
           :show_sale="true"/>
       </div>
       <div
@@ -117,7 +116,7 @@ export default {
       colors: [],
       sizes: [],
       gender: [],
-      sale: false,
+      sale: [],
       pageNum: 1,
       totalPages:1,
       numOfProducts: 1,
@@ -149,9 +148,8 @@ export default {
     let size = context.route.query.size?context.route.query.size:null
     let attribute = context.route.query.attribute?context.route.query.attribute:null
     let sale = context.route.query.sale?context.route.query.sale:false
-    sale = sale=='true'?true:false
     try {
-      const [a, p, c, s, g, sb] = await Promise.all([
+      const [a, p, c, s, g] = await Promise.all([
         await context.app.$axios.$get(
           '/webapi/Article/getArticleList?attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +context.route.params.team
         ),
@@ -175,9 +173,8 @@ export default {
         sizes: s,
         gender: g,
         article: a[0],
-        pageNum: pageNum,
-        sale: sale
-        
+        pageNum: pageNum
+
       };
     } catch (err) {
       console.log(err);
