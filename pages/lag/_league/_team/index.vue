@@ -39,7 +39,10 @@
         <FilterItems
           :product-types="producttypes"
           :colors="colors"
-          :sizes="sizes"/>
+          :sizes="sizes"
+          :gender="gender"
+          :sale="sale"
+          :show_sale="true"/>
       </div>
       <div
         class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
@@ -51,6 +54,12 @@
           :article="article"
           :url="`/lag/${$route.params.league}/${$route.params.team}/${article.SeoName}`"
         />
+        <div
+          v-if="articles.length<1"
+          class="uk-margin-bottom uk-margin-top" 
+        >
+          Vi hittade inga produkter för det aktuella valet.
+        </div>
       </div>
       <ul 
         v-if="article.TotalPages>1"
@@ -72,7 +81,7 @@
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 export default {
-  watchQuery: ['page','color','size','producttype','attribute','gender'],
+  watchQuery: ['page','color','size','producttype','attribute','gender','sale'],
   head () {
     return {
       title: this.article.MetaTitle,
@@ -107,6 +116,8 @@ export default {
       producttypes: [], //To filter on
       colors: [],
       sizes: [],
+      gender: [],
+      sale: false,
       pageNum: 1,
       totalPages:1,
       numOfProducts: 1,
@@ -136,11 +147,13 @@ export default {
     let gender = context.route.query.gender?context.route.query.gender:null
     let productType = context.route.query.producttype?context.route.query.producttype:null
     let size = context.route.query.size?context.route.query.size:null
-    let attribute = context.route.query.attribute?context.route.query.size:null
+    let attribute = context.route.query.attribute?context.route.query.attribute:null
+    let sale = context.route.query.sale?context.route.query.sale:false
+    sale = sale=='true'?true:false
     try {
-      const [a, p, c, s, sb] = await Promise.all([
+      const [a, p, c, s, g, sb] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Article/getArticleList?attribute=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale=false&pageNum='+ pageNum +'&seoName=' +context.route.params.team
+          '/webapi/Article/getArticleList?attribute=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +context.route.params.team
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetProductTypeList?seoName='+context.route.params.league+'&teamName='+context.route.params.team
@@ -150,6 +163,9 @@ export default {
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetSizeList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
+        ),
+        await context.app.$axios.$get(
+          '/webapi/Filter/GetGenderList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
         )
       ]);
       return {
@@ -157,8 +173,10 @@ export default {
         producttypes: p,
         colors: c,
         sizes: s,
+        gender: gender,
         article: a[0],
-        pageNum: pageNum
+        pageNum: pageNum,
+        sale: sale
         
       };
     } catch (err) {

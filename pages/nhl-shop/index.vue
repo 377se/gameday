@@ -54,7 +54,10 @@
         <FilterItems
           :product-types="producttypes"
           :colors="colors"
-          :sizes="sizes"/>
+          :sizes="sizes"
+          :gender="gender"
+          :show_sale="true"
+          :sale="sale"/>
       </div>
       <div
         class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
@@ -87,7 +90,7 @@
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 export default {
-  watchQuery: ['page'],
+  watchQuery: ['page','color','size','producttype','attribute','gender','sale'],
   head () {
     return {
       title: this.article.MetaTitle,
@@ -122,6 +125,8 @@ export default {
       producttypes: [], //To filter on
       colors: [],
       sizes: [],
+      gender: [],
+      sale: false,
       pageNum: 1,
       totalPages:1,
       numOfProducts: 1,
@@ -152,10 +157,12 @@ export default {
     let productType = context.route.query.producttype?context.route.query.producttype:null
     let size = context.route.query.size?context.route.query.size:null
     let attribute = context.route.query.attribute?context.route.query.size:null
+    let sale = context.route.query.sale?context.route.query.sale:false
+    sale = sale=='true'?true:false
     try {
-      const [a, p, c, s, sb] = await Promise.all([
+      const [a, p, c, s] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Article/getArticleList?attribute=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale=false&pageNum='+ pageNum +'&seoName=nhl'
+          '/webapi/Article/getArticleList?attribute=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=nhl'
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetProductTypeList?seoName=nhl&teamName=null'
@@ -172,6 +179,7 @@ export default {
         producttypes: p,
         colors: c,
         sizes: s,
+        sale: sale,
         article: a[0],
         pageNum: pageNum
       };

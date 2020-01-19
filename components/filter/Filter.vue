@@ -1,12 +1,14 @@
 <template>
   <div
     v-if="true">
-    <a 
-      href="#filter-menu"
-      type="button"
-      class="uk-button uk-button-primary uk-button-small uk-margin-small-left"
-      @click.prevent
-      uk-toggle><span uk-icon="icon: settings;"/> Filter</a>
+    <span class="uk-text-center">
+      <a 
+        href="#filter-menu"
+        type="button"
+        class="uk-button uk-button-primary uk-button-small uk-margin-small-left"
+        @click.prevent
+        uk-toggle><span uk-icon="icon: settings;"/> Filter <span v-if="numfilters>0">({{ numfilters }})</span></a>
+    </span>
 
 
     <div 
@@ -25,6 +27,14 @@
         </div>
         
         <form @submit.prevent="setFilter()">
+          <ul
+            class="uk-nav uk-list uk-list-divider"
+            style="margin-top:10px;">
+            <li 
+              v-if="show_sale">
+              <label><input type="checkbox" class="uk-checkbox" v-model="sale_value" /> REA</label>
+            </li>
+          </ul>
           <ul 
             class="uk-nav uk-list uk-list-divider"
             style="margin-top:10px;"
@@ -32,7 +42,11 @@
             <li 
               v-if="productTypes!=null && productTypes.length>0">
               <a
-                class="uk-accordion-title" href="#">Produkttyper</a>
+                class="uk-accordion-title" href="#">
+                  Produkttyper
+                  <span 
+                    style="font-size:0.7rem;display:block;">{{ products_list.length }} filter valt</span>
+              </a>
               <div class="uk-accordion-content">
                 <ul class="uk-nav uk-list uk-list-divider">
                   <li 
@@ -43,11 +57,33 @@
                 </ul>
               </div>
             </li>
+            <li 
+              v-if="gender!=null && gender.length>0">
+              <a
+                class="uk-accordion-title" href="#">
+                  Kön
+                  <span 
+                    style="font-size:0.7rem;display:block;">{{ gender_list.length }} filter valt</span>
+              </a>
+              <div class="uk-accordion-content">
+                <ul class="uk-nav uk-list uk-list-divider">
+                  <li 
+                    v-for="g in gender"
+                    :key="g.Id">
+                    <label><input type="checkbox" class="uk-checkbox" :id="g.Id" :value="g.Id" v-model="gender_list" /> {{ g.Name }}</label>
+                  </li>
+                </ul>
+              </div>
+            </li>
             <li
               v-if="colors!=null && colors.length>0">
               <a 
                 class="uk-accordion-title" 
-                href="#">Färger</a>
+                href="#">
+                Färger
+                <span 
+                    style="font-size:0.7rem;display:block;">{{ colors_list.length }} filter valt</span>
+              </a>
               <div class="uk-accordion-content">
                 <ul class="uk-nav uk-list uk-list-divider">
                   <li 
@@ -62,7 +98,11 @@
               v-if="sizes!=null && sizes.length>0">
               <a 
                 class="uk-accordion-title" 
-                href="#">Storlekar</a>
+                href="#">
+                Storlekar
+                <span 
+                    style="font-size:0.7rem;display:block;">{{ sizes_list.length }} filter valt</span>
+              </a>
               <div class="uk-accordion-content">
                 <ul class="uk-nav uk-list uk-list-divider">
                   <li 
@@ -74,7 +114,7 @@
               </div>
             </li>
           </ul>
-          <div class="uk-padding-small uk-margin-small">
+          <div class="filter-button uk-padding-small uk-margin-small uk-margin-remove-bottom">
             <button class="uk-button uk-button-primary uk-width-1-1" type="submit">Filtrera</button>
           </div>
         </form>
@@ -86,6 +126,11 @@
 export default {
   props:{
     productTypes:{
+      type: Array,
+      default: () => [],
+      required: false
+    },
+    gender:{
       type: Array,
       default: () => [],
       required: false
@@ -104,20 +149,63 @@ export default {
       type: Array,
       default: () => [],
       required: false
+    },
+    show_sale:{
+      type: Boolean,
+      default: false,
+      required: false,
+    },
+    sale:{
+      type: Boolean,
+      default: false,
+      required: false,
     }
   },
   data() {
     return{
       colors_list: [],
       sizes_list: [],
-      products_list: []
+      products_list: [],
+      gender_list: [],
+      sale_value: false,
+      numfilters:0
     }
   },
   mounted(){
-
+    this.setNumFilters();
   },
   methods:{
+    setNumFilters(){
+      let nf = 0
+      if(this.$route.query.color){
+        this.colors_list = this.$route.query.color.split(',')
+        nf+=this.colors_list.length
+      }
+      if(this.$route.query.gender){
+        this.gender_list = this.$route.query.gender.split(',')
+        nf+=this.gender_list.length
+      }
+      if(this.$route.query.size){
+        this.sizes_list = this.$route.query.size.split(',')
+        nf+=this.sizes_list.length
+      }
+      if(this.$route.query.producttype){
+        this.products_list = this.$route.query.producttype.split(',')
+        nf+=this.products_list.length
+      }
+      if(!this.sale && this.$route.query.sale){
+        this.sale_value = this.$route.query.sale
+      }else{
+        this.sale_value = this.sale
+      }
+      if(this.sale_value && this.show_sale){
+        nf+=1
+      }
+      
+      this.numfilters = nf
+    },
     setFilter(){
+      let g = this.gender_list.length>0?this.gender_list.join(','):null
       let c = this.colors_list.length>0?this.colors_list.join(','):null
       let s = this.sizes_list.length>0?this.sizes_list.join(','):null
       let p = this.products_list.length>0?this.products_list.join(','):null
@@ -125,19 +213,37 @@ export default {
         {
           path: this.$route.path, 
           query: { 
+            sale: this.sale_value,
+            gender: g,
             color: c, 
             size: s,
             producttype:p
           }
         }
       ) 
-      UIkit.offcanvas('#filter-menu').hide();
+      this.numfilters = this.gender_list.length + this.colors_list.length + this.sizes_list.length + this.products_list.length
+      UIkit.offcanvas('#filter-menu').hide()
     }
   }
 }
 </script>
 <style lang="scss" scoped>
 @import '~/assets/scss/vars.scss';
+.filter-button{
+  width:240px;
+  position:fixed;
+  background: #fff;
+  bottom:0;
+  box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.08);
+}
+
+#filter-menu{
+  z-index: 999999; //ZD was on top otherwise
+}
+
+#filter-menu form{
+  padding-bottom:100px;
+}
 
 #filter-menu .uk-nav a, #filter-menu .uk-nav label{
     padding-left: 12px;
@@ -177,6 +283,9 @@ export default {
 @media (min-width: 960px){
   .sidebar-header{
     margin:-40px;
+  }
+  .filter-button{
+    width:320px;
   }
 }
 </style>

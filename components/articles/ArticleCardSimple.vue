@@ -81,7 +81,7 @@ export default {
   min-width:60px;
   text-align:center;
   position:absolute;
-  top:0;
+  top:20px;
   left:0;
 }
 .label-percentage-discount{

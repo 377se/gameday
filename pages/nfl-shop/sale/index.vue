@@ -21,7 +21,10 @@
         <FilterItems
           :product-types="producttypes"
           :colors="colors"
-          :sizes="sizes"/>
+          :sizes="sizes"
+          :gender="gender"
+          :show_sale="false"
+          :sale="true"/>
       </div>
       <div
         class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
@@ -55,7 +58,7 @@ import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 import Page from "@/components/Page";
 export default {
-  watchQuery: ['page'],
+  watchQuery: ['page','color','size','producttype','attribute','gender'],
   head () {
     return {
       title: this.story.content.SEO.title,

@@ -16,9 +16,11 @@
       <div class="uk-flex uk-flex-middle uk-margin-small-bottom">
         <strong>{{ article.TotalNumberOfProducts }} produkter</strong>
         <FilterItems
-          :product-types="producttypes"
           :colors="colors"
-          :sizes="sizes"/>
+          :sizes="sizes"
+          :gender="gender"
+          :show_sale="true"
+          :sale="sale"/>
       </div>
       <div
         class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
@@ -51,7 +53,7 @@
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 export default {
-  watchQuery: ['page'],
+  watchQuery: ['page','color','size','producttype','attribute','gender','sale'],
   head () {
     return {
       title: this.article.MetaTitle,
@@ -83,10 +85,10 @@ export default {
       story: { content: {} },
       article: {},
       articles: [],
-      producttypes: [], //To filter on
-      producttypes: [], //To filter on
       colors: [],
       sizes: [],
+      gender: [],
+      sale: false,
       pageNum: 1,
       totalPages:1,
       numOfProducts: 1,
@@ -113,21 +115,32 @@ export default {
     let color = context.route.query.color?context.route.query.color:null
     let gender = context.route.query.gender?context.route.query.gender:null
     let size = context.route.query.size?context.route.query.size:null
-    let attribute = context.route.query.attribute?context.route.query.size:null
+    let attribute = context.route.query.attribute?context.route.query.attribute:null
+    let sale = context.route.query.sale?context.route.query.sale:false
+    sale = sale=='true'?true:false
     try {
-      const [a, p] = await Promise.all([
+      const [a, c, s, g] = await Promise.all([
         await context.app.$axios.$get(
           '/webapi/Article/getArticleList?attribute=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+context.route.params.produkttyp+'&sale=false&pageNum='+ pageNum +'&seoName=' +context.route.params.team
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetProductTypeList?seoName='+context.route.params.league+'&teamName='+context.route.params.team
+          '/webapi/Filter/GetColourList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName='+context.route.params.produkttyp
+        ),
+        await context.app.$axios.$get(
+          '/webapi/Filter/GetSizeList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName='+context.route.params.produkttyp
+        ),
+        await context.app.$axios.$get(
+          '/webapi/Filter/GetGenderList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName='+context.route.params.produkttyp
         )
       ]);
       return {
         articles: a[0].ArticleList,
-        producttypes: p,
-        article: a[0]
-        
+        colors: c,
+        sizes: s,
+        gender: gender,
+        article: a[0],
+        pageNum: pageNum,
+        sale: sale
       };
     } catch (err) {
       console.log(err);

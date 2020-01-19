@@ -197,6 +197,7 @@ export default {
 }
 .orig-price{
   font-weight:bold;
+  color: #F7A803;
 }
 .line-through{
   text-decoration:line-through;
