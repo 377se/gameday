@@ -32,7 +32,7 @@
             style="margin-top:10px;">
             <li 
               v-if="show_sale">
-              <label><input type="checkbox" class="uk-checkbox" v-model="sale_value" /> REA</label>
+              <label><input type="checkbox" class="uk-checkbox" value="true" v-model="sale_list" /> REA</label>
             </li>
           </ul>
           <ul 
@@ -52,7 +52,7 @@
                   <li 
                     v-for="pt in productTypes"
                     :key="pt.GarmentId">
-                    <label><input type="checkbox" class="uk-checkbox" :id="pt.GarmentId" :value="pt.GarmentId" v-model="products_list" /> {{ pt.Name }}</label>
+                    <label><input type="checkbox" class="uk-checkbox" :value="pt.GarmentId" v-model="products_list" /> {{ pt.Name }}</label>
                   </li>
                 </ul>
               </div>
@@ -70,7 +70,7 @@
                   <li 
                     v-for="g in gender"
                     :key="g.Id">
-                    <label><input type="checkbox" class="uk-checkbox" :id="g.Id" :value="g.Id" v-model="gender_list" /> {{ g.Name }}</label>
+                    <label><input type="checkbox" class="uk-checkbox" :value="g.Id" v-model="gender_list" /> {{ g.Name }}</label>
                   </li>
                 </ul>
               </div>
@@ -89,7 +89,7 @@
                   <li 
                     v-for="c in colors"
                     :key="c.SeoName">
-                    <label><input type="checkbox" class="uk-checkbox" :id="c.Id" :value="c.Id" v-model="colors_list" /> {{ c.Name }}</label>
+                    <label><input type="checkbox" class="uk-checkbox" :value="c.Id" v-model="colors_list" /> {{ c.Name }}</label>
                   </li>
                 </ul>
               </div>
@@ -108,7 +108,7 @@
                   <li 
                     v-for="s in sizes"
                     :key="s.Id">
-                    <label><input type="checkbox" class="uk-checkbox" :id="s.Id" :value="s.Id" v-model="sizes_list" /> {{ s.Id }}</label>
+                    <label><input type="checkbox" class="uk-checkbox" :value="s.Id" v-model="sizes_list" /> {{ s.Id }}</label>
                   </li>
                 </ul>
               </div>
@@ -150,15 +150,15 @@ export default {
       default: () => [],
       required: false
     },
+    teams: {
+      type: Array,
+      default: () => [],
+      required: false
+    },
     show_sale:{
       type: Boolean,
-      default: false,
-      required: false,
-    },
-    sale:{
-      type: Boolean,
-      default: false,
-      required: false,
+      default: true,
+      required: false
     }
   },
   data() {
@@ -167,7 +167,8 @@ export default {
       sizes_list: [],
       products_list: [],
       gender_list: [],
-      sale_value: false,
+      team_list: [],
+      sale_list: [],
       numfilters:0
     }
   },
@@ -185,6 +186,10 @@ export default {
         this.gender_list = this.$route.query.gender.split(',')
         nf+=this.gender_list.length
       }
+      if(this.$route.query.team){
+        this.team_list = this.$route.query.team.split(',')
+        nf+=this.team_list.length
+      }
       if(this.$route.query.size){
         this.sizes_list = this.$route.query.size.split(',')
         nf+=this.sizes_list.length
@@ -193,13 +198,9 @@ export default {
         this.products_list = this.$route.query.producttype.split(',')
         nf+=this.products_list.length
       }
-      if(!this.sale && this.$route.query.sale){
-        this.sale_value = this.$route.query.sale
-      }else{
-        this.sale_value = this.sale
-      }
-      if(this.sale_value && this.show_sale){
-        nf+=1
+      if(this.$route.query.sale){
+        this.sale_list = this.$route.query.sale.split(',')
+        nf+=this.sale_list.length
       }
       
       this.numfilters = nf
@@ -209,19 +210,22 @@ export default {
       let c = this.colors_list.length>0?this.colors_list.join(','):null
       let s = this.sizes_list.length>0?this.sizes_list.join(','):null
       let p = this.products_list.length>0?this.products_list.join(','):null
+      let t = this.team_list.length>0?this.team_list.join(','):null
+      let sa = this.sale_list.length>0?this.sale_list.join(','):null
       this.$router.push(
         {
           path: this.$route.path, 
           query: { 
-            sale: this.sale_value,
+            sale: sa,
             gender: g,
             color: c, 
             size: s,
-            producttype:p
+            producttype:p,
+            team: t
           }
         }
       ) 
-      this.numfilters = this.gender_list.length + this.colors_list.length + this.sizes_list.length + this.products_list.length
+      this.numfilters = this.sale_list.length + this.gender_list.length + this.colors_list.length + this.sizes_list.length + this.products_list.length + this.team_list.length
       UIkit.offcanvas('#filter-menu').hide()
     }
   }
