@@ -134,7 +134,7 @@ export default {
     try {
       const [a, p, c, s, g, sb] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Article/getArticleList?attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'sale=true&pageNum='+ pageNum +'&seoName=mlb'
+          '/webapi/Article/getArticleList?attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale=true&pageNum='+ pageNum +'&seoName=mlb'
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetProductTypeList?seoName=mlb&teamName=null'
