@@ -41,6 +41,7 @@
           :colors="colors"
           :sizes="sizes"
           :gender="gender"
+          :brands="brands"
           :show_sale="true"/>
       </div>
       <div
@@ -80,7 +81,7 @@
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 export default {
-  watchQuery: ['page','color','size','producttype','attribute','gender','sale'],
+  watchQuery: ['page','color','size','producttype','attribute','gender','sale', 'brand'],
   head () {
     return {
       title: this.article.MetaTitle,
@@ -116,6 +117,7 @@ export default {
       colors: [],
       sizes: [],
       gender: [],
+      brands: [],
       sale: [],
       pageNum: 1,
       totalPages:1,
@@ -148,8 +150,9 @@ export default {
     let size = context.route.query.size?context.route.query.size:null
     let attribute = context.route.query.attribute?context.route.query.attribute:null
     let sale = context.route.query.sale?context.route.query.sale:false
+    let brand = context.route.query.brand?context.route.query.brand:false
     try {
-      const [a, p, c, s, g] = await Promise.all([
+      const [a, p, c, s, g, b] = await Promise.all([
         await context.app.$axios.$get(
           '/webapi/Article/getArticleList?attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +context.route.params.team
         ),
@@ -164,6 +167,9 @@ export default {
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetGenderList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
+        ),
+        await context.app.$axios.$get(
+          '/webapi/Filter/GetBrandList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
         )
       ]);
       return {
@@ -172,6 +178,7 @@ export default {
         colors: c,
         sizes: s,
         gender: g,
+        brands: b,
         article: a[0],
         pageNum: pageNum
 

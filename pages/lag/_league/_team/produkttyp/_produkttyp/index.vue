@@ -19,6 +19,7 @@
           :colors="colors"
           :sizes="sizes"
           :gender="gender"
+          :brands="brands"
           :show_sale="true"/>
       </div>
       <div
@@ -87,6 +88,7 @@ export default {
       colors: [],
       sizes: [],
       gender: [],
+      brands: [],
       pageNum: 1,
       totalPages:1,
       numOfProducts: 1,
@@ -115,8 +117,9 @@ export default {
     let size = context.route.query.size?context.route.query.size:null
     let attribute = context.route.query.attribute?context.route.query.attribute:null
     let sale = context.route.query.sale?context.route.query.sale:false
+    let brand = context.route.query.brand?context.route.query.brand:false
     try {
-      const [a, c, s, g] = await Promise.all([
+      const [a, c, s, g, b] = await Promise.all([
         await context.app.$axios.$get(
           '/webapi/Article/getArticleList?attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+context.route.params.produkttyp+'&sale=false&pageNum='+ pageNum +'&seoName=' +context.route.params.team
         ),
@@ -128,6 +131,9 @@ export default {
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetGenderList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName='+context.route.params.produkttyp
+        ),
+        await context.app.$axios.$get(
+          '/webapi/Filter/GetBrandList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName='+context.route.params.produkttyp
         )
       ]);
       return {
@@ -135,6 +141,7 @@ export default {
         colors: c,
         sizes: s,
         gender: g,
+        brands: b,
         article: a[0],
         pageNum: pageNum
       };

@@ -57,6 +57,7 @@
           :sizes="sizes"
           :gender="gender"
           :teams="menu"
+          :brands="brands"
           :show_sale="true"/>
       </div>
       <div
@@ -91,7 +92,7 @@ import { mapGetters, mapActions } from 'vuex'
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 export default {
-  watchQuery: ['page','color','size','producttype','attribute','gender','sale'],
+  watchQuery: ['page','color','size','producttype','attribute','gender','sale','brand'],
   head () {
     return {
       title: this.article.MetaTitle,
@@ -127,6 +128,7 @@ export default {
       colors: [],
       sizes: [],
       gender: [],
+      brands: [],
       pageNum: 1,
       totalPages:1,
       numOfProducts: 1,
@@ -162,10 +164,11 @@ export default {
     let attribute = context.route.query.attribute?context.route.query.size:null
     let sale = context.route.query.sale?context.route.query.sale:false
     let team = context.route.query.team?context.route.query.team:null
+    let brand = context.route.query.brand?context.route.query.brand:null
     try {
-      const [a, p, c, s, g] = await Promise.all([
+      const [a, p, c, s, g, b] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Article/getArticleList?attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=nhl'
+          '/webapi/Article/getArticleList?brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=nhl'
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetProductTypeList?seoName=nhl&teamName=null'
@@ -178,6 +181,9 @@ export default {
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetGenderList?categoryName=nhl&teamName=null&garmentName=null'
+        ),
+        await context.app.$axios.$get(
+          '/webapi/Filter/GetBrandList?categoryName=nhl&teamName=null&garmentName=null'
         )
       ]);
       return {
@@ -186,6 +192,7 @@ export default {
         colors: c,
         sizes: s,
         gender: g,
+        brands: b,
         article: a[0],
         pageNum: pageNum
       };

@@ -24,6 +24,7 @@
           :sizes="sizes"
           :gender="gender"
           :teams="menu"
+          :brands="brands"
           :show_sale="false"/>
       </div>
       <div
@@ -59,7 +60,7 @@ import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 import Page from "@/components/Page";
 export default {
-  watchQuery: ['page','color','size','producttype','attribute','gender'],
+  watchQuery: ['page','color','size','producttype','attribute','gender','brand'],
   head () {
     return {
       title: this.story.content.SEO.title,
@@ -95,6 +96,7 @@ export default {
       producttypes: [], //To filter on
       colors: [],
       sizes: [],
+      brands: [],
       pageNum: 1,
       totalPages:1,
       numOfProducts: 1
@@ -139,10 +141,11 @@ export default {
     let size = context.route.query.size?context.route.query.size:null
     let attribute = context.route.query.attribute?context.route.query.size:null
     let team = context.route.query.team?context.route.query.team:null
+    let brand = context.route.query.brand?context.route.query.brand:null
     try {
-      const [a, p, c, s, g, sb] = await Promise.all([
+      const [a, p, c, s, g, b, sb] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Article/getArticleList?attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale=true&pageNum='+ pageNum +'&seoName=nhl'
+          '/webapi/Article/getArticleList?brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale=true&pageNum='+ pageNum +'&seoName=nhl'
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetProductTypeList?seoName=nhl&teamName=null'
@@ -156,6 +159,9 @@ export default {
         await context.app.$axios.$get(
           '/webapi/Filter/GetGenderList?categoryName=nhl&teamName=null&garmentName=null'
         ),
+        await context.app.$axios.$get(
+          '/webapi/Filter/GetBrandList?categoryName=nhl&teamName=null&garmentName=null'
+        ),
         await context.app.$storyapi.get(`cdn/stories/nhl-shop/sale`, {
           version: version,
           cv: context.store.getters.version
@@ -167,6 +173,7 @@ export default {
         colors: c,
         sizes: s,
         gender: g,
+        brands: b,
         story: sb.data.story,
         article: a[0],
         pageNum: pageNum

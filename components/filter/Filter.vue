@@ -132,6 +132,25 @@
                 </ul>
               </div>
             </li>
+            <li
+              v-if="brands!=null && brands.length>0">
+              <a 
+                class="uk-accordion-title" 
+                href="#">
+                Varumärken
+                <span 
+                    style="font-size:0.7rem;display:block;">{{ brands_list.length }} filter valt</span>
+              </a>
+              <div class="uk-accordion-content">
+                <ul class="uk-nav uk-list uk-list-divider">
+                  <li 
+                    v-for="b in brands"
+                    :key="b.Id">
+                    <label><input type="checkbox" class="uk-checkbox" :value="b.Id" v-model="brands_list" /> {{ b.Name }}</label>
+                  </li>
+                </ul>
+              </div>
+            </li>
           </ul>
           <div class="filter-button uk-padding-small uk-margin-small uk-margin-remove-bottom">
             <button class="uk-button uk-button-primary uk-width-1-1" type="submit">Filtrera</button>
@@ -164,6 +183,11 @@ export default {
       default: () => [],
       required: false
     },
+    brands:{
+      type: Array,
+      default: () => [],
+      required: false
+    },
     sizes:{
       type: Array,
       default: () => [],
@@ -187,6 +211,7 @@ export default {
       products_list: [],
       gender_list: [],
       team_list: [],
+      brands_list: [],
       sale_list: [],
       numfilters:0
     }
@@ -208,6 +233,10 @@ export default {
       if(this.$route.query.team){
         this.team_list = this.$route.query.team.split(',')
         nf+=this.team_list.length
+      }
+      if(this.$route.query.brand){
+        this.brands_list = this.$route.query.brand.split(',')
+        nf+=this.brands_list.length
       }
       if(this.$route.query.size){
         this.sizes_list = this.$route.query.size.split(',')
@@ -231,6 +260,7 @@ export default {
       let p = this.products_list.length>0?this.products_list.join(','):null
       let t = this.team_list.length>0?this.team_list.join(','):null
       let sa = this.sale_list.length>0?this.sale_list.join(','):null
+      let b = this.brands_list.length>0?this.brands_list.join(','):null
       this.$router.push(
         {
           path: this.$route.path, 
@@ -240,11 +270,12 @@ export default {
             color: c, 
             size: s,
             producttype:p,
-            team: t
+            team: t,
+            brand: b
           }
         }
       ) 
-      this.numfilters = this.sale_list.length + this.gender_list.length + this.colors_list.length + this.sizes_list.length + this.products_list.length + this.team_list.length
+      this.numfilters = this.brands_list.length + this.sale_list.length + this.gender_list.length + this.colors_list.length + this.sizes_list.length + this.products_list.length + this.team_list.length
       UIkit.offcanvas('#filter-menu').hide()
     }
   }
