@@ -148,7 +148,7 @@ export default {
     let size = context.route.query.size?context.route.query.size:null
     let attribute = context.route.query.attribute?context.route.query.attribute:null
     let sale = context.route.query.sale?context.route.query.sale:false
-    let brand = context.route.query.brand?context.route.query.brand:false
+    let brand = context.route.query.brand?context.route.query.brand:null
     try {
       const [a, p, c, s, g, b] = await Promise.all([
         await context.app.$axios.$get(
