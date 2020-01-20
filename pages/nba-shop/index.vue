@@ -56,6 +56,7 @@
           :colors="colors"
           :sizes="sizes"
           :gender="gender"
+          :brands="brands"
           :teams="menu"
           :show_sale="true"/>
       </div>
@@ -91,7 +92,7 @@ import { mapGetters, mapActions } from 'vuex'
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 export default {
-  watchQuery: ['page','color','size','producttype','attribute','gender','sale'],
+  watchQuery: ['page','color','size','producttype','attribute','gender','sale','brand'],
   head () {
     return {
       title: this.article.MetaTitle,
@@ -127,6 +128,7 @@ export default {
       colors: [],
       sizes: [],
       gender: [],
+      brands: [],
       pageNum: 1,
       totalPages:1,
       numOfProducts: 1,

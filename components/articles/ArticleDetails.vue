@@ -7,6 +7,7 @@
       <section class="uk-width-1-1 uk-width-1-2@m">
         <ArticlePageImages
           :images="article.Images"
+          :label="article.Label"
         />
       </section>
 
