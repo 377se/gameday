@@ -60,7 +60,7 @@
             <li class="uk-nav-header">Alla lag (A-Z)
             <li
               v-for="team in nhlMenu"
-              :key="team.CategoryId">
+              :key="team.TeamId">
               <nuxt-link
                 :to="'/lag/nhl/'+team.SeoName">{{ team.Name }}</nuxt-link>
             </li>
@@ -85,7 +85,7 @@
             <li class="uk-nav-header">Alla lag (A-Z)</li>
             <li
               v-for="team in nflMenu"
-              :key="team.CategoryId">
+              :key="team.TeamId">
               <nuxt-link
                 :to="'/lag/nfl/'+team.SeoName">{{ team.Name }}</nuxt-link>
             </li>
@@ -110,7 +110,7 @@
             <li class="uk-nav-header">Alla lag (A-Z)</li>
             <li
               v-for="team in nbaMenu"
-              :key="team.CategoryId">
+              :key="team.TeamId">
               <nuxt-link
                 :to="'/lag/nba/'+team.SeoName">{{ team.Name }}</nuxt-link>
             </li>
@@ -135,7 +135,7 @@
             <li class="uk-nav-header">Alla lag (A-Z)</li>
             <li
               v-for="team in mlbMenu"
-              :key="team.CategoryId">
+              :key="team.TeamId">
               <nuxt-link
                 :to="'/lag/mlb/'+team.SeoName">{{ team.Name }}</nuxt-link>
             </li>

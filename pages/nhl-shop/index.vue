@@ -56,6 +56,7 @@
           :colors="colors"
           :sizes="sizes"
           :gender="gender"
+          :teams="menu"
           :show_sale="true"/>
       </div>
       <div
@@ -86,6 +87,7 @@
   </section>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 export default {
@@ -131,7 +133,10 @@ export default {
       readmore: true
     }
   },
-  mounted(){
+  computed: {
+    ...mapGetters({
+      menu: 'nhlMenu'
+    })
   },
   methods:{
     setReadMore(){
@@ -156,10 +161,11 @@ export default {
     let size = context.route.query.size?context.route.query.size:null
     let attribute = context.route.query.attribute?context.route.query.size:null
     let sale = context.route.query.sale?context.route.query.sale:false
+    let team = context.route.query.team?context.route.query.team:null
     try {
       const [a, p, c, s, g] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Article/getArticleList?attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=nhl'
+          '/webapi/Article/getArticleList?attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=nhl'
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetProductTypeList?seoName=nhl&teamName=null'

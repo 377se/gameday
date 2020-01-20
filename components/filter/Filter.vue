@@ -15,7 +15,8 @@
       id="filter-menu" 
       class="uk-offcanvas"
       uk-offcanvas="overlay:true;flip:true">
-      <div class="uk-offcanvas-bar">
+      <div 
+        class="uk-offcanvas-bar">
         <div
           style="height:80px;background:#00bbe0"
           class="uk-flex">
@@ -39,6 +40,24 @@
             class="uk-nav uk-list uk-list-divider"
             style="margin-top:10px;"
             uk-accordion="multiple:true">
+            <li 
+              v-if="teams!=null && teams.length>0">
+              <a
+                class="uk-accordion-title" href="#">
+                  Lag
+                  <span 
+                    style="font-size:0.7rem;display:block;">{{ team_list.length }} filter valt</span>
+              </a>
+              <div class="uk-accordion-content">
+                <ul class="uk-nav uk-list uk-list-divider">
+                  <li 
+                    v-for="t in teams"
+                    :key="t.TeamId">
+                    <label><input type="checkbox" class="uk-checkbox" :value="t.TeamId" v-model="team_list" /> {{ t.Name }}</label>
+                  </li>
+                </ul>
+              </div>
+            </li>
             <li 
               v-if="productTypes!=null && productTypes.length>0">
               <a

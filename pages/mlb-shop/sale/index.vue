@@ -24,6 +24,7 @@
           :sizes="sizes"
           :gender="gender"
           :show_sale="false"
+          :teams="menu"
           :sale="true"/>
       </div>
       <div
@@ -53,6 +54,7 @@
   </section>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 import Page from "@/components/Page";
@@ -99,6 +101,11 @@ export default {
       numOfProducts: 1
     }
   },
+  computed: {
+    ...mapGetters({
+      menu: 'mlbMenu'
+    })
+  },
   mounted(){
     this.$storybridge.on(['input', 'published', 'change'], (event) => {
       if (event.action == 'input') {
@@ -131,10 +138,11 @@ export default {
     let productType = context.route.query.producttype?context.route.query.producttype:null
     let size = context.route.query.size?context.route.query.size:null
     let attribute = context.route.query.attribute?context.route.query.size:null
+    let team = context.route.query.team?context.route.query.team:null
     try {
       const [a, p, c, s, g, sb] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Article/getArticleList?attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale=true&pageNum='+ pageNum +'&seoName=mlb'
+          '/webapi/Article/getArticleList?attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale=true&pageNum='+ pageNum +'&seoName=mlb'
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetProductTypeList?seoName=mlb&teamName=null'
