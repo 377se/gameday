@@ -58,13 +58,6 @@
           :gender="gender"
           :show_sale="true"/>
       </div>
-      <div class="uk-flex uk-flex-middle uk-margin-small-bottom">
-        <strong>{{ article.TotalNumberOfProducts }} produkter</strong>
-        <FilterItems
-          :product-types="producttypes"
-          :colors="colors"
-          :sizes="sizes"/>
-      </div>
       <div
         class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
         uk-grid
@@ -166,7 +159,7 @@ export default {
     try {
       const [a, p, c, s, g] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Article/getArticleList?attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'sale='+sale+'&pageNum='+ pageNum +'&seoName=nba'
+          '/webapi/Article/getArticleList?attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=nba'
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetProductTypeList?seoName=nba&teamName=null'
