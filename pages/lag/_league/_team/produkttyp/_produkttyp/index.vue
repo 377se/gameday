@@ -53,7 +53,7 @@
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 export default {
-  watchQuery: ['page','color','size','producttype','attribute','gender','sale'],
+  watchQuery: ['page','color','size','producttype','attribute','gender','sale','brand'],
   head () {
     return {
       title: this.article.MetaTitle,
@@ -95,9 +95,6 @@ export default {
       readmore: true
     }
   },
-  mounted(){
-
-  },
   methods:{
     next(){
       if(this.pageNum<this.article.TotalPages){
@@ -121,7 +118,7 @@ export default {
     try {
       const [a, c, s, g, b] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Article/getArticleList?attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+context.route.params.produkttyp+'&sale=false&pageNum='+ pageNum +'&seoName=' +context.route.params.team
+          '/webapi/Article/getArticleList?brand='+brand+'&attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+context.route.params.produkttyp+'&sale=false&pageNum='+ pageNum +'&seoName=' +context.route.params.team
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetColourList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName='+context.route.params.produkttyp

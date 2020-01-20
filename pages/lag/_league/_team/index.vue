@@ -125,8 +125,6 @@ export default {
       readmore: true
     }
   },
-  mounted(){
-  },
   methods:{
     setReadMore(){
       this.readmore=false
@@ -154,7 +152,7 @@ export default {
     try {
       const [a, p, c, s, g, b] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Article/getArticleList?attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +context.route.params.team
+          '/webapi/Article/getArticleList?brand='+brand+'&attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +context.route.params.team
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetProductTypeList?seoName='+context.route.params.league+'&teamName='+context.route.params.team
