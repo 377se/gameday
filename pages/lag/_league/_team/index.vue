@@ -34,7 +34,9 @@
             :to="`/lag/${$route.params.league}/${$route.params.team}/produkttyp/${pt.SeoName}`"><span>{{ pt.Name }}</span></nuxt-link>
         </div>
       </div>
-      <div class="uk-flex uk-flex-middle uk-margin-small-bottom">
+      <div 
+        class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
+        uk-sticky="offset:80;width-element:body;bottom:true">
         <strong>{{ article.TotalNumberOfProducts }} produkter</strong> 
         <FilterItems
           :product-types="producttypes"
@@ -45,7 +47,7 @@
           :show_sale="true"/>
       </div>
       <div
-        class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
+        class="ts-article-list uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
         uk-grid
         uk-height-match="target: .uk-card">
         <ArticleCardSimple

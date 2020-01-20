@@ -173,7 +173,9 @@ export default {
 
 <style lang="scss" scoped>
 @import '~/assets/scss/vars.scss';
-
+#offscreen-menu.uk-open{
+  z-index:9999999;
+}
 .menu {
   background-color: #ffffff !important;
   width: 310px;

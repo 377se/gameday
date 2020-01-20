@@ -143,4 +143,14 @@ export default {
   margin-left:15px;
   float:right;
 }
+
+.ts-filter.uk-active{
+  padding:10px 10px 10px 15px;
+  background:#fff;
+  box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.08);
+  left:0;
+}
+.uk-offcanvas-page .ts-filter.uk-active{
+  z-index:999999;
+}
 </style>
