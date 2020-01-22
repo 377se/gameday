@@ -123,12 +123,12 @@ export default {
   methods:{
     next(){
       if(this.pageNum<this.article.TotalPages){
-        this.$router.push({ query: { page: (parseInt(this.pageNum)+1) }})
+        this.$router.push({ path: this.$route.path, query: { page: (parseInt(this.pageNum)+1) }})
       } 
     },
     previous(){
       if(this.pageNum>1){
-        this.$router.push({ query: { page: (parseInt(this.pageNum)-1) }})
+        this.$router.push({ path: this.$route.path, query: { page: (parseInt(this.pageNum)-1) }})
       } 
     }
   },
