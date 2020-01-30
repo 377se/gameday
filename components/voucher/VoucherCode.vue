@@ -15,14 +15,14 @@
     <form
       v-if="show"
       @submit.prevent="activateVoucher"
-      class="uk-padding-small uk-padding-remove-bottom uk-text-small">
+      class="uk-padding-small uk-padding-remove-bottom">
       <div class="uk-margin-small uk-flex" uk-margin>
         <input 
           class="uk-input uk-width-expand" 
           type="text" 
           placeholder="Voucherkod"
           v-model="code">
-        <button type="submit" class="uk-margin-small-left uk-button uk-button-default">Aktivera</button>
+        <button type="submit" class="uk-text-small uk-margin-small-left uk-button uk-button-default">Aktivera</button>
       </div>
     </form>
     <a
