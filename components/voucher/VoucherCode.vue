@@ -4,6 +4,11 @@
       v-if="errors.length>0"
       :errorlist="errors"
     />
+    <div 
+      v-else-if="message" class="uk-alert-success" uk-alert>
+      <a class="uk-alert-close" uk-close></a>
+      <p>{{ message }}</p>
+    </div>
     <form
       v-if="show"
       @submit.prevent="activateVoucher"
@@ -33,18 +38,37 @@ export default {
     return{
       show:false,
       code: '',
+      message: null,
       errors: []
     }
   },
   methods:{
     async activateVoucher(){
+      let _this = this
       await this.$axios.get('/webapi/voucher/GetDiscountCode?code='+this.code).then(function (response) {
-          if(response.data.ErrorList.length>0){
-            _this.errors = response.data.ErrorList
-          }else{
-            alert('Koden är aktiverad. Nu ska varukorgen uppdateras. TODO')
-            _this.show=false //Hide the form
-          }
+        if(response.data.ErrorList){
+          _this.errors = response.data.ErrorList
+        }else{
+          _this.addToCart(response.data.CartItem)
+          _this.message = response.data.Message
+          _this.show=false //Hide the form
+        }
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+    },
+    async addToCart(ci){
+      let _this = this
+      await this.$axios.post('/webapi/cart/PostAddToCart',{
+        AddOn: null,
+        ArticleId: ci.ArticleId,
+        Quantity: 1,
+        SizeId: ci.SizeId
+      }
+      ).then(function (response) {
+        _this.$store.commit('basket/add', response.data)
+        //console.log(response)
       })
       .catch(function (error) {
         console.log(error)

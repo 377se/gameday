@@ -21,22 +21,22 @@ import ArticleDetails from "@/components/articles/ArticleDetails";
 export default {
   head () {
     return {
-      title: this.article.SEO_Name,
+      title: this.article.MetaTitle,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.article.SEO_Description
+          content: this.article.MetaDescription
         },
         {
           hid: 'og:title',
           name:  'og:title',
-          content:  this.article.SEO_Name,
+          content:  this.article.MetaTitle,
         },
         {
           hid: 'og:description',
           name:  'og:description',
-          content: `${this.article.SEO_Description}`.replace(/<\/?[^>]+(>|$)/g, ""),
+          content: `${this.article.MetaTitle}`.replace(/<\/?[^>]+(>|$)/g, ""),
         }
       ]
     }
@@ -56,7 +56,7 @@ export default {
       }&articleName=${route.params.article}`;
       const article = await app.$axios.$get(url);
 
-      return { article };
+      return { article: article };
     } catch (err) {
       console.log(err);
     }
