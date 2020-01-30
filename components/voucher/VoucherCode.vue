@@ -5,8 +5,11 @@
       :errorlist="errors"
     />
     <div 
-      v-else-if="message" class="uk-alert-success" uk-alert>
-      <a class="uk-alert-close" uk-close></a>
+      v-else-if="message && showmessage" class="uk-alert-success" uk-alert>
+      <button 
+        class="uk-alert-close"
+        @click.prevent="showmessage=false"
+        uk-close></button>
       <p>{{ message }}</p>
     </div>
     <form
@@ -43,18 +46,21 @@ export default {
       show:false,
       code: '',
       message: null,
+      showmessage:false,
       errors: []
     }
   },
   methods:{
     async activateVoucher(){
       let _this = this
+      this.errors = []
       await this.$axios.get('/webapi/voucher/GetDiscountCode?code='+this.code).then(function (response) {
         if(response.data.ErrorList){
           _this.errors = response.data.ErrorList
         }else{
           _this.addToCart(response.data.CartItem)
           _this.message = response.data.Message
+          _this.showmessage = true
           _this.show=false //Hide the form
         }
       })
