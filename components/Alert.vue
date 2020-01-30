@@ -2,6 +2,7 @@
   <div 
     class="uk-alert-danger" 
     uk-alert>
+    <a class="uk-alert-close" uk-close></a>
     <div
       v-for="er in errorlist"
       :key="er.Name"
