@@ -11,6 +11,11 @@
             <ul class="uk-slider-items uk-child-width-1-1 uk-text-small">
               <li>
                 <div class="uk-text-center gd-slider-item uk-padding-small">
+                  <strong>Använd kod SUPERBOWL i kassan för 200kr rabatt!</strong>
+                </div>
+              </li>
+              <li>
+                <div class="uk-text-center gd-slider-item uk-padding-small">
                   <strong>Alltid 30 Dagars öppet köp och fria returer</strong>
                 </div>
               </li>
