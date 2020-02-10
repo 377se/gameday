@@ -31,22 +31,22 @@
         <nuxt-link
           to="/lag/premier-league/liverpool-fc"
           class="team-slider-item">
-          <img class="team-slider-img" src="https://static.supportersplace.se/category/bostonbruins.png" alt="Boston Bruins">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/liverpoolfc.png" alt="Liverpool FC">
         </nuxt-link>
         <nuxt-link
           to="/lag/premier-league/manchester-united"
           class="team-slider-item">
-          <img class="team-slider-img" src="https://static.supportersplace.se/category/chicagoblackhawks.png" alt="Chicago Blackhawks">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/manchesterunited.png" alt="Manchester United">
         </nuxt-link>
         <nuxt-link
           to="/lag/premier-league/arsenal-fc"
           class="team-slider-item">
-          <img class="team-slider-img" src="https://static.supportersplace.se/category/newyorkrangers.png" alt="New York Rangers">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/arsenalfc.png" alt="Arsenal FC">
         </nuxt-link>
         <nuxt-link
           to="/lag/premier-league/chelsea-fc"
           class="team-slider-item">
-          <img class="team-slider-img" src="https://static.supportersplace.se/category/pittsburghpenguins.png" alt="Pittsburgh Penguins">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/chelseafc.png" alt="Chelsea FC">
         </nuxt-link>
       </div>
       <div 
