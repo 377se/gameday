@@ -6,45 +6,28 @@
           <nuxt-link to="/">
             <span style="vertical-align: bottom;
               margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
-        <li><nuxt-link :to="'/'+$route.params.league+shop">{{ $route.params.league.toUpperCase() }}-shop</nuxt-link></li>
-        <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team">{{ $route.params.team }}</nuxt-link></li>
+        <li><nuxt-link to="/premier-league">Premier League</nuxt-link></li>
+        <li><nuxt-link to="/premier-league/sale/">REA</nuxt-link></li>
       </ul>
-      <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
-      <div 
-        :class="{'read-more':readmore}"
-        @click="setReadMore()"
-        v-html="article.SeoContentDescription"/>
+      <component 
+        v-if="story.content.component" 
+        :key="story.content._uid" 
+        :blok="story.content" 
+        :is="story.content.component" />
     </div>
-    <div 
-      class="uk-container uk-container-large uk-padding-small">
-      <h3
-        v-if="producttypes!=null && producttypes.length>0"
-        >Populära kategorier</h3>
-      <div
-        v-if="producttypes!=null && producttypes.length>0"
-        class="uk-grid uk-grid-small uk-margin-bottom uk-margin-top category-list-slider"
-        uk-grid
-        >
-        <div
-          v-for="pt in producttypes"
-          :key="pt.GarmentId"
-          >
-          <nuxt-link
-            class="uk-label"
-            :to="`/lag/${$route.params.league}/${$route.params.team}/produkttyp/${pt.SeoName}`"><span>{{ pt.Name }}</span></nuxt-link>
-        </div>
-      </div>
+    <div class="uk-container uk-container-large uk-padding-small">
       <div 
         class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
         uk-sticky="offset:80;width-element:body;bottom:true">
-        <strong>{{ article.TotalNumberOfProducts }} produkter</strong> 
+        <strong>{{ article.TotalNumberOfProducts }} produkter</strong>
         <FilterItems
           :product-types="producttypes"
           :colors="colors"
           :sizes="sizes"
           :gender="gender"
+          :teams="menu"
           :brands="brands"
-          :show_sale="true"/>
+          :show_sale="false"/>
       </div>
       <div
         class="ts-article-list uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
@@ -54,14 +37,8 @@
           v-for="article in articles"
           :key="article.Id"
           :article="article"
-          :url="`/lag/${$route.params.league}/${$route.params.team}/${article.SeoName}`"
+          :url="`/lag/premier-league/${article.HeadCategorySeoName}/${article.SeoName}`"
         />
-        <div
-          v-if="articles.length<1"
-          class="uk-margin-bottom uk-margin-top" 
-        >
-          Vi hittade inga produkter för det aktuella valet.
-        </div>
       </div>
       <ul 
         v-if="article.TotalPages>1"
@@ -80,58 +57,59 @@
   </section>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
+import Page from "@/components/Page";
 export default {
   watchQuery: ['page','color','size','producttype','attribute','gender','sale','brand','team'],
   head () {
     return {
-      title: this.article.MetaTitle,
+      title: this.story.content.SEO.title,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.article.MetaDescription
+          content: this.story.content.SEO.description
         },
         {
           hid: 'og:title',
           name:  'og:title',
-          content:  this.article.MetaTitle,
+          content:  this.story.content.SEO.title,
         },
         {
           hid: 'og:description',
           name:  'og:description',
-          content: `${this.article.MetaDescription}`.replace(/<\/?[^>]+(>|$)/g, ""),
+          content: `${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ""),
         }
       ]
     }
   },
   components:{
     ArticleCardSimple,
-    FilterItems
+    FilterItems,
+    Page
   },
   data () {
     return {
-      story: { content: {} },
+      story: { content: {SEO:{title:'',description:''}} },
       article: {},
       articles: [],
       producttypes: [], //To filter on
       colors: [],
       sizes: [],
-      gender: [],
       brands: [],
-      sale: [],
       pageNum: 1,
       totalPages:1,
-      numOfProducts: 1,
-      readmore: true,
-      shop: '-shop'
+      numOfProducts: 1
     }
   },
+  computed: {
+    ...mapGetters({
+      menu: 'nhlMenu'
+    })
+  },
   methods:{
-    setReadMore(){
-      this.readmore=false
-    },
     next(){
       if(this.pageNum<this.article.TotalPages){
         this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)+1)}})
@@ -143,37 +121,53 @@ export default {
       } 
     }
   },
+  mounted () {
+    this.$storybridge.on(['input', 'published', 'change'], (event) => {
+      if (event.action == 'input') {
+        if (event.story.id === this.story.id) {
+          this.story.content = event.story.content
+        }
+      } else {
+        window.location.reload()
+      }
+    })
+  },
   async asyncData (context) {
+    // Check if we are in the editor mode
+    let version = context.query._storyblok || context.isDev ? 'draft' : 'published'
+
     let pageNum = context.route.query.page?context.route.query.page:1
     let color = context.route.query.color?context.route.query.color:null
     let gender = context.route.query.gender?context.route.query.gender:null
     let productType = context.route.query.producttype?context.route.query.producttype:null
     let size = context.route.query.size?context.route.query.size:null
-    let attribute = context.route.query.attribute?context.route.query.attribute:null
-    let sale = context.route.query.sale?context.route.query.sale:false
+    let attribute = context.route.query.attribute?context.route.query.size:null
+    let team = context.route.query.team?context.route.query.team:null
     let brand = context.route.query.brand?context.route.query.brand:null
-    
-    let shop = context.route.params.league=='premier-league'?'':'-shop'
     try {
-      const [a, p, c, s, g, b] = await Promise.all([
+      const [a, p, c, s, g, b, sb] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Article/getArticleList?brand='+brand+'&attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +context.route.params.team
+          '/webapi/Article/getArticleList?brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale=true&pageNum='+ pageNum +'&seoName=premier-league'
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetProductTypeList?seoName='+context.route.params.league+'&teamName='+context.route.params.team
+          '/webapi/Filter/GetProductTypeList?seoName=premier-league&teamName=null'
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetColourList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
+          '/webapi/Filter/GetColourList?categoryName=premier-league&teamName=null&garmentName=null'
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetSizeList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
+          '/webapi/Filter/GetSizeList?categoryName=premier-league&teamName=null&garmentName=null'
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetGenderList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
+          '/webapi/Filter/GetGenderList?categoryName=premier-league&teamName=null&garmentName=null'
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetBrandList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
-        )
+          '/webapi/Filter/GetBrandList?categoryName=premier-league&teamName=null&garmentName=null'
+        ),
+        await context.app.$storyapi.get(`cdn/stories/premier-league/sale`, {
+          version: version,
+          cv: context.store.getters.version
+        })
       ]);
       return {
         articles: a[0].ArticleList,
@@ -182,10 +176,9 @@ export default {
         sizes: s,
         gender: g,
         brands: b,
+        story: sb.data.story,
         article: a[0],
-        pageNum: pageNum,
-        shop: shop
-
+        pageNum: pageNum
       };
     } catch (err) {
       console.log(err);

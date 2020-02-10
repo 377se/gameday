@@ -20,19 +20,27 @@
         uk-tab>
         <li>
           <a href="#"
-          @click.prevent><br>NHL</a>
+          @click.prevent>Premier League</a>
         </li>
         <li>
           <a href="#"
-          @click.prevent><br>NFL</a>
+          style="line-height:3"
+          @click.prevent>NHL</a>
         </li>
         <li>
           <a href="#"
-          @click.prevent><br>NBA</a>
+          style="line-height:3"
+          @click.prevent>NFL</a>
         </li>
         <li>
           <a href="#"
-          @click.prevent><br>MLB</a>
+          style="line-height:3"
+          @click.prevent>NBA</a>
+        </li>
+        <li>
+          <a href="#"
+          style="line-height:3"
+          @click.prevent>MLB</a>
         </li>
         <!--li>
           <a 
@@ -41,6 +49,31 @@
         </li-->
       </ul>
       <div class="uk-switcher">
+        <div>
+          <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
+            <li>
+              <nuxt-link
+                to="/premier-league">Till Premier League</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link
+                class="menu-item-sale"
+                to="/premier-league/sale">Premier League REA</nuxt-link>
+            </li>
+            <li class="uk-nav-header">Populäraste lagen</li>
+            <li><nuxt-link to="/lag/premier-league/liverpool-fc">Liverpool FC</nuxt-link></li>
+            <li><nuxt-link to="/lag/premier-league/manchester-united">Manchester United</nuxt-link></li>
+            <li><nuxt-link to="/lag/premier-league/arsenal-fc">Arsenal FC</nuxt-link></li>
+            <li><nuxt-link to="/lag/premier-league/chelsea-fc">Chelsea FC</nuxt-link></li>
+            <li class="uk-nav-header">Alla lag (A-Z)
+            <li
+              v-for="team in plMenu"
+              :key="team.TeamId">
+              <nuxt-link
+                :to="'/lag/premier-league/'+team.SeoName">{{ team.Name }}</nuxt-link>
+            </li>
+          </ul>
+        </div>
         <div>
           <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
             <li>

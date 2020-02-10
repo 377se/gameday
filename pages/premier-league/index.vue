@@ -6,43 +6,59 @@
           <nuxt-link to="/">
             <span style="vertical-align: bottom;
               margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
-        <li><nuxt-link :to="'/'+$route.params.league+shop">{{ $route.params.league.toUpperCase() }}-shop</nuxt-link></li>
-        <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team">{{ $route.params.team }}</nuxt-link></li>
+        <li><nuxt-link to="/nhl-shop">Premier League</nuxt-link></li>
       </ul>
       <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
-      <div 
-        :class="{'read-more':readmore}"
+      <div
+        :class="{'read-more':readmore}" 
         @click="setReadMore()"
         v-html="article.SeoContentDescription"/>
     </div>
-    <div 
-      class="uk-container uk-container-large uk-padding-small">
-      <h3
-        v-if="producttypes!=null && producttypes.length>0"
-        >Populära kategorier</h3>
+    <div class="uk-container uk-container-large uk-padding-small">
+      <h3>Populära lag 
+        <span class="show-all">
+          <a 
+            href="#offscreen-menu"
+            class="wrapper-menu"
+            uk-toggle
+            @click.stop.prevent>
+            Visa alla
+          </a>
+        </span>
+      </h3>
       <div
-        v-if="producttypes!=null && producttypes.length>0"
-        class="uk-grid uk-grid-small uk-margin-bottom uk-margin-top category-list-slider"
-        uk-grid
-        >
-        <div
-          v-for="pt in producttypes"
-          :key="pt.GarmentId"
-          >
-          <nuxt-link
-            class="uk-label"
-            :to="`/lag/${$route.params.league}/${$route.params.team}/produkttyp/${pt.SeoName}`"><span>{{ pt.Name }}</span></nuxt-link>
-        </div>
+        class="uk-flex uk-flex-center uk-grid-small uk-margin uk-margin-large-bottom" uk-grid>
+        <nuxt-link
+          to="/lag/premier-league/liverpool-fc"
+          class="team-slider-item">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/bostonbruins.png" alt="Boston Bruins">
+        </nuxt-link>
+        <nuxt-link
+          to="/lag/premier-league/manchester-united"
+          class="team-slider-item">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/chicagoblackhawks.png" alt="Chicago Blackhawks">
+        </nuxt-link>
+        <nuxt-link
+          to="/lag/premier-league/arsenal-fc"
+          class="team-slider-item">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/newyorkrangers.png" alt="New York Rangers">
+        </nuxt-link>
+        <nuxt-link
+          to="/lag/premier-league/chelsea-fc"
+          class="team-slider-item">
+          <img class="team-slider-img" src="https://static.supportersplace.se/category/pittsburghpenguins.png" alt="Pittsburgh Penguins">
+        </nuxt-link>
       </div>
       <div 
         class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
         uk-sticky="offset:80;width-element:body;bottom:true">
-        <strong>{{ article.TotalNumberOfProducts }} produkter</strong> 
+        <strong>{{ article.TotalNumberOfProducts }} produkter</strong>
         <FilterItems
           :product-types="producttypes"
           :colors="colors"
           :sizes="sizes"
           :gender="gender"
+          :teams="menu"
           :brands="brands"
           :show_sale="true"/>
       </div>
@@ -54,14 +70,8 @@
           v-for="article in articles"
           :key="article.Id"
           :article="article"
-          :url="`/lag/${$route.params.league}/${$route.params.team}/${article.SeoName}`"
+          :url="`/lag/premier-league/${article.HeadCategorySeoName}/${article.SeoName}`"
         />
-        <div
-          v-if="articles.length<1"
-          class="uk-margin-bottom uk-margin-top" 
-        >
-          Vi hittade inga produkter för det aktuella valet.
-        </div>
       </div>
       <ul 
         v-if="article.TotalPages>1"
@@ -80,6 +90,7 @@
   </section>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 export default {
@@ -120,26 +131,29 @@ export default {
       sizes: [],
       gender: [],
       brands: [],
-      sale: [],
       pageNum: 1,
       totalPages:1,
       numOfProducts: 1,
-      readmore: true,
-      shop: '-shop'
+      readmore: true
     }
+  },
+  computed: {
+    ...mapGetters({
+      menu: 'nhlMenu'
+    })
   },
   methods:{
     setReadMore(){
-      this.readmore=false
+      this.readmore = false
     },
     next(){
       if(this.pageNum<this.article.TotalPages){
-        this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)+1)}})
+        this.$router.push({query: {...this.$route.query, page: (this.pageNum+1)}})
       } 
     },
     previous(){
       if(this.pageNum>1){
-        this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)-1)}})
+        this.$router.push({query: {...this.$route.query, page: (this.pageNum-1)}})
       } 
     }
   },
@@ -149,30 +163,29 @@ export default {
     let gender = context.route.query.gender?context.route.query.gender:null
     let productType = context.route.query.producttype?context.route.query.producttype:null
     let size = context.route.query.size?context.route.query.size:null
-    let attribute = context.route.query.attribute?context.route.query.attribute:null
+    let attribute = context.route.query.attribute?context.route.query.size:null
     let sale = context.route.query.sale?context.route.query.sale:false
+    let team = context.route.query.team?context.route.query.team:null
     let brand = context.route.query.brand?context.route.query.brand:null
-    
-    let shop = context.route.params.league=='premier-league'?'':'-shop'
     try {
       const [a, p, c, s, g, b] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Article/getArticleList?brand='+brand+'&attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +context.route.params.team
+          '/webapi/Article/getArticleList?brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=premier-league'
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetProductTypeList?seoName='+context.route.params.league+'&teamName='+context.route.params.team
+          '/webapi/Filter/GetProductTypeList?seoName=premier-league&teamName=null'
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetColourList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
+          '/webapi/Filter/GetColourList?categoryName=premier-league&teamName=null&garmentName=null'
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetSizeList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
+          '/webapi/Filter/GetSizeList?categoryName=premier-league&teamName=null&garmentName=null'
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetGenderList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
+          '/webapi/Filter/GetGenderList?categoryName=premier-league&teamName=null&garmentName=null'
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetBrandList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
+          '/webapi/Filter/GetBrandList?categoryName=premier-league&teamName=null&garmentName=null'
         )
       ]);
       return {
@@ -183,9 +196,7 @@ export default {
         gender: g,
         brands: b,
         article: a[0],
-        pageNum: pageNum,
-        shop: shop
-
+        pageNum: pageNum
       };
     } catch (err) {
       console.log(err);
