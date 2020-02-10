@@ -61,11 +61,6 @@
                 class="menu-item-sale"
                 to="/premier-league/sale">Premier League REA</nuxt-link>
             </li>
-            <li class="uk-nav-header">Populäraste lagen</li>
-            <li><nuxt-link to="/lag/premier-league/liverpool-fc">Liverpool FC</nuxt-link></li>
-            <li><nuxt-link to="/lag/premier-league/manchester-united">Manchester United</nuxt-link></li>
-            <li><nuxt-link to="/lag/premier-league/arsenal-fc">Arsenal FC</nuxt-link></li>
-            <li><nuxt-link to="/lag/premier-league/chelsea-fc">Chelsea FC</nuxt-link></li>
             <li class="uk-nav-header">Alla lag (A-Z)
             <li
               v-for="team in plMenu"
