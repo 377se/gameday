@@ -20,26 +20,27 @@
         uk-tab>
         <li>
           <a href="#"
+          style="line-height:14px"
           @click.prevent>Premier League</a>
         </li>
         <li>
           <a href="#"
-          style="line-height:3"
+          style="line-height:28px"
           @click.prevent>NHL</a>
         </li>
         <li>
           <a href="#"
-          style="line-height:3"
+          style="line-height:28px"
           @click.prevent>NFL</a>
         </li>
         <li>
           <a href="#"
-          style="line-height:3"
+          style="line-height:28px"
           @click.prevent>NBA</a>
         </li>
         <li>
           <a href="#"
-          style="line-height:3"
+          style="line-height:28px"
           @click.prevent>MLB</a>
         </li>
         <!--li>

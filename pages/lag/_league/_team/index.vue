@@ -6,7 +6,7 @@
           <nuxt-link to="/">
             <span style="vertical-align: bottom;
               margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
-        <li><nuxt-link :to="'/'+$route.params.league+shop">{{ $route.params.league.toUpperCase() }}-shop</nuxt-link></li>
+        <li><nuxt-link :to="'/'+$route.params.league">{{ shop }}</nuxt-link></li>
         <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team">{{ $route.params.team }}</nuxt-link></li>
       </ul>
       <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
@@ -125,7 +125,7 @@ export default {
       totalPages:1,
       numOfProducts: 1,
       readmore: true,
-      shop: '-shop'
+      shop: ''
     }
   },
   methods:{
@@ -153,7 +153,7 @@ export default {
     let sale = context.route.query.sale?context.route.query.sale:false
     let brand = context.route.query.brand?context.route.query.brand:null
     
-    let shop = context.route.params.league=='premier-league'?'':'-shop'
+    let shop = context.route.params.league=='premier-league'?context.route.params.league:context.route.params.league.toUpperCase()+'-shop'
     try {
       const [a, p, c, s, g, b] = await Promise.all([
         await context.app.$axios.$get(
