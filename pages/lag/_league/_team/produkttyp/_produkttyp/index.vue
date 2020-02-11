@@ -6,7 +6,7 @@
           <nuxt-link to="/">
             <span style="vertical-align: bottom;
               margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
-        <li><nuxt-link :to="'/'+$route.params.league+'-shop'">{{ $route.params.league.toUpperCase() }}-shop</nuxt-link></li>
+        <li><nuxt-link  :to="'/'+shop.toLowerCase()">{{ shop }}</nuxt-link></li>
         <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team">{{ $route.params.team }}</nuxt-link></li>
         <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team+'/produkttyp/'+$route.params.produkttyp">{{ $route.params.produkttyp }}</nuxt-link></li>
       </ul>
@@ -94,7 +94,8 @@ export default {
       pageNum: 1,
       totalPages:1,
       numOfProducts: 1,
-      readmore: true
+      readmore: true,
+      shop:''
     }
   },
   methods:{
@@ -117,6 +118,8 @@ export default {
     let attribute = context.route.query.attribute?context.route.query.attribute:null
     let sale = context.route.query.sale?context.route.query.sale:false
     let brand = context.route.query.brand?context.route.query.brand:null
+    
+    let shop = context.route.params.league=='premier-league'?context.route.params.league:context.route.params.league.toUpperCase()+'-shop'
     try {
       const [a, c, s, g, b] = await Promise.all([
         await context.app.$axios.$get(
@@ -142,7 +145,8 @@ export default {
         gender: g,
         brands: b,
         article: a[0],
-        pageNum: pageNum
+        pageNum: pageNum,
+        shop: shop
       };
     } catch (err) {
       console.log(err);
