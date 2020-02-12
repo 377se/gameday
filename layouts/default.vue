@@ -130,11 +130,12 @@ export default {
 }
 
 .team-slider-item{
-  margin-right:10px;
   min-width:50px;
+  width:20%;
+  max-width:120px;
 }
 .team-slider-img{
-  width:50px;
+  width:100%;
 }
 .show-all{
   font-size:1rem;

@@ -31,22 +31,22 @@
         <nuxt-link
           to="/lag/premier-league/liverpool-fc"
           class="team-slider-item">
-          <img class="team-slider-img" src="https://static.supportersplace.se/category/liverpoolfc.png" alt="Liverpool FC">
+          <img class="team-slider-img" src="/logos/teams/liverpool_fc_600x600.png" alt="Liverpool FC">
         </nuxt-link>
         <nuxt-link
           to="/lag/premier-league/manchester-united"
           class="team-slider-item">
-          <img class="team-slider-img" src="https://static.supportersplace.se/category/manchesterunited.png" alt="Manchester United">
+          <img class="team-slider-img" src="/logos/teams/manchester_united_600x600.png" alt="Manchester United">
         </nuxt-link>
         <nuxt-link
           to="/lag/premier-league/arsenal-fc"
           class="team-slider-item">
-          <img class="team-slider-img" src="https://static.supportersplace.se/category/arsenalfc.png" alt="Arsenal FC">
+          <img class="team-slider-img" src="/logos/teams/arsenal_600x600.png" alt="Arsenal FC">
         </nuxt-link>
         <nuxt-link
           to="/lag/premier-league/chelsea-fc"
           class="team-slider-item">
-          <img class="team-slider-img" src="https://static.supportersplace.se/category/chelseafc.png" alt="Chelsea FC">
+          <img class="team-slider-img" src="/logos/teams/chelsea_600x600.png" alt="Chelsea FC">
         </nuxt-link>
       </div>
       <div 
