@@ -1,8 +1,9 @@
 <template>
   <section>
     <div class="uk-container uk-container-large uk-padding-small"> 
-      <h3>Våra shoppar</h3>
-      <div class="promo-squares uk-text-center uk-flex">
+      <div 
+        class="promo-squares uk-text-center uk-flex"
+        style="margin-top:-15px;">
         <nuxt-link 
           class="gd-square"
           to="/nhl-shop">
