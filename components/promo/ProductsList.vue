@@ -34,7 +34,7 @@ export default {
   },
   methods:{
     async getList(){
-      let _params = this.blok.product_params?this.blok.product_params:'&brand=null&attribute=null&teamList=null&color=null&size=null&gender=null&sale=false&pageNum=1'
+      let _params = '&brand=null&attribute=null&teamList=null&color=null&size=null&gender=null&sale=false&pageNum=1'
       let _producttype = this.blok.product_type_seo_name?this.blok.product_type_seo_name:null
       let _seoname = this.blok.team_seo_name?this.blok.team_seo_name:null
       let _pagesize = this.blok.page_size?this.blok.page_size:5
