@@ -45,7 +45,7 @@
           </div>
         </nuxt-link>
       </div>
-      <h3>Utvalda favoriter</h3>
+      <h3 class="uk-margin">Utvalda favoriter</h3>
       <component 
         v-if="story.content.component" 
         :key="story.content._uid" 
