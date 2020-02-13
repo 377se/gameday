@@ -1,7 +1,7 @@
 <template>
   <div 
     v-editable="blok"
-    class="uk-container uk-container-large uk-padding uk-padding-remove-top">
+    class="uk-container uk-container-large uk-padding">
     <h1
       v-if="blok.title"
       class="uk-margin-remove-top">{{ blok.title }}</h1>
