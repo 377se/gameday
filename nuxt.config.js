@@ -73,6 +73,10 @@ export default {
    */
   modules: [
     ['@nuxtjs/google-tag-manager', { id: 'GTM-WDJLNSJ' }],
+    ['@netsells/nuxt-hotjar', { 
+      id: '1686545', 
+      sv: '',
+    }],
     // Doc: https://axios.nuxtjs.org/usage
     ['@dansmaculotte/nuxt-zendesk',
     { 

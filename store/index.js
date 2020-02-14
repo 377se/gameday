@@ -73,7 +73,7 @@ export const actions = {
       await context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=327'),
       await context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=328'),
       await context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=329'),
-      await context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=421'),
+      await context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=527'),
       await context.app.$axios.$get('https://api.storyblok.com/v1/cdn/spaces/me?token=rGRW1HEorfNfSoGS5CzoDwtt')
     ]).then(res => {
         vuexContext.commit('setNHLMenu', res[0])

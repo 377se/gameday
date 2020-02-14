@@ -20,25 +20,29 @@
         uk-tab>
         <li>
           <a href="#"
-          @click.prevent><br>NHL</a>
+          style="line-height:28px"
+          @click.prevent>NHL</a>
         </li>
         <li>
           <a href="#"
-          @click.prevent><br>NFL</a>
+          style="line-height:28px"
+          @click.prevent>NFL</a>
         </li>
         <li>
           <a href="#"
-          @click.prevent><br>NBA</a>
+          style="line-height:28px"
+          @click.prevent>NBA</a>
         </li>
         <li>
           <a href="#"
-          @click.prevent><br>MLB</a>
+          style="line-height:28px"
+          @click.prevent>MLB</a>
         </li>
-        <!--li>
-          <a 
-            href="#"
-            @click.prevent><br>PL</a>
-        </li-->
+        <li>
+          <a href="#"
+          style="line-height:14px"
+          @click.prevent>Premier League</a>
+        </li>
       </ul>
       <div class="uk-switcher">
         <div>
@@ -141,6 +145,26 @@
             </li>
           </ul>
         </div>
+        <div>
+          <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
+            <li>
+              <nuxt-link
+                to="/premier-league">Till Premier League</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link
+                class="menu-item-sale"
+                to="/premier-league/sale">Premier League REA</nuxt-link>
+            </li>
+            <li class="uk-nav-header">Alla lag (A-Z)
+            <li
+              v-for="team in plMenu"
+              :key="team.TeamId">
+              <nuxt-link
+                :to="'/lag/premier-league/'+team.SeoName">{{ team.Name }}</nuxt-link>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -173,7 +197,9 @@ export default {
 
 <style lang="scss" scoped>
 @import '~/assets/scss/vars.scss';
-
+#offscreen-menu.uk-open{
+  z-index:9999999;
+}
 .menu {
   background-color: #ffffff !important;
   width: 310px;

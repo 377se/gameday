@@ -16,7 +16,9 @@
         :is="story.content.component" />
     </div>
     <div class="uk-container uk-container-large uk-padding-small">
-      <div class="uk-flex uk-flex-middle uk-margin-small-bottom">
+      <div 
+        class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
+        uk-sticky="offset:80;width-element:body;bottom:true">
         <strong>{{ article.TotalNumberOfProducts }} produkter</strong>
         <FilterItems
           :product-types="producttypes"
@@ -28,7 +30,7 @@
           :show_sale="false"/>
       </div>
       <div
-        class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
+        class="ts-article-list uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
         uk-grid
         uk-height-match="target: .uk-card">
         <ArticleCardSimple
@@ -60,7 +62,7 @@ import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 import Page from "@/components/Page";
 export default {
-  watchQuery: ['page','color','size','producttype','attribute','gender','brand'],
+  watchQuery: ['page','color','size','producttype','attribute','gender','sale','brand','team'],
   head () {
     return {
       title: this.story.content.SEO.title,
@@ -110,12 +112,12 @@ export default {
   methods:{
     next(){
       if(this.pageNum<this.article.TotalPages){
-        this.$router.push({ query: { page: (parseInt(this.pageNum)+1) }})
+        this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)+1)}})
       } 
     },
     previous(){
       if(this.pageNum>1){
-        this.$router.push({ query: { page: (parseInt(this.pageNum)-1) }})
+        this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)-1)}})
       } 
     }
   },
@@ -145,7 +147,7 @@ export default {
     try {
       const [a, p, c, s, g, b, sb] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Article/getArticleList?brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale=true&pageNum='+ pageNum +'&seoName=nhl'
+          '/webapi/Article/getArticleList?pageSize=0&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale=true&pageNum='+ pageNum +'&seoName=nhl'
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetProductTypeList?seoName=nhl&teamName=null'

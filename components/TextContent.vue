@@ -1,9 +1,8 @@
 <template>
   <div 
-    v-editable="blok" 
-    class="uk-container uk-padding">
-    <div v-html="blok.text.html"/>
-  </div>
+    v-editable="blok"
+    v-html="blok.text.html"
+  />
 </template>
 
 <script>

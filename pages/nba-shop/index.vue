@@ -49,18 +49,21 @@
           <img class="team-slider-img" src="https://static.supportersplace.se/category/brooklyn-nets-logo (1).png" alt="Brooklyn Nets">
         </nuxt-link>
       </div>
-      <div class="uk-flex uk-flex-middle uk-margin-small-bottom">
+      <div 
+        class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
+        uk-sticky="offset:80;width-element:body;bottom:true">
         <strong>{{ article.TotalNumberOfProducts }} produkter</strong>
         <FilterItems
           :product-types="producttypes"
           :colors="colors"
           :sizes="sizes"
           :gender="gender"
+          :brands="brands"
           :teams="menu"
           :show_sale="true"/>
       </div>
       <div
-        class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
+        class="ts-article-list uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
         uk-grid
         uk-height-match="target: .uk-card">
         <ArticleCardSimple
@@ -91,7 +94,7 @@ import { mapGetters, mapActions } from 'vuex'
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 export default {
-  watchQuery: ['page','color','size','producttype','attribute','gender','sale'],
+  watchQuery: ['page','color','size','producttype','attribute','gender','sale','brand','team'],
   head () {
     return {
       title: this.article.MetaTitle,
@@ -127,6 +130,7 @@ export default {
       colors: [],
       sizes: [],
       gender: [],
+      brands: [],
       pageNum: 1,
       totalPages:1,
       numOfProducts: 1,
@@ -144,12 +148,12 @@ export default {
     },
     next(){
       if(this.pageNum<this.article.TotalPages){
-        this.$router.push({ query: { page: (parseInt(this.pageNum)+1) }})
+        this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)+1)}})
       } 
     },
     previous(){
       if(this.pageNum>1){
-        this.$router.push({ query: { page: (parseInt(this.pageNum)-1) }})
+        this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)-1)}})
       } 
     }
   },
@@ -166,7 +170,7 @@ export default {
     try {
       const [a, p, c, s, g, b] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Article/getArticleList?brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=nba'
+          '/webapi/Article/getArticleList?pageSize=0&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=nba'
         ),
         await context.app.$axios.$get(
           '/webapi/Filter/GetProductTypeList?seoName=nba&teamName=null'

@@ -6,21 +6,59 @@
           <nuxt-link to="/">
             <span style="vertical-align: bottom;
               margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
-        <li><nuxt-link  :to="'/'+shop.toLowerCase()">{{ shop }}</nuxt-link></li>
-        <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team">{{ $route.params.team }}</nuxt-link></li>
-        <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team+'/produkttyp/'+$route.params.produkttyp">{{ $route.params.produkttyp }}</nuxt-link></li>
+        <li><nuxt-link to="/premier-league">Premier League</nuxt-link></li>
       </ul>
       <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
+      <div
+        :class="{'read-more':readmore}" 
+        @click="setReadMore()"
+        v-html="article.SeoContentDescription"/>
     </div>
     <div class="uk-container uk-container-large uk-padding-small">
+      <h3>Populära lag 
+        <span class="show-all">
+          <a 
+            href="#offscreen-menu"
+            class="wrapper-menu"
+            uk-toggle
+            @click.stop.prevent>
+            Visa alla
+          </a>
+        </span>
+      </h3>
+      <div
+        class="uk-flex uk-flex-center uk-grid-small uk-margin uk-margin-large-bottom" uk-grid>
+        <nuxt-link
+          to="/lag/premier-league/liverpool-fc"
+          class="team-slider-item">
+          <img class="team-slider-img" src="/logos/teams/liverpool_fc_600x600.png" alt="Liverpool FC">
+        </nuxt-link>
+        <nuxt-link
+          to="/lag/premier-league/manchester-united"
+          class="team-slider-item">
+          <img class="team-slider-img" src="/logos/teams/manchester_united_600x600.png" alt="Manchester United">
+        </nuxt-link>
+        <nuxt-link
+          to="/lag/premier-league/arsenal-fc"
+          class="team-slider-item">
+          <img class="team-slider-img" src="/logos/teams/arsenal_600x600.png" alt="Arsenal FC">
+        </nuxt-link>
+        <nuxt-link
+          to="/lag/premier-league/chelsea-fc"
+          class="team-slider-item">
+          <img class="team-slider-img" src="/logos/teams/chelsea_600x600.png" alt="Chelsea FC">
+        </nuxt-link>
+      </div>
       <div 
         class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
         uk-sticky="offset:80;width-element:body;bottom:true">
         <strong>{{ article.TotalNumberOfProducts }} produkter</strong>
         <FilterItems
+          :product-types="producttypes"
           :colors="colors"
           :sizes="sizes"
           :gender="gender"
+          :teams="menu"
           :brands="brands"
           :show_sale="true"/>
       </div>
@@ -32,7 +70,7 @@
           v-for="article in articles"
           :key="article.Id"
           :article="article"
-          :url="`/lag/${$route.params.league}/${$route.params.team}/${article.SeoName}`"
+          :url="`/lag/premier-league/${article.HeadCategorySeoName}/${article.SeoName}`"
         />
       </div>
       <ul 
@@ -52,6 +90,7 @@
   </section>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 export default {
@@ -87,6 +126,7 @@ export default {
       story: { content: {} },
       article: {},
       articles: [],
+      producttypes: [], //To filter on
       colors: [],
       sizes: [],
       gender: [],
@@ -94,19 +134,26 @@ export default {
       pageNum: 1,
       totalPages:1,
       numOfProducts: 1,
-      readmore: true,
-      shop:''
+      readmore: true
     }
   },
+  computed: {
+    ...mapGetters({
+      menu: 'nhlMenu'
+    })
+  },
   methods:{
+    setReadMore(){
+      this.readmore = false
+    },
     next(){
       if(this.pageNum<this.article.TotalPages){
-        this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)+1)}})
+        this.$router.push({query: {...this.$route.query, page: (this.pageNum+1)}})
       } 
     },
     previous(){
       if(this.pageNum>1){
-        this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)-1)}})
+        this.$router.push({query: {...this.$route.query, page: (this.pageNum-1)}})
       } 
     }
   },
@@ -114,39 +161,42 @@ export default {
     let pageNum = context.route.query.page?context.route.query.page:1
     let color = context.route.query.color?context.route.query.color:null
     let gender = context.route.query.gender?context.route.query.gender:null
+    let productType = context.route.query.producttype?context.route.query.producttype:null
     let size = context.route.query.size?context.route.query.size:null
-    let attribute = context.route.query.attribute?context.route.query.attribute:null
+    let attribute = context.route.query.attribute?context.route.query.size:null
     let sale = context.route.query.sale?context.route.query.sale:false
+    let team = context.route.query.team?context.route.query.team:null
     let brand = context.route.query.brand?context.route.query.brand:null
-    
-    let shop = context.route.params.league=='premier-league'?context.route.params.league:context.route.params.league.toUpperCase()+'-shop'
     try {
-      const [a, c, s, g, b] = await Promise.all([
+      const [a, p, c, s, g, b] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Article/getArticleList?pageSize=0&brand='+brand+'&attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+context.route.params.produkttyp+'&sale=false&pageNum='+ pageNum +'&seoName=' +context.route.params.team
+          '/webapi/Article/getArticleList?pageSize=0&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=premier-league'
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetColourList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName='+context.route.params.produkttyp
+          '/webapi/Filter/GetProductTypeList?seoName=premier-league&teamName=null'
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetSizeList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName='+context.route.params.produkttyp
+          '/webapi/Filter/GetColourList?categoryName=premier-league&teamName=null&garmentName=null'
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetGenderList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName='+context.route.params.produkttyp
+          '/webapi/Filter/GetSizeList?categoryName=premier-league&teamName=null&garmentName=null'
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetBrandList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName='+context.route.params.produkttyp
+          '/webapi/Filter/GetGenderList?categoryName=premier-league&teamName=null&garmentName=null'
+        ),
+        await context.app.$axios.$get(
+          '/webapi/Filter/GetBrandList?categoryName=premier-league&teamName=null&garmentName=null'
         )
       ]);
       return {
         articles: a[0].ArticleList,
+        producttypes: p,
         colors: c,
         sizes: s,
         gender: g,
         brands: b,
         article: a[0],
-        pageNum: pageNum,
-        shop: shop
+        pageNum: pageNum
       };
     } catch (err) {
       console.log(err);
@@ -158,8 +208,22 @@ export default {
 </script>
 <style lang="scss">
 @import '~/assets/scss/vars.scss';
-
-.lfc-green{
-  color: $global-secondary-background;
+.read-more{
+  max-height: 74px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.read-more:after{
+    content: "";
+    opacity: 1;
+    display: block;
+    background: linear-gradient(rgba(255,255,255,0) 0%, rgba(255,255,255,1) 70%);
+    position: absolute;
+    bottom: 0;
+    padding: 20px 10px 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
 }
 </style>

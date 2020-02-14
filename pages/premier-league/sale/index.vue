@@ -6,11 +6,14 @@
           <nuxt-link to="/">
             <span style="vertical-align: bottom;
               margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
-        <li><nuxt-link  :to="'/'+shop.toLowerCase()">{{ shop }}</nuxt-link></li>
-        <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team">{{ $route.params.team }}</nuxt-link></li>
-        <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team+'/produkttyp/'+$route.params.produkttyp">{{ $route.params.produkttyp }}</nuxt-link></li>
+        <li><nuxt-link to="/premier-league">Premier League</nuxt-link></li>
+        <li><nuxt-link to="/premier-league/sale/">REA</nuxt-link></li>
       </ul>
-      <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
+      <component 
+        v-if="story.content.component" 
+        :key="story.content._uid" 
+        :blok="story.content" 
+        :is="story.content.component" />
     </div>
     <div class="uk-container uk-container-large uk-padding-small">
       <div 
@@ -18,11 +21,13 @@
         uk-sticky="offset:80;width-element:body;bottom:true">
         <strong>{{ article.TotalNumberOfProducts }} produkter</strong>
         <FilterItems
+          :product-types="producttypes"
           :colors="colors"
           :sizes="sizes"
           :gender="gender"
+          :teams="menu"
           :brands="brands"
-          :show_sale="true"/>
+          :show_sale="false"/>
       </div>
       <div
         class="ts-article-list uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
@@ -32,7 +37,7 @@
           v-for="article in articles"
           :key="article.Id"
           :article="article"
-          :url="`/lag/${$route.params.league}/${$route.params.team}/${article.SeoName}`"
+          :url="`/lag/premier-league/${article.HeadCategorySeoName}/${article.SeoName}`"
         />
       </div>
       <ul 
@@ -52,51 +57,57 @@
   </section>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
+import Page from "@/components/Page";
 export default {
   watchQuery: ['page','color','size','producttype','attribute','gender','sale','brand','team'],
   head () {
     return {
-      title: this.article.MetaTitle,
+      title: this.story.content.SEO.title,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.article.MetaDescription
+          content: this.story.content.SEO.description
         },
         {
           hid: 'og:title',
           name:  'og:title',
-          content:  this.article.MetaTitle,
+          content:  this.story.content.SEO.title,
         },
         {
           hid: 'og:description',
           name:  'og:description',
-          content: `${this.article.MetaDescription}`.replace(/<\/?[^>]+(>|$)/g, ""),
+          content: `${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ""),
         }
       ]
     }
   },
   components:{
     ArticleCardSimple,
-    FilterItems
+    FilterItems,
+    Page
   },
   data () {
     return {
-      story: { content: {} },
+      story: { content: {SEO:{title:'',description:''}} },
       article: {},
       articles: [],
+      producttypes: [], //To filter on
       colors: [],
       sizes: [],
-      gender: [],
       brands: [],
       pageNum: 1,
       totalPages:1,
-      numOfProducts: 1,
-      readmore: true,
-      shop:''
+      numOfProducts: 1
     }
+  },
+  computed: {
+    ...mapGetters({
+      menu: 'nhlMenu'
+    })
   },
   methods:{
     next(){
@@ -110,43 +121,64 @@ export default {
       } 
     }
   },
+  mounted () {
+    this.$storybridge.on(['input', 'published', 'change'], (event) => {
+      if (event.action == 'input') {
+        if (event.story.id === this.story.id) {
+          this.story.content = event.story.content
+        }
+      } else {
+        window.location.reload()
+      }
+    })
+  },
   async asyncData (context) {
+    // Check if we are in the editor mode
+    let version = context.query._storyblok || context.isDev ? 'draft' : 'published'
+
     let pageNum = context.route.query.page?context.route.query.page:1
     let color = context.route.query.color?context.route.query.color:null
     let gender = context.route.query.gender?context.route.query.gender:null
+    let productType = context.route.query.producttype?context.route.query.producttype:null
     let size = context.route.query.size?context.route.query.size:null
-    let attribute = context.route.query.attribute?context.route.query.attribute:null
-    let sale = context.route.query.sale?context.route.query.sale:false
+    let attribute = context.route.query.attribute?context.route.query.size:null
+    let team = context.route.query.team?context.route.query.team:null
     let brand = context.route.query.brand?context.route.query.brand:null
-    
-    let shop = context.route.params.league=='premier-league'?context.route.params.league:context.route.params.league.toUpperCase()+'-shop'
     try {
-      const [a, c, s, g, b] = await Promise.all([
+      const [a, p, c, s, g, b, sb] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Article/getArticleList?pageSize=0&brand='+brand+'&attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+context.route.params.produkttyp+'&sale=false&pageNum='+ pageNum +'&seoName=' +context.route.params.team
+          '/webapi/Article/getArticleList?pageSize=0&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale=true&pageNum='+ pageNum +'&seoName=premier-league'
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetColourList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName='+context.route.params.produkttyp
+          '/webapi/Filter/GetProductTypeList?seoName=premier-league&teamName=null'
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetSizeList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName='+context.route.params.produkttyp
+          '/webapi/Filter/GetColourList?categoryName=premier-league&teamName=null&garmentName=null'
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetGenderList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName='+context.route.params.produkttyp
+          '/webapi/Filter/GetSizeList?categoryName=premier-league&teamName=null&garmentName=null'
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetBrandList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName='+context.route.params.produkttyp
-        )
+          '/webapi/Filter/GetGenderList?categoryName=premier-league&teamName=null&garmentName=null'
+        ),
+        await context.app.$axios.$get(
+          '/webapi/Filter/GetBrandList?categoryName=premier-league&teamName=null&garmentName=null'
+        ),
+        await context.app.$storyapi.get(`cdn/stories/premier-league/sale`, {
+          version: version,
+          cv: context.store.getters.version
+        })
       ]);
       return {
         articles: a[0].ArticleList,
+        producttypes: p,
         colors: c,
         sizes: s,
         gender: g,
         brands: b,
+        story: sb.data.story,
         article: a[0],
-        pageNum: pageNum,
-        shop: shop
+        pageNum: pageNum
       };
     } catch (err) {
       console.log(err);
@@ -158,8 +190,22 @@ export default {
 </script>
 <style lang="scss">
 @import '~/assets/scss/vars.scss';
-
-.lfc-green{
-  color: $global-secondary-background;
+.read-more{
+  max-height: 74px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.read-more:after{
+    content: "";
+    opacity: 1;
+    display: block;
+    background: linear-gradient(rgba(255,255,255,0) 0%, rgba(255,255,255,1) 70%);
+    position: absolute;
+    bottom: 0;
+    padding: 20px 10px 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
 }
 </style>

@@ -1,38 +1,50 @@
 <template>
   <section>
     <div class="uk-container uk-container-large uk-padding-small"> 
-      <h3>Våra shoppar</h3>
-      <div class="promo-squares uk-flex">
+      <div 
+        class="promo-squares uk-text-center uk-flex"
+        style="margin-top:-15px;">
         <nuxt-link 
           class="gd-square"
           to="/nhl-shop">
           <div>
-            <img src="/logos/nhl_logo.png" alt="NHL Shop">
+            <img src="/logos/nhl_ikon_600x600.png" alt="NHL Shop">
+            <br>Hockey
           </div>
         </nuxt-link>
         <nuxt-link 
           class="gd-square"
           to="/nfl-shop">
           <div>
-            <img src="/logos/nfl_logo.png" alt="NFL Shop">
+            <img src="/logos/nfl_ikon_600x600.png" alt="NFL Shop">
+            <br>Am. Fotboll
           </div>
         </nuxt-link>
         <nuxt-link 
           class="gd-square"
           to="/nba-shop">
           <div>
-            <img src="/logos/nba_logo.png" alt="NBA Shop">
+            <img src="/logos/nba_ikon_600x600.png" alt="NBA Shop">
+            <br>Basket
           </div>
         </nuxt-link>
         <nuxt-link 
           class="gd-square"
           to="/mlb-shop">
           <div>
-            <img src="/logos/mlb_logo.png" alt="MLB Shop">
+            <img src="/logos/mlb_ikon_600x600.png" alt="MLB Shop">
+            <br>Baseball
+          </div>
+        </nuxt-link>
+        <nuxt-link 
+          class="gd-square"
+          to="/premier-league">
+          <div>
+            <img src="/logos/pl_ikon_600x600.png" alt="Premier League Shop">
+            <br>Premier League
           </div>
         </nuxt-link>
       </div>
-      <h3>Utvalda favoriter</h3>
       <component 
         v-if="story.content.component" 
         :key="story.content._uid" 
@@ -121,12 +133,22 @@ export default {
   display: flex;
   margin-right:-15px;
   margin-left:-15px;
+  
+}
+.promo-squares a{
+  color: #00CCFF;
+  text-transform:uppercase;
+  white-space:nowrap;
+  font-size:0.4rem;
+  @media (min-width: 480px) { 
+      font-size: 0.7rem;
+  }
 }
 .gd-square{
   position:relative;
   width:25%;
   max-width:100px;
-  padding:20px;
+  padding:10px 0px 10px 8px;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -134,6 +156,9 @@ export default {
   margin:2px;
   color:#fff;
   text-decoration: none !important;
+  &:last-child{
+    padding-right:8px;
+  }
   &:hover, &:active{
     color:#fff;
   }

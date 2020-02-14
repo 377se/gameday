@@ -8,7 +8,7 @@
         <div 
           style="position:relative">
           <div uk-slider-container>
-            <ul class="uk-slider-items uk-child-width-1-1 uk-text-small">
+            <ul class="uk-slider-items uk-child-width-1-1 uk-text-small"> 
               <li>
                 <div class="uk-text-center gd-slider-item uk-padding-small">
                   <strong>Alltid 30 Dagars öppet köp och fria returer</strong>
@@ -130,11 +130,12 @@ export default {
 }
 
 .team-slider-item{
-  margin-right:10px;
   min-width:50px;
+  width:20%;
+  max-width:120px;
 }
 .team-slider-img{
-  width:50px;
+  width:100%;
 }
 .show-all{
   font-size:1rem;
@@ -142,5 +143,15 @@ export default {
   text-decoration:underline;
   margin-left:15px;
   float:right;
+}
+
+.ts-filter.uk-active{
+  padding:10px 10px 10px 15px;
+  background:#fff;
+  box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.08);
+  left:0;
+}
+.uk-offcanvas-page .ts-filter.uk-active{
+  z-index:999999;
 }
 </style>

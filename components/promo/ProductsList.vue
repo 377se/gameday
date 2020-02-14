@@ -34,8 +34,12 @@ export default {
   },
   methods:{
     async getList(){
+      let _params = '&brand=null&attribute=null&teamList=null&color=null&size=null&gender=null&sale=false&pageNum=1'
+      let _producttype = this.blok.product_type_seo_name?this.blok.product_type_seo_name:null
+      let _seoname = this.blok.team_seo_name?this.blok.team_seo_name:null
+      let _pagesize = this.blok.page_size?this.blok.page_size:5
       var _this = this
-      await this.$axios.get('/webapi/Article/GetArticleListSelection?seoName='+_this.blok.team_seo_name+'&numberOfItems=5&productType='+_this.blok.product_type_seo_name)
+      await this.$axios.get('/webapi/Article/getArticleList?productType='+_producttype+'&seoName='+_seoname+'&pageSize='+_pagesize+_params)
       .then(function(res){
         if(res.data.length>0){
           _this.articles = res.data[0].ArticleList

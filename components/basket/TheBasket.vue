@@ -100,8 +100,9 @@
             </tr>
           </tfoot>
         </table>
+        <VoucherCode />
         <div 
-          class="uk-padding-small"
+          class="uk-padding-small uk-padding-remove-bottom"
           @click="close()">
           <nuxt-link
             to="/checkout"
@@ -118,7 +119,11 @@
 </template>
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import VoucherCode from '@/components/voucher/VoucherCode'
 export default {
+  components:{
+    VoucherCode
+  },
   computed: {
     ...mapGetters({
       cart: 'basket/cart',
