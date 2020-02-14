@@ -6,7 +6,7 @@
           <nuxt-link to="/">
             <span style="vertical-align: bottom;
               margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
-        <li><nuxt-link :to="'/'+$route.params.league+'-shop'">{{ $route.params.league.toUpperCase() }}-shop</nuxt-link></li>
+        <li><nuxt-link :to="'/'+shop.toLowerCase()">{{ shop }}</nuxt-link></li>
         <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team">{{ article.HeadCategory }}</nuxt-link></li>
         <li><span>{{ article.Name }}</span></li>
       </ul>
@@ -46,17 +46,22 @@ export default {
   },
   data() {
     return {
-      article: {}
+      article: {},
+      shop:''
     };
   },
-  async asyncData({ app, route }) {
+  async asyncData({ route, app }) {
+    let shop = route.params.league=='premier-league'?route.params.league:route.params.league.toUpperCase()+'-shop'
     try {
       const url = `/webapi/article/GetArticleDetails?teamName=${
         route.params.team
       }&articleName=${route.params.article}`;
       const article = await app.$axios.$get(url);
 
-      return { article: article };
+      return { 
+        article: article,
+        shop: shop
+      };
     } catch (err) {
       console.log(err);
     }
