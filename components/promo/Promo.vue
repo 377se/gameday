@@ -26,11 +26,9 @@
       <div
         style="position:absolute;bottom:20px;left:20px;">
         <h4 
-          style="color:#fff;margin-bottom:0;text-shadow: 2px 2px rgba(0,0,0,0.2);"
-          class="uk-animation-fade">{{ blok.promo_subheader }}</h4>
+          class="promo-pre-header uk-animation-fade">{{ blok.promo_subheader }}</h4>
         <h1 
-          style="margin-top:0;color:#fff;font-weight:bold;text-transform:uppercase;text-shadow: 2px 2px rgba(0,0,0,0.2);"
-          class="uk-animation-fade">{{ blok.promo_header }}</h1>
+          class="promo-header uk-animation-fade">{{ blok.promo_header }}</h1>
         <nuxt-link 
           v-for="b in blok.promo_buttons"
           :key="b._uid"
@@ -55,5 +53,25 @@ export default {
 }
 </script>
 <style lang="scss">
-
+.promo-pre-header{
+  color:#fff;
+  margin-bottom:0;
+  text-shadow: 2px 2px rgba(0,0,0,0.2);
+  /*-webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #8c8c8c;*/
+  @media (max-width: 640px){
+    font-size:1.1rem;
+  }
+}
+.promo-header{
+  margin-top:0;color:#fff;
+  font-weight:bold;
+  text-transform:uppercase;
+  text-shadow: 2px 2px rgba(0,0,0,0.2);
+  /*-webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #8c8c8c;*/
+  @media (max-width: 640px){
+    font-size:2rem;
+  }
+}
 </style>
