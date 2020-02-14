@@ -64,14 +64,14 @@
             </button>
           </div>
         </div>
-        <button 
+        <ButtonSubmit
           v-if="!article.IsSoldOut"
-          type="button"
-          class="uk-button uk-button-primary uk-width-1-1 uk-margin-small"
+          :is-submitting="isSubmitting"
+          button-text="Lägg i varukorgen"
+          theme="uk-button uk-button-primary uk-width-1-1 uk-margin-small"
           :class="{'uk-button-disabled':chosenSize!==-1 && !article.IsOneSize}"
-          @click.prevent="addToCart()">
-          Lägg i varukorgen
-        </button>
+          @button-click="addToCart()"
+        />
         <div v-else>
           <h4 class="uk-text-center">Slutsåld</h4>
         </div>
@@ -106,6 +106,7 @@ import ArticlePageImages from "@/components/articles/ArticlePageImages";
 import ArticlePageText from "@/components/articles/ArticlePageText";
 import ArticlePageSizeGuide from "@/components/articles/ArticlePageSizeGuide";
 import ArticlePageWashAdvice from "@/components/articles/ArticlePageWashAdvice";
+import ButtonSubmit from "@/components/ButtonSubmit"
 
 export default {
   components: {
@@ -113,7 +114,8 @@ export default {
     ArticlePageImages,
     ArticlePageText,
     ArticlePageSizeGuide,
-    ArticlePageWashAdvice
+    ArticlePageWashAdvice,
+    ButtonSubmit
   },
   props: {
     article: {
@@ -133,7 +135,8 @@ export default {
   },
   data() {
     return{
-      chosenSize:-1
+      chosenSize:-1,
+      isSubmitting:false
     }
   },
   mounted() {
@@ -150,6 +153,7 @@ export default {
     async addToCart(){
       let _this = this
       if(this.chosenSize>-1){
+          this.isSubmitting = true
           await this.$axios.post('/webapi/cart/PostAddToCart',{
             AddOn: null,
             ArticleId: this.article.Id,
@@ -157,12 +161,17 @@ export default {
             SizeId: this.chosenSize
           }
         ).then(function (response) {
+          _this.isSubmitting = false
           _this.$store.commit('basket/add', response.data)
+          UIkit.offcanvas('#offscreen-basket').show();
           //console.log(response)
         })
         .catch(function (error) {
+          _this.isSubmitting = false
           console.log(error)
         })
+      }else{
+        UIkit.modal.alert('Du glömde välja en storlek!')
       }
     },
   }

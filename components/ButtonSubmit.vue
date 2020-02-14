@@ -2,8 +2,10 @@
   <button 
     v-if="!isSubmitting"
     :class="['uk-button',theme]"
-    type="submit" 
-    tabindex="-1">{{ buttonText }}</button>
+    type="button" 
+    tabindex="-1"
+    @click.prevent="$emit('button-click')"
+    >{{ buttonText }}</button>
   <button 
     v-else
     :class="['uk-button',theme]" 
