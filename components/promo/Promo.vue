@@ -56,9 +56,9 @@ export default {
 .promo-pre-header{
   color:#fff;
   margin-bottom:0;
-  text-shadow: 2px 2px rgba(0,0,0,0.2);
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   /*-webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #8c8c8c;*/
+  -webkit-text-stroke-color: #000;*/
   @media (max-width: 640px){
     font-size:1.1rem;
   }
@@ -67,9 +67,9 @@ export default {
   margin-top:0;color:#fff;
   font-weight:bold;
   text-transform:uppercase;
-  text-shadow: 2px 2px rgba(0,0,0,0.2);
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   /*-webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #8c8c8c;*/
+  -webkit-text-stroke-color: #000;*/
   @media (max-width: 640px){
     font-size:2rem;
   }
