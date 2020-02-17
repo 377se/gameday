@@ -44,10 +44,10 @@
               </div>
             </div>
 
-            <!--Alert 
+            <Alert 
               v-if="errors.length>0"
               :message="errors"
-            /-->
+            />
 
             <div class="uk-margin uk-text-center">
               <button 
@@ -80,8 +80,12 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import Alert from '@/components/Alert'
 
 export default {
+  components:{
+    Alert
+  },
   beforeRouteLeave(to, from, next){
     try{
       //Iterate through each object field, key is name of the object field`
@@ -101,7 +105,7 @@ export default {
       },
       labels: {},
       errors: [],
-      success: true,
+      success: false,
       isSubmitting: false
     }
   },
@@ -113,6 +117,9 @@ export default {
         customerPassword: this.form.password,
         customerRepeatPassword: this.form.repeatpassword
       }).then(function (response) {
+        if(response.data.ErrorList.length>0){
+          _this.errors = response.data.ErrorList
+        }
         _this.success=true
       })
       .catch(function (error) {
