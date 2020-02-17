@@ -32,6 +32,7 @@
               :is-submitting="isSubmitting"
               theme="uk-button-primary"
               button-text="Skicka återställningsinformation"
+              :is-submit="true"
             />
           </div>
           

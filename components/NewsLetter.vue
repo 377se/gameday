@@ -22,7 +22,8 @@
           <ButtonSubmit 
             :is-submitting="isSubmitting"
             theme="uk-button-primary uk-width-1-1"
-            button-text="Ge mig rabatter!"/>
+            button-text="Ge mig rabatter!"
+            :is-submit="true"/>
         </div>
       </form>
     </div>

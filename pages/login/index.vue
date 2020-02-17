@@ -43,7 +43,8 @@
               <ButtonSubmit 
                 :is-submitting="isSubmitting"
                 theme="uk-button-primary"
-                button-text="Logga in"/>
+                button-text="Logga in"
+                :is-submit="true"/>
             </div>
             
 

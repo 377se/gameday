@@ -1,11 +1,21 @@
 <template>
-  <button 
-    v-if="!isSubmitting"
-    :class="['uk-button',theme]"
-    type="button" 
-    tabindex="-1"
-    @click.prevent="$emit('button-click')"
+  <div
+    v-if="!isSubmitting">
+    <button 
+      v-if="!isSubmit"
+      :class="['uk-button',theme]"
+      type="button"
+      tabindex="-1"
+      @click.prevent="$emit('button-click')"
     >{{ buttonText }}</button>
+    <button 
+      v-else
+      :class="['uk-button',theme]"
+      type="submit"
+      tabindex="-1"
+    >{{ buttonText }}</button> 
+  </div>
+
   <button 
     v-else
     :class="['uk-button',theme]" 
@@ -66,6 +76,11 @@
 <script>
 export default {
   props:{
+    isSubmit:{
+      type: Boolean,
+      required: false,
+      default: false
+    },
     isSubmitting:{
       type: Boolean,
       required: true

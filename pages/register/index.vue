@@ -46,7 +46,7 @@
 
             <Alert 
               v-if="errors.length>0"
-              :message="errors"
+              :errorlist="errors"
             />
 
             <div class="uk-margin uk-text-center">
@@ -119,8 +119,9 @@ export default {
       }).then(function (response) {
         if(response.data.ErrorList.length>0){
           _this.errors = response.data.ErrorList
+        }else{
+          _this.success=true
         }
-        _this.success=true
       })
       .catch(function (error) {
         alert('Error')

@@ -41,7 +41,8 @@
             <ButtonSubmit 
               :is-submitting="isSubmitting"
               theme="uk-button-primary"
-              button-text="Spara"/>
+              button-text="Spara"
+              :is-submit="true"/>
           </div>
           
         </fieldset>
