@@ -162,8 +162,12 @@ export default {
           }
         ).then(function (response) {
           _this.isSubmitting = false
-          _this.$store.commit('basket/add', response.data)
-          UIkit.offcanvas('#offscreen-basket').show();
+          if(response.data.ErrorList){
+            UIkit.modal.alert(response.data.ErrorList[0].Value)
+          }else{
+            _this.$store.commit('basket/add', response.data)
+            UIkit.offcanvas('#offscreen-basket').show();
+          }
           //console.log(response)
         })
         .catch(function (error) {

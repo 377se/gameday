@@ -2,6 +2,14 @@
   <section>
     <div class="uk-container">
       <h1>Mitt konto</h1>
+      <div>
+        <button 
+          type="button"
+          class="uk-button uk-button-default"
+          @click.prevent="logOut()">
+          Logga ut
+        </button>
+      </div>
       <component 
         v-if="story.content.component" 
         :key="story.content._uid" 
@@ -11,6 +19,7 @@
   </section>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import Page from '@/components/Page'
 import TextContent from '@/components/TextContent'
 
@@ -32,6 +41,13 @@ export default {
         window.location.reload()
       }
     })
+  },
+  methods:{
+    logOut(){
+      this.$cookies.set('cid', null)
+      this.$store.commit('setCid', null)
+      this.$router.push('/')
+    } 
   },
   asyncData (context) {
     // Check if we are in the editor mode
