@@ -31,22 +31,22 @@
         <nuxt-link
           to="/lag/nba/chicago-bulls"
           class="team-slider-item">
-          <img class="team-slider-img" src="https://static.supportersplace.se/category/chicago-bulls-logo-8530A1093D-seeklogo.com.png" alt="Chicago Bulls">
+          <img class="team-slider-img" src="https://static.supportersplace.se/Team/chicago_bulls_600x600.png" alt="Chicago Bulls">
         </nuxt-link>
         <nuxt-link
           to="/lag/nba/cleveland-cavaliers"
           class="team-slider-item">
-          <img class="team-slider-img" src="https://static.supportersplace.se/category/Cleveland-Cavaliers-logo (1).png" alt="Cleveland Cavaliers">
+          <img class="team-slider-img" src="https://static.supportersplace.se/Team/clevland_cavalliers_600x600.png" alt="Cleveland Cavaliers">
         </nuxt-link>
         <nuxt-link
           to="/lag/nba/golden-state-warriors"
           class="team-slider-item">
-          <img class="team-slider-img" src="https://static.supportersplace.se/category/golden-state-warriors (1).png" alt="Golden State Warriors">
+          <img class="team-slider-img" src="https://static.supportersplace.se/Team/golden_state_warriors_600x600.png" alt="Golden State Warriors">
         </nuxt-link>
         <nuxt-link
           to="/lag/nba/brooklyn-nets"
           class="team-slider-item">
-          <img class="team-slider-img" src="https://static.supportersplace.se/category/brooklyn-nets-logo (1).png" alt="Brooklyn Nets">
+          <img class="team-slider-img" src="https://static.supportersplace.se/Team/brooklyn_nets_600x600.png" alt="Brooklyn Nets">
         </nuxt-link>
       </div>
       <div 

@@ -31,22 +31,22 @@
         <nuxt-link
           to="/lag/mlb/new-york-yankees"
           class="team-slider-item">
-          <img class="team-slider-img" src="https://static.supportersplace.se/category/New-York-Yankees-Logo (1).png" alt="New York Yankees">
+          <img class="team-slider-img" src="https://static.supportersplace.se/Team/New-York-Yankees-Logo (1).png" alt="New York Yankees">
         </nuxt-link>
         <nuxt-link
           to="/lag/mlb/detroit-tigers"
           class="team-slider-item">
-          <img class="team-slider-img" src="https://static.supportersplace.se/category/Detroit-Tigers-logo (1).png" alt="Detroit Tigers">
+          <img class="team-slider-img" src="https://static.supportersplace.se/Team/detroit_tigers.png" alt="Detroit Tigers">
         </nuxt-link>
         <nuxt-link
           to="/lag/mlb/los-angeles-dodgers"
           class="team-slider-item">
-          <img class="team-slider-img" src="https://static.supportersplace.se/category/los_angeles_dodgers.png" alt="Los Angeles Dodgers">
+          <img class="team-slider-img" src="https://static.supportersplace.se/Team/los_angeles_dodgers.png" alt="Los Angeles Dodgers">
         </nuxt-link>
         <nuxt-link
           to="/lag/mlb/new-york-mets"
           class="team-slider-item">
-          <img class="team-slider-img" src="https://static.supportersplace.se/category/New_York_Mets.svg (1).png" alt="New York Mets">
+          <img class="team-slider-img" src="https://static.supportersplace.se/Team/New_York_Mets.svg (1).png" alt="New York Mets">
         </nuxt-link>
       </div>
       <div 
