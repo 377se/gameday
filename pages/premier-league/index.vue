@@ -139,7 +139,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      menu: 'nhlMenu'
+      menu: 'plMenu'
     })
   },
   methods:{
