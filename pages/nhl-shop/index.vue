@@ -31,22 +31,22 @@
         <nuxt-link
           to="/lag/nhl/boston-bruins"
           class="team-slider-item">
-          <img class="team-slider-img" src="https://static.supportersplace.se/Team/bostonbruins.png" alt="Boston Bruins">
+          <img class="team-slider-img" src="https://static.supportersplace.se/Team/bruins_600x600.png" alt="Boston Bruins">
         </nuxt-link>
         <nuxt-link
           to="/lag/nhl/chicago-blackhawks"
           class="team-slider-item">
-          <img class="team-slider-img" src="https://static.supportersplace.se/Team/chicagoblackhawks.png" alt="Chicago Blackhawks">
+          <img class="team-slider-img" src="https://static.supportersplace.se/Team/blackhawks_600x600.png" alt="Chicago Blackhawks">
         </nuxt-link>
         <nuxt-link
           to="/lag/nhl/new-york-rangers"
           class="team-slider-item">
-          <img class="team-slider-img" src="https://static.supportersplace.se/Team/newyorkrangers.png" alt="New York Rangers">
+          <img class="team-slider-img" src="https://static.supportersplace.se/Team/rangers_600x600.png" alt="New York Rangers">
         </nuxt-link>
         <nuxt-link
           to="/lag/nhl/pittsburgh-penguins"
           class="team-slider-item">
-          <img class="team-slider-img" src="https://static.supportersplace.se/Team/pittsburghpenguins.png" alt="Pittsburgh Penguins">
+          <img class="team-slider-img" src="https://static.supportersplace.se/Team/penguins_600x600.png" alt="Pittsburgh Penguins">
         </nuxt-link>
       </div>
       <div 
