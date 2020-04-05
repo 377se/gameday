@@ -67,12 +67,13 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     //'@nuxtjs/eslint-module'
+    '@nuxtjs/gtm', 
   ],
+  gtm: { id: 'GTM-WDJLNSJ' },
   /*
    ** Nuxt.js modules
    */
   modules: [
-    ['@nuxtjs/google-tag-manager', { id: 'GTM-WDJLNSJ' }],
     ['@netsells/nuxt-hotjar', { 
       id: '1686545', 
       sv: '',
