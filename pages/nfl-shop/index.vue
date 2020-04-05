@@ -34,9 +34,9 @@
           <img class="team-slider-img" src="https://static.supportersplace.se/Team/New_England_Patriots.png" alt="New England Patriots">
         </nuxt-link>
         <nuxt-link
-          to="/lag/nfl/oakland-raiders"
+          to="/lag/nfl/las-vegas-raiders"
           class="team-slider-item">
-          <img class="team-slider-img" src="https://static.supportersplace.se/Team/oakland_raiders.png" alt="Oakland Raiders">
+          <img class="team-slider-img" src="https://static.supportersplace.se/Team/oakland_raiders.png" alt="Las Vegas Raiders">
         </nuxt-link>
         <nuxt-link
           to="/lag/nfl/seattle-seahawks"

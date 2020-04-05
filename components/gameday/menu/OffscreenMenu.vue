@@ -83,7 +83,7 @@
             </li>
             <li class="uk-nav-header">Populäraste lagen</li>
             <li><nuxt-link to="/lag/nfl/new-england-patriots">New England Patriots</nuxt-link></li>
-            <li><nuxt-link to="/lag/nfl/oakland-raiders">Oakland Raiders</nuxt-link></li>
+            <li><nuxt-link to="/lag/nfl/las-vegas-raiders">Las Vegas Raiders</nuxt-link></li>
             <li><nuxt-link to="/lag/nfl/seattle-seahawks">Seattle Seahawks</nuxt-link></li>
             <li><nuxt-link to="/lag/nfl/dallas-cowboys">Dallas Cowboys</nuxt-link></li>
             <li class="uk-nav-header">Alla lag (A-Z)</li>
