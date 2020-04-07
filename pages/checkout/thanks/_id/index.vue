@@ -10,6 +10,10 @@
       id="klarna-checkout"
       class="uk-container uk-padding-remove"
       v-html="klarnahtml.Html"/>
+    <div 
+      style="display:none;">
+      {{ klarnahtml.Order }}
+    </div>
   </section>
 </template>
 <script>
