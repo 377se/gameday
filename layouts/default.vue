@@ -16,7 +16,7 @@
               </li>
               <li>
                 <div class="uk-text-center gd-slider-item uk-padding-small">
-                  <strong>Snabba leveranser från vårt lager i Stockholm</strong>
+                  <strong>Snabba leveranser från vårt lager</strong>
                 </div>
               </li>
               <li>

@@ -50,6 +50,19 @@ export default {
       shop:''
     };
   },
+  mounted(){
+    var _this = this
+    try {
+      fbq('track', 'ViewContent', {
+          content_name: _this.article.Name,
+          content_category: _this.shop + '/lag/'+_this.$route.params.league+'/'+_this.$route.params.team+'/'+article.HeadCategory,
+          content_ids: [_this.article.ArticleNumber],
+          content_type: 'product',
+          value: _this.article.DiscountedPrice.toFixed(2),
+          currency: 'SEK'
+      });
+    } catch (err) { }
+  },
   async asyncData({ route, app }) {
     let shop = route.params.league=='premier-league'?route.params.league:route.params.league.toUpperCase()+'-shop'
     try {
