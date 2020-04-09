@@ -1,5 +1,7 @@
 <template>
-    <img :src="blok.image" />
+    <img 
+      class="image-list-image"
+      :src="blok.image" />
 </template>
 <script>
 export default {
@@ -9,10 +11,10 @@ export default {
       required: true,
     }
   },
-  mounted(){
-  }
 }
 </script>
 <style lang="scss">
-
+.image-list-image{
+  height:20%;
+}
 </style>
