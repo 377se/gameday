@@ -1,5 +1,6 @@
 <template>
-  <h3>{{ blok.editorial_text }}</h3>
+  <h3
+    class="uk-margin-auto uk-width-1-1 uk-width-3-4@m">{{ blok.editorial_text }}</h3>
 </template>
 <script>
 export default {
