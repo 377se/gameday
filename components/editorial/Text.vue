@@ -1,6 +1,6 @@
 <template>
   <div
-    class="uk-margin uk-margin-auto uk-width-3-4"
+    class="uk-margin uk-margin-auto uk-width-1-1 uk-width-3-4@m"
     v-html="blok.editorial_text.html"/>
 </template>
 <script>
