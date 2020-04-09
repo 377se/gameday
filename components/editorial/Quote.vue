@@ -1,5 +1,5 @@
 <template>
-  <div class="quote uk-margin">
+  <div class="quote uk-margin uk-margin-auto uk-width-3-4">
     &raquo; {{ blok.editorial_quote }} &raquo;
   </div>
 </template>
