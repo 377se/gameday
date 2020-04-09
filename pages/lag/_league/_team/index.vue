@@ -9,6 +9,13 @@
         <li><nuxt-link :to="'/'+shop.toLowerCase()">{{ shop }}</nuxt-link></li>
         <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team">{{ $route.params.team }}</nuxt-link></li>
       </ul>
+    </div>
+    <component 
+      v-if="story.content.component" 
+      :key="story.content._uid" 
+      :blok="story.content" 
+      :is="story.content.component" />
+    <div class="uk-container uk-container-large uk-padding-small">
       <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
       <div 
         :class="{'read-more':readmore}"
@@ -82,6 +89,8 @@
 <script>
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
+import Page from '@/components/Page'
+
 export default {
   watchQuery: ['page','color','size','producttype','attribute','gender','sale','brand','team'],
   head () {
@@ -108,7 +117,8 @@ export default {
   },
   components:{
     ArticleCardSimple,
-    FilterItems
+    FilterItems,
+    Page
   },
   data () {
     return {
@@ -125,8 +135,20 @@ export default {
       totalPages:1,
       numOfProducts: 1,
       readmore: true,
-      shop: ''
+      shop: '',
+      stories: []
     }
+  },
+  mounted(){
+    this.$storybridge.on(['input', 'published', 'change'], (event) => {
+      if (event.action == 'input') {
+        if (event.story.id === this.story.id) {
+          this.story.content = event.story.content
+        }
+      } else {
+        window.location.reload()
+      }
+    })
   },
   methods:{
     setReadMore(){
@@ -144,6 +166,9 @@ export default {
     }
   },
   async asyncData (context) {
+    // Check if we are in the editor mode
+    let version = context.query._storyblok || context.isDev ? 'draft' : 'published'
+
     let pageNum = context.route.query.page?context.route.query.page:1
     let color = context.route.query.color?context.route.query.color:null
     let gender = context.route.query.gender?context.route.query.gender:null
@@ -155,25 +180,29 @@ export default {
     
     let shop = context.route.params.league=='premier-league'?context.route.params.league:context.route.params.league.toUpperCase()+'-shop'
     try {
-      const [a, p, c, s, g, b] = await Promise.all([
-        await context.app.$axios.$get(
+      const [a, p, c, s, g, b, sb] = await Promise.all([
+        context.app.$axios.$get(
           '/webapi/Article/getArticleList?pageSize=0&brand='+brand+'&attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +context.route.params.team
         ),
-        await context.app.$axios.$get(
+        context.app.$axios.$get(
           '/webapi/Filter/GetProductTypeList?seoName='+context.route.params.league+'&teamName='+context.route.params.team
         ),
-        await context.app.$axios.$get(
+        context.app.$axios.$get(
           '/webapi/Filter/GetColourList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
         ),
-        await context.app.$axios.$get(
+        context.app.$axios.$get(
           '/webapi/Filter/GetSizeList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
         ),
-        await context.app.$axios.$get(
+        context.app.$axios.$get(
           '/webapi/Filter/GetGenderList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
         ),
-        await context.app.$axios.$get(
+        context.app.$axios.$get(
           '/webapi/Filter/GetBrandList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
-        )
+        ),
+        context.app.$storyapi.get('cdn/stories?starts_with=lag/'+context.route.params.league+'/'+context.route.params.team, {
+          version: version,
+          cv: context.store.getters.version
+        })
       ]);
       return {
         articles: a[0].ArticleList,
@@ -184,7 +213,8 @@ export default {
         brands: b,
         article: a[0],
         pageNum: pageNum,
-        shop: shop
+        shop: shop,
+        story: sb.data.stories.length>0?sb.data.stories[0]:{ content: {} }
 
       };
     } catch (err) {
