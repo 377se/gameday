@@ -4,13 +4,15 @@
       <template v-if="$fetchState.pending">
         <div uk-grid class="uk-grid uk-grid-small uk-grid-stack">
           <section class="uk-width-1-1 uk-width-1-2@m">
-            <content-placeholders>
+            <content-placeholders
+              :rounded="true">
               <content-placeholders-img 
                 class="ph-article-img"/>
             </content-placeholders>
           </section>
           <section class="uk-width-1-1 uk-width-1-2@m">
-            <content-placeholders>
+            <content-placeholders
+              :rounded="true">
               <content-placeholders-heading />
               <content-placeholders-text :lines="5" />
             </content-placeholders>
@@ -38,6 +40,7 @@
 import ArticleDetails from "@/components/articles/ArticleDetails";
 
 export default {
+  scrollToTop: true,
   head () {
     return {
       title: this.article.MetaTitle,
@@ -94,6 +97,11 @@ export default {
       this.shop = shop
     } catch (err) {
       console.log(err);
+    }
+  },
+  activated(){
+    if (this.$fetchState.timestamp <= Date.now() - 600000) {
+      this.$fetch()
     }
   }
 };

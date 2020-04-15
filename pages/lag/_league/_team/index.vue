@@ -113,6 +113,7 @@ import FilterItems from "@/components/filter/Filter";
 import Page from '@/components/Page'
 
 export default {
+  scrollToTop: true,
   watchQuery: ['page','color','size','producttype','attribute','gender','sale','brand','team'],
   head () {
     return {
@@ -159,6 +160,9 @@ export default {
       shop: '',
       stories: []
     }
+  },
+  watch: {
+    '$route.query': '$fetch'
   },
   mounted(){
     this.$storybridge.on(['input', 'published', 'change'], (event) => {
@@ -240,6 +244,11 @@ export default {
       console.log(err.request);
     }
 
+  },
+  activated(){
+    if (this.$fetchState.timestamp <= Date.now() - 600000) {
+      this.$fetch()
+    }
   }
 }
 </script>

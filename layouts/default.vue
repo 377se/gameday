@@ -30,7 +30,9 @@
         </div>
       </div>
     </div>
-    <nuxt/>
+    <nuxt
+      keep-alive
+      :keep-alive-props="{ max: 20 }"/>
 
     <OffscreenMenu/>
     <OffscreenBasket/>
