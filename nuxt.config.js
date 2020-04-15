@@ -42,6 +42,7 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
+    {src: '~/plugins/vue-placeholders.js'},
     { src: "~/plugins/uikit.js", ssr: false },
     {src: '~/plugins/axios'},
     { src: '~plugins/ga.js', mode: 'client' }

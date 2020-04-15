@@ -1,89 +1,110 @@
 <template>
   <section>
-    <div class="uk-container uk-container-large uk-padding-small">
-      <ul class="uk-breadcrumb">
-        <li>
-          <nuxt-link to="/">
-            <span style="vertical-align: bottom;
-              margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
-        <li><nuxt-link :to="'/'+shop.toLowerCase()">{{ shop }}</nuxt-link></li>
-        <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team">{{ $route.params.team }}</nuxt-link></li>
-      </ul>
-    </div>
-    <component 
-      v-if="story.content.component" 
-      :key="story.content._uid" 
-      :blok="story.content" 
-      :is="story.content.component" />
-    <div class="uk-container uk-container-large uk-padding-small">
-      <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
+    <template v-if="$fetchState.pending">
+      <div class="uk-container uk-container-large uk-padding-small">
+        <content-placeholders :rounded="true">
+          <content-placeholders-img />
+          <content-placeholders-heading />
+        </content-placeholders>
+        <div class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l">
+          <content-placeholders 
+            v-for="p in 20"
+            :key="p"
+            :rounded="true"
+            class="uk-padding-small">
+            <content-placeholders-img 
+            class="ph-img"/>
+            <content-placeholders-text :lines="2" />
+          </content-placeholders>
+        </div>
+      </div>
+    </template>
+    <template v-else>
+      <div class="uk-container uk-container-large uk-padding-small">
+        <ul class="uk-breadcrumb">
+          <li>
+            <nuxt-link to="/">
+              <span style="vertical-align: bottom;
+                margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
+          <li><nuxt-link :to="'/'+shop.toLowerCase()">{{ shop }}</nuxt-link></li>
+          <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team">{{ $route.params.team }}</nuxt-link></li>
+        </ul>
+      </div>
+      <component 
+        v-if="story.content.component" 
+        :key="story.content._uid" 
+        :blok="story.content" 
+        :is="story.content.component" />
+      <div class="uk-container uk-container-large uk-padding-small">
+        <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
+        <div 
+          :class="{'read-more':readmore}"
+          @click="setReadMore()"
+          v-html="article.SeoContentDescription"/>
+      </div>
       <div 
-        :class="{'read-more':readmore}"
-        @click="setReadMore()"
-        v-html="article.SeoContentDescription"/>
-    </div>
-    <div 
-      class="uk-container uk-container-large uk-padding-small">
-      <h3
-        v-if="producttypes!=null && producttypes.length>0"
-        >Populära kategorier</h3>
-      <div
-        v-if="producttypes!=null && producttypes.length>0"
-        class="uk-grid uk-grid-small uk-margin-bottom uk-margin-top category-list-slider"
-        uk-grid
-        >
+        class="uk-container uk-container-large uk-padding-small">
+        <h3
+          v-if="producttypes!=null && producttypes.length>0"
+          >Populära kategorier</h3>
         <div
-          v-for="pt in producttypes"
-          :key="pt.GarmentId"
+          v-if="producttypes!=null && producttypes.length>0"
+          class="uk-grid uk-grid-small uk-margin-bottom uk-margin-top category-list-slider"
+          uk-grid
           >
-          <nuxt-link
-            class="uk-label"
-            :to="`/lag/${$route.params.league}/${$route.params.team}/produkttyp/${pt.SeoName}`"><span>{{ pt.Name }}</span></nuxt-link>
+          <div
+            v-for="pt in producttypes"
+            :key="pt.GarmentId"
+            >
+            <nuxt-link
+              class="uk-label"
+              :to="`/lag/${$route.params.league}/${$route.params.team}/produkttyp/${pt.SeoName}`"><span>{{ pt.Name }}</span></nuxt-link>
+          </div>
         </div>
-      </div>
-      <div 
-        class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
-        uk-sticky="offset:80;width-element:body;bottom:true">
-        <strong>{{ article.TotalNumberOfProducts }} produkter</strong> 
-        <FilterItems
-          :product-types="producttypes"
-          :colors="colors"
-          :sizes="sizes"
-          :gender="gender"
-          :brands="brands"
-          :show_sale="true"/>
-      </div>
-      <div
-        class="ts-article-list uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
-        uk-grid
-        uk-height-match="target: .uk-card">
-        <ArticleCardSimple
-          v-for="article in articles"
-          :key="article.Id"
-          :article="article"
-          :url="`/lag/${$route.params.league}/${$route.params.team}/${article.SeoName}`"
-        />
+        <div 
+          class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
+          uk-sticky="offset:80;width-element:body;bottom:true">
+          <strong>{{ article.TotalNumberOfProducts }} produkter</strong> 
+          <FilterItems
+            :product-types="producttypes"
+            :colors="colors"
+            :sizes="sizes"
+            :gender="gender"
+            :brands="brands"
+            :show_sale="true"/>
+        </div>
         <div
-          v-if="articles.length<1"
-          class="uk-margin-bottom uk-margin-top" 
-        >
-          Vi hittade inga produkter för det aktuella valet.
+          class="ts-article-list uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
+          uk-grid
+          uk-height-match="target: .uk-card">
+          <ArticleCardSimple
+            v-for="article in articles"
+            :key="article.Id"
+            :article="article"
+            :url="`/lag/${$route.params.league}/${$route.params.team}/${article.SeoName}`"
+          />
+          <div
+            v-if="articles.length<1"
+            class="uk-margin-bottom uk-margin-top" 
+          >
+            Vi hittade inga produkter för det aktuella valet.
+          </div>
         </div>
+        <ul 
+          v-if="article.TotalPages>1"
+          class="uk-pagination uk-flex-center uk-margin-large uk-margin-bottom">
+          <li>
+            <a 
+              href="#"
+              @click.stop.prevent="previous()"><span uk-pagination-previous></span> Föregående</a></li>
+          <li><span>{{ pageNum }}/{{ article.TotalPages }}</span></li>
+          <li>
+            <a 
+              href="#"
+              @click.stop.prevent="next()">Nästa <span uk-pagination-next></span></a></li>
+        </ul>
       </div>
-      <ul 
-        v-if="article.TotalPages>1"
-        class="uk-pagination uk-flex-center uk-margin-large uk-margin-bottom">
-        <li>
-          <a 
-            href="#"
-            @click.stop.prevent="previous()"><span uk-pagination-previous></span> Föregående</a></li>
-        <li><span>{{ pageNum }}/{{ article.TotalPages }}</span></li>
-        <li>
-          <a 
-            href="#"
-            @click.stop.prevent="next()">Nästa <span uk-pagination-next></span></a></li>
-      </ul>
-    </div>
+    </template>
   </section>
 </template>
 <script>
@@ -165,58 +186,55 @@ export default {
       } 
     }
   },
-  async asyncData (context) {
+  async fetch () {
     // Check if we are in the editor mode
-    let version = context.query._storyblok || context.isDev ? 'draft' : 'published'
+    let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
 
-    let pageNum = context.route.query.page?context.route.query.page:1
-    let color = context.route.query.color?context.route.query.color:null
-    let gender = context.route.query.gender?context.route.query.gender:null
-    let productType = context.route.query.producttype?context.route.query.producttype:null
-    let size = context.route.query.size?context.route.query.size:null
-    let attribute = context.route.query.attribute?context.route.query.attribute:null
-    let sale = context.route.query.sale?context.route.query.sale:false
-    let brand = context.route.query.brand?context.route.query.brand:null
+    let pageNum = this.$route.query.page?this.$route.query.page:1
+    let color = this.$route.query.color?this.$route.query.color:null
+    let gender = this.$route.query.gender?this.$route.query.gender:null
+    let productType = this.$route.query.producttype?this.$route.query.producttype:null
+    let size = this.$route.query.size?this.$route.query.size:null
+    let attribute = this.$route.query.attribute?this.$route.query.attribute:null
+    let sale = this.$route.query.sale?this.$route.query.sale:false
+    let brand = this.$route.query.brand?this.$route.query.brand:null
     
-    let shop = context.route.params.league=='premier-league'?context.route.params.league:context.route.params.league.toUpperCase()+'-shop'
+    let shop = this.$route.params.league=='premier-league'?this.$route.params.league:this.$route.params.league.toUpperCase()+'-shop'
     try {
       const [a, p, c, s, g, b, sb] = await Promise.all([
-        context.app.$axios.$get(
-          '/webapi/Article/getArticleList?pageSize=0&brand='+brand+'&attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +context.route.params.team
+        this.$axios.$get(
+          '/webapi/Article/getArticleList?pageSize=0&brand='+brand+'&attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +this.$route.params.team
         ),
-        context.app.$axios.$get(
-          '/webapi/Filter/GetProductTypeList?seoName='+context.route.params.league+'&teamName='+context.route.params.team
+        this.$axios.$get(
+          '/webapi/Filter/GetProductTypeList?seoName='+this.$route.params.league+'&teamName='+this.$route.params.team
         ),
-        context.app.$axios.$get(
-          '/webapi/Filter/GetColourList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
+        this.$axios.$get(
+          '/webapi/Filter/GetColourList?categoryName='+this.$route.params.league+'&teamName='+this.$route.params.team +'&garmentName=null'
         ),
-        context.app.$axios.$get(
-          '/webapi/Filter/GetSizeList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
+        this.$axios.$get(
+          '/webapi/Filter/GetSizeList?categoryName='+this.$route.params.league+'&teamName='+this.$route.params.team +'&garmentName=null'
         ),
-        context.app.$axios.$get(
-          '/webapi/Filter/GetGenderList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
+        this.$axios.$get(
+          '/webapi/Filter/GetGenderList?categoryName='+this.$route.params.league+'&teamName='+this.$route.params.team +'&garmentName=null'
         ),
-        context.app.$axios.$get(
-          '/webapi/Filter/GetBrandList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName=null'
+        this.$axios.$get(
+          '/webapi/Filter/GetBrandList?categoryName='+this.$route.params.league+'&teamName='+this.$route.params.team +'&garmentName=null'
         ),
-        context.app.$storyapi.get('cdn/stories?starts_with=lag/'+context.route.params.league+'/'+context.route.params.team, {
+        this.$storyapi.get('cdn/stories?starts_with=lag/'+this.$route.params.league+'/'+this.$route.params.team, {
           version: version,
-          cv: context.store.getters.version
+          cv: this.$store.getters.version
         })
       ]);
-      return {
-        articles: a[0].ArticleList,
-        producttypes: p,
-        colors: c,
-        sizes: s,
-        gender: g,
-        brands: b,
-        article: a[0],
-        pageNum: pageNum,
-        shop: shop,
-        story: sb.data.stories.length>0?sb.data.stories[0]:{ content: {} }
-
-      };
+      this.articles=a[0].ArticleList
+      this.producttypes=p
+      this.colors=c
+      this.sizes=s
+      this.gender=g
+      this.brands=b
+      this.article=a[0]
+      this.pageNum=pageNum
+      this.shop=shop
+      this.story=sb.data.stories.length>0?sb.data.stories[0]:{ content: {} }
     } catch (err) {
       console.log(err);
       console.log(err.request);
@@ -227,6 +245,10 @@ export default {
 </script>
 <style lang="scss">
 @import '~/assets/scss/vars.scss';
+.ph-img{
+  height:200px;
+  margin-bottom:10px;
+}
 .read-more{
   max-height: 74px;
   position: relative;

@@ -1,17 +1,36 @@
 <template>
   <section>
     <div class="uk-container uk-container-large uk-padding-small">
-      <ul class="uk-breadcrumb">
-        <li>
-          <nuxt-link to="/">
-            <span style="vertical-align: bottom;
-              margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
-        <li><nuxt-link :to="'/'+shop.toLowerCase()">{{ shop }}</nuxt-link></li>
-        <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team">{{ article.HeadCategory }}</nuxt-link></li>
-        <li><span>{{ article.Name }}</span></li>
-      </ul>
+      <template v-if="$fetchState.pending">
+        <div uk-grid class="uk-grid uk-grid-small uk-grid-stack">
+          <section class="uk-width-1-1 uk-width-1-2@m">
+            <content-placeholders>
+              <content-placeholders-img 
+                class="ph-article-img"/>
+            </content-placeholders>
+          </section>
+          <section class="uk-width-1-1 uk-width-1-2@m">
+            <content-placeholders>
+              <content-placeholders-heading />
+              <content-placeholders-text :lines="5" />
+            </content-placeholders>
+          </section>
+        </div>
+      </template>
+      <template
+        v-else>
+        <ul class="uk-breadcrumb">
+          <li>
+            <nuxt-link to="/">
+              <span style="vertical-align: bottom;
+                margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
+          <li><nuxt-link :to="'/'+shop.toLowerCase()">{{ shop }}</nuxt-link></li>
+          <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team">{{ article.HeadCategory }}</nuxt-link></li>
+          <li><span>{{ article.Name }}</span></li>
+        </ul>
+        <ArticleDetails v-bind:article="article"></ArticleDetails>
+      </template>
     </div>
-    <ArticleDetails v-bind:article="article"></ArticleDetails>
   </section>
 </template>
 
@@ -63,18 +82,16 @@ export default {
       });
     } catch (err) { }
   },
-  async asyncData({ route, app }) {
-    let shop = route.params.league=='premier-league'?route.params.league:route.params.league.toUpperCase()+'-shop'
+  async fetch() {
+    let shop = this.$route.params.league=='premier-league'?this.$route.params.league:this.$route.params.league.toUpperCase()+'-shop'
     try {
       const url = `/webapi/article/GetArticleDetails?teamName=${
-        route.params.team
-      }&articleName=${route.params.article}`;
-      const article = await app.$axios.$get(url);
+        this.$route.params.team
+      }&articleName=${this.$route.params.article}`;
+      const article = await this.$axios.$get(url);
 
-      return { 
-        article: article,
-        shop: shop
-      };
+      this.article = article
+      this.shop = shop
     } catch (err) {
       console.log(err);
     }
@@ -83,5 +100,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  
+  .ph-article-img{
+    height:400px;
+  }
 </style>
