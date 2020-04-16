@@ -30,8 +30,7 @@
         </div>
       </div>
     </div>
-    <nuxt
-      keep-alive/>
+    <nuxt/>
     <OffscreenMenu/>
     <OffscreenBasket/>
 
