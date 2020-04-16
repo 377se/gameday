@@ -76,7 +76,7 @@
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 export default {
-  watchQuery: ['page','color','size','producttype','attribute','gender','sale','brand','team'],
+   // ['page','color','size','producttype','attribute','gender','sale','brand','team'],
   head () {
     return {
       title: this.article.MetaTitle,
@@ -118,9 +118,6 @@ export default {
       readmore: true,
       shop:''
     }
-  },
-  watch: {
-    '$route.query': '$fetch'
   },
   methods:{
     next(){
@@ -172,6 +169,7 @@ export default {
         this.pageNum= pageNum
         this.shop= shop
     } catch (err) {
+      console.log('_produkttyp error')
       console.log(err);
       console.log(err.request);
     }

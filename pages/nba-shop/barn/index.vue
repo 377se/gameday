@@ -44,7 +44,7 @@ import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 import Page from "@/components/Page";
 export default {
-  watchQuery: ['page'],
+   //['page'],
   head () {
     return {
       title: this.story.content.SEO.title,

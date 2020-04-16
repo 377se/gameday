@@ -40,7 +40,6 @@
 import ArticleDetails from "@/components/articles/ArticleDetails";
 
 export default {
-  scrollToTop: true,
   head () {
     return {
       title: this.article.MetaTitle,

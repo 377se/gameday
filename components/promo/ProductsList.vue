@@ -46,6 +46,7 @@ export default {
         }
       })
       .catch(function(err){
+        console.log('productslist error')
         console.log(err)
       })
     }

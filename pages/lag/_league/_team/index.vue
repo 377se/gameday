@@ -113,8 +113,7 @@ import FilterItems from "@/components/filter/Filter";
 import Page from '@/components/Page'
 
 export default {
-  scrollToTop: true,
-  watchQuery: ['page','color','size','producttype','attribute','gender','sale','brand','team'],
+  //['page','color','size','producttype','attribute','gender','sale','brand','team'],
   head () {
     return {
       title: this.article.MetaTitle,
@@ -161,9 +160,6 @@ export default {
       stories: []
     }
   },
-  watch: {
-    '$route.query': '$fetch'
-  },
   mounted(){
     this.$storybridge.on(['input', 'published', 'change'], (event) => {
       if (event.action == 'input') {
@@ -188,6 +184,12 @@ export default {
       if(this.pageNum>1){
         this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)-1)}})
       } 
+    }
+  },
+  watch: {
+    '$route.query': function(oldQuery, newQuery){
+      window.scrollTo(0,0)
+      this.$fetch()
     }
   },
   async fetch () {
@@ -240,12 +242,14 @@ export default {
       this.shop=shop
       this.story=sb.data.stories.length>0?sb.data.stories[0]:{ content: {} }
     } catch (err) {
+      console.log('_team error')
       console.log(err);
       console.log(err.request);
     }
 
   },
   activated(){
+    console.log('activated')
     if (this.$fetchState.timestamp <= Date.now() - 600000) {
       this.$fetch()
     }

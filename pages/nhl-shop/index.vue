@@ -116,7 +116,7 @@ import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 export default {
   scrollToTop: true,
-  watchQuery: ['page','color','size','producttype','attribute','gender','sale','brand','team'],
+   // ['page','color','size','producttype','attribute','gender','sale','brand','team'],
   head () {
     return {
       title: this.article.MetaTitle,
@@ -142,9 +142,6 @@ export default {
   components:{
     ArticleCardSimple,
     FilterItems
-  },
-  watch: {
-    '$route.query': '$fetch'
   },
   data () {
     return {
@@ -182,7 +179,14 @@ export default {
       } 
     }
   },
+  watch: {
+    '$route.query': function(oldQuery, newQuery){
+      window.scrollTo(0,0)
+      this.$fetch()
+    }
+  },
   async fetch () {
+    console.log('fetch nhl-shop')
     let pageNum = this.$route.query.page?this.$route.query.page:1
     let color = this.$route.query.color?this.$route.query.color:null
     let gender = this.$route.query.gender?this.$route.query.gender:null
@@ -222,12 +226,14 @@ export default {
         this.article= a[0]
         this.pageNum= pageNum
     } catch (err) {
+      console.log('nhl-shop error')
       console.log(err);
       console.log(err.request);
     }
 
   },
   activated(){
+    console.log('activated nhl-shop')
     if (this.$fetchState.timestamp <= Date.now() - 600000) {
       this.$fetch()
     }

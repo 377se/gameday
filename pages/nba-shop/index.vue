@@ -116,7 +116,7 @@ import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 export default {
   scrollToTop: true,
-  watchQuery: ['page','color','size','producttype','attribute','gender','sale','brand','team'],
+   // ['page','color','size','producttype','attribute','gender','sale','brand','team'],
   head () {
     return {
       title: this.article.MetaTitle,
@@ -163,9 +163,6 @@ export default {
     ...mapGetters({
       menu: 'nbaMenu'
     })
-  },
-  watch: {
-    '$route.query': '$fetch'
   },
   methods:{
     setReadMore(){
@@ -222,6 +219,7 @@ export default {
         this.article= a[0]
         this.pageNum= pageNum
     } catch (err) {
+      console.log('nba-shop error')
       console.log(err);
       console.log(err.request);
     }

@@ -68,6 +68,7 @@ export default {
         metadata: m
       };
     } catch (err) {
+      console.log('_teamId error')
       console.log(err);
       console.log(err.request);
     }

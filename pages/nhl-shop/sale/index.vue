@@ -83,7 +83,7 @@ import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 import Page from "@/components/Page";
 export default {
-  watchQuery: ['page','color','size','producttype','attribute','gender','sale','brand','team'],
+   //['page','color','size','producttype','attribute','gender','sale','brand','team'],
   head () {
     return {
       title: this.story.content.SEO.title,
@@ -120,6 +120,7 @@ export default {
       colors: [],
       sizes: [],
       brands: [],
+      gender:[],
       pageNum: 1,
       totalPages:1,
       numOfProducts: 1
@@ -129,9 +130,6 @@ export default {
     ...mapGetters({
       menu: 'nhlMenu'
     })
-  },
-  watch: {
-    '$route.query': '$fetch'
   },
   methods:{
     next(){
@@ -191,7 +189,7 @@ export default {
         ),
         this.$storyapi.get(`cdn/stories/nhl-shop/sale`, {
           version: version,
-          cv: context.store.getters.version
+          cv: this.$store.getters.version
         })
       ]);
         this.articles= a[0].ArticleList
@@ -204,6 +202,7 @@ export default {
         this.pageNum= pageNum
         this.story=sb.data.story
     } catch (err) {
+      console.log('nhl-shop/sale error')
       console.log(err);
       console.log(err.request);
     }

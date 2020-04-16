@@ -84,7 +84,7 @@ import FilterItems from "@/components/filter/Filter";
 import Page from "@/components/Page";
 export default {
   scrollToTop: true,
-  watchQuery: ['page','color','size','producttype','attribute','gender','sale','brand','team'],
+  //['page','color','size','producttype','attribute','gender','sale','brand','team'],
   head () {
     return {
       title: this.story.content.SEO.title,
@@ -130,9 +130,6 @@ export default {
     ...mapGetters({
       menu: 'nhlMenu'
     })
-  },
-  watch: {
-    '$route.query': '$fetch'
   },
   methods:{
     next(){
@@ -205,6 +202,7 @@ export default {
         this.pageNum= pageNum
         this.story=sb.data.story
     } catch (err) {
+      console.log('premier-league/sale error')
       console.log(err);
       console.log(err.request);
     }
