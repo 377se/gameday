@@ -1,54 +1,75 @@
 <template>
   <section>
-    <div class="uk-container uk-container-large uk-padding-small">
-      <ul class="uk-breadcrumb">
-        <li>
-          <nuxt-link to="/">
-            <span style="vertical-align: bottom;
-              margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
-        <li><nuxt-link  :to="'/'+shop.toLowerCase()">{{ shop }}</nuxt-link></li>
-        <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team">{{ $route.params.team }}</nuxt-link></li>
-        <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team+'/produkttyp/'+$route.params.produkttyp">{{ $route.params.produkttyp }}</nuxt-link></li>
-      </ul>
-      <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
-    </div>
-    <div class="uk-container uk-container-large uk-padding-small">
-      <div 
-        class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
-        uk-sticky="offset:80;width-element:body;bottom:true">
-        <strong>{{ article.TotalNumberOfProducts }} produkter</strong>
-        <FilterItems
-          :colors="colors"
-          :sizes="sizes"
-          :gender="gender"
-          :brands="brands"
-          :show_sale="true"/>
+    <template v-if="$fetchState.pending">
+      <div class="uk-container uk-container-large uk-padding-small">
+        <content-placeholders :rounded="true">
+          <content-placeholders-img />
+          <content-placeholders-heading />
+        </content-placeholders>
+        <div class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l">
+          <content-placeholders 
+            v-for="p in 20"
+            :key="p"
+            :rounded="true"
+            class="uk-padding-small">
+            <content-placeholders-img 
+            class="ph-img"/>
+            <content-placeholders-text :lines="2" />
+          </content-placeholders>
+        </div>
       </div>
-      <div
-        class="ts-article-list uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
-        uk-grid
-        uk-height-match="target: .uk-card">
-        <ArticleCardSimple
-          v-for="article in articles"
-          :key="article.Id"
-          :article="article"
-          :url="`/lag/${$route.params.league}/${$route.params.team}/${article.SeoName}`"
-        />
+    </template>
+    <template v-else>
+      <div class="uk-container uk-container-large uk-padding-small">
+        <ul class="uk-breadcrumb">
+          <li>
+            <nuxt-link to="/">
+              <span style="vertical-align: bottom;
+                margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
+          <li><nuxt-link  :to="'/'+shop.toLowerCase()">{{ shop }}</nuxt-link></li>
+          <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team">{{ $route.params.team }}</nuxt-link></li>
+          <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team+'/produkttyp/'+$route.params.produkttyp">{{ $route.params.produkttyp }}</nuxt-link></li>
+        </ul>
+        <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
       </div>
-      <ul 
-        v-if="article.TotalPages>1"
-        class="uk-pagination uk-flex-center uk-margin-large uk-margin-bottom">
-        <li>
-          <a 
-            href="#"
-            @click.stop.prevent="previous()"><span uk-pagination-previous></span> Föregående</a></li>
-        <li><span>{{ pageNum }}/{{ article.TotalPages }}</span></li>
-        <li>
-          <a 
-            href="#"
-            @click.stop.prevent="next()">Nästa <span uk-pagination-next></span></a></li>
-      </ul>
-    </div>
+      <div class="uk-container uk-container-large uk-padding-small">
+        <div 
+          class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
+          uk-sticky="offset:80;width-element:body;bottom:true">
+          <strong>{{ article.TotalNumberOfProducts }} produkter</strong>
+          <FilterItems
+            :colors="colors"
+            :sizes="sizes"
+            :gender="gender"
+            :brands="brands"
+            :show_sale="true"/>
+        </div>
+        <div
+          class="ts-article-list uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
+          uk-grid
+          uk-height-match="target: .uk-card">
+          <ArticleCardSimple
+            v-for="article in articles"
+            :key="article.Id"
+            :article="article"
+            :url="`/lag/${$route.params.league}/${$route.params.team}/${article.SeoName}`"
+          />
+        </div>
+        <ul 
+          v-if="article.TotalPages>1"
+          class="uk-pagination uk-flex-center uk-margin-large uk-margin-bottom">
+          <li>
+            <a 
+              href="#"
+              @click.stop.prevent="previous()"><span uk-pagination-previous></span> Föregående</a></li>
+          <li><span>{{ pageNum }}/{{ article.TotalPages }}</span></li>
+          <li>
+            <a 
+              href="#"
+              @click.stop.prevent="next()">Nästa <span uk-pagination-next></span></a></li>
+        </ul>
+      </div>
+    </template>
   </section>
 </template>
 <script>
@@ -98,6 +119,9 @@ export default {
       shop:''
     }
   },
+  watch: {
+    '$route.query': '$fetch'
+  },
   methods:{
     next(){
       if(this.pageNum<this.article.TotalPages){
@@ -110,49 +134,53 @@ export default {
       } 
     }
   },
-  async asyncData (context) {
-    let pageNum = context.route.query.page?context.route.query.page:1
-    let color = context.route.query.color?context.route.query.color:null
-    let gender = context.route.query.gender?context.route.query.gender:null
-    let size = context.route.query.size?context.route.query.size:null
-    let attribute = context.route.query.attribute?context.route.query.attribute:null
-    let sale = context.route.query.sale?context.route.query.sale:false
-    let brand = context.route.query.brand?context.route.query.brand:null
+  async fetch () {
+    let pageNum = this.$route.query.page?this.$route.query.page:1
+    let color = this.$route.query.color?this.$route.query.color:null
+    let gender = this.$route.query.gender?this.$route.query.gender:null
+    let size = this.$route.query.size?this.$route.query.size:null
+    let attribute = this.$route.query.attribute?this.$route.query.attribute:null
+    let sale = this.$route.query.sale?this.$route.query.sale:false
+    let brand = this.$route.query.brand?this.$route.query.brand:null
     
-    let shop = context.route.params.league=='premier-league'?context.route.params.league:context.route.params.league.toUpperCase()+'-shop'
+    let shop = this.$route.params.league=='premier-league'?this.$route.params.league:this.$route.params.league.toUpperCase()+'-shop'
     try {
       const [a, c, s, g, b] = await Promise.all([
-        await context.app.$axios.$get(
-          '/webapi/Article/getArticleList?pageSize=0&brand='+brand+'&attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+context.route.params.produkttyp+'&sale=false&pageNum='+ pageNum +'&seoName=' +context.route.params.team
+        this.$axios.$get(
+          '/webapi/Article/getArticleList?pageSize=0&brand='+brand+'&attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+this.$route.params.produkttyp+'&sale=false&pageNum='+ pageNum +'&seoName=' +this.$route.params.team
         ),
-        await context.app.$axios.$get(
-          '/webapi/Filter/GetColourList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName='+context.route.params.produkttyp
+        this.$axios.$get(
+          '/webapi/Filter/GetColourList?categoryName='+this.$route.params.league+'&teamName='+this.$route.params.team +'&garmentName='+this.$route.params.produkttyp
         ),
-        await context.app.$axios.$get(
-          '/webapi/Filter/GetSizeList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName='+context.route.params.produkttyp
+        this.$axios.$get(
+          '/webapi/Filter/GetSizeList?categoryName='+this.$route.params.league+'&teamName='+this.$route.params.team +'&garmentName='+this.$route.params.produkttyp
         ),
-        await context.app.$axios.$get(
-          '/webapi/Filter/GetGenderList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName='+context.route.params.produkttyp
+        this.$axios.$get(
+          '/webapi/Filter/GetGenderList?categoryName='+this.$route.params.league+'&teamName='+this.$route.params.team +'&garmentName='+this.$route.params.produkttyp
         ),
-        await context.app.$axios.$get(
-          '/webapi/Filter/GetBrandList?categoryName='+context.route.params.league+'&teamName='+context.route.params.team +'&garmentName='+context.route.params.produkttyp
+        this.$axios.$get(
+          '/webapi/Filter/GetBrandList?categoryName='+this.$route.params.league+'&teamName='+this.$route.params.team +'&garmentName='+this.$route.params.produkttyp
         )
       ]);
-      return {
-        articles: a[0].ArticleList,
-        colors: c,
-        sizes: s,
-        gender: g,
-        brands: b,
-        article: a[0],
-        pageNum: pageNum,
-        shop: shop
-      };
+      
+        this.articles= a[0].ArticleList
+        this.colors= c
+        this.sizes= s
+        this.gender= g
+        this.brands= b
+        this.article= a[0]
+        this.pageNum= pageNum
+        this.shop= shop
     } catch (err) {
       console.log(err);
       console.log(err.request);
     }
 
+  },
+  activated(){
+    if (this.$fetchState.timestamp <= Date.now() - 600000) {
+      this.$fetch()
+    }
   }
 }
 </script>
