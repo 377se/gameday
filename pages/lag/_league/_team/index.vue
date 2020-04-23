@@ -113,85 +113,6 @@ import FilterItems from "@/components/filter/Filter";
 import Page from '@/components/Page'
 
 export default {
-  //['page','color','size','producttype','attribute','gender','sale','brand','team'],
-  head () {
-    return {
-      title: this.article.MetaTitle,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.article.MetaDescription
-        },
-        {
-          hid: 'og:title',
-          name:  'og:title',
-          content:  this.article.MetaTitle,
-        },
-        {
-          hid: 'og:description',
-          name:  'og:description',
-          content: `${this.article.MetaDescription}`.replace(/<\/?[^>]+(>|$)/g, ""),
-        }
-      ]
-    }
-  },
-  components:{
-    ArticleCardSimple,
-    FilterItems,
-    Page
-  },
-  data () {
-    return {
-      story: { content: {} },
-      article: {},
-      articles: [],
-      producttypes: [], //To filter on
-      colors: [],
-      sizes: [],
-      gender: [],
-      brands: [],
-      sale: [],
-      pageNum: 1,
-      totalPages:1,
-      numOfProducts: 1,
-      readmore: true,
-      shop: '',
-      stories: []
-    }
-  },
-  mounted(){
-    this.$storybridge.on(['input', 'published', 'change'], (event) => {
-      if (event.action == 'input') {
-        if (event.story.id === this.story.id) {
-          this.story.content = event.story.content
-        }
-      } else {
-        window.location.reload()
-      }
-    })
-  },
-  methods:{
-    setReadMore(){
-      this.readmore=false
-    },
-    next(){
-      if(this.pageNum<this.article.TotalPages){
-        this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)+1)}})
-      } 
-    },
-    previous(){
-      if(this.pageNum>1){
-        this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)-1)}})
-      } 
-    }
-  },
-  watch: {
-    '$route.query': function(oldQuery, newQuery){
-      window.scrollTo(0,0)
-      this.$fetch()
-    }
-  },
   async fetch () {
     // Check if we are in the editor mode
     let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
@@ -247,6 +168,84 @@ export default {
       console.log(err.request);
     }
 
+  },
+  head () {
+    return {
+      title: this.article.MetaTitle,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.article.MetaDescription
+        },
+        {
+          hid: 'og:title',
+          name:  'og:title',
+          content:  this.article.MetaTitle,
+        },
+        {
+          hid: 'og:description',
+          name:  'og:description',
+          content: `${this.article.MetaDescription}`.replace(/<\/?[^>]+(>|$)/g, ""),
+        }
+      ]
+    }
+  },
+  components:{
+    ArticleCardSimple,
+    FilterItems,
+    Page
+  },
+  data () {
+    return {
+      story: { content: {} },
+      article: {},
+      articles: [],
+      producttypes: [], //To filter on
+      colors: [],
+      sizes: [],
+      gender: [],
+      brands: [],
+      sale: [],
+      pageNum: 1,
+      totalPages:1,
+      numOfProducts: 1,
+      readmore: true,
+      shop: '',
+      stories: []
+    }
+  },
+  watch: {
+    '$route.query': function(oldQuery, newQuery){
+      window.scrollTo(0,0)
+      this.$fetch()
+    }
+  },
+  mounted(){
+    this.$storybridge.on(['input', 'published', 'change'], (event) => {
+      if (event.action == 'input') {
+        if (event.story.id === this.story.id) {
+          this.story.content = event.story.content
+        }
+      } else {
+        window.location.reload()
+      }
+    })
+  },
+  methods:{
+    setReadMore(){
+      this.readmore=false
+    },
+    next(){
+      if(this.pageNum<this.article.TotalPages){
+        this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)+1)}})
+      } 
+    },
+    previous(){
+      if(this.pageNum>1){
+        this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)-1)}})
+      } 
+    }
   },
   activated(){
     console.log('activated')

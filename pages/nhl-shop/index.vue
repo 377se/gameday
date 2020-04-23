@@ -115,76 +115,6 @@ import { mapGetters, mapActions } from 'vuex'
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 export default {
-  scrollToTop: true,
-   // ['page','color','size','producttype','attribute','gender','sale','brand','team'],
-  head () {
-    return {
-      title: this.article.MetaTitle,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.article.MetaDescription
-        },
-        {
-          hid: 'og:title',
-          name:  'og:title',
-          content:  this.article.MetaTitle,
-        },
-        {
-          hid: 'og:description',
-          name:  'og:description',
-          content: `${this.article.MetaDescription}`.replace(/<\/?[^>]+(>|$)/g, ""),
-        }
-      ]
-    }
-  },
-  components:{
-    ArticleCardSimple,
-    FilterItems
-  },
-  data () {
-    return {
-      story: { content: {} },
-      article: {},
-      articles: [],
-      producttypes: [], //To filter on
-      colors: [],
-      sizes: [],
-      gender: [],
-      brands: [],
-      pageNum: 1,
-      totalPages:1,
-      numOfProducts: 1,
-      readmore: true
-    }
-  },
-  computed: {
-    ...mapGetters({
-      menu: 'nhlMenu'
-    })
-  },
-  methods:{
-    setReadMore(){
-      this.readmore = false
-    },
-    next(){
-      if(this.pageNum<this.article.TotalPages){
-        this.$router.push({query: {...this.$route.query, page: (this.pageNum+1)}})
-      } 
-    },
-    previous(){
-      if(this.pageNum>1){
-        this.$router.push({query: {...this.$route.query, page: (this.pageNum-1)}})
-      } 
-    }
-  },
-  watch: {
-    '$route.query': function(oldQuery, newQuery){
-      window.scrollTo(0,0)
-      this.$fetch()
-    }
-  },
   async fetch () {
     console.log('fetch nhl-shop')
     let pageNum = this.$route.query.page?this.$route.query.page:1
@@ -231,6 +161,74 @@ export default {
       console.log(err.request);
     }
 
+  },
+  head () {
+    return {
+      title: this.article.MetaTitle,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.article.MetaDescription
+        },
+        {
+          hid: 'og:title',
+          name:  'og:title',
+          content:  this.article.MetaTitle,
+        },
+        {
+          hid: 'og:description',
+          name:  'og:description',
+          content: `${this.article.MetaDescription}`.replace(/<\/?[^>]+(>|$)/g, ""),
+        }
+      ]
+    }
+  },
+  components:{
+    ArticleCardSimple,
+    FilterItems
+  },
+  data () {
+    return {
+      story: { content: {} },
+      article: {},
+      articles: [],
+      producttypes: [], //To filter on
+      colors: [],
+      sizes: [],
+      gender: [],
+      brands: [],
+      pageNum: 1,
+      totalPages:1,
+      numOfProducts: 1,
+      readmore: true
+    }
+  },
+  watch: {
+    '$route.query': function(oldQuery, newQuery){
+      window.scrollTo(0,0)
+      this.$fetch()
+    }
+  },
+  computed: {
+    ...mapGetters({
+      menu: 'nhlMenu'
+    })
+  },
+  methods:{
+    setReadMore(){
+      this.readmore = false
+    },
+    next(){
+      if(this.pageNum<this.article.TotalPages){
+        this.$router.push({query: {...this.$route.query, page: (this.pageNum+1)}})
+      } 
+    },
+    previous(){
+      if(this.pageNum>1){
+        this.$router.push({query: {...this.$route.query, page: (this.pageNum-1)}})
+      } 
+    }
   },
   activated(){
     console.log('activated nhl-shop')

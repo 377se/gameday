@@ -83,7 +83,6 @@ import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 import Page from "@/components/Page";
 export default {
-  scrollToTop: true,
   //['page','color','size','producttype','attribute','gender','sale','brand','team'],
   head () {
     return {
@@ -153,6 +152,12 @@ export default {
         window.location.reload()
       }
     })
+  },
+  watch: {
+    '$route.query': function(oldQuery, newQuery){
+      window.scrollTo(0,0)
+      this.$fetch()
+    }
   },
   async fetch () {
     // Check if we are in the editor mode

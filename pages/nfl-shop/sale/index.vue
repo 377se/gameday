@@ -153,6 +153,12 @@ export default {
       } 
     }
   },
+  watch: {
+    '$route.query': function(oldQuery, newQuery){
+      window.scrollTo(0,0)
+      this.$fetch()
+    }
+  },
   async fetch () {
     // Check if we are in the editor mode
     let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'

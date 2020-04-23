@@ -131,6 +131,12 @@ export default {
       } 
     }
   },
+  watch: {
+    '$route.query': function(oldQuery, newQuery){
+      window.scrollTo(0,0)
+      this.$fetch()
+    }
+  },
   async fetch () {
     let pageNum = this.$route.query.page?this.$route.query.page:1
     let color = this.$route.query.color?this.$route.query.color:null

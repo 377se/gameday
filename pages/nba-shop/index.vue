@@ -115,7 +115,6 @@ import { mapGetters, mapActions } from 'vuex'
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 export default {
-  scrollToTop: true,
    // ['page','color','size','producttype','attribute','gender','sale','brand','team'],
   head () {
     return {
@@ -177,6 +176,12 @@ export default {
       if(this.pageNum>1){
         this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)-1)}})
       } 
+    }
+  },
+  watch: {
+    '$route.query': function(oldQuery, newQuery){
+      window.scrollTo(0,0)
+      this.$fetch()
     }
   },
   async fetch () {
