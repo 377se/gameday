@@ -2,20 +2,15 @@
   <div 
     v-editable="blok"
     class="uk-container uk-container-large uk-padding-small">
-    <h1
-      v-if="blok.title"
-      class="uk-margin-remove-top">{{ blok.title }}</h1>
-    <div
-      v-if="blok.description"
-      :class="{'read-more':readmore}" 
-      @click="setReadMore()"
-      v-html="blok.description.html"/>
-    <component v-for="child in blok.body" :key="child._uid" :blok="child" :is="child.component"></component>
+    <component 
+      v-for="child in blok.body" :key="child._uid" :blok="child" :is="child.component"
+      :sb="true"/>
   </div>
 </template>
 
 <script>
 import TextContent from '@/components/TextContent'
+import article_team_list from "@/components/articles/ArticleTeamList";
 import promo from '@/components/promo/Promo'
 import products_list from '@/components/promo/ProductsList'
 import promo_button from '@/components/promo/PromoButton'
@@ -30,6 +25,7 @@ import image_list from '@/components/editorial/ImageList'
 export default {
   components: {
     TextContent,
+    article_team_list,
     promo,
     products_list,
     promo_button,
