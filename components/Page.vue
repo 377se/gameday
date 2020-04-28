@@ -12,6 +12,9 @@
 import TextContent from '@/components/TextContent'
 import article_team_list from "@/components/articles/ArticleTeamList";
 import promo from '@/components/promo/Promo'
+
+import links_block from '@/components/blocks/LinksBlock'
+
 import products_list from '@/components/promo/ProductsList'
 import promo_button from '@/components/promo/PromoButton'
 
@@ -27,6 +30,7 @@ export default {
     TextContent,
     article_team_list,
     promo,
+    links_block,
     products_list,
     promo_button,
     editorial_header,
