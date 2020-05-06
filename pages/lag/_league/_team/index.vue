@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="uk-position-relative">
     <div class="uk-container uk-container-large uk-padding-small">
       <ul class="uk-breadcrumb">
         <li>
