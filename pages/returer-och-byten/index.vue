@@ -38,7 +38,7 @@ export default {
     // Check if we are in the editor mode
     let version = context.query._storyblok || context.isDev ? 'draft' : 'published'
     // Load the JSON from the API
-    return context.app.$storyapi.get(`cdn/stories/returer-och-byten`, {
+    return context.app.$storyapi.get(`cdn/stories/${process.env.STORYBLOK_CATALOGUE}returer-och-byten`, {
       version: version,
       cv: context.store.getters.version
     }).then((res) => {

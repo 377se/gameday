@@ -192,7 +192,7 @@ export default {
         this.$axios.$get(
           '/webapi/Filter/GetBrandList?categoryName=nfl&teamName=null&garmentName=null'
         ),
-        this.$storyapi.get(`cdn/stories/nfl-shop/sale`, {
+        this.$storyapi.get(`cdn/stories/${process.env.STORYBLOK_CATALOGUE}nfl-shop/sale`, {
           version: version,
           cv: this.$store.getters.version
         })

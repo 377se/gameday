@@ -48,7 +48,7 @@ export default {
         await context.app.$axios.$get(
           '/webapi/Coins/GetCoins'
         ),
-        await context.app.$storyapi.get(`cdn/stories/my-account/coins`, {
+        await context.app.$storyapi.get(`cdn/stories/${process.env.STORYBLOK_CATALOGUE}my-account/coins`, {
           version: version,
           cv: context.store.getters.version
         })
