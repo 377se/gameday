@@ -222,7 +222,7 @@ export default {
 }
 </script>
 <style lang="scss">
-@import '~/assets/scss/vars.scss';
+
 .read-more{
   max-height: 74px;
   position: relative;

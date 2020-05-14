@@ -77,7 +77,7 @@ export default {
 }
 </script>
 <style lang="scss">
-@import '~/assets/scss/vars.scss';
+
 
 .lfc-green{
   color: $global-secondary-background;

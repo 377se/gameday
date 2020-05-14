@@ -19,7 +19,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~/assets/scss/vars.scss';
 
 h2 {
   width: 100%;

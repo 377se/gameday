@@ -8,8 +8,6 @@
 </script>
 
 <style lang="scss">
-@import '~/assets/scss/vars.scss';
-
 .text-container {
   color: $global-inverse-color !important;
   margin-right: 18px;

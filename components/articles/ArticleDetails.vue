@@ -183,7 +183,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~/assets/scss/vars.scss';
 .uk-button.button-add-to-cart{
   border-radius:3px;
   line-height:45px;

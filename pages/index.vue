@@ -125,7 +125,6 @@ export default {
 }
 </script>
 <style lang="scss">
-@import '~/assets/scss/vars.scss';
 .promo-squares{
   background:#002A32;
   justify-content: center;

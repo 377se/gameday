@@ -11,7 +11,7 @@
       <div class="uk-navbar-left">
         <nuxt-link 
           class="uk-navbar-item uk-logo" 
-          to="/"><img src="~assets/gameday-logo.svg" class="logo"></nuxt-link>
+          to="/"><img :src="logo" class="logo"></nuxt-link>
       </div>
 
       <div 
@@ -64,6 +64,11 @@ export default {
   components: {
     TheHamburger
   },
+  data(){
+    return{
+      logo:process.env.LOGO_URL
+    }
+  },
   computed: {
     ...mapGetters({
       counter: 'basket/counter',
@@ -79,7 +84,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~/assets/scss/vars.scss';
 .uk-logo{
   padding:0;margin:0 15px;
 }

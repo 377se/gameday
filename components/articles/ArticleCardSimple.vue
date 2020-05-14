@@ -52,7 +52,6 @@ export default {
 }
 </script>
 <style lang="scss">
-@import '~/assets/scss/vars.scss';
 .your-price{
   color:$global-primary-background;
   font-weight:bold;

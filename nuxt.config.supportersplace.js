@@ -2,9 +2,9 @@ export default {
   env: {
     THUMB_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_80,f_auto/https://static.supportersplace.se/product/',
     LIST_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_360,f_auto/',
-    DETAILS_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_640,f_auto/http://static.supportersplace.se/product/',
-    STORYBLOK_CATALOGUE: '',
-    LOGO_URL: '/sites/gameday/gameday-logo.svg'
+    DETAILS_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_640,f_auto/http://static.supportersplace.se/product/'
+    ,STORYBLOK_CATALOGUE: 'supportersplace',
+    LOGO_URL: '/sites/supportersplace/supportersplace-logo-light.png'
   },
   mode: 'universal',
   /*
@@ -32,7 +32,7 @@ export default {
    */
   css: [
     // SCSS file in the project
-    '~/assets/scss/site.scss'
+    '~/assets/scss/site.supportersplace.scss'
     //'uikit/dist/css/uikit.css'
   ],
   router: {
@@ -45,7 +45,7 @@ export default {
    */
   plugins: [
     {src: '~/plugins/vue-placeholders.js'},
-    { src: "~/plugins/uikit.js", ssr: false },
+    {src: "~/plugins/uikit.js", ssr: false },
     {src: '~/plugins/axios'}
   ],
   render: {
@@ -116,7 +116,7 @@ export default {
   ],
   styleResources: {
     scss: [
-    './assets/scss/vars.scss'
+    './assets/scss/vars.supportersplace.scss'
     ]
   },
   webfontloader: {

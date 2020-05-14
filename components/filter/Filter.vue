@@ -282,7 +282,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '~/assets/scss/vars.scss';
 .filter-button{
   width:240px;
   position:fixed;
