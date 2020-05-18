@@ -40,6 +40,7 @@
             <li><nuxt-link to="/kopvillkor">Köpvillkor</nuxt-link></li>
             <li><nuxt-link to="/leverans-och-betalning">Leverans &amp; betalning</nuxt-link></li>
             <li><nuxt-link to="/returer-och-byten">Returer &amp; byten</nuxt-link></li>
+            <li><nuxt-link to="/faq">Ofte stillede spørgsmål</nuxt-link></li>
           </ul>
         </div>
 
