@@ -4,7 +4,8 @@ export default {
     LIST_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_360,f_auto/',
     DETAILS_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_640,f_auto/http://static.supportersplace.se/product/'
     ,STORYBLOK_CATALOGUE: 'supportersplace/',
-    LOGO_URL: '/sites/supportersplace/supportersplace-logo-light.png'
+    LOGO_URL: '/sites/supportersplace/supportersplace-logo-light.png',
+    SITE_ID: 1
   },
   mode: 'universal',
   /*
@@ -44,6 +45,7 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
+    {src: '~/plugins/supportersplace.js'},
     {src: '~/plugins/vue-placeholders.js'},
     {src: "~/plugins/uikit.js", ssr: false },
     {src: '~/plugins/axios'}

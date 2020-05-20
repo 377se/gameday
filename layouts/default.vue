@@ -39,9 +39,6 @@
 </template>
 
 <script>
-import TheHeader from "@/components/gameday/TheHeader";
-import TheFooter from "@/components/gameday/TheFooter";
-import OffscreenMenu from "@/components/gameday/menu/OffscreenMenu";
 import OffscreenBasket from "@/components/basket/TheBasket";
 
 export default {
@@ -49,9 +46,6 @@ export default {
     return this.$nuxtI18nSeo()
   },
   components: {
-    TheHeader,
-    TheFooter, 
-    OffscreenMenu,
     OffscreenBasket
   },
   mounted(){

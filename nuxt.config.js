@@ -4,7 +4,8 @@ export default {
     LIST_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_360,f_auto/',
     DETAILS_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_640,f_auto/http://static.supportersplace.se/product/',
     STORYBLOK_CATALOGUE: '',
-    LOGO_URL: '/sites/gameday/gameday-logo.svg'
+    LOGO_URL: '/sites/gameday/gameday-logo.svg',
+    SITE_ID: 6
   },
   mode: 'universal',
   /*
@@ -44,8 +45,9 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
+    {src: '~/plugins/gameday.js'},
     {src: '~/plugins/vue-placeholders.js'},
-    { src: "~/plugins/uikit.js", ssr: false },
+    {src: "~/plugins/uikit.js", ssr: false },
     {src: '~/plugins/axios'}
   ],
   render: {

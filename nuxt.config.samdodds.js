@@ -4,7 +4,8 @@ export default {
     LIST_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_360,f_auto/',
     DETAILS_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_640,f_auto/http://static.supportersplace.se/product/'
     ,STORYBLOK_CATALOGUE: 'samdodds/da-dk/',
-    LOGO_URL: '/sites/samdodds/samdodds-logo.png'
+    LOGO_URL: '/sites/samdodds/samdodds-logo.png',
+    SITE_ID: 2
   },
   mode: 'universal',
   /*
@@ -45,6 +46,7 @@ export default {
    */
   plugins: [
     {src: '~/plugins/vue-placeholders.js'},
+    {src: '~/plugins/samdodds.js'},
     {src: "~/plugins/uikit.js", ssr: false },
     {src: '~/plugins/axios'}
   ],
@@ -133,7 +135,7 @@ export default {
   },
   proxy: {
     '/webapi': {
-      target: process.env.NODE_ENV !== 'production'?'https://beta.gameday.se':'https://api.gameday.se'
+      target: process.env.NODE_ENV !== 'production'?'https://api.samdodds.com':'https://api.samdodds.com'
     }
   },
   /*
