@@ -66,7 +66,7 @@
             v-for="article in articles"
             :key="article.Id"
             :article="article"
-            :url="`/lag/${$route.params.league}/${$route.params.team}/${article.SeoName}`"
+            :url="`/a/${article.Id}/${article.SeoName}`"
           />
           <div
             v-if="articles.length<1"
@@ -114,19 +114,19 @@ export default {
           '/webapi/Article/getArticleListByCategoryId?pageSize=0&brand='+brand+'&attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +this.$route.params.categoryid
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetProductTypeList?seoName=null&teamName=null'
+          `/webapi/Filter/GetProductTypeListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null`
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetColourList?categoryName=null&teamName=null&garmentName=null'
+          `/webapi/Filter/GetColourListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null`
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetSizeList?categoryName=null&teamName=null&garmentName=null'
+          `/webapi/Filter/GetSizeListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null`
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetGenderList?categoryName=null&teamName=null&garmentName=null'
+          `/webapi/Filter/GetGenderListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null`
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetBrandList?categoryName=null&teamName=null&garmentName=null'
+          `/webapi/Filter/GetBrandListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null`
         )
       ]);
       this.articles=a[0].ArticleList
