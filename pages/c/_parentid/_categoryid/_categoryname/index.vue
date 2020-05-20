@@ -16,14 +16,13 @@
       :blok="story.content" 
       :is="story.content.component" />
     <div
-      v-else 
       class="uk-container uk-container-large uk-padding-small">
-      <article_team_list />
+      <ArticleTeamListByCategory />
     </div>
   </section>
 </template>
 <script>
-import article_team_list from "@/components/articles/ArticleTeamList";
+import ArticleTeamListByCategory from "@/components/articles/ArticleTeamListByCategory";
 import Page from '@/components/Page'
 
 export default {
@@ -48,7 +47,7 @@ export default {
 
   },
   components:{
-    article_team_list,
+    ArticleTeamListByCategory,
     Page
   },
   data () {
@@ -83,12 +82,6 @@ export default {
       if(this.pageNum>1){
         this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)-1)}})
       } 
-    }
-  },
-  activated(){
-    console.log('activated')
-    if (this.$fetchState.timestamp <= Date.now() - 600000) {
-      this.$fetch()
     }
   }
 }
