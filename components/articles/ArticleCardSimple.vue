@@ -19,10 +19,28 @@
       <div
         class="uk-card-footer uk-padding-small uk-padding-remove-top uk-text-small"
       >
-          <span class="your-price">{{ article.DiscountedPriceDisplay }}</span> 
+        <template
+          v-if="article.DiscountType==1">
+          <span 
+            class="your-price"
+            >{{ article.DiscountedPriceDisplay }}</span> 
           <span 
             class="orig-price"
-            :class="{'line-through':article.DiscountedPriceDisplay}">{{ article.PriceDisplay }}</span>
+            :class="{'line-through':article.DiscountedPriceDisplay}">
+            (ord. {{ article.PriceDisplay }})
+          </span>
+        </template>
+        <template
+          v-else-if="article.DiscountType==2">
+          <span 
+            class="your-price"
+            >{{ article.PriceDisplay }}</span> 
+          <span 
+            v-if="memberprices"
+            class="orig-price">
+            (medlem {{ article.DiscountedPriceDisplay }})
+          </span>
+        </template>
       </div>
     </div>
   </div>
@@ -38,7 +56,8 @@ export default {
   },
   data() {
     return{
-      list_src:process.env.LIST_SRC
+      list_src:process.env.LIST_SRC,
+      memberprices: process.env.MEMBER_PRICES
     }
   },
   methods:{

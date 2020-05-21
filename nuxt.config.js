@@ -5,7 +5,8 @@ export default {
     DETAILS_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_640,f_auto/http://static.supportersplace.se/product/',
     STORYBLOK_CATALOGUE: '',
     LOGO_URL: '/sites/gameday/gameday-logo.svg',
-    SITE_ID: 6
+    SITE_ID: 6,
+    MEMBER_PRICES: false
   },
   mode: 'universal',
   /*

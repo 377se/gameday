@@ -27,10 +27,28 @@
           /-->
         </div>
         <div class="uk-width-1-1 uk-margin-small">
-          <span class="your-price">{{ article.DiscountedPriceDisplay }}</span> 
-          <span 
-            class="orig-price"
-            :class="{'line-through':article.DiscountedPriceDisplay}">{{ article.PriceDisplay }}</span>
+          <template
+              v-if="article.DiscountType==1">
+              <span 
+                class="your-price"
+                >{{ article.DiscountedPriceDisplay }}</span> 
+              <span 
+                class="orig-price"
+                :class="{'line-through':article.DiscountedPriceDisplay}">
+                (ord. {{ article.PriceDisplay }})
+              </span>
+            </template>
+            <template
+              v-else-if="article.DiscountType==2">
+              <span 
+                class="your-price"
+                >{{ article.PriceDisplay }}</span> 
+              <span 
+                v-if="memberprices"
+                class="orig-price">
+                (medlem {{ article.DiscountedPriceDisplay }})
+              </span>
+            </template>
         </div>
         <div
           v-if="!article.IsOneSize" 
@@ -136,7 +154,8 @@ export default {
   data() {
     return{
       chosenSize:-1,
-      isSubmitting:false
+      isSubmitting:false,
+      memberprices: process.env.MEMBER_PRICES
     }
   },
   mounted() {
