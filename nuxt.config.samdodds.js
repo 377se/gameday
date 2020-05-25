@@ -6,7 +6,8 @@ export default {
     ,STORYBLOK_CATALOGUE: 'samdodds/da-dk/',
     LOGO_URL: '/sites/samdodds/samdodds-logo.png',
     SITE_ID: 2,
-    MEMBER_PRICES: true
+    MEMBER_PRICES: true,
+    ISO_LANG_COUNTRY: 'da-DK'
   },
   mode: 'universal',
   /*

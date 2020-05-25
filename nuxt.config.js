@@ -6,7 +6,8 @@ export default {
     STORYBLOK_CATALOGUE: '',
     LOGO_URL: '/sites/gameday/gameday-logo.svg',
     SITE_ID: 6,
-    MEMBER_PRICES: false
+    MEMBER_PRICES: false,
+    ISO_LANG_COUNTRY: 'sv-SE'
   },
   mode: 'universal',
   /*

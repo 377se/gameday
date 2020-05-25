@@ -6,7 +6,8 @@ export default {
     ,STORYBLOK_CATALOGUE: 'supportersplace/',
     LOGO_URL: '/sites/supportersplace/supportersplace-logo-light.png',
     SITE_ID: 1,
-    MEMBER_PRICES: true
+    MEMBER_PRICES: true,
+    ISO_LANG_COUNTRY: 'sv-SE'
   },
   mode: 'universal',
   /*
