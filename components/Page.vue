@@ -16,6 +16,7 @@ import promo from '@/components/promo/Promo'
 import links_block from '@/components/blocks/LinksBlock'
 
 import products_list from '@/components/promo/ProductsList'
+import products_list_by_id from '@/components/promo/ProductsListByCategoryId'
 import promo_button from '@/components/promo/PromoButton'
 
 import editorial_header from '@/components/editorial/Header'
@@ -32,6 +33,7 @@ export default {
     promo,
     links_block,
     products_list,
+    products_list_by_id,
     promo_button,
     editorial_header,
     editorial_text,

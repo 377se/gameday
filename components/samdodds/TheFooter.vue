@@ -70,7 +70,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 footer{
-  background:#002a32;
+  background:#000000;
   color: #ffffff;
 }
 footer a{
