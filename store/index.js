@@ -79,7 +79,7 @@ export const actions = {
     await Promise.all(
       [context.app.$axios.$get('https://api.storyblok.com/v1/cdn/spaces/me?token='+process.env.STORYBLOK)]
     ).then(res =>{
-      commit('setVersion', res[0])
+      commit('setVersion', res[0].space)
     }).catch((err)=>{
       throw new Error("Error getting version:" + err)
     })
