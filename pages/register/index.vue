@@ -11,7 +11,7 @@
 
             <div  
               class="uk-margin">
-              <label class="uk-form-label">Email</label>
+              <label class="uk-form-label">{{ $getCMSEntry(labels,'email', 'Email') }}</label>
               <div class="uk-form-controls">
                 <input 
                   v-model="form.email"
@@ -22,7 +22,7 @@
             </div>
             <div 
               class="uk-margin" >
-              <label class="uk-form-label">Lösenord</label>
+              <label class="uk-form-label">{{ $getCMSEntry(labels,'password', 'Lösenord') }}</label>
               <div class="uk-form-controls">
                 <input 
                   v-model="form.password"
@@ -34,7 +34,7 @@
 
             <div 
               class="uk-margin" >
-              <label class="uk-form-label">Repetera lösenordet</label>
+              <label class="uk-form-label">{{ $getCMSEntry(labels,'repeat_password', 'Repetera lösenordet') }}</label>
               <div class="uk-form-controls">
                 <input 
                   v-model="form.repeatpassword"
@@ -52,7 +52,7 @@
             <div class="uk-margin uk-text-center">
               <button 
                 class="uk-button uk-button-primary"
-                type="submit">Registrera dig</button>
+                type="submit">{{ $getCMSEntry(labels,'btn_register', 'Registrera dig') }}</button>
               <!--ButtonSubmit 
                 :is-submitting="isSubmitting"
                 :button-text="labels.entities.labels['101722'].value" /-->
@@ -60,7 +60,7 @@
             
 
             <div class="uk-margin uk-text-center">
-              <strong>Har du redan ett konto?</strong><br><nuxt-link to="/login">Logga då in här!</nuxt-link>
+              <strong>{{ $getCMSEntry(labels,'already_have_account', 'Har du redan ett konto?') }}</strong><br><nuxt-link to="/login">{{ $getCMSEntry(labels,'login_here_then', 'Logga då in här!') }}</nuxt-link>
             </div>
 
           </fieldset>
@@ -69,10 +69,10 @@
       <div 
         v-else
         class="uk-container uk-container-xsmall uk-padding uk-text-center">
-        <h1>Du är nu registrerad!</h1>
+        <h1>{{ $getCMSEntry(labels,'register_success_message', 'Du är nu registrerad!') }}</h1>
         <nuxt-link
           to="/login"
-          class="uk-button uk-button-primary">Logga in här</nuxt-link>
+          class="uk-button uk-button-primary">{{ $getCMSEntry(labels,'login_here', 'Logga in här') }}Logga in här</nuxt-link>
       </div>
     </div>
   </section>
@@ -83,6 +83,16 @@ import { mapGetters } from 'vuex'
 import Alert from '@/components/Alert'
 
 export default {
+  async fetch () {
+    try{
+      let [storyblok] = await Promise.all([
+          this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+process.env.ISO_LANG_COUNTRY.toLowerCase() +"&datasource=fe-labels-register&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
+      ]);
+      this.labels = storyblok.datasource_entries.concat(storyblok_global.datasource_entries)
+    }catch(error){
+      logger.error(error);
+    }
+  },
   components:{
     Alert
   },
@@ -103,7 +113,7 @@ export default {
         password: '',
         repeatpassword: ''
       },
-      labels: {},
+      labels: [],
       errors: [],
       success: false,
       isSubmitting: false

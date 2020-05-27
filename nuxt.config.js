@@ -7,7 +7,9 @@ export default {
     LOGO_URL: '/sites/gameday/gameday-logo.svg',
     SITE_ID: 6,
     MEMBER_PRICES: false,
-    ISO_LANG_COUNTRY: 'sv-SE'
+    ISO_LANG_COUNTRY: 'sv-SE',
+    STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt'
+
   },
   mode: 'universal',
   /*
@@ -50,7 +52,8 @@ export default {
     {src: '~/plugins/gameday.js'},
     {src: '~/plugins/vue-placeholders.js'},
     {src: "~/plugins/uikit.js", ssr: false },
-    {src: '~/plugins/axios'}
+    {src: '~/plugins/axios'},
+    {src: '~/plugins/get'},
   ],
   render: {
     http2: {

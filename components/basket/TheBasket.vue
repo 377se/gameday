@@ -9,7 +9,7 @@
       <div 
         style="height:80px;background:#fa6900;"
         class="uk-flex">
-        <h3 style="color:#fff;line-height:80px;margin-left:12px;">Varukorg</h3>
+        <h3 style="color:#fff;line-height:80px;margin-left:12px;">{{ $getCMSEntry(global_labels,'basket_header', 'Varukorg') }}</h3>
         <button 
           id="close-basket" 
           class="uk-offcanvas-close uk-icon uk-close" 
@@ -66,7 +66,7 @@
                 <a 
                   href="#"
                   style="text-decoration:underline;color:#333;"
-                  @click.prevent.stop="deleteFromCart(item.Id)">Ta bort</a>
+                  @click.prevent.stop="deleteFromCart(item.Id)">{{ $getCMSEntry(global_labels,'basket_delete_from_cart', 'Ta bort') }}</a>
               </td>
             </tr>
           </tbody>
@@ -89,7 +89,7 @@
             </tr-->
             <tr>
               <td colspan="2" style="text-align:right">
-                <strong>Totalt <span class="payment-total-ex-shipping">exkl.frakt</span></strong>
+                <strong>{{ $getCMSEntry(global_labels,'basket_total', 'Totalt') }} <span class="payment-total-ex-shipping">{{ $getCMSEntry(global_labels,'basket_ex_shipping', 'exkl.frakt') }}</span></strong>
               </td>
               <td colspan="1" class="total">
                 <strong><span 
@@ -106,13 +106,13 @@
           @click="close()">
           <nuxt-link
             to="/checkout"
-            class="uk-button uk-width-1-1 uk-button-primary">Till betalning</nuxt-link>
+            class="uk-button uk-width-1-1 uk-button-primary">{{ $getCMSEntry(global_labels,'basket_to_checkout', 'Till betalning') }}</nuxt-link>
         </div>
       </div>
       <div
         v-else 
         class="uk-text-center uk-text-small uk-margin-small">
-        Du har inte lagt något i varukorgen ännu!
+        {{ $getCMSEntry(global_labels,'basket_nothing_in_basket', 'Du har inte lagt något i varukorgen ännu!') }}
       </div>
     </div>
   </div>
@@ -121,18 +121,27 @@
 import { mapGetters, mapActions } from 'vuex'
 import VoucherCode from '@/components/voucher/VoucherCode'
 export default {
+  async fetch() {
+    try {
+      const menu = await this.$axios.$get('/webapi/category');
+      this.menu = menu
+    } catch (err) {
+      console.log(err);
+    }
+  },
   components:{
     VoucherCode
   },
   computed: {
     ...mapGetters({
       cart: 'basket/cart',
-      counter: 'basket/counter'
-    }),
+      counter: 'basket/counter',
+      global_labels:'labels'})
   },
   data(){
     return{
-      thumb_src:process.env.THUMB_SRC
+      thumb_src:process.env.THUMB_SRC,
+      labels: []
     }
   },
   methods:{

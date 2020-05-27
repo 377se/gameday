@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="uk-container uk-padding-small">
-      <h3>Glömt lösenordet?</h3>
+      <h3>{{ $getCMSEntry(labels,'header', 'Glömt lösenordet?') }}</h3>
       <form 
         v-if="!success"
         method="post"
@@ -10,13 +10,13 @@
 
           <div  
             class="uk-margin">
-            <label class="uk-form-label">Email</label>
+            <label class="uk-form-label">{{ $getCMSEntry(labels,'email', 'Email') }}</label>
             <div class="uk-form-controls">
               <input 
                 v-model="email"
                 class="uk-input" 
                 type="text"
-                placeholder="Skriv in din email"
+                :placeholder="$getCMSEntry(labels,'placeholder_email', 'Skriv in din email')"
                 name="email"
                 required>
             </div>
@@ -31,7 +31,7 @@
             <ButtonSubmit
               :is-submitting="isSubmitting"
               theme="uk-button-primary"
-              button-text="Skicka återställningsinformation"
+              :button-text="$getCMSEntry(labels,'btn_send', 'Skicka återställningsinformation')"
               :is-submit="true"
             />
           </div>
@@ -41,7 +41,7 @@
       <div 
         v-else>
         <p>
-          Vi har nu skickat dig ett mail för att återställa ditt lösenord. Följ instruktioner i mailet.
+          {{ $getCMSEntry(labels,'forgotten_success_message', 'Vi har nu skickat dig ett mail för att återställa ditt lösenord. Följ instruktioner i mailet.') }}
         </p>
       </div>
     </div>
@@ -53,24 +53,34 @@ import ButtonSubmit from '@/components/ButtonSubmit'
 export default {
   head () {
     return {
-      title: 'Glömt lösenordet?',
+      title: $getCMSEntry(labels,'header', 'Glömt lösenordet?'),
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Glömt lösenordet?'
+          content: $getCMSEntry(labels,'header', 'Glömt lösenordet?')
         },
         {
           hid: 'og:title',
           name:  'og:title',
-          content:  'Glömt lösenordet?',
+          content:  $getCMSEntry(labels,'header', 'Glömt lösenordet?'),
         },
         {
           hid: 'og:description',
           name:  'og:description',
-          content: 'Glömt lösenordet?',
+          content: $getCMSEntry(labels,'header', 'Glömt lösenordet?'),
         }
       ]
+    }
+  },
+  async fetch () {
+    try{
+      let [storyblok] = await Promise.all([
+          this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+process.env.ISO_LANG_COUNTRY.toLowerCase() +"&datasource=fe-labels-forgotten-password&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
+      ]);
+      this.labels = storyblok.datasource_entries.concat(storyblok_global.datasource_entries)
+    }catch(error){
+      logger.error(error);
     }
   },
   components: {
@@ -79,7 +89,7 @@ export default {
   },
   data () {
     return { 
-      labels: {},
+      labels: [],
       email: '',
       errors: [],
       success: false,

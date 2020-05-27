@@ -7,7 +7,8 @@ export default {
     LOGO_URL: '/sites/kopshop/kopshop-logo.png',
     SITE_ID: 3,
     MEMBER_PRICES: true,
-    ISO_LANG_COUNTRY: 'nb-NO'
+    ISO_LANG_COUNTRY: 'nb-NO',
+    STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt'
   },
   mode: 'universal',
   /*
@@ -50,7 +51,8 @@ export default {
     {src: '~/plugins/kopshop.js'},
     {src: '~/plugins/vue-placeholders.js'},
     {src: "~/plugins/uikit.js", ssr: false },
-    {src: '~/plugins/axios'}
+    {src: '~/plugins/axios'},
+    {src: '~/plugins/get'},
   ],
   render: {
     http2: {

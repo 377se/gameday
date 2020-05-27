@@ -5,6 +5,7 @@ export const state = () => ({
   nflMenu:[],
   mlbMenu:[],
   plMenu:[], 
+  labels: [],
   version: 1573637448,
   cid:null
 })
@@ -33,6 +34,9 @@ export const mutations = {
   },
   setVersion(state, version){
     state.version = version.version
+  },
+  setLabels(state,labels){
+    state.labels = labels
   }
 }
 export const getters = {
@@ -56,6 +60,9 @@ export const getters = {
   },
   version(state){
     return state.version
+  },
+  labels(state){
+    return state.labels
   }
 }
 //NHL 202
@@ -64,26 +71,44 @@ export const getters = {
 //PL 421
 //MLB 329
 export const actions = {
-  async nuxtServerInit (vuexContext, context) {
+  async nuxtServerInit ({getters, commit, dispatch}, context) {
     if(context.app.$cookies.get('cid')!=undefined){
-      vuexContext.commit('setCid', context.app.$cookies.get('cid'))
+      commit('setCid', context.app.$cookies.get('cid'))
     } 
-    await Promise.all([
-      await context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=202'),
-      await context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=327'),
-      await context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=328'),
-      await context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=329'),
-      await context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=527'),
-      await context.app.$axios.$get('https://api.storyblok.com/v1/cdn/spaces/me?token=rGRW1HEorfNfSoGS5CzoDwtt')
-    ]).then(res => {
-        vuexContext.commit('setNHLMenu', res[0])
-        vuexContext.commit('setNBAMenu', res[1])
-        vuexContext.commit('setNFLMenu', res[2])
-        vuexContext.commit('setMLBMenu', res[3])
-        vuexContext.commit('setPLMenu', res[4])
-        vuexContext.commit('setVersion', res[5])
+
+    await Promise.all(
+      [context.app.$axios.$get('https://api.storyblok.com/v1/cdn/spaces/me?token='+process.env.STORYBLOK)]
+    ).then(res =>{
+      commit('setVersion', res[0])
     }).catch((err)=>{
-      throw new Error("Error getting teams for menu:" + err)
+      throw new Error("Error getting version:" + err)
     })
+
+    try {
+      let [storyblok] = await Promise.all([
+        context.app.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+process.env.ISO_LANG_COUNTRY.toLowerCase() +"&datasource=fe-labels-global&token="+process.env.STORYBLOK +"&cv="+getters.version)
+      ]);
+      commit('setLabels', storyblok.datasource_entries.concat(storyblok.datasource_entries))
+    } catch (err) {
+      console.log(err);
+    }
+
+    if(process.env.SITE_ID==6){ //Gameday
+      await Promise.all([
+        context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=202'),
+        context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=327'),
+        context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=328'),
+        context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=329'),
+        context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=527'),
+      ]).then(res => {
+          commit('setNHLMenu', res[0])
+          commit('setNBAMenu', res[1])
+          commit('setNFLMenu', res[2])
+          commit('setMLBMenu', res[3])
+          commit('setPLMenu', res[4])
+      }).catch((err)=>{
+        throw new Error("Error getting teams for menu:" + err)
+      })
+    }
   }
 }

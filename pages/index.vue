@@ -2,6 +2,7 @@
   <section>
     <div class="uk-container uk-container-large uk-padding-small"> 
       <div 
+        v-if="siteid==6"
         class="promo-squares uk-text-center uk-flex"
         style="margin-top:-15px;">
         <nuxt-link 
@@ -89,7 +90,8 @@ export default {
     return {
       story: { content: {SEO:{title:'',description:''}} },
       articles: [],
-      productTypes: []
+      productTypes: [],
+      siteid: process.env.SITE_ID
     }
   },
   mounted () {

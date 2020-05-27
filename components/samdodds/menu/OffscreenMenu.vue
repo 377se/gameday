@@ -7,7 +7,7 @@
       <div
         style="height:80px;background:#00bbe0"
         class="uk-flex">
-        <h3 style="color:#fff;line-height:80px;margin-left:12px;">Meny</h3>
+        <h3 style="color:#fff;line-height:80px;margin-left:12px;">{{ $getCMSEntry(global_labels,'menu', 'Meny') }}</h3>
         <button 
           id="close-sidebar" 
           class="uk-offcanvas-close uk-icon uk-close"
@@ -48,7 +48,9 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   async fetch() {
     try {
-      const menu = await this.$axios.$get('/webapi/category');
+      let [menu] = await Promise.all([
+          this.$axios.$get('/webapi/category')
+      ]);
       this.menu = menu
     } catch (err) {
       console.log(err);
@@ -60,6 +62,8 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      global_labels:'labels'})
   },
   watch:{
     $route (to, from){

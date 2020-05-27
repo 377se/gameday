@@ -7,7 +7,8 @@ export default {
     LOGO_URL: '/sites/samdodds/samdodds-logo.png',
     SITE_ID: 2,
     MEMBER_PRICES: true,
-    ISO_LANG_COUNTRY: 'da-DK'
+    ISO_LANG_COUNTRY: 'da-DK',
+    STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt'
   },
   mode: 'universal',
   /*
@@ -50,7 +51,8 @@ export default {
     {src: '~/plugins/vue-placeholders.js'},
     {src: '~/plugins/samdodds.js'},
     {src: "~/plugins/uikit.js", ssr: false },
-    {src: '~/plugins/axios'}
+    {src: '~/plugins/axios'},
+    {src: '~/plugins/get'},
   ],
   render: {
     http2: {

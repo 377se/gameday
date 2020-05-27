@@ -7,7 +7,8 @@ export default {
     LOGO_URL: '/sites/supportersplace/supportersplace-logo-light.png',
     SITE_ID: 1,
     MEMBER_PRICES: true,
-    ISO_LANG_COUNTRY: 'sv-SE'
+    ISO_LANG_COUNTRY: 'sv-SE',
+    STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt'
   },
   mode: 'universal',
   /*
@@ -50,7 +51,8 @@ export default {
     {src: '~/plugins/supportersplace.js'},
     {src: '~/plugins/vue-placeholders.js'},
     {src: "~/plugins/uikit.js", ssr: false },
-    {src: '~/plugins/axios'}
+    {src: '~/plugins/axios'},
+    {src: '~/plugins/get'},
   ],
   render: {
     http2: {

@@ -9,7 +9,7 @@
 
             <div  
               class="uk-margin">
-              <label class="uk-form-label">Email</label>
+              <label class="uk-form-label">{{ $getCMSEntry(labels,'email', 'Email') }}</label>
               <div class="uk-form-controls">
                 <input 
                   v-model="form.email"
@@ -20,7 +20,7 @@
             </div>
             <div 
               class="uk-margin" >
-              <label class="uk-form-label">Password</label>
+              <label class="uk-form-label">{{ $getCMSEntry(labels,'password', 'Lösenord') }}</label>
               <div class="uk-form-controls">
                 <input 
                   v-model="form.password"
@@ -31,7 +31,7 @@
               <div class="uk-margin uk-margin-remove-top uk-text-center uk-text-small">
                 <nuxt-link 
                   to="/forgotten-password" 
-                  style="color:#8c8c8c">Glömt ditt lösenord?</nuxt-link></div>
+                  style="color:#8c8c8c">{{ $getCMSEntry(labels,'forgotten_password', 'Glömt ditt lösenord?') }}</nuxt-link></div>
             </div>
 
             <Alert 
@@ -43,13 +43,13 @@
               <ButtonSubmit 
                 :is-submitting="isSubmitting"
                 theme="uk-button-primary"
-                button-text="Logga in"
+                :button-text="$getCMSEntry(labels,'btn_login', 'Logga in')"
                 :is-submit="true"/>
             </div>
             
 
             <div class="uk-margin uk-text-center">
-              <strong>Har du inget konto ännu?</strong><br><nuxt-link to="/register">Skaffa ett här!</nuxt-link>
+              <strong>{{ $getCMSEntry(labels,'no_account', 'Har du inget konto ännu?') }}</strong><br><nuxt-link to="/register">{{ $getCMSEntry(labels,'get_an_account', 'Skaffa ett här!') }}</nuxt-link>
             </div>
 
           </fieldset>
@@ -65,6 +65,16 @@ import Alert from '@/components/Alert'
 import ButtonSubmit from '@/components/ButtonSubmit'
 
 export default {
+  async fetch () {
+    try{
+      let [storyblok] = await Promise.all([
+          this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+process.env.ISO_LANG_COUNTRY.toLowerCase() +"&datasource=fe-labels-login&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
+      ]);
+      this.labels = storyblok.datasource_entries.concat(storyblok_global.datasource_entries)
+    }catch(error){
+      logger.error(error);
+    }
+  },
   beforeRouteLeave(to, from, next){
     try{
       //Iterate through each object field, key is name of the object field`
@@ -85,7 +95,7 @@ export default {
         email: '',
         password: ''
       },
-      labels: {},
+      labels: [],
       errors: [],
       isSubmitting: false
     }
