@@ -70,7 +70,7 @@ export default {
       let [storyblok] = await Promise.all([
           this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+process.env.ISO_LANG_COUNTRY.toLowerCase() +"&datasource=fe-labels-login&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
       ]);
-      this.labels = storyblok.datasource_entries.concat(storyblok_global.datasource_entries)
+      this.labels = storyblok.datasource_entries
     }catch(error){
       logger.error(error);
     }
