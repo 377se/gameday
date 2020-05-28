@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="uk-container">
-      <h1>Mitt konto</h1>
+      <h1>{{ $getCMSEntry(labels,'myAccount', 'Mitt konto') }}</h1>
       <div>
         <button 
           type="button"
@@ -28,8 +28,22 @@ export default {
     Page,
     TextContent
   },
+
+  async fetch () {
+    try{
+      let [storyblok] = await Promise.all([
+          this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+process.env.ISO_LANG_COUNTRY.toLowerCase() +"&datasource=fe-labels-myaccount&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
+      ]);
+      this.labels = storyblok.datasource_entries
+    }catch(error){
+      logger.error(error);
+    }
+  },
+
   data () {
-    return { story: { content: {} } }
+    return { 
+      labels: [],
+      story: { content: {} } }
   },
   mounted () {
     this.$storybridge.on(['input', 'published', 'change'], (event) => {

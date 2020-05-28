@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="uk-container">
-      <h1>Orderhistorik</h1>
+      <h1>{{ $getCMSEntry(labels,'orderHistory', 'Orderhistorik') }}</h1>
       <ul class="uk-list">
         <li 
           v-for="order in orders"
@@ -15,6 +15,9 @@
   </section>
 </template>
 <script>
+import { mapGetters, mapMutations } from 'vuex'
+
+
 export default {
   head () {
     return {
@@ -41,8 +44,21 @@ export default {
   components:{
 
   },
+
+  async fetch () {
+    try{
+      let [storyblok] = await Promise.all([
+          this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+process.env.ISO_LANG_COUNTRY.toLowerCase() +"&datasource=fe-labels-myaccount&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
+      ]);
+      this.labels = storyblok.datasource_entries
+    }catch(error){
+      logger.error(error);
+    }
+  },
+  
   data () {
     return {
+      labels: [],
       story: { content: {} },
       orders: []
     }

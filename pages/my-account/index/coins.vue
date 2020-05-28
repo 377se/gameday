@@ -1,10 +1,10 @@
 <template>
   <section>
     <div class="uk-container">
-      <h1>Coins</h1>
+      <h1>{{ $getCMSEntry(labels,'coins', 'Coins') }}</h1>
      
-      Antal coins: {{ coins.CoinsValue }}<br />
-      Giltiga t.o.m.: {{ coins.ExpirationDate }}
+      {{ $getCMSEntry(labels,'numberOfCoins', 'Antal coins:') }} {{ coins.CoinsValue }}<br />
+      {{ $getCMSEntry(labels,'coinsValidThru', 'Giltiga t.o.m.:') }} {{ coins.ExpirationDate }}
       <component 
         v-if="story.content.component" 
         :key="story.content._uid" 
@@ -14,6 +14,7 @@
   </section>
 </template>
 <script>
+import { mapGetters, mapMutations } from 'vuex'
 import Page from '@/components/Page'
 import TextContent from '@/components/TextContent'
 
@@ -22,8 +23,19 @@ export default {
     Page,
     TextContent
   },
+  async fetch () {
+    try{
+      let [storyblok] = await Promise.all([
+          this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+process.env.ISO_LANG_COUNTRY.toLowerCase() +"&datasource=fe-labels-myaccount&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
+      ]);
+      this.labels = storyblok.datasource_entries
+    }catch(error){
+      logger.error(error);
+    }
+  },
   data () {
     return { 
+      labels: [],
       story: { content: {} },
       coins: {CoinsValue:0, ExpirationDate:''}
     }
