@@ -5,16 +5,16 @@
         id="myaccountmenu" 
         uk-tab>
         <li class="uk-active">
-          <nuxt-link to="/my-account/">Mitt konto</nuxt-link>
+          <nuxt-link to="/my-account/">{{ $getCMSEntry(labels,'myAccount', 'Mitt konto') }}</nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/my-account/member-info">Medlemsinformation</nuxt-link>
+          <nuxt-link to="/my-account/member-info">{{ $getCMSEntry(labels,'memberInformation', 'Medlemsinformation') }}</nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/my-account/order-history">Orderhistorik</nuxt-link>
+          <nuxt-link to="/my-account/order-history">{{ $getCMSEntry(labels,'orderHistory', 'Orderhistorik') }}</nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/my-account/coins">Coins</nuxt-link>
+          <nuxt-link to="/my-account/coins">{{ $getCMSEntry(labels,'coins', 'Coins') }}</nuxt-link>
         </li>
       </ul>
       <nuxt-child/>
@@ -23,8 +23,25 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex'
+
+
 export default {
-  
+   async fetch () {
+    try{
+      let [storyblok] = await Promise.all([
+          this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+process.env.ISO_LANG_COUNTRY.toLowerCase() +"&datasource=fe-labels-myaccount&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
+      ]);
+      this.labels = storyblok.datasource_entries.concat(storyblok_global.datasource_entries)
+    }catch(error){
+      logger.error(error);
+    }
+  },
+  data() {
+    return {
+      labels: []
+    }
+  }
 }
 </script>
 <style lang="scss">
