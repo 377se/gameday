@@ -1,5 +1,8 @@
 <template>
-  <ArticleDetails v-bind:article="article"></ArticleDetails>
+  <div class="uk-padding-small uk-padding-remove-horizontal uk-padding-remove-bottom">
+    <ArticleDetails 
+      v-bind:article="article"/>
+  </div>
 </template>
 
 <script>

@@ -1,7 +1,9 @@
 <template>
   <section class="uk-position-relative">
     <div class="uk-container uk-container-large uk-padding-small">
-      <ul class="uk-breadcrumb">
+      <ul
+        v-if="false" 
+        class="uk-breadcrumb">
         <li>
           <nuxt-link to="/">
             <span style="vertical-align: bottom;
