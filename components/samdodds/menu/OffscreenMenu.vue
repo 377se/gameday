@@ -24,7 +24,7 @@
               :class="{'uk-parent':cat.SubCategoryList.length>0}">
               <nuxt-link
                 v-if="!cat.SubCategoryList.length>0"
-                :to="'/c/'+cat.Id+'/'+cat.UrlSafeName">{{ cat.Name }}</nuxt-link>
+                :to="'/c/0/'+cat.Id+'/'+cat.UrlSafeName">{{ cat.Name }}</nuxt-link>
               <a v-else to="#">{{ cat.Name }}</a>
                 <ul
                   v-if="cat.SubCategoryList.length>0">
