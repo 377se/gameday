@@ -27,26 +27,9 @@
           @click="setReadMore()"
           v-html="article.SeoContentDescription"/>
         </div>
-      <div 
-        class="uk-container uk-container-large uk-padding-small">
-        <h3
-          v-if="producttypes!=null && producttypes.length>0"
-          >Populära kategorier</h3>
-        <div
-          v-if="producttypes!=null && producttypes.length>0"
-          class="uk-grid uk-grid-small uk-margin-bottom uk-margin-top category-list-slider"
-          uk-grid
-          >
-          <div
-            v-for="pt in producttypes"
-            :key="pt.GarmentId"
-            >
-            <nuxt-link
-              class="uk-label"
-              :to="`/lag/${$route.params.league}/${$route.params.team}/produkttyp/${pt.SeoName}`"><span>{{ pt.Name }}</span></nuxt-link>
-          </div>
-        </div>
         <div 
+          class="uk-container uk-container-large uk-padding-small">
+          <div 
           class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
           uk-sticky="offset:80;width-element:body;bottom:true">
           <strong>{{ article.TotalNumberOfProducts }} produkter</strong> 
@@ -57,37 +40,37 @@
             :gender="gender"
             :brands="brands"
             :show_sale="true"/>
-        </div>
-        <div
-          class="ts-article-list uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
-          uk-grid
-          uk-height-match="target: .uk-card">
-          <ArticleCardSimple
-            v-for="article in articles"
-            :key="article.Id"
-            :article="article"
-            :url="`/a/${article.Id}/${article.SeoName}`"
-          />
-          <div
-            v-if="articles.length<1"
-            class="uk-margin-bottom uk-margin-top" 
-          >
-            Vi hittade inga produkter för det aktuella valet.
           </div>
-        </div>
-        <ul 
-          v-if="article.TotalPages>1"
-          class="uk-pagination uk-flex-center uk-margin-large uk-margin-bottom">
-          <li>
-            <a 
-              href="#"
-              @click.stop.prevent="previous()"><span uk-pagination-previous></span> Föregående</a></li>
-          <li><span>{{ pageNum }}/{{ article.TotalPages }}</span></li>
-          <li>
-            <a 
-              href="#"
-              @click.stop.prevent="next()">Nästa <span uk-pagination-next></span></a></li>
-        </ul>
+          <div
+            class="ts-article-list uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
+            uk-grid
+            uk-height-match="target: .uk-card">
+            <ArticleCardSimple
+              v-for="article in articles"
+              :key="article.Id"
+              :article="article"
+              :url="`/a/${article.Id}/${article.SeoName}`"
+            />
+            <div
+              v-if="articles.length<1"
+              class="uk-margin-bottom uk-margin-top" 
+            >
+              Vi hittade inga produkter för det aktuella valet.
+            </div>
+          </div>
+          <ul 
+            v-if="article.TotalPages>1"
+            class="uk-pagination uk-flex-center uk-margin-large uk-margin-bottom">
+            <li>
+              <a 
+                href="#"
+                @click.stop.prevent="previous()"><span uk-pagination-previous></span> Föregående</a></li>
+            <li><span>{{ pageNum }}/{{ article.TotalPages }}</span></li>
+            <li>
+              <a 
+                href="#"
+                @click.stop.prevent="next()">Nästa <span uk-pagination-next></span></a></li>
+          </ul>
       </div>
     </template>
   </section>
