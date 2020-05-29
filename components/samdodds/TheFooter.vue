@@ -20,7 +20,7 @@
             <a href="https://sv-se.facebook.com/SamDoddsLiverpool" target="_new"><span uk-icon="icon: facebook;ratio:1.5"></span></a>
           </div>
           <div class="uk-margin">
-            <img src="https://cdn.klarna.com/1.0/shared/image/generic/badge/sv_se/checkout/long-white.png?width=320" alt="Klarna">
+            <img src="https://cdn.klarna.com/1.0/shared/image/generic/badge/da_dk/checkout/long-white.png?width=320" alt="Klarna">
           </div>    
         </div>
 
@@ -39,10 +39,6 @@
           <ul class="uk-list uk-text-small">
             <li><nuxt-link to="/foretagsinformation">{{ $getCMSEntry(global_labels,'footer_company_information', 'Företagsinformation') }}</nuxt-link></li>
           </ul>
-        </div>
-
-        <div class="uk-width-expand@m uk-width-1-2@s">               
-          <NewsLetter />
         </div>
 
       </div>
@@ -70,7 +66,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 footer{
-  background:#000000;
+  background: $global-primary-background;
   color: #ffffff;
 }
 footer a{

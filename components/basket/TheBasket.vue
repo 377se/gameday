@@ -7,8 +7,7 @@
       class="uk-offcanvas-bar"
       style="padding:0;background:#fff;">
       <div 
-        style="height:80px;background:#fa6900;"
-        class="uk-flex">
+        class="uk-flex basket-ribbon">
         <h3 style="color:#fff;line-height:80px;margin-left:12px;">{{ $getCMSEntry(global_labels,'basket_header', 'Varukorg') }}</h3>
         <button 
           id="close-basket" 
@@ -162,9 +161,13 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style lang="scss">
 #offscreen-basket .uk-offcanvas-bar{
   color:#333;
+}
+.basket-ribbon{
+  height:80px;
+  background: $global-secondary-background;
 }
 .uk-table td, .uk-table th {
     padding: 8px 6px;}

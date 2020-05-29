@@ -10,7 +10,7 @@
 
       <div class="uk-navbar-left">
         <nuxt-link 
-          class="uk-navbar-item uk-logo" 
+          class="uk-navbar-item uk-padding-small uk-logo" 
           to="/"><img :src="logo" class="logo"></nuxt-link>
       </div>
 

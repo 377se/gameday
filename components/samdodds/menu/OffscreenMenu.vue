@@ -5,8 +5,7 @@
     uk-offcanvas="overlay:true">
     <div class="uk-offcanvas-bar menu">
       <div
-        style="height:80px;background:#00bbe0"
-        class="uk-flex">
+        class="uk-flex menu-ribbon">
         <h3 style="color:#fff;line-height:80px;margin-left:12px;">{{ $getCMSEntry(global_labels,'menu', 'Meny') }}</h3>
         <button 
           id="close-sidebar" 
@@ -78,6 +77,10 @@ export default {
 <style lang="scss" scoped>
 #offscreen-menu.uk-open{
   z-index:9999999;
+}
+.menu-ribbon{
+  height:80px;
+  background: $global-primary-background;
 }
 .menu {
   background-color: #ffffff !important;

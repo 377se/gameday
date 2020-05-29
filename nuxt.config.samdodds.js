@@ -77,19 +77,15 @@ export default {
     //'@nuxtjs/eslint-module'
     '@nuxtjs/gtm', 
   ],
-  gtm: { id: 'GTM-WDJLNSJ' },
+  gtm: { id: 'GTM-NBCJ6D' },
   /*
    ** Nuxt.js modules
    */
   modules: [
-    ['@netsells/nuxt-hotjar', { 
-      id: '1686545', 
-      sv: '',
-    }],
     // Doc: https://axios.nuxtjs.org/usage
     ['@dansmaculotte/nuxt-zendesk',
     { 
-      key: 'b2384b65-02c4-40fe-b25f-c195c554d089',
+      key: '457ea997-85d2-4fa7-a24f-9f1ac8e950f8',
       disabled: false,
       settings: {
         webWidget: {
