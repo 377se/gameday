@@ -98,12 +98,12 @@ export default {
     }],
     ['nuxt-i18n',
       {
-        defaultLocale: 'sv',
+        defaultLocale: 'da',
         strategy: 'prefix_except_default',
         locales: [
           {
-            code: 'sv',
-            iso: 'sv-SE'
+            code: 'da',
+            iso: 'da-DK'
           }
         ],
         seo:false
