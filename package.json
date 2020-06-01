@@ -9,7 +9,7 @@
     "dev:supportersplace": "nuxt --config-file nuxt.config.supportersplace.js",
     "dev:samdodds": "nuxt --config-file nuxt.config.samdodds.js",
     "dev:kopshop": "nuxt --config-file nuxt.config.kopshop.js",
-    "build": "nuxt build",
+    "build": "nuxt build --config-file nuxt.config.samdodds.js",
     "build:supportersplace": "nuxt build --config-file nuxt.config.supportersplace.js",
     "build:samdodds": "nuxt build --config-file nuxt.config.samdodds.js",
     "build:kopshop": "nuxt build --config-file nuxt.config.kopshop.js",
