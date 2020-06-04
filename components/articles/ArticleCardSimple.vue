@@ -41,6 +41,12 @@
             (medlem {{ article.DiscountedPriceDisplay }})
           </span>
         </template>
+        <template
+          v-else>
+          <span 
+            class="your-price"
+            >{{ article.PriceDisplay }}</span>
+        </template>
       </div>
     </div>
   </div>
