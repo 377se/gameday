@@ -123,7 +123,7 @@ export default {
   },
   webfontloader: {
     google: {
-      families: ['Lato:300,400,900'] //Loads Lato
+      families: ['Source+Sans+Pro:wght@400;600;700','Ubuntu:wght@400;500;700&display=swap'] //Loads Source Sans and Ubuntu
     }
   },
   /*

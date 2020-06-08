@@ -111,13 +111,7 @@ export default {
 }
 
 .logo {
-  width: 250px;
+  width: 150px;
 }
 
-.hamburger {
-  color: #00bbe0;
-}
-.hamburger:hover {
-  color: #00bbe0;
-}
 </style>
