@@ -59,7 +59,7 @@ export default {
     }*/
     //UIkit.notification("", {status:'primary'})
     this.$on('zendeskLoaded', (event) => {
-      this.$zendesk.zE('webWidget', 'setLocale', 'da');
+      this.$zendesk.zE('webWidget', 'setLocale', process.env.ISO_LANG);
     })
     
     this.getSession()

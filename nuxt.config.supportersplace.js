@@ -8,6 +8,7 @@ export default {
     SITE_ID: 1,
     MEMBER_PRICES: true,
     ISO_LANG_COUNTRY: 'sv-SE',
+    ISO_LANG: 'sv',
     STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt'
   },
   mode: 'universal',
