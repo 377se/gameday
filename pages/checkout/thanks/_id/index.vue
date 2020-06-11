@@ -11,6 +11,7 @@
       class="uk-container uk-padding-remove"
       v-html="klarnahtml.Html"/>
     <div 
+      v-if="klarnahtml.Order"
       style="display:none;">
       {{ klarnahtml.Order }}
     </div>
@@ -57,20 +58,19 @@ export default {
         parentNode.removeChild(scriptsTags[i])
         parentNode.appendChild(newScriptTag)
     }
-    if(this.klarnahtml!=null && this.klarnahtml.Order){
-      try{
-        dataLayer.push({
-          'event':'paymentThanks',
-          'ecommerce': this.klarnahtml.Order
-        });}catch(err){console.log(err)}
-    }
   },
-  async asyncData({ app, route }) {
+  async fetch() {
     try {
-      const url = `/webapi/klarnacheckout3/GetKlarnaAcknowledge?id=${route.params.id}`;
-      const klarnahtml = await app.$axios.$get(url);
+      const url = `/webapi/klarnacheckout3/GetKlarnaAcknowledge?id=${this.$route.params.id}`;
+      const klarnahtml = await this.$axios.$get(url);
 
-      return { klarnahtml };
+      this.klarnahtml=klarnahtml;
+
+      if(this.klarnahtml!=null && this.klarnahtml.Order){  
+      try{
+        this.$gtm.push({ event: 'paymentThanks', ecommerce: this.klarnahtml.Order })
+        }catch(err){console.log(err)}
+    }
     } catch (err) {
       console.log(err);
     }
