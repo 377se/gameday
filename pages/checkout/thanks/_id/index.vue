@@ -58,19 +58,22 @@ export default {
         parentNode.removeChild(scriptsTags[i])
         parentNode.appendChild(newScriptTag)
     }
+
+    if(this.klarnahtml!=null && this.klarnahtml.Order){  
+    var _this = this;
+    try{
+      this.$gtm.push({ event: 'paymentThanks', ecommerce: _this.klarnahtml.Order })
+      }catch(err){console.log(err)}
+    }
+    
   },
   async fetch() {
+    var _this = this;
     try {
       const url = `/webapi/klarnacheckout3/GetKlarnaAcknowledge?id=${this.$route.params.id}`;
       const klarnahtml = await this.$axios.$get(url);
 
       this.klarnahtml=klarnahtml;
-
-      if(this.klarnahtml!=null && this.klarnahtml.Order){  
-      try{
-        this.$gtm.push({ event: 'paymentThanks', ecommerce: this.klarnahtml.Order })
-        }catch(err){console.log(err)}
-    }
     } catch (err) {
       console.log(err);
     }
