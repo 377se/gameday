@@ -9,10 +9,10 @@
       <picture>
         <source 
           media="(max-width: 360px)" 
-          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/x_1000,y_0,w_1200,h_1200,c_crop/w_360,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
+          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/x_800,y_0,w_1200,c_crop/w_360,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
         <source 
           media="(max-width: 768px)" 
-          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/x_800,y_0,w_1600,h_1200,c_crop/w_768,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
+          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/x_800,y_0,w_1600,c_crop/w_768,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
         <source 
           media="(max-width: 1440px)" 
           :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/w_1440,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">

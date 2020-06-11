@@ -1,9 +1,16 @@
 <template>
   <div 
     v-editable="blok"
-    class="uk-flex uk-grid-small uk-child-width-1-2">
-    <component 
-      v-for="child in blok.body" :key="child._uid" :blok="child" :is="child.component"/>
+    class="uk-position-relative uk-grid-small"
+    tabindex="-1"
+    uk-slider>
+    <ul class="uk-slider-items uk-grid-small">
+      <li class="uk-width-5-6"
+        v-for="child in blok.body" :key="child._uid">
+        <component 
+          :blok="child" :is="child.component"/>
+      </li>
+    </ul>
   </div>
 </template>
 <script>
