@@ -9,6 +9,7 @@ export default {
     MEMBER_PRICES: false,
     ISO_LANG_COUNTRY: 'sv-SE',
     ISO_LANG: 'sv',
+    CURRENCY_CODE: 'SEK',
     STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt'
 
   },

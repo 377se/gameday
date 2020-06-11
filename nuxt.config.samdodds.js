@@ -9,6 +9,7 @@ export default {
     MEMBER_PRICES: true,
     ISO_LANG_COUNTRY: 'da-DK',
     ISO_LANG: 'da',
+    CURRENCY_CODE: 'DKK',
     STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt'
   },
   mode: 'universal',

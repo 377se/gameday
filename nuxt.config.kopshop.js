@@ -9,6 +9,7 @@ export default {
     MEMBER_PRICES: true,
     ISO_LANG_COUNTRY: 'nb-NO',
     ISO_LANG: 'nb',
+    CURRENCY_CODE: 'NOK',
     STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt'
   },
   mode: 'universal',
