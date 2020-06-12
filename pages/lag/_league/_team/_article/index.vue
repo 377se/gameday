@@ -92,7 +92,7 @@ export default {
             content_category: _this.shop + '/lag/'+_this.$route.params.league+'/'+_this.$route.params.team+'/'+article.HeadCategory,
             content_ids: [_this.article.ArticleNumber],
             content_type: 'product',
-            value: _this.article.DiscountedPrice.toFixed(2),
+            value: _this.article.Price.toFixed(2),
             currency: process.env.CURRENCY_CODE
           }
         })
