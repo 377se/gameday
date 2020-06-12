@@ -1,7 +1,28 @@
 <template>
   <div class="uk-padding-small uk-padding-remove-horizontal uk-padding-remove-bottom">
-    <ArticleDetails 
-      v-bind:article="article"/>
+    <template v-if="$fetchState.pending">
+        <div uk-grid class="uk-grid uk-grid-small uk-grid-stack">
+          <section class="uk-width-1-1 uk-width-1-2@m">
+            <content-placeholders
+              :rounded="true">
+              <content-placeholders-img 
+                class="ph-article-img"/>
+            </content-placeholders>
+          </section>
+          <section class="uk-width-1-1 uk-width-1-2@m">
+            <content-placeholders
+              :rounded="true">
+              <content-placeholders-heading />
+              <content-placeholders-text :lines="5" />
+            </content-placeholders>
+          </section>
+        </div>
+      </template>
+      <template
+        v-else>
+        <ArticleDetails 
+          v-bind:article="article"/>
+      </template>
   </div>
 </template>
 
@@ -37,13 +58,13 @@ export default {
   data() {
     return {
       article: {}
-    };
+    }
   },
   async fetch() {
     try {
-      const url = `/webapi/article/GetArticleDetailsById?teamName=null&articleId=${route.params.id}`;
+      const url = `/webapi/article/GetArticleDetailsById?teamName=null&articleId=${this.$route.params.id}`;
       const article = await this.$axios.$get(url);
-
+ 
       this.article=article
       var _this = this
       try{
