@@ -20,7 +20,7 @@
         <input 
           class="uk-input uk-width-expand" 
           type="text" 
-          placeholder="{{ $getCMSEntry(global_labels,'voucher_placeholder', 'Voucherkod') }}"
+          :placeholder="$getCMSEntry(global_labels,'voucher_placeholder', 'Voucherkod')"
           v-model="code">
         <button type="submit" class="uk-text-small uk-margin-small-left uk-button uk-button-default">{{ $getCMSEntry(global_labels,'voucher_btn_activate', 'Aktivera') }}</button>
       </div>
@@ -51,6 +51,10 @@ export default {
       errors: [],
       labels: []
     }
+  },
+  computed: {
+    ...mapGetters({
+      global_labels:'labels'})
   },
   methods:{
     async activateVoucher(){
