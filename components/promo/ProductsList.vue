@@ -1,6 +1,6 @@
 <template>
   <div
-    class="uk-grid uk-grid-small uk-margin-large-bottom uk-margin-large-top product-list-slider"
+    class="uk-grid uk-grid-small uk-margin-large-bottom uk-margin-large-top product-list-slider uk-flex-nowrap"
     uk-grid
     uk-height-match="target: .uk-card">
     <ArticleCardSimple

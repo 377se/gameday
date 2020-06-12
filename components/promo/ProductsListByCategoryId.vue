@@ -1,6 +1,6 @@
 <template>
   <div
-    class="uk-flex uk-grid-small uk-margin-large-bottom uk-margin-large-top product-list-slider"
+    class="uk-flex uk-grid-small uk-margin-large-bottom uk-margin-large-top product-list-slider uk-flex-nowrap"
     uk-height-match="target: .uk-card">
     <ArticleCardSimple
       v-for="article in articles"
