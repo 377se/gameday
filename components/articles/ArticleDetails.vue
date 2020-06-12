@@ -217,7 +217,7 @@ export default {
           console.log(error)
         })
       }else{
-        UIkit.modal.alert('Du glömde välja en storlek!')
+        UIkit.modal.alert(this.$getCMSEntry(global_labels,'article_details_forgot_choose_size', 'Du glömde välja storlek!'))
       }
     },
   }
