@@ -35,7 +35,7 @@
               <span 
                 class="orig-price"
                 :class="{'line-through':article.DiscountedPriceDisplay}">
-                (ord. {{ article.PriceDisplay }})
+                ({{$getCMSEntry(global_labels,'article_details_original_price', 'ord.')}} {{ article.PriceDisplay }})
               </span>
             </template>
             <template
@@ -46,7 +46,7 @@
               <span 
                 v-if="memberprices"
                 class="orig-price">
-                (medlem {{ article.DiscountedPriceDisplay }})
+                ({{$getCMSEntry(global_labels,'article_details_member', 'medlem')}} {{ article.DiscountedPriceDisplay }})
               </span>
             </template>
             <template
@@ -60,12 +60,12 @@
           v-if="!article.IsOneSize" 
           class="uk-flex uk-child-width-expand">
           <div>
-            <strong>Välj storlek</strong>
+            <strong>{{$getCMSEntry(global_labels,'article_details_choose_size', 'Välj storlek')}}</strong>
           </div>
           <div
             v-if="false" 
             class="uk-text-right">
-            <a href="#">Storleksguide</a>
+            <a href="#">{{$getCMSEntry(global_labels,'article_details_size_guide', 'Storleksguide')}}</a>
           </div>
         </div>
         <div 
@@ -84,37 +84,37 @@
               {{size.Name}}
               <span 
                 v-if="size.ItemsInStock<=0"
-                class="sold-out">Slutsåld</span>
+                class="sold-out">{{$getCMSEntry(global_labels,'article_details_sold_out', 'Slutsåld')}}</span>
             </button>
           </div>
         </div>
         <ButtonSubmit
           v-if="!article.IsSoldOut"
           :is-submitting="isSubmitting"
-          button-text="Lägg i varukorgen"
+          :button-text="$getCMSEntry(global_labels,'article_details_add_to_cart', 'Lägg i varukorgen')"
           theme="uk-button uk-button-primary uk-width-1-1 uk-margin-small"
           :class="{'uk-button-disabled':chosenSize!==-1 && !article.IsOneSize}"
           @button-click="addToCart()"
         />
         <div v-else>
-          <h4 class="uk-text-center">Slutsåld</h4>
+          <h4 class="uk-text-center">{{$getCMSEntry(global_labels,'article_details_sold_out', 'Slutsåld')}}</h4>
         </div>
         <button 
           v-if="false"
           type="button"
           class="uk-button uk-button-default uk-width-1-1"
           @click.prevent>
-          Favorit <span uk-icon="heart"/>
+          {{$getCMSEntry(global_labels,'article_details_favourite', 'Favorit')}} <span uk-icon="heart"/>
         </button>
 
         <div class="uk-padding uk-padding-remove-horizontal">
           <ul uk-accordion>
             <li class="uk-open">
-              <a class="uk-accordion-title" href="#">Beskrivning</a>
+              <a class="uk-accordion-title" href="#">{{$getCMSEntry(global_labels,'article_details_desription', 'Beskrivning')}}</a>
               <ArticlePageText 
                 class="uk-accordion-content"
                 v-bind:content="article.Description"/>
-              <p>Artikelnummer: {{ article.ArticleNumber }}</p>
+              <p>{{$getCMSEntry(global_labels,'article_details_article_number', 'Artikelnummer')}}: {{ article.ArticleNumber }}</p>
             </li>
           </ul>
         </div>
@@ -125,6 +125,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import ArticlePageHeader from "@/components/articles/ArticlePageHeader";
 import ArticlePageImages from "@/components/articles/ArticlePageImages";
 import ArticlePageText from "@/components/articles/ArticlePageText";
@@ -163,6 +164,10 @@ export default {
       isSubmitting:false,
       memberprices: process.env.MEMBER_PRICES
     }
+  },
+  computed: {
+    ...mapGetters({
+      global_labels:'labels'})
   },
   mounted() {
     if(this.article.IsOneSize){
