@@ -20,22 +20,23 @@
         <input 
           class="uk-input uk-width-expand" 
           type="text" 
-          placeholder="Voucherkod"
+          placeholder="{{ $getCMSEntry(global_labels,'voucher_placeholder', 'Voucherkod') }}"
           v-model="code">
-        <button type="submit" class="uk-text-small uk-margin-small-left uk-button uk-button-default">Aktivera</button>
+        <button type="submit" class="uk-text-small uk-margin-small-left uk-button uk-button-default">{{ $getCMSEntry(global_labels,'voucher_btn_activate', 'Aktivera') }}</button>
       </div>
     </form>
     <a
       v-else
       href="#"
       class="uk-inline-block uk-text-small uk-padding-small uk-padding-remove-bottom"
-      @click.stop.prevent="show=true">Har du en voucherkod?</a>
+      @click.stop.prevent="show=true">{{ $getCMSEntry(global_labels,'voucher_info', 'Har du en voucherkod?') }}</a>
   </div>
   
 
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import Alert from '@/components/Alert'
 export default {
   components:{
@@ -47,7 +48,8 @@ export default {
       code: '',
       message: null,
       showmessage:false,
-      errors: []
+      errors: [],
+      labels: []
     }
   },
   methods:{
