@@ -197,6 +197,18 @@ export default {
           }else{
             _this.$store.commit('basket/add', response.data)
             UIkit.offcanvas('#offscreen-basket').show();
+            try{
+            this.$gtm.push({event: 'AddToCart', content:{
+              content_name: _this.article.Name, 
+              content_category: _this.article.HeadCategory,
+              content_ids: [_this.article.ArticleNumber],
+              content_type: 'product',
+              value: _this.article.DiscountedPrice.toFixed(2),
+              currency: process.env.CURRENCY_CODE
+            }});
+            }catch(err){
+              console.log(err)
+            }   
           }
           //console.log(response)
         })

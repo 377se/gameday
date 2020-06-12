@@ -72,17 +72,7 @@ export default {
     };
   },
   mounted(){
-    var _this = this
-    try {
-      fbq('track', 'ViewContent', {
-          content_name: _this.article.Name,
-          content_category: _this.shop + '/lag/'+_this.$route.params.league+'/'+_this.$route.params.team+'/'+article.HeadCategory,
-          content_ids: [_this.article.ArticleNumber],
-          content_type: 'product',
-          value: _this.article.DiscountedPrice.toFixed(2),
-          currency: 'SEK'
-      });
-    } catch (err) { }
+
   },
   async fetch() {
     let shop = this.$route.params.league=='premier-league'?this.$route.params.league:this.$route.params.league.toUpperCase()+'-shop'
@@ -94,8 +84,24 @@ export default {
 
       this.article = article
       this.shop = shop
+      var _this = this
+      try{
+        this.$gtm.push({event:'ViewContent',
+          data: {
+            content_name: _this.article.Name,
+            content_category: _this.shop + '/lag/'+_this.$route.params.league+'/'+_this.$route.params.team+'/'+article.HeadCategory,
+            content_ids: [_this.article.ArticleNumber],
+            content_type: 'product',
+            value: _this.article.DiscountedPrice.toFixed(2),
+            currency: process.env.CURRENCY_CODE
+          }
+        })
+      }catch(err){
+        console.log(err)
+      }
+
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
   },
   activated(){

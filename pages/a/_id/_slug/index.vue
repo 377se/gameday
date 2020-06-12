@@ -39,12 +39,27 @@ export default {
       article: {}
     };
   },
-  async asyncData({ app, route }) {
+  async fetch() {
     try {
       const url = `/webapi/article/GetArticleDetailsById?teamName=null&articleId=${route.params.id}`;
-      const article = await app.$axios.$get(url);
+      const article = await this.$axios.$get(url);
 
-      return { article };
+      this.article=article
+      var _this = this
+      try{
+        this.$gtm.push({event:'ViewContent',
+          data: {
+            content_name: _this.article.Name,
+            content_category: _this.article.HeadCategory,
+            content_ids: [_this.article.ArticleNumber],
+            content_type: 'product',
+            value: _this.article.DiscountedPrice.toFixed(2),
+            currency: process.env.CURRENCY_CODE
+          }
+        })
+      }catch(err){
+        console.log(err)
+      }
     } catch (err) {
       console.log(err);
     }
