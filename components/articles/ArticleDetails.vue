@@ -198,7 +198,7 @@ export default {
             _this.$store.commit('basket/add', response.data)
             UIkit.offcanvas('#offscreen-basket').show();
             try{
-            this.$gtm.push({event: 'AddToCart', content:{
+            _this.$gtm.push({event: 'AddToCart', content:{
               content_name: _this.article.Name, 
               content_category: _this.article.HeadCategory,
               content_ids: [_this.article.ArticleNumber],
@@ -217,7 +217,7 @@ export default {
           console.log(error)
         })
       }else{
-        UIkit.modal.alert(this.$getCMSEntry(global_labels,'article_details_forgot_choose_size', 'Du glömde välja storlek!'))
+        UIkit.modal.alert(this.$getCMSEntry(this.global_labels,'article_details_forgot_choose_size', 'Du glömde välja storlek!'))
       }
     },
   }
