@@ -4,6 +4,7 @@ export default {
     LIST_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_360,f_auto/',
     DETAILS_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_640,f_auto/http://static.supportersplace.se/product/'
     ,STORYBLOK_CATALOGUE: 'kopshop/',
+    SITE_URL: 'https://www.kopshop.no',
     LOGO_URL: '/sites/kopshop/kopshop-logo.png',
     SITE_ID: 3,
     MEMBER_PRICES: true,

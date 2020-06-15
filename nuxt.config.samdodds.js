@@ -4,6 +4,7 @@ export default {
     LIST_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_360,f_auto/',
     DETAILS_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_640,f_auto/http://static.supportersplace.se/product/'
     ,STORYBLOK_CATALOGUE: 'samdodds/da-dk/',
+    SITE_URL: 'https://www.samdodds.dk',
     LOGO_URL: '/sites/samdodds/samdodds-logo.png',
     SITE_ID: 2,
     MEMBER_PRICES: true,

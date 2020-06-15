@@ -4,6 +4,7 @@ export default {
     LIST_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_360,f_auto/',
     DETAILS_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_640,f_auto/http://static.supportersplace.se/product/'
     ,STORYBLOK_CATALOGUE: 'supportersplace/',
+    SITE_URL: 'https://www.supportersplace.com',
     LOGO_URL: '/sites/supportersplace/supportersplace-logo-light.png',
     SITE_ID: 1,
     MEMBER_PRICES: true,
