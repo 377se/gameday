@@ -51,6 +51,7 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
+    {src: '~/plugins/jsonld.js'},
     {src: '~/plugins/kopshop.js'},
     {src: '~/plugins/vue-placeholders.js'},
     {src: "~/plugins/uikit.js", ssr: false },
