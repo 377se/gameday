@@ -110,7 +110,7 @@
         <div class="uk-padding uk-padding-remove-horizontal">
           <ul uk-accordion>
             <li class="uk-open">
-              <a class="uk-accordion-title" href="#">{{$getCMSEntry(global_labels,'article_details_desription', 'Beskrivning')}}</a>
+              <a class="uk-accordion-title" href="#">{{$getCMSEntry(global_labels,'article_details_description', 'Beskrivning')}}</a>
               <ArticlePageText 
                 class="uk-accordion-content"
                 v-bind:content="article.Description"/>
