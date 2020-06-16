@@ -161,6 +161,7 @@
   </div>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
   props:{
     productTypes:{
@@ -215,6 +216,10 @@ export default {
       sale_list: [],
       numfilters:0
     }
+  },
+  computed: {
+    ...mapGetters({
+      global_labels:'labels'})
   },
   mounted(){
     this.setNumFilters();
