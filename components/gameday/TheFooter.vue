@@ -31,7 +31,7 @@
             <li><nuxt-link to="/nba-shop">NBA Shop</nuxt-link></li>
             <li><nuxt-link to="/nfl-shop">NFL Shop</nuxt-link></li>
             <li><nuxt-link to="/mlb-shop">MLB Shop</nuxt-link></li>
-            <li><nuxt-link to="/premier-league-shop">Premier League Shop</nuxt-link></li>
+            <li><nuxt-link to="/premier-league">Premier League Shop</nuxt-link></li>
           </ul>
         </div>
 
