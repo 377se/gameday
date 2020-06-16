@@ -79,7 +79,7 @@ export default {
       "name":this.article.Name,
       "description":this.article.Description,
       "url": process.env.SITE_URL + this.$route.path,
-      "image": process.env.DETAILS_SRC + this.article.Images[0],
+      "image": process.env.DETAILS_SRC + this.article.Images[0].Name,
       "brand": this.article.Brand,
       "offers": [
         {
