@@ -7,7 +7,7 @@
         type="button"
         class="uk-button uk-button-primary uk-button-small uk-margin-small-left"
         @click.prevent
-        uk-toggle><span uk-icon="icon: settings;"/> Filter <span v-if="numfilters>0">({{ numfilters }})</span></a>
+        uk-toggle><span uk-icon="icon: settings;"/> {{ $getCMSEntry(global_labels,'filter_header', 'Filter') }} <span v-if="numfilters>0">({{ numfilters }})</span></a>
     </span>
 
 
@@ -20,7 +20,7 @@
         <div
           style="height:80px;background:#00bbe0"
           class="uk-flex">
-          <h3 style="line-height:80px;margin-left:12px;color:#fff;">Filter</h3>
+          <h3 style="line-height:80px;margin-left:12px;color:#fff;">{{ $getCMSEntry(global_labels,'filter_header', 'Filter') }}</h3>
           <button 
             class="uk-offcanvas-close uk-icon uk-close"
             style="top:27px;right:6px;color:#fff;" 
@@ -33,7 +33,7 @@
             style="margin-top:10px;">
             <li 
               v-if="show_sale">
-              <label><input type="checkbox" class="uk-checkbox" value="true" v-model="sale_list" /> REA</label>
+              <label><input type="checkbox" class="uk-checkbox" value="true" v-model="sale_list" /> {{ $getCMSEntry(global_labels,'filter_sale', 'REA') }}</label>
             </li>
           </ul>
           <ul 
@@ -44,7 +44,7 @@
               v-if="teams!=null && teams.length>0">
               <a
                 class="uk-accordion-title" href="#">
-                  Lag
+                  {{ $getCMSEntry(global_labels,'filter_team', 'Lag') }}
                   <span 
                     style="font-size:0.7rem;display:block;">{{ team_list.length }} filter valt</span>
               </a>
@@ -62,7 +62,7 @@
               v-if="productTypes!=null && productTypes.length>0">
               <a
                 class="uk-accordion-title" href="#">
-                  Produkttyper
+                  {{ $getCMSEntry(global_labels,'filter_producttype', 'Produkttyper') }}
                   <span 
                     style="font-size:0.7rem;display:block;">{{ products_list.length }} filter valt</span>
               </a>
@@ -80,7 +80,7 @@
               v-if="gender!=null && gender.length>0">
               <a
                 class="uk-accordion-title" href="#">
-                  Kön
+                  {{ $getCMSEntry(global_labels,'filter_gender', 'Kön') }}
                   <span 
                     style="font-size:0.7rem;display:block;">{{ gender_list.length }} filter valt</span>
               </a>
@@ -99,7 +99,7 @@
               <a 
                 class="uk-accordion-title" 
                 href="#">
-                Färger
+                {{ $getCMSEntry(global_labels,'filter_color', 'Färger') }}
                 <span 
                     style="font-size:0.7rem;display:block;">{{ colors_list.length }} filter valt</span>
               </a>
@@ -118,7 +118,7 @@
               <a 
                 class="uk-accordion-title" 
                 href="#">
-                Storlekar
+                {{ $getCMSEntry(global_labels,'filter_sizes', 'Storlekar') }}
                 <span 
                     style="font-size:0.7rem;display:block;">{{ sizes_list.length }} filter valt</span>
               </a>
@@ -137,7 +137,7 @@
               <a 
                 class="uk-accordion-title" 
                 href="#">
-                Varumärken
+                {{ $getCMSEntry(global_labels,'filter_brand', 'Varumärken') }}
                 <span 
                     style="font-size:0.7rem;display:block;">{{ brands_list.length }} filter valt</span>
               </a>
@@ -153,7 +153,7 @@
             </li>
           </ul>
           <div class="filter-button uk-padding-small uk-margin-small uk-margin-remove-bottom">
-            <button class="uk-button uk-button-primary uk-width-1-1" type="submit">Filtrera</button>
+            <button class="uk-button uk-button-primary uk-width-1-1" type="submit">{{ $getCMSEntry(global_labels,'filter_button', 'Filtrera') }}</button>
           </div>
         </form>
       </div>
