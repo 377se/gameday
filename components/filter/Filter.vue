@@ -46,7 +46,7 @@
                 class="uk-accordion-title" href="#">
                   {{ $getCMSEntry(global_labels,'filter_team', 'Lag') }}
                   <span 
-                    style="font-size:0.7rem;display:block;">{{ team_list.length }} filter valt</span>
+                    style="font-size:0.7rem;display:block;">{{ team_list.length }} {{ $getCMSEntry(global_labels,'filter_selected', 'filter valt') }}</span>
               </a>
               <div class="uk-accordion-content">
                 <ul class="uk-nav uk-list uk-list-divider">
@@ -64,7 +64,7 @@
                 class="uk-accordion-title" href="#">
                   {{ $getCMSEntry(global_labels,'filter_producttype', 'Produkttyper') }}
                   <span 
-                    style="font-size:0.7rem;display:block;">{{ products_list.length }} filter valt</span>
+                    style="font-size:0.7rem;display:block;">{{ products_list.length }} {{ $getCMSEntry(global_labels,'filter_selected', 'filter valt') }}</span>
               </a>
               <div class="uk-accordion-content">
                 <ul class="uk-nav uk-list uk-list-divider">
@@ -82,7 +82,7 @@
                 class="uk-accordion-title" href="#">
                   {{ $getCMSEntry(global_labels,'filter_gender', 'Kön') }}
                   <span 
-                    style="font-size:0.7rem;display:block;">{{ gender_list.length }} filter valt</span>
+                    style="font-size:0.7rem;display:block;">{{ gender_list.length }} {{ $getCMSEntry(global_labels,'filter_selected', 'filter valt') }}</span>
               </a>
               <div class="uk-accordion-content">
                 <ul class="uk-nav uk-list uk-list-divider">
@@ -101,7 +101,7 @@
                 href="#">
                 {{ $getCMSEntry(global_labels,'filter_color', 'Färger') }}
                 <span 
-                    style="font-size:0.7rem;display:block;">{{ colors_list.length }} filter valt</span>
+                    style="font-size:0.7rem;display:block;">{{ colors_list.length }} {{ $getCMSEntry(global_labels,'filter_selected', 'filter valt') }}</span>
               </a>
               <div class="uk-accordion-content">
                 <ul class="uk-nav uk-list uk-list-divider">
@@ -120,7 +120,7 @@
                 href="#">
                 {{ $getCMSEntry(global_labels,'filter_sizes', 'Storlekar') }}
                 <span 
-                    style="font-size:0.7rem;display:block;">{{ sizes_list.length }} filter valt</span>
+                    style="font-size:0.7rem;display:block;">{{ sizes_list.length }} {{ $getCMSEntry(global_labels,'filter_selected', 'filter valt') }}</span>
               </a>
               <div class="uk-accordion-content">
                 <ul class="uk-nav uk-list uk-list-divider">
@@ -139,7 +139,7 @@
                 href="#">
                 {{ $getCMSEntry(global_labels,'filter_brand', 'Varumärken') }}
                 <span 
-                    style="font-size:0.7rem;display:block;">{{ brands_list.length }} filter valt</span>
+                    style="font-size:0.7rem;display:block;">{{ brands_list.length }} {{ $getCMSEntry(global_labels,'filter_selected', 'filter valt') }}</span>
               </a>
               <div class="uk-accordion-content">
                 <ul class="uk-nav uk-list uk-list-divider">
@@ -214,6 +214,7 @@ export default {
       team_list: [],
       brands_list: [],
       sale_list: [],
+      labels: [],
       numfilters:0
     }
   },
