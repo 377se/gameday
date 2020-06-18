@@ -10,7 +10,7 @@
         v-if="!promoList">
         <source 
           media="(max-width: 480px)" 
-          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/w_480,c_fill,ar_1:1,c_crop,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
+          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/w_800,ar_1:1,c_crop/w_480,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
         <source 
           media="(max-width: 768px)" 
           :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/x_800,y_0,w_1600,c_crop/w_768,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
@@ -27,15 +27,15 @@
         v-else>
         <source 
           media="(max-width: 768px)" 
-          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/w_400,c_fill,ar_1:1,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
+          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/w_800,c_fill,ar_1:1,c_crop/w_400,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
         <source 
           media="(max-width: 1440px)" 
-          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/w_400,c_fill,ar_1:1,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
+          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/w_800,c_fill,ar_1:1,c_crop/w_600,c_scalefl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
         <source 
-          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/w_600,c_fill,ar_1:1,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
+          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/w_800,c_fill,ar_1:1,c_crop/w_800,c_scalefl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
         <img 
           alt="Promotion Image" 
-          :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_600,c_fill,ar_1:1,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
+          :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_800,c_fill,ar_1:1,c_crop/w_800,c_scalefl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
       </picture>
       <div
         style="position:absolute;bottom:20px;left:20px;">
