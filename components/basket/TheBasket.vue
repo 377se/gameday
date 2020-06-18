@@ -54,7 +54,7 @@
                 </span>
               </td>
               <td 
-                class="total">
+                class="total" style="padding-right:6px;">
                 <div 
                 v-if="item.IsDiscount"
                 style="text-decoration:line-through;">{{ item.PriceDisplay }}</div>
