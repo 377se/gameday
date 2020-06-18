@@ -18,15 +18,9 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content: process.env.npm_package_description || ''
-      }
     ]
   },
   /*
@@ -90,6 +84,7 @@ export default {
     { 
       key: '457ea997-85d2-4fa7-a24f-9f1ac8e950f8',
       disabled: false,
+      hideOnLoad: true,
       settings: {
         webWidget: {
           color: {
