@@ -11,7 +11,8 @@ export default {
     ISO_LANG_COUNTRY: 'da-DK',
     ISO_LANG: 'da',
     CURRENCY_CODE: 'DKK',
-    STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt'
+    STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt',
+    ZENDESK: '457ea997-85d2-4fa7-a24f-9f1ac8e950f8'
   },
   mode: 'universal',
   /*
@@ -84,7 +85,8 @@ export default {
     ['@dansmaculotte/nuxt-zendesk',
     { 
       key: '457ea997-85d2-4fa7-a24f-9f1ac8e950f8',
-      disabled: false,
+      disabled: true,
+      hideOnLoad: true,
       settings: {
         webWidget: {
           color: {
