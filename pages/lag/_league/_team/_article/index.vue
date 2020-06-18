@@ -69,28 +69,7 @@ export default {
     return {
       article: {},
       shop:''
-    };
-  },
-  jsonld() {
-    return {
-      '@context': 'http://schema.org',
-      '@type': 'Product',
-      "productID":this.article.ArticleNumber,
-      "name":this.article.Name,
-      "description":this.article.Description,
-      "url": process.env.SITE_URL + this.$route.path,
-      "image": process.env.DETAILS_SRC + this.article.Images[0].Name,
-      "brand": this.article.Brand,
-      "offers": [
-        {
-          "@type": "Offer",
-          "price": this.article.Price.toFixed(2),
-          "priceCurrency": process.env.CURRENCY_CODE,
-          "itemCondition": "https://schema.org/NewCondition",
-          "availability": "https://schema.org/InStock"
-        }
-      ]
-    };
+    }
   },
   async fetch() {
     let shop = this.$route.params.league=='premier-league'?this.$route.params.league:this.$route.params.league.toUpperCase()+'-shop'

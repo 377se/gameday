@@ -7,7 +7,7 @@
       <section class="uk-width-1-1 uk-width-1-2@m">
         <ArticlePageImages
           :images="article.Images"
-          :label="article.Label"
+          :label="article.Label!=null?article.Label:{}"
         />
       </section>
 
@@ -164,6 +164,28 @@ export default {
       isSubmitting:false,
       memberprices: process.env.MEMBER_PRICES
     }
+  },
+  jsonld() {
+    var article = this.article
+    return {
+      '@context': 'http://schema.org',
+      '@type': 'Product',
+      "productID":article.ArticleNumber,
+      "name":article.Name,
+      "description":article.Description,
+      "url": process.env.SITE_URL + this.$route.path,
+      "image": process.env.DETAILS_SRC + article.Images[0].Name,
+      "brand": article.Brand,
+      "offers": [
+        {
+          "@type": "Offer",
+          "price": article.Price.toFixed(2),
+          "priceCurrency": process.env.CURRENCY_CODE,
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/InStock"
+        }
+      ]
+    };
   },
   computed: {
     ...mapGetters({
