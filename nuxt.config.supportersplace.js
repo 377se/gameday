@@ -11,7 +11,8 @@ export default {
     ISO_LANG_COUNTRY: 'sv-SE',
     ISO_LANG: 'sv',
     CURRENCY_CODE: 'SEK',
-    STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt'
+    STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt',
+    ZENDESK: 'b2384b65-02c4-40fe-b25f-c195c554d089'
   },
   mode: 'universal',
   /*
@@ -80,6 +81,7 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     //'@nuxtjs/eslint-module'
     '@nuxtjs/gtm', 
+    '@nuxtjs/pwa',
   ],
   gtm: { id: 'GTM-WDJLNSJ' },
   /*
@@ -94,7 +96,7 @@ export default {
     ['@dansmaculotte/nuxt-zendesk',
     { 
       key: 'b2384b65-02c4-40fe-b25f-c195c554d089',
-      disabled: false,
+      disabled: true,
       settings: {
         webWidget: {
           color: {
@@ -119,7 +121,6 @@ export default {
     ],
     '@nuxtjs/axios',
     'cookie-universal-nuxt',
-    '@nuxtjs/pwa',
     'nuxt-webfontloader',
     ['storyblok-nuxt', { accessToken: 'rGRW1HEorfNfSoGS5CzoDwtt', cacheProvider: 'memory' }],
     ['@nuxtjs/style-resources']    

@@ -11,7 +11,8 @@ export default {
     ISO_LANG_COUNTRY: 'sv-SE',
     ISO_LANG: 'sv',
     CURRENCY_CODE: 'SEK',
-    STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt'
+    STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt',
+    ZENDESK: 'b2384b65-02c4-40fe-b25f-c195c554d089'
 
   },
   mode: 'universal',
@@ -28,8 +29,7 @@ export default {
         name: 'description',
         content: process.env.npm_package_description || ''
       }
-    ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    ]
   },
   /*
    ** Customize the progress-bar color
@@ -95,7 +95,7 @@ export default {
     ['@dansmaculotte/nuxt-zendesk',
     { 
       key: 'b2384b65-02c4-40fe-b25f-c195c554d089',
-      disabled: false,
+      disabled: true,
       settings: {
         webWidget: {
           color: {
