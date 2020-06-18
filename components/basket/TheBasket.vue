@@ -34,7 +34,7 @@
             <tr
               v-for="(item, index) in cart.data"
               :key="index">
-              <td class="thumb-image">
+              <td class="thumb-image" style="padding-left:6px;">
                 <img 
                   :src="thumb_src + item.ImageThumb" />
               </td>
@@ -90,7 +90,7 @@
               <td colspan="2" style="text-align:right">
                 <strong>{{ $getCMSEntry(global_labels,'basket_total', 'Totalt') }} <span class="payment-total-ex-shipping">{{ $getCMSEntry(global_labels,'basket_ex_shipping', 'exkl.frakt') }}</span></strong>
               </td>
-              <td colspan="1" class="total">
+              <td colspan="1" class="total" style="white-space:nowrap;padding-right:6px;">
                 <strong><span 
                   v-if="cart.IsDiscount"
                   style="text-decoration:line-through;">{{ cart.Price }}<br></span>
