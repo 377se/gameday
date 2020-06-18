@@ -73,6 +73,7 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     //'@nuxtjs/eslint-module'
     '@nuxtjs/gtm', 
+    '@nuxtjs/pwa',
   ],
   gtm: { id: 'GTM-NBCJ6D' },
   /*
@@ -108,7 +109,6 @@ export default {
     ],
     '@nuxtjs/axios',
     'cookie-universal-nuxt',
-    '@nuxtjs/pwa',
     'nuxt-webfontloader',
     ['storyblok-nuxt', { accessToken: 'rGRW1HEorfNfSoGS5CzoDwtt', cacheProvider: 'memory' }],
     ['@nuxtjs/style-resources']    
@@ -124,6 +124,12 @@ export default {
       description: 'SamDodds.dk',
       lang: 'da',
       theme_color: '#ffffff'
+    },
+    manifest: {
+      name: 'SamDodds.dk',
+      short_name: 'Sam Dodds',
+      lang: 'da',
+      description: 'SamDodds.dk',
     },
     icon: {
       iconFileName: 'icon_samdodds.png'
