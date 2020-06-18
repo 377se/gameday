@@ -84,7 +84,6 @@ export default {
     { 
       key: '457ea997-85d2-4fa7-a24f-9f1ac8e950f8',
       disabled: false,
-      hideOnLoad: true,
       settings: {
         webWidget: {
           color: {

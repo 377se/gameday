@@ -58,7 +58,7 @@ export default {
       this.$axios.setHeader('x-session', localStorage.session)
     }*/
     //UIkit.notification("", {status:'primary'})
-    this.$on('zendeskLoaded', (event) => {
+    this.$zendesk.$on('loaded', (event) => {
       this.$zendesk.zE('webWidget', 'setLocale', process.env.ISO_LANG);
     })
     
