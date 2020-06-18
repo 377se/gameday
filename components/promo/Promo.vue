@@ -6,7 +6,8 @@
     <a 
       style="position:relative;display:block;"
       :href="blok.promo_url.url">
-      <picture>
+      <picture
+        v-if="!promoList">
         <source 
           media="(max-width: 360px)" 
           :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/x_800,y_0,w_1200,c_crop/w_360,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
@@ -21,6 +22,20 @@
         <img 
           alt="Promotion Image" 
           :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_2560,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
+      </picture>
+      <picture
+        v-else>
+        <source 
+          media="(max-width: 768px)" 
+          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/w_400,c_fill,ar_1:1,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
+        <source 
+          media="(max-width: 1440px)" 
+          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/w_400,c_fill,ar_1:1,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
+        <source 
+          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/w_600,c_fill,ar_1:1,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
+        <img 
+          alt="Promotion Image" 
+          :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_600,c_fill,ar_1:1,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
       </picture>
       <div
         style="position:absolute;bottom:20px;left:20px;">
@@ -44,6 +59,11 @@ export default {
     blok: {
       type: Object,
       required: true,
+    },
+    promoList:{
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   mounted(){
