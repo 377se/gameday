@@ -27,8 +27,7 @@ export default {
         name: 'description',
         content: process.env.npm_package_description || ''
       }
-    ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    ]
   },
   /*
    ** Customize the progress-bar color
@@ -126,6 +125,12 @@ export default {
     ]
   },
   pwa: {
+    meta:{
+      name: 'SamDodds.dk',
+      description: 'SamDodds.dk',
+      lang: 'da',
+      theme_color: '#ffffff'
+    },
     icon: {
       iconFileName: 'icon_samdodds.png'
     }
