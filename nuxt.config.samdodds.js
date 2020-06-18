@@ -125,6 +125,11 @@ export default {
     './assets/scss/vars.samdodds.scss'
     ]
   },
+  pwa: {
+    icon: {
+      iconFileName: 'icon_samdodds.png'
+    }
+  },
   webfontloader: {
     google: {
       families: ['Source+Sans+Pro:wght@400;600;700','Ubuntu:wght@400;500;700&display=swap'] //Loads Source Sans and Ubuntu
