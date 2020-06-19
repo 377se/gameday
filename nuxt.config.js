@@ -103,6 +103,9 @@ export default {
           color: {
             theme: '#fa6900',
             launcherText: '#ffffff',
+          },
+          chat: {
+            connectOnPageLoad: false
           }
         }
       }
