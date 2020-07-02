@@ -116,5 +116,9 @@ export default {
   background: $global-primary-background;
   color:#fff;
 }
+.label-preorder-product{
+  background: rgb(79, 151, 79);
+  color:#fff;
+}
 </style>
 
