@@ -83,6 +83,10 @@ img {
   left:0;
   z-index:1;
 }
+.label-campaign, .label-member-package{
+  background: yellow;
+  color: #000;
+}
 .label-percentage-discount{
   background: #ec6a18;
   color:#fff;

@@ -100,13 +100,17 @@ export default {
 .label-article{
   font-size:0.8rem;
   line-height:1;
-  padding: 4px 0;
+  padding: 2px 8px;
   position:absolute;
   min-width:60px;
   text-align:center;
   position:absolute;
   top:20px;
   left:0;
+}
+.label-campaign, .label-member-package{
+  background: yellow;
+  color: #000;
 }
 .label-percentage-discount{
   background: #ec6a18;
