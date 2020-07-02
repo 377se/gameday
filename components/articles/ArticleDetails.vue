@@ -115,6 +115,10 @@
                 class="uk-accordion-content"
                 v-bind:content="article.Description"/>
               <p>{{$getCMSEntry(global_labels,'article_details_article_number', 'Artikelnummer')}}: {{ article.ArticleNumber }}</p>
+              <p>{{$getCMSEntry(global_labels,'article_details_article_material', 'Material')}}: {{ article.Material }}</p>
+              <p>{{$getCMSEntry(global_labels,'article_details_article_color', 'Färg')}}: 
+                <span v-for="c in article.Color" :key="c.Id">{{ c.Name }}</span>
+              </p>
             </li>
           </ul>
         </div>
