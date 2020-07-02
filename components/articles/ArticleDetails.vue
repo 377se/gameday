@@ -222,7 +222,7 @@ export default {
             UIkit.modal.alert(response.data.ErrorList[0].Value)
           }else{
             _this.$store.commit('basket/add', response.data)
-            UIkit.offcanvas('#offscreen-basket').show();
+            UIkit.modal('#offscreen-basket').show();
             try{
             _this.$gtm.push({event: 'AddToCart', content:{
               content_name: _this.article.Name, 
