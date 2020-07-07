@@ -161,7 +161,7 @@
               v-for="team in plMenu"
               :key="team.TeamId">
               <nuxt-link
-                :to="localePath(''/lag/premier-league/'+team.SeoName)">{{ team.Name }}</nuxt-link>
+                :to="localePath('/lag/premier-league/'+team.SeoName)">{{ team.Name }}</nuxt-link>
             </li>
           </ul>
         </div>
