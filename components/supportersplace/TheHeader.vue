@@ -111,6 +111,7 @@ export default {
 
 .logo {
   height: 50px;
+  width: auto;
 }
 
 .hamburger {

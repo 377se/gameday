@@ -9,7 +9,7 @@
           <div class="uk-margin">
             <nuxt-link :to="localePath('/')">
               <img 
-                style="height:60px;"
+                style="height:60px;width:auto;"
                 src="/sites/sites/supportersplace/supportersplace-logo-light.png" 
                 alt="Sam Dodds">
             </nuxt-link>

@@ -3,7 +3,7 @@ export default {
     THUMB_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_80,f_auto/https://static.supportersplace.se/product/',
     LIST_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_360,f_auto/',
     DETAILS_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_640,f_auto/http://static.supportersplace.se/product/'
-    ,STORYBLOK_CATALOGUE: 'supportersplace/sv-se',
+    ,STORYBLOK_CATALOGUE: 'supportersplace/sv-se/',
     SITE_URL: 'https://www.supportersplace.com',
     LOGO_URL: '/sites/supportersplace/supportersplace-logo-light.png',
     SITE_ID: 1,
