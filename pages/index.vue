@@ -7,7 +7,7 @@
         style="margin-top:-15px;">
         <nuxt-link 
           class="gd-square"
-          to="/nhl-shop">
+          :to="localePath('/nhl-shop')">
           <div>
             <img src="/logos/nhl_ikon_600x600.png" alt="NHL Shop">
             <br>Hockey
@@ -15,7 +15,7 @@
         </nuxt-link>
         <nuxt-link 
           class="gd-square"
-          to="/nfl-shop">
+          :to="localePath('/nfl-shop')">
           <div>
             <img src="/logos/nfl_ikon_600x600.png" alt="NFL Shop">
             <br>Am. Fotboll
@@ -23,7 +23,7 @@
         </nuxt-link>
         <nuxt-link 
           class="gd-square"
-          to="/nba-shop">
+          :to="localePath('/nba-shop')">
           <div>
             <img src="/logos/nba_ikon_600x600.png" alt="NBA Shop">
             <br>Basket
@@ -31,7 +31,7 @@
         </nuxt-link>
         <nuxt-link 
           class="gd-square"
-          to="/mlb-shop">
+          :to="localePath('/mlb-shop')">
           <div>
             <img src="/logos/mlb_ikon_600x600.png" alt="MLB Shop">
             <br>Baseball
@@ -39,7 +39,7 @@
         </nuxt-link>
         <nuxt-link 
           class="gd-square"
-          to="/premier-league">
+          :to="localePath('/premier-league')">
           <div>
             <img src="/logos/pl_ikon_600x600.png" alt="Premier League Shop">
             <br>Premier League

@@ -23,10 +23,10 @@
       <div class="uk-container uk-container-large uk-padding-small">
         <ul class="uk-breadcrumb">
           <li>
-            <nuxt-link to="/">
+            <nuxt-link :to="localePath('/')">
               <span style="vertical-align: bottom;
                 margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
-          <li><nuxt-link to="/mlb-shop">MLB-shop</nuxt-link></li>
+          <li><nuxt-link :to="localePath('/mlb-shop')">MLB-shop</nuxt-link></li>
         </ul>
         <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
         <div
@@ -49,22 +49,22 @@
         <div
           class="uk-flex uk-flex-center uk-grid-small uk-margin uk-margin-large-bottom" uk-grid>
           <nuxt-link
-            to="/lag/mlb/new-york-yankees"
+            :to="localePath('/lag/mlb/new-york-yankees')"
             class="team-slider-item">
             <img class="team-slider-img" src="https://static.supportersplace.se/Team/New_York_Yankees_600x600.png" alt="New York Yankees">
           </nuxt-link>
           <nuxt-link
-            to="/lag/mlb/detroit-tigers"
+            :to="localePath('/lag/mlb/detroit-tigers')"
             class="team-slider-item">
             <img class="team-slider-img" src="https://static.supportersplace.se/Team/Detroit_Tigers_600x600.png" alt="Detroit Tigers">
           </nuxt-link>
           <nuxt-link
-            to="/lag/mlb/los-angeles-dodgers"
+            :to="localePath('/lag/mlb/los-angeles-dodgers')"
             class="team-slider-item">
             <img class="team-slider-img" src="https://static.supportersplace.se/Team/Los_Angeles_Dodgers_600x600.png" alt="Los Angeles Dodgers">
           </nuxt-link>
           <nuxt-link
-            to="/lag/mlb/new-york-mets"
+            :to="localePath('/lag/mlb/new-york-mets')"
             class="team-slider-item">
             <img class="team-slider-img" src="https://static.supportersplace.se/Team/New_York_Mets_600x600.png" alt="New York Mets">
           </nuxt-link>

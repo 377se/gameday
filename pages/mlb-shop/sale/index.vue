@@ -23,11 +23,11 @@
       <div class="uk-container uk-container-large uk-padding-small">
         <ul class="uk-breadcrumb">
           <li>
-            <nuxt-link to="/">
+            <nuxt-link :to="localePath('/')">
               <span style="vertical-align: bottom;
                 margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
-          <li><nuxt-link to="/mlb-shop">MLB-shop</nuxt-link></li>
-          <li><nuxt-link to="/mlb-shop/sale">REA</nuxt-link></li>
+          <li><nuxt-link :to="localePath('/mlb-shop')">MLB-shop</nuxt-link></li>
+          <li><nuxt-link :to="localePath('/mlb-shop/sale')">REA</nuxt-link></li>
         </ul>
         <component 
           v-if="story.content.component" 

@@ -23,10 +23,10 @@
       <div class="uk-container uk-container-large uk-padding-small">
         <ul class="uk-breadcrumb">
           <li>
-            <nuxt-link to="/">
+            <nuxt-link :to="localePath('/')">
               <span style="vertical-align: bottom;
                 margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
-          <li><nuxt-link to="/premier-league">Premier League</nuxt-link></li>
+          <li><nuxt-link :to="localePath('/premier-league')">Premier League</nuxt-link></li>
         </ul>
         <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
         <div
@@ -49,22 +49,22 @@
         <div
           class="uk-flex uk-flex-center uk-grid-small uk-margin uk-margin-large-bottom" uk-grid>
           <nuxt-link
-            to="/lag/premier-league/liverpool-fc"
+            :to="localePath('/lag/premier-league/liverpool-fc')"
             class="team-slider-item">
             <img class="team-slider-img" src="/logos/teams/liverpool_fc_600x600.png" alt="Liverpool FC">
           </nuxt-link>
           <nuxt-link
-            to="/lag/premier-league/manchester-united"
+            :to="localePath('/lag/premier-league/manchester-united')"
             class="team-slider-item">
             <img class="team-slider-img" src="/logos/teams/manchester_united_600x600.png" alt="Manchester United">
           </nuxt-link>
           <nuxt-link
-            to="/lag/premier-league/arsenal-fc"
+            :to="localePath('/lag/premier-league/arsenal-fc')"
             class="team-slider-item">
             <img class="team-slider-img" src="/logos/teams/arsenal_600x600.png" alt="Arsenal FC">
           </nuxt-link>
           <nuxt-link
-            to="/lag/premier-league/chelsea-fc"
+            :to="localePath('/lag/premier-league/chelsea-fc')"
             class="team-slider-item">
             <img class="team-slider-img" src="/logos/teams/chelsea_600x600.png" alt="Chelsea FC">
           </nuxt-link>

@@ -1,6 +1,6 @@
 <template>
   <div class="text-container">
-    <a class="uk-link-reset" href="/login">LOGGA IN</a>
+    <nuxt-link class="uk-link-reset" :to="localePath('/login')">LOGGA IN</nuxt-link>
   </div>
 </template>
 

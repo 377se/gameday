@@ -3,7 +3,7 @@
     <div class="uk-container uk-container-large uk-padding-small">
       <ul class="uk-breadcrumb">
         <li>
-          <nuxt-link to="/">
+          <nuxt-link :to="localePath('/')">
             <span style="vertical-align: bottom;
               margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
         <li><nuxt-link :to="localePath('/'+shop.toLowerCase())">{{ shop }}</nuxt-link></li>

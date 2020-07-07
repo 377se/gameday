@@ -23,10 +23,10 @@
       <div class="uk-container uk-container-large uk-padding-small">
         <ul class="uk-breadcrumb">
           <li>
-            <nuxt-link to="/">
+            <nuxt-link :to="localePath('/')">
               <span style="vertical-align: bottom;
                 margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
-          <li><nuxt-link to="/nba-shop">NBA-shop</nuxt-link></li>
+          <li><nuxt-link :to="localePath('/nba-shop')">NBA-shop</nuxt-link></li>
         </ul>
         <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
         <div
@@ -49,22 +49,22 @@
         <div
           class="uk-flex uk-flex-center uk-grid-small uk-margin uk-margin-large-bottom" uk-grid>
           <nuxt-link
-            to="/lag/nba/chicago-bulls"
+            :to="localePath('/lag/nba/chicago-bulls')"
             class="team-slider-item">
             <img class="team-slider-img" src="https://static.supportersplace.se/Team/chicago_bulls_600x600.png" alt="Chicago Bulls">
           </nuxt-link>
           <nuxt-link
-            to="/lag/nba/cleveland-cavaliers"
+            :to="localePath('/lag/nba/cleveland-cavaliers')"
             class="team-slider-item">
             <img class="team-slider-img" src="https://static.supportersplace.se/Team/clevland_cavalliers_600x600.png" alt="Cleveland Cavaliers">
           </nuxt-link>
           <nuxt-link
-            to="/lag/nba/golden-state-warriors"
+            :to="localePath('/lag/nba/golden-state-warriors')"
             class="team-slider-item">
             <img class="team-slider-img" src="https://static.supportersplace.se/Team/golden_state_warriors_600x600.png" alt="Golden State Warriors">
           </nuxt-link>
           <nuxt-link
-            to="/lag/nba/brooklyn-nets"
+            :to="localePath('/lag/nba/brooklyn-nets')"
             class="team-slider-item">
             <img class="team-slider-img" src="https://static.supportersplace.se/Team/brooklyn_nets_600x600.png" alt="Brooklyn Nets">
           </nuxt-link>

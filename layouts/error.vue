@@ -3,7 +3,7 @@
     <h1>Sidan hittades tyvärr inte :(</h1>
     <p>Deppa inte över det, vi kan hjälpa dig hitta något kul:</p>
     <p>
-      <a href="/">Gå till startsidan</a>
+      <nuxt-link :to="localePath('/')">Gå till startsidan</nuxt-link>
     </p>
   </div>
 </template>

@@ -49,18 +49,18 @@
           <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
             <li>
               <nuxt-link
-                to="/nhl-shop">Till NHL Shopen</nuxt-link>
+                :to="localePath('/nhl-shop')">Till NHL Shopen</nuxt-link>
             </li>
             <li>
               <nuxt-link
                 class="menu-item-sale"
-                to="/nhl-shop/sale">NHL REA</nuxt-link>
+                :to="localePath('/nhl-shop/sale')">NHL REA</nuxt-link>
             </li>
             <li class="uk-nav-header">Populäraste lagen</li>
-            <li><nuxt-link to="/lag/nhl/boston-bruins">Boston Bruins</nuxt-link></li>
-            <li><nuxt-link to="/lag/nhl/chicago-blackhawks">Chicago Blackhawks</nuxt-link></li>
-            <li><nuxt-link to="/lag/nhl/new-york-rangers">New York Rangers</nuxt-link></li>
-            <li><nuxt-link to="/lag/nhl/pittsburgh-penguins">Pittsburgh Penguins</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/lag/nhl/boston-bruins')">Boston Bruins</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/lag/nhl/chicago-blackhawks')">Chicago Blackhawks</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/lag/nhl/new-york-rangers')">New York Rangers</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/lag/nhl/pittsburgh-penguins')">Pittsburgh Penguins</nuxt-link></li>
             <li class="uk-nav-header">Alla lag (A-Z)
             <li
               v-for="team in nhlMenu"
@@ -82,10 +82,10 @@
                 :to="localePath('/nfl-shop/sale')">NFL REA</nuxt-link>
             </li>
             <li class="uk-nav-header">Populäraste lagen</li>
-            <li><nuxt-link to="/lag/nfl/new-england-patriots">New England Patriots</nuxt-link></li>
-            <li><nuxt-link to="/lag/nfl/las-vegas-raiders">Las Vegas Raiders</nuxt-link></li>
-            <li><nuxt-link to="/lag/nfl/seattle-seahawks">Seattle Seahawks</nuxt-link></li>
-            <li><nuxt-link to="/lag/nfl/dallas-cowboys">Dallas Cowboys</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/lag/nfl/new-england-patriots')">New England Patriots</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/lag/nfl/las-vegas-raiders')">Las Vegas Raiders</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/lag/nfl/seattle-seahawks')">Seattle Seahawks</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/lag/nfl/dallas-cowboys')">Dallas Cowboys</nuxt-link></li>
             <li class="uk-nav-header">Alla lag (A-Z)</li>
             <li
               v-for="team in nflMenu"
@@ -99,18 +99,18 @@
           <ul class="uk-nav-default uk-nav-parent-icon" uk-nav="multiple:true">
             <li>
               <nuxt-link
-                to="/nba-shop">Till NBA Shopen</nuxt-link>
+                :to="localePath('/nba-shop')">Till NBA Shopen</nuxt-link>
             </li>
             <li>
               <nuxt-link
                 class="menu-item-sale"
-                to="/nba-shop/sale">NBA REA</nuxt-link>
+                :to="localePath('/nba-shop/sale')">NBA REA</nuxt-link>
             </li>
             <li class="uk-nav-header">Populäraste lagen</li>
-            <li><nuxt-link to="/lag/nba/chicago-bulls">Chicago Bulls</nuxt-link></li>
-            <li><nuxt-link to="/lag/nba/cleveland-cavaliers">Cleveland Cavaliers</nuxt-link></li>
-            <li><nuxt-link to="/lag/nba/golden-state-warriors">Golden State Warriors</nuxt-link></li>
-            <li><nuxt-link to="/lag/nba/brooklyn-nets">Brooklyn Nets</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/lag/nba/chicago-bulls')">Chicago Bulls</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/lag/nba/cleveland-cavaliers')">Cleveland Cavaliers</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/lag/nba/golden-state-warriors')">Golden State Warriors</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/lag/nba/brooklyn-nets')">Brooklyn Nets</nuxt-link></li>
             <li class="uk-nav-header">Alla lag (A-Z)</li>
             <li
               v-for="team in nbaMenu"
@@ -124,18 +124,18 @@
           <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
             <li>
               <nuxt-link
-                to="/mlb-shop">Till MLB Shopen</nuxt-link>
+                :to="localePath('/mlb-shop')">Till MLB Shopen</nuxt-link>
             </li>
             <li>
               <nuxt-link
                 class="menu-item-sale"
-                to="/mlb-shop/sale">MLB REA</nuxt-link>
+                :to="localePath('/mlb-shop/sale')">MLB REA</nuxt-link>
             </li>
             <li class="uk-nav-header">Populäraste lagen</li>
-            <li><nuxt-link to="/lag/mlb/new-york-yankees">New York Yankees</nuxt-link></li>
-            <li><nuxt-link to="/lag/mlb/detroit-tigers">Detroit Tigers</nuxt-link></li>
-            <li><nuxt-link to="/lag/mlb/los-angeles-dodgers">Los Angeles Dodgers</nuxt-link></li>
-            <li><nuxt-link to="/lag/mlb/new-york-mets">New York Mets</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/lag/mlb/new-york-yankees')">New York Yankees</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/lag/mlb/detroit-tigers')">Detroit Tigers</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/lag/mlb/los-angeles-dodgers')">Los Angeles Dodgers</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/lag/mlb/new-york-mets')">New York Mets</nuxt-link></li>
             <li class="uk-nav-header">Alla lag (A-Z)</li>
             <li
               v-for="team in mlbMenu"

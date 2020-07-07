@@ -30,7 +30,7 @@
               </div>
               <div class="uk-margin uk-margin-remove-top uk-text-center uk-text-small">
                 <nuxt-link 
-                  to="/forgotten-password" 
+                  :to="localePath('/forgotten-password')" 
                   style="color:#8c8c8c">{{ $getCMSEntry(labels,'forgotten_password', 'Glömt ditt lösenord?') }}</nuxt-link></div>
             </div>
 
@@ -49,7 +49,7 @@
             
 
             <div class="uk-margin uk-text-center">
-              <strong>{{ $getCMSEntry(labels,'no_account', 'Har du inget konto ännu?') }}</strong><br><nuxt-link to="/register">{{ $getCMSEntry(labels,'get_an_account', 'Skaffa ett här!') }}</nuxt-link>
+              <strong>{{ $getCMSEntry(labels,'no_account', 'Har du inget konto ännu?') }}</strong><br><nuxt-link :to="localePath('/register')">{{ $getCMSEntry(labels,'get_an_account', 'Skaffa ett här!') }}</nuxt-link>
             </div>
 
           </fieldset>

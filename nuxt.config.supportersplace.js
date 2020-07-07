@@ -3,7 +3,7 @@ export default {
     THUMB_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_80,f_auto/https://static.supportersplace.se/product/',
     LIST_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_360,f_auto/',
     DETAILS_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_640,f_auto/http://static.supportersplace.se/product/'
-    ,STORYBLOK_CATALOGUE: 'supportersplace/',
+    ,STORYBLOK_CATALOGUE: 'supportersplace/sv-se',
     SITE_URL: 'https://www.supportersplace.com',
     LOGO_URL: '/sites/supportersplace/supportersplace-logo-light.png',
     SITE_ID: 1,
@@ -88,10 +88,6 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
-    ['@netsells/nuxt-hotjar', { 
-      id: '1686545', 
-      sv: '',
-    }],
     // Doc: https://axios.nuxtjs.org/usage
     ['@dansmaculotte/nuxt-zendesk',
     { 
@@ -145,6 +141,23 @@ export default {
     scss: [
     './assets/scss/vars.supportersplace.scss'
     ]
+  },
+  pwa: {
+    meta:{
+      name: 'Supporters Place',
+      description: 'SupportersPlace.com',
+      lang: 'sv',
+      theme_color: '#ffffff'
+    },
+    manifest: {
+      name: 'Supporters Place',
+      short_name: 'SupportersPlace',
+      lang: 'sv',
+      description: 'SupportersPlace.com',
+    },
+    icon: {
+      iconFileName: 'logos/sites/supportersplace/supportersplace-logo-light.png'
+    }
   },
   webfontloader: {
     google: {

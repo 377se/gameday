@@ -11,7 +11,7 @@
       <div class="uk-navbar-left">
         <nuxt-link 
           class="uk-navbar-item uk-padding-small uk-logo" 
-          to="/"><img :src="logo" class="logo"></nuxt-link>
+          :to="localePath('/')"><img :src="logo" class="logo"></nuxt-link>
       </div>
 
       <div 
@@ -20,7 +20,7 @@
       >
         <nuxt-link
           v-if="cid==null"
-          to="/login"
+          :to="localePath('/login')"
           >
           <span 
             style="color:#fff;"
@@ -32,7 +32,7 @@
         </nuxt-link>
         <nuxt-link
           v-else
-          to="/my-account"
+          :to="localePath('/my-account')"
           >
           <span 
             style="color:#fff;"

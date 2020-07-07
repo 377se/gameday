@@ -7,7 +7,7 @@
         uk-grid>
         <div class="uk-flex-last uk-flex-first@m uk-width-expand@m uk-width-1-2@s">                  
           <div class="uk-margin">
-            <nuxt-link to="/">
+            <nuxt-link :to="localePath('/')">
               <img 
                 style="width:100px;"
                 src="/sites/samdodds/samdodds-logo.png" 
@@ -27,17 +27,17 @@
         <div class="uk-width-expand@m uk-width-1-2@s">               
           <h3 class="uk-h4">{{ $getCMSEntry(global_labels,'footer_header_gethelp', 'Få hjälp') }}</h3>
           <ul class="uk-list uk-text-small">
-            <li><nuxt-link to="/kopvillkor">{{ $getCMSEntry(global_labels,'footer_purchase_conditions', 'Köpvillkor') }}</nuxt-link></li>
-            <li><nuxt-link to="/leverans-och-betalning">{{ $getCMSEntry(global_labels,'footer_delivery', 'Leverans &amp; betalning') }}</nuxt-link></li>
-            <li><nuxt-link to="/returer-och-byten">{{ $getCMSEntry(global_labels,'footer_exchanges', 'Returer &amp; byten') }}</nuxt-link></li>
-            <li><nuxt-link to="/faq">{{ $getCMSEntry(global_labels,'footer_faq', 'Ofte stillede spørgsmål') }}</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/kopvillkor')">{{ $getCMSEntry(global_labels,'footer_purchase_conditions', 'Köpvillkor') }}</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/leverans-och-betalning')">{{ $getCMSEntry(global_labels,'footer_delivery', 'Leverans &amp; betalning') }}</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/returer-och-byten')">{{ $getCMSEntry(global_labels,'footer_exchanges', 'Returer &amp; byten') }}</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/faq')">{{ $getCMSEntry(global_labels,'footer_faq', 'Ofte stillede spørgsmål') }}</nuxt-link></li>
           </ul>
         </div>
 
         <div class="uk-width-expand@m uk-width-1-2@s">               
           <h3 class="uk-h4">{{ $getCMSEntry(global_labels,'footer_header_about_us', 'Om Sam Dodds') }}</h3>
           <ul class="uk-list uk-text-small">
-            <li><nuxt-link to="/foretagsinformation">{{ $getCMSEntry(global_labels,'footer_company_information', 'Företagsinformation') }}</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/foretagsinformation')">{{ $getCMSEntry(global_labels,'footer_company_information', 'Företagsinformation') }}</nuxt-link></li>
           </ul>
         </div>
 
@@ -46,7 +46,7 @@
     <div 
       class="uk-container uk-margin gd-copyright">
       <span class="uk-margin-small-right">Copyright © 2019 This site is Licensed to 377 Sport AB</span> 
-      <nuxt-link to="/integritetspolicy">{{ $getCMSEntry(global_labels,'footer_integrity_policy', 'Integritetspolicy') }}</nuxt-link> <nuxt-link to="/cookies">{{ $getCMSEntry(global_labels,'footer_cookies', 'Cookies') }}</nuxt-link>
+      <nuxt-link :to="localePath('/integritetspolicy')">{{ $getCMSEntry(global_labels,'footer_integrity_policy', 'Integritetspolicy') }}</nuxt-link> <nuxt-link :to="localePath('/cookies')">{{ $getCMSEntry(global_labels,'footer_cookies', 'Cookies') }}</nuxt-link>
     </div>
   </footer>
 </template>

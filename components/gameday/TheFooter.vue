@@ -7,7 +7,7 @@
         uk-grid>
         <div class="uk-flex-last uk-flex-first@m uk-width-expand@m uk-width-1-2@s">                  
           <div class="uk-margin">
-            <nuxt-link to="/">
+            <nuxt-link :to="localePath('/')">
               <img 
                 style="width:100px;"
                 src="~assets/gameday_fox.svg" 
@@ -27,28 +27,28 @@
         <div class="uk-width-expand@m uk-width-1-2@s">               
           <h3 class="uk-h4">Shoppar</h3>
           <ul class="uk-list uk-text-small">
-            <li><nuxt-link to="/nhl-shop">NHL Shop</nuxt-link></li>
-            <li><nuxt-link to="/nba-shop">NBA Shop</nuxt-link></li>
-            <li><nuxt-link to="/nfl-shop">NFL Shop</nuxt-link></li>
-            <li><nuxt-link to="/mlb-shop">MLB Shop</nuxt-link></li>
-            <li><nuxt-link to="/premier-league">Premier League Shop</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/nhl-shop')">NHL Shop</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/nba-shop')">NBA Shop</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/nfl-shop')">NFL Shop</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/mlb-shop')">MLB Shop</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/premier-league')">Premier League Shop</nuxt-link></li>
           </ul>
         </div>
 
         <div class="uk-width-expand@m uk-width-1-2@s">               
           <h3 class="uk-h4">Få hjälp</h3>
           <ul class="uk-list uk-text-small">
-            <li><nuxt-link to="/kopvillkor">Köpvillkor</nuxt-link></li>
-            <li><nuxt-link to="/leverans-och-betalning">Leverans &amp; betalning</nuxt-link></li>
-            <li><nuxt-link to="/returer-och-byten">Returer &amp; byten</nuxt-link></li>
-            <li><nuxt-link to="/faq">Vanliga frågor</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/kopvillkor')">Köpvillkor</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/leverans-och-betalning')">Leverans &amp; betalning</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/returer-och-byten')">Returer &amp; byten</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/faq')">Vanliga frågor</nuxt-link></li>
           </ul>
         </div>
 
         <div class="uk-width-expand@m uk-width-1-2@s">               
           <h3 class="uk-h4">Om Gameday</h3>
           <ul class="uk-list uk-text-small">
-            <li><nuxt-link to="/foretagsinformation">Företagsinformation</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/foretagsinformation')">Företagsinformation</nuxt-link></li>
           </ul>
         </div>
 
@@ -61,7 +61,7 @@
     <div 
       class="uk-container uk-margin gd-copyright">
       <span class="uk-margin-small-right">Copyright © 2019 This site is Licensed to 377 Sport AB</span> 
-      <nuxt-link to="/integritetspolicy">Integritetspolicy</nuxt-link> <nuxt-link to="/cookies">Cookies</nuxt-link>
+      <nuxt-link :to="localePath('/integritetspolicy')">Integritetspolicy</nuxt-link> <nuxt-link :to="localePath('/cookies')">Cookies</nuxt-link>
     </div>
   </footer>
 </template>

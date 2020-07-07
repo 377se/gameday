@@ -5,16 +5,16 @@
         id="myaccountmenu" 
         uk-tab>
         <li class="uk-active">
-          <nuxt-link to="/my-account/">{{ $getCMSEntry(labels,'myAccount', 'Mitt konto') }}</nuxt-link>
+          <nuxt-link :to="localePath('/my-account/')">{{ $getCMSEntry(labels,'myAccount', 'Mitt konto') }}</nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/my-account/member-info">{{ $getCMSEntry(labels,'memberInformation', 'Medlemsinformation') }}</nuxt-link>
+          <nuxt-link :to="localePath('/my-account/member-info')">{{ $getCMSEntry(labels,'memberInformation', 'Medlemsinformation') }}</nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/my-account/order-history">{{ $getCMSEntry(labels,'orderHistory', 'Orderhistorik') }}</nuxt-link>
+          <nuxt-link :to="localePath('/my-account/order-history')">{{ $getCMSEntry(labels,'orderHistory', 'Orderhistorik') }}</nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/my-account/coins">{{ $getCMSEntry(labels,'coins', 'Coins') }}</nuxt-link>
+          <nuxt-link :to="localePath('/my-account/coins')">{{ $getCMSEntry(labels,'coins', 'Coins') }}</nuxt-link>
         </li>
       </ul>
       <nuxt-child/>

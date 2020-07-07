@@ -23,10 +23,10 @@
       <div class="uk-container uk-container-large uk-padding-small">
         <ul class="uk-breadcrumb">
           <li>
-            <nuxt-link to="/">
+            <nuxt-link :to="localePath('/')">
               <span style="vertical-align: bottom;
                 margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
-          <li><nuxt-link to="/nfl-shop">NFL-shop</nuxt-link></li>
+          <li><nuxt-link :to="localePath('/nfl-shop')">NFL-shop</nuxt-link></li>
         </ul>
         <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
         <div
@@ -49,22 +49,22 @@
         <div
           class="uk-flex uk-flex-center uk-grid-small uk-margin uk-margin-large-bottom" uk-grid>
           <nuxt-link
-            to="/lag/nfl/new-england-patriots"
+            :to="localePath('/lag/nfl/new-england-patriots')"
             class="team-slider-item">
             <img class="team-slider-img" src="https://static.supportersplace.se/Team/New_England_Patriots.png" alt="New England Patriots">
           </nuxt-link>
           <nuxt-link
-            to="/lag/nfl/las-vegas-raiders"
+            :to="localePath('/lag/nfl/las-vegas-raiders')"
             class="team-slider-item">
             <img class="team-slider-img" src="https://static.supportersplace.se/Team/oakland_raiders.png" alt="Las Vegas Raiders">
           </nuxt-link>
           <nuxt-link
-            to="/lag/nfl/seattle-seahawks"
+            :to="localePath('/lag/nfl/seattle-seahawks')"
             class="team-slider-item">
             <img class="team-slider-img" src="https://static.supportersplace.se/Team/seahawks_seattle_seahawks.png" alt="Seattle Seahawks">
           </nuxt-link>
           <nuxt-link
-            to="/lag/nfl/dallas-cowboys"
+            :to="localePath('/lag/nfl/dallas-cowboys')"
             class="team-slider-item">
             <img class="team-slider-img" src="https://static.supportersplace.se/Team/dallas_cowboys.png" alt="Dallas Cowboys">
           </nuxt-link>

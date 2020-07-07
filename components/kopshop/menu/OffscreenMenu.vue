@@ -49,18 +49,18 @@
           <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
             <li>
               <nuxt-link
-                to="/nhl-shop">Till NHL Shopen</nuxt-link>
+                :to="localePath('/nhl-shop')">Till NHL Shopen</nuxt-link>
             </li>
             <li>
               <nuxt-link
                 class="menu-item-sale"
-                to="/nhl-shop/sale">NHL REA</nuxt-link>
+                :to="localePath('/nhl-shop/sale')">NHL REA</nuxt-link>
             </li>
             <li class="uk-nav-header">Populäraste lagen</li>
-            <li><nuxt-link to="/lag/nhl/boston-bruins">Boston Bruins</nuxt-link></li>
-            <li><nuxt-link to="/lag/nhl/chicago-blackhawks">Chicago Blackhawks</nuxt-link></li>
-            <li><nuxt-link to="/lag/nhl/new-york-rangers">New York Rangers</nuxt-link></li>
-            <li><nuxt-link to="/lag/nhl/pittsburgh-penguins">Pittsburgh Penguins</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/lag/nhl/boston-bruins')">Boston Bruins</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/lag/nhl/chicago-blackhawks')">Chicago Blackhawks</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/lag/nhl/new-york-rangers')">New York Rangers</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/lag/nhl/pittsburgh-penguins')">Pittsburgh Penguins</nuxt-link></li>
             <li class="uk-nav-header">Alla lag (A-Z)
             <li
               v-for="team in nhlMenu"

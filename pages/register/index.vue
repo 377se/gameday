@@ -60,7 +60,7 @@
             
 
             <div class="uk-margin uk-text-center">
-              <strong>{{ $getCMSEntry(labels,'already_have_account', 'Har du redan ett konto?') }}</strong><br><nuxt-link to="/login">{{ $getCMSEntry(labels,'login_here_then', 'Logga då in här!') }}</nuxt-link>
+              <strong>{{ $getCMSEntry(labels,'already_have_account', 'Har du redan ett konto?') }}</strong><br><nuxt-link :to="localePath('/login')">{{ $getCMSEntry(labels,'login_here_then', 'Logga då in här!') }}</nuxt-link>
             </div>
 
           </fieldset>
@@ -71,7 +71,7 @@
         class="uk-container uk-container-xsmall uk-padding uk-text-center">
         <h1>{{ $getCMSEntry(labels,'register_success_message', 'Du är nu registrerad!') }}</h1>
         <nuxt-link
-          to="/login"
+          :to="localePath('/login')"
           class="uk-button uk-button-primary">{{ $getCMSEntry(labels,'login_here', 'Logga in här') }}Logga in här</nuxt-link>
       </div>
     </div>
