@@ -110,7 +110,7 @@ export default {
 }
 
 .logo {
-  width: 250px;
+  height: 60px;
 }
 
 .hamburger {
