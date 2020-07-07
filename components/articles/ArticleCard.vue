@@ -4,7 +4,7 @@
     @mousedown="mouseDown"
     @mouseover="mouseOver"
     @mouseleave="mouseLeave"
-    v-bind:to="articleLink"
+    v-bind:to="localePath(articleLink)"
     class="uk-margin-small-bottom uk-link-reset"
   >
     <div class="uk-card uk-card-hover bottom-red-line">

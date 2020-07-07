@@ -66,7 +66,7 @@
               v-for="team in nhlMenu"
               :key="team.TeamId">
               <nuxt-link
-                :to="'/lag/nhl/'+team.SeoName">{{ team.Name }}</nuxt-link>
+                :to="localePath('/lag/nhl/'+team.SeoName)">{{ team.Name }}</nuxt-link>
             </li>
           </ul>
         </div>
@@ -74,12 +74,12 @@
           <ul class="uk-nav-default uk-nav-parent-icon" uk-nav="multiple:true">
             <li>
               <nuxt-link
-                to="/nfl-shop">Till NFL Shopen</nuxt-link>
+                :to="localePath('/nfl-shop')">Till NFL Shopen</nuxt-link>
             </li>
             <li>
               <nuxt-link
                 class="menu-item-sale"
-                to="/nfl-shop/sale">NFL REA</nuxt-link>
+                :to="localePath('/nfl-shop/sale')">NFL REA</nuxt-link>
             </li>
             <li class="uk-nav-header">Populäraste lagen</li>
             <li><nuxt-link to="/lag/nfl/new-england-patriots">New England Patriots</nuxt-link></li>
@@ -91,7 +91,7 @@
               v-for="team in nflMenu"
               :key="team.TeamId">
               <nuxt-link
-                :to="'/lag/nfl/'+team.SeoName">{{ team.Name }}</nuxt-link>
+                :to="localePath('/lag/nfl/'+team.SeoName)">{{ team.Name }}</nuxt-link>
             </li>
           </ul>
         </div>
@@ -116,7 +116,7 @@
               v-for="team in nbaMenu"
               :key="team.TeamId">
               <nuxt-link
-                :to="'/lag/nba/'+team.SeoName">{{ team.Name }}</nuxt-link>
+                :to="localePath('/lag/nba/'+team.SeoName)">{{ team.Name }}</nuxt-link>
             </li>
           </ul>
         </div>
@@ -141,7 +141,7 @@
               v-for="team in mlbMenu"
               :key="team.TeamId">
               <nuxt-link
-                :to="'/lag/mlb/'+team.SeoName">{{ team.Name }}</nuxt-link>
+                :to="localePath('/lag/mlb/'+team.SeoName)">{{ team.Name }}</nuxt-link>
             </li>
           </ul>
         </div>
@@ -149,19 +149,19 @@
           <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
             <li>
               <nuxt-link
-                to="/premier-league">Till Premier League</nuxt-link>
+                :to="localePath('/premier-league')">Till Premier League</nuxt-link>
             </li>
             <li>
               <nuxt-link
                 class="menu-item-sale"
-                to="/premier-league/sale">Premier League REA</nuxt-link>
+                :to="localePath('/premier-league/sale')">Premier League REA</nuxt-link>
             </li>
             <li class="uk-nav-header">Alla lag (A-Z)
             <li
               v-for="team in plMenu"
               :key="team.TeamId">
               <nuxt-link
-                :to="'/lag/premier-league/'+team.SeoName">{{ team.Name }}</nuxt-link>
+                :to="localePath('/lag/premier-league/'+team.SeoName)">{{ team.Name }}</nuxt-link>
             </li>
           </ul>
         </div>

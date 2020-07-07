@@ -26,9 +26,9 @@
             <nuxt-link to="/">
               <span style="vertical-align: bottom;
                 margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
-          <li><nuxt-link  :to="'/'+shop.toLowerCase()">{{ shop }}</nuxt-link></li>
-          <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team">{{ $route.params.team }}</nuxt-link></li>
-          <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team+'/produkttyp/'+$route.params.produkttyp">{{ $route.params.produkttyp }}</nuxt-link></li>
+          <li><nuxt-link :to="localePath('/'+shop.toLowerCase())">{{ shop }}</nuxt-link></li>
+          <li><nuxt-link :to="localePath('/lag/'+$route.params.league+'/'+$route.params.team)">{{ $route.params.team }}</nuxt-link></li>
+          <li><nuxt-link :to="localePath('/lag/'+$route.params.league+'/'+$route.params.team+'/produkttyp/'+$route.params.produkttyp)">{{ $route.params.produkttyp }}</nuxt-link></li>
         </ul>
         <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
       </div>

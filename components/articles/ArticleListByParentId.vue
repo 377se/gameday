@@ -43,7 +43,7 @@
             >
             <nuxt-link
               class="uk-label"
-              :to="`/lag/${$route.params.league}/${$route.params.team}/produkttyp/${pt.SeoName}`"><span>{{ pt.Name }}</span></nuxt-link>
+              :to="localePath(`/lag/${$route.params.league}/${$route.params.team}/produkttyp/${pt.SeoName}`)"><span>{{ pt.Name }}</span></nuxt-link>
           </div>
         </div>
         <div 

@@ -6,7 +6,7 @@
         v-for="brand in brands"
         :key="brand.BrandId">
         <nuxt-link
-          :to="'/varumarke/'+brand.SeoName">
+          :to="localePath('/varumarke/'+brand.SeoName)">
           <div class="uk-card uk-card-default">
             <div class="uk-card-media-top">
               <img :src="brand.Image" alt="">

@@ -108,27 +108,27 @@ export default {
     }],
     ['nuxt-i18n',
       {
-        defaultLocale: 'sv',
+        defaultLocale: 'sv-se',
         strategy: 'prefix',
         locales: [
           {
-            code: 'sv',
+            code: 'sv-se',
             iso: 'sv-SE'
           },
           {
-            code: 'nb',
+            code: 'nb-no',
             iso: 'nb-NO'
           },
           {
-            code: 'da',
+            code: 'da-dk',
             iso: 'da-DK'
           },
           {
-            code: 'en',
+            code: 'en-gb',
             iso: 'en-GB'
           },
           {
-            code: 'fi',
+            code: 'fi-fi',
             iso: 'fi-FI'
           }
         ],
@@ -160,7 +160,7 @@ export default {
   },
   proxy: {
     '/webapi': {
-      target: process.env.NODE_ENV !== 'production'?'https://beta.gameday.se':'https://api.gameday.se'
+      target: process.env.NODE_ENV !== 'production'?'https://api.samdodds.com':'https://api.samdodds.com'
     }
   },
   /*

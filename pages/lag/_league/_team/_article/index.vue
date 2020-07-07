@@ -26,8 +26,8 @@
             <nuxt-link to="/">
               <span style="vertical-align: bottom;
                 margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
-          <li><nuxt-link :to="'/'+shop.toLowerCase()">{{ shop }}</nuxt-link></li>
-          <li><nuxt-link :to="'/lag/'+$route.params.league+'/'+$route.params.team">{{ article.HeadCategory }}</nuxt-link></li>
+          <li><nuxt-link :to="localePath('/'+shop.toLowerCase())">{{ shop }}</nuxt-link></li>
+          <li><nuxt-link :to="localePath('/lag/'+$route.params.league+'/'+$route.params.team)">{{ article.HeadCategory }}</nuxt-link></li>
           <li><span>{{ article.Name }}</span></li>
         </ul>
         <ArticleDetails v-bind:article="article"></ArticleDetails>

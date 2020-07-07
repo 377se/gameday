@@ -7,7 +7,7 @@
           v-for="order in orders"
           :key="order.OrderId">
             <nuxt-link
-              :to="'/my-account/'+order.OrderId">{{ order.OrderId }}
+              :to="localePath('/my-account/'+order.OrderId)">{{ order.OrderId }}
             </nuxt-link>
         </li>
       </ul>

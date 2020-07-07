@@ -23,13 +23,13 @@
               :class="{'uk-parent':cat.SubCategoryList.length>0}">
               <nuxt-link
                 v-if="!cat.SubCategoryList.length>0"
-                :to="'/c/0/'+cat.Id+'/'+cat.UrlSafeName">{{ cat.Name }}</nuxt-link>
+                :to="localePath('/c/0/'+cat.Id+'/'+cat.UrlSafeName)">{{ cat.Name }}</nuxt-link>
               <a v-else to="#">{{ cat.Name }}</a>
                 <ul
                   v-if="cat.SubCategoryList.length>0">
                   <li
                     v-for="sub in cat.SubCategoryList"
-                    :key="sub.Id"><nuxt-link :to="'/c/'+cat.Id+'/'+sub.Id+'/'+sub.UrlSafeName">{{ sub.Name }}</nuxt-link></li>
+                    :key="sub.Id"><nuxt-link :to="localePath('/c/'+cat.Id+'/'+sub.Id+'/'+sub.UrlSafeName)">{{ sub.Name }}</nuxt-link></li>
                 </ul>
             </li>
           </ul>

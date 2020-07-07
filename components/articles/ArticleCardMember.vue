@@ -1,7 +1,7 @@
 <template>
   <nuxt-link
     class="uk-margin-small-bottom uk-link-reset"
-    :to="'/bli-medlem/'+article.Id"
+    :to="localePath('/bli-medlem/'+article.Id)"
   >
     <div class="uk-card uk-card-hover bottom-red-line">
       <div class="uk-card-media-top">
