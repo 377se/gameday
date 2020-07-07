@@ -109,11 +109,27 @@ export default {
     ['nuxt-i18n',
       {
         defaultLocale: 'sv',
-        strategy: 'prefix_except_default',
+        strategy: 'prefix',
         locales: [
           {
             code: 'sv',
             iso: 'sv-SE'
+          },
+          {
+            code: 'nb',
+            iso: 'nb-NO'
+          },
+          {
+            code: 'da',
+            iso: 'da-DK'
+          },
+          {
+            code: 'en',
+            iso: 'en-GB'
+          },
+          {
+            code: 'fi',
+            iso: 'fi-FI'
           }
         ],
         seo:false
