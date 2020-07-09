@@ -5,7 +5,7 @@
       <div 
         class="uk-flex uk-grid-small uk-grid-stack" 
         uk-grid>
-        <div class="uk-flex-last uk-flex-first@m uk-width-expand@m uk-width-1-2@s">                  
+        <div class="uk-width-1-1 uk-flex-last uk-flex-first@m uk-width-expand@m uk-width-1-2@s">                  
           <div class="uk-margin">
             <nuxt-link :to="localePath('/')">
               <img 
@@ -24,7 +24,7 @@
           </div>    
         </div>
 
-        <div class="uk-width-expand@m uk-width-1-2@s">               
+        <div class="uk-width-1-1 uk-width-expand@m uk-width-1-2@s">               
           <h3 class="uk-h4">Shoppar</h3>
           <ul class="uk-list uk-text-small">
             <li><nuxt-link :to="localePath('/nhl-shop')">NHL Shop</nuxt-link></li>
@@ -35,7 +35,7 @@
           </ul>
         </div>
 
-        <div class="uk-width-expand@m uk-width-1-2@s">               
+        <div class="uk-width-1-1 uk-width-expand@m uk-width-1-2@s">               
           <h3 class="uk-h4">Få hjälp</h3>
           <ul class="uk-list uk-text-small">
             <li><nuxt-link :to="localePath('/kopvillkor')">Köpvillkor</nuxt-link></li>
@@ -45,7 +45,7 @@
           </ul>
         </div>
 
-        <div class="uk-width-expand@m uk-width-1-2@s">               
+        <div class="uk-width-1-1 uk-width-expand@m uk-width-1-2@s">               
           <h3 class="uk-h4">Om Gameday</h3>
           <ul class="uk-list uk-text-small">
             <li><nuxt-link :to="localePath('/foretagsinformation')">Företagsinformation</nuxt-link></li>
