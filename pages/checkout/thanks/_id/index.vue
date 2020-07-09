@@ -63,6 +63,7 @@ export default {
     var _this = this;
     try{
       //Set CurrencyCode
+      _this.klarnahtml.Order.purchase = _this.klarnahtml.Order
       _this.klarnahtml.Order.currencyCode = process.env.CURRENCY_CODE
       this.$gtm.push({ event: 'paymentThanks', ecommerce: _this.klarnahtml.Order })
       }catch(err){console.log(err)}
