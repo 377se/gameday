@@ -43,7 +43,8 @@ export default {
   },
   data() {
     return {
-      klarnahtml: null
+      klarnahtml: null,
+      currencycode: process.env.CURRENCY_CODE
     };
   },
   mounted(){
@@ -62,7 +63,7 @@ export default {
       var _this = this
       //Set CurrencyCode
       this.klarnahtml.Order.purchase = _this.klarnahtml.Order
-      this.klarnahtml.Order.currencyCode = process.env.CURRENCY_CODE
+      this.klarnahtml.Order.currencyCode = _this.currencycode
       this.$gtm.push({ event: 'paymentThanks', ecommerce: _this.klarnahtml.Order })
     }catch(err){console.log(err)}
       
