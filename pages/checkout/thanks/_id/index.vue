@@ -11,9 +11,9 @@
       class="uk-container uk-padding-remove"
       v-html="klarnahtml.Html"/>
     <div 
-      v-if="klarnahtml.Order"
+      v-if="obj"
       style="display:none;">
-      {{ klarnahtml.Order }}
+      {{ obj }}
     </div>
   </section>
 </template>
@@ -43,7 +43,8 @@ export default {
   },
   data() {
     return {
-      klarnahtml: {purchase:null},
+      klarnahtml: null,
+      obj: null,
       currencycode: process.env.CURRENCY_CODE
     };
   },
@@ -68,7 +69,8 @@ export default {
       const klarnahtml = await this.$axios.$get(url);
       this.klarnahtml=klarnahtml;
       try{
-        var _obj ={currencyCode: process.env.CURRENCY_CODE, purchase: this.klarnahtml.Order}
+        var _obj = {currencyCode: process.env.CURRENCY_CODE, purchase: {actionField: this.klarnaHtml.Order.actionField, products: this.klarnaHtml.Order.products}}
+        this.obj = _obj
         this.$gtm.push({ event: 'paymentThanks', ecommerce: _obj })
       }catch(err){console.log(err)}
     } catch (err) {
