@@ -69,7 +69,6 @@ export default {
       const klarnahtml = await this.$axios.$get(url);
       this.klarnahtml=klarnahtml;
       try{
-        var _this = this
         //Set CurrencyCode
         this.klarnahtml.Order.purchase = _this.klarnahtml.Order
         this.klarnahtml.Order.currencyCode = process.env.CURRENCY_CODE
