@@ -60,6 +60,10 @@ export default {
         parentNode.removeChild(scriptsTags[i])
         parentNode.appendChild(newScriptTag)
     }
+    try{
+      var _this = this
+      this.$gtm.push({ event: 'paymentThanks', ecommerce: _this.obj })
+    }catch(err){console.log(err)}
  
   },
   async fetch() {
