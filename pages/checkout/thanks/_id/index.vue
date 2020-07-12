@@ -69,7 +69,7 @@ export default {
       const klarnahtml = await this.$axios.$get(url);
       this.klarnahtml=klarnahtml;
       try{
-        var _obj = {currencyCode: process.env.CURRENCY_CODE, purchase: {actionField: this.klarnaHtml.Order.actionField, products: this.klarnaHtml.Order.products}}
+        var _obj = {currencyCode: process.env.CURRENCY_CODE, purchase: {actionField: this.klarnahtml.Order.actionField, products: this.klarnahtml.Order.products}}
         this.obj = _obj
         this.$gtm.push({ event: 'paymentThanks', ecommerce: _obj })
       }catch(err){console.log(err)}
