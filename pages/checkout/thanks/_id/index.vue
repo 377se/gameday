@@ -43,7 +43,7 @@ export default {
   },
   data() {
     return {
-      klarnahtml: null,
+      klarnahtml: {purchase:null},
       currencycode: process.env.CURRENCY_CODE
     };
   },
@@ -59,14 +59,7 @@ export default {
         parentNode.removeChild(scriptsTags[i])
         parentNode.appendChild(newScriptTag)
     }
-    try{
-      var _this = this
-      //Set CurrencyCode
-      this.klarnahtml.Order.purchase = _this.klarnahtml.Order
-      this.klarnahtml.Order.currencyCode = _this.currencycode
-      this.$gtm.push({ event: 'paymentThanks', ecommerce: _this.klarnahtml.Order })
-    }catch(err){console.log(err)}
-      
+ 
   },
   async fetch() {
     var _this = this;
@@ -74,6 +67,10 @@ export default {
       const url = `/webapi/klarnacheckout3/GetKlarnaAcknowledge?id=${this.$route.params.id}`;
       const klarnahtml = await this.$axios.$get(url);
       this.klarnahtml=klarnahtml;
+      try{
+        var _obj ={currencyCode: process.env.CURRENCY_CODE, purchase: this.klarnahtml.Order}
+        this.$gtm.push({ event: 'paymentThanks', ecommerce: _obj })
+      }catch(err){console.log(err)}
     } catch (err) {
       console.log(err);
     }
