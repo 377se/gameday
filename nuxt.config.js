@@ -148,7 +148,7 @@ export default {
   },
   proxy: {
     '/webapi': {
-      target: process.env.NODE_ENV !== 'production'?'https://beta.gameday.se':'https://api.gameday.se'
+      target: process.env.NODE_ENV !== 'production'?'https://beta.gameday.se':'https://beta.gameday.se'
     }
   },
   /*
