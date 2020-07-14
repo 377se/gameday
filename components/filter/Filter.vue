@@ -231,6 +231,9 @@ export default {
   },
   mounted(){
     this.setNumFilters();
+    try{
+      UIkit.modal('#filter-menu').hide()
+    }catch(err){console.log(err)}
   },
   methods:{
     setNumFilters(){

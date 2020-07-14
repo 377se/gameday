@@ -46,7 +46,7 @@
       </ul>
       <div class="uk-switcher">
         <div>
-          <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
+          <ul class="uk-nav-default uk-nav-parent-icon uk-list" uk-nav>
             <li>
               <nuxt-link
                 :to="localePath('/nhl-shop')">Till NHL Shopen</nuxt-link>
@@ -71,7 +71,7 @@
           </ul>
         </div>
         <div>
-          <ul class="uk-nav-default uk-nav-parent-icon" uk-nav="multiple:true">
+          <ul class="uk-nav-default uk-nav-parent-icon uk-list" uk-nav="multiple:true">
             <li>
               <nuxt-link
                 :to="localePath('/nfl-shop')">Till NFL Shopen</nuxt-link>
@@ -96,7 +96,7 @@
           </ul>
         </div>
         <div>
-          <ul class="uk-nav-default uk-nav-parent-icon" uk-nav="multiple:true">
+          <ul class="uk-nav-default uk-nav-parent-icon uk-list" uk-nav="multiple:true">
             <li>
               <nuxt-link
                 :to="localePath('/nba-shop')">Till NBA Shopen</nuxt-link>
@@ -121,7 +121,7 @@
           </ul>
         </div>
         <div>
-          <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
+          <ul class="uk-nav-default uk-nav-parent-icon uk-list" uk-nav>
             <li>
               <nuxt-link
                 :to="localePath('/mlb-shop')">Till MLB Shopen</nuxt-link>
@@ -146,7 +146,7 @@
           </ul>
         </div>
         <div>
-          <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
+          <ul class="uk-nav-default uk-nav-parent-icon uk-list" uk-nav>
             <li>
               <nuxt-link
                 :to="localePath('/premier-league')">Till Premier League</nuxt-link>
