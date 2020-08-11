@@ -17,23 +17,22 @@
       uk-modal>
       <div 
         class="uk-modal-dialog">
-        <div 
-          class="uk-modal-body uk-overflow-auto" 
-          style="padding:0px;height:100vh;background:#ffffff;"
-          uk-overflow-auto>
-          <div
-            style="height:80px;background:#00bbe0"
-            class="uk-flex">
-            <h3 style="line-height:80px;margin-left:12px;color:#fff;">{{ $getCMSEntry(global_labels,'filter_header', 'Filter') }}</h3>
-            <button 
-              class="uk-offcanvas-close uk-icon uk-close"
-              style="top:27px;right:6px;color:#fff;" 
-              type="button" 
-              uk-close
-              uk-toggle="target: #filter-menu"></button>
-          </div>
-          
-          <form @submit.prevent="setFilter()">
+        <form @submit.prevent="setFilter()">
+          <div 
+            class="uk-modal-body uk-overflow-auto" 
+            style="padding:0px;height:100vh;background:#ffffff;"
+            uk-overflow-auto>
+            <div
+              style="height:80px;background:#00bbe0"
+              class="uk-flex">
+              <h3 style="line-height:80px;margin-left:12px;color:#fff;">{{ $getCMSEntry(global_labels,'filter_header', 'Filter') }}</h3>
+              <button 
+                class="uk-offcanvas-close uk-icon uk-close"
+                style="top:27px;right:6px;color:#fff;" 
+                type="button" 
+                uk-close
+                uk-toggle="target: #filter-menu"></button>
+            </div>  
             <ul
               class="uk-nav uk-list uk-list-divider"
               style="margin-top:10px;">
@@ -158,11 +157,15 @@
                 </div>
               </li>
             </ul>
+          </div>
+          <div 
+            class="uk-modal-footer"
+            style="padding:0;border:0;">
             <div class="filter-button uk-padding-small uk-margin-small uk-margin-remove-bottom">
               <button class="uk-button uk-button-primary uk-width-1-1" type="submit">{{ $getCMSEntry(global_labels,'filter_button', 'Filtrera') }}</button>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </div>    
   </div>
@@ -308,10 +311,6 @@ export default {
 
 #filter-menu{
   z-index: 999999; //ZD was on top otherwise
-}
-
-#filter-menu form{
-  padding-bottom:100px;
 }
 
 #filter-menu .uk-nav a, #filter-menu .uk-nav label{
