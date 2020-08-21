@@ -2,15 +2,32 @@
   <section>
     <div class="uk-container">
       <h1>{{ $getCMSEntry(labels,'orderHistory', 'Orderhistorik') }}</h1>
-      <ul class="uk-list">
-        <li 
-          v-for="order in orders"
+
+    <table class="uk-table">
+      <thead>
+        <tr>
+          <th>{{ $getCMSEntry(labels,'orderNumber', 'Ordernummer') }}</th>
+          <th>{{ $getCMSEntry(labels,'orderDate', 'Orderdatum') }}</th>
+          <th>{{ $getCMSEntry(labels,'orderSum', 'Ordersumma') }}</th>
+          <th>{{ $getCMSEntry(labels,'paymentMethod', 'Betalningsmetod') }}</th>
+          <th>{{ $getCMSEntry(labels,'orderStatus', 'Status') }}</th>
+         </tr> 
+       </thead> 
+      <tr v-for="order in orders"
           :key="order.OrderId">
+          <td>
             <nuxt-link
               :to="localePath('/my-account/'+order.OrderId)">{{ order.OrderId }}
             </nuxt-link>
-        </li>
-      </ul>
+          </td>
+          <td>{{ order.OrderDate }}</td>  
+          <td>{{ order.OrderSum }} {{ order.Currency }}</td>  
+          <td>{{ order.PaymentMethod }}</td>  
+          <td>{{ order.StatusDisplay }}</td>  
+        </tr>
+    </table>
+
+     
     </div>
   </section>
 </template>
