@@ -8,9 +8,6 @@
           <nuxt-link :to="localePath('/my-account/')">{{ $getCMSEntry(labels,'myAccount', 'Mitt konto') }}</nuxt-link>
         </li>
         <li>
-          <nuxt-link :to="localePath('/my-account/member-info')">{{ $getCMSEntry(labels,'memberInformation', 'Medlemsinformation') }}</nuxt-link>
-        </li>
-        <li>
           <nuxt-link :to="localePath('/my-account/order-history')">{{ $getCMSEntry(labels,'orderHistory', 'Orderhistorik') }}</nuxt-link>
         </li>
         <li>
