@@ -10,7 +10,7 @@
 
       <div class="uk-navbar-left">
         <nuxt-link 
-          class="uk-navbar-item uk-logo" 
+          class="uk-navbar-item uk-padding-small uk-logo" 
           :to="localePath('/')"><img :src="logo" class="logo"></nuxt-link>
       </div>
 
@@ -27,7 +27,7 @@
             uk-icon="icon:user;ratio:1.0"/>
           <span
             style="display:block;font-size:0.6rem;color:#fff;white-space:nowrap">
-            Logga in
+            {{ $getCMSEntry(global_labels,'header_login', 'Logga in') }}
           </span>
         </nuxt-link>
         <nuxt-link
@@ -39,7 +39,7 @@
             uk-icon="icon:user;ratio:1.0"/>
           <span
             style="display:block;font-size:0.6rem;color:#fff;white-space:nowrap">
-            Mitt konto
+            {{ $getCMSEntry(global_labels,'header_myaccount', 'Mitt konto') }}
           </span>
         </nuxt-link>
         <a 
@@ -72,7 +72,8 @@ export default {
   computed: {
     ...mapGetters({
       counter: 'basket/counter',
-      cid: 'cid'
+      cid: 'cid',
+      global_labels: 'labels'
     })
   },
   methods:{
@@ -110,13 +111,7 @@ export default {
 }
 
 .logo {
-  width: 250px;
+  width: 150px;
 }
 
-.hamburger {
-  color: #00bbe0;
-}
-.hamburger:hover {
-  color: #00bbe0;
-}
 </style>

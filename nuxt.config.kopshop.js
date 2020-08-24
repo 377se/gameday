@@ -5,30 +5,24 @@ export default {
     DETAILS_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_640,f_auto/http://static.supportersplace.se/product/'
     ,STORYBLOK_CATALOGUE: 'kopshop/',
     SITE_URL: 'https://www.kopshop.no',
-    LOGO_URL: '/sites/kopshop/kopshop-logo.png',
-    SITE_ID: 3,
+    LOGO_URL: '/sites/samdodds/samdodds-logo.png',
+    SITE_ID: 2,
     MEMBER_PRICES: true,
     ISO_LANG_COUNTRY: 'nb-NO',
     ISO_LANG: 'nb',
     CURRENCY_CODE: 'NOK',
-    STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt'
+    STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt',
+    ZENDESK: '457ea997-85d2-4fa7-a24f-9f1ac8e950f8'
   },
   mode: 'universal',
   /*
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content: process.env.npm_package_description || ''
-      }
-    ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    ]
   },
   /*
    ** Customize the progress-bar color
@@ -39,7 +33,7 @@ export default {
    */
   css: [
     // SCSS file in the project
-    '~/assets/scss/site.scss'
+    '~/assets/scss/site.samdodds.scss'
     //'uikit/dist/css/uikit.css'
   ],
   router: {
@@ -52,8 +46,8 @@ export default {
    */
   plugins: [
     {src: '~/plugins/jsonld.js'},
-    {src: '~/plugins/kopshop.js'},
     {src: '~/plugins/vue-placeholders.js'},
+    {src: '~/plugins/samdodds.js'},
     {src: "~/plugins/uikit.js", ssr: false },
     {src: '~/plugins/axios'},
     {src: '~/plugins/get'},
@@ -80,38 +74,39 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     //'@nuxtjs/eslint-module'
     '@nuxtjs/gtm', 
+    '@nuxtjs/pwa',
   ],
-  gtm: { id: 'GTM-WDJLNSJ' },
+  gtm: { id: 'GTM-NBCJ6D' },
   /*
    ** Nuxt.js modules
    */
   modules: [
-    ['@netsells/nuxt-hotjar', { 
-      id: '1686545', 
-      sv: '',
-    }],
     // Doc: https://axios.nuxtjs.org/usage
     ['@dansmaculotte/nuxt-zendesk',
     { 
-      key: 'b2384b65-02c4-40fe-b25f-c195c554d089',
-      disabled: false,
+      key: '457ea997-85d2-4fa7-a24f-9f1ac8e950f8',
+      disabled: true,
+      hideOnLoad: true,
       settings: {
         webWidget: {
           color: {
             theme: '#fa6900',
             launcherText: '#ffffff',
+          },
+          chat: {
+            connectOnPageLoad: false
           }
         }
       }
     }],
     ['nuxt-i18n',
       {
-        defaultLocale: 'sv',
+        defaultLocale: 'nb',
         strategy: 'prefix_except_default',
         locales: [
           {
-            code: 'sv',
-            iso: 'sv-SE'
+            code: 'nb',
+            iso: 'nb-NO'
           }
         ],
         seo:false
@@ -119,19 +114,35 @@ export default {
     ],
     '@nuxtjs/axios',
     'cookie-universal-nuxt',
-    '@nuxtjs/pwa',
     'nuxt-webfontloader',
     ['storyblok-nuxt', { accessToken: 'rGRW1HEorfNfSoGS5CzoDwtt', cacheProvider: 'memory' }],
     ['@nuxtjs/style-resources']    
   ],
   styleResources: {
     scss: [
-    './assets/scss/vars.supportersplace.scss'
+    './assets/scss/vars.samdodds.scss'
     ]
+  },
+  pwa: {
+    meta:{
+      name: 'KopShop.no',
+      description: 'KopShop.no',
+      lang: 'nb',
+      theme_color: '#ffffff'
+    },
+    manifest: {
+      name: 'KopShop.no',
+      short_name: 'KopShop',
+      lang: 'nb',
+      description: 'KopShop.no',
+    },
+    icon: {
+      iconFileName: 'icon_samdodds.png'
+    }
   },
   webfontloader: {
     google: {
-      families: ['Lato:300,400,900'] //Loads Lato
+      families: ['Source+Sans+Pro:wght@400;600;700','Ubuntu:wght@400;500;700&display=swap'] //Loads Source Sans and Ubuntu
     }
   },
   /*
@@ -143,7 +154,7 @@ export default {
   },
   proxy: {
     '/webapi': {
-      target: process.env.NODE_ENV !== 'production'?'https://beta.gameday.se':'https://api.gameday.se'
+      target: process.env.NODE_ENV !== 'production'?'https://api.samdodds.com':'https://api.samdodds.com'
     }
   },
   /*
