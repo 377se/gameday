@@ -7,34 +7,74 @@
       
 
         <div class="uk-width-1-1 uk-margin-small">
-          <strong>{{order.OrderId}}</strong><br />
-          {{order.OrderDate}}<br />
-          {{order.Address.FirstName}} {{order.Address.LasttName}} <br />
+          <h1>Order {{order.OrderId}}</h1>
+          {{ $getCMSEntry(labels,'orderDate', 'Orderdatum') }}: {{order.OrderDate}}<br />
+          {{ $getCMSEntry(labels,'orderStatus', 'Orderstatus') }}:  {{order.StatusDisplay}}<br />
+          {{ $getCMSEntry(labels,'trackingNumber', 'Kollinummer') }}:  {{order.TrackingNumber}}<br />
+          {{ $getCMSEntry(labels,'paymentMethod', 'Betalningsmetod') }}:  {{order.PaymentMethod}}<br />
+
+          <hr class="uk-divider-icon">
+
+          {{order.Address.FirstName}} {{order.Address.LastName}} <br />
           {{order.Address.Address1}}<br />
           {{order.Address.PostalCode}} {{order.Address.City}}<br />
             {{order.Address.Country}}<br />
             {{order.Address.Email}}<br />
             {{order.Address.Mobile}}
 
-            <div
-            v-for="item in order.ItemList"
-            :key="item.ItemId"
-            class="uk-width-1-3 uk-width-1-4@s uk-grid-margin">
-                {{item.ImageThumb}}
-                {{item.ProductName}}
-                {{item.ArticleNumber}}
-                {{item.Color}}
-                {{item.PriceToPayDisplay}}
-            </div>
+        <table class="uk-table">
 
-<br /><br />
-            Ordersummering
-            <div>
-  Ordersumma: {{order.OrderSummary.OrderSumDisplay}}<br />
-  Frakt: {{order.OrderSummary.ShippingAndHandlingDisplay}}<br />
-  Totalt: {{order.OrderSummary.TotalDisplay}}<br />
-  Varav moms: {{order.OrderSummary.VatDisplay}}<br />
-            </div>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Produkt</th>
+              <th>Artikelnummer</th>
+              <th>Storlek</th>
+              <th>Färg</th>
+              <th class="uk-text-right">Pris</th>
+            </tr>
+          </thead>
+
+          
+         <tr v-for="item in order.ItemList"
+            :key="item.ItemId">
+            <td><img :src="thumb_src + item.ImageThumb" /></td>
+            <td>{{item.ProductName}}</td>
+            <td>{{item.ArticleNumber}}</td>
+            <td>{{item.SizeDisplay}}</td>
+            <td>{{item.Color}}</td>
+            <td class="uk-text-right">{{item.PriceToPayDisplay}}</td>
+             
+          </tr>
+
+          <tfoot>
+            <tr>
+              <td colspan="4"></td>
+              <td>Ordersumma:</td>
+              <td class="uk-text-right">{{order.OrderSummary.OrderSumDisplay}}</td>
+            </tr> 
+
+<tr>
+              <td colspan="4"></td>
+              <td>Frakt:</td>
+              <td class="uk-text-right">{{order.OrderSummary.ShippingAndHandlingDisplay}}</td>
+            </tr> 
+
+<tr>
+              <td colspan="4"></td>
+              <td>Totalt:</td>
+              <td class="uk-text-right">{{order.OrderSummary.TotalDisplay}}</td>
+            </tr> 
+
+<tr>
+              <td colspan="4"></td>
+              <td>Varav moms:</td>
+              <td class="uk-text-right">{{order.OrderSummary.VatDisplay}}</td>
+            </tr> 
+
+          </tfoot>
+        </table>
+
 
         </div>
       
@@ -58,7 +98,7 @@ export default {
   },
   data() {
     return{
-      
+      thumb_src:process.env.THUMB_SRC,
     }
   },
   mounted() {
