@@ -88,6 +88,59 @@
             </button>
           </div>
         </div>
+        <form
+          v-if="article.AddOn"
+          class="uk-margin">
+          <h4>{{$getCMSEntry(global_labels,'article_details_addon', 'Tillägg')}}</h4>
+          <div class="uk-margin-small">
+            <label>
+              <input 
+                type="checkbox"
+                class="uk-checkbox"
+                v-model="showNameNumber"
+              /> {{$getCMSEntry(global_labels,'article_details_show_name_number', 'Namn- och/eller nummer')}}
+            </label>
+          </div>
+          <div v-if="showNameNumber">
+            <div class="uk-margin-small">
+              <select 
+                v-model="nameNumber"
+                @change="setPrint()"
+                class="uk-select">
+                <option value="">{{$getCMSEntry(global_labels,'article_addon_names', 'Välj spelare eller skriv in eget namn och nummer')}}</option>
+                <option 
+                  v-for="name in article.AddOn.Names"
+                  :value="name"
+                  :key="name">{{ name.Name }}, {{ name.Number }}</option>
+              </select>
+            </div>
+            <div class="uk-margin-small uk-flex uk-grid uk-grid-small">
+              <div class="uk-width-1-2">
+                <label>{{$getCMSEntry(global_labels,'article_addon_name', 'Namn')}}<br>(+ {{ article.AddOn.DisplayPriceName }})</label>
+                <input 
+                  type="text"
+                  class="uk-input uk-width-1-1"
+                  v-model="printName">
+              </div>
+              <div class="uk-width-1-2">
+                <label>{{$getCMSEntry(global_labels,'article_addon_number', 'Nummer')}}<br>(+ {{ article.AddOn.DisplayPriceNumber }})</label>
+                <input 
+                  type="number"
+                  class="uk-input uk-width-1-1"
+                  v-model="printNumber">
+              </div>
+            </div>
+          </div>
+          <div class="uk-margin-small">
+            <label>
+              <input 
+                type="checkbox"
+                class="uk-checkbox"
+                v-model="patches" 
+              /> {{$getCMSEntry(global_labels,'article_details_patches', 'Premier League Patches')}} (+ {{ article.AddOn.DisplayPricePatches }})
+            </label>
+          </div>
+        </form>
         <ButtonSubmit
           v-if="!article.IsSoldOut"
           :is-submitting="isSubmitting"
@@ -150,6 +203,7 @@ export default {
     article: {
       type: Object,
       default: () => ({
+        AddOn: null,
         Name: "",
         Images: [],
         SizeList: [],
@@ -166,7 +220,12 @@ export default {
     return{
       chosenSize:-1,
       isSubmitting:false,
-      memberprices: process.env.MEMBER_PRICES
+      memberprices: process.env.MEMBER_PRICES,
+      printName:'',
+      printNumber: '',
+      patches: false,
+      showNameNumber: false,
+      nameNumber: ''
     }
   },
   jsonld() {
@@ -195,6 +254,14 @@ export default {
     ...mapGetters({
       global_labels:'labels'})
   },
+  watch: {
+    showNameNumber: function(oldQ, newQ){
+      if(oldQ){
+        this.printName = ''
+        this.printNumber = ''
+      }
+    }
+  },
   mounted() {
     if(this.article.IsOneSize){
       if(this.article.SizeList.length>0 && this.article.SizeList[0].ItemsInStock>0){
@@ -203,6 +270,10 @@ export default {
     }
   },
   methods:{
+    setPrint(){
+      this.printName = this.nameNumber.Name
+      this.printNumber = this.nameNumber.Number
+    },
     setSize(size){
       this.chosenSize=size
     },
@@ -211,7 +282,7 @@ export default {
       if(this.chosenSize>-1){
           this.isSubmitting = true
           await this.$axios.post('/webapi/cart/PostAddToCart',{
-            AddOn: null,
+            AddOn: {Name:this.printName, Number:this.printNumber, Patches:this.patches, PrintTypeId:1},
             ArticleId: this.article.Id,
             Quantity: 1,
             SizeId: this.chosenSize
