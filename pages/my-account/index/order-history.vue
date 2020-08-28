@@ -8,7 +8,7 @@
         <tr>
           <th>{{ $getCMSEntry(labels,'orderNumber', 'Ordernummer') }}</th>
           <th>{{ $getCMSEntry(labels,'orderDate', 'Orderdatum') }}</th>
-          <th>{{ $getCMSEntry(labels,'orderSum', 'Ordersumma') }}</th>
+          <th class="uk-text-right">{{ $getCMSEntry(labels,'orderSum', 'Ordersumma') }}</th>
           <th>{{ $getCMSEntry(labels,'paymentMethod', 'Betalningsmetod') }}</th>
           <th>{{ $getCMSEntry(labels,'orderStatus', 'Status') }}</th>
          </tr> 
@@ -21,7 +21,7 @@
             </nuxt-link>
           </td>
           <td>{{ order.OrderDate }}</td>  
-          <td>{{ order.OrderSum }} {{ order.Currency }}</td>  
+          <td class="uk-text-right">{{ order.OrderSum }} {{ order.Currency }}</td>  
           <td>{{ order.PaymentMethod }}</td>  
           <td>{{ order.StatusDisplay }}</td>  
         </tr>
