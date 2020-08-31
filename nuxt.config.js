@@ -155,6 +155,7 @@ export default {
    ** Build configuration
    */
   build: {
+    //analyze: true, //if we wish to do npm run build --analyze
     /*
      ** You can extend webpack config here
      */
