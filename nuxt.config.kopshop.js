@@ -6,7 +6,7 @@ export default {
     ,STORYBLOK_CATALOGUE: 'kopshop/',
     SITE_URL: 'https://www.kopshop.no',
     LOGO_URL: '/sites/samdodds/samdodds-logo.png',
-    SITE_ID: 2,
+    SITE_ID: 3,
     MEMBER_PRICES: true,
     ISO_LANG_COUNTRY: 'nb-NO',
     ISO_LANG: 'nb',
@@ -154,7 +154,7 @@ export default {
   },
   proxy: {
     '/webapi': {
-      target: process.env.NODE_ENV !== 'production'?'https://api.samdodds.com':'https://api.samdodds.com'
+      target: process.env.NODE_ENV !== 'production'?'https://api.kopshop.no':'https://api.kopshop.no'
     }
   },
   /*

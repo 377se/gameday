@@ -109,7 +109,7 @@ async fetch () {
   },
   data() {
     return{
-      thumb_src:process.env.THUMB_SRC,
+      thumb_src:process.env.THUMB_SRC,  
       labels: [],
       story: { content: {} },
     }
