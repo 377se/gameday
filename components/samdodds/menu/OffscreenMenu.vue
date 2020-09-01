@@ -26,7 +26,8 @@
                 :to="localePath('/c/0/'+cat.Id+'/'+cat.UrlSafeName)">{{ cat.Name }}</nuxt-link>
               <a v-else href="#">{{ cat.Name }}</a>
                 <ul
-                  v-if="cat.SubCategoryList.length>0">
+                  v-if="cat.SubCategoryList.length>0"
+                  class="uk-list">
                   <li
                     v-for="sub in cat.SubCategoryList"
                     :key="sub.Id"><nuxt-link :to="localePath('/c/'+cat.Id+'/'+sub.Id+'/'+sub.UrlSafeName)">{{ sub.Name }}</nuxt-link></li>
