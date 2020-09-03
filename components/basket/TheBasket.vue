@@ -102,6 +102,27 @@
                     {{ cart.PriceToPayExShipping }}</strong>
                 </td>
               </tr>
+
+              <tr>
+                <td colspan="2" style="text-align:right">
+                  <strong><span>{{ $getCMSEntry(global_labels,'basket_shipping', 'Frakt') }}</span></strong>
+                </td>
+                <td colspan="1" class="total" style="white-space:nowrap;padding-right:6px;">
+                  <strong>{{ cart.Shipping }}</strong>
+                </td>
+              </tr>
+
+
+              <tr>
+                <td colspan="2" style="text-align:right">
+                  <strong>{{ $getCMSEntry(global_labels,'basket_total', 'Totalt') }} <span>{{ $getCMSEntry(global_labels,'basket_inc_shipping', 'inkl.frakt') }}</span></strong>
+                </td>
+                <td colspan="1" class="total" style="white-space:nowrap;padding-right:6px;">
+                  <strong>{{ cart.PriceToPayIncShipping }}</strong>
+                </td>
+              </tr>
+
+
             </tfoot>
           </table>
           <VoucherCode />
