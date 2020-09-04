@@ -23,8 +23,7 @@
             style="padding:0px;height:100vh;background:#ffffff;"
             uk-overflow-auto>
             <div
-              style="height:80px;background:#00bbe0"
-              class="uk-flex">
+              class="uk-flex sd-modal-header">
               <h3 style="line-height:80px;margin-left:12px;color:#fff;">{{ $getCMSEntry(global_labels,'filter_header', 'Filter') }}</h3>
               <button 
                 class="uk-offcanvas-close uk-icon uk-close"
@@ -322,6 +321,10 @@ export default {
 }
 #filter-menu .uk-accordion-title{
   color:$global-color;
+}
+
+.sd-modal-header{
+  height:80px;background:$global-primary-background;
 }
 
 .menu {
