@@ -125,6 +125,11 @@
 
             </tfoot>
           </table>
+
+          <div v-if="cart.CampaignTextOutput" class="uk-alert-primary" uk-alert>
+            <p>{{ cart.CampaignTextOutput }}</p>
+          </div>
+
           <VoucherCode />
           <div 
             class="uk-padding-small uk-padding-remove-bottom"
