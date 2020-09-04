@@ -4,17 +4,17 @@
     <h1
       v-if="blok.category_header">{{ blok.category_header }}</h1>
     <a 
-      style="position:relative;display:block;"
+      style="display:block;"
       :href="blok.promo_url.url">
       <iframe 
         :src="blok.promo_video_url" 
-        :width="width" :height="height" 
+        :width="blok.width" :height="blok.height" 
         frameborder="0" 
         style="z-index:1"
         uk-cover
         ></iframe>
       <div
-        style="position:absolute;bottom:20px;left:20px;">
+        style="position:absolute;bottom:20px;left:20px;z-index:2">
         <h4 
           class="promo-pre-header uk-animation-fade">{{ blok.promo_subheader }}</h4>
         <h1 
