@@ -10,7 +10,6 @@
         :key="index">
           <img
             v-bind:src="details_src+image.Name"
-            uk-img
           >
       </li>
     </ul>
