@@ -23,9 +23,11 @@
 </template>
 <script>
 import promo from '@/components/promo/Promo'
+import promo_video from '@/components/promo/PromoVideo'
 export default {
   components:{
-    promo
+    promo,
+    promo_video
   },
   props: {
     blok: {
