@@ -58,6 +58,11 @@ export default {
       this.$axios.setHeader('x-session', localStorage.session)
     }*/
     //UIkit.notification("", {status:'primary'})
+    try{
+      //Handle Android Chrome when kepyad is shown (vh is then less and this messes things up)
+      var viewport = document.querySelector("meta[name=viewport]");
+      viewport.setAttribute("content", viewport.content + ", height=" + innerHeight);
+    }catch(err){}
     this.$zendesk.load(process.env.ZENDESK)
     this.$zendesk.$on('loaded', (event) => {
       this.$zendesk.zE('webWidget', 'setLocale', process.env.ISO_LANG)
