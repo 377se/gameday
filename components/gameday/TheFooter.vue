@@ -3,9 +3,9 @@
     class="uk-section-default uk-section uk-section-large uk-padding-small uk-padding-remove-horizontal">
     <div class="uk-container">
       <div 
-        class="uk-flex uk-grid-small uk-grid-stack" 
+        class="uk-flex uk-grid uk-grid-small uk-grid-stack" 
         uk-grid>
-        <div class="uk-width-1-1 uk-flex-last uk-flex-first@m uk-width-expand@m uk-width-1-2@s">                  
+        <div class="uk-flex-last uk-flex-first@m uk-width-expand@m uk-width-1-2@s">                  
           <div class="uk-margin">
             <nuxt-link :to="localePath('/')">
               <img 
@@ -52,7 +52,7 @@
           </ul>
         </div>
 
-        <div class="uk-width-expand@m uk-width-1-2@s">               
+        <div class="uk-width-1-1 uk-width-expand@m uk-width-1-2@s">               
           <NewsLetter />
         </div>
 
