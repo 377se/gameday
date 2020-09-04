@@ -6,7 +6,13 @@
     <a 
       style="position:relative;display:block;"
       :href="blok.promo_url.url">
-      <video :src="blok.promo_image" autoplay loop muted playsinline uk-cover/>
+      <iframe 
+        :src="blok.promo_video_url" 
+        :width="width" :height="height" 
+        frameborder="0" 
+        style="z-index:1"
+        uk-cover
+        ></iframe>
       <div
         style="position:absolute;bottom:20px;left:20px;">
         <h4 
