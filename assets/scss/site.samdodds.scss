@@ -15,5 +15,10 @@
   color: #fa6900;
 }
 
+@mixin hook-alert-primary(){
+  background: lighten(mix(white, $global-secondary-background, 40%), 20%);
+  color: $global-secondary-background;
+}
+
 // 4. Import UIkit.
 @import "uikit/src/scss/uikit-theme.scss";
