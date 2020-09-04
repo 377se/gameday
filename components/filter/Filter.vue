@@ -5,7 +5,7 @@
       <a 
         href="#filter-menu"
         type="button"
-        class="uk-button uk-button-primary uk-button-small uk-margin-small-left"
+        class="uk-button uk-button-secondary uk-button-small uk-margin-small-left"
         @click.prevent
         uk-toggle><span uk-icon="icon: settings;"/> {{ $getCMSEntry(global_labels,'filter_header', 'Filter') }} <span v-if="numfilters>0">({{ numfilters }})</span></a>
     </span>
@@ -13,11 +13,13 @@
 
     <div 
       id="filter-menu" 
-      class="uk-modal-full uk-modal" 
+      class="uk-modal-full uk-open uk-modal"
       uk-modal>
       <div 
-        class="uk-modal-dialog">
-        <form @submit.prevent="setFilter()">
+        class="uk-modal-dialog"
+        style="min-height:100%;">
+        <form 
+          @submit.prevent="setFilter()">
           <div 
             class="uk-modal-body uk-overflow-auto" 
             style="padding:0px;height:100vh;background:#ffffff;"
