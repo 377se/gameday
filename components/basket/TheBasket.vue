@@ -154,8 +154,8 @@ import VoucherCode from '@/components/voucher/VoucherCode'
 export default {
   async fetch() {
     try {
-      const cartextensions = await this.$axios.$get('/webapi/cart/GetCartExtension');
-      this.cartextensions = cartextensions
+      const cart = await this.$axios.$get('/webapi/cart/GetCart');
+      this.$store.commit('basket/setCart', cart)
     } catch (err) {
       console.log(err);
     }
@@ -172,7 +172,7 @@ export default {
   watch:{
     cart(newCart, oldCart){
       //Cart has changed, let's call fetch again
-      this.$fetch()
+      this.getCartExtension()
     }
   },
   data(){
@@ -183,6 +183,14 @@ export default {
     }
   },
   methods:{
+    async getCartExtension(){
+      try {
+      const cartextensions = await this.$axios.$get('/webapi/cart/GetCartExtension');
+      this.cartextensions = cartextensions
+    } catch (err) {
+      console.log(err);
+    }
+    },
     close(){
       let _el = document.getElementById('offscreen-basket')
       UIkit.modal(_el).hide();

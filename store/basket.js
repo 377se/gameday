@@ -7,6 +7,10 @@ export const mutations = {
   add(state, cart) {
     state.cart=cart
     state.counter=state.cart.data.length
+  },
+  setCart(state, cart){
+    state.cart = cart
+    state.counter =state.cart.data.length
   }
 }
 export const getters = {
