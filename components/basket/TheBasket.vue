@@ -154,8 +154,8 @@ import VoucherCode from '@/components/voucher/VoucherCode'
 export default {
   async fetch() {
     try {
-      const menu = await this.$axios.$get('/webapi/category');
-      this.menu = menu
+      const cartextensions = await this.$axios.$get('/webapi/cart/GetCartExtension');
+      this.cartextensions = cartextensions
     } catch (err) {
       console.log(err);
     }
@@ -169,10 +169,17 @@ export default {
       counter: 'basket/counter',
       global_labels:'labels'})
   },
+  watch:{
+    cart(newCart, oldCart){
+      //Cart has changed, let's call fetch again
+      this.$fetch()
+    }
+  },
   data(){
     return{
       thumb_src:process.env.THUMB_SRC,
-      labels: []
+      labels: [],
+      cartextensions: null
     }
   },
   methods:{
