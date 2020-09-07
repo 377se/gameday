@@ -153,12 +153,7 @@ import { mapGetters, mapActions } from 'vuex'
 import VoucherCode from '@/components/voucher/VoucherCode'
 export default {
   async fetch() {
-    try {
-      const cart = await this.$axios.$get('/webapi/cart/GetCart');
-      this.$store.commit('basket/setCart', cart)
-    } catch (err) {
-      console.log(err);
-    }
+
   },
   components:{
     VoucherCode
@@ -172,7 +167,7 @@ export default {
   watch:{
     cart(newCart, oldCart){
       //Cart has changed, let's call fetch again
-      this.getCartExtension()
+      //this.getCartExtension()
     }
   },
   data(){

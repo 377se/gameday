@@ -74,7 +74,7 @@ export default {
   methods:{
     async getSession(){
       var _this = this
-      await this.$axios.$get('/webapi/cart')
+      await this.$axios.$get('/webapi/cart/Get')
       .then(res => {
         _this.$store.commit('basket/add', res)
         this.$cookies.set('session', res.SessionId)
