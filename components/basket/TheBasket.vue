@@ -130,6 +130,19 @@
             <p>{{ cart.CampaignTextOutput }}</p>
           </div>
 
+
+          <div v-if="cartextensions" class="uk-alert-primary" uk-alert>
+            <p>Missa inte!</p>
+          </div>
+
+      <ul id="example-1">
+        <li v-for="item in cartextensions" :key="item.CartExtensionId">
+          {{ item.ArticleName }}<br />
+          {{ item.DiscountedPriceDisplay }}<br /> 
+          <img :src="thumb_src + item.ImageIdThumb" />
+        </li>
+      </ul>          
+
           <VoucherCode />
           <div 
             class="uk-padding-small uk-padding-remove-bottom"
