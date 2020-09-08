@@ -153,7 +153,7 @@ import { mapGetters, mapActions } from 'vuex'
 import VoucherCode from '@/components/voucher/VoucherCode'
 export default {
   async fetch() {
-
+    this.getCartExtension()
   },
   components:{
     VoucherCode
@@ -167,7 +167,7 @@ export default {
   watch:{
     cart(newCart, oldCart){
       //Cart has changed, let's call fetch again
-      //this.getCartExtension()
+      this.getCartExtension()
     }
   },
   data(){
