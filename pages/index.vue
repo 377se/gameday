@@ -46,6 +46,11 @@
           </div>
         </nuxt-link>
       </div>
+
+      <NextGame></NextGame>
+
+
+
       <component 
         v-if="story.content.component" 
         :key="story.content._uid" 
@@ -57,6 +62,7 @@
 <script>
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import Page from '@/components/Page'
+import NextGame from "@/components/samdodds/gamecenter/NextGame";
 
 export default {
   head () {
@@ -83,7 +89,8 @@ export default {
   },
   components:{
     ArticleCardSimple,
-    Page
+    Page,
+    NextGame
 
   },
   data () {

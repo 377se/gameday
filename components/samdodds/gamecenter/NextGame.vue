@@ -1,9 +1,14 @@
 <template>
   <div>
 
-    <p v-if="game">
-      Presentera nästa match
-      </p>
+      <div v-if="game" class="uk-alert-primary" uk-alert>
+        Nästa match:<br />
+        v {{ game.Opponent}} {{ game.Arena}}<br />
+        {{ game.GameDate}} {{ game.GameTime}}<br />
+        {{ game.GameType.toUpperCase()}}<br />
+      
+      </div>
+    
   </div>
 </template>
 
