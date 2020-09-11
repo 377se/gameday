@@ -1,12 +1,15 @@
 <template>
   <div>
 
-      <div v-if="game" class="uk-alert-primary" uk-alert>
-        Nästa match:<br />
-        v {{ game.Opponent}} {{ game.Arena}}<br />
-        {{ game.GameDate}} {{ game.GameTime}}<br />
-        {{ game.GameType.toUpperCase()}}<br />
-      
+      <div v-if="gameList" class="uk-alert-primary" uk-alert>
+
+          <div v-for="game in gameList" :key="game.GameId">
+          Nästa match:<br />
+          v {{ game.Game}}<br />
+          {{ game.GameDate}} {{ game.GameTime}}<br />
+          {{ game.GameType.toUpperCase()}}<br />
+        
+        </div>
       </div>
     
   </div>
@@ -19,17 +22,17 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   async fetch() {
     try {
-      let [game] = await Promise.all([
+      let [gameList] = await Promise.all([
           this.$axios.$get('/webapi/gamecenter/GetNextGame')
       ]);
-      this.game = game
+      this.gameList = gameList
     } catch (err) {
       console.log(err);
     }
   },
   data(){
     return{
-      game: []
+      gameList: []
     }
   },
   computed: {
