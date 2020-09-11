@@ -5,7 +5,7 @@ export default {
     DETAILS_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_640,f_auto/http://static.supportersplace.se/product/'
     ,STORYBLOK_CATALOGUE: 'kopshop/',
     SITE_URL: 'https://www.kopshop.no',
-    LOGO_URL: '/sites/samdodds/samdodds-logo.png',
+    LOGO_URL: '/sites/kopshop/kopshop-logo.png',
     SITE_ID: 3,
     MEMBER_PRICES: true,
     ISO_LANG_COUNTRY: 'nb-NO',

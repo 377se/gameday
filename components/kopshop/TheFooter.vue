@@ -10,7 +10,7 @@
             <nuxt-link :to="localePath('/')">
               <img 
                 style="width:100px;"
-                src="/sites/samdodds/samdodds-logo.png" 
+                src="/sites/kopshop/kopshop-logo.png" 
                 alt="Sam Dodds">
             </nuxt-link>
           </div>
