@@ -111,7 +111,7 @@ export default {
 }
 
 .logo {
-  width: 150px;
+  width: 80px;
 }
 
 </style>
