@@ -4,16 +4,30 @@
       v-if="label" 
       class="label-article"
       :class="label.LabelClass">{{ label.LabelMessage }}</span>
-    <ul class="uk-slideshow-items">
-      <li 
-        v-for="(image, index) in images"
-        :key="index">
-          <img
-            v-bind:src="details_src+image.Name"
-          >
-      </li>
-    </ul>
-    <ul class="uk-slideshow-nav uk-dotnav uk-flex-center uk-margin"></ul>
+    <div class="uk-position-relative">
+      <ul class="uk-slideshow-items">
+        <li 
+          v-for="(image, index) in images"
+          :key="index">
+            <img
+              v-bind:src="details_src+image.Name"
+            >
+        </li>
+      </ul>
+      <div class="uk-position-bottom-center uk-position-small">
+        <ul class="uk-thumbnav">
+            <li 
+              v-for="(image, index) in images"
+              :key="index"
+              :uk-slideshow-item="index">
+              <a 
+                href="#"
+                style="box-shadow: 4px 4px 41px 0px rgba(0,0,0,0.36);">
+                <img :src="details_src+image.Name" style="width:60px" alt="">
+              </a></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 

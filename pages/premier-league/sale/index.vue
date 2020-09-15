@@ -202,7 +202,7 @@ export default {
         this.$axios.$get(
           '/webapi/Filter/GetBrandList?categoryName=premier-league&teamName=null&garmentName=null'
         ),
-        this.$storyapi.get(`cdn/stories/${process.env.STORYBLOK_CATALOGUE}premier-league/sale`, {
+        this.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/premier-league/sale`, {
           version: version,
           cv: this.$store.getters.version
         })

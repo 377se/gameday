@@ -127,7 +127,7 @@ export default {
         await context.app.$axios.$get(
           '/webapi/Filter/GetSizeList?categoryName=nfl&teamName=null&garmentName=null'
         ),
-        await context.app.$storyapi.get(`cdn/stories/${process.env.STORYBLOK_CATALOGUE}nfl-shop/barn`, {
+        await context.app.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/nfl-shop/barn`, {
           version: version,
           cv: context.store.getters.version
         })
