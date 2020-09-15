@@ -25,13 +25,13 @@
         </div>
 
         <div class="uk-width-1-1 uk-width-expand@m uk-width-1-2@s">               
-          <h3 class="uk-h4">Shoppar</h3>
+          <h3 class="uk-h4">{{ $getCMSEntry(global_labels,'footer_header_shops', 'Shoppar') }}</h3>
           <ul class="uk-list uk-text-small">
-            <li><nuxt-link :to="localePath('/nhl-shop')">NHL Shop</nuxt-link></li>
-            <li><nuxt-link :to="localePath('/nba-shop')">NBA Shop</nuxt-link></li>
-            <li><nuxt-link :to="localePath('/nfl-shop')">NFL Shop</nuxt-link></li>
-            <li><nuxt-link :to="localePath('/mlb-shop')">MLB Shop</nuxt-link></li>
-            <li><nuxt-link :to="localePath('/premier-league')">Premier League Shop</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/nhl-shop')">{{ $getCMSEntry(global_labels,'footer_link_nhl', 'NHL Shop') }}</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/nba-shop')">{{ $getCMSEntry(global_labels,'footer_link_nba', 'NBA Shop') }}</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/nfl-shop')">{{ $getCMSEntry(global_labels,'footer_link_nfl', 'NFL Shop') }}</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/mlb-shop')">{{ $getCMSEntry(global_labels,'footer_link_mlb', 'MLB Shop') }}</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/premier-league')">{{ $getCMSEntry(global_labels,'footer_link_premier', 'Premier League Shop') }}</nuxt-link></li>
           </ul>
         </div>
 
