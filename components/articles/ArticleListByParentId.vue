@@ -93,6 +93,7 @@
   </section>
 </template>
 <script>
+import {mapGetters} from 'vuex'
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
 
