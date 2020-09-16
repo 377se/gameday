@@ -53,22 +53,22 @@ import ButtonSubmit from '@/components/ButtonSubmit'
 export default {
   head () {
     return {
-      title: $getCMSEntry(labels,'header', 'Glömt lösenordet?'),
+      title: this.$getCMSEntry(this.labels,'header', 'Glömt lösenordet?'),
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: $getCMSEntry(labels,'header', 'Glömt lösenordet?')
+          content: this.$getCMSEntry(this.labels,'header', 'Glömt lösenordet?')
         },
         {
           hid: 'og:title',
           name:  'og:title',
-          content:  $getCMSEntry(labels,'header', 'Glömt lösenordet?'),
+          content:  this.$getCMSEntry(this.labels,'header', 'Glömt lösenordet?'),
         },
         {
           hid: 'og:description',
           name:  'og:description',
-          content: $getCMSEntry(labels,'header', 'Glömt lösenordet?'),
+          content: this.$getCMSEntry(this.labels,'header', 'Glömt lösenordet?'),
         }
       ]
     }
