@@ -64,12 +64,12 @@
             <li>
               <a 
                 href="#"
-                @click.stop.prevent="previous()"><span uk-pagination-previous></span> Föregående</a></li>
+                @click.stop.prevent="previous()"><span uk-pagination-previous></span> {{ $getCMSEntry(global_labels,'paging_previous', 'Föregående') }}</a></li>
             <li><span>{{ pageNum }}/{{ article.TotalPages }}</span></li>
             <li>
               <a 
                 href="#"
-                @click.stop.prevent="next()">Nästa <span uk-pagination-next></span></a></li>
+                @click.stop.prevent="next()">{{ $getCMSEntry(global_labels,'paging_next', 'Nästa') }} <span uk-pagination-next></span></a></li>
           </ul>
       </div>
     </template>
@@ -175,6 +175,10 @@ export default {
       numOfProducts: 1,
       readmore: true
     }
+  },
+  computed: {
+    ...mapGetters({
+      global_labels:'labels'})
   },
   watch: {
     '$route.query': function(oldQuery, newQuery){

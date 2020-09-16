@@ -7,7 +7,7 @@
       <div
         style="height:80px;background:#00bbe0"
         class="uk-flex">
-        <h3 style="color:#fff;line-height:80px;margin-left:12px;">Meny</h3>
+        <h3 style="color:#fff;line-height:80px;margin-left:12px;">{{ $getCMSEntry(labels,'menu', 'Meny') }}</h3>
         <button 
           id="close-sidebar" 
           class="uk-offcanvas-close uk-icon uk-close"
@@ -49,19 +49,19 @@
           <ul class="uk-nav-default uk-nav-parent-icon uk-list" uk-nav>
             <li>
               <nuxt-link
-                :to="localePath('/nhl-shop')">Till NHL Shopen</nuxt-link>
+                :to="localePath('/nhl-shop')">{{ $getCMSEntry(labels,'to-nhl-shop', 'Till NHL Shopen') }}</nuxt-link>
             </li>
             <li>
               <nuxt-link
                 class="menu-item-sale"
-                :to="localePath('/nhl-shop/sale')">NHL REA</nuxt-link>
+                :to="localePath('/nhl-shop/sale')">{{ $getCMSEntry(labels,'nhl-sale', 'NHL REA') }}NHL REA</nuxt-link>
             </li>
-            <li class="uk-nav-header">Populäraste lagen</li>
+            <li class="uk-nav-header">{{ $getCMSEntry(labels,'most-popular-teams', 'Populäraste lagen') }}</li>
             <li><nuxt-link :to="localePath('/lag/nhl/boston-bruins')">Boston Bruins</nuxt-link></li>
             <li><nuxt-link :to="localePath('/lag/nhl/chicago-blackhawks')">Chicago Blackhawks</nuxt-link></li>
             <li><nuxt-link :to="localePath('/lag/nhl/new-york-rangers')">New York Rangers</nuxt-link></li>
             <li><nuxt-link :to="localePath('/lag/nhl/pittsburgh-penguins')">Pittsburgh Penguins</nuxt-link></li>
-            <li class="uk-nav-header">Alla lag (A-Z)
+            <li class="uk-nav-header">{{ $getCMSEntry(labels,'all-teams-a-z', 'Alla lag (A-Z)') }}
             <li
               v-for="team in nhlMenu"
               :key="team.TeamId">
@@ -74,19 +74,19 @@
           <ul class="uk-nav-default uk-nav-parent-icon uk-list" uk-nav="multiple:true">
             <li>
               <nuxt-link
-                :to="localePath('/nfl-shop')">Till NFL Shopen</nuxt-link>
+                :to="localePath('/nfl-shop')">{{ $getCMSEntry(labels,'to-nfl-shop', 'Till NFL Shopen') }}</nuxt-link>
             </li>
             <li>
               <nuxt-link
                 class="menu-item-sale"
-                :to="localePath('/nfl-shop/sale')">NFL REA</nuxt-link>
+                :to="localePath('/nfl-shop/sale')">{{ $getCMSEntry(labels,'nfl-sale', 'NFL REA') }}</nuxt-link>
             </li>
-            <li class="uk-nav-header">Populäraste lagen</li>
+            <li class="uk-nav-header">{{ $getCMSEntry(labels,'most-popular-teams', 'Populäraste lagen') }}</li>
             <li><nuxt-link :to="localePath('/lag/nfl/new-england-patriots')">New England Patriots</nuxt-link></li>
             <li><nuxt-link :to="localePath('/lag/nfl/las-vegas-raiders')">Las Vegas Raiders</nuxt-link></li>
             <li><nuxt-link :to="localePath('/lag/nfl/seattle-seahawks')">Seattle Seahawks</nuxt-link></li>
             <li><nuxt-link :to="localePath('/lag/nfl/dallas-cowboys')">Dallas Cowboys</nuxt-link></li>
-            <li class="uk-nav-header">Alla lag (A-Z)</li>
+            <li class="uk-nav-header">{{ $getCMSEntry(labels,'all-teams-a-z', 'Alla lag (A-Z)') }}</li>
             <li
               v-for="team in nflMenu"
               :key="team.TeamId">
@@ -99,19 +99,19 @@
           <ul class="uk-nav-default uk-nav-parent-icon uk-list" uk-nav="multiple:true">
             <li>
               <nuxt-link
-                :to="localePath('/nba-shop')">Till NBA Shopen</nuxt-link>
+                :to="localePath('/nba-shop')">{{ $getCMSEntry(labels,'to-nba-shop', 'Till NBA Shopen') }}</nuxt-link>
             </li>
             <li>
               <nuxt-link
                 class="menu-item-sale"
-                :to="localePath('/nba-shop/sale')">NBA REA</nuxt-link>
+                :to="localePath('/nba-shop/sale')">{{ $getCMSEntry(labels,'nba-sale', 'NBA REA') }}</nuxt-link>
             </li>
-            <li class="uk-nav-header">Populäraste lagen</li>
+            <li class="uk-nav-header">{{ $getCMSEntry(labels,'most-popular-teams', 'Populäraste lagen') }}</li>
             <li><nuxt-link :to="localePath('/lag/nba/chicago-bulls')">Chicago Bulls</nuxt-link></li>
             <li><nuxt-link :to="localePath('/lag/nba/cleveland-cavaliers')">Cleveland Cavaliers</nuxt-link></li>
             <li><nuxt-link :to="localePath('/lag/nba/golden-state-warriors')">Golden State Warriors</nuxt-link></li>
             <li><nuxt-link :to="localePath('/lag/nba/brooklyn-nets')">Brooklyn Nets</nuxt-link></li>
-            <li class="uk-nav-header">Alla lag (A-Z)</li>
+            <li class="uk-nav-header">{{ $getCMSEntry(labels,'all-teams-a-z', 'Alla lag (A-Z)') }}</li>
             <li
               v-for="team in nbaMenu"
               :key="team.TeamId">
@@ -124,19 +124,19 @@
           <ul class="uk-nav-default uk-nav-parent-icon uk-list" uk-nav>
             <li>
               <nuxt-link
-                :to="localePath('/mlb-shop')">Till MLB Shopen</nuxt-link>
+                :to="localePath('/mlb-shop')">{{ $getCMSEntry(labels,'to-mlb-shop', 'Till MLB Shopen') }}</nuxt-link>
             </li>
             <li>
               <nuxt-link
                 class="menu-item-sale"
-                :to="localePath('/mlb-shop/sale')">MLB REA</nuxt-link>
+                :to="localePath('/mlb-shop/sale')">{{ $getCMSEntry(labels,'mlb-sale', 'MLB REA') }}</nuxt-link>
             </li>
-            <li class="uk-nav-header">Populäraste lagen</li>
+            <li class="uk-nav-header">{{ $getCMSEntry(labels,'most-popular-teams', 'Populäraste lagen') }}</li>
             <li><nuxt-link :to="localePath('/lag/mlb/new-york-yankees')">New York Yankees</nuxt-link></li>
             <li><nuxt-link :to="localePath('/lag/mlb/detroit-tigers')">Detroit Tigers</nuxt-link></li>
             <li><nuxt-link :to="localePath('/lag/mlb/los-angeles-dodgers')">Los Angeles Dodgers</nuxt-link></li>
             <li><nuxt-link :to="localePath('/lag/mlb/new-york-mets')">New York Mets</nuxt-link></li>
-            <li class="uk-nav-header">Alla lag (A-Z)</li>
+            <li class="uk-nav-header">{{ $getCMSEntry(labels,'all-teams-a-z', 'Alla lag (A-Z)') }}</li>
             <li
               v-for="team in mlbMenu"
               :key="team.TeamId">
@@ -149,14 +149,14 @@
           <ul class="uk-nav-default uk-nav-parent-icon uk-list" uk-nav>
             <li>
               <nuxt-link
-                :to="localePath('/premier-league')">Till Premier League</nuxt-link>
+                :to="localePath('/premier-league')">{{ $getCMSEntry(labels,'to-premier-league', 'Till Premier League') }}</nuxt-link>
             </li>
             <li>
               <nuxt-link
                 class="menu-item-sale"
-                :to="localePath('/premier-league/sale')">Premier League REA</nuxt-link>
+                :to="localePath('/premier-league/sale')">{{ $getCMSEntry(labels,'premier-league-sale', 'Premier League REA') }}</nuxt-link>
             </li>
-            <li class="uk-nav-header">Alla lag (A-Z)
+            <li class="uk-nav-header">{{ $getCMSEntry(labels,'all-teams-a-z', 'Alla lag (A-Z)') }}
             <li
               v-for="team in plMenu"
               :key="team.TeamId">
@@ -176,6 +176,21 @@ import { mapGetters, mapActions } from 'vuex'
 //To be added to store. Top team list
 //”https://beta.supporterprylar.se/webapi/Filter/GetTopTeamListBySeoName?seoName=mlb”
 export default {
+  async fetch () {
+    try{
+      let [storyblok] = await Promise.all([
+          this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+process.env.ISO_LANG_COUNTRY.toLowerCase() +"&gameday-fe-labels-offscreenmenu&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
+      ]);
+      this.labels = storyblok.datasource_entries
+    }catch(error){
+      logger.error(error);
+    }
+  },
+  data() {
+    return {
+      labels: []
+    }
+  },
   computed: {
     ...mapGetters({
       nbaMenu: 'nbaMenu',
@@ -191,7 +206,7 @@ export default {
         document.getElementById('close-sidebar').click();
       },10);
     }
-  },
+  }
 };
 </script>
 
