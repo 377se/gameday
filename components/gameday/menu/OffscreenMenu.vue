@@ -54,7 +54,7 @@
             <li>
               <nuxt-link
                 class="menu-item-sale"
-                :to="localePath('/nhl-shop/sale')">{{ $getCMSEntry(labels,'nhl-sale', 'NHL REA') }}NHL REA</nuxt-link>
+                :to="localePath('/nhl-shop/sale')">{{ $getCMSEntry(labels,'nhl-sale', 'NHL REA') }}</nuxt-link>
             </li>
             <li class="uk-nav-header">{{ $getCMSEntry(labels,'most-popular-teams', 'Populäraste lagen') }}</li>
             <li><nuxt-link :to="localePath('/lag/nhl/boston-bruins')">Boston Bruins</nuxt-link></li>
