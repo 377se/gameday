@@ -65,12 +65,12 @@
           <li>
             <a 
               href="#"
-              @click.stop.prevent="previous()"><span uk-pagination-previous></span> Previous</a></li>
+              @click.stop.prevent="previous()"><span uk-pagination-previous></span> {{ $getCMSEntry(global_labels,'paging_previous', 'Föregående') }}</a></li>
           <li><span>{{ pageNum }}/{{ article.TotalPages }}</span></li>
           <li>
             <a 
               href="#"
-              @click.stop.prevent="next()">Next <span uk-pagination-next></span></a></li>
+              @click.stop.prevent="next()">{{ $getCMSEntry(global_labels,'paging_next', 'Nästa') }} <span uk-pagination-next></span></a></li>
         </ul>
       </div>
     </template>
@@ -137,7 +137,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      menu: 'mlbMenu'
+      menu: 'mlbMenu',
+      global_labels:'labels'
     })
   },
   mounted(){
@@ -161,6 +162,12 @@ export default {
       if(this.pageNum>1){
         this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)-1)}})
       } 
+    }
+  },
+  watch: {
+    '$route.query': function(oldQuery, newQuery){
+      window.scrollTo(0,0)
+      this.$fetch()
     }
   },
   async fetch () {

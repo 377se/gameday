@@ -45,9 +45,9 @@
             :colors="colors"
             :sizes="sizes"
             :gender="gender"
+            :show_sale="false"
             :teams="menu"
-            :brands="brands"
-            :show_sale="false"/>
+            :brands="brands"/>
         </div>
         <div
           class="ts-article-list uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
