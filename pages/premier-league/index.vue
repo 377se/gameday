@@ -186,12 +186,12 @@ export default {
     },
     next(){
       if(this.pageNum<this.article.TotalPages){
-        this.$router.push({query: {...this.$route.query, page: (this.pageNum+1)}})
+        this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)+1)}})
       } 
     },
     previous(){
       if(this.pageNum>1){
-        this.$router.push({query: {...this.$route.query, page: (this.pageNum-1)}})
+        this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)-1)}})
       } 
     }
   },
