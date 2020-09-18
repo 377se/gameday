@@ -190,7 +190,6 @@ export default {
           UIkit.modal('#filter-menu').$destroy(true)
       });
       UIkit.modal('#filter-menu').hide()
-      
     }catch(err){console.log(err)}
     next()
   },

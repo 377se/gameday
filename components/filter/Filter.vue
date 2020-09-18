@@ -1,16 +1,12 @@
 <template>
-  <div
-    v-if="true">
+  <div>
     <span class="uk-text-center">
       <a 
         href="#filter-menu"
         type="button"
         class="uk-button uk-button-secondary uk-button-small uk-margin-small-left"
-        @click.prevent
-        uk-toggle><span uk-icon="icon: settings;"/> {{ $getCMSEntry(global_labels,'filter_header', 'Filter') }} <span v-if="numfilters>0">({{ numfilters }})</span></a>
-    </span>
-
-
+        @click.prevent="showFilter()"><span uk-icon="icon: settings;"/> {{ $getCMSEntry(global_labels,'filter_header', 'Filter') }} <span v-if="numfilters>0">({{ numfilters }})</span></a>
+    </span>  
     <div 
       id="filter-menu" 
       class="uk-modal-full uk-open uk-modal"
@@ -168,7 +164,7 @@
           </div>
         </form>
       </div>
-    </div>    
+    </div>  
   </div>
 </template>
 <script>
@@ -237,9 +233,12 @@ export default {
     this.setNumFilters();
     try{
       UIkit.modal('#filter-menu').hide()
-    }catch(err){console.log(err)}
+    }catch(err){}
   },
   methods:{
+    showFilter(){
+      UIkit.modal('#filter-menu').show()
+    },
     setNumFilters(){
       let nf = 0
       if(this.$route.query.color){
@@ -281,6 +280,7 @@ export default {
       let t = this.team_list.length>0?this.team_list.join(','):null
       let sa = this.sale_list.length>0?this.sale_list.join(','):null
       let b = this.brands_list.length>0?this.brands_list.join(','):null
+      UIkit.modal('#filter-menu').hide()
       this.$router.push(
         {
           path: this.$route.path, 
@@ -296,7 +296,6 @@ export default {
         }
       ) 
       this.numfilters = this.brands_list.length + this.sale_list.length + this.gender_list.length + this.colors_list.length + this.sizes_list.length + this.products_list.length + this.team_list.length
-      UIkit.modal('#filter-menu').hide()
     }
   }
 }
