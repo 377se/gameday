@@ -2,9 +2,9 @@
   <div>
     <div 
       v-if="message.StatusId!=0">
-      <h3 class="uk-h4">Nyhetsbrev</h3>
+      <h3 class="uk-h4">{{ $getCMSEntry(labels,'header', 'Nyhetsbrev') }}</h3>
       <p class="uk-text-small">
-        Få senaste nyheterna, tillgång till REA före alla andra, 10% på nästa köp och mycket, mycket mer!
+        {{ $getCMSEntry(labels,'description', 'Få senaste nyheterna, tillgång till REA före alla andra, 10% på nästa köp och mycket, mycket mer!') }}
       </p>
       <form 
         class="uk-grid-collapse" 
@@ -22,14 +22,14 @@
           <ButtonSubmit 
             :is-submitting="isSubmitting"
             theme="uk-button-primary uk-width-1-1"
-            button-text="Ge mig rabatter!"
+            :button-text="$getCMSEntry(labels,'click-to-action', 'Ge mig rabatter!')"
             :is-submit="true"/>
         </div>
       </form>
     </div>
     <div
       v-else>
-      <p>Du är nu registrerad! Härliga erbjudanden kommer snart dyka upp. Tack!</p>
+      <p>{{ $getCMSEntry(labels,'success-message', 'Du är nu registrerad! Härliga erbjudanden kommer snart dyka upp. Tack!') }}</p>
     </div>
   </div>
 </template>
@@ -41,8 +41,20 @@ export default {
     Alert,
     ButtonSubmit
   },
+  async fetch () {
+    try{
+      let [storyblok] = await Promise.all([
+          this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+process.env.ISO_LANG_COUNTRY.toLowerCase() +"&datasource=fe-labels-newsletter&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
+      ]);
+      
+      this.labels = storyblok.datasource_entries
+    }catch(error){
+      logger.error('No data sources '+error);
+    }
+  },
   data() {
     return {
+      labels: [],
       email:'',
       message: {StatusId:-1},
       errors: [],
