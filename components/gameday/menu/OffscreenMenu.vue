@@ -40,8 +40,8 @@
         </li>
         <li>
           <a href="#"
-          style="line-height:14px"
-          @click.prevent>Premier League</a>
+          :style="{'line-height':isolang=='fi'?'28px':'14px'}"
+          @click.prevent>{{ $getCMSEntry(labels,'premier-league', 'Premier League') }}</a>
         </li>
       </ul>
       <div class="uk-switcher">
@@ -179,16 +179,18 @@ export default {
   async fetch () {
     try{
       let [storyblok] = await Promise.all([
-          this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+process.env.ISO_LANG_COUNTRY.toLowerCase() +"&gameday-fe-labels-offscreenmenu&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
+          this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+process.env.ISO_LANG_COUNTRY.toLowerCase() +"&datasource=gameday-fe-labels-offscreenmenu&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
       ]);
+      
       this.labels = storyblok.datasource_entries
     }catch(error){
-      logger.error(error);
+      logger.error('No data sources '+error);
     }
   },
   data() {
     return {
-      labels: []
+      labels: [],
+      isolang: process.env.ISO_LANG
     }
   },
   computed: {
