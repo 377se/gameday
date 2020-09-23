@@ -9,7 +9,11 @@
           <div
             v-if="contestDTO.Message && !contestDTO.ErrorList"
             class="uk-text-center">
-            {{ contestDTO.Message }}
+            <div 
+              class="uk-alert-success" uk-alert>
+              <p>{{ contestDTO.Message }}</p>
+            </div>
+            
             <nuxt-link
               :to="localePath('/')"
               class="uk-button uk-button-primary">{{ $getCMSEntry(labels,'btn_success_message', 'Till shopen!') }}</nuxt-link>
