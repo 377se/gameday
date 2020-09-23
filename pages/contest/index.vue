@@ -41,7 +41,8 @@
                   v-model="contestDTO.Halftime"
                   class="uk-input" 
                   type="text"
-                  name="halftime">
+                  name="halftime"
+                  placeholder="0-0">
               </div>
             </div>
 
@@ -53,7 +54,8 @@
                   v-model="contestDTO.Fulltime"
                   class="uk-input" 
                   type="text"
-                  name="fulltime">
+                  name="fulltime"
+                  placeholder="0-0">
               </div>
             </div>
 
@@ -99,11 +101,14 @@ export default {
       this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+process.env.ISO_LANG_COUNTRY.toLowerCase() +"&datasource=fe-labels-contest&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
     ]);*/
 
-    let [contest] = await Promise.all([
-      this.$axios.$get("/webapi/contest")
-    ]);
+    try{
+      let [contest] = await Promise.all([
+        this.$axios.$get("/webapi/contest")
+      ]);
+      this.contestDTO = contest
+    }catch(err){console.log(err)}
     
-    this.contestDTO = contest
+    
     //this.labels = storyblok.datasource_entries
 
   },
@@ -128,9 +133,10 @@ export default {
       .then(function (response) {
         _this.isSubmitting=false
         if(response.data.ErrorList.length>0){
-          this.errors = response.data.ErrorList
+          _this.contestDTO = response.data
+          _this.errors = response.data.ErrorList
         }else{
-          _this.message = response.data
+          _this.contestDTO = response.data
         }
       })
       .catch(function (error) {
