@@ -67,7 +67,7 @@
           class="uk-flex uk-flex-center uk-flex-middle uk-grid uk-grid-small" 
           uk-grid>
 
-          <div class="uk-width-1-2">               
+          <div class="uk-width-1-2 uk-width-1-4@s uk-width-1-5@m uk-width-1-6@l">               
             <a
               href="https://www.samdodds.com/"
               target="_new">
@@ -75,7 +75,7 @@
             </a>
           </div>
 
-          <div class="uk-width-1-2">               
+          <div class="uk-width-1-2 uk-width-1-4@s uk-width-1-5@m uk-width-1-6@l">               
             <a
               href="https://www.supportersplace.com/"
               target="_new">
