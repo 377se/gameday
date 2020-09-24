@@ -132,6 +132,7 @@ export default {
   methods:{
     async postContest() {
       this.isSubmitting=true
+      this.errors = []
       var _this = this
       await this.$axios.post('/webapi/Contest', _this.contestDTO)
       .then(function (response) {
