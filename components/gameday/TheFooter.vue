@@ -1,4 +1,5 @@
 <template>
+<div>
   <footer
     class="uk-section-default uk-section uk-section-large uk-padding-small uk-padding-remove-horizontal">
     <div class="uk-container">
@@ -63,6 +64,32 @@
       <nuxt-link :to="localePath('/integritetspolicy')">{{ $getCMSEntry(global_labels,'footer_integrity_policy', 'Integritetspolicy') }}</nuxt-link> <nuxt-link :to="$getCMSEntry(global_labels,'localePath_cookies', '/cookies')">{{ $getCMSEntry(global_labels,'footer_cookies', 'Cookies') }}</nuxt-link>
     </div>
   </footer>
+
+   <ad-footer
+    class="uk-section-default uk-section uk-section-large uk-padding-small uk-padding-remove-horizontal">
+    <div class="uk-container">
+      <div 
+        class="uk-flex uk-grid uk-grid-small uk-grid-stack" 
+        uk-grid>
+
+        <div class="uk-width-1-1 uk-width-expand@m uk-width-1-2@s">               
+          <h3 class="uk-h4">Sam Dodds</h3>
+            
+            <img src="/img/logo/footer/samdodds_logo_greyt.svg" alt="Sam Dodds"/>
+        </div>
+
+        <div class="uk-width-1-1 uk-width-expand@m uk-width-1-2@s">               
+          <h3 class="uk-h4">Supportersplace</h3>
+          Smacka in en bild m.länk
+        </div>
+
+
+      </div>
+    </div>
+    
+  </ad-footer>
+
+  </div>
 </template>
 <script>
 import NewsLetter from '@/components/NewsLetter'
@@ -94,4 +121,10 @@ footer h3, footer .h4{
   font-size:0.7rem;
   a{text-decoration:underline}
 }
+
+ad-footer{
+  background:#eaeaea;
+  color: #002a32;
+}
+
 </style>
