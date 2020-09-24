@@ -1,5 +1,4 @@
 <template>
-<div>
   <footer
     class="uk-section-default uk-section uk-section-large uk-padding-small uk-padding-remove-horizontal">
     <div class="uk-container">
@@ -62,31 +61,30 @@
       <span class="uk-margin-small-right">Copyright © 2019 This site is Licensed to 377 Sport AB</span> 
       <nuxt-link :to="localePath('/integritetspolicy')">{{ $getCMSEntry(global_labels,'footer_integrity_policy', 'Integritetspolicy') }}</nuxt-link> <nuxt-link :to="$getCMSEntry(global_labels,'localePath_cookies', '/cookies')">{{ $getCMSEntry(global_labels,'footer_cookies', 'Cookies') }}</nuxt-link>
     </div>
-  </footer>
 
-   <div
-    class="uk-section-default uk-section uk-section-large uk-padding-small uk-padding-remove-horizontal">
-    <div class="uk-container">
-      <div 
-        class="uk-flex uk-grid uk-grid-small uk-grid-stack" 
-        uk-grid>
+      <div class="uk-container uk-padding-small">
+        <div 
+          class="uk-flex uk-flex-center uk-flex-middle uk-grid uk-grid-small" 
+          uk-grid>
 
-        <div class="uk-width-1-1 uk-width-expand@m uk-width-1-2@s">               
-          <h3 class="uk-h4">Sam Dodds</h3>
-            
-            <img src="/img/logo/footer/samdodds_logo_greyt.svg" alt="Sam Dodds"/>
-        </div>
+          <div class="uk-width-1-2">               
+            <a
+              href="https://www.samdodds.com/"
+              target="_new">
+              <img src="/sites/samdodds/samdodds-logo.png" alt="Sam Dodds"/>
+            </a>
+          </div>
 
-        <div class="uk-width-1-1 uk-width-expand@m uk-width-1-2@s">               
-          <h3 class="uk-h4">Supportersplace</h3>
-          Smacka in en bild m.länk
+          <div class="uk-width-1-2">               
+            <a
+              href="https://www.supportersplace.com/"
+              target="_new">
+              <img src="/sites/supportersplace/supportersplace-logo-light.png" alt="Supporters Place"/>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-    
-  </div>
-
-  </div>
+  </footer>
 </template>
 <script>
 import NewsLetter from '@/components/NewsLetter'
