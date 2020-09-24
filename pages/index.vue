@@ -37,14 +37,6 @@
             <br>Baseball
           </div>
         </nuxt-link>
-        <nuxt-link 
-          class="gd-square"
-          :to="localePath('/premier-league')">
-          <div>
-            <img src="/logos/pl_ikon_600x600.png" alt="Premier League Shop">
-            <br>Premier League
-          </div>
-        </nuxt-link>
       </div>
 
       <component 

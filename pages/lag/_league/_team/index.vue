@@ -30,7 +30,7 @@ export default {
   async fetch () {
     // Check if we are in the editor mode
     let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
-    let shop = this.$route.params.league=='premier-league'?this.$route.params.league:this.$route.params.league.toUpperCase()+'-shop'
+    let shop = this.$route.params.league.toUpperCase()+'-shop'
     try {
       const [sb] = await Promise.all([
         this.$storyapi.get('cdn/stories?starts_with=gameday/'+process.env.ISO_LANG_COUNTRY.toLowerCase()+'/lag/'+this.$route.params.league+'/'+this.$route.params.team, {

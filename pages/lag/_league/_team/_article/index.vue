@@ -72,7 +72,7 @@ export default {
     }
   },
   async fetch() {
-    let shop = this.$route.params.league=='premier-league'?this.$route.params.league:this.$route.params.league.toUpperCase()+'-shop'
+    let shop = this.$route.params.league.toUpperCase()+'-shop'
     try {
       const url = `/webapi/article/GetArticleDetails?teamName=${
         this.$route.params.team

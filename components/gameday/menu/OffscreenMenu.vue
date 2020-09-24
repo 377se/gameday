@@ -38,11 +38,6 @@
           style="line-height:28px"
           @click.prevent>MLB</a>
         </li>
-        <li>
-          <a href="#"
-          :style="{'line-height':isolang=='fi'?'28px':'14px'}"
-          @click.prevent>{{ $getCMSEntry(labels,'premier-league', 'Premier League') }}</a>
-        </li>
       </ul>
       <div class="uk-switcher">
         <div>
@@ -145,26 +140,6 @@
             </li>
           </ul>
         </div>
-        <div>
-          <ul class="uk-nav-default uk-nav-parent-icon uk-list" uk-nav>
-            <li>
-              <nuxt-link
-                :to="localePath('/premier-league')">{{ $getCMSEntry(labels,'to-premier-league', 'Till Premier League') }}</nuxt-link>
-            </li>
-            <li>
-              <nuxt-link
-                class="menu-item-sale"
-                :to="localePath('/premier-league/sale')">{{ $getCMSEntry(labels,'premier-league-sale', 'Premier League REA') }}</nuxt-link>
-            </li>
-            <li class="uk-nav-header">{{ $getCMSEntry(labels,'all-teams-a-z', 'Alla lag (A-Z)') }}
-            <li
-              v-for="team in plMenu"
-              :key="team.TeamId">
-              <nuxt-link
-                :to="localePath('/lag/premier-league/'+team.SeoName)">{{ team.Name }}</nuxt-link>
-            </li>
-          </ul>
-        </div>
       </div>
     </div>
   </div>
@@ -198,8 +173,7 @@ export default {
       nbaMenu: 'nbaMenu',
       nflMenu: 'nflMenu',
       mlbMenu: 'mlbMenu',
-      nhlMenu: 'nhlMenu',
-      plMenu: 'plMenu'
+      nhlMenu: 'nhlMenu'
     })
   },
   watch:{

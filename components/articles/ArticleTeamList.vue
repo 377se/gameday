@@ -108,7 +108,7 @@ export default {
     let sale = this.$route.query.sale?this.$route.query.sale:false
     let brand = this.$route.query.brand?this.$route.query.brand:null
     
-    let shop = this.$route.params.league=='premier-league'?this.$route.params.league:this.$route.params.league.toUpperCase()+'-shop'
+    let shop = this.$route.params.league.toUpperCase()+'-shop'
     try {
       const [a, p, c, s, g, b] = await Promise.all([
         this.$axios.$get(

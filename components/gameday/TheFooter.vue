@@ -32,7 +32,6 @@
             <li><nuxt-link :to="localePath('/nba-shop')">{{ $getCMSEntry(global_labels,'footer_link_nba', 'NBA Shop') }}</nuxt-link></li>
             <li><nuxt-link :to="localePath('/nfl-shop')">{{ $getCMSEntry(global_labels,'footer_link_nfl', 'NFL Shop') }}</nuxt-link></li>
             <li><nuxt-link :to="localePath('/mlb-shop')">{{ $getCMSEntry(global_labels,'footer_link_mlb', 'MLB Shop') }}</nuxt-link></li>
-            <li><nuxt-link :to="localePath('/premier-league')">{{ $getCMSEntry(global_labels,'footer_link_premier', 'Premier League Shop') }}</nuxt-link></li>
           </ul>
         </div>
 
@@ -65,7 +64,7 @@
     </div>
   </footer>
 
-   <ad-footer
+   <div
     class="uk-section-default uk-section uk-section-large uk-padding-small uk-padding-remove-horizontal">
     <div class="uk-container">
       <div 
@@ -82,12 +81,10 @@
           <h3 class="uk-h4">Supportersplace</h3>
           Smacka in en bild m.länk
         </div>
-
-
       </div>
     </div>
     
-  </ad-footer>
+  </div>
 
   </div>
 </template>
