@@ -15,6 +15,7 @@
           type="button" uk-close></button>
       </div>
       <ul 
+        id="tab-shops"
         class="uk-child-width-expand uk-tab"
         style="margin-top:0;"
         uk-tab>

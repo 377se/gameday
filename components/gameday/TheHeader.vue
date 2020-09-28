@@ -4,9 +4,6 @@
     <nav 
       class="uk-navbar-container uk-navbar uk-margin header uk-margin-remove-bottom uk-light" 
       uk-navbar>
-      <div class="uk-navbar-left">
-        <TheHamburger/>
-      </div>
 
       <div class="uk-navbar-left">
         <nuxt-link 
@@ -54,6 +51,38 @@
         </a>
       </div>
     </nav>
+    <ul 
+      class="gd-subnav uk-subnav uk-background-secondary uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-margin-remove-left">
+      <li>
+        <a 
+          href="/nhl-shop"
+          @click.stop.prevent="showMenu(0)">NHL <span uk-icon="triangle-down"></span></a>
+      </li>
+      <li>
+        <a 
+          href="/nfl-shop"
+          @click.stop.prevent="showMenu(1)">NFL <span uk-icon="triangle-down"></span></a>
+      </li>
+      <li>
+        <a 
+          href="/nba-shop"
+          @click.stop.prevent="showMenu(2)">NBA <span uk-icon="triangle-down"></span></a>
+      </li>
+      <li>
+        <a 
+          href="/mlb-shop"
+          @click.stop.prevent="showMenu(3)">MLB <span uk-icon="triangle-down"></span></a>
+      </li>
+      <li>
+        <a href="">Kepsar</a>
+      </li>
+      <li>
+        <a href="">T-shirts</a>
+      </li>
+      <li>
+        <a href="">Mer <span uk-icon="triangle-down"></span></a>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -77,8 +106,11 @@ export default {
     })
   },
   methods:{
-    showBasket(){
-
+    showMenu(num){
+      try{
+        UIkit.offcanvas('#offscreen-menu').show()
+        UIkit.tab('#tab-shops').show(num);
+      }catch(err){console.log(err)}
     }
   }
 };
@@ -86,7 +118,7 @@ export default {
 
 <style lang="scss">
 .uk-logo{
-  padding:0;margin:0 15px;
+  padding:0;margin:0 15px 0 0;
 }
 .basket-counter{
   position: absolute;
@@ -119,5 +151,21 @@ export default {
 }
 .hamburger:hover {
   color: #00bbe0;
+}
+
+.gd-subnav{
+  padding-top:8px;
+  padding-bottom:8px;
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
+  overflow-y: hidden;
+  width:100%;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  > li > a{
+    color:#fff !important;
+  }
 }
 </style>
