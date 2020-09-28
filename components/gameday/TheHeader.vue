@@ -73,7 +73,7 @@
           href="/mlb-shop"
           @click.stop.prevent="showMenu(3)">MLB <span uk-icon="triangle-down"></span></a>
       </li>
-      <li>
+      <!--li>
         <a href="">Kepsar</a>
       </li>
       <li>
@@ -81,7 +81,7 @@
       </li>
       <li>
         <a href="">Mer <span uk-icon="triangle-down"></span></a>
-      </li>
+      </li-->
     </ul>
   </div>
 </template>
