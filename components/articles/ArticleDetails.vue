@@ -167,6 +167,13 @@
               <ArticlePageText 
                 class="uk-accordion-content"
                 v-bind:content="article.Description"/>
+              
+              
+                <div v-if="article.IsPreorder" class="uk-alert-primary" uk-alert>
+                  <p>{{ article.ExtraInformation }}</p>
+                </div>
+            
+
               <p>{{$getCMSEntry(global_labels,'article_details_article_number', 'Artikelnummer')}}: {{ article.ArticleNumber }}</p>
               <p>{{$getCMSEntry(global_labels,'article_details_article_material', 'Material')}}: {{ article.Material }}</p>
               <p>{{$getCMSEntry(global_labels,'article_details_article_color', 'Färg')}}: 
@@ -175,6 +182,7 @@
             </li>
           </ul>
         </div>
+
       </section>
       
     </div>
