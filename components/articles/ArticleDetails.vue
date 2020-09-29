@@ -152,7 +152,7 @@
         />
         
         <div v-else class="uk-alert-danger" uk-alert>
-                  <p>{{$getCMSEntry(global_labels,'article_details_sold_out', 'Slutsåld')}}</p>
+                  <p class="uk-text-center">{{$getCMSEntry(global_labels,'article_details_sold_out', 'Slutsåld')}}</p>
                 </div>
 
         <button 
