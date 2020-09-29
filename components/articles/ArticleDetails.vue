@@ -82,6 +82,7 @@
               :class="{'uk-button-default':chosenSize!==size.value, 'uk-button-primary':chosenSize===size.Value, 'uk-disabled':size.ItemsInStock<=0}"
               @click.prevent="setSize(size.Value)">
               {{size.Name}}
+
               <span 
                 v-if="size.ItemsInStock<=0"
                 class="sold-out">{{$getCMSEntry(global_labels,'article_details_sold_out', 'Slutsåld')}}</span>
@@ -149,9 +150,11 @@
           :class="{'uk-button-disabled':chosenSize!==-1 && !article.IsOneSize}"
           @button-click="addToCart()"
         />
-        <div v-else>
-          <h4 class="uk-text-center">{{$getCMSEntry(global_labels,'article_details_sold_out', 'Slutsåld')}}</h4>
-        </div>
+        
+        <div v-else class="uk-alert-danger" uk-alert>
+                  <p>{{$getCMSEntry(global_labels,'article_details_sold_out', 'Slutsåld')}}</p>
+                </div>
+
         <button 
           v-if="false"
           type="button"
