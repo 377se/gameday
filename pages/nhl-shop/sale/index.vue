@@ -38,7 +38,7 @@
       <div class="uk-container uk-container-large uk-padding-small">
         <div 
           class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
-          uk-sticky="offset:80;width-element:body;bottom:true">
+          uk-sticky="offset:118;width-element:body;bottom:true">
           <strong>{{ article.TotalNumberOfProducts }} produkter</strong>
           <FilterItems
             :product-types="producttypes"
