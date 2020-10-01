@@ -1,35 +1,6 @@
 <template>
   <div>
     <TheHeader/>
-    <div>
-      <div
-        class="uk-slider gd-slider" 
-        uk-slider="autoplay:true">
-        <div 
-          style="position:relative">
-          <div uk-slider-container>
-            <ul class="uk-slider-items uk-child-width-1-1 uk-text-small"> 
-              <li>
-                <div class="uk-text-center gd-slider-item uk-padding-small">
-                  <strong>{{ $getCMSEntry(global_labels,'rolling_text_one', 'Alltid 30 Dagars öppet köp och fria returer') }}</strong>
-                </div>
-              </li>
-              <li>
-                <div class="uk-text-center gd-slider-item uk-padding-small">
-                  <strong>{{ $getCMSEntry(global_labels,'rolling_text_two', 'Snabba leveranser från vårt lager') }}</strong>
-                </div>
-              </li>
-              <li>
-                <div class="uk-text-center gd-slider-item uk-padding-small">
-                  <strong>{{ $getCMSEntry(global_labels,'rolling_text_three', 'Every day is... Gameday!') }}</strong>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-    </div>
     <nuxt/>
     <OffscreenMenu/>
     <OffscreenBasket/>
@@ -89,6 +60,7 @@ export default {
 </script>
 
 <style lang="scss">
+/*Header*/
 .gd-slider{
   background: #fce0cc;
 }
