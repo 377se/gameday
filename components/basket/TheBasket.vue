@@ -112,7 +112,6 @@
                 </td>
               </tr>
 
-
               <tr>
                 <td colspan="2" style="text-align:right">
                   <strong>{{ $getCMSEntry(global_labels,'basket_total', 'Totalt') }} <span>{{ $getCMSEntry(global_labels,'basket_inc_shipping', 'inkl.frakt') }}</span></strong>
@@ -135,13 +134,13 @@
             <p>Missa inte!</p>
           </div>
 
-      <ul id="example-1">
-        <li v-for="item in cartextensions" :key="item.CartExtensionId">
-          {{ item.ArticleName }}<br />
-          {{ item.DiscountedPriceDisplay }}<br /> 
-          <img :src="thumb_src + item.ImageIdThumb" />
-        </li>
-      </ul>          
+          <ul id="example-1">
+            <li v-for="item in cartextensions" :key="item.CartExtensionId">
+              {{ item.ArticleName }}<br />
+              {{ item.DiscountedPriceDisplay }}<br /> 
+              <img :src="thumb_src + item.ImageIdThumb" />
+            </li>
+          </ul>          
 
           <VoucherCode />
           <div 
@@ -150,6 +149,14 @@
             <nuxt-link
               :to="localePath('/checkout')"
               class="uk-button uk-width-1-1 uk-button-primary">{{ $getCMSEntry(global_labels,'basket_to_checkout', 'Till betalning') }}</nuxt-link>
+          </div>
+          <div 
+            class="uk-padding-small uk-padding-remove-bottom"
+            @click="close()">
+            <button
+              type="button"
+              class="uk-button uk-width-1-1 uk-button-secondary"
+              uk-toggle="target: #offscreen-basket">{{ $getCMSEntry(global_labels,'basket_to_shop', 'Fortsätt handla') }}</button>
           </div>
         </div>
         <div
