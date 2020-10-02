@@ -62,7 +62,7 @@ export default {
       let _this = this
       this.errors = []
       await this.$axios.get('/webapi/voucher/GetInitVoucher?code='+this.code).then(function (response) {
-        if(response.data.ErrorList){
+        if(response.data.ErrorList && response.data.ErrorList.length>0){
           _this.errors = response.data.ErrorList
         }else{
           _this.$emit('update-cart')
