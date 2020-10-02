@@ -142,7 +142,8 @@
             </li>
           </ul>          
 
-          <VoucherCode />
+          <VoucherCode 
+            @update-cart="updateCart()"/>
           <div 
             class="uk-padding-small uk-padding-remove-bottom"
             @click="close()">
@@ -197,7 +198,22 @@ export default {
       cartextensions: null
     }
   },
+  mounted(){
+    this.updateCart()
+  },
   methods:{
+    async updateCart(){
+      var _this = this
+      await this.$axios.$get('/webapi/cart/Get')
+      .then(res => {
+        _this.$store.commit('basket/add', res)
+        this.$cookies.set('session', res.SessionId)
+        this.$axios.setHeader('x-session', res.SessionId)
+      })
+      .catch(function (error) {
+        
+      })
+    },
     async getCartExtension(){
       try {
       const cartextensions = await this.$axios.$get('/webapi/cart/GetCartExtension');

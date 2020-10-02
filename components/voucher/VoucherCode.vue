@@ -54,37 +54,22 @@ export default {
   },
   computed: {
     ...mapGetters({
-      global_labels:'labels'})
+        global_labels:'labels'
+      })
   },
   methods:{
     async activateVoucher(){
       let _this = this
       this.errors = []
-      await this.$axios.get('/webapi/voucher/GetDiscountCode?code='+this.code).then(function (response) {
+      await this.$axios.get('/webapi/voucher/GetInitVoucher?code='+this.code).then(function (response) {
         if(response.data.ErrorList){
           _this.errors = response.data.ErrorList
         }else{
-          _this.addToCart(response.data.CartItem)
+          _this.$emit('update-cart')
           _this.message = response.data.Message
           _this.showmessage = true
           _this.show=false //Hide the form
         }
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
-    },
-    async addToCart(ci){
-      let _this = this
-      await this.$axios.post('/webapi/cart/PostAddToCart',{
-        AddOn: null,
-        ArticleId: ci.ArticleId,
-        Quantity: 1,
-        SizeId: ci.SizeId
-      }
-      ).then(function (response) {
-        _this.$store.commit('basket/add', response.data)
-        //console.log(response)
       })
       .catch(function (error) {
         console.log(error)

@@ -66,21 +66,6 @@ export default {
       this.$zendesk.show()
     })
     
-    this.getSession()
-  },
-  methods:{
-    async getSession(){
-      var _this = this
-      await this.$axios.$get('/webapi/cart/Get')
-      .then(res => {
-        _this.$store.commit('basket/add', res)
-        this.$cookies.set('session', res.SessionId)
-        this.$axios.setHeader('x-session', res.SessionId)
-      })
-      .catch(function (error) {
-        
-      })
-    }
   }
 };
 </script>
