@@ -85,9 +85,9 @@ img {
   z-index: 10;
 }
 .article-images .label-article{
-  font-size:1.2rem;
+  font-size:1rem;
   line-height:1;
-  padding: 4px 0;
+  padding: 4px 8px;
   position:absolute;
   min-width:60px;
   text-align:center;
