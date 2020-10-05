@@ -189,6 +189,20 @@ export default {
     cart(newCart, oldCart){
       //Cart has changed, let's call fetch again
       this.getCartExtension()
+    },
+    counter(newC, oldC){
+      if (newC<1){
+        //remove voucher-header and clear localStorage, if set
+        if(localStorage.voucher!=undefined){
+          try{
+            this.voucher = null
+            localStorage.removeItem('voucher')
+            delete this.$axios.defaults.common.header['x-voucherid']
+          }catch(err){
+            console.log(err)
+          }
+        }
+      }
     }
   },
   data(){

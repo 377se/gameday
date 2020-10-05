@@ -5,8 +5,8 @@
       :errorlist="errors"
     />
     <div 
-      v-else-if="voucher && voucher.Message && !show" class="uk-alert-success" uk-alert>
-      <p>{{ message }}</p>
+      v-else-if="voucher && voucher.Message" class="uk-alert-success" uk-alert>
+      <p>{{ voucher.Message }}</p>
     </div>
     <form
       v-if="show"
@@ -53,26 +53,10 @@ export default {
         counter: 'basket/counter'
       })
   },
-  watch:{
-    counter(newC, oldC){
-      if (newC<1){
-        //remove voucher-header and clear localStorage, if set
-        if(localStorage.voucher!=undefined){
-          try{
-            this.voucher = null
-            localStorage.removeItem('voucher')
-            delete this.$axios.defaults.common.header['x-voucherid']
-          }catch(err){
-            console.log(err)
-          }
-        }
-      }
-    }
-  },
   mounted(){
     try{
       if(localStorage.voucher!=undefined){
-        this.voucher = localStorage.voucher
+        this.voucher = JSON.parse(localStorage.voucher)
       }
     }catch(err){
       console.log(err)
@@ -90,7 +74,7 @@ export default {
           _this.show=false //Hide the form
           _this.$axios.setHeader('x-voucherid', response.data.VoucherId)
           _this.voucher = response.data
-          localStorage.voucher = response.data
+          localStorage.setItem('voucher', JSON.stringify(response.data))
         }
       })
       .catch(function (error) {
