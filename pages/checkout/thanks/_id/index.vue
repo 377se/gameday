@@ -49,16 +49,34 @@ export default {
     };
   },
   mounted(){
-    var checkoutContainer = document.getElementById('klarna-checkout')
-    var scriptsTags = checkoutContainer.getElementsByTagName('script')
-    // This is necessary otherwise the scripts tags are not going to be evaluated
-    for (var i = 0; i < scriptsTags.length; i++) {
-        var parentNode = scriptsTags[i].parentNode
-        var newScriptTag = document.createElement('script')
-        newScriptTag.type = 'text/javascript'
-        newScriptTag.text = scriptsTags[i].text
-        parentNode.removeChild(scriptsTags[i])
-        parentNode.appendChild(newScriptTag)
+    try{
+      //remove voucher-header and clear localStorage, if set
+      if(localStorage.voucher!=undefined){
+        try{
+          this.voucher = null
+          localStorage.removeItem('voucher')
+          delete this.$axios.defaults.common.header['x-voucherid']
+        }catch(err){
+          console.log(err)
+        }
+      }
+    }catch(err){
+      console.log(err)
+    }
+    try{
+      var checkoutContainer = document.getElementById('klarna-checkout')
+      var scriptsTags = checkoutContainer.getElementsByTagName('script')
+      // This is necessary otherwise the scripts tags are not going to be evaluated
+      for (var i = 0; i < scriptsTags.length; i++) {
+          var parentNode = scriptsTags[i].parentNode
+          var newScriptTag = document.createElement('script')
+          newScriptTag.type = 'text/javascript'
+          newScriptTag.text = scriptsTags[i].text
+          parentNode.removeChild(scriptsTags[i])
+          parentNode.appendChild(newScriptTag)
+      }
+    }catch(err){
+      console.log(err)
     }
     try{
       var _this = this
