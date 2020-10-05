@@ -57,6 +57,7 @@ export default {
     try{
       if(localStorage.voucher!=undefined){
         this.voucher = JSON.parse(localStorage.voucher)
+        this.$axios.setHeader('x-voucherid', this.voucher.VoucherId)
       }
     }catch(err){
       console.log(err)

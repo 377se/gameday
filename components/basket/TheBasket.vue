@@ -199,7 +199,15 @@ export default {
     }
   },
   mounted(){
+    try{
+      if(localStorage.voucher!=undefined){
+        this.$axios.setHeader('x-voucherid', this.voucher.VoucherId)
+      }
+    }catch(err){
+      console.log(err)
+    }
     this.updateCart()
+    
   },
   methods:{
     async updateCart(){
