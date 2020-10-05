@@ -5,11 +5,7 @@
       :errorlist="errors"
     />
     <div 
-      v-else-if="message && showmessage" class="uk-alert-success" uk-alert>
-      <button 
-        class="uk-alert-close"
-        @click.prevent="showmessage=false"
-        uk-close></button>
+      v-else-if="voucher && voucher.Message && !show" class="uk-alert-success" uk-alert>
       <p>{{ message }}</p>
     </div>
     <form
@@ -46,16 +42,41 @@ export default {
     return{
       show:false,
       code: '',
-      message: null,
-      showmessage:false,
+      voucher:null,
       errors: [],
       labels: []
     }
   },
   computed: {
     ...mapGetters({
-        global_labels:'labels'
+        global_labels:'labels',
+        counter: 'basket/counter'
       })
+  },
+  watch:{
+    counter(newC, oldC){
+      if (newC<1){
+        //remove voucher-header and clear localStorage, if set
+        if(localStorage.voucher!=undefined){
+          try{
+            this.voucher = null
+            localStorage.removeItem('voucher')
+            delete this.$axios.defaults.common.header['x-voucherid']
+          }catch(err){
+            console.log(err)
+          }
+        }
+      }
+    }
+  },
+  mounted(){
+    try{
+      if(localStorage.voucher!=undefined){
+        this.voucher = localStorage.voucher
+      }
+    }catch(err){
+      console.log(err)
+    }
   },
   methods:{
     async activateVoucher(){
@@ -66,9 +87,10 @@ export default {
           _this.errors = response.data.ErrorList
         }else{
           _this.$emit('update-cart')
-          _this.message = response.data.Message
-          _this.showmessage = true
           _this.show=false //Hide the form
+          _this.$axios.setHeader('x-voucherid', response.data.VoucherId)
+          _this.voucher = response.data
+          localStorage.voucher = response.data
         }
       })
       .catch(function (error) {
