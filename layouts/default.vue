@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="uk-slider gd-slider" 
+      class="uk-slider gd-slider uk-background-secondary" 
       uk-slider="autoplay:true">
       <div 
         style="position:relative">
