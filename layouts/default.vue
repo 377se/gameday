@@ -73,7 +73,8 @@ export default {
 <style lang="scss">
 /*Header*/
 .gd-slider{
-  background: #fce0cc;
+  background: $global-slider-background;
+  color: $global-slider-color;
 }
 
 .uk-breadcrumb > * > * {

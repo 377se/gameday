@@ -53,7 +53,7 @@
       </div>
     </nav>
     <ul 
-      class="gd-subnav uk-subnav uk-background-secondary uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-margin-remove-left">
+      class="gd-subnav uk-subnav uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-margin-remove-left">
       <li
         style="padding-left:5px">
         <TheHamburger/>
@@ -62,7 +62,7 @@
         v-for="cat in menu"
         :key="cat.Id">
         <nuxt-link
-          :to="localePath('/c/0/'+cat.Id+'/'+cat.UrlSafeName)">{{ cat.Name }}</nuxt-link>
+          :to="localePath('/c/'+cat.Id+'/'+cat.Id+'/'+cat.UrlSafeName)">{{ cat.Name }}</nuxt-link>
       </li>
     </ul>
   </div>
@@ -137,6 +137,7 @@ export default {
 }
 
 .gd-subnav{
+  background: #222;
   padding-top:8px;
   padding-bottom:8px;
   display: flex;
