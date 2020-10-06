@@ -105,7 +105,7 @@ export default {
     ['nuxt-i18n',
       {
         defaultLocale: 'sv-se',
-        strategy: 'prefix',
+        strategy: 'prefix_except_default',
         locales: [
           {
             code: 'sv-se',
@@ -173,7 +173,7 @@ export default {
   },
   proxy: {
     '/webapi': {
-      target: process.env.NODE_ENV !== 'production'?'https://api.samdodds.com':'https://api.samdodds.com'
+      target: process.env.NODE_ENV !== 'production'?'https://api.samdodds.com':'https://api.supportersplace.com'
     }
   },
   /*
