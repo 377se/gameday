@@ -5,10 +5,6 @@
       class="uk-navbar-container uk-navbar uk-margin header uk-margin-remove-bottom uk-light" 
       uk-navbar>
       <div class="uk-navbar-left">
-        <TheHamburger/>
-      </div>
-
-      <div class="uk-navbar-left">
         <nuxt-link 
           class="uk-navbar-item uk-logo" 
           :to="localePath('/')"><img :src="logo" class="logo"></nuxt-link>
@@ -54,6 +50,19 @@
         </a>
       </div>
     </nav>
+    <ul 
+      class="gd-subnav uk-subnav uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-margin-remove-left">
+      <li
+        style="padding-left:5px">
+        <TheHamburger/>
+      </li>
+      <li
+        v-for="cat in menu"
+        :key="cat.Id">
+        <nuxt-link
+          :to="localePath('/c/'+(!cat.SubCategoryList.length==0?cat.Id:'0')+'/'+cat.Id+'/'+cat.UrlSafeName)">{{ cat.Name }}</nuxt-link>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -61,12 +70,23 @@
 import TheHamburger from "./TheHamburger";
 import { mapGetters, mapActions } from 'vuex'
 export default {
+  async fetch() {
+    try {
+      let [menu] = await Promise.all([
+          this.$axios.$get('/webapi/category')
+      ]);
+      this.menu = menu
+    } catch (err) {
+      console.log(err);
+    }
+  },
   components: {
     TheHamburger
   },
   data(){
     return{
-      logo:process.env.LOGO_URL
+      logo:process.env.LOGO_URL,
+      menu: null
     }
   },
   computed: {
@@ -119,5 +139,22 @@ export default {
 }
 .hamburger:hover {
   color: #00bbe0;
+}
+
+.gd-subnav{
+  background: $global-secondary-background;
+  padding-top:8px;
+  padding-bottom:8px;
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
+  overflow-y: hidden;
+  width:100%;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  > li > a{
+    color:#fff !important;
+  }
 }
 </style>

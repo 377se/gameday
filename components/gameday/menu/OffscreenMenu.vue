@@ -42,7 +42,7 @@
       </ul>
       <div class="uk-switcher">
         <div>
-          <ul class="uk-nav-default uk-nav-parent-icon uk-list" uk-nav>
+          <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav>
             <li>
               <nuxt-link
                 :to="localePath('/nhl-shop')">{{ $getCMSEntry(labels,'to-nhl-shop', 'Till NHL Shopen') }}</nuxt-link>
@@ -67,7 +67,7 @@
           </ul>
         </div>
         <div>
-          <ul class="uk-nav-default uk-nav-parent-icon uk-list" uk-nav="multiple:true">
+          <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="multiple:true">
             <li>
               <nuxt-link
                 :to="localePath('/nfl-shop')">{{ $getCMSEntry(labels,'to-nfl-shop', 'Till NFL Shopen') }}</nuxt-link>
@@ -92,7 +92,7 @@
           </ul>
         </div>
         <div>
-          <ul class="uk-nav-default uk-nav-parent-icon uk-list" uk-nav="multiple:true">
+          <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="multiple:true">
             <li>
               <nuxt-link
                 :to="localePath('/nba-shop')">{{ $getCMSEntry(labels,'to-nba-shop', 'Till NBA Shopen') }}</nuxt-link>
@@ -117,7 +117,7 @@
           </ul>
         </div>
         <div>
-          <ul class="uk-nav-default uk-nav-parent-icon uk-list" uk-nav>
+          <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav>
             <li>
               <nuxt-link
                 :to="localePath('/mlb-shop')">{{ $getCMSEntry(labels,'to-mlb-shop', 'Till MLB Shopen') }}</nuxt-link>

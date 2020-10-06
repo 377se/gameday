@@ -100,24 +100,25 @@ export default {
       }
     })
   },
-  asyncData (context) {
+  async fetch () {
     // Check if we are in the editor mode
-    let version = context.query._storyblok || context.isDev ? 'draft' : 'published'
+    let version = this.$nuxt.context.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
     // Load the JSON from the API
-    return context.app.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/home`, {
-      version: version,
-      cv: context.store.getters.version
-    }).then((res) => {
-      return res.data
-    }).catch((res) => {
+    try{
+      var sb = await this.$nuxt.context.app.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}${this.$route.path}/home`, {
+        version: version,
+        cv: this.$nuxt.context.store.getters.version
+      })
+      this.story = sb.data.story
+    }catch(res){
       if (!res.response) {
         console.error(res)
-        context.error({ statusCode: 404, message: 'Failed to receive content form api' })
+        this.$nuxt.context.error({ statusCode: 404, message: 'Failed to receive content form api' })
       } else {
         console.error(res.response.data)
-        context.error({ statusCode: res.response.status, message: res.response.data })
+        this.$nuxt.context.error({ statusCode: res.response.status, message: res.response.data })
       }
-    })
+    }
   }
 }
 </script>

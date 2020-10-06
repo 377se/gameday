@@ -16,7 +16,7 @@
       
       <div>
         <div>
-          <ul class="uk-padding-small uk-nav-default uk-nav-parent-icon" uk-nav>
+          <ul class="uk-padding-small uk-nav  uk-nav-default uk-nav-parent-icon" uk-nav>
             <li
               v-for="cat in menu"
               :key="cat.Id"
