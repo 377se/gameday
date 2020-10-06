@@ -59,7 +59,7 @@
     <div 
       class="uk-container uk-margin gd-copyright">
       <span class="uk-margin-small-right">Copyright © 2019 This site is Licensed to 377 Sport AB</span> 
-      <nuxt-link :to="localePath('/integritetspolicy')">{{ $getCMSEntry(global_labels,'footer_integrity_policy', 'Integritetspolicy') }}</nuxt-link> <nuxt-link :to="$getCMSEntry(global_labels,'localePath_cookies', '/cookies')">{{ $getCMSEntry(global_labels,'footer_cookies', 'Cookies') }}</nuxt-link>
+      <nuxt-link :to="$getCMSEntry(global_labels,'localePath_Integrity', '/integritetspolicy')">{{ $getCMSEntry(global_labels,'footer_integrity_policy', 'Integritetspolicy') }}</nuxt-link> <nuxt-link :to="$getCMSEntry(global_labels,'localePath_cookies', '/cookies')">{{ $getCMSEntry(global_labels,'footer_cookies', 'Cookies') }}</nuxt-link>
     </div>
 
       <div class="uk-container uk-padding-small">
