@@ -215,8 +215,8 @@ export default {
       await this.$axios.$get('/webapi/cart/Get')
       .then(res => {
         _this.$store.commit('basket/add', res)
-        this.$cookies.set('session', res.SessionId)
-        this.$axios.setHeader('x-session', res.SessionId)
+        _this.$cookies.set('session', res.SessionId)
+        _this.$axios.setHeader('x-session', res.SessionId)
       })
       .catch(function (error) {
         

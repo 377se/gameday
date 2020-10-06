@@ -8,5 +8,8 @@ export default function ({ $axios, redirect, app }) {
     if(app.$cookies.get('session')!=undefined){
       config.headers['x-session'] = app.$cookies.get('session')
     } 
+    if(app.$cookies.get('voucherid')!=undefined && app.$cookies.get('voucherid')!=null){
+      config.headers['x-voucherid'] = app.$cookies.get('voucherid')
+    }
   })
   }

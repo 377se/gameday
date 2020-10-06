@@ -73,6 +73,7 @@ export default {
         }else{
           _this.$emit('update-cart')
           _this.show=false //Hide the form
+          _this.$cookies.set('voucherid', response.data.VoucherId)
           _this.$axios.setHeader('x-voucherid', response.data.VoucherId)
           _this.voucher = response.data
           localStorage.setItem('voucher', JSON.stringify(response.data))

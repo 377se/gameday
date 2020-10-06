@@ -82,7 +82,6 @@ export default {
       var _this = this
       this.$gtm.push({ event: 'paymentThanks', ecommerce: _this.obj })
     }catch(err){console.log(err)}
- 
   },
   async fetch() {
     var _this = this;
@@ -98,6 +97,13 @@ export default {
     } catch (err) {
       console.log(err);
     }
+    try{
+      //Remove voucher-cookie if there is one
+      if(this.$cookies.get('voucherid')!=undefined){
+        this.$cookies.remove('voucherid')
+      }
+    }catch(err){console.log(err)}
+ 
   }
 }
 </script>
