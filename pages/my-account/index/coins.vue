@@ -3,8 +3,10 @@
     <div class="uk-container">
       <h1>{{ $getCMSEntry(labels,'coins', 'Coins') }}</h1>
      
-      {{ $getCMSEntry(labels,'numberOfCoins', 'Antal coins:') }} {{ coins.CoinsValue }}<br />
-      {{ $getCMSEntry(labels,'coinsValidThru', 'Giltiga t.o.m.:') }} {{ coins.ExpirationDate }}
+      {{ $getCMSEntry(labels,'numberOfCoins', 'Antal coins:') }} {{ coins.CoinsValue }}
+      <div v-if="coins.CoinsValue > 0">
+        {{ $getCMSEntry(labels,'coinsValidThru', 'Giltiga t.o.m.:') }} {{ coins.ExpirationDate }}
+      </div>
       <component 
         v-if="story.content.component" 
         :key="story.content._uid" 
