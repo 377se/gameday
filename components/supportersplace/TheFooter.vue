@@ -30,6 +30,7 @@
             <li><nuxt-link :to="$getCMSEntry(global_labels,'localePath_purchase_conditions', '/kopvillkor')">{{ $getCMSEntry(global_labels,'footer_purchase_conditions', 'Köpvillkor') }}</nuxt-link></li>
             <li><nuxt-link :to="$getCMSEntry(global_labels,'localePath_delivery', '/leverans-betalning')">{{ $getCMSEntry(global_labels,'footer_delivery', 'Leverans &amp; betalning') }}</nuxt-link></li>
             <li><nuxt-link :to="$getCMSEntry(global_labels,'localePath_returns', '/returer-byten')">{{ $getCMSEntry(global_labels,'footer_exchanges', 'Returer &amp; byten') }}</nuxt-link></li>
+            <li><nuxt-link :to="$getCMSEntry(global_labels,'localePath_faq', '/vanliga-fragor')">{{ $getCMSEntry(global_labels,'footer_faq', 'Vanliga frågor') }}</nuxt-link></li>
           </ul>
         </div>
 
