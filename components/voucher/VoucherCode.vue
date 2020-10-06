@@ -71,10 +71,10 @@ export default {
         if(response.data.ErrorList && response.data.ErrorList.length>0){
           _this.errors = response.data.ErrorList
         }else{
-          _this.$emit('update-cart')
           _this.show=false //Hide the form
           _this.$cookies.set('voucherid', response.data.VoucherId)
           _this.$axios.setHeader('x-voucherid', response.data.VoucherId)
+          _this.$emit('update-cart')
           _this.voucher = response.data
           localStorage.setItem('voucher', JSON.stringify(response.data))
         }
