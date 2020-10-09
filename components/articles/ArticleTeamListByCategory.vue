@@ -38,6 +38,7 @@
             :colors="colors"
             :sizes="sizes"
             :gender="gender"
+            :teams="teamlist"
             :brands="brands"
             :show_sale="true"/>
           </div>
@@ -93,7 +94,7 @@ export default {
     let brand = this.$route.query.brand?this.$route.query.brand:null
     
     try {
-      const [a, p, c, s, g, b] = await Promise.all([
+      const [a, p, c, s, g, b, t] = await Promise.all([
         this.$axios.$get(
           '/webapi/Article/getArticleListByCategoryId?pageSize=0&brand='+brand+'&attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +this.$route.params.categoryid
         ),
@@ -111,6 +112,9 @@ export default {
         ),
         this.$axios.$get(
           `/webapi/Filter/GetBrandListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null`
+        ),
+        this.$axios.$get(
+          `/webapi/Filter/GetTeamListByCategoryId?categoryId=${this.$route.params.categoryid}`
         )
       ]);
       this.articles=a[0].ArticleList
@@ -119,6 +123,7 @@ export default {
       this.sizes=s
       this.gender=g
       this.brands=b
+      this.teamlist=t
       this.article=a[0]
       this.pageNum=pageNum
     } catch (err) {
@@ -170,6 +175,7 @@ export default {
       sizes: [],
       gender: [],
       brands: [],
+      teamlist: [],
       sale: [],
       pageNum: 1,
       totalPages:1,
