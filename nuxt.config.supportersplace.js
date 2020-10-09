@@ -173,7 +173,7 @@ export default {
   },
   proxy: {
     '/webapi': {
-      target: process.env.NODE_ENV !== 'production'?'https://api.samdodds.com':'https://api.supportersplace.com'
+      target: process.env.NODE_ENV !== 'production'?'https://api.supportersplace.com':'https://api.supportersplace.com'
     }
   },
   /*

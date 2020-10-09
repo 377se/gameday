@@ -55,7 +55,7 @@
               v-if="articles.length<1"
               class="uk-margin-bottom uk-margin-top" 
             >
-              Vi hittade inga produkter för det aktuella valet.
+              {{ $getCMSEntry(global_labels,'info_no_items_found', 'Vi hittade inga produkter för det aktuella urvalet.') }}
             </div>
           </div>
           <ul 
