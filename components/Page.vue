@@ -11,6 +11,7 @@
 <script>
 import TextContent from '@/components/TextContent'
 import article_team_list from "@/components/articles/ArticleTeamList";
+import ArticleTeamListByCategory from "@/components/articles/ArticleTeamListByCategory";
 import promo from '@/components/promo/Promo'
 
 import promo_list from '@/components/promo/PromoList'
@@ -32,6 +33,7 @@ export default {
   components: {
     TextContent,
     article_team_list,
+    ArticleTeamListByCategory,
     promo,
     promo_list,
     links_block,

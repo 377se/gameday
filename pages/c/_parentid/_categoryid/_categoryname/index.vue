@@ -19,6 +19,7 @@
       :blok="story.content" 
       :is="story.content.component" />
     <div
+      v-else
       class="uk-container uk-container-large uk-padding-small">
       <ArticleTeamListByCategory 
         :sb="story.content.component?true:false"/>
