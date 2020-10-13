@@ -29,7 +29,7 @@
                   v-if="cat.SubCategoryList.length>0">
                   <li
                     v-for="sub in cat.SubCategoryList"
-                    :key="sub.Id"><nuxt-link :to="localePath('/c/'+cat.Id+'/'+sub.Id+'/'+sub.UrlSafeName)">{{ sub.Name }}</nuxt-link></li>
+                    :key="sub.Id"><nuxt-link :to="localePath('/c/0/'+sub.Id+'/'+sub.UrlSafeName)">{{ sub.Name }}</nuxt-link></li>
                 </ul>
             </li>
           </ul>
