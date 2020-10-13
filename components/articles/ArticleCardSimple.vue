@@ -100,7 +100,7 @@ export default {
 .label-article{
   font-size:0.8rem;
   line-height:1;
-  padding: 2px 8px;
+  padding: 8px 8px;
   position:absolute;
   min-width:60px;
   text-align:center;

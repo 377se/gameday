@@ -87,7 +87,7 @@ img {
 .article-images .label-article{
   font-size:1rem;
   line-height:1;
-  padding: 4px 8px;
+  padding: 8px 8px;
   position:absolute;
   min-width:60px;
   text-align:center;
