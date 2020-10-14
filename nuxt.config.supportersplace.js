@@ -156,7 +156,7 @@ export default {
       description: 'SupportersPlace.com',
     },
     icon: {
-      iconFileName: 'logos/sites/supportersplace/supportersplace-logo-light.png'
+      iconFileName: 'sites/supportersplace/supportersplace-logo-light.png'
     }
   },
   webfontloader: {
