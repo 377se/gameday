@@ -3,7 +3,7 @@ export default {
     THUMB_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_80,f_auto/https://static.supportersplace.se/product/',
     LIST_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_360,f_auto/',
     DETAILS_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_640,f_auto/http://static.supportersplace.se/product/'
-    ,STORYBLOK_CATALOGUE: '/samdodds/da-dk',
+    ,STORYBLOK_CATALOGUE: '/samdodds',
     SITE_URL: 'https://www.samdodds.dk',
     LOGO_URL: '/sites/samdodds/samdodds-logo.png',
     SITE_ID: 2,
@@ -101,11 +101,11 @@ export default {
     }],
     ['nuxt-i18n',
       {
-        defaultLocale: 'da',
+        defaultLocale: 'da-dk',
         strategy: 'prefix_except_default',
         locales: [
           {
-            code: 'da',
+            code: 'da-dk',
             iso: 'da-DK'
           }
         ],

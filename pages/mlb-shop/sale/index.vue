@@ -203,7 +203,7 @@ export default {
         this.$axios.$get(
           '/webapi/Filter/GetBrandList?categoryName=mlb&teamName=null&garmentName=null'
         ),
-        this.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/mlb-shop/sale`, {
+        this.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}/mlb-shop/sale`, {
           version: version,
           cv: this.$store.getters.version
         })
