@@ -120,7 +120,7 @@ export default {
             iso: 'da-DK'
           },
           {
-            code: 'en-gb',
+            code: 'en',
             iso: 'en-GB'
           },
           {
