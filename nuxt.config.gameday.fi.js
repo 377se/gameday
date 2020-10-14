@@ -8,7 +8,6 @@ export default {
     LOGO_URL: '/sites/gameday/gameday-logo.svg',
     SITE_ID: 6,
     MEMBER_PRICES: false,
-    ISO_LANG_COUNTRY: 'fi-FI',
     ISO_LANG: 'fi',
     CURRENCY_CODE: 'EUR',
     STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt',

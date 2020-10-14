@@ -8,7 +8,6 @@ export default {
     LOGO_URL: '/sites/supportersplace/supportersplace-logo-light.png',
     SITE_ID: 1,
     MEMBER_PRICES: true,
-    ISO_LANG_COUNTRY: 'sv-SE',
     ISO_LANG: 'sv',
     CURRENCY_CODE: 'SEK',
     STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt',

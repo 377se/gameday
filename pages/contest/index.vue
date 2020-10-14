@@ -102,7 +102,7 @@ export default {
   async fetch () {
     // Check if we are in the editor mode
     /*let [storyblok] = await Promise.all([
-      this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+process.env.ISO_LANG_COUNTRY.toLowerCase() +"&datasource=fe-labels-contest&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
+      this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+this.$i18n.locale +"&datasource=fe-labels-contest&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
     ]);*/
 
     try{

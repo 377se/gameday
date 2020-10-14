@@ -8,7 +8,6 @@ export default {
     LOGO_URL: '/sites/samdodds/samdodds-logo.png',
     SITE_ID: 2,
     MEMBER_PRICES: true,
-    ISO_LANG_COUNTRY: 'sv-SE',
     ISO_LANG: 'sv',
     CURRENCY_CODE: 'SEK',
     STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt',

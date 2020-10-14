@@ -31,7 +31,7 @@ export default {
     let shop = this.$route.params.league.toUpperCase()+'-shop'
     try {
       const [sb] = await Promise.all([
-        this.$storyapi.get('cdn/stories?starts_with=gameday/'+process.env.ISO_LANG_COUNTRY.toLowerCase()+this.$route.path, {
+        this.$storyapi.get('cdn/stories?starts_with=gameday/'+this.$i18n.locale+this.$route.path, {
           version: version,
           cv: this.$store.getters.version
         })
