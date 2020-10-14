@@ -40,7 +40,7 @@ export default {
     // Load the JSON from the API
     try {
       const [sb] = await Promise.all([
-        this.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}${(this.$route.path.replace(this.$i18n.locale,'')).replace('//','/')}`, {
+        this.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}${(this.$route.path.replace(this.$i18n.locale,'')).replace('//','')}`, {
           version: version,
           cv: this.$store.getters.version
         })
