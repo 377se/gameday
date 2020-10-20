@@ -1,22 +1,23 @@
 $inverse-global-color-mode: none;
 
-$global-font-family: "Lato", sans-serif;
+$global-font-family: 'Source Sans Pro', sans-serif;
 
 $global-background: #fff;
 $global-muted-background: #f2f4f5;
-$global-primary-background: #016080;
-$global-secondary-background: #54575a;
+$global-primary-background: #323133;
+$global-secondary-background: #0085ca;
 
-$global-slider-background: #fce0cc;
-$global-slider-color: #002a32;
+$global-slider-background: #00caaa;
+$global-slider-color: #ffffff;
 
 $global-color: #002a32;
 $global-inverse-color: #fff;
 
-$global-link-color: #016080;
-$global-link-hover-color: #016080;
+$global-link-color: #0085ca;
+$global-link-hover-color: #0085ca;
 
-$base-heading-font-weight: 900;
+$base-heading-font-family: 'Poppins', sans-serif;
+$base-heading-font-weight: 800;
 //#c0eef7
 
 $inverse-global-color: rgba($global-inverse-color, 1);

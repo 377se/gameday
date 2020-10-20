@@ -160,7 +160,7 @@ export default {
   },
   webfontloader: {
     google: {
-      families: ['Lato:300,400,900'] //Loads Lato
+      families: ['Poppins:800','Source+Sans+Pro'] //Loads Poppins and Source Sans
     }
   },
   /*
