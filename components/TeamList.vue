@@ -97,6 +97,7 @@ export default {
 }
 .team-list-slider > div img{
   height:50px;
+  width:50px;
   max-width:none;
 }
 </style>
