@@ -1,14 +1,28 @@
 <template>
   <div
-    class="uk-margin-bottom uk-margin-top uk-flex uk-flex-nowrap team-list-slider">
+    class="uk-margin-top uk-margin-bottom">
+    <div class="uk-flex uk-flex-middle">
+        <h3 class="uk-margin-remove-bottom">Lag</h3>
+        <span 
+          class="slide-icons"
+          uk-icon="chevron-left"
+          @click.stop.prevent="slideLeft"/>
+        <span 
+          class="slide-icons"
+          uk-icon="chevron-right"
+          @click.stop.prevent="slideRight"/>
+    </div>
     <div
-      v-for="t in teams"
-      :key="t.TeamId"
-      >
-      <nuxt-link
-        :to="t.Url">
-        <img :src="t.ImageName" />
-      </nuxt-link>
+      class="uk-margin-bottom uk-flex uk-flex-nowrap team-list-slider">
+      <div
+        v-for="t in teams"
+        :key="t.TeamId"
+        >
+        <nuxt-link
+          :to="t.Url">
+          <img :src="t.ImageName" />
+        </nuxt-link>
+      </div>
     </div>
   </div>
 </template>
@@ -35,6 +49,20 @@ export default {
       console.log(err.request);
     }
 
+  },
+  methods:{
+    slideLeft(){
+      document.getElementsByClassName('team-list-slider')[0].scrollTo({
+        left: (document.getElementsByClassName('team-list-slider')[0].scrollLeft-200),
+        behavior: 'smooth'
+      });
+    },
+    slideRight(){
+      document.getElementsByClassName('team-list-slider')[0].scrollTo({
+        left: (document.getElementsByClassName('team-list-slider')[0].scrollLeft+200),
+        behavior: 'smooth'
+      });
+    }
   }
 }
 </script>
