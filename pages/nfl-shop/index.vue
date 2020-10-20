@@ -35,40 +35,8 @@
           v-html="article.SeoContentDescription"/>
       </div>
       <div class="uk-container uk-container-large uk-padding-small">
-        <h3>Populära lag 
-          <span class="show-all">
-            <a 
-              href="#offscreen-menu"
-              class="wrapper-menu"
-              uk-toggle
-              @click.stop.prevent>
-              Visa alla
-            </a>
-          </span>
-        </h3>
-        <div
-          class="uk-flex uk-flex-center uk-grid-small uk-margin uk-margin-large-bottom" uk-grid>
-          <nuxt-link
-            :to="localePath('/lag/nfl/new-england-patriots')"
-            class="team-slider-item">
-            <img class="team-slider-img" src="https://static.supportersplace.se/Team/New_England_Patriots.png" alt="New England Patriots">
-          </nuxt-link>
-          <nuxt-link
-            :to="localePath('/lag/nfl/las-vegas-raiders')"
-            class="team-slider-item">
-            <img class="team-slider-img" src="https://static.supportersplace.se/Team/oakland_raiders.png" alt="Las Vegas Raiders">
-          </nuxt-link>
-          <nuxt-link
-            :to="localePath('/lag/nfl/seattle-seahawks')"
-            class="team-slider-item">
-            <img class="team-slider-img" src="https://static.supportersplace.se/Team/seahawks_seattle_seahawks.png" alt="Seattle Seahawks">
-          </nuxt-link>
-          <nuxt-link
-            :to="localePath('/lag/nfl/dallas-cowboys')"
-            class="team-slider-item">
-            <img class="team-slider-img" src="https://static.supportersplace.se/Team/dallas_cowboys.png" alt="Dallas Cowboys">
-          </nuxt-link>
-        </div>
+        <TeamList
+          :cat-id="328"/>
         <div 
           class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
           uk-sticky="offset:118;width-element:body;bottom:true">
@@ -114,6 +82,7 @@
 import { mapGetters, mapActions } from 'vuex'
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
+import TeamList from "@/components/TeamList";
 export default {
    //['page','color','size','producttype','attribute','gender','sale','brand','team'],
   head () {
@@ -150,7 +119,8 @@ export default {
   },
   components:{
     ArticleCardSimple,
-    FilterItems
+    FilterItems,
+    TeamList
   },
   data () {
     return {

@@ -35,17 +35,8 @@
           v-html="article.SeoContentDescription"/>
       </div>
       <div class="uk-container uk-container-large uk-padding-small">
-        <h3>Populära lag 
-          <span class="show-all">
-            <a 
-              href="#offscreen-menu"
-              class="wrapper-menu"
-              uk-toggle
-              @click.stop.prevent>
-              Visa alla
-            </a>
-          </span>
-        </h3>
+        <TeamList
+          :cat-id="202"/>
         <div
           class="uk-flex uk-flex-center uk-grid-small uk-margin uk-margin-large-bottom" uk-grid>
           <nuxt-link
@@ -114,6 +105,7 @@
 import { mapGetters, mapActions } from 'vuex'
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
+import TeamList from "@/components/TeamList";
 export default {
   async fetch () {
     console.log('fetch nhl-shop')
@@ -195,7 +187,8 @@ export default {
   },
   components:{
     ArticleCardSimple,
-    FilterItems
+    FilterItems,
+    TeamList
   },
   data () {
     return {

@@ -28,18 +28,31 @@
 </template>
 <script>
 export default {
+  props: {
+    catId: {
+      type: Number,
+      required: false,
+      default: 0
+    }
+  },
   data(){
     return {
       teams: null
     }
   },
   async fetch () {
-    let _boolCatId = this.$route.params.categoryid?true:false
+    let _catid=0
+    if(this.catId>0){
+      _catid = this.catId
+    }else{
+       _catid = this.$route.params.categoryid?this.$route.params.categoryid:0
+    }
+    
     
     try {
       const [t] = await Promise.all([
         this.$axios.$get(
-          `/webapi/Filter/GetTeamListByCategory?categoryId=${this.$route.params.categoryid}`
+          `/webapi/Filter/GetTeamListByCategory?categoryId=${_catid}`
         )
       ]);
       this.teams=t
