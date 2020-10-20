@@ -34,32 +34,10 @@
           @click="setReadMore()"
           v-html="article.SeoContentDescription"/>
       </div>
-      <div class="uk-container uk-container-large uk-padding-small">
+      <div class="uk-container uk-container-large uk-padding-small uk-padding-remove-top">
         <TeamList
-          :cat-id="202"/>
-        <div
-          class="uk-flex uk-flex-center uk-grid-small uk-margin uk-margin-large-bottom" uk-grid>
-          <nuxt-link
-            :to="localePath('/lag/nhl/boston-bruins')"
-            class="team-slider-item">
-            <img class="team-slider-img" src="https://static.supportersplace.se/Team/bruins_600x600.png" alt="Boston Bruins">
-          </nuxt-link>
-          <nuxt-link
-            :to="localePath('/lag/nhl/chicago-blackhawks')"
-            class="team-slider-item">
-            <img class="team-slider-img" src="https://static.supportersplace.se/Team/blackhawks_600x600.png" alt="Chicago Blackhawks">
-          </nuxt-link>
-          <nuxt-link
-            :to="localePath('/lag/nhl/new-york-rangers')"
-            class="team-slider-item">
-            <img class="team-slider-img" src="https://static.supportersplace.se/Team/rangers_600x600.png" alt="New York Rangers">
-          </nuxt-link>
-          <nuxt-link
-            :to="localePath('/lag/nhl/pittsburgh-penguins')"
-            class="team-slider-item">
-            <img class="team-slider-img" src="https://static.supportersplace.se/Team/penguins_600x600.png" alt="Pittsburgh Penguins">
-          </nuxt-link>
-        </div>
+          :cat-id="202"
+          class="uk-margin-remove-top"/>
         <div 
           class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
           uk-sticky="offset:118;width-element:body;bottom:true">

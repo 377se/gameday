@@ -19,7 +19,7 @@
         :key="t.TeamId"
         >
         <nuxt-link
-          :to="t.Url">
+          :to="(t.Url!=null)?t.Url:'/'">
           <img :src="t.ImageName" />
         </nuxt-link>
       </div>
