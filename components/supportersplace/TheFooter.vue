@@ -15,9 +15,8 @@
             </nuxt-link>
           </div>
           <div class="uk-margin-small">
-            <a href="https://www.instagram.com/samdodds_lfc/" target="_new"><span uk-icon="icon: instagram;ratio:1.5"></span></a>
-            <a href="https://www.youtube.com/channel/UCKO8hvK3uertXw_GFilb0qQ" target="_new"><span uk-icon="icon: youtube;ratio:1.5"></span></a>
-            <a href="https://sv-se.facebook.com/SamDoddsLiverpool" target="_new"><span uk-icon="icon: facebook;ratio:1.5"></span></a>
+            <a href="https://www.instagram.com/supporters_place/" target="_new"><span uk-icon="icon: instagram;ratio:1.5"></span></a>
+            <a href="https://www.facebook.com/supportersplace" target="_new"><span uk-icon="icon: facebook;ratio:1.5"></span></a>
           </div>
           <div class="uk-margin">
             <img src="https://cdn.klarna.com/1.0/shared/image/generic/badge/da_dk/checkout/long-white.png?width=320" alt="Klarna">
