@@ -80,7 +80,7 @@ export const actions = {
 
     try {
       let [storyblok] = await Promise.all([
-        context.app.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+context.app.$i18n.locale +"&datasource=fe-labels-global&token="+process.env.STORYBLOK +"&per_page=1000&cv="+getters.version)
+        context.app.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+context.app.i18n.locale +"&datasource=fe-labels-global&token="+process.env.STORYBLOK +"&per_page=1000&cv="+getters.version)
       ]);
       commit('setLabels', storyblok.datasource_entries.concat(storyblok.datasource_entries))
     } catch (err) {

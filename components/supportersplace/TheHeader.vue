@@ -23,7 +23,7 @@
             uk-icon="icon:user;ratio:1.0"/>
           <span
             style="display:block;font-size:0.6rem;color:#fff;white-space:nowrap">
-            Logga in
+            {{ $getCMSEntry(global_labels,'header_login', 'Logga in') }}
           </span>
         </nuxt-link>
         <nuxt-link
@@ -35,7 +35,7 @@
             uk-icon="icon:user;ratio:1.0"/>
           <span
             style="display:block;font-size:0.6rem;color:#fff;white-space:nowrap">
-            Mitt konto
+            {{ $getCMSEntry(global_labels,'header_myaccount', 'Mitt konto') }}
           </span>
         </nuxt-link>
         <a 
