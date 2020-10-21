@@ -8,7 +8,6 @@ export default {
     LOGO_URL: '/sites/kopshop/kopshop-logo.png',
     SITE_ID: 3,
     MEMBER_PRICES: true,
-    ISO_LANG_COUNTRY: 'nb-NO',
     ISO_LANG: 'nb',
     CURRENCY_CODE: 'NOK',
     STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt',

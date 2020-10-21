@@ -5,10 +5,9 @@ export default {
     DETAILS_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_640,f_auto/http://static.supportersplace.se/product/'
     ,STORYBLOK_CATALOGUE: '/supportersplace',
     SITE_URL: 'https://www.supportersplace.com',
-    LOGO_URL: '/sites/supportersplace/supportersplace-logo-light.png',
+    LOGO_URL: '/sites/supportersplace/supportersplace_logo_light.svg',
     SITE_ID: 1,
     MEMBER_PRICES: true,
-    ISO_LANG_COUNTRY: 'sv-SE',
     ISO_LANG: 'sv',
     CURRENCY_CODE: 'SEK',
     STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt',
@@ -120,7 +119,7 @@ export default {
             iso: 'da-DK'
           },
           {
-            code: 'en-gb',
+            code: 'en',
             iso: 'en-GB'
           },
           {
@@ -156,12 +155,12 @@ export default {
       description: 'SupportersPlace.com',
     },
     icon: {
-      iconFileName: 'logos/sites/supportersplace/supportersplace-logo-light.png'
+      iconFileName: 'sites/supportersplace/supportersplace-logo-light.png'
     }
   },
   webfontloader: {
     google: {
-      families: ['Lato:300,400,900'] //Loads Lato
+      families: ['Poppins:800','Source+Sans+Pro'] //Loads Poppins and Source Sans
     }
   },
   /*

@@ -104,6 +104,12 @@ export default {
 </script>
 
 <style lang="scss">
+/*Overriding styles in layout-default*/
+.gd-slider{
+  text-transform:uppercase;
+  border-bottom:4px solid #fff;
+}
+/*end overriding*/
 .uk-logo{
   padding:0;margin:0 15px;
 }
@@ -142,6 +148,8 @@ export default {
 }
 
 .gd-subnav{
+  border-top:1px solid #fff;
+  font-family: 'Poppins';
   background: $global-secondary-background;
   padding-top:8px;
   padding-bottom:8px;

@@ -26,9 +26,6 @@ export const mutations = {
   setMLBMenu(state, menu) {
     state.mlbMenu = menu
   },
-  setPLMenu(state, menu) {
-    state.plMenu = menu
-  },
   setCid(state, val){
     state.cid = val
   },
@@ -51,9 +48,6 @@ export const getters = {
   },
   mlbMenu(state) {
     return state.mlbMenu
-  },
-  plMenu(state) {
-    return state.plMenu
   },
   cid(state){
     return state.cid
@@ -86,7 +80,7 @@ export const actions = {
 
     try {
       let [storyblok] = await Promise.all([
-        context.app.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+process.env.ISO_LANG_COUNTRY.toLowerCase() +"&datasource=fe-labels-global&token="+process.env.STORYBLOK +"&per_page=1000&cv="+getters.version)
+        context.app.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+context.app.$i18n.locale +"&datasource=fe-labels-global&token="+process.env.STORYBLOK +"&per_page=1000&cv="+getters.version)
       ]);
       commit('setLabels', storyblok.datasource_entries.concat(storyblok.datasource_entries))
     } catch (err) {
@@ -98,14 +92,12 @@ export const actions = {
         context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=202'),
         context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=327'),
         context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=328'),
-        context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=329'),
-        context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=527'),
+        context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=329')
       ]).then(res => {
           commit('setNHLMenu', res[0])
           commit('setNBAMenu', res[1])
           commit('setNFLMenu', res[2])
           commit('setMLBMenu', res[3])
-          commit('setPLMenu', res[4])
       }).catch((err)=>{
         throw new Error("Error getting teams for menu:" + err)
       })
