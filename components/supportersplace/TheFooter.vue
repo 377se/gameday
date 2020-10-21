@@ -35,7 +35,7 @@
         </div>
 
         <div class="uk-width-expand@m uk-width-1-2@s">               
-          <h3 class="uk-h4">{{ $getCMSEntry(global_labels,'footer_header_about_us', 'Om Sam Dodds') }}</h3>
+          <h3 class="uk-h4">{{ $getCMSEntry(global_labels,'footer_header_about_us', 'Om Supportersplace') }}</h3>
           <ul class="uk-list uk-text-small">
              <li><nuxt-link :to="$getCMSEntry(global_labels,'localePath_corporate_information', '/foretagsinformation')">{{ $getCMSEntry(global_labels,'footer_company_information', 'Företagsinformation') }}</nuxt-link></li>
           </ul>
