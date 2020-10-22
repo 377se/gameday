@@ -1,0 +1,31 @@
+$inverse-global-color-mode: none;
+
+$global-font-family: 'Source Sans Pro', sans-serif;
+
+$global-background: #fff;
+$global-muted-background: #f2f4f5;
+$global-primary-background: #323133;
+$global-secondary-background: #0085ca;
+
+$global-slider-background: #00caaa;
+$global-slider-color: #ffffff;
+
+$global-color: #002a32;
+$global-inverse-color: #fff;
+
+$global-link-color: #0085ca;
+$global-link-hover-color: #0085ca;
+
+$base-heading-font-family: 'Poppins', sans-serif;
+$base-heading-font-weight: 800;
+//#c0eef7
+
+$inverse-global-color: rgba($global-inverse-color, 1);
+$inverse-global-emphasis-color: $global-inverse-color;
+$inverse-global-muted-color: rgba($global-inverse-color, 0.9);
+$inverse-global-inverse-color: $global-color;
+
+$inverse-global-primary-background: $global-inverse-color;
+$inverse-global-muted-background: rgba($global-inverse-color, 0.1);
+
+$inverse-global-border: rgba($global-inverse-color, 0.2);
