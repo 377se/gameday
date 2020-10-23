@@ -9,11 +9,14 @@
       <picture
         v-if="!promoList">
         <source 
+          media="(max-width: 360px)" 
+          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/h_1.0,ar_1:1,c_crop/w_360,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
+        <source 
           media="(max-width: 480px)" 
           :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/h_1.0,ar_1:1,c_crop/w_480,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
         <source 
           media="(max-width: 768px)" 
-          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/y_0,x_0.25,w_1200,c_crop/w_768,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
+          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/y_0,x_0.25,w_1200,c_limit/w_768,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
         <source 
           media="(max-width: 1440px)" 
           :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/w_1440,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
@@ -25,6 +28,9 @@
       </picture>
       <picture
         v-else>
+         <source 
+          media="(max-width: 360px)" 
+          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/h_1.0,c_fill,ar_1:1,c_crop/w_360,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
         <source 
           media="(max-width: 768px)" 
           :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/h_1.0,c_fill,ar_1:1,c_crop/w_400,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
