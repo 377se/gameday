@@ -60,9 +60,10 @@ export default {
       var viewport = document.querySelector("meta[name=viewport]");
       viewport.setAttribute("content", viewport.content + ", height=" + innerHeight);
     }catch(err){}
+    let lc = this.$i18n.locale=='en'?'en-gb':this.$i18n.locale
     this.$zendesk.load(process.env.ZENDESK)
     this.$zendesk.$on('loaded', (event) => {
-      this.$zendesk.zE('webWidget', 'setLocale', process.env.ISO_LANG)
+      this.$zendesk.zE('webWidget', 'setLocale', lc)
       this.$zendesk.show()
     })
     
