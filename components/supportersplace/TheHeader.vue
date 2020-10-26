@@ -91,6 +91,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      global_labels: 'labels',
       counter: 'basket/counter',
       cid: 'cid'
     })
