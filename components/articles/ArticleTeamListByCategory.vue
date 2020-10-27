@@ -92,11 +92,12 @@ export default {
     let attribute = this.$route.query.attribute?this.$route.query.attribute:null
     let sale = this.$route.query.sale?this.$route.query.sale:false
     let brand = this.$route.query.brand?this.$route.query.brand:null
+    let team = this.$route.query.team?this.$route.query.team:null
     
     try {
       const [a, p, c, s, g, b, t] = await Promise.all([
         this.$axios.$get(
-          '/webapi/Article/getArticleListByCategoryId?pageSize=0&brand='+brand+'&attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +this.$route.params.categoryid
+          '/webapi/Article/getArticleListByCategoryId?pageSize=0&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +this.$route.params.categoryid
         ),
         this.$axios.$get(
           `/webapi/Filter/GetProductTypeListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null`
