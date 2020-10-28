@@ -36,7 +36,7 @@
         <div 
           class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
           uk-sticky="offset:118;width-element:body;bottom:true">
-          <strong>{{ article.TotalNumberOfProducts }} produkter</strong>
+          <strong>{{ article.TotalNumberOfProducts }} {{ $getCMSEntry(global_labels,'info_products', 'produkter') }}</strong>
           <FilterItems
             :colors="colors"
             :sizes="sizes"
