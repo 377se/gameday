@@ -2,7 +2,7 @@
   <div
     class="uk-margin-top uk-margin-bottom">
     <div class="uk-flex uk-flex-middle">
-        <h3 class="uk-margin-remove-bottom">Lag</h3>
+        <h3 class="uk-margin-remove-bottom">{{ $getCMSEntry(global_labels,'teamlist', 'Lag') }}</h3>
         <span 
           class="slide-icons"
           uk-icon="chevron-left"
