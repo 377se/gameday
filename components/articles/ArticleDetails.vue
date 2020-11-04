@@ -187,6 +187,20 @@
         </div>
 
       </section>
+
+      <section>
+        <div
+          class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
+          uk-grid
+          uk-height-match="target: .uk-card">
+          <ArticleCardSimple
+            v-for="article in relatedarticles"
+            :key="article.Id"
+            :article="article"
+            url="#"
+          />
+        </div>
+      </section>
       
     </div>
   </section>
@@ -200,20 +214,40 @@ import ArticlePageText from "@/components/articles/ArticlePageText";
 import ArticlePageSizeGuide from "@/components/articles/ArticlePageSizeGuide";
 import ArticlePageWashAdvice from "@/components/articles/ArticlePageWashAdvice";
 import ButtonSubmit from "@/components/ButtonSubmit"
+import ArticleCardSimple from "@/components/articles/ArticleCardSimple"; //Related articles to be shown
 
 export default {
+  async fetch(){
+    //Fetch related articles
+    try {
+      const [a] = await Promise.all([
+        this.$axios.$get(
+          '/webapi/Article/GetRelatedArticleList?categoryId='+this.article.CategoryId+'&productId='+this.article.Id+'&productTypeId='+this.article.ProductTypeId
+        )
+      ]);
+      this.relatedarticles=a.ArticleList
+    } catch (err) {
+      console.log('Related articles error')
+      console.log(err);
+      console.log(err.request);
+    }
+  },
   components: {
     ArticlePageHeader,
     ArticlePageImages,
     ArticlePageText,
     ArticlePageSizeGuide,
     ArticlePageWashAdvice,
-    ButtonSubmit
+    ButtonSubmit,
+    ArticleCardSimple
   },
   props: {
     article: {
       type: Object,
       default: () => ({
+        Id: 0,
+        ProductTypeId:0,
+        CategoryId:0,
         AddOn: null,
         Name: "",
         Images: [],
@@ -236,7 +270,8 @@ export default {
       printNumber: '',
       patches: false,
       showNameNumber: false,
-      nameNumber: ''
+      nameNumber: '',
+      relatedarticles: []
     }
   },
   jsonld() {
