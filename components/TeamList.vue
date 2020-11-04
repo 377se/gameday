@@ -27,6 +27,8 @@
   </div>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   props: {
     catId: {
@@ -39,6 +41,10 @@ export default {
     return {
       teams: null
     }
+  },
+  computed: {
+    ...mapGetters({
+      global_labels:'labels'})
   },
   async fetch () {
     let _catid=0
