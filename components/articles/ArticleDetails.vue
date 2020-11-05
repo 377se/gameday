@@ -12,19 +12,21 @@
       </section>
 
       <section class="uk-width-1-1 uk-width-1-2@m">
-        <div class="uk-flex">
+        <div class="uk-flex uk-flex-middle">
           <ArticlePageHeader 
             class="uk-width-expand"
             :title="article.Name" 
             :teamtitle="article.TeamName"
             :subtitle="article.Brand"
           />
-          <img 
-            class="uk-width-auto"
-            :src="article.BrandImage" 
-            :alt="article.Brand"
-            style="width:20%"
-          />
+          <div
+            class="uk-width-1-6">
+            <img 
+              class="uk-width-auto"
+              :src="article.BrandImage" 
+              :alt="article.Brand"
+            />
+          </div>
         </div>
         <div class="uk-width-1-1 uk-margin-small price-details">
           <template
