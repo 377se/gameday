@@ -29,6 +29,28 @@
         </div>
         <div 
           class="uk-container uk-container-large uk-padding-small">
+          <h3
+            v-if="producttypes!=null && producttypes.length>0"
+            >Kategorier</h3>
+          <div
+            v-if="producttypes!=null && producttypes.length>0"
+            class="uk-grid uk-grid-small uk-margin-bottom uk-margin-top category-list-slider"
+            uk-grid
+            >
+            <div>
+              <nuxt-link
+                class="uk-label"
+                :to="localePath(`/c/${$route.params.parentid}/${$route.params.categoryid}/${$route.params.categoryname}`)"><span>Alla</span></nuxt-link>
+            </div>
+            <div
+              v-for="pt in producttypes"
+              :key="pt.GarmentId"
+              >
+              <nuxt-link
+                class="uk-label"
+                :to="localePath(`/c/${$route.params.parentid}/${$route.params.categoryid}/${$route.params.categoryname}/${pt.GarmentId}/${pt.SeoName}`)"><span>{{ pt.Name }}</span></nuxt-link>
+            </div>
+          </div>
           <div 
           class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
           uk-sticky="offset:118;width-element:body;bottom:true">
@@ -83,11 +105,10 @@ import FilterItems from "@/components/filter/Filter";
 
 export default {
   async fetch () {
-    console.log('bycategory')
     let pageNum = this.$route.query.page?this.$route.query.page:1
     let color = this.$route.query.color?this.$route.query.color:null
     let gender = this.$route.query.gender?this.$route.query.gender:null
-    let productType = this.$route.query.producttype?this.$route.query.producttype:null
+    let productType = this.$route.query.producttype?this.$route.query.producttype:(this.$route.params.filterid?this.$route.params.filterid:null)
     let size = this.$route.query.size?this.$route.query.size:null
     let attribute = this.$route.query.attribute?this.$route.query.attribute:null
     let sale = this.$route.query.sale?this.$route.query.sale:false
