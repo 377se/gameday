@@ -130,7 +130,8 @@ export default {
   ],
   styleResources: {
     scss: [
-    './assets/scss/vars.supporterprylar.scss'
+    './assets/scss/vars.supporterprylar.scss',
+    '~/assets/pe-laundry-icons/css/pe-laundry-icons.css'
     ]
   },
   pwa: {

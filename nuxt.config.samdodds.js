@@ -119,7 +119,8 @@ export default {
   ],
   styleResources: {
     scss: [
-    './assets/scss/vars.samdodds.scss'
+    './assets/scss/vars.samdodds.scss',
+    '~/assets/pe-laundry-icons/css/pe-laundry-icons.css'
     ]
   },
   pwa: {

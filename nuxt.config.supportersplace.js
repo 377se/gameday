@@ -39,7 +39,8 @@ export default {
    */
   css: [
     // SCSS file in the project
-    '~/assets/scss/site.supportersplace.scss'
+    '~/assets/scss/site.supportersplace.scss',
+    '~/assets/pe-laundry-icons/css/pe-laundry-icons.css'
     //'uikit/dist/css/uikit.css'
   ],
   router: {

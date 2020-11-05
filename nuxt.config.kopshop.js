@@ -32,7 +32,8 @@ export default {
    */
   css: [
     // SCSS file in the project
-    '~/assets/scss/site.samdodds.scss'
+    '~/assets/scss/site.samdodds.scss',
+    '~/assets/pe-laundry-icons/css/pe-laundry-icons.css'
     //'uikit/dist/css/uikit.css'
   ],
   router: {
