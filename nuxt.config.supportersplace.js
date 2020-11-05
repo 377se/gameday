@@ -91,12 +91,12 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     ['@dansmaculotte/nuxt-zendesk',
     { 
-      key: 'b2384b65-02c4-40fe-b25f-c195c554d089',
+      key: '8e038054-4899-4e86-8561-a33fa7eb78c2',
       disabled: true,
       settings: {
         webWidget: {
           color: {
-            theme: '#fa6900',
+            theme: '#ed8b00',
             launcherText: '#ffffff',
           }
         }

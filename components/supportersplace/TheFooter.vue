@@ -19,7 +19,7 @@
             <a href="https://www.facebook.com/supportersplace" target="_new"><span uk-icon="icon: facebook;ratio:1.5"></span></a>
           </div>
           <div class="uk-margin">
-            <img src="https://cdn.klarna.com/1.0/shared/image/generic/badge/da_dk/checkout/long-white.png?width=320" alt="Klarna">
+            <img :src="'https://cdn.klarna.com/1.0/shared/image/generic/badge/'+this.$i18n.locale.replace('-','_').replace('en','en_gb')+'/checkout/long-white.png?width=320'" alt="Klarna">
           </div>    
         </div>
 
