@@ -188,7 +188,7 @@
                   {{ item.Name }}<span v-if="index != (article.Color.length - 1)">,</span>
                 </span><br />
               
-                <strong>{{$getCMSEntry(global_labels,'article_details_washing_advice', 'Tvättråd')}}</strong>:<br /> <i v-for="c in article.WashingGuide" :key="c.IconId" :class="c.IconName"/>
+                <strong>{{$getCMSEntry(global_labels,'article_details_washing_advice', 'Tvättråd')}}</strong>:<br /> <i v-for="c in article.WashingGuide" :key="c.IconId" class="washing-instructions" :class="c.IconName"/>
               </p>
             </li>
           </ul>
@@ -415,5 +415,10 @@ export default {
 }
 .orig-price.line-through{
   font-weight:normal;
+}
+
+.washing-instructions{
+  font-size:1.5rem;
+  margin-right:10px;
 }
 </style>
