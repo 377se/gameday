@@ -26,7 +26,7 @@
             style="width:20%"
           />
         </div>
-        <div class="uk-width-1-1 uk-margin-small">
+        <div class="uk-width-1-1 uk-margin-small price-details">
           <template
               v-if="article.DiscountType==1">
               <span 
@@ -398,13 +398,15 @@ export default {
   font-size:0.7rem;
 }
 
-.your-price{
+.price-details .your-price{
   color:$global-primary-background;
   font-weight:bold;
+  font-size: 1.4rem;
 }
-.orig-price{
+.price-details .orig-price{
   font-weight:bold;
   color: #F7A803;
+  font-size: 1.4rem;
 }
 .line-through{
   text-decoration:line-through;

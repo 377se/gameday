@@ -117,7 +117,7 @@ export default {
   color:#fff;
 }
 .label-new-product{
-  background: $global-primary-background;
+  background: $global-slider-background;
   color:#fff;
 }
 .label-preorder-product{

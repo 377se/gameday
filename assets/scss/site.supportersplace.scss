@@ -6,7 +6,11 @@
 
 // 3. Your custom mixin overwrites.
 
-@mixin hook-button() {border-radius: 30px;text-transform:none;font-size:0.875rem; white-space:nowrap;}
+@mixin hook-button() {border-radius: 2px;text-transform:none;font-size:0.875rem; white-space:nowrap;}
+@mixin hook-button-primary(){background: $global-slider-background;}
+@mixin hook-button-primary-focus(){background: darken($global-slider-background, 5%);}
+@mixin hook-button-primary-active(){background: darken($global-slider-background, 10%);}
+@mixin hook-label{background:$global-slider-background;}
 @mixin hook-pagination-item(){
   color: #fa6900;
   font-weight:bold;
