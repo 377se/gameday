@@ -196,7 +196,9 @@
 
       </section>
 
-      <section v-if="relatedarticles.length > 0">
+      <section 
+        v-if="relatedarticles.length > 0"
+        class="uk-width-1-1">
         <h3>{{$getCMSEntry(global_labels,'more_products', 'Fler produkter')}}</h3>
         <div
           class="uk-grid uk-grid-small uk-width-1-1 uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
