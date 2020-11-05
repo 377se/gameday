@@ -19,12 +19,12 @@
             :teamtitle="article.TeamName"
             :subtitle="article.Brand"
           />
-          <!--img 
+          <img 
             class="uk-width-auto"
             :src="article.BrandImage" 
             :alt="article.Brand"
-            style="width:10%"
-          /-->
+            style="width:20%"
+          />
         </div>
         <div class="uk-width-1-1 uk-margin-small">
           <template
@@ -146,7 +146,7 @@
           v-if="!article.IsSoldOut"
           :is-submitting="isSubmitting"
           :button-text="$getCMSEntry(global_labels,'article_details_add_to_cart', 'Lägg i varukorgen')"
-          theme="uk-button uk-button-primary uk-width-1-1 uk-margin-small"
+          theme="uk-button uk-button-primary uppercase uk-width-1-1 uk-margin-small"
           :class="{'uk-button-disabled':chosenSize!==-1 && !article.IsOneSize}"
           @button-click="addToCart()"
         />
@@ -177,10 +177,16 @@
                 </div>
             
 
-              <p>{{$getCMSEntry(global_labels,'article_details_article_number', 'Artikelnummer')}}: {{ article.ArticleNumber }}</p>
-              <p>{{$getCMSEntry(global_labels,'article_details_article_material', 'Material')}}: {{ article.Material }}</p>
-              <p>{{$getCMSEntry(global_labels,'article_details_article_color', 'Färg')}}: 
-                <span v-for="c in article.Color" :key="c.Id">{{ c.Name }}</span>
+              <p>
+                <strong>{{$getCMSEntry(global_labels,'article_details_article_number', 'Artikelnummer')}}:</strong> {{ article.ArticleNumber }}<br />
+                <strong>{{$getCMSEntry(global_labels,'article_details_article_material', 'Material')}}:</strong> {{ article.Material }}<br />
+                
+                <strong>{{$getCMSEntry(global_labels,'article_details_article_color', 'Färg')}}:</strong> 
+                <span v-for="(item, index) in article.Color" :key="item.Id">
+                  {{ item.Name }}<span v-if="index != (article.Color.length - 1)">,</span>
+                </span><br />
+              
+                <strong>{{$getCMSEntry(global_labels,'article_details_washing_advice', 'Tvättråd')}}</strong>:<br /> <i v-for="c in article.WashingGuide" :key="c.IconId" :class="c.IconName"/>
               </p>
             </li>
           </ul>
@@ -317,6 +323,7 @@ export default {
     }
   },
   methods:{
+    
     setPrint(){
       this.printName = this.nameNumber.Name
       this.printNumber = this.nameNumber.Number
