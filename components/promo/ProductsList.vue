@@ -7,7 +7,7 @@
       v-for="article in articles"
       :key="article.Id"
       :article="article"
-      :url="`/lag/${blok.sport}/${article.HeadCategorySeoName}/${article.SeoName}`"
+      :url="(siteid==6)?`/lag/${$route.params.league}/${$route.params.team}/${article.SeoName}`:`/a/${article.Id}/${article.SeoName}`"
     />
   </div>
 </template>
