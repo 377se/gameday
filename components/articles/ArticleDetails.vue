@@ -197,7 +197,7 @@
       <section>
         <h3>{{$getCMSEntry(global_labels,'more_products', 'Fler produkter')}}</h3>
         <div
-          class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
+          class="uk-grid uk-grid-small uk-width-1-1 uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
           uk-grid
           uk-height-match="target: .uk-card">
           <ArticleCardSimple
