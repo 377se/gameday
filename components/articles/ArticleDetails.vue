@@ -204,7 +204,7 @@
             v-for="article in relatedarticles"
             :key="article.Id"
             :article="article"
-            url="#"
+            :url="(siteid==6)?`/lag/${$route.params.league}/${$route.params.team}/${article.SeoName}`:`/a/${article.Id}/${article.SeoName}`"
           />
         </div>
       </section>
@@ -278,7 +278,8 @@ export default {
       patches: false,
       showNameNumber: false,
       nameNumber: '',
-      relatedarticles: []
+      relatedarticles: [],
+      siteid: process.env.SITE_ID
     }
   },
   jsonld() {
