@@ -28,11 +28,12 @@
             />
           </div>
         </div>
+
         <div class="uk-width-1-1 uk-margin-small price-details">
           <template
               v-if="article.DiscountType==1">
               <span 
-                class="your-price"
+                class="sale-price"
                 >{{ article.DiscountedPriceDisplay }}</span> 
               <span 
                 class="orig-price"
@@ -41,7 +42,7 @@
               </span>
             </template>
             <template
-              v-else-if="article.DiscountType==2">
+              v-else-if="article.DiscountType==2">Normalt
               <span 
                 class="your-price"
                 >{{ article.PriceDisplay }}</span> 
@@ -58,6 +59,7 @@
                 >{{ article.PriceDisplay }}</span>
             </template>
         </div>
+
         <div
           v-if="!article.IsOneSize" 
           class="uk-flex uk-child-width-expand">
@@ -402,15 +404,32 @@ export default {
   font-size:0.7rem;
 }
 
+
+.price-details {
+  
+  font-weight:bolder;
+  font-size: 2.5rem;
+  display:block;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 30px;
+  padding:10px 0;
+}
 .price-details .your-price{
   color:$global-primary-background;
-  font-weight:bold;
-  font-size: 1.4rem;
+  /*font-weight:bold;
+  font-size: 1.8rem;*/
+  
 }
+
+.price-details .sale-price{
+  color:$global-primary-background;
+  color: #da291c;
+}
+
 .price-details .orig-price{
-  font-weight:bold;
-  color: #F7A803;
-  font-size: 1.4rem;
+  
+  color:#000000;
 }
 .line-through{
   text-decoration:line-through;
