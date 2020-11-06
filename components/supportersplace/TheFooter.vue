@@ -5,7 +5,7 @@
       <div 
         class="uk-flex uk-grid-small uk-grid-stack" 
         uk-grid>
-        <div class="uk-flex-last uk-flex-first@m uk-width-expand@m uk-width-1-2@s">                  
+        <div class="uk-flex-last uk-width-expand@m uk-width-1-2@s">                  
           <div class="uk-margin">
             <img :src="'https://cdn.klarna.com/1.0/shared/image/generic/badge/'+this.$i18n.locale.replace('-','_').replace('en','en_gb')+'/checkout/long-white.png?width=720'" alt="Klarna">
           </div>
