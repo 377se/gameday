@@ -269,6 +269,7 @@ export default {
         IsOneSize: false,
         TeamName: "",
         PriceDisplay: "",
+        BrandImage: "",
         IsSoldOut: false
       }),
       required: false
@@ -299,6 +300,7 @@ export default {
       "url": process.env.SITE_URL + this.$route.path,
       "image": process.env.DETAILS_SRC + article.Images[0].Name,
       "brand": article.Brand,
+      "brandImage": process.env.BRAND_SRC + article.BrandImage,
       "offers": [
         {
           "@type": "Offer",
