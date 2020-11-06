@@ -23,7 +23,7 @@
             class="uk-width-1-6">
             <img 
               class="uk-width-auto"
-              :src="article.BrandImage" 
+              :src="brand_src+article.BrandImage" 
               :alt="article.Brand"
             />
           </div>
@@ -269,7 +269,6 @@ export default {
         IsOneSize: false,
         TeamName: "",
         PriceDisplay: "",
-        BrandImage: "",
         IsSoldOut: false
       }),
       required: false
@@ -286,7 +285,8 @@ export default {
       showNameNumber: false,
       nameNumber: '',
       relatedarticles: [],
-      siteid: process.env.SITE_ID
+      siteid: process.env.SITE_ID,
+      brand_src:process.env.BRAND_SRC
     }
   },
   jsonld() {
@@ -300,7 +300,6 @@ export default {
       "url": process.env.SITE_URL + this.$route.path,
       "image": process.env.DETAILS_SRC + article.Images[0].Name,
       "brand": article.Brand,
-      "brandImage": process.env.BRAND_SRC + article.BrandImage,
       "offers": [
         {
           "@type": "Offer",
