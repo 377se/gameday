@@ -26,6 +26,7 @@
               :src="article.BrandImage" 
               :alt="article.Brand"
             />
+            {{ article.BrandImage }}
           </div>
         </div>
 
