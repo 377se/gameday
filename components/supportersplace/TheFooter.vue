@@ -7,20 +7,13 @@
         uk-grid>
         <div class="uk-flex-last uk-flex-first@m uk-width-expand@m uk-width-1-2@s">                  
           <div class="uk-margin">
-            <nuxt-link :to="localePath('/')">
-              <img 
-                style="height:60px;width:auto;"
-                src="/sites/supportersplace/supportersplace-logo-light.png" 
-                alt="Supporters Place">
-            </nuxt-link>
-          </div>
-          <div class="uk-margin-small">
-            <a href="https://www.instagram.com/supporters_place/" target="_new"><span uk-icon="icon: instagram;ratio:1.5"></span></a>
-            <a href="https://www.facebook.com/supportersplace" target="_new"><span uk-icon="icon: facebook;ratio:1.5"></span></a>
-          </div>
-          <div class="uk-margin">
             <img :src="'https://cdn.klarna.com/1.0/shared/image/generic/badge/'+this.$i18n.locale.replace('-','_').replace('en','en_gb')+'/checkout/long-white.png?width=720'" alt="Klarna">
-          </div>    
+          </div>
+          <div class="uk-margin uk-text-right">
+            <img 
+              style="height:30px;width:auto;" 
+              :src="'/delivery_method_'+this.$i18n.locale.replace('-','_').replace('en','en_us')+'.svg'" alt="">
+          </div>   
         </div>
 
         <div class="uk-width-expand@m uk-width-1-2@s">               
@@ -38,6 +31,10 @@
           <ul class="uk-list uk-text-small">
              <li><nuxt-link :to="localeRoute($getCMSEntry(global_labels,'localePath_corporate_information', '/foretagsinformation'))">{{ $getCMSEntry(global_labels,'footer_company_information', 'Företagsinformation') }}</nuxt-link></li>
           </ul>
+          <div class="uk-margin-large uk-bottom-padding-large">
+            <a href="https://www.instagram.com/supporters_place/" target="_new"><span uk-icon="icon: instagram;ratio:1.5"></span></a>
+            <a href="https://www.facebook.com/supportersplace" target="_new"><span uk-icon="icon: facebook;ratio:1.5"></span></a>
+          </div>
         </div>
 
       </div>
@@ -67,6 +64,7 @@ export default {
 footer{
   background: $global-primary-background;
   color: #ffffff;
+  padding-bottom:70px;
 }
 footer a{
   color:#ffffff;
