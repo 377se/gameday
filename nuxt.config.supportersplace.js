@@ -3,7 +3,7 @@ export default {
     THUMB_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_80,f_auto/https://static.supportersplace.se/product/',
     LIST_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_360,f_auto/',
     DETAILS_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_640,f_auto/http://static.supportersplace.se/product/',
-    BRAND_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_50,f_auto/http://static.supportersplace.se/brand/',
+    BRAND_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_200,f_auto/http://static.supportersplace.se/brand/',
     STORYBLOK_CATALOGUE: '/supportersplace',
     SITE_URL: 'https://www.supportersplace.com',
     LOGO_URL: '/sites/supportersplace/supportersplace_logo_light.svg',

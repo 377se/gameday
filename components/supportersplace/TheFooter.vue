@@ -47,34 +47,6 @@
     </div>
 
 
-     <div class="uk-container uk-padding-small shoplinks">
-        <div 
-          class="uk-flex uk-flex-center uk-flex-middle uk-grid uk-grid-small" 
-          uk-grid>
-
-          <div class="uk-width-1-2 uk-width-1-4@s uk-width-1-5@m uk-width-1-6@l">               
-            <a
-              href="https://www.samdodds.com/"
-              target="_new">
-              <img src="/sites/samdodds/samdodds-logo.png" alt="Sam Dodds"/>
-            </a>
-            <p class="uk-text-small">
-              {{ $getCMSEntry(global_labels,'shoplink_samdodds', 'Text om Sam Dodds') }}
-            </p>
-          </div>
-
-          <div class="uk-width-1-2 uk-width-1-4@s uk-width-1-5@m uk-width-1-6@l">               
-            <a
-              href="https://gameday.se/"
-              target="_new">
-              <img src="/sites/gameday/gameday-logo.svg" alt="Gameday"/>
-            </a>
-            <p class="uk-text-small">
-              {{ $getCMSEntry(global_labels,'shoplink_gameday', 'Text om Gameday') }}
-            </p>
-          </div>
-        </div>
-      </div>
 
   </footer>
 </template>
