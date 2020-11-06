@@ -69,6 +69,7 @@ export default {
 footer{
   background: $global-primary-background;
   color: #ffffff;
+  padding-bottom:100px;
 }
 footer a{
   color:#ffffff;
