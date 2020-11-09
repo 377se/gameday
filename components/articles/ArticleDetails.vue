@@ -42,7 +42,7 @@
               </span>
             </template>
             <template
-              v-else-if="article.DiscountType==2">Normalt
+              v-else-if="article.DiscountType==2">({{$getCMSEntry(global_labels,'article_details_normal_price', 'Normalt')}}
               <span 
                 class="your-price"
                 >{{ article.PriceDisplay }}</span> 
