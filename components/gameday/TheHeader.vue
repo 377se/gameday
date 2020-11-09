@@ -72,15 +72,26 @@
           href="/mlb-shop"
           @click.stop.prevent="showMenu(3)">MLB <span uk-icon="triangle-down"></span></a>
       </li>
-      <!--li>
+      <li>
         <a href="">Kepsar</a>
       </li>
       <li>
         <a href="">T-shirts</a>
       </li>
       <li>
-        <a href="">Mer <span uk-icon="triangle-down"></span></a>
-      </li-->
+        <a 
+          href="#offscreen-producttype-menu"
+          uk-toggle="target: #offscreen-producttype-menu"
+          @click.stop.prevent>Mer <span uk-icon="triangle-down"></span></a>
+      </li>
+      <li
+        style="padding-right:10px;">
+        <a 
+          href="#offscreen-brand-menu"
+          uk-toggle="target: #offscreen-brand-menu" 
+          @click.stop.prevent
+          >Varumärken <span uk-icon="triangle-down"></span></a>
+      </li>
     </ul>
   </div>
 </template>

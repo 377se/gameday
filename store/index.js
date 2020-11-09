@@ -1,5 +1,7 @@
 export const state = () => ({
   counter: 0,
+  brandMenu: [],
+  productTypeMenu: [],
   nhlMenu:[],
   nbaMenu:[],
   nflMenu:[],
@@ -13,6 +15,12 @@ export const state = () => ({
 export const mutations = {
   increment (state) {
     state.counter++
+  },
+  setProductTypeMenu(state, menu) {
+    state.productTypeMenu = menu
+  },
+  setBrandMenu(state, menu) {
+    state.brandMenu = menu
   },
   setNHLMenu(state, menu) {
     state.nhlMenu = menu
@@ -37,6 +45,12 @@ export const mutations = {
   }
 }
 export const getters = {
+  productTypeMenu(state) {
+    return state.productTypeMenu
+  },
+  brandMenu(state) {
+    return state.brandMenu
+  },
   nhlMenu(state) {
     return state.nhlMenu
   },
@@ -88,6 +102,16 @@ export const actions = {
     }
 
     if(process.env.SITE_ID==6){ //Gameday
+      await Promise.all([
+        context.app.$axios.$get('/webapi/Filter/GetProductTypeListByShopId'),
+        context.app.$axios.$get('/webapi/Filter/GetBrandListByShopId')
+      ]).then(res => {
+          commit('setProductTypeMenu', res[0])
+          commit('setBrandMenu', res[1])
+      }).catch((err)=>{
+        throw new Error("Error getting productType or brand for menu:" + err)
+      })
+
       await Promise.all([
         context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=202'),
         context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=327'),

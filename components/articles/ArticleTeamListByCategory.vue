@@ -123,19 +123,19 @@ export default {
           '/webapi/Article/getArticleListByCategoryId?pageSize=0&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +this.$route.params.categoryid
         ),
         this.$axios.$get(
-          `/webapi/Filter/GetProductTypeListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null`
+          `/webapi/Filter/GetProductTypeListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&brandName=null`
         ),
         this.$axios.$get(
-          `/webapi/Filter/GetColourListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null`
+          `/webapi/Filter/GetColourListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null&brandName=null`
         ),
         this.$axios.$get(
-          `/webapi/Filter/GetSizeListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null`
+          `/webapi/Filter/GetSizeListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null&brandName=null`
         ),
         this.$axios.$get(
-          `/webapi/Filter/GetGenderListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null`
+          `/webapi/Filter/GetGenderListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null&brandName=null`
         ),
         this.$axios.$get(
-          `/webapi/Filter/GetBrandListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null`
+          `/webapi/Filter/GetBrandListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null&brandName=null`
         ),
         this.$axios.$get(
           `/webapi/Filter/GetTeamListByCategory?categoryId=${this.$route.params.categoryid}`

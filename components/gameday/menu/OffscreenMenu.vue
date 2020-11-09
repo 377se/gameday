@@ -187,7 +187,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 #offscreen-menu.uk-open{
   z-index:9999999;
 }

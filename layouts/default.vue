@@ -29,6 +29,8 @@
     <TheHeader/>
     <nuxt/>
     <OffscreenMenu/>
+    <OffscreenProductTypeMenu/>
+    <OffscreenBrandMenu/>
     <OffscreenBasket/>
 
     <TheFooter/>

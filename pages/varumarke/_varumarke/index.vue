@@ -53,11 +53,11 @@ export default {
       brand: {}
     }
   },
-  async asyncData (context) {
+  async fetch () {
     try {
       const [a] = await Promise.all([
-        await context.app.$axios.$get(
-          '/webapi/Article/GetArticleListByBrand?brandName=' +context.route.params.varumarke
+        await this.$axios.$get(
+          '/webapi/Article/GetArticleListByBrand?brandName=' +this.$route.params.varumarke
         )
       ]);
       return {

@@ -26,7 +26,8 @@ export default {
   },
   data () {
     return {
-      articles: []
+      articles: [],
+      siteid: process.env.SITE_ID
     }
   },
   mounted(){
