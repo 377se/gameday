@@ -44,11 +44,11 @@
             <template
               v-else-if="article.DiscountType==2">
               <span 
-                class="your-price"
+                class="orig-price"
                 >{{ article.PriceDisplay }}</span> 
               <span 
                 v-if="memberprices"
-                class="orig-price">
+                class="your-price">
                 ({{$getCMSEntry(global_labels,'article_details_member', 'medlem')}} {{ article.DiscountedPriceDisplay }})
               </span>
             </template>
