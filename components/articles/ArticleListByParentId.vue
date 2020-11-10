@@ -66,7 +66,7 @@
             v-for="article in articles"
             :key="article.Id"
             :article="article"
-            :url="localePath(`/lag/${$route.params.league}/${$route.params.team}/${article.SeoName}`)"
+            :url="`/lag/${$route.params.league}/${$route.params.team}/${article.SeoName}`"
           />
           <div
             v-if="articles.length<1"

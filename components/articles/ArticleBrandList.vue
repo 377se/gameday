@@ -43,7 +43,7 @@
             v-for="article in articles"
             :key="article.Id"
             :article="article"
-            :url="(siteid==6)?localePath(`/article/${article.HeadCategorySeoName}/${article.SeoName}`):localePath(`/a/${article.Id}/${article.SeoName}`)"
+            :url="(siteid==6)?`/article/${article.HeadCategorySeoName}/${article.SeoName}`:`/a/${article.Id}/${article.SeoName}`"
           />
           <div
             v-if="articles.length<1"
