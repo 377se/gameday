@@ -8,26 +8,25 @@
               margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
       </ul>
     </div>
-    <component 
+    <!--component 
       v-if="story.content.component" 
       :key="story.content._uid" 
       :blok="story.content" 
-      :is="story.content.component" />
+      :is="story.content.component" /-->
     <div
-      v-else 
       class="uk-container uk-container-large uk-padding-small">
-      <producttype_list />
+      <ArticleProductTypeList />
     </div>
   </section>
 </template>
 <script>
-import producttype_list from "@/components/articles/ProductTypeList";
+import ArticleProductTypeList from "@/components/articles/ArticleProductTypeList";
 import Page from '@/components/Page'
 
 export default {
   async fetch () {
     // Check if we are in the editor mode
-    let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
+    /*let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
     let shop = this.$route.params.league.toUpperCase()+'-shop'
     try {
       const [sb] = await Promise.all([
@@ -42,7 +41,7 @@ export default {
       console.log('_produkttyp error')
       console.log(err);
       console.log(err.request);
-    }
+    }*/
 
   },
   beforeRouteUpdate(to, from, next){
@@ -56,7 +55,7 @@ export default {
     next()
   },
   components:{
-    article_team_list,
+    ArticleProductTypeList,
     Page
   },
   data () {

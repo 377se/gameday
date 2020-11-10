@@ -32,6 +32,7 @@
             :sizes="sizes"
             :gender="gender"
             :brands="brands"
+            :teams="teams"
             :show_sale="true"/>
         </div>
         <div
@@ -78,11 +79,11 @@ export default {
     let pageNum = this.$route.query.page?this.$route.query.page:1
     let color = this.$route.query.color?this.$route.query.color:null
     let gender = this.$route.query.gender?this.$route.query.gender:null
-    let productType = this.$route.query.producttype?this.$route.query.producttype:null
+    let productType = this.$route.params.typeId?this.$route.params.typeId:null
     let size = this.$route.query.size?this.$route.query.size:null
     let attribute = this.$route.query.attribute?this.$route.query.attribute:null
     let sale = this.$route.query.sale?this.$route.query.sale:false
-    let brand = this.$route.query.brand?this.$route.query.brand:false
+    let brand = this.$route.query.brand?this.$route.query.brand:null
     let team = this.$route.query.team?this.$route.query.team:null
     
     try {
@@ -91,16 +92,16 @@ export default {
           '/webapi/Article/getArticleList?pageSize=0&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=null'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetColourList?categoryName=null&teamName=null&garmentName=null'
+          '/webapi/Filter/GetColourList?categoryName=null&teamName=null&garmentName='+productType+'&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetSizeList?categoryName=null&teamName=null&garmentName=null'
+          '/webapi/Filter/GetSizeList?categoryName=null&teamName=null&garmentName='+productType+'&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetGenderList?categoryName=null&teamName=null&garmentName=null'
+          '/webapi/Filter/GetGenderList?categoryName=null&teamName=null&garmentName='+productType+'&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetBrandList?categoryName=null&teamName=null&garmentName=null'
+          '/webapi/Filter/GetBrandList?categoryName=null&teamName=null&garmentName='+productType+'&brandName=null'
         )
       ]);
       this.articles=a[0].ArticleList
@@ -110,6 +111,7 @@ export default {
       this.gender=g
       this.article=a[0]
       this.pageNum=pageNum
+      this.teams = team
     } catch (err) {
       console.log('_team error')
       console.log(err);
@@ -157,6 +159,7 @@ export default {
       gender: [],
       brands: [],
       sale: [],
+      teams: [],
       pageNum: 1,
       totalPages:1,
       numOfProducts: 1,
