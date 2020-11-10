@@ -101,7 +101,7 @@ export const actions = {
       console.log(err);
     }
 
-    if(process.env.SITE_ID==6){ //Gameday
+    if(process.env.SITE_ID==6 || process.env.SITE_ID==1){ //Gameday
       await Promise.all([
         context.app.$axios.$get('/webapi/Filter/GetProductTypeListByShopId'),
         context.app.$axios.$get('/webapi/Filter/GetBrandListByShopId')

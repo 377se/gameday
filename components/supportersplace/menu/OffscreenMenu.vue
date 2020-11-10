@@ -32,6 +32,30 @@
                     :key="sub.Id">{{ cat.parentId }}<nuxt-link :to="localePath('/c/'+(index>0?cat.Id:0)+'/'+sub.Id+'/'+sub.UrlSafeName)">{{ sub.Name }}</nuxt-link></li>
                 </ul>
             </li>
+            <li
+              class="uk-parent">
+              <a href="#">{{ $getCMSEntry(global_labels,'menu-brand', 'Varumärke') }}</a>
+              <ul>
+                <li
+                  v-for="brand in brandMenu"
+                  :key="brand.Id">
+                  <nuxt-link
+                    :to="localePath('/varumarke/'+brand.SeoName)+'/'+brand.Id">{{ brand.Name }}</nuxt-link>
+                </li>
+              </ul>
+            </li>
+            <li
+              class="uk-parent">
+              <a href="#">{{ $getCMSEntry(global_labels,'menu-producttypes', 'Produkttyper') }}</a>
+              <ul>
+                <li
+                  v-for="brand in productTypeMenu"
+                  :key="brand.Id">
+                  <nuxt-link
+                    :to="localePath('/produkttyp/'+brand.SeoName+'/'+brand.Id)">{{ brand.Name }}</nuxt-link>
+                </li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>
@@ -62,7 +86,10 @@ export default {
   },
   computed: {
     ...mapGetters({
-      global_labels:'labels'})
+      global_labels:'labels',
+      brandMenu: 'brandMenu',
+      productTypeMenu: 'productTypeMenu'
+    })
   },
   watch:{
     $route (to, from){
