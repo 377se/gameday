@@ -73,10 +73,12 @@
           @click.stop.prevent="showMenu(3)">MLB <span uk-icon="triangle-down"></span></a>
       </li>
       <li>
-        <a href="">Kepsar</a>
+        <nuxt-link
+          to="/produkttyp/18/kepsar" href="">Kepsar</nuxt-link>
       </li>
       <li>
-        <a href="">T-shirts</a>
+        <nuxt-link
+          to="/produkttyp/12/t-shirt-pike">T-shirts</nuxt-link>
       </li>
       <li>
         <a 

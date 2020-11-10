@@ -210,7 +210,7 @@
             v-for="article in relatedarticles"
             :key="article.Id"
             :article="article"
-            :url="(siteid==6)?`/lag/${$route.params.league}/${$route.params.team}/${article.SeoName}`:`/a/${article.Id}/${article.SeoName}`"
+            :url="(siteid==6)?localePath(`/article/${article.HeadCategorySeoName}/${article.SeoName}`):localePath(`/a/${article.Id}/${article.SeoName}`)"
           />
         </div>
       </section>

@@ -1,5 +1,37 @@
 <template>
-  <ArticleDetails v-bind:article="article"></ArticleDetails>
+  <section>
+    <div class="uk-container uk-container-large uk-padding-small">
+      <template v-if="$fetchState.pending">
+        <div uk-grid class="uk-grid uk-grid-small uk-grid-stack">
+          <section class="uk-width-1-1 uk-width-1-2@m">
+            <content-placeholders
+              :rounded="true">
+              <content-placeholders-img 
+                class="ph-article-img"/>
+            </content-placeholders>
+          </section>
+          <section class="uk-width-1-1 uk-width-1-2@m">
+            <content-placeholders
+              :rounded="true">
+              <content-placeholders-heading />
+              <content-placeholders-text :lines="5" />
+            </content-placeholders>
+          </section>
+        </div>
+      </template>
+      <template
+        v-else>
+        <ul class="uk-breadcrumb">
+          <li>
+            <nuxt-link to="/">
+              <span style="vertical-align: bottom;
+                margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
+          <li><span>{{ article.Name }}</span></li>
+        </ul>
+        <ArticleDetails v-bind:article="article"></ArticleDetails>
+      </template>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -23,7 +55,7 @@ export default {
         {
           hid: 'og:description',
           name:  'og:description',
-          content: `${this.article.MetaDescription}`.replace(/<\/?[^>]+(>|$)/g, ""),
+          content: `${this.article.MetaTitle}`.replace(/<\/?[^>]+(>|$)/g, ""),
         }
       ]
     }
@@ -33,23 +65,48 @@ export default {
   },
   data() {
     return {
-      article: {}
-    };
+      article: {},
+      shop:''
+    }
   },
-  async asyncData({ app, route }) {
+  async fetch() {
     try {
       const url = `/webapi/article/GetArticleDetails?teamName=${
-        route.params.team
-      }&articleName=${route.params.article}`;
-      const article = await app.$axios.$get(url);
+        this.$route.params.id
+      }&articleName=${this.$route.params.slug}`;
+      const article = await this.$axios.$get(url);
 
-      return { article };
+      this.article = article
+      var _this = this
+      try{
+        /*this.$gtm.push({event:'ViewContent',
+          data: {
+            content_name: _this.article.Name,
+            content_category: _this.shop + '/lag/'+_this.$route.params.league+'/'+_this.$route.params.team+'/'+article.HeadCategory,
+            content_ids: [_this.article.ArticleNumber],
+            content_type: 'product',
+            value: _this.article.Price.toFixed(2),
+            currency: process.env.CURRENCY_CODE
+          }
+        })*/
+      }catch(err){
+        console.log(err)
+      }
+
     } catch (err) {
-      console.log(err);
+      console.log(err)
+    }
+  },
+  activated(){
+    if (this.$fetchState.timestamp <= Date.now() - 600000) {
+      this.$fetch()
     }
   }
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+  .ph-article-img{
+    height:400px;
+  }
 </style>

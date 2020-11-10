@@ -20,32 +20,8 @@
       </div>
     </template>
     <template v-else>
-      <div v-if="!sb">
-        <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
-        <div 
-          :class="{'read-more':readmore}"
-          @click="setReadMore()"
-          v-html="article.SeoContentDescription"/>
-        </div>
       <div 
         class="uk-container uk-container-large uk-padding-small">
-        <h3
-          v-if="producttypes!=null && producttypes.length>0"
-          >Populära kategorier</h3>
-        <div
-          v-if="producttypes!=null && producttypes.length>0"
-          class="uk-grid uk-grid-small uk-margin-bottom uk-margin-top category-list-slider"
-          uk-grid
-          >
-          <div
-            v-for="pt in producttypes"
-            :key="pt.GarmentId"
-            >
-            <nuxt-link
-              class="uk-label"
-              :to="localePath(`/lag/${$route.params.league}/${$route.params.team}/produkttyp/${pt.SeoName}`)"><span>{{ pt.Name }}</span></nuxt-link>
-          </div>
-        </div>
         <div 
           class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
           uk-sticky="offset:118;width-element:body;bottom:true">
@@ -56,6 +32,7 @@
             :sizes="sizes"
             :gender="gender"
             :brands="brands"
+            :teams="teams"
             :show_sale="true"/>
         </div>
         <div
@@ -66,7 +43,7 @@
             v-for="article in articles"
             :key="article.Id"
             :article="article"
-            :url="`/lag/${$route.params.league}/${$route.params.team}/${article.SeoName}`"
+            :url="(siteid==6)?localePath(`/article/${article.HeadCategorySeoName}/${article.SeoName}`):localePath(`/a/${article.Id}/${article.SeoName}`)"
           />
           <div
             v-if="articles.length<1"
@@ -106,28 +83,25 @@ export default {
     let size = this.$route.query.size?this.$route.query.size:null
     let attribute = this.$route.query.attribute?this.$route.query.attribute:null
     let sale = this.$route.query.sale?this.$route.query.sale:false
-    let brand = this.$route.query.brand?this.$route.query.brand:null
+    let brand = this.$route.params.id?this.$route.params.id:null
+    let team = this.$route.query.team?this.$route.query.team:null
     
-    let shop = this.$route.params.league.toUpperCase()+'-shop'
     try {
-      const [a, p, c, s, g, b] = await Promise.all([
+      const [a, c, s, g, p] = await Promise.all([
         this.$axios.$get(
-          '/webapi/Article/getArticleList?pageSize=0&brand='+brand+'&attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +this.$route.params.team
+          '/webapi/Article/getArticleList?pageSize=0&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=null'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetProductTypeList?seoName='+this.$route.params.league+'&teamName='+this.$route.params.team
+          '/webapi/Filter/GetColourList?categoryName=null&teamName=null&garmentName=null&brandName='+brand
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetColourList?categoryName='+this.$route.params.league+'&teamName='+this.$route.params.team +'&garmentName=null'
+          '/webapi/Filter/GetSizeList?categoryName=null&teamName=null&garmentName=null&brandName='+brand
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetSizeList?categoryName='+this.$route.params.league+'&teamName='+this.$route.params.team +'&garmentName=null'
+          '/webapi/Filter/GetGenderList?categoryName=null&teamName=null&garmentName=null&brandName='+brand
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetGenderList?categoryName='+this.$route.params.league+'&teamName='+this.$route.params.team +'&garmentName=null'
-        ),
-        this.$axios.$get(
-          '/webapi/Filter/GetBrandList?categoryName='+this.$route.params.league+'&teamName='+this.$route.params.team +'&garmentName=null'
+          '/webapi/Filter/GetProductTypeList?categoryName=null&teamName=null&garmentName=null&brandName='+brand
         )
       ]);
       this.articles=a[0].ArticleList
@@ -135,16 +109,16 @@ export default {
       this.colors=c
       this.sizes=s
       this.gender=g
-      this.brands=b
       this.article=a[0]
       this.pageNum=pageNum
+      this.teams = team
     } catch (err) {
       console.log('_team error')
       console.log(err);
       console.log(err.request);
     }
 
-  },
+  }/*,
   head () {
     return {
       title: this.article.MetaTitle,
@@ -166,21 +140,15 @@ export default {
         }
       ]
     }
-  },
+  }*/,
   components:{
     ArticleCardSimple,
     FilterItems
   },
-  props: {
-    sb: {
-      type: Boolean,
-      default: false,
-      required: false
-    }
-  },
   computed: {
     ...mapGetters({
-      global_labels:'labels'})
+      global_labels:'labels'}
+    )
   },
   data () {
     return {
@@ -192,10 +160,12 @@ export default {
       gender: [],
       brands: [],
       sale: [],
+      teams: [],
       pageNum: 1,
       totalPages:1,
       numOfProducts: 1,
-      readmore: true
+      readmore: true,
+      siteid: process.env.SITE_ID,
     }
   },
   watch: {

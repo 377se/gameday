@@ -5,10 +5,9 @@
         <li>
           <nuxt-link :to="localePath('/')">
             <span style="vertical-align: bottom;
-              margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link>
-        </li>
+              margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
         <li>
-          <span>{{ $route.params.produkttyp }}</span>
+          <span>{{ $route.params.name }}</span>
         </li>
       </ul>
     </div>
@@ -19,12 +18,12 @@
       :is="story.content.component" /-->
     <div
       class="uk-container uk-container-large uk-padding-small">
-      <ArticleProductTypeList />
+      <ArticleBrandList />
     </div>
   </section>
 </template>
 <script>
-import ArticleProductTypeList from "@/components/articles/ArticleProductTypeList";
+import ArticleBrandList from "@/components/articles/ArticleBrandList";
 import Page from '@/components/Page'
 
 export default {
@@ -59,7 +58,7 @@ export default {
     next()
   },
   components:{
-    ArticleProductTypeList,
+    ArticleBrandList,
     Page
   },
   data () {

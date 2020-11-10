@@ -105,7 +105,7 @@ img {
   color:#fff;
 }
 .label-new-product{
-  background: $global-slider-background;
+  background: $global-label-new-background;
   color:#fff;
 }
 .label-preorder-product{
