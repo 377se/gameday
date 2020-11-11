@@ -7,7 +7,7 @@
             <span style="vertical-align: bottom;
               margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
         <li>
-          <span>{{ $route.params.id }}</span>
+          <span>{{ seo.Name }}</span>
         </li>
       </ul>
     </div>
@@ -27,7 +27,38 @@ import ArticleBrandList from "@/components/articles/ArticleBrandList";
 import Page from '@/components/Page'
 
 export default {
+  head () {
+    return {
+      title: this.seo.Name,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.seo.Name
+        },
+        {
+          hid: 'og:title',
+          name:  'og:title',
+          content:  this.seo.Name,
+        },
+        {
+          hid: 'og:description',
+          name:  'og:description',
+          content: `${this.seo.Name}`.replace(/<\/?[^>]+(>|$)/g, ""),
+        }
+      ]
+    }
+  },
   async fetch () {
+    try{
+      const [s] = await Promise.all([
+      await this.$axios.$get(
+        '/webapi/metadata/GetBrandName?name='+this.$route.params.id
+      )])
+      this.seo = s
+    }catch(err){
+      console.log(err)
+    }
     // Check if we are in the editor mode
     /*let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
     let shop = this.$route.params.league.toUpperCase()+'-shop'
@@ -66,7 +97,8 @@ export default {
       story: { content: {} },
       article: {},
       readmore: true,
-      shop: ''
+      shop: '',
+      seo: {Name:''}
     }
   },
   mounted(){

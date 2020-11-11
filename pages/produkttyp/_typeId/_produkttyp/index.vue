@@ -8,7 +8,7 @@
               margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link>
         </li>
         <li>
-          <span>{{ $route.params.produkttyp }}</span>
+          <span>{{ this.seo.Name }}</span>
         </li>
       </ul>
     </div>
@@ -28,7 +28,38 @@ import ArticleProductTypeList from "@/components/articles/ArticleProductTypeList
 import Page from '@/components/Page'
 
 export default {
+  head () {
+    return {
+      title: this.seo.Name,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.seo.Name
+        },
+        {
+          hid: 'og:title',
+          name:  'og:title',
+          content:  this.seo.Name,
+        },
+        {
+          hid: 'og:description',
+          name:  'og:description',
+          content: `${this.seo.Name}`.replace(/<\/?[^>]+(>|$)/g, ""),
+        }
+      ]
+    }
+  },
   async fetch () {
+    try{
+      const [s] = await Promise.all([
+      await this.$axios.$get(
+        '/webapi/metadata/GetProductTypeName?name='+this.$route.params.produkttyp
+      )])
+      this.seo = s
+    }catch(err){
+      console.log(err)
+    }
     // Check if we are in the editor mode
     /*let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
     let shop = this.$route.params.league.toUpperCase()+'-shop'
@@ -66,6 +97,7 @@ export default {
     return {
       story: { content: {} },
       article: {},
+      seo: {Name:''},
       readmore: true,
       shop: ''
     }
