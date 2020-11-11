@@ -89,7 +89,7 @@ export default {
     try {
       const [a, c, s, g, p] = await Promise.all([
         this.$axios.$get(
-          '/webapi/Article/getArticleList?pageSize=0&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=null'
+          '/webapi/Article/getArticleList?pageSize=0&lookUpBrand=true&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=null'
         ),
         this.$axios.$get(
           '/webapi/Filter/GetColourList?categoryName=null&teamName=null&garmentName=null&brandName='+brand
