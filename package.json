@@ -32,7 +32,7 @@
     "start:samdodds": "nuxt start --config-file nuxt.config.samdodds.js",
     "start:samdodds-se": "nuxt start --config-file nuxt.config.samdodds.se.js",
     "start:kopshop": "nuxt start --config-file nuxt.config.kopshop.js",
-    "generate": "nuxt generate --config-file nuxt.config.samdodds.js",
+    "generate": "nuxt generate --config-file nuxt.config.js",
     "generate:supporterprylar": "nuxt generate --config-file nuxt.config.supporterprylar.js",
     "generate:supportersplace": "nuxt generate --config-file nuxt.config.supportersplace.js",
     "generate:samdodds": "nuxt generate --config-file nuxt.config.samdodds.js",
