@@ -62,7 +62,9 @@
       <nuxt-link :to="$getCMSEntry(global_labels,'localePath_Integrity', '/integritetspolicy')">{{ $getCMSEntry(global_labels,'footer_integrity_policy', 'Integritetspolicy') }}</nuxt-link> <nuxt-link :to="$getCMSEntry(global_labels,'localePath_cookies', '/cookies')">{{ $getCMSEntry(global_labels,'footer_cookies', 'Cookies') }}</nuxt-link>
     </div>
 
-      <div class="uk-container uk-padding-small">
+      <div 
+        v-if="false"
+        class="uk-container uk-padding-small">
         <div 
           class="uk-flex uk-flex-center uk-flex-middle uk-grid uk-grid-small" 
           uk-grid>
