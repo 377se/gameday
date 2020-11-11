@@ -45,7 +45,7 @@
                 </td>
                 <td class="article-data">
                   <span class="article-name">
-                    {{ item.Category }}<br/>{{ item.Name }}
+                    {{ item.Category }}<br/>{{ item.ArticleName }}
                     <span
                       v-if="item.AddOnDisplay!=''"><br />{{ item.AddOnDisplay }}
                     </span>
