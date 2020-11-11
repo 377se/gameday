@@ -40,7 +40,7 @@
                   v-for="brand in brandMenu"
                   :key="brand.Id">
                   <nuxt-link
-                    :to="localePath('/varumarke/'+brand.SeoName)+'/'+brand.Id">{{ brand.Name }}</nuxt-link>
+                    :to="localePath('/varumarke/'+brand.SeoName)">{{ brand.Name }}</nuxt-link>
                 </li>
               </ul>
             </li>
@@ -52,7 +52,7 @@
                   v-for="brand in productTypeMenu"
                   :key="brand.Id">
                   <nuxt-link
-                    :to="localePath('/produkttyp/'+brand.SeoName)">{{ brand.Name }}</nuxt-link>
+                    :to="localePath('/produkttyp/'+brand.SeoName+'/'+brand.Id)">{{ brand.Name }}</nuxt-link>
                 </li>
               </ul>
             </li>
