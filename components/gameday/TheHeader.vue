@@ -74,11 +74,11 @@
       </li>
       <li>
         <nuxt-link
-          to="/produkttyp/18/kepsar" href="">Kepsar</nuxt-link>
+          to="/produkttyp/kepsar" href="">Kepsar</nuxt-link>
       </li>
       <li>
         <nuxt-link
-          to="/produkttyp/12/t-shirt-pike">T-shirts</nuxt-link>
+          to="/produkttyp/t-shirt-pike">T-shirts</nuxt-link>
       </li>
       <li>
         <a 
