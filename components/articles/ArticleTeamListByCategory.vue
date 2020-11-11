@@ -138,7 +138,7 @@ export default {
           `/webapi/Filter/GetBrandListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null&brandName=null`
         ),
         this.$axios.$get(
-          `/webapi/Filter/GetTeamListByCategory?categoryId=${this.$route.params.categoryid}`
+          `/webapi/Filter/GetTeamListByCategory?categoryId=${this.$route.params.categoryid}&productTypeId=0&brandId=0`
         )
       ]);
       this.articles=a[0].ArticleList

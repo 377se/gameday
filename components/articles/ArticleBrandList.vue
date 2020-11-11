@@ -87,7 +87,7 @@ export default {
     let team = this.$route.query.team?this.$route.query.team:null
     
     try {
-      const [a, c, s, g, p] = await Promise.all([
+      const [a, c, s, g, p, t] = await Promise.all([
         this.$axios.$get(
           '/webapi/Article/getArticleList?pageSize=0&lookUpBrand=true&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=null'
         ),
@@ -102,6 +102,9 @@ export default {
         ),
         this.$axios.$get(
           '/webapi/Filter/GetProductTypeList?categoryName=null&teamName=null&garmentName=null&brandName='+brand
+        ),
+        this.$axios.$get(
+          '/webapi/Filter/GetTeamListByCategory?categoryId=0&productTypeId=0&brandId='+brand
         )
       ]);
       this.articles=a[0].ArticleList
@@ -111,7 +114,7 @@ export default {
       this.gender=g
       this.article=a[0]
       this.pageNum=pageNum
-      this.teams = team
+      this.teams = t
     } catch (err) {
       console.log('_team error')
       console.log(err);
