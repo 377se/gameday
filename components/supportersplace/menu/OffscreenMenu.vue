@@ -50,9 +50,9 @@
               <ul>
                 <li
                   v-for="brand in productTypeMenu"
-                  :key="brand.Id">
+                  :key="brand.GarmentId">
                   <nuxt-link
-                    :to="localePath('/produkttyp/'+brand.SeoName+'/'+brand.Id)">{{ brand.Name }}</nuxt-link>
+                    :to="localePath('/produkttyp/'+brand.SeoName+'/'+brand.GarmentId)">{{ brand.Name }}</nuxt-link>
                 </li>
               </ul>
             </li>
