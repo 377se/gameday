@@ -409,7 +409,7 @@ export default {
 .price-details {
   
   font-weight:bolder;
-  font-size: 1.5rem;
+  font-size: 2.3rem;
   display:block;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
