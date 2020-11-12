@@ -102,13 +102,13 @@ export default {
           '/webapi/Article/getArticleList?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=nhl'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetProductTypeList?seoName=nhl&teamName=null'
+          '/webapi/Filter/GetProductTypeList?seoName=nhl&teamName=null&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetColourList?categoryName=nhl&teamName=null&garmentName=null'
+          '/webapi/Filter/GetColourList?categoryName=nhl&teamName=null&garmentName=null&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetSizeList?categoryName=nhl&teamName=null&garmentName=null'
+          '/webapi/Filter/GetSizeList?categoryName=nhl&teamName=null&garmentName=null&brandName=null'
         ),
         this.$axios.$get(
           '/webapi/Filter/GetGenderList?categoryName=nhl&teamName=null&garmentName=null'
