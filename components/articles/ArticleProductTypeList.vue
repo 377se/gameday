@@ -101,7 +101,7 @@ export default {
           '/webapi/Filter/GetGenderList?categoryName=null&teamName=null&garmentName='+productType
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetBrandList?categoryName=null&teamName=null&garmentName='+productType+'&brandName=null'
+          '/webapi/Filter/GetBrandList?categoryName=null&teamName=null&garmentName='+productType
         ),
         this.$axios.$get(
           '/webapi/Filter/GetTeamListByCategory?categoryId=0&productTypeId='+productType+'&brandId=0'

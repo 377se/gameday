@@ -119,13 +119,13 @@ export default {
           '/webapi/Article/GetArticleListByGender?pageNum='+ pageNum +'&seoName=nhl&gender=barn&teamIdList='+teamIdList
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetProductTypeList?seoName=nhl&teamName=null'
+          '/webapi/Filter/GetProductTypeList?seoName=nhl&teamName=null&brandName=null'
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetColourList?categoryName=nhl&teamName=null&garmentName=null'
+          '/webapi/Filter/GetColourList?categoryName=nhl&teamName=null&garmentName=null&brandName=null'
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetSizeList?categoryName=nhl&teamName=null&garmentName=null'
+          '/webapi/Filter/GetSizeList?categoryName=nhl&teamName=null&garmentName=null&brandName=null'
         ),
         await context.app.$storyapi.get(`cdn/stories/${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}/nhl-shop/barn`, {
           version: version,

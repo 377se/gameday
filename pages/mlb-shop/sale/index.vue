@@ -192,10 +192,10 @@ export default {
           '/webapi/Filter/GetProductTypeList?seoName=mlb&teamName=null'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetColourList?categoryName=mlb&teamName=null&garmentName=null'
+          '/webapi/Filter/GetColourList?categoryName=mlb&teamName=null&garmentName=null&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetSizeList?categoryName=mlb&teamName=null&garmentName=null'
+          '/webapi/Filter/GetSizeList?categoryName=mlb&teamName=null&garmentName=null&brandName=null'
         ),
         this.$axios.$get(
           '/webapi/Filter/GetGenderList?categoryName=mlb&teamName=null&garmentName=null'

@@ -192,10 +192,10 @@ export default {
           '/webapi/Filter/GetProductTypeList?seoName=nfl&teamName=null'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetColourList?categoryName=nfl&teamName=null&garmentName=null'
+          '/webapi/Filter/GetColourList?categoryName=nfl&teamName=null&garmentName=null&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetSizeList?categoryName=nfl&teamName=null&garmentName=null'
+          '/webapi/Filter/GetSizeList?categoryName=nfl&teamName=null&garmentName=null&brandName=null'
         ),
         this.$axios.$get(
           '/webapi/Filter/GetGenderList?categoryName=nfl&teamName=null&garmentName=null'

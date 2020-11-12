@@ -119,13 +119,13 @@ export default {
           '/webapi/Article/GetArticleListByGender?pageNum='+ pageNum +'&seoName=nfl&gender=barn&teamIdList='+teamIdList
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetProductTypeList?seoName=nfl&teamName=null'
+          '/webapi/Filter/GetProductTypeList?seoName=nfl&teamName=null&brandName=null'
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetColourList?categoryName=nfl&teamName=null&garmentName=null'
+          '/webapi/Filter/GetColourList?categoryName=nfl&teamName=null&garmentName=null&brandName=null'
         ),
         await context.app.$axios.$get(
-          '/webapi/Filter/GetSizeList?categoryName=nfl&teamName=null&garmentName=null'
+          '/webapi/Filter/GetSizeList?categoryName=nfl&teamName=null&garmentName=null&brandName=null'
         ),
         await context.app.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}/nfl-shop/barn`, {
           version: version,
