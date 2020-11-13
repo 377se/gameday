@@ -16,6 +16,22 @@ import Page from '@/components/Page'
 import TextContent from '@/components/TextContent'
 
 export default {
+  async fetch () {
+    // Check if we are in the editor mode
+    let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
+    try {
+      const [sb] = await Promise.all([
+        this.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}/editorials/${this.$nuxt.context.route.params.league}/${this.$nuxt.context.route.params.post}`, {
+          version: version,
+          cv: this.$store.getters.version
+        })
+      ]);
+      this.story=sb.data.story
+    } catch (err) {
+      console.log(err);
+      console.log(err.request);
+    }
+  },
   head () {
     return {
       title: this.story.content.SEO.title,
@@ -46,7 +62,6 @@ export default {
     return { story: { content: {SEO:{title:'', description:''}} } }
   },
   mounted () {
-    console.log(this.story.content.SEO)
     this.$storybridge.on(['input', 'published', 'change'], (event) => {
       if (event.action == 'input') {
         if (event.story.id === this.story.id) {
@@ -54,26 +69,6 @@ export default {
         }
       } else {
         window.location.reload()
-      }
-    })
-  },
-  asyncData (context) {
-    // Check if we are in the editor mode
-    let version = context.query._storyblok || context.isDev ? 'draft' : 'published'
-    // Load the JSON from the API
-    return context.app.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}/editorials/${context.route.params.league}/${context.route.params.post}`, {
-      version: version,
-      cv: context.store.getters.version
-    }).then((res) => {
-      console.log(res.data)
-      return res.data
-    }).catch((res) => {
-      if (!res.response) {
-        console.error(res)
-        context.error({ statusCode: 404, message: 'Failed to receive content from api' })
-      } else {
-        console.error(res.response.data)
-        context.error({ statusCode: res.response.status, message: res.response.data })
       }
     })
   }
