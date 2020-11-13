@@ -12,11 +12,11 @@
         </li>
       </ul>
     </div>
-    <!--component 
-      v-if="story.content.component" 
+    <component 
+      v-if="story.content && story.content.component" 
       :key="story.content._uid" 
       :blok="story.content" 
-      :is="story.content.component" /-->
+      :is="story.content.component" />
     <div
       class="uk-container uk-container-large uk-padding-small">
       <ArticleProductTypeList />
@@ -61,8 +61,7 @@ export default {
       console.log(err)
     }
     // Check if we are in the editor mode
-    /*let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
-    let shop = this.$route.params.league.toUpperCase()+'-shop'
+    let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
     try {
       const [sb] = await Promise.all([
         this.$storyapi.get('cdn/stories?starts_with=gameday/'+this.$i18n.locale+this.$route.path, {
@@ -70,13 +69,12 @@ export default {
           cv: this.$store.getters.version
         })
       ]);
-      this.shop=shop
       this.story=sb.data.stories.length>0?sb.data.stories[0]:{ content: {} }
     } catch (err) {
       console.log('_produkttyp error')
       console.log(err);
       console.log(err.request);
-    }*/
+    }
 
   },
   beforeRouteUpdate(to, from, next){
