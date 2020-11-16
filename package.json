@@ -54,7 +54,7 @@
     "nuxt-webfontloader": "^1.1.0",
     "smoothscroll-polyfill": "^0.4.4",
     "storyblok-nuxt": "^1.3.0",
-    "uikit": "^3.5.7",
+    "uikit": "^3.5.9",
     "vue-content-placeholders": "^0.2.1",
     "vue-meta": "^2.4.0",
     "vuex": "^3.5.1"

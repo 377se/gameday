@@ -5,6 +5,7 @@
         uk-navbar>
 
         <div class="uk-navbar-left">
+          <TheHamburger/>
           <nuxt-link 
             class="uk-navbar-item uk-margin-small-left uk-logo" 
             :to="localePath('/')"><img :src="logo" class="logo"></nuxt-link>
@@ -52,29 +53,10 @@
       </nav>
       <ul 
       class="gd-subnav uk-subnav uk-background-secondary uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-margin-remove-left">
-      <li>
-        <a 
-          href="/nhl-shop"
-          @click.stop.prevent="showMenu(0)">NHL <span uk-icon="triangle-down"></span></a>
-      </li>
-      <li>
-        <a 
-          href="/nfl-shop"
-          @click.stop.prevent="showMenu(1)">NFL <span uk-icon="triangle-down"></span></a>
-      </li>
-      <li>
-        <a 
-          href="/nba-shop"
-          @click.stop.prevent="showMenu(2)">NBA <span uk-icon="triangle-down"></span></a>
-      </li>
-      <li>
-        <a 
-          href="/mlb-shop"
-          @click.stop.prevent="showMenu(3)">MLB <span uk-icon="triangle-down"></span></a>
-      </li>
-      <li>
+      <li
+        style="padding-left:12px;">
         <nuxt-link
-          to="/produkttyp/18/kepsar" href="">Kepsar</nuxt-link>
+          to="/produkttyp/18/kepsar">Kepsar</nuxt-link>
       </li>
       <li>
         <nuxt-link
@@ -83,16 +65,33 @@
       <li>
         <a 
           href="#offscreen-producttype-menu"
-          uk-toggle="target: #offscreen-producttype-menu"
-          @click.stop.prevent>Mer <span uk-icon="triangle-down"></span></a>
+          @click.stop.prevent="showMenu(0)">Mer <span uk-icon="triangle-down"></span></a>
       </li>
-      <li
-        style="padding-right:10px;">
+      <li>
         <a 
           href="#offscreen-brand-menu"
-          uk-toggle="target: #offscreen-brand-menu" 
-          @click.stop.prevent
+          @click.stop.prevent="showMenu(1)"
           >Varumärken <span uk-icon="triangle-down"></span></a>
+      </li>
+      <li>
+        <a 
+          href="/nhl-shop"
+          @click.stop.prevent="showMenu(2)">NHL <span uk-icon="triangle-down"></span></a>
+      </li>
+      <li>
+        <a 
+          href="/nfl-shop"
+          @click.stop.prevent="showMenu(3)">NFL <span uk-icon="triangle-down"></span></a>
+      </li>
+      <li>
+        <a 
+          href="/nba-shop"
+          @click.stop.prevent="showMenu(4)">NBA <span uk-icon="triangle-down"></span></a>
+      </li>
+      <li style="padding-right:10px;">
+        <a 
+          href="/mlb-shop"
+          @click.stop.prevent="showMenu(5)">MLB <span uk-icon="triangle-down"></span></a>
       </li>
     </ul>
   </div>
@@ -121,7 +120,7 @@ export default {
     showMenu(num){
       try{
         UIkit.offcanvas('#offscreen-menu').show()
-        UIkit.tab('#tab-shops').show(num);
+        //UIkit.accordion('#offscreenmenu-accordion').toggle(num, false);
       }catch(err){console.log(err)}
     }
   }
@@ -180,4 +179,5 @@ export default {
     color:#fff !important;
   }
 }
+
 </style>

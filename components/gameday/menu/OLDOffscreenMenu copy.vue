@@ -14,67 +14,60 @@
           style="color:#fff;top:27px;" 
           type="button" uk-close></button>
       </div>
-
       <ul 
-        id="offscreenmenu-accordion"
-        class="uk-padding-small uk-nav uk-nav-default uk-nav-parent-icon" uk-nav>
-        <li
-          class="uk-parent">
-          <a href="#">{{ $getCMSEntry(global_labels,'menu-brand', 'Varumärke') }}</a>
-          <ul>
-            <li
-              v-for="brand in brandMenu"
-              :key="brand.Id">
+        id="tab-shops"
+        class="uk-child-width-expand uk-tab"
+        style="margin-top:0;"
+        uk-tab>
+        <li>
+          <a href="#"
+          style="line-height:28px"
+          @click.prevent>NHL</a>
+        </li>
+        <li>
+          <a href="#"
+          style="line-height:28px"
+          @click.prevent>NFL</a>
+        </li>
+        <li>
+          <a href="#"
+          style="line-height:28px"
+          @click.prevent>NBA</a>
+        </li>
+        <li>
+          <a href="#"
+          style="line-height:28px"
+          @click.prevent>MLB</a>
+        </li>
+      </ul>
+      <div class="uk-switcher">
+        <div>
+          <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav>
+            <li>
               <nuxt-link
-                :to="localePath('/varumarke/'+brand.SeoName)">{{ brand.Name }}</nuxt-link>
+                :to="localePath('/nhl-shop')">{{ $getCMSEntry(labels,'to-nhl-shop', 'Till NHL Shopen') }}</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link
+                class="menu-item-sale"
+                :to="localePath('/nhl-shop/sale')">{{ $getCMSEntry(labels,'nhl-sale', 'NHL REA') }}</nuxt-link>
+            </li>
+            <li class="uk-nav-header">{{ $getCMSEntry(labels,'most-popular-teams', 'Populäraste lagen') }}</li>
+            <li><nuxt-link :to="localePath('/lag/nhl/boston-bruins')">Boston Bruins</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/lag/nhl/chicago-blackhawks')">Chicago Blackhawks</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/lag/nhl/new-york-rangers')">New York Rangers</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/lag/nhl/pittsburgh-penguins')">Pittsburgh Penguins</nuxt-link></li>
+            <li class="uk-nav-header">{{ $getCMSEntry(labels,'all-teams-a-z', 'Alla lag (A-Z)') }}
+            <li
+              v-for="team in nhlMenu"
+              :key="team.TeamId">
+              <nuxt-link
+                :to="localePath('/lag/nhl/'+team.SeoName)">{{ team.Name }}</nuxt-link>
             </li>
           </ul>
-        </li>
-        <li
-          class="uk-parent">
-          <a href="#">{{ $getCMSEntry(global_labels,'menu-producttypes', 'Produkttyper') }}</a>
-          <ul>
-            <li
-              v-for="brand in productTypeMenu"
-              :key="brand.GarmentId">
-              <nuxt-link
-                :to="localePath('/produkttyp/'+brand.GarmentId+'/'+brand.SeoName)">{{ brand.Name }}</nuxt-link>
-            </li>
-          </ul>
-        </li>
-        <li
-          class="uk-parent">
-          <a 
-            href="#">NHL</a>
-            <ul>
-              <li>
-                <nuxt-link
-                  :to="localePath('/nhl-shop')">{{ $getCMSEntry(labels,'to-nhl-shop', 'Till NHL Shopen') }}</nuxt-link>
-              </li>
-              <li>
-                <nuxt-link
-                  class="menu-item-sale"
-                  :to="localePath('/nhl-shop/sale')">{{ $getCMSEntry(labels,'nhl-sale', 'NHL REA') }}</nuxt-link>
-              </li>
-              <li class="uk-nav-header">{{ $getCMSEntry(labels,'most-popular-teams', 'Populäraste lagen') }}</li>
-              <li><nuxt-link :to="localePath('/lag/nhl/boston-bruins')">Boston Bruins</nuxt-link></li>
-              <li><nuxt-link :to="localePath('/lag/nhl/chicago-blackhawks')">Chicago Blackhawks</nuxt-link></li>
-              <li><nuxt-link :to="localePath('/lag/nhl/new-york-rangers')">New York Rangers</nuxt-link></li>
-              <li><nuxt-link :to="localePath('/lag/nhl/pittsburgh-penguins')">Pittsburgh Penguins</nuxt-link></li>
-              <li class="uk-nav-header">{{ $getCMSEntry(labels,'all-teams-a-z', 'Alla lag (A-Z)') }}
-              <li
-                v-for="team in nhlMenu"
-                :key="team.TeamId">
-                <nuxt-link
-                  :to="localePath('/lag/nhl/'+team.SeoName)">{{ team.Name }}</nuxt-link>
-              </li>
-            </ul>
-        </li>
-        <li
-          class="uk-parent">
-          <a 
-            href="#">NFL</a>
-          <ul>
+        </div>
+        <div>
+          <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="multiple:true">
             <li>
               <nuxt-link
                 :to="localePath('/nfl-shop')">{{ $getCMSEntry(labels,'to-nfl-shop', 'Till NFL Shopen') }}</nuxt-link>
@@ -97,12 +90,9 @@
                 :to="localePath('/lag/nfl/'+team.SeoName)">{{ team.Name }}</nuxt-link>
             </li>
           </ul>
-        </li>
-        <li
-          class="uk-parent">
-          <a 
-            href="#">NBA</a>
-          <ul>
+        </div>
+        <div>
+          <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="multiple:true">
             <li>
               <nuxt-link
                 :to="localePath('/nba-shop')">{{ $getCMSEntry(labels,'to-nba-shop', 'Till NBA Shopen') }}</nuxt-link>
@@ -125,12 +115,9 @@
                 :to="localePath('/lag/nba/'+team.SeoName)">{{ team.Name }}</nuxt-link>
             </li>
           </ul>
-        </li>
-        <li
-          class="uk-parent">
-          <a 
-            href="#">MLB</a>
-          <ul>
+        </div>
+        <div>
+          <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav>
             <li>
               <nuxt-link
                 :to="localePath('/mlb-shop')">{{ $getCMSEntry(labels,'to-mlb-shop', 'Till MLB Shopen') }}</nuxt-link>
@@ -153,8 +140,8 @@
                 :to="localePath('/lag/mlb/'+team.SeoName)">{{ team.Name }}</nuxt-link>
             </li>
           </ul>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -182,16 +169,12 @@ export default {
       isolang: process.env.ISO_LANG
     }
   },
-  mounted(){
-  },
   computed: {
     ...mapGetters({
       nbaMenu: 'nbaMenu',
       nflMenu: 'nflMenu',
       mlbMenu: 'mlbMenu',
-      nhlMenu: 'nhlMenu',
-      productTypeMenu: 'productTypeMenu',
-      brandMenu: 'brandMenu'
+      nhlMenu: 'nhlMenu'
     })
   },
   watch:{
@@ -205,14 +188,6 @@ export default {
 </script>
 
 <style lang="scss">
-#offscreenmenu-accordion > li > a{
-  color: #002a32;
-}
-
-#offscreenmenu-accordion > :nth-child(n+2) {
-    margin-top: 4px;
-}
-
 #offscreen-menu.uk-open{
   z-index:9999999;
 }
