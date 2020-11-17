@@ -154,7 +154,13 @@ export default {
 }
 
 .logo {
-  width: 210px;
+  @media (max-width: 420px) { 
+    width: 190px;
+  }
+  @media (min-width: 421px) { 
+    width: 250px;
+  }
+  
 }
 
 .hamburger {
