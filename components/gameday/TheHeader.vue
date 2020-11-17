@@ -154,7 +154,7 @@ export default {
 }
 
 .logo {
-  width: 250px;
+  width: 210px;
 }
 
 .hamburger {
