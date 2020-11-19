@@ -191,7 +191,8 @@ export default {
       mlbMenu: 'mlbMenu',
       nhlMenu: 'nhlMenu',
       productTypeMenu: 'productTypeMenu',
-      brandMenu: 'brandMenu'
+      brandMenu: 'brandMenu',
+      global_labels: 'labels'
     })
   },
   watch:{

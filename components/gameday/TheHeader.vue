@@ -1,5 +1,7 @@
 <template>
-  <div uk-sticky>
+  <div 
+    uk-sticky
+    @click.stop.prevent="chosenDropDown=0">
       <nav 
         class="uk-navbar-container uk-navbar uk-margin header uk-margin-remove-bottom uk-light" 
         uk-navbar>
@@ -51,49 +53,128 @@
           </a>
         </div>
       </nav>
+      <nav 
+        class="uk-navbar-container">
       <ul 
-      class="gd-subnav uk-subnav uk-background-secondary uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-margin-remove-left">
-      <li
-        style="padding-left:12px;">
+      class="gd-subnav uk-navbar-nav uk-background-secondary uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-margin-remove-left">
+      <li>
         <nuxt-link
-          to="/produkttyp/18/kepsar">Kepsar</nuxt-link>
+          to="/produkttyp/18/kepsar"
+          class="subnav">Kepsar</nuxt-link>
       </li>
       <li>
         <nuxt-link
-          to="/produkttyp/12/t-shirt-pike">T-shirts</nuxt-link>
+          to="/produkttyp/12/t-shirt-pike"
+          class="subnav">T-shirts</nuxt-link>
       </li>
       <li>
         <a 
-          href="#offscreen-producttype-menu"
-          @click.stop.prevent="showMenu(0)">Mer <span uk-icon="triangle-down"></span></a>
+          href="#"
+          class="subnav"
+          @click.stop.prevent="chosenDropDown=(chosenDropDown!=1)?1:0">Mer <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
       </li>
       <li>
         <a 
-          href="#offscreen-brand-menu"
-          @click.stop.prevent="showMenu(1)"
-          >Varumärken <span uk-icon="triangle-down"></span></a>
+          href="#"
+          class="subnav"
+          @click.stop.prevent="chosenDropDown=(chosenDropDown!=2)?2:0">Varumärken <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
       </li>
       <li>
         <a 
           href="/nhl-shop"
-          @click.stop.prevent="showMenu(2)">NHL <span uk-icon="triangle-down"></span></a>
+          class="subnav"
+          @click.stop.prevent="chosenDropDown=(chosenDropDown!=3)?3:0">NHL <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
       </li>
       <li>
         <a 
           href="/nfl-shop"
-          @click.stop.prevent="showMenu(3)">NFL <span uk-icon="triangle-down"></span></a>
+          class="subnav"
+          @click.stop.prevent="chosenDropDown=(chosenDropDown!=4)?4:0">NFL <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
+          
       </li>
       <li>
         <a 
           href="/nba-shop"
-          @click.stop.prevent="showMenu(4)">NBA <span uk-icon="triangle-down"></span></a>
+          class="subnav"
+          @click.stop.prevent="chosenDropDown=(chosenDropDown!=5)?5:0">NBA <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
       </li>
-      <li style="padding-right:10px;">
+      <li>
         <a 
           href="/mlb-shop"
-          @click.stop.prevent="showMenu(5)">MLB <span uk-icon="triangle-down"></span></a>
+          class="subnav"
+          @click.stop.prevent="chosenDropDown=(chosenDropDown!=6)?6:0">MLB <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
       </li>
-    </ul>
+      </ul>
+    </nav>
+    <div id="dropdowns">
+      <div 
+        class="uk-navbar-dropdown"
+        :class="{'uk-display-block':chosenDropDown == 1}">
+        <ul class="uk-nav uk-navbar-dropdown-nav">
+          <li
+            v-for="p in productTypeMenu"
+            :key="p.GarmentId">
+            <nuxt-link
+              :to="localePath('/produkttyp/'+p.GarmentId+'/'+p.SeoName)">{{ p.Name }}</nuxt-link>
+          </li>
+        </ul>
+      </div>
+      <div class="uk-navbar-dropdown"
+        :class="{'uk-display-block':chosenDropDown == 2}">
+        <ul class="uk-nav uk-navbar-dropdown-nav">
+          <li
+            v-for="brand in brandMenu"
+            :key="brand.Id">
+            <nuxt-link
+              :to="localePath('/varumarke/'+brand.SeoName)">{{ brand.Name }}</nuxt-link>
+          </li>
+        </ul>
+      </div>
+      <div class="uk-navbar-dropdown"
+        :class="{'uk-display-block':chosenDropDown == 3}">
+        <ul class="uk-nav uk-navbar-dropdown-nav">
+          <li
+            v-for="team in nhlMenu"
+            :key="team.TeamId">
+            <nuxt-link
+              :to="localePath('/lag/nhl/'+team.SeoName)">{{ team.Name }}</nuxt-link>
+          </li>
+        </ul>
+      </div>
+      <div class="uk-navbar-dropdown"
+        :class="{'uk-display-block':chosenDropDown == 4}">
+        <ul class="uk-nav uk-navbar-dropdown-nav">
+          <li
+            v-for="team in nflMenu"
+            :key="team.TeamId">
+            <nuxt-link
+              :to="localePath('/lag/nfl/'+team.SeoName)">{{ team.Name }}</nuxt-link>
+          </li>
+        </ul>
+      </div>
+      <div class="uk-navbar-dropdown"
+        :class="{'uk-display-block':chosenDropDown == 5}">
+        <ul class="uk-nav uk-navbar-dropdown-nav">
+          <li
+            v-for="team in nbaMenu"
+            :key="team.TeamId">
+            <nuxt-link
+              :to="localePath('/lag/nba/'+team.SeoName)">{{ team.Name }}</nuxt-link>
+          </li>
+        </ul>
+      </div>
+      <div class="uk-navbar-dropdown"
+        :class="{'uk-display-block':chosenDropDown == 6}">
+        <ul class="uk-nav uk-navbar-dropdown-nav">
+          <li
+            v-for="team in mlbMenu"
+            :key="team.TeamId">
+            <nuxt-link
+              :to="localePath('/lag/mlb/'+team.SeoName)">{{ team.Name }}</nuxt-link>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -106,14 +187,21 @@ export default {
   },
   data(){
     return{
-      logo:process.env.LOGO_URL
+      logo:process.env.LOGO_URL,
+      chosenDropDown: 1
     }
   },
   computed: {
     ...mapGetters({
       counter: 'basket/counter',
       cid: 'cid',
-      global_labels: 'labels'
+      global_labels: 'labels',
+      nbaMenu: 'nbaMenu',
+      nflMenu: 'nflMenu',
+      mlbMenu: 'mlbMenu',
+      nhlMenu: 'nhlMenu',
+      productTypeMenu: 'productTypeMenu',
+      brandMenu: 'brandMenu'
     })
   },
   methods:{
@@ -175,8 +263,7 @@ export default {
   padding-bottom:8px;
   display: flex;
   flex-direction: row;
-  overflow: scroll;
-  overflow-y: hidden;
+  overflow-x: scroll;
   width:100%;
   &::-webkit-scrollbar {
     display: none;
@@ -185,5 +272,13 @@ export default {
     color:#fff !important;
   }
 }
+.uk-navbar-nav > li > a.subnav{
+  min-height:auto;
+  white-space:nowrap;
+}
 
+#dropdowns > .uk-navbar-dropdown{
+  left:0;
+  width:100%;
+}
 </style>
