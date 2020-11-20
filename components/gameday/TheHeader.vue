@@ -110,7 +110,7 @@
       <div 
         class="uk-navbar-dropdown"
         :class="{'uk-display-block':chosenDropDown == 1}">
-        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2" uk-grid>
+        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s" uk-grid>
           <li
             v-for="p in productTypeMenu"
             :key="p.GarmentId">
@@ -121,7 +121,7 @@
       </div>
       <div class="uk-navbar-dropdown"
         :class="{'uk-display-block':chosenDropDown == 2}">
-        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2">
+        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s">
           <li
             v-for="brand in brandMenu"
             :key="brand.Id"
@@ -134,7 +134,7 @@
       </div>
       <div class="uk-navbar-dropdown"
         :class="{'uk-display-block':chosenDropDown == 3}">
-        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2">
+        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s">
           <li
             v-for="team in nhlMenu"
             :key="team.TeamId"
@@ -146,7 +146,7 @@
       </div>
       <div class="uk-navbar-dropdown"
         :class="{'uk-display-block':chosenDropDown == 4}">
-        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2">
+        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s">
           <li
             v-for="team in nflMenu"
             :key="team.TeamId"
@@ -158,7 +158,7 @@
       </div>
       <div class="uk-navbar-dropdown"
         :class="{'uk-display-block':chosenDropDown == 5}">
-        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2">
+        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s">
           <li
             v-for="team in nbaMenu"
             :key="team.TeamId"
@@ -170,7 +170,7 @@
       </div>
       <div class="uk-navbar-dropdown"
         :class="{'uk-display-block':chosenDropDown == 6}">
-        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2">
+        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s">
           <li
             v-for="team in mlbMenu"
             :key="team.TeamId"
