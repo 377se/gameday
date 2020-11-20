@@ -110,7 +110,7 @@
       <div 
         class="uk-navbar-dropdown"
         :class="{'uk-display-block':chosenDropDown == 1}">
-        <ul class="uk-nav uk-navbar-dropdown-nav">
+        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2" uk-grid>
           <li
             v-for="p in productTypeMenu"
             :key="p.GarmentId">
@@ -121,56 +121,64 @@
       </div>
       <div class="uk-navbar-dropdown"
         :class="{'uk-display-block':chosenDropDown == 2}">
-        <ul class="uk-nav uk-navbar-dropdown-nav">
+        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2">
           <li
             v-for="brand in brandMenu"
-            :key="brand.Id">
+            :key="brand.Id"
+            class="uk-padding-remove-left">
             <nuxt-link
-              :to="localePath('/varumarke/'+brand.SeoName)">{{ brand.Name }}</nuxt-link>
+              :to="localePath('/varumarke/'+brand.SeoName)"
+              class="uk-flex uk-flex-middle"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/http://static.supportersplace.se/brand/'+brand.BrandImage" style="width:30px" /> <span>{{ brand.Name }}</span></nuxt-link>
           </li>
         </ul>
       </div>
       <div class="uk-navbar-dropdown"
         :class="{'uk-display-block':chosenDropDown == 3}">
-        <ul class="uk-nav uk-navbar-dropdown-nav">
+        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2">
           <li
             v-for="team in nhlMenu"
-            :key="team.TeamId">
+            :key="team.TeamId"
+            class="uk-padding-remove-left">
             <nuxt-link
-              :to="localePath('/lag/nhl/'+team.SeoName)">{{ team.Name }}</nuxt-link>
+              :to="localePath('/lag/nhl/'+team.SeoName)"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+team.ImageName" style="width:30px" /> {{ team.Name }}</nuxt-link>
           </li>
         </ul>
       </div>
       <div class="uk-navbar-dropdown"
         :class="{'uk-display-block':chosenDropDown == 4}">
-        <ul class="uk-nav uk-navbar-dropdown-nav">
+        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2">
           <li
             v-for="team in nflMenu"
-            :key="team.TeamId">
+            :key="team.TeamId"
+            class="uk-padding-remove-left">
             <nuxt-link
-              :to="localePath('/lag/nfl/'+team.SeoName)">{{ team.Name }}</nuxt-link>
+              :to="localePath('/lag/nfl/'+team.SeoName)"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+team.ImageName" style="width:30px" /> {{ team.Name }}</nuxt-link>
           </li>
         </ul>
       </div>
       <div class="uk-navbar-dropdown"
         :class="{'uk-display-block':chosenDropDown == 5}">
-        <ul class="uk-nav uk-navbar-dropdown-nav">
+        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2">
           <li
             v-for="team in nbaMenu"
-            :key="team.TeamId">
+            :key="team.TeamId"
+            class="uk-padding-remove-left">
             <nuxt-link
-              :to="localePath('/lag/nba/'+team.SeoName)">{{ team.Name }}</nuxt-link>
+              :to="localePath('/lag/nba/'+team.SeoName)"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+team.ImageName" style="width:30px" /> {{ team.Name }}</nuxt-link>
           </li>
         </ul>
       </div>
       <div class="uk-navbar-dropdown"
         :class="{'uk-display-block':chosenDropDown == 6}">
-        <ul class="uk-nav uk-navbar-dropdown-nav">
+        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2">
           <li
             v-for="team in mlbMenu"
-            :key="team.TeamId">
+            :key="team.TeamId"
+            class="uk-padding-remove-left">
             <nuxt-link
-              :to="localePath('/lag/mlb/'+team.SeoName)">{{ team.Name }}</nuxt-link>
+              :to="localePath('/lag/mlb/'+team.SeoName)">
+              <img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+team.ImageName" style="width:30px" /> {{ team.Name }}
+            </nuxt-link>
           </li>
         </ul>
       </div>
@@ -188,7 +196,7 @@ export default {
   data(){
     return{
       logo:process.env.LOGO_URL,
-      chosenDropDown: 1
+      chosenDropDown: 0
     }
   },
   computed: {
@@ -280,5 +288,8 @@ export default {
 #dropdowns > .uk-navbar-dropdown{
   left:0;
   width:100%;
+  max-height:410px;
+  padding:10px;
+  overflow-y:scroll;
 }
 </style>

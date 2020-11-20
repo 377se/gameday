@@ -40,7 +40,8 @@
           class="uk-margin-remove-top"/>
         <div 
           class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
-          uk-sticky="offset:118;width-element:body;bottom:true">
+          uk-sticky="offset:118;width-element:body;bottom:true"
+          style="z-index:3">
           <strong>{{ article.TotalNumberOfProducts }} {{ $getCMSEntry(global_labels,'info_products', 'produkter') }}</strong>
           <FilterItems
             :product-types="producttypes"
