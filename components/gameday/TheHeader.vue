@@ -3,9 +3,11 @@
     uk-sticky
     @click.stop.prevent="chosenDropDown=0"
     @focusout="hideDropDown"
+    style="outline:0;"
     tabindex="-1">
       <nav 
         class="uk-navbar-container uk-navbar uk-margin header uk-margin-remove-bottom uk-light" 
+        style="outline:0;"
         uk-navbar>
 
         <div class="uk-navbar-left">
