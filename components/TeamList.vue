@@ -92,6 +92,7 @@ export default {
   margin-left:-15px;
   margin-right:-15px;
   overflow-x: scroll;
+  max-width: 1420px;
   flex-wrap:nowrap;
   @media (min-width: 1200px) { 
     flex-wrap:wrap;
