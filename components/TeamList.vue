@@ -13,7 +13,7 @@
           @click.stop.prevent="slideRight"/>
     </div>
     <div
-      class="uk-margin-bottom uk-flex uk-flex-nowrap team-list-slider">
+      class="uk-margin-bottom uk-flex team-list-slider">
       <div
         v-for="t in teams"
         :key="t.TeamId"
@@ -92,6 +92,10 @@ export default {
   margin-left:-15px;
   margin-right:-15px;
   overflow-x: scroll;
+  flex-wrap:nowrap;
+  @media (min-width: 1200px) { 
+    flex-wrap:wrap;
+  }
 }
 .team-list-slider > div{
   display: flex;
