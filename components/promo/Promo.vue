@@ -9,36 +9,38 @@
       <picture
         v-if="!promoList">
         <source 
-          media="(max-width: 360px)" 
-          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/h_1.0,ar_1:1,c_crop/w_360,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
+          media="(min-width: 1441px)" 
+          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/w_2560,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
         <source 
-          media="(max-width: 480px)" 
-          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/h_1.0,ar_1:1,c_crop/w_480,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
-        <source 
-          media="(max-width: 768px)" 
-          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/y_0,x_0.25,w_1200,c_limit/w_768,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
-        <source 
-          media="(max-width: 1440px)" 
+          media="(min-width: 768px)" 
           :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/w_1440,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
         <source 
-          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/w_2560,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
+          media="(min-width: 640px)" 
+          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/y_0,x_0.25,w_1200,c_limit/w_768,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
+        <source 
+          media="(min-width: 480px)" 
+          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/h_1.0,ar_1:1,c_crop/w_640,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
+        <source 
+          media="(min-width: 360px)" 
+          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/h_1.0,ar_1:1,c_crop/w_480,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
         <img 
           alt="Promotion Image" 
           :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_2560,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
       </picture>
       <picture
         v-else>
-         <source 
-          media="(max-width: 360px)" 
-          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/h_1.0,c_fill,ar_1:1,c_crop/w_360,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
         <source 
-          media="(max-width: 768px)" 
+          media="(min-width: 1441px)"
+          :src="'https://res.cloudinary.com/supportersplace/image/fetch/h_1.0,c_fill,ar_1:1,c_crop/w_800,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
+        <source 
+          media="(min-width: 768px)" 
+          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/h_1.0,c_fill,ar_1:1,c_crop/w_600,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
+         <source 
+          media="(min-width: 361px)" 
           :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/h_1.0,c_fill,ar_1:1,c_crop/w_400,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
         <source 
-          media="(max-width: 1440px)" 
-          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/h_1.0,c_fill,ar_1:1,c_crop/w_600,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
-        <source 
-          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/h_1.0,c_fill,ar_1:1,c_crop/w_800,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
+          media="(min-width: 30px)" 
+          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/h_1.0,c_fill,ar_1:1,c_crop/w_360,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
         <img 
           alt="Promotion Image" 
           :src="'https://res.cloudinary.com/supportersplace/image/fetch/h_1.0,c_fill,ar_1:1,c_crop/w_800,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.promo_image">
