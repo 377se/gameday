@@ -27,9 +27,9 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .read-more{
-  max-height: 154px;
+  max-height: 74px;
   position: relative;
   overflow: hidden;
   cursor: pointer;
