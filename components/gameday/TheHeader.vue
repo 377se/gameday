@@ -1,7 +1,9 @@
 <template>
   <div 
     uk-sticky
-    @click.stop.prevent="chosenDropDown=0">
+    @click.stop.prevent="chosenDropDown=0"
+    @focusout="hideDropDown"
+    tabindex="-1">
       <nav 
         class="uk-navbar-container uk-navbar uk-margin header uk-margin-remove-bottom uk-light" 
         uk-navbar>
@@ -106,7 +108,8 @@
       </li>
       </ul>
     </nav>
-    <div id="dropdowns">
+    <div 
+      id="dropdowns">
       <div 
         class="uk-navbar-dropdown"
         :class="{'uk-display-block':chosenDropDown == 1}">
@@ -213,11 +216,8 @@ export default {
     })
   },
   methods:{
-    showMenu(num){
-      try{
-        UIkit.offcanvas('#offscreen-menu').show()
-        //UIkit.accordion('#offscreenmenu-accordion').toggle(num, false);
-      }catch(err){console.log(err)}
+    hideDropDown(){
+      this.chosenDropDown = 0
     }
   }
 };
