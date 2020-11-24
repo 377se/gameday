@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="uk-container-xlarge"
-    style="margin-left:auto;margin-right:auto;">
+  <div>
     <div
       class="uk-slider gd-slider uk-background-secondary" 
       uk-slider="autoplay:true">
