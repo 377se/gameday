@@ -219,7 +219,11 @@ export default {
   },
   methods:{
     hideDropDown(){
-      this.chosenDropDown = 0
+      var _this = this
+      setTimeout(function(){
+        _this.chosenDropDown = 0
+      },200)
+      
     }
   }
 };
