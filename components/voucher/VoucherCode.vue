@@ -53,20 +53,6 @@ export default {
         counter: 'basket/counter'
       })
   },
-  watch: {
-    'counter': function(oldQuery, newQuery){
-      if(newQuery<1){
-        this.show=false //Hide the form
-        try{
-          this.$cookies.remove('voucherid', response.data.VoucherId)
-          localStorage.removeItem('voucher')
-          delete this.$axios.defaults.common.header['x-voucherid']
-        }catch(err){
-
-        }
-      }
-    }
-  },
   mounted(){
     try{
       if(localStorage.voucher!=undefined){
