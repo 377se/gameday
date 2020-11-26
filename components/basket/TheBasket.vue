@@ -193,9 +193,7 @@ export default {
     counter(oldQuery, newQuery){
       if(newQuery<1){
         try{
-          this.$cookies.remove('voucherid')
           localStorage.removeItem('voucher')
-          delete this.$axios.defaults.common.header['x-voucherid']
         }catch(err){
 
         }
