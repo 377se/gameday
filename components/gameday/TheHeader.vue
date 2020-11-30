@@ -2,9 +2,9 @@
   <div 
     uk-sticky
     @click.stop.prevent="chosenDropDown=0"
-    @focusout="hideDropDown"
+    v-click-outside="hideDropDown"
     style="outline:0;"
-    tabindex="-1">
+    tabindex="0">
       <nav 
         class="uk-navbar-container uk-navbar uk-margin header uk-margin-remove-bottom uk-light" 
         style="outline:0;"
@@ -75,38 +75,38 @@
         <a 
           href="#"
           class="subnav"
-          @click.stop.prevent="chosenDropDown=(chosenDropDown!=1)?1:0">Mer <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
+          @click.stop.prevent="showDropDown(1)">Mer <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
       </li>
       <li>
         <a 
           href="#"
           class="subnav"
-          @click.stop.prevent="chosenDropDown=(chosenDropDown!=2)?2:0">Varumärken <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
+          @click.stop.prevent="showDropDown(2)">Varumärken <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
       </li>
       <li>
         <a 
           href="/nhl-shop"
           class="subnav"
-          @click.stop.prevent="chosenDropDown=(chosenDropDown!=3)?3:0">NHL <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
+          @click.stop.prevent="showDropDown(3)">NHL <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
       </li>
       <li>
         <a 
           href="/nfl-shop"
           class="subnav"
-          @click.stop.prevent="chosenDropDown=(chosenDropDown!=4)?4:0">NFL <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
+          @click.stop.prevent="showDropDown(4)">NFL <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
           
       </li>
       <li>
         <a 
           href="/nba-shop"
           class="subnav"
-          @click.stop.prevent="chosenDropDown=(chosenDropDown!=5)?5:0">NBA <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
+          @click.stop.prevent="showDropDown(5)">NBA <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
       </li>
       <li>
         <a 
           href="/mlb-shop"
           class="subnav"
-          @click.stop.prevent="chosenDropDown=(chosenDropDown!=6)?6:0">MLB <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
+          @click.stop.prevent="showDropDown(6)">MLB <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
       </li>
       </ul>
     </nav>
@@ -123,6 +123,7 @@
               :to="localePath('/produkttyp/'+p.GarmentId+'/'+p.SeoName)">{{ p.Name }}</nuxt-link>
           </li>
         </ul>
+        <div class="gradient"/>
       </div>
       <div class="uk-navbar-dropdown"
         :class="{'uk-display-block':chosenDropDown == 2}">
@@ -192,6 +193,7 @@
 </template>
 
 <script>
+import ClickOutside from 'vue-click-outside'
 import TheHamburger from "./TheHamburger";
 import { mapGetters, mapActions } from 'vuex'
 export default {
@@ -201,7 +203,8 @@ export default {
   data(){
     return{
       logo:process.env.LOGO_URL,
-      chosenDropDown: 0
+      chosenDropDown: 0,
+      timeout: null
     }
   },
   computed: {
@@ -217,13 +220,20 @@ export default {
       brandMenu: 'brandMenu'
     })
   },
+  directives: {
+    ClickOutside
+  },
   methods:{
     hideDropDown(){
       var _this = this
       setTimeout(function(){
         _this.chosenDropDown = 0
       },200)
-      
+    },
+    showDropDown(num){
+      var _this = this
+      clearTimeout(_this.timeout)
+      this.chosenDropDown = this.chosenDropDown!=num?num:0
     }
   }
 };
@@ -294,8 +304,25 @@ export default {
 #dropdowns > .uk-navbar-dropdown{
   left:0;
   width:100%;
-  max-height:410px;
-  padding:10px;
+  max-height:440px;
+  overflow-y:hidden;
+  padding:10px 0 0 10px;
+}
+#dropdowns > .gradient{
+  content: "";
+  position: absolute;
+  left: 0;
+  margin-left: 0;
+  height: 50px;
+  width: 100%;
+  bottom: 0;
+  background: linear-gradient(hsla(0,0%,100%,0),#fff);
+}
+
+#dropdowns > .uk-navbar-dropdown > .uk-navbar-dropdown-nav{
+  max-height:400px;
+  padding-bottom:20px;
+  width:100%;
   overflow-y:scroll;
 }
 </style>
