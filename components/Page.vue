@@ -22,6 +22,7 @@ import links_block from '@/components/blocks/LinksBlock'
 import products_list from '@/components/promo/ProductsList'
 import products_list_by_id from '@/components/promo/ProductsListByCategoryId'
 import promo_button from '@/components/promo/PromoButton'
+import PromoTextual from '@/components/promo/PromoTextual'
 
 import editorial_header from '@/components/editorial/Header'
 import editorial_text from '@/components/editorial/Text'
@@ -37,6 +38,7 @@ export default {
     article_team_list,
     ArticleTeamListByCategory,
     promo,
+    PromoTextual,
     promo_list,
     links_block,
     products_list,
