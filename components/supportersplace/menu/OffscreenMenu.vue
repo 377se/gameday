@@ -129,10 +129,8 @@ export default {
   height: 100%;
 }
 
-#offscreen-menu{
-  &.uk-nav li > a{
-    padding:6px;
-  }
+#offscreen-menu .uk-nav ul li > a{ 
+  padding:6px;
 }
 
 
