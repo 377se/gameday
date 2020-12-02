@@ -31,7 +31,7 @@
         class="uk-container uk-container-large uk-padding-small">
         <h3
           v-if="producttypes!=null && producttypes.length>0"
-          >Populära kategorier</h3>
+          >{{ $getCMSEntry(global_labels,'header_categories', 'Kategorier') }}</h3>
         <div
           v-if="producttypes!=null && producttypes.length>0"
           class="uk-grid uk-grid-small uk-margin-bottom uk-margin-top category-list-slider"
