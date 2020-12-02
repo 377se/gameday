@@ -56,8 +56,7 @@
       </div>
     </nav>
     <ul 
-      class="gd-subnav uk-subnav uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-flex-middle"
-      style="margin-left:-10px;">
+      class="gd-subnav uk-subnav uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-flex-middle">
       <li
         v-for="(cat, index) in menu"
         :key="cat.Id"
@@ -218,6 +217,12 @@ export default {
   }
   > li > a{
     color:#fff !important;
+  }
+  .gd-subnav > li:first-child{
+    margin-left: 10px !important;
+  }
+  .gd-subnav > li:last-child{
+    padding-right: 20px !important;
   }
 }
 
