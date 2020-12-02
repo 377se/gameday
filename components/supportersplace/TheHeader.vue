@@ -1,6 +1,10 @@
 <template>
   <div
-    uk-sticky>
+    uk-sticky
+    @click.stop.prevent="chosenDropDown=0"
+    v-click-outside="hideDropDown"
+    style="outline:0;"
+    tabindex="0">
     <nav 
       class="uk-navbar-container uk-navbar uk-margin header uk-margin-remove-bottom uk-light" 
       uk-navbar>
@@ -55,21 +59,55 @@
       class="uk-visible@m gd-subnav uk-subnav uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-flex-middle"
       style="margin-left:-10px;padding-right:20px;">
       <li
-        v-for="cat in menu"
+        v-for="(cat, index) in menu"
         :key="cat.Id"
         class="uk-flex uk-flex-middle">
         <nuxt-link
+          v-if="cat.SubCategoryList.length==0"
           :to="localePath('/c/'+(!cat.SubCategoryList.length==0?'0':'0')+'/'+cat.Id+'/'+cat.UrlSafeName)">
             <img
               v-if="cat.ImageThumb" 
               :src="cat.ImageThumb" style="width:20px;margin-right:8px;"><span>{{ cat.Name }}</span>
         </nuxt-link>
+        <a 
+          v-else
+          :href="localePath('/c/'+(!cat.SubCategoryList.length==0?'0':'0')+'/'+cat.Id+'/'+cat.UrlSafeName)"
+          class="subnav"
+          @click.stop.prevent="showDropDown(index+1)">
+          <img
+            v-if="cat.ImageThumb" 
+            :src="cat.ImageThumb" style="width:20px;margin-right:8px;"><span>{{ cat.Name }}</span><span v-if="cat.SubCategoryList.length>0" uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"/>
+        </a>
       </li>
     </ul>
+    <div 
+      id="dropdowns">
+      <div class="uk-navbar-dropdown"
+        v-for="(cat, ind) in menu"
+        :key="cat.Id"
+        :class="{'uk-display-block':chosenDropDown == ind+1}">
+        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s">
+          <li
+            v-for="(sub, index) in cat.SubCategoryList"
+            :key="sub.Id"
+            class="uk-padding-remove-left">
+            <nuxt-link :to="localePath('/c/'+(index>0?cat.Id:0)+'/'+sub.Id+'/'+sub.UrlSafeName)">
+              <img
+                v-if="sub.ImageThumb" 
+                :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+sub.ImageThumb" style="width:30px" />
+              <img
+                v-else-if="cat.ImageThumb" 
+                :src="cat.ImageThumb" style="width:30px" /> {{ sub.Name }}
+            </nuxt-link>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import ClickOutside from 'vue-click-outside'
 import TheHamburger from "./TheHamburger";
 import { mapGetters, mapActions } from 'vuex'
 export default {
@@ -89,7 +127,9 @@ export default {
   data(){
     return{
       logo:process.env.LOGO_URL,
-      menu: null
+      menu: null,
+      chosenDropDown: 0,
+      timeout: null
     }
   },
   computed: {
@@ -99,9 +139,20 @@ export default {
       cid: 'cid'
     })
   },
+  directives: {
+    ClickOutside
+  },
   methods:{
-    showBasket(){
-
+    hideDropDown(){
+      var _this = this
+      setTimeout(function(){
+        _this.chosenDropDown = 0
+      },200)
+    },
+    showDropDown(num){
+      var _this = this
+      clearTimeout(_this.timeout)
+      this.chosenDropDown = this.chosenDropDown!=num?num:0
     }
   }
 };
@@ -168,5 +219,30 @@ export default {
   > li > a{
     color:#fff !important;
   }
+}
+
+#dropdowns > .uk-navbar-dropdown{
+  left:0;
+  width:100%;
+  max-height:440px;
+  overflow-y:hidden;
+  padding:10px 0 0 10px;
+}
+#dropdowns > .gradient{
+  content: "";
+  position: absolute;
+  left: 0;
+  margin-left: 0;
+  height: 50px;
+  width: 100%;
+  bottom: 0;
+  background: linear-gradient(hsla(0,0%,100%,0),#fff);
+}
+
+#dropdowns > .uk-navbar-dropdown > .uk-navbar-dropdown-nav{
+  max-height:400px;
+  padding-bottom:20px;
+  width:100%;
+  overflow-y:scroll;
 }
 </style>
