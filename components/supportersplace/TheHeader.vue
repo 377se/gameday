@@ -56,7 +56,7 @@
       </div>
     </nav>
     <ul 
-      class="uk-visible@m gd-subnav uk-subnav uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-flex-middle"
+      class="gd-subnav uk-subnav uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-flex-middle"
       style="margin-left:-10px;padding-right:20px;">
       <li
         v-for="(cat, index) in menu"
