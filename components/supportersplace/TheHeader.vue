@@ -211,6 +211,7 @@ export default {
   flex-direction: row;
   overflow: scroll;
   overflow-y: hidden;
+  margin-left:0 !important;
   width:100%;
   &::-webkit-scrollbar {
     display: none;
@@ -218,10 +219,10 @@ export default {
   > li > a{
     color:#fff !important;
   }
-  .gd-subnav > li:first-child{
-    margin-left: 10px !important;
+  > li:first-child{
+    padding-left: 10px !important;
   }
-  .gd-subnav > li:last-child{
+  > li:last-child{
     padding-right: 20px !important;
   }
 }
