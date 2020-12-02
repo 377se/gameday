@@ -16,13 +16,13 @@
               :src="'/delivery_method_'+this.$i18n.locale.replace('-','_').replace('en','en_us')+'.svg'" alt="">
           </div>   
 
-              <div class="uk-container uk-margin gd-copyright uk-text-right">
-      <span class="uk-margin-small-right">Copyright © 2019 This site is Licensed to 377 Sport AB</span> 
-      <nuxt-link :to="localeRoute($getCMSEntry(global_labels,'localePath_Integrity', '/integritetspolicy'))">{{ $getCMSEntry(global_labels,'footer_integrity_policy', 'Integritetspolicy') }}</nuxt-link> <nuxt-link :to="localeRoute($getCMSEntry(global_labels,'localePath_cookies', '/cookies'))">{{ $getCMSEntry(global_labels,'footer_cookies', 'Cookies') }}</nuxt-link>
-    </div>
+          <div class="uk-container uk-margin gd-copyright uk-text-right">
+            <span class="uk-margin-small-right">Copyright © 2019 This site is Licensed to 377 Sport AB</span> 
+            <nuxt-link :to="localeRoute($getCMSEntry(global_labels,'localePath_Integrity', '/integritetspolicy'))">{{ $getCMSEntry(global_labels,'footer_integrity_policy', 'Integritetspolicy') }}</nuxt-link> <nuxt-link :to="localeRoute($getCMSEntry(global_labels,'localePath_cookies', '/cookies'))">{{ $getCMSEntry(global_labels,'footer_cookies', 'Cookies') }}</nuxt-link>
+          </div>
         </div>
 
-        <div class="uk-width-expand@m uk-width-1-2@s">               
+        <div class="uk-width-1-1 uk-width-expand@m uk-width-1-2@s">               
           <h3 class="uk-h4">{{ $getCMSEntry(global_labels,'footer_header_gethelp', 'Få hjälp') }}</h3>
           <ul class="uk-list uk-text-small">
             <li><nuxt-link :to="localeRoute($getCMSEntry(global_labels,'localePath_purchase_conditions', '/kopvillkor'))">{{ $getCMSEntry(global_labels,'footer_purchase_conditions', 'Köpvillkor') }}</nuxt-link></li>
@@ -32,7 +32,7 @@
           </ul>
         </div>
 
-        <div class="uk-width-expand@m uk-width-1-2@s">               
+        <div class="uk-width-1-1 uk-width-expand@m uk-width-1-2@s">               
           <h3 class="uk-h4">{{ $getCMSEntry(global_labels,'footer_header_about_us', 'Om Supportersplace') }}</h3>
           <ul class="uk-list uk-text-small">
              <li><nuxt-link :to="localeRoute($getCMSEntry(global_labels,'localePath_corporate_information', '/foretagsinformation'))">{{ $getCMSEntry(global_labels,'footer_company_information', 'Företagsinformation') }}</nuxt-link></li>

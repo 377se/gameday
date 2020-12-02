@@ -69,7 +69,7 @@ export default {
   methods:{
     getUrl(){
       if(this.url!=undefined){
-        return this.url
+        return this.$nuxt.context.app.localePath(this.url)
       }
       return this.$nuxt.context.app.localePath('/article/'+this.article.Id+'/'+this.article.UrlSafeName)
     }
