@@ -119,9 +119,4 @@ footer h3, footer .h4{
   a{text-decoration:underline}
 }
 
-ad-footer{
-  background:#eaeaea;
-  color: #002a32;
-}
-
 </style>

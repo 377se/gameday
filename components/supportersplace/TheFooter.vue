@@ -3,7 +3,7 @@
     class="uk-section-default uk-section uk-section-large uk-padding-small uk-padding-remove-horizontal">
     <div class="uk-container">
       <div 
-        class="uk-flex uk-grid-small uk-grid-stack" 
+        class="uk-flex uk-grid uk-grid-small uk-grid-stack" 
         uk-grid>
         <div class="uk-flex-last uk-width-expand@m uk-width-1-2@s">       
           <h3 class="uk-h4">&nbsp;</h3>           
@@ -15,11 +15,6 @@
               style="height:30px;width:auto;" 
               :src="'/delivery_method_'+this.$i18n.locale.replace('-','_').replace('en','en_us')+'.svg'" alt="">
           </div>   
-
-          <div class="uk-container uk-margin gd-copyright uk-text-right">
-            <span class="uk-margin-small-right">Copyright © 2019 This site is Licensed to 377 Sport AB</span> 
-            <nuxt-link :to="localeRoute($getCMSEntry(global_labels,'localePath_Integrity', '/integritetspolicy'))">{{ $getCMSEntry(global_labels,'footer_integrity_policy', 'Integritetspolicy') }}</nuxt-link> <nuxt-link :to="localeRoute($getCMSEntry(global_labels,'localePath_cookies', '/cookies'))">{{ $getCMSEntry(global_labels,'footer_cookies', 'Cookies') }}</nuxt-link>
-          </div>
         </div>
 
         <div class="uk-width-1-1 uk-width-expand@m uk-width-1-2@s">               
@@ -45,9 +40,10 @@
 
       </div>
     </div>
-
-
-
+    <div class="uk-container uk-margin gd-copyright uk-text-right">
+      <span class="uk-margin-small-right">Copyright © 2019 This site is Licensed to 377 Sport AB</span> 
+      <nuxt-link :to="localeRoute($getCMSEntry(global_labels,'localePath_Integrity', '/integritetspolicy'))">{{ $getCMSEntry(global_labels,'footer_integrity_policy', 'Integritetspolicy') }}</nuxt-link> <nuxt-link :to="localeRoute($getCMSEntry(global_labels,'localePath_cookies', '/cookies'))">{{ $getCMSEntry(global_labels,'footer_cookies', 'Cookies') }}</nuxt-link>
+    </div>
   </footer>
 </template>
 <script>
