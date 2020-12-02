@@ -57,7 +57,7 @@
     </nav>
     <ul 
       class="gd-subnav uk-subnav uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-flex-middle"
-      style="margin-left:-10px;padding-right:20px;">
+      style="margin-left:-10px;">
       <li
         v-for="(cat, index) in menu"
         :key="cat.Id"
