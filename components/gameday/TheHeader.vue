@@ -62,28 +62,6 @@
       <ul 
       class="gd-subnav uk-navbar-nav uk-background-secondary uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-margin-remove-left">
       <li>
-        <nuxt-link
-          to="/produkttyp/18/kepsar"
-          class="subnav">Kepsar</nuxt-link>
-      </li>
-      <li>
-        <nuxt-link
-          to="/produkttyp/12/t-shirt-pike"
-          class="subnav">T-shirts</nuxt-link>
-      </li>
-      <li>
-        <a 
-          href="#"
-          class="subnav"
-          @click.stop.prevent="showDropDown(1)">Mer <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
-      </li>
-      <li>
-        <a 
-          href="#"
-          class="subnav"
-          @click.stop.prevent="showDropDown(2)">Varumärken <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
-      </li>
-      <li>
         <a 
           href="/nhl-shop"
           class="subnav"
@@ -107,6 +85,28 @@
           href="/mlb-shop"
           class="subnav"
           @click.stop.prevent="showDropDown(6)">MLB <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
+      </li>
+      <li>
+        <nuxt-link
+          to="/produkttyp/18/kepsar"
+          class="subnav">Kepsar</nuxt-link>
+      </li>
+      <li>
+        <nuxt-link
+          to="/produkttyp/12/t-shirt-pike"
+          class="subnav">T-shirts</nuxt-link>
+      </li>
+      <li>
+        <a 
+          href="#"
+          class="subnav"
+          @click.stop.prevent="showDropDown(1)">Mer <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
+      </li>
+      <li>
+        <a 
+          href="#"
+          class="subnav"
+          @click.stop.prevent="showDropDown(2)">Varumärken <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
       </li>
       </ul>
     </nav>
@@ -141,6 +141,15 @@
       <div class="uk-navbar-dropdown"
         :class="{'uk-display-block':chosenDropDown == 3}">
         <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s">
+          <li>
+            <nuxt-link
+              :to="localePath('/nhl-shop')">{{ $getCMSEntry(global_labels,'to-nhl-shop', 'Till NHL Shopen') }}</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link
+              class="menu-item-sale"
+              :to="localePath('/nhl-shop/sale')">{{ $getCMSEntry(global_labels,'nhl-sale', 'NHL REA') }}</nuxt-link>
+          </li>
           <li
             v-for="team in nhlMenu"
             :key="team.TeamId"
@@ -153,6 +162,15 @@
       <div class="uk-navbar-dropdown"
         :class="{'uk-display-block':chosenDropDown == 4}">
         <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s">
+          <li>
+            <nuxt-link
+              :to="localePath('/nfl-shop')">{{ $getCMSEntry(global_labels,'to-nfl-shop', 'Till NFL Shopen') }}</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link
+              class="menu-item-sale"
+              :to="localePath('/nfl-shop/sale')">{{ $getCMSEntry(global_labels,'nfl-sale', 'NFL REA') }}</nuxt-link>
+          </li>
           <li
             v-for="team in nflMenu"
             :key="team.TeamId"
@@ -165,6 +183,15 @@
       <div class="uk-navbar-dropdown"
         :class="{'uk-display-block':chosenDropDown == 5}">
         <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s">
+          <li>
+            <nuxt-link
+              :to="localePath('/nba-shop')">{{ $getCMSEntry(global_labels,'to-nba-shop', 'Till NBA Shopen') }}</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link
+              class="menu-item-sale"
+              :to="localePath('/nba-shop/sale')">{{ $getCMSEntry(global_labels,'nba-sale', 'NBA REA') }}</nuxt-link>
+          </li>
           <li
             v-for="team in nbaMenu"
             :key="team.TeamId"
@@ -177,6 +204,15 @@
       <div class="uk-navbar-dropdown"
         :class="{'uk-display-block':chosenDropDown == 6}">
         <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s">
+          <li>
+            <nuxt-link
+              :to="localePath('/mlb-shop')">{{ $getCMSEntry(global_labels,'to-mlb-shop', 'Till MLB Shopen') }}</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link
+              class="menu-item-sale"
+              :to="localePath('/mlb-shop/sale')">{{ $getCMSEntry(global_labels,'mlb-sale', 'MLB REA') }}</nuxt-link>
+          </li>
           <li
             v-for="team in mlbMenu"
             :key="team.TeamId"
