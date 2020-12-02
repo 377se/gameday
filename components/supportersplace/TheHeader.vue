@@ -52,13 +52,18 @@
       </div>
     </nav>
     <ul 
-      class="uk-visible@m gd-subnav uk-subnav uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap"
+      class="uk-visible@m gd-subnav uk-subnav uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-flex-middle"
       style="margin-left:-10px;padding-right:20px;">
       <li
         v-for="cat in menu"
-        :key="cat.Id">
+        :key="cat.Id"
+        class="uk-flex uk-flex-middle">
         <nuxt-link
-          :to="localePath('/c/'+(!cat.SubCategoryList.length==0?'0':'0')+'/'+cat.Id+'/'+cat.UrlSafeName)">{{ cat.Name }}</nuxt-link>
+          :to="localePath('/c/'+(!cat.SubCategoryList.length==0?'0':'0')+'/'+cat.Id+'/'+cat.UrlSafeName)">
+            <img
+              v-if="cat.ImageThumb" 
+              :src="cat.ImageThumb" style="width:20px;margin-right:8px;"><span>{{ cat.Name }}</span>
+        </nuxt-link>
       </li>
     </ul>
   </div>
