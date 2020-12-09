@@ -149,7 +149,8 @@ export default {
 
 .gd-subnav{
   border-top:1px solid #fff;
-  font-family: 'Poppins';
+  font-family: 'Source Sans Pro';
+  font-weight:600;
   background: $global-secondary-background;
   padding-top:8px;
   padding-bottom:8px;
@@ -162,7 +163,7 @@ export default {
     display: none;
   }
   > li > a{
-    color:#fff !important;
+    color:#323133 !important;
   }
 }
 </style>
