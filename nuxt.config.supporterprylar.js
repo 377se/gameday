@@ -40,7 +40,8 @@ export default {
    */
   css: [
     // SCSS file in the project
-    '~/assets/scss/site.scss'
+    '~/assets/scss/site.supporterprylar.scss',
+    '~/assets/pe-laundry-icons/css/pe-laundry-icons.css'
     //'uikit/dist/css/uikit.css'
   ],
   router: {
@@ -131,8 +132,7 @@ export default {
   ],
   styleResources: {
     scss: [
-    './assets/scss/vars.supporterprylar.scss',
-    '~/assets/pe-laundry-icons/css/pe-laundry-icons.css'
+    './assets/scss/vars.supporterprylar.scss'
     ]
   },
   pwa: {

@@ -128,7 +128,8 @@ export default {
     'cookie-universal-nuxt',
     'nuxt-webfontloader',
     ['storyblok-nuxt', { accessToken: 'rGRW1HEorfNfSoGS5CzoDwtt', cacheProvider: 'memory' }],
-    ['@nuxtjs/style-resources']    
+    ['@nuxtjs/style-resources']    ,
+    '@nuxtjs/router-extras'
   ],
   styleResources: {
     scss: [
