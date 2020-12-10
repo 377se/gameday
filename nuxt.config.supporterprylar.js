@@ -102,7 +102,7 @@ export default {
       settings: {
         webWidget: {
           color: {
-            theme: '#fa6900',
+            theme: '#ed8b00',
             launcherText: '#ffffff',
           },
           chat: {

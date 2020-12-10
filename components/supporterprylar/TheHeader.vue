@@ -107,7 +107,7 @@ export default {
 /*Overriding styles in layout-default*/
 .gd-slider{
   text-transform:uppercase;
-  border-bottom:4px solid #fff;
+  border-bottom:4px solid #357A4F;
 }
 /*end overriding*/
 .uk-logo{
@@ -119,7 +119,7 @@ export default {
   left: 50%;
   margin-left: -5px;
   color: rgb(0, 42, 50);
-  background: #fa6900;
+  background: #ed8b00;
   padding: 3px;
   border-radius: 50%;
   width: 14px;
