@@ -15,5 +15,15 @@
   color: #fa6900;
 }
 
+@mixin hook-label(){
+  &.uk-background-secondary{
+    color:$global-color;
+  }
+}
+
+@mixin hook-button-secondary{
+  color: $global-color;
+}
+
 // 4. Import UIkit.
 @import "uikit/src/scss/uikit-theme.scss";

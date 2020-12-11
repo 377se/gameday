@@ -1,10 +1,15 @@
 <template>
   <div
-    uk-sticky>
+    uk-sticky
+    @click.stop.prevent="chosenDropDown=0"
+    v-click-outside="hideDropDown"
+    style="outline:0;"
+    tabindex="0">
     <nav 
       class="uk-navbar-container uk-navbar uk-margin header uk-margin-remove-bottom uk-light" 
       uk-navbar>
       <div class="uk-navbar-left">
+        <TheHamburger/>
         <nuxt-link 
           class="uk-navbar-item uk-logo" 
           :to="localePath('/')"><img :src="logo" class="logo"></nuxt-link>
@@ -51,22 +56,57 @@
       </div>
     </nav>
     <ul 
-      class="gd-subnav uk-subnav uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-margin-remove-left">
+      class="gd-subnav uk-subnav uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-flex-middle">
       <li
-        style="padding-left:5px">
-        <TheHamburger/>
-      </li>
-      <li
-        v-for="cat in menu"
-        :key="cat.Id">
+        v-for="(cat, index) in menu"
+        :key="cat.Id"
+        class="uk-flex uk-flex-middle">
         <nuxt-link
-          :to="localePath('/c/'+(!cat.SubCategoryList.length==0?'0':'0')+'/'+cat.Id+'/'+cat.UrlSafeName)">{{ cat.Name }}</nuxt-link>
+          v-if="cat.SubCategoryList.length==0"
+          :to="localePath('/c/'+(!cat.SubCategoryList.length==0?'0':'0')+'/'+cat.Id+'/'+cat.UrlSafeName)">
+            <img
+              v-if="cat.ImageThumb" 
+              :src="cat.ImageThumb" style="width:20px;margin-right:8px;"><span>{{ cat.Name }}</span>
+        </nuxt-link>
+        <a 
+          v-else
+          :href="localePath('/c/'+(!cat.SubCategoryList.length==0?'0':'0')+'/'+cat.Id+'/'+cat.UrlSafeName)"
+          class="subnav"
+          @click.stop.prevent="showDropDown(index+1)">
+          <img
+            v-if="cat.ImageThumb" 
+            :src="cat.ImageThumb" style="width:20px;margin-right:8px;"><span>{{ cat.Name }}</span><span v-if="cat.SubCategoryList.length>0" uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"/>
+        </a>
       </li>
     </ul>
+    <div 
+      id="dropdowns">
+      <div class="uk-navbar-dropdown"
+        v-for="(cat, ind) in menu"
+        :key="cat.Id"
+        :class="{'uk-display-block':chosenDropDown == ind+1}">
+        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s">
+          <li
+            v-for="(sub, index) in cat.SubCategoryList"
+            :key="sub.Id"
+            class="uk-padding-remove-left">
+            <nuxt-link :to="localePath('/c/'+(index>0?cat.Id:0)+'/'+sub.Id+'/'+sub.UrlSafeName)">
+              <img
+                v-if="sub.ImageThumb" 
+                :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+sub.ImageThumb" style="width:30px" />
+              <img
+                v-else-if="cat.ImageThumb" 
+                :src="cat.ImageThumb" style="width:30px" /> {{ sub.Name }}
+            </nuxt-link>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import ClickOutside from 'vue-click-outside'
 import TheHamburger from "./TheHamburger";
 import { mapGetters, mapActions } from 'vuex'
 export default {
@@ -86,18 +126,85 @@ export default {
   data(){
     return{
       logo:process.env.LOGO_URL,
-      menu: null
+      menu: null,
+      chosenDropDown: 0,
+      timeout: null
     }
   },
   computed: {
     ...mapGetters({
+      global_labels: 'labels',
       counter: 'basket/counter',
       cid: 'cid'
     })
   },
+  directives: {
+    ClickOutside
+  },
   methods:{
-    showBasket(){
+    hideDropDown(){
+      var _this = this
+      setTimeout(function(){
+        _this.chosenDropDown = 0
+      },200)
+    },
+    showDropDown(num){
+      var _this = this
+      clearTimeout(_this.timeout)
+      this.chosenDropDown = this.chosenDropDown!=num?num:0
+    }
+  }
+};
+</script>
 
+
+<script>
+import ClickOutside from 'vue-click-outside'
+import TheHamburger from "./TheHamburger";
+import { mapGetters, mapActions } from 'vuex'
+export default {
+  async fetch() {
+    try {
+      let [menu] = await Promise.all([
+          this.$axios.$get('/webapi/category')
+      ]);
+      this.menu = menu
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  components: {
+    TheHamburger
+  },
+  data(){
+    return{
+      logo:process.env.LOGO_URL,
+      menu: null,
+      chosenDropDown: 0,
+      timeout: null
+    }
+  },
+  computed: {
+    ...mapGetters({
+      global_labels: 'labels',
+      counter: 'basket/counter',
+      cid: 'cid'
+    })
+  },
+  directives: {
+    ClickOutside
+  },
+  methods:{
+    hideDropDown(){
+      var _this = this
+      setTimeout(function(){
+        _this.chosenDropDown = 0
+      },200)
+    },
+    showDropDown(num){
+      var _this = this
+      clearTimeout(_this.timeout)
+      this.chosenDropDown = this.chosenDropDown!=num?num:0
     }
   }
 };
@@ -107,7 +214,7 @@ export default {
 /*Overriding styles in layout-default*/
 .gd-slider{
   text-transform:uppercase;
-  border-bottom:4px solid #357A4F;
+  border-bottom:4px solid #fff;
 }
 /*end overriding*/
 .uk-logo{
@@ -119,7 +226,7 @@ export default {
   left: 50%;
   margin-left: -5px;
   color: rgb(0, 42, 50);
-  background: #ed8b00;
+  background: #fa6900;
   padding: 3px;
   border-radius: 50%;
   width: 14px;
@@ -140,17 +247,9 @@ export default {
   width: auto;
 }
 
-.hamburger {
-  color: #00bbe0;
-}
-.hamburger:hover {
-  color: #00bbe0;
-}
-
 .gd-subnav{
   border-top:1px solid #fff;
-  font-family: 'Source Sans Pro';
-  font-weight:600;
+  font-family: 'Poppins';
   background: $global-secondary-background;
   padding-top:8px;
   padding-bottom:8px;
@@ -158,12 +257,45 @@ export default {
   flex-direction: row;
   overflow: scroll;
   overflow-y: hidden;
+  margin-left:0 !important;
   width:100%;
   &::-webkit-scrollbar {
     display: none;
   }
   > li > a{
-    color:#323133 !important;
+    color:$global-color !important;
+  }
+  > li:first-child{
+    padding-left: 10px !important;
+  }
+  > li:last-child{
+    padding-right: 20px !important;
   }
 }
+
+#dropdowns > .uk-navbar-dropdown{
+  left:0;
+  width:100%;
+  max-height:440px;
+  overflow-y:hidden;
+  padding:10px 0 0 10px;
+}
+#dropdowns > .gradient{
+  content: "";
+  position: absolute;
+  left: 0;
+  margin-left: 0;
+  height: 50px;
+  width: 100%;
+  bottom: 0;
+  background: linear-gradient(hsla(0,0%,100%,0),#fff);
+}
+
+#dropdowns > .uk-navbar-dropdown > .uk-navbar-dropdown-nav{
+  max-height:400px;
+  padding-bottom:20px;
+  width:100%;
+  overflow-y:scroll;
+}
 </style>
+

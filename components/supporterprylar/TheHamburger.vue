@@ -14,7 +14,7 @@ export default {
   
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .wrapper-menu {
   margin-left:12px;
   width: 26px;
@@ -31,7 +31,7 @@ export default {
 }
 
 .line-menu {
-  background-color: #ffffff;
+  background-color: #fff;
   border-radius: 3px;
   width: 100%;
   height: 4px;
