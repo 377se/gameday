@@ -5,6 +5,7 @@ export default {
     DETAILS_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_640,f_auto/http://static.supportersplace.se/product/',
     BRAND_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_200,f_auto/http://static.supportersplace.se/brand/',
     STORYBLOK_CATALOGUE: '/supportersplace',
+    STORYBLOK_LABELS: 'supportersplace',
     SITE_URL: 'https://www.supportersplace.com',
     LOGO_URL: '/sites/supportersplace/supportersplace_logo_light.svg',
     SITE_ID: 1,

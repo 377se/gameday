@@ -5,6 +5,7 @@ export default {
     DETAILS_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_640,f_auto/http://static.supportersplace.se/product/',
     BRAND_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_200,f_auto/http://static.supportersplace.se/brand/',
     STORYBLOK_CATALOGUE: '/kopshop',
+    STORYBLOK_LABELS: 'kopshop',
     SITE_URL: 'https://www.kopshop.no',
     LOGO_URL: '/sites/kopshop/kopshop-logo.png',
     SITE_ID: 3,

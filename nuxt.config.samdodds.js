@@ -5,6 +5,7 @@ export default {
     DETAILS_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_640,f_auto/http://static.supportersplace.se/product/',
     BRAND_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_200,f_auto/http://static.supportersplace.se/brand/',
     STORYBLOK_CATALOGUE: '/samdodds',
+    STORYBLOK_LABELS: 'samdodds',
     SITE_URL: 'https://www.samdodds.dk',
     LOGO_URL: '/sites/samdodds/samdodds-logo.png',
     SITE_ID: 2,
