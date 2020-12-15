@@ -7,6 +7,7 @@
       uk-navbar>
       
       <div class="uk-navbar-left">
+        <TheHamburger/>
         <nuxt-link 
           class="uk-navbar-item uk-padding-small uk-logo" 
           :to="localePath('/')"><img :src="logo" class="logo"></nuxt-link>
@@ -54,10 +55,6 @@
     </nav>
     <ul 
       class="gd-subnav uk-subnav uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-margin-remove-left">
-      <li
-        style="padding-left:5px">
-        <TheHamburger/>
-      </li>
       <li
         v-for="cat in menu"
         :key="cat.Id">
