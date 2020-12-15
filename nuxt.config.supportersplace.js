@@ -106,28 +106,38 @@ export default {
     }],
     ['nuxt-i18n',
       {
+        detectBrowserLanguage: {
+          useCookie: true,
+          cookieKey: 'i18n_redirected',
+          onlyOnRoot: true,  // recommended
+        },
         defaultLocale: 'sv-se',
         strategy: 'prefix',
         locales: [
           {
             code: 'sv-se',
-            iso: 'sv-SE'
+            iso: 'sv-SE',
+            name: 'Sweden'
           },
           {
             code: 'nb-no',
-            iso: 'nb-NO'
+            iso: 'nb-NO',
+            name: 'Norway'
           },
           {
             code: 'da-dk',
-            iso: 'da-DK'
+            iso: 'da-DK',
+            name: 'Denmark'
           },
           {
             code: 'en',
-            iso: 'en-GB'
+            iso: 'en-GB',
+            name: 'International (english)'
           },
           {
             code: 'fi-fi',
-            iso: 'fi-FI'
+            iso: 'fi-FI',
+            name: 'Finland'
           }
         ],
         seo:false

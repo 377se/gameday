@@ -19,6 +19,25 @@
         style="flex-wrap:nowrap"
         class="uk-navbar-right uk-text-center"
       >
+        <span style="color:#fff;margin-right:4px;">{{ locale }} 
+          <span 
+            uk-icon="icon:chevron-down;ratio:1.0"/>
+        </span>
+        <div 
+          class="uk-dropdown"
+          uk-dropdown>
+            <ul 
+              class="uk-nav uk-dropdown-nav uk-text-left">
+                <li 
+                  v-for="locale in availableLocales"
+                  :key="locale.code"
+                  :class="{'uk-active':locale===locale.code}">
+                  <a
+                    :href="switchLocalePath(locale.code)"
+                    @click.prevent.stop="switchLang(locale.code)">{{ locale.name }}</a>
+                </li>
+            </ul>
+        </div>
         <nuxt-link
           v-if="cid==null"
           :to="localePath('/login')"
@@ -116,6 +135,7 @@ export default {
           this.$axios.$get('/webapi/category')
       ]);
       this.menu = menu
+      this.locale = this.$i18n.locale
     } catch (err) {
       console.log(err);
     }
@@ -128,7 +148,8 @@ export default {
       logo:process.env.LOGO_URL,
       menu: null,
       chosenDropDown: 0,
-      timeout: null
+      timeout: null,
+      locale: ''
     }
   },
   computed: {
@@ -136,12 +157,19 @@ export default {
       global_labels: 'labels',
       counter: 'basket/counter',
       cid: 'cid'
-    })
+    }),
+    availableLocales () {
+      return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
+    }
   },
   directives: {
     ClickOutside
   },
   methods:{
+    switchLang(code){
+      this.$i18n.setLocaleCookie(code)
+      location.href = '/'+code;
+    },
     hideDropDown(){
       var _this = this
       setTimeout(function(){
