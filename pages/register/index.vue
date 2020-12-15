@@ -72,7 +72,7 @@
         <h1>{{ $getCMSEntry(labels,'register_success_message', 'Du är nu registrerad!') }}</h1>
         <nuxt-link
           :to="localePath('/login')"
-          class="uk-button uk-button-primary">{{ $getCMSEntry(labels,'login_here', 'Logga in här') }}Logga in här</nuxt-link>
+          class="uk-button uk-button-primary">{{ $getCMSEntry(labels,'login_here', 'Logga in här') }}</nuxt-link>
       </div>
     </div>
   </section>

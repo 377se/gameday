@@ -60,7 +60,7 @@ export default {
     logOut(){
       this.$cookies.set('cid', null)
       this.$store.commit('setCid', null)
-      this.$router.push('/')
+      this.$router.push(this.$root.context.app.localePath('/'))
     } 
   },
   asyncData (context) {

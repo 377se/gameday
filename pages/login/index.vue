@@ -114,7 +114,7 @@ export default {
           }else{
             _this.$store.commit('setCid', response.data.Id)
             _this.$cookies.set('cid', response.data.Id)
-            _this.$router.push('/my-account') 
+            _this.$router.push(_this.$root.context.app.localePath('/my-account')) 
           }
       })
       .catch(function (error) {
