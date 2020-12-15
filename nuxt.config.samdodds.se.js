@@ -127,6 +127,23 @@ export default {
     './assets/scss/vars.samdodds.scss'
     ]
   },
+  pwa: {
+    meta:{
+      name: 'SamDodds',
+      description: 'SamDodds.com',
+      lang: 'sv',
+      theme_color: '#ffffff'
+    },
+    manifest: {
+      name: 'SamDodds.com',
+      short_name: 'Sam Dodds',
+      lang: 'sv',
+      description: 'SamDodds.com',
+    },
+    icon: {
+      iconFileName: 'icon_samdodds.png'
+    }
+  },
   webfontloader: {
     google: {
       families: ['Lato:wght@400;600;700','Oswald:wght@400;500;700&display=swap'] //Loads Source Sans and Ubuntu
