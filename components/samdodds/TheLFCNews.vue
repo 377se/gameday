@@ -14,7 +14,7 @@
             <img class="lfc-image uk-float-left" :src="article.Image">
           </div>
           <div class="lfc-text">{{ article.Preamble }}</div>
-          <div class="lfc-read-more"><strong><a :href="article.Url">Läs mer...</a></strong></div>
+          <div class="lfc-read-more"><strong><a target="_new" :href="article.Url">Läs mer...</a></strong></div>
         </li>
       </ul>
     </div>
