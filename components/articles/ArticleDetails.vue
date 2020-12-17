@@ -269,7 +269,8 @@ export default {
         IsOneSize: false,
         TeamName: "",
         PriceDisplay: "",
-        IsSoldOut: false
+        IsSoldOut: false,
+        CartId: 0
       }),
       required: false
     }
@@ -291,25 +292,29 @@ export default {
   },
   jsonld() {
     var article = this.article
-    return {
-      '@context': 'http://schema.org',
-      '@type': 'Product',
-      "productID":article.ArticleNumber,
-      "name":article.Name,
-      "description":article.Description,
-      "url": process.env.SITE_URL + this.$route.path,
-      "image": process.env.DETAILS_SRC + article.Images[0].Name,
-      "brand": article.Brand,
-      "offers": [
-        {
-          "@type": "Offer",
-          "price": article.Price.toFixed(2),
-          "priceCurrency": process.env.CURRENCY_CODE,
-          "itemCondition": "https://schema.org/NewCondition",
-          "availability": "https://schema.org/InStock"
-        }
-      ]
-    };
+    if(article.CartId===0){
+      return {
+        '@context': 'http://schema.org',
+        '@type': 'Product',
+        "productID":article.ArticleNumber,
+        "name":article.Name,
+        "description":article.Description,
+        "url": process.env.SITE_URL + this.$route.path,
+        "image": process.env.DETAILS_SRC + article.Images[0].Name,
+        "brand": article.Brand,
+        "offers": [
+          {
+            "@type": "Offer",
+            "price": article.Price.toFixed(2),
+            "priceCurrency": process.env.CURRENCY_CODE,
+            "itemCondition": "https://schema.org/NewCondition",
+            "availability": "https://schema.org/InStock"
+          }
+        ]
+      };
+    }else{
+      return {}
+    }
   },
   computed: {
     ...mapGetters({
@@ -355,7 +360,11 @@ export default {
             UIkit.modal.alert(response.data.ErrorList[0].Value)
           }else{
             _this.$store.commit('basket/add', response.data)
-            UIkit.modal('#offscreen-basket').show();
+            if(response.data.CartId && response.data.CartId>0 && response.data.IsMemberPackage){
+              _this.$router.push('/extension/'+_this.$route.params.id+'?cartid='+response.data.CartId)
+            }else{
+              UIkit.modal('#offscreen-basket').show();
+            }
             try{
             _this.$gtm.push({event: 'AddToCart', content:{
               content_name: _this.article.Name, 

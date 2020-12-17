@@ -160,7 +160,7 @@ export default {
       
       this.labels = storyblok.datasource_entries
     }catch(error){
-      logger.error('No data sources '+error);
+      console.log('No data sources '+error);
     }
   },
   data() {

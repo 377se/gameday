@@ -72,7 +72,7 @@ export default {
       ]);
       this.labels = storyblok.datasource_entries
     }catch(error){
-      logger.error(error);
+      console.log(error);
     }
   },
   beforeRouteLeave(to, from, next){
