@@ -10,7 +10,7 @@ export default {
     LOGO_URL: '/sites/kopshop/kopshop-logo.png',
     SITE_ID: 3,
     MEMBER_PRICES: true,
-    ISO_LANG: 'nb',
+    ISO_LANG: 'nb-no',
     CURRENCY_CODE: 'NOK',
     STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt',
     ZENDESK: '457ea997-85d2-4fa7-a24f-9f1ac8e950f8'
@@ -103,11 +103,11 @@ export default {
     }],
     ['nuxt-i18n',
       {
-        defaultLocale: 'nb',
+        defaultLocale: 'nb-no',
         strategy: 'prefix_except_default',
         locales: [
           {
-            code: 'nb',
+            code: 'nb-no',
             iso: 'nb-NO'
           }
         ],
@@ -139,7 +139,7 @@ export default {
       description: 'KopShop.no',
     },
     icon: {
-      iconFileName: 'icon_samdodds.png'
+      iconFileName: 'icon_kopshop.png'
     }
   },
   webfontloader: {
