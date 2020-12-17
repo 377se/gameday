@@ -20,41 +20,47 @@
       </div>
     </template>
     <template v-else>
-      <div 
-        class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
-        uk-sticky="offset:118;width-element:body;bottom:true"
-        style="z-index:3">
+      <section class="uk-position-relative">
+        <component 
+          v-if="story.content.component" 
+          :key="story.content._uid" 
+          :blok="story.content" 
+          :is="story.content.component" />
         <div
-          class="ts-article-list uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
-          uk-grid
-          uk-height-match="target: .uk-card">
-          <ArticleCardSimple
-            v-for="article in articles"
-            :key="article.Id"
-            :article="article"
-            :url="`/extension/a/${article.Id}?cartid=${$route.query.cartid}`"
-          />
+          v-else
+          class="uk-container uk-container-large uk-padding-small">
           <div
-            v-if="articles.length<1"
-            class="uk-margin-bottom uk-margin-top" 
-          >
-            {{ $getCMSEntry(global_labels,'info_no_items_found', 'Vi hittade inga produkter för det aktuella urvalet.') }}
+            class="ts-article-list uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
+            uk-grid
+            uk-height-match="target: .uk-card">
+            <ArticleCardSimple
+              v-for="article in articles"
+              :key="article.Id"
+              :article="article"
+              :url="`/extension/a/${article.Id}?cartid=${$route.query.cartid}`"
+            />
+            <div
+              v-if="articles.length<1"
+              class="uk-margin-bottom uk-margin-top" 
+            >
+              {{ $getCMSEntry(global_labels,'info_no_items_found', 'Vi hittade inga produkter för det aktuella urvalet.') }}
+            </div>
           </div>
+          <ul 
+            v-if="article.TotalPages>1"
+            class="uk-pagination uk-flex-center uk-margin-large uk-margin-bottom">
+            <li>
+              <a 
+                href="#"
+                @click.stop.prevent="previous()"><span uk-pagination-previous></span> {{ $getCMSEntry(global_labels,'paging_previous', 'Föregående') }}</a></li>
+            <li><span>{{ pageNum }}/{{ article.TotalPages }}</span></li>
+            <li>
+              <a 
+                href="#"
+                @click.stop.prevent="next()">{{ $getCMSEntry(global_labels,'paging_next', 'Nästa') }} <span uk-pagination-next></span></a></li>
+          </ul>
         </div>
-        <ul 
-          v-if="article.TotalPages>1"
-          class="uk-pagination uk-flex-center uk-margin-large uk-margin-bottom">
-          <li>
-            <a 
-              href="#"
-              @click.stop.prevent="previous()"><span uk-pagination-previous></span> {{ $getCMSEntry(global_labels,'paging_previous', 'Föregående') }}</a></li>
-          <li><span>{{ pageNum }}/{{ article.TotalPages }}</span></li>
-          <li>
-            <a 
-              href="#"
-              @click.stop.prevent="next()">{{ $getCMSEntry(global_labels,'paging_next', 'Nästa') }} <span uk-pagination-next></span></a></li>
-        </ul>
-      </div>
+      </section>
     </template>
   </section>
 </template>
@@ -65,15 +71,20 @@ import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 export default {
   async fetch () {
     let pageNum = this.$route.query.page?this.$route.query.page:1
-    
-    
+    // Check if we are in the editor mode
+    let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
     try {
-      const [a] = await Promise.all([
+      const [a,sb] = await Promise.all([
         this.$axios.$get(
           '/webapi/extension/GetExtensionListByArticleId?articleId='+this.$route.params.id
-        )
+        ),
+        this.$storyapi.get('cdn/stories?starts_with=' + process.env.STORYBLOK_CATALOGUE.replace('/','') + '/' +this.$i18n.locale+ '/extension/'+this.$route.params.id, {
+          version: version,
+          cv: this.$store.getters.version
+        })
       ]);
       this.articles=a[0].ArticleList
+      this.story=sb.data.stories.length>0?sb.data.stories[0]:{ content: {} }
       this.pageNum=pageNum
     } catch (err) {
       console.log('_team error')
@@ -107,13 +118,6 @@ export default {
   components:{
     ArticleCardSimple
   },
-  props: {
-    sb: {
-      type: Boolean,
-      default: false,
-      required: false
-    }
-  },
   data () {
     return {
       article: {},
@@ -128,7 +132,8 @@ export default {
       pageNum: 1,
       totalPages:1,
       numOfProducts: 1,
-      readmore: true
+      readmore: true,
+      story: { content: {} },
     }
   },
   computed: {
