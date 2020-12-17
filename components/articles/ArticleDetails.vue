@@ -352,7 +352,8 @@ export default {
             AddOn: {Name:this.printName, Number:this.printNumber, Patches:this.patches, PrintTypeId:1},
             ArticleId: this.article.Id,
             Quantity: 1,
-            SizeId: this.chosenSize
+            SizeId: this.chosenSize,
+            Id: this.article.CartId?this.article.CartId:0
           }
         ).then(function (response) {
           _this.isSubmitting = false
