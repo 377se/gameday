@@ -7,7 +7,6 @@
     <OffscreenProductTypeMenu/>
     <OffscreenBrandMenu/>
     <OffscreenBasket/>
-
     <TheFooter/>
   </div>
 </template>
@@ -23,7 +22,7 @@ export default {
   },
   components: {
     OffscreenBasket,
-    TheRollingText
+    TheRollingText,
   },
   computed: {
     ...mapGetters({
