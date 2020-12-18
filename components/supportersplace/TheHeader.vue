@@ -34,7 +34,7 @@
                   :class="{'uk-active':locale===locale.code}">
                   <a
                     :href="switchLocalePath(locale.code)"
-                    @click.prevent.stop="switchLang(locale.code)">{{ locale.name }}</a>
+                    @click.stop.prevent="switchLang(locale.code)">{{ locale.name }}</a>
                 </li>
             </ul>
         </div>
