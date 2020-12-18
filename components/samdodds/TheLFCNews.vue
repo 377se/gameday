@@ -44,8 +44,14 @@ export default {
 }
 </script>
 <style lang="scss">
-  .lfc-news, a, a:hover {
+  .lfc-news, .lfc-news a {
     color: #fff;
+  }
+  .lfc-news a:hover {
+    text-decoration: underline;
+  }
+  .lfc-slider {
+    overflow: hidden;
   }
   .lfc-news > h3 {
     margin-bottom: 0.5rem;
@@ -72,8 +78,5 @@ export default {
     position: absolute;
     bottom: -10px;
     right: 0;
-  }
-  .lfc-slider, a, a:hover {
-    overflow: hidden;
   }
 </style>
