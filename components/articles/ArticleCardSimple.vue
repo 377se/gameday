@@ -11,42 +11,47 @@
             :class="article.Label.LabelClass">{{ article.Label.LabelMessage }}</span>
         </nuxt-link>
       </div>
-      <div class="uk-card-body uk-padding-small uk-padding-remove-bottom uk-text-small">
-        <strong>{{ article.HeadCategory }}</strong>
-        <br>
-        <span>{{ article.Name }}</span>
-      </div>
-      <div
-        class="uk-card-footer uk-padding-small uk-padding-remove-top uk-text-small"
-      >
-        <template
-          v-if="article.DiscountType==1">
-          <span 
-            class="your-price"
-            >{{ article.DiscountedPriceDisplay }}</span> 
-          <span 
-            class="orig-price"
-            :class="{'line-through':article.DiscountedPriceDisplay}">
-            (ord. {{ article.PriceDisplay }})
-          </span>
-        </template>
-        <template
-          v-else-if="article.DiscountType==2">
-          <span 
-            class="orig-price"
-            >{{ article.PriceDisplay }}</span> 
-          <span 
-            v-if="memberprices"
-            class="your-price">
-            (medlem {{ article.DiscountedPriceDisplay }})
-          </span>
-        </template>
-        <template
-          v-else>
-          <span 
-            class="your-price"
-            >{{ article.PriceDisplay }}</span>
-        </template>
+      <div class="vertical-spreader">
+
+        <div class="uk-card-body uk-padding-remove-bottom head-category">
+          <strong>{{ article.HeadCategory }}</strong>
+          <br>
+          <span class="article-name">{{ article.Name }}</span>
+        </div>
+        <div
+          class="uk-card-footer uk-padding-remove-top uk-text-small price-container"
+        >
+          <template
+            v-if="article.DiscountType==1">
+            <div 
+              class="your-price"
+              >{{ article.DiscountedPriceDisplay }}
+            </div> 
+            <div 
+              class="orig-price"
+              :class="{'line-through':article.DiscountedPriceDisplay}">
+              (Ord. {{ article.PriceDisplay }})
+            </div>
+          </template>
+          <template
+            v-else-if="article.DiscountType==2">
+            <div 
+              v-if="memberprices"
+              class="your-price">
+              Medlem {{ article.DiscountedPriceDisplay }}
+            </div>
+            <div 
+              class="orig-price"
+              >(Ord. {{ article.PriceDisplay }})
+            </div> 
+          </template>
+          <template
+            v-else>
+            <span 
+              class="your-price"
+              >{{ article.PriceDisplay }}</span>
+          </template>
+        </div>
       </div>
     </div>
   </div>
@@ -77,12 +82,35 @@ export default {
 }
 </script>
 <style lang="scss">
+.vertical-spreader {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.price-container {
+    padding: 10px !important;
+}
+.head-category{
+  height: 75px;
+  padding: 10px !important;
+  font-size: 0.9rem;
+}
+.article-name{
+  display: inline-block;
+  vertical-align: top;
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
 .your-price{
   color:$global-primary-background;
   font-weight:bold;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 0.9;
 }
 .orig-price{
   font-weight:bold;
+  font-size: 0.9rem;
 }
 .line-through{
   text-decoration:line-through;
@@ -93,7 +121,6 @@ export default {
 .bottom-line {
   border-bottom: 3px solid $global-primary-background;
 }
-
 .article-image{
   position:relative;
 }
