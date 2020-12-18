@@ -41,7 +41,7 @@
               <nuxt-link
                 class="uk-label"
                 :class="!$route.params.filterid?'uk-background-secondary':'uk-background-primary'"
-                :to="localePath(`/c/${$route.params.parentid}/${$route.params.categoryid}/${$route.params.categoryname}`)"><span>Alla</span></nuxt-link>
+                :to="localePath(`/c/${$route.params.parentid}/${$route.params.categoryid}/${$route.params.categoryname}`)"><span>{{ $getCMSEntry(global_labels,'category_all', 'Alla') }}</span></nuxt-link>
             </div>
             <div
               v-for="pt in producttypes"
