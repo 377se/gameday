@@ -30,8 +30,6 @@ export default {
 
       this.lfc = lfc
 
-      console.log(lfc)
-
     }catch(error){
       logger.error('No data sources '+error);
     }
