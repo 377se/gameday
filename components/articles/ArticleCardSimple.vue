@@ -30,7 +30,7 @@
             <div 
               class="orig-price"
               :class="{'line-through':article.DiscountedPriceDisplay}">
-              (Ord. {{ article.PriceDisplay }})
+              ({{ $getCMSEntry(global_labels,'article_details_original_price', 'Ord.') }} {{ article.PriceDisplay }})
             </div>
           </template>
           <template
@@ -57,7 +57,7 @@
   </div>
 </template>
 <script>
-import { mapActions, mapMutations } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default {
   components: {},
@@ -78,7 +78,11 @@ export default {
       }
       return this.$nuxt.context.app.localePath('/article/'+this.article.Id+'/'+this.article.UrlSafeName)
     }
-  }
+  },
+    computed: {
+    ...mapGetters({
+      global_labels:'labels'})
+  },
 }
 </script>
 <style lang="scss">
