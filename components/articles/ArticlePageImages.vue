@@ -101,7 +101,7 @@ img {
   color: #000;
 }
 .label-percentage-discount{
-  background: #ec6a18;
+  background: $discounted-price-color;
   color:#fff;
 }
 .label-new-product{
