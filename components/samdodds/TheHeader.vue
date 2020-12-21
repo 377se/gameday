@@ -94,11 +94,6 @@ export default {
       cid: 'cid',
       global_labels: 'labels'
     })
-  },
-  methods:{
-    showBasket(){
-
-    }
   }
 };
 </script>
