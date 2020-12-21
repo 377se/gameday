@@ -19,12 +19,12 @@
         style="flex-wrap:nowrap"
         class="uk-navbar-right uk-text-center"
       >
-        <span style="color:#fff;margin-right:4px;"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_20,f_auto/https://beta.supportersplace.com/flags/'+locale+'.png'" /> 
+        <span style="color:#fff;margin-right:4px;"><img :src="'/flags/'+locale+'.svg'" style="width:20px;" /> 
           <span 
             uk-icon="icon:chevron-down;ratio:1.0"/>
         </span>
         <div 
-          class="uk-dropdown"
+          class="uk-dropdown uk-padding-small"
           uk-dropdown>
             <ul 
               class="uk-nav uk-dropdown-nav uk-text-left">
@@ -34,7 +34,8 @@
                   :class="{'uk-active':locale===loc.code}">
                   <a
                     :href="switchLocalePath(loc.code)"
-                    @click.stop.prevent="switchLang(loc.code)"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_20,f_auto/https://beta.supportersplace.com/flags/'+loc.code+'.png'" /> {{ locale.name }}</a>
+                    @click.stop.prevent="switchLang(loc.code)"
+                    style="vertical-align:middle"><img :src="'/flags/'+loc.code+'.svg'" style="width:30px;margin-right:5px;" /> {{ loc.name }}</a>
                 </li>
             </ul>
         </div>
