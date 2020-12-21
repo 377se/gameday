@@ -85,7 +85,7 @@ export default {
     '@nuxtjs/gtm', 
     '@nuxtjs/pwa',
   ],
-  gtm: { id: 'GTM-WDJLNSJ' },
+  gtm: { id: 'GTM-5GW9PW' },
   /*
    ** Nuxt.js modules
    */
