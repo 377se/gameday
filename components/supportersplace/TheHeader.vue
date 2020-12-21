@@ -34,7 +34,7 @@
                   :class="{'uk-active':locale===locale.code}">
                   <a
                     :href="switchLocalePath(locale.code)"
-                    @click.stop.prevent="switchLang(locale.code)">{{ locale.name }}</a>
+                    @click.stop.prevent="switchLang(locale.code)"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_20,f_auto/https://beta.supportersplace.com/flags/'+locale.code" /></a>
                 </li>
             </ul>
         </div>
