@@ -6,7 +6,7 @@
       v-for="article in articles"
       :key="article.Id"
       :article="article"
-      :url="`/a/${article.Id}/${article.SeoName}`"
+      :url="`/a/${article.Id}/${article.UrlSafeName}`"
     />
   </div>
 </template>
