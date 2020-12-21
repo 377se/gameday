@@ -428,18 +428,22 @@ export default {
 }
 .price-details .your-price{
   color:$global-primary-background;
-  /*font-weight:bold;
-  font-size: 1.8rem;*/
-  
+  /* font-weight:bold; */
+  font-size: 1.5rem;
+  font-family: $base-heading-font-family;
 }
 
 .price-details .sale-price{
   color:$global-primary-background;
   color: #da291c;
+  /* font-weight:bold; */
+  font-size: 1.5rem;
+  font-family: $base-heading-font-family;
 }
 
 .price-details .orig-price{
-  
+  font-weight:bold;
+  font-size: 1.5rem;
   color:#000000;
 }
 .line-through{

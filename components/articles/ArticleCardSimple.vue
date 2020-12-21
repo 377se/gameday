@@ -14,7 +14,7 @@
       <div class="vertical-spreader">
 
         <div class="uk-card-body uk-padding-remove-bottom head-category">
-          <strong>{{ article.HeadCategory }}</strong>
+          <span>{{ article.HeadCategory }}</span>
           <br>
           <span class="article-name">{{ article.Name }}</span>
         </div>
@@ -42,7 +42,7 @@
             </div>
             <div 
               class="orig-price"
-              >(Ord. {{ article.PriceDisplay }})
+              >({{ $getCMSEntry(global_labels,'article_details_original_price', 'Ord.') }} {{ article.PriceDisplay }})
             </div> 
           </template>
           <template
@@ -56,6 +56,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 
@@ -95,11 +96,13 @@ export default {
     padding: 10px !important;
 }
 .head-category{
-  height: 75px;
+  font-family: $base-heading-font-family;
+  height: $vertical-space-articlecard;
   padding: 10px !important;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 .article-name{
+  font-family: $global-font-family;
   display: inline-block;
   vertical-align: top;
   font-size: 0.9rem;
@@ -107,6 +110,7 @@ export default {
 }
 .your-price{
   color:$global-primary-background;
+  font-family: $base-heading-font-family;
   font-weight:bold;
   margin-top: 0.5rem;
   font-size: 0.9rem;
@@ -144,7 +148,7 @@ export default {
   color: #000;
 }
 .label-percentage-discount{
-  background: #ec6a18;
+  background: $discounted-price-color;
   color:#fff;
 }
 .label-new-product{
