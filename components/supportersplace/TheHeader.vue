@@ -19,7 +19,7 @@
         style="flex-wrap:nowrap"
         class="uk-navbar-right uk-text-center"
       >
-        <span style="color:#fff;margin-right:4px;">{{ locale }} 
+        <span style="color:#fff;margin-right:4px;"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_20,f_auto/https://beta.supportersplace.com/flags/'+locale+'.png'" /> 
           <span 
             uk-icon="icon:chevron-down;ratio:1.0"/>
         </span>
@@ -29,12 +29,12 @@
             <ul 
               class="uk-nav uk-dropdown-nav uk-text-left">
                 <li 
-                  v-for="locale in availableLocales"
-                  :key="locale.code"
-                  :class="{'uk-active':locale===locale.code}">
+                  v-for="loc in availableLocales"
+                  :key="loc.code"
+                  :class="{'uk-active':locale===loc.code}">
                   <a
-                    :href="switchLocalePath(locale.code)"
-                    @click.stop.prevent="switchLang(locale.code)"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_20,f_auto/https://beta.supportersplace.com/flags/'+locale.code" /></a>
+                    :href="switchLocalePath(loc.code)"
+                    @click.stop.prevent="switchLang(loc.code)"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_20,f_auto/https://beta.supportersplace.com/flags/'+loc.code+'.png'" /></a>
                 </li>
             </ul>
         </div>
