@@ -18,7 +18,7 @@ $global-inverse-color: #fff;
 $global-link-color: #047832;
 $global-link-hover-color: #047832;
 
-$base-heading-font-family: 'Source Sans Pro', sans-serif;
+$base-heading-font-family: 'Poppins', sans-serif;
 $base-heading-font-weight: 800;
 //#c0eef7
 
@@ -31,3 +31,6 @@ $inverse-global-primary-background: $global-inverse-color;
 $inverse-global-muted-background: rgba($global-inverse-color, 0.1);
 
 $inverse-global-border: rgba($global-inverse-color, 0.2);
+
+$vertical-space-articlecard: 75px;
+$discounted-price-color: #ec6a18;
