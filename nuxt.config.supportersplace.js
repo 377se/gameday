@@ -108,6 +108,7 @@ export default {
       {
         detectBrowserLanguage: {
           useCookie: true,
+          alwaysRedirect: true,
           cookieKey: 'i18n_redirected',
           onlyOnRoot: true,  // recommended
         },
