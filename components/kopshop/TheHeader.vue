@@ -127,4 +127,21 @@ export default {
   width: 80px;
 }
 
+.gd-subnav{
+  background: #222;
+  padding-top:8px;
+  padding-bottom:8px;
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
+  overflow-y: hidden;
+  width:100%;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  > li > a{
+    color:#fff !important;
+  }
+}
+
 </style>
