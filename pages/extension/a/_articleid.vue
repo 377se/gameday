@@ -62,7 +62,7 @@ export default {
   },
   async fetch() {
     try {
-      const url = `/webapi/article/GetArticleDetailsExtension?teamName=null&articleId=${this.$route.params.articleid}&cartId=${this.$route.query.cartid}`;
+      const url = `/webapi/Article/GetArticleDetailsExtension?teamName=null&articleId=${this.$route.params.articleid}&cartId=${this.$route.query.cartid}`;
       const article = await this.$axios.$get(url);
  
       article.CartId = this.$route.query.cartid

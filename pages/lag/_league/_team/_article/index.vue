@@ -74,7 +74,7 @@ export default {
   async fetch() {
     let shop = this.$route.params.league.toUpperCase()+'-shop'
     try {
-      const url = `/webapi/article/GetArticleDetails?teamName=${
+      const url = `/webapi/Article/GetArticleDetails?teamName=${
         this.$route.params.team
       }&articleName=${this.$route.params.article}`;
       const article = await this.$axios.$get(url);
