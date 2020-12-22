@@ -262,7 +262,7 @@ export default {
 }
 .basket-ribbon{
   height:80px;
-  background: $global-secondary-background;
+  background: $global-cart-header;
 }
 .uk-table td, .uk-table th {
     padding: 8px 6px;}
