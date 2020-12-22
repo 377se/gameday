@@ -2,7 +2,7 @@
   <div>
     <TheRollingText />
     <TheHeader/>
-    <nuxt/>
+    <nuxt keep-alive/>
     <OffscreenMenu/>
     <OffscreenProductTypeMenu/>
     <OffscreenBrandMenu/>
