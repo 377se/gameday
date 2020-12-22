@@ -110,7 +110,7 @@ export default {
   display: inline-block;
   vertical-align: top;
   font-size: 0.9rem;
-  line-height: 1.2;
+  line-height: 1.1;
 }
 .your-price{
   color: $discounted-price-color;
