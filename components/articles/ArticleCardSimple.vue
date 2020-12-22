@@ -19,7 +19,7 @@
           <span class="article-name">{{ article.Name }}</span>
         </div>
         <div
-          class="uk-card-footer uk-padding-remove-top uk-text-small price-container"
+          class="uk-padding-remove-top uk-text-small price-container"
         >
           <template
             v-if="article.DiscountType==1">
@@ -48,7 +48,7 @@
           <template
             v-else>
             <span 
-              class="your-price"
+              class="orig-price"
               >{{ article.PriceDisplay }}</span>
           </template>
         </div>
@@ -93,7 +93,11 @@ export default {
   justify-content: space-between;
 }
 .price-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     padding: 10px !important;
+    height: 35px;
 }
 .head-category{
   font-family: $base-heading-font-family;
@@ -106,24 +110,27 @@ export default {
   display: inline-block;
   vertical-align: top;
   font-size: 0.9rem;
-  line-height: 1.2;
+  line-height: 1.1;
 }
 .your-price{
-  color:$global-primary-background;
+  color: $discounted-price-color;
   font-family: $base-heading-font-family;
-  font-weight:bold;
   margin-top: 0.5rem;
   font-size: 0.9rem;
   line-height: 0.9;
 }
 .orig-price{
-  font-weight:bold;
+  color:$global-color;
+  font-family: $base-heading-font-family;
+  margin-top: 0.3rem;
+  line-height: 1;
   font-size: 0.9rem;
 }
 .line-through{
   text-decoration:line-through;
 }
 .orig-price.line-through{
+  font-family: $global-font-family;
   font-weight:normal;
 }
 .bottom-line {
