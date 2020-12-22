@@ -122,8 +122,8 @@ export default {
 .orig-price{
   color:$global-color;
   font-family: $base-heading-font-family;
-  margin-top: 0.5rem;
-  line-height: 0.4;
+  margin-top: 0.3rem;
+  line-height: 1;
   font-size: 0.9rem;
 }
 .line-through{
