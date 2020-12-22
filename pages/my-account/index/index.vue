@@ -7,7 +7,7 @@
           type="button"
           class="uk-button uk-button-default"
           @click.prevent="logOut()">
-          Logga ut
+          {{ $getCMSEntry(labels,'btn-logout', 'Logga ut') }}
         </button>
       </div>
       <component 
