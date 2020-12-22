@@ -16,12 +16,34 @@ import Page from '@/components/Page'
 import TextContent from '@/components/TextContent'
 
 export default {
+    head () {
+    return {
+      title: `${this.story.content.SEO.title}`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ""),
+        },
+        {
+          hid: 'og:title',
+          name:  'og:title',
+          content:  `${this.story.content.SEO.title}`,
+        },
+        {
+          hid: 'og:description',
+          name:  'og:description',
+          content: `${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ""),
+        }
+      ]
+    }
+  },
   components: {
     Page,
     TextContent
   },
   data () {
-    return { story: { content: {} } }
+    return { story: { content: {SEO:{title:'',description:''}} } }
   },
   mounted () {
     this.$storybridge.on(['input', 'published', 'change'], (event) => {
