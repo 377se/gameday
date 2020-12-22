@@ -166,8 +166,10 @@ export default {
   },
   watch: {
     '$route.query': function(oldQuery, newQuery){
-      window.scrollTo(0,0)
-      this.$fetch()
+      if(this._inactive === false && JSON.stringify(newQuery) !== JSON.stringify(oldQuery)){
+        window.scrollTo(0,0)
+        this.$fetch()
+      }
     }
   },
   async fetch () {

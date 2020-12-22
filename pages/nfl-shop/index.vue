@@ -164,8 +164,10 @@ export default {
   },
   watch: {
     '$route.query': function(oldQuery, newQuery){
-      window.scrollTo(0,0)
-      this.$fetch()
+      if(this._inactive === false && JSON.stringify(newQuery) !== JSON.stringify(oldQuery)){
+        window.scrollTo(0,0)
+        this.$fetch()
+      }
     }
   },
   async fetch () {
@@ -214,6 +216,7 @@ export default {
     }
 
   },
+  fetchDelay:0,
   activated(){
     if (this.$fetchState.timestamp <= Date.now() - 600000) {
       this.$fetch()
