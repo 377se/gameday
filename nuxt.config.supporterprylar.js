@@ -13,7 +13,7 @@ export default {
     ISO_LANG: 'sv',
     CURRENCY_CODE: 'SEK',
     STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt',
-    ZENDESK: 'b2384b65-02c4-40fe-b25f-c195c554d089'
+    ZENDESK: 'fd07ec75-ec92-4ea1-ad6c-49e883112e6c'
 
   },
   mode: 'universal',
@@ -85,7 +85,7 @@ export default {
     '@nuxtjs/gtm', 
     '@nuxtjs/pwa',
   ],
-  gtm: { id: 'GTM-WDJLNSJ' },
+  gtm: { id: 'GTM-PZ4NQSW' },
   /*
    ** Nuxt.js modules
    */
@@ -97,7 +97,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     ['@dansmaculotte/nuxt-zendesk',
     { 
-      key: 'b2384b65-02c4-40fe-b25f-c195c554d089',
+      key: 'fd07ec75-ec92-4ea1-ad6c-49e883112e6c',
       disabled: true,
       hideOnLoad: true,
       settings: {
