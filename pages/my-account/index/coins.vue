@@ -21,6 +21,28 @@ import Page from '@/components/Page'
 import TextContent from '@/components/TextContent'
 
 export default {
+  head () {
+    return {
+      title: 'Coins',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Coins',
+        },
+        {
+          hid: 'og:title',
+          name:  'og:title',
+          content: 'Coins',
+        },
+        {
+          hid: 'og:description',
+          name:  'og:description',
+          content: 'Coins',
+        }
+      ]
+    }
+  },
   components: {
     Page,
     TextContent

@@ -24,6 +24,30 @@ import Page from '@/components/Page'
 import TextContent from '@/components/TextContent'
 
 export default {
+  
+  head () {
+    return {
+      title: 'Mitt konto',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Mitt konto',
+        },
+        {
+          hid: 'og:title',
+          name:  'og:title',
+          content: 'Mitt konto',
+        },
+        {
+          hid: 'og:description',
+          name:  'og:description',
+          content: 'Mitt konto',
+        }
+      ]
+    }
+  },
+
   components: {
     Page,
     TextContent
@@ -43,7 +67,8 @@ export default {
   data () {
     return { 
       labels: [],
-      story: { content: {} } }
+      story: { content: {SEO:{title:'',description:''}} },
+    }
   },
   mounted () {
     this.$storybridge.on(['input', 'published', 'change'], (event) => {
