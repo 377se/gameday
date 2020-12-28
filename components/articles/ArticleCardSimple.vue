@@ -105,7 +105,7 @@ export default {
   font-family: $base-heading-font-family;
   height: $vertical-space-articlecard;
   padding: 10px !important;
-  font-size: 0.9rem;
+  font-size: 1.0rem;
   & > span{
     font-weight:bold;
   }
