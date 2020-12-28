@@ -67,16 +67,6 @@ export default {
       ]
     }
   },
-  beforeRouteUpdate(to, from, next){
-    try{
-      UIkit.util.on('#filter-menu', 'hide', function () {
-          UIkit.modal('#filter-menu').$destroy(true)
-      });
-      UIkit.modal('#filter-menu').hide()
-      
-    }catch(err){console.log(err)}
-    next()
-  },
   components:{
     ArticleCardSimple,
     FilterItems,

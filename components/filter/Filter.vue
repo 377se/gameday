@@ -10,7 +10,7 @@
     <div 
       id="filter-menu" 
       class="uk-modal-full uk-open uk-modal"
-      uk-modal>
+      uk-modal="container:false;">
       <div 
         class="uk-modal-dialog"
         style="min-height:100%;">
