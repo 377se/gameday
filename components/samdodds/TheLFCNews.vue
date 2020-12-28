@@ -11,7 +11,7 @@
           <div class="lfc-date"> {{ article.CreatedDate }}</div>
           <div class="lfc-title"> {{ article.Title }}</div>
           <div class="uk-width-1-4">
-            <img class="lfc-image uk-float-left" :src="article.Image">
+            <img class="lfc-image uk-float-left" :src="article.Image" onerror="this.style.display='none'">
           </div>
           <div class="lfc-text">{{ article.Preamble }}</div>
           <div class="lfc-read-more"><strong><a target="_new" :href="article.Url">Läs mer...</a></strong></div>
