@@ -103,28 +103,35 @@ export default {
   font-family: $base-heading-font-family;
   height: $vertical-space-articlecard;
   padding: 10px !important;
-  font-size: 0.8rem;
-}
-.article-name{
-  font-family: $global-font-family;
-  display: inline-block;
-  vertical-align: top;
   font-size: 0.9rem;
-  line-height: 1.1;
+  & > span{
+    font-weight:bold;
+  }
+  & > .article-name{
+    font-family: $global-font-family;
+    font-weight:normal;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 1.0rem;
+    line-height: 1.1;
+  }
 }
+
 .your-price{
   color: $discounted-price-color;
   font-family: $base-heading-font-family;
   margin-top: 0.5rem;
-  font-size: 0.9rem;
-  line-height: 0.9;
+  font-size: 1.0rem;
+  line-height: 1.0;
+  font-weight:bold;
 }
 .orig-price{
   color:$global-color;
   font-family: $base-heading-font-family;
   margin-top: 0.3rem;
-  line-height: 1;
-  font-size: 0.9rem;
+  line-height: 1.0;
+  font-size: 1.0rem;
+  font-weight:bold;
 }
 .line-through{
   text-decoration:line-through;
