@@ -215,7 +215,6 @@ export default {
     }
   },
   activated(){
-    console.log('activated nhl-shop')
     if (this.$fetchState.timestamp <= Date.now() - 600000) {
       this.$fetch()
     }
