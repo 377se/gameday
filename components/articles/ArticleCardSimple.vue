@@ -1,58 +1,60 @@
 <template>
   <div>
     <div class="uk-card uk-card-hover bottom-line">
-      <div class="article-image uk-card-media-top">
-        <nuxt-link :to="getUrl()">
+      <nuxt-link 
+        :to="getUrl()"
+        class="uk-link-reset">
+        <div class="article-image uk-card-media-top">
           <img 
             :src="list_src +article.ImageIdThumb" alt ref="mainImage">
           <span
             v-if="article.Label"
             class="label-article"
             :class="article.Label.LabelClass">{{ article.Label.LabelMessage }}</span>
-        </nuxt-link>
-      </div>
-      <div class="vertical-spreader">
+        </div>
+        <div class="vertical-spreader">
 
-        <div class="uk-card-body uk-padding-remove-bottom head-category">
-          <span>{{ article.HeadCategory }}</span>
-          <br>
-          <span class="article-name">{{ article.Name }}</span>
+          <div class="uk-card-body uk-padding-remove-bottom head-category">
+            <span>{{ article.HeadCategory }}</span>
+            <br>
+            <span class="article-name">{{ article.Name }}</span>
+          </div>
+          <div
+            class="uk-padding-remove-top uk-text-small price-container"
+          >
+            <template
+              v-if="article.DiscountType==1">
+              <div 
+                class="your-price"
+                >{{ article.DiscountedPriceDisplay }}
+              </div> 
+              <div 
+                class="orig-price"
+                :class="{'line-through':article.DiscountedPriceDisplay}">
+                ({{ $getCMSEntry(global_labels,'article_details_original_price', 'Ord.') }} {{ article.PriceDisplay }})
+              </div>
+            </template>
+            <template
+              v-else-if="article.DiscountType==2">
+              <div 
+                v-if="memberprices"
+                class="your-price">
+                Medlem {{ article.DiscountedPriceDisplay }}
+              </div>
+              <div 
+                class="orig-price"
+                >({{ $getCMSEntry(global_labels,'article_details_original_price', 'Ord.') }} {{ article.PriceDisplay }})
+              </div> 
+            </template>
+            <template
+              v-else>
+              <span 
+                class="orig-price"
+                >{{ article.PriceDisplay }}</span>
+            </template>
+          </div>
         </div>
-        <div
-          class="uk-padding-remove-top uk-text-small price-container"
-        >
-          <template
-            v-if="article.DiscountType==1">
-            <div 
-              class="your-price"
-              >{{ article.DiscountedPriceDisplay }}
-            </div> 
-            <div 
-              class="orig-price"
-              :class="{'line-through':article.DiscountedPriceDisplay}">
-              ({{ $getCMSEntry(global_labels,'article_details_original_price', 'Ord.') }} {{ article.PriceDisplay }})
-            </div>
-          </template>
-          <template
-            v-else-if="article.DiscountType==2">
-            <div 
-              v-if="memberprices"
-              class="your-price">
-              Medlem {{ article.DiscountedPriceDisplay }}
-            </div>
-            <div 
-              class="orig-price"
-              >({{ $getCMSEntry(global_labels,'article_details_original_price', 'Ord.') }} {{ article.PriceDisplay }})
-            </div> 
-          </template>
-          <template
-            v-else>
-            <span 
-              class="orig-price"
-              >{{ article.PriceDisplay }}</span>
-          </template>
-        </div>
-      </div>
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -112,7 +114,7 @@ export default {
     font-weight:normal;
     display: inline-block;
     vertical-align: top;
-    font-size: 1.0rem;
+    font-size: 0.9rem;
     line-height: 1.1;
   }
 }
