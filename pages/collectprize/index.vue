@@ -109,8 +109,6 @@
 import { mapGetters, mapActions } from 'vuex'
 import ButtonSubmit from "@/components/ButtonSubmit"
 import ArticlePageImages from "@/components/articles/ArticlePageImages";
-import ArticlePageHeader from "@/components/articles/ArticlePageHeader";
-import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 
 export default {
 
@@ -128,9 +126,8 @@ export default {
   components:{
     ButtonSubmit,
     ArticlePageImages,
-    ArticlePageHeader,
-    ArticleCardSimple,
   },
+
   data () {
     return {
       chosenSize:-1,
