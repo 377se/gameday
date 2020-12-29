@@ -146,9 +146,10 @@ export default {
     }
   },
     mounted() {
-    if(this.collectPrizeDTO.Article.IsOneSize){
-      if(this.collectPrizeDTO.Article.SizeList.length>0 && this.collectPrizeDTO.Article.SizeList[0].ItemsInStock>0){
-        this.chosenSize=this.collectPrizeDTO.Article.SizeList[0].Value
+    if(this.collectPrizeDTO.IsOneSize){
+      if(this.collectPrizeDTO.Article.SizeList.length>0 && this.collectPrizeDTO.Article.SizeList[0].ItemsInStock>0) {
+        this.chosenSize = this.collectPrizeDTO.Article.SizeList[0].Value
+        this.collectPrizeDTO.SelectedSizeId = this.chosenSize
       }
     }
   },
