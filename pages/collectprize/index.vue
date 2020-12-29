@@ -128,6 +128,12 @@ export default {
     ArticlePageImages,
   },
 
+  head () {
+    return {
+      title: "Hämta ut pris - Samdodds",
+    }
+  },
+
   data () {
     return {
       chosenSize:-1,
