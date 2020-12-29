@@ -145,7 +145,7 @@ export default {
     },
     manifest: {
       name: 'Gameday',
-      short_name: 'Sam Dodds',
+      short_name: 'Gameday',
       lang: 'sv',
       description: 'Gameday',
     },
