@@ -10,7 +10,8 @@
         
 
         <transition name="fade" appear mode="out-in">
-          <div v-if="thankYouMessageSwitch" key="notVisible">
+          <div v-if="thankYouMessageSwitch" key="notVisible" class="uk-width-1-1@s uk-width-1-2@m uk-padding-small">
+<div>
         <!-- Article-images -->
         <section class="uk-width-1-1@s uk-width-1-2@m">
           <ArticlePageImages
@@ -20,7 +21,7 @@
         </section>
 
         <!-- Message, sizes and collect-button -->
-          <section class="uk-width-1-1@s uk-width-1-2@m uk-padding-small">
+          <section>
               <h1>Grattis till vinsten {{collectPrizeDTO.WinnerName}}!</h1>
                 <p>Du har vunnit en {{collectPrizeDTO.Article.ArticleName}}.
                 <p>Välj önskad storlek nedan och klicka på "hämta priset" så levererar vi priset till dig så snabbt vi bara kan.</p>
@@ -59,8 +60,9 @@
 
           </section>
           </div>
+          </div>
         <!-- Thank you -->
-          <section v-else key="visible" class="uk-width-1-1@s uk-width-1-2@m uk-padding-small">
+          <section v-else key="visible" class="uk-width-1-1@s uk-width-1-2@m uk-padding-small uk-align-center">
             <div class="uk-background-primary uk-border-rounded uk-padding uk-width-1-1">
               <img src="/logos/samdodds_lfc.png" width="200px">
             </div>
