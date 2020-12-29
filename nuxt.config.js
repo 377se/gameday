@@ -150,7 +150,7 @@ export default {
       description: 'Gameday',
     },
     icon: {
-      iconFileName: 'icon_gameday.png'
+      fileName: 'icon_gameday.png'
     }
   },
   webfontloader: {

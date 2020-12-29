@@ -150,7 +150,7 @@ export default {
       description: 'SupporterPrylar.se',
     },
     icon: {
-      iconFileName: 'icon_supporterprylar.png'
+      fileName: 'icon_supporterprylar.png'
     }
   },
   webfontloader: {

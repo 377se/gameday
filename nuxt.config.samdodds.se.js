@@ -142,7 +142,7 @@ export default {
       description: 'SamDodds.com',
     },
     icon: {
-      iconFileName: 'icon_samdodds.png'
+      fileName: 'icon_samdodds.png'
     }
   },
   webfontloader: {

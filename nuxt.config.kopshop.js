@@ -139,7 +139,7 @@ export default {
       description: 'KopShop.no',
     },
     icon: {
-      iconFileName: 'icon_kopshop.png'
+      fileName: 'icon_kopshop.png'
     }
   },
   webfontloader: {

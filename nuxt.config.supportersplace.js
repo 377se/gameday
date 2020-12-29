@@ -169,7 +169,7 @@ export default {
       description: 'SupportersPlace.com',
     },
     icon: {
-      iconFileName: 'icon_supportersplace.png'
+      fileName: 'icon_supportersplace.png'
     }
   },
   webfontloader: {

@@ -139,7 +139,7 @@ export default {
       description: 'SamDodds.dk',
     },
     icon: {
-      iconFileName: 'icon_samdodds.png'
+      fileName: 'icon_samdodds.png'
     }
   },
   webfontloader: {
