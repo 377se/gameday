@@ -2,66 +2,72 @@
 
   <div>
 
-    <!-- Images & Info -->
-    <section class="uk-container uk-container-large uk-padding-small uk-background-default">
+    <!-- Prize already claimed -->
+    <section v-if="collectPrizeDTO.IsClaimed" class="uk-width-1-1@s uk-width-1-2@m uk-padding-small uk-align-center">
+      <div class="uk-background-primary uk-border-rounded uk-padding uk-width-1-1">
+        <img src="/logos/samdodds_lfc.png" width="200px">
+      </div>
+      <h2 class="thankyou">Du har redan hämtat ut ditt pris! Shoppa gärna andra grymma prylar.</h2>
+      <nuxt-link
+              :to="localePath('/')"
+              class="uk-button uk-button-primary uk-align-center">{{ $getCMSEntry(labels,'btn_success_message', 'Till shopen!') }}</nuxt-link>
+    </section>
 
-      <div class="uk-flex uk-flex-wrap">
-
-        
+    <!-- Prize-section -->
+    <section v-else class="uk-container uk-container-large uk-padding-small uk-background-default">
 
         <transition name="fade" appear mode="out-in">
-          <div v-if="thankYouMessageSwitch" key="notVisible" class="uk-width-1-1@s uk-width-1-2@m uk-padding-small">
-<div>
-        <!-- Article-images -->
-        <section class="uk-width-1-1@s uk-width-1-2@m">
-          <ArticlePageImages
-            :images="collectPrizeDTO.Article.Images"
-            :label={}
-          />
-        </section>
 
-        <!-- Message, sizes and collect-button -->
-          <section>
-              <h1>Grattis till vinsten {{collectPrizeDTO.WinnerName}}!</h1>
-                <p>Du har vunnit en {{collectPrizeDTO.Article.ArticleName}}.
-                <p>Välj önskad storlek nedan och klicka på "hämta priset" så levererar vi priset till dig så snabbt vi bara kan.</p>
-                <p>Tack för att du är med och tävlar tillsammans med Official Supporters Club Sweden och Sam Dodds.</p>
-                <p>YOU'LL NEVER WALK ALONE</p>
+          <!-- Congratulations and pick prize -->
+          <div v-if="thankYouMessageSwitch" key="notVisible" class="uk-flex uk-flex-wrap">
 
-              <div 
-                v-if="!collectPrizeDTO.Article.IsOneSize"
-                class="uk-grid uk-grid-small uk-margin-small uk-width-1-1"
-                uk-grid>
-                <div
-                  v-for="size in collectPrizeDTO.Article.SizeList"
-                  :key="size.Value"
-                  class="uk-width-1-2 uk-width-1-4@l uk-grid-margin">
-                  <button 
-                    type="button"
-                    class="button-select-size uk-button uk-width-1-1"
-                    :class="{'uk-button-default':chosenSize!==size.value, 'uk-button-primary':chosenSize===size.Value, 'uk-disabled':size.ItemsInStock<=0}"
-                    @click.prevent="setSize(size.Value)">
-                    {{size.Name}}
-                    <span 
-                      v-if="size.ItemsInStock<=0"
-                      class="sold-out">{{$getCMSEntry(global_labels,'article_details_sold_out', 'Slutsåld')}}</span>
-                  </button>
-                </div>
-              </div>
+              <!-- Article-images -->
+              <section class="uk-width-1-1@s uk-width-1-2@m">
+                <ArticlePageImages
+                  :images="collectPrizeDTO.Article.Images"
+                  :label={}
+                />
+              </section>
 
-              <ButtonSubmit
-                v-if="!collectPrizeDTO.Article.IsSoldOut"
-                :is-submitting="isSubmitting"
-                :button-text="$getCMSEntry(global_labels,'collect_prize', 'Hämta pris')"
-                theme="uk-button uk-button-primary uppercase uk-width-1-1 uk-margin-small"
-                :class="{'uk-button-disabled':chosenSize!==-1 && !collectPrizeDTO.Article.IsOneSize}"
-                @button-click="postPrize()"
-              />
-
-          </section>
+              <!-- Message, sizes and collect-button -->
+              <section class="uk-width-1-1@s uk-width-1-2@m uk-padding-small">
+                  <h1>Grattis till vinsten {{collectPrizeDTO.WinnerName}}!</h1>
+                    <p>Du har vunnit en {{collectPrizeDTO.Article.ArticleName}}.
+                      <p v-if="!collectPrizeDTO.Article.IsOneSize">Välj önskad storlek nedan och klicka på "hämta priset" så levererar vi priset till dig så snabbt vi bara kan.</p>
+                    <p>Tack för att du är med och tävlar tillsammans med Official Supporters Club Sweden och Sam Dodds.</p>
+                    <p>YOU'LL NEVER WALK ALONE</p>
+                  <div 
+                    v-if="!collectPrizeDTO.Article.IsOneSize"
+                    class="uk-grid uk-grid-small uk-margin-small uk-width-1-1"
+                    uk-grid>
+                    <div
+                      v-for="size in collectPrizeDTO.Article.SizeList"
+                      :key="size.Value"
+                      class="uk-width-1-2 uk-width-1-4@l uk-grid-margin">
+                      <button 
+                        type="button"
+                        class="button-select-size uk-button uk-width-1-1"
+                        :class="{'uk-button-default':chosenSize!==size.value, 'uk-button-primary':chosenSize===size.Value, 'uk-disabled':size.ItemsInStock<=0}"
+                        @click.prevent="setSize(size.Value)">
+                        {{size.Name}}
+                        <span 
+                          v-if="size.ItemsInStock<=0"
+                          class="sold-out">{{$getCMSEntry(global_labels,'article_details_sold_out', 'Slutsåld')}}</span>
+                      </button>
+                    </div>
+                  </div>
+                  <ButtonSubmit
+                    v-if="!collectPrizeDTO.Article.IsSoldOut"
+                    :is-submitting="isSubmitting"
+                    :button-text="$getCMSEntry(global_labels,'collect_prize', 'Hämta pris')"
+                    theme="uk-button uk-button-primary uppercase uk-width-1-1 uk-margin-small"
+                    :class="{'uk-button-disabled':chosenSize!==-1 && !collectPrizeDTO.Article.IsOneSize}"
+                    @button-click="postPrize()"
+                  />
+              </section>
           </div>
-          </div>
-        <!-- Thank you -->
+
+          <!-- Thank you -->
           <section v-else key="visible" class="uk-width-1-1@s uk-width-1-2@m uk-padding-small uk-align-center">
             <div class="uk-background-primary uk-border-rounded uk-padding uk-width-1-1">
               <img src="/logos/samdodds_lfc.png" width="200px">
@@ -70,8 +76,6 @@
           </section>
 
         </transition>
-
-      </div>
 
     </section>
 
@@ -115,7 +119,6 @@ export default {
       let [collectPrizeDTO] = await Promise.all([
         this.$axios.$get("/webapi/CollectPrize/GetPrize?guid=6F2A7D4F-AE7C-45DD-86ED-A04AF56515E0")
       ]);
-      console.log(collectPrizeDTO)
       this.collectPrizeDTO = collectPrizeDTO
     } catch (err) {
       console.log(err)
@@ -153,7 +156,6 @@ export default {
     setSize(size){
       this.chosenSize=size
       this.collectPrizeDTO.SelectedSizeId = this.chosenSize
-      console.log(this.collectPrizeDTO)
     },
     async postPrize(){
           let _this = this
@@ -167,7 +169,6 @@ export default {
               _this.thankYouMessageSwitch = !_this.thankYouMessageSwitch
               _this.thankYouMessage = response.data.Message
               window.scrollTo(0,0)
-              console.log(response.data.Message)
 
               if(response.data.ErrorList){
                 UIkit.modal.alert(response.data.ErrorList[0].Value)
