@@ -117,7 +117,7 @@ export default {
   async fetch () {
     try {
       let [collectPrizeDTO] = await Promise.all([
-        this.$axios.$get("/webapi/CollectPrize/GetPrize?guid=6F2A7D4F-AE7C-45DD-86ED-A04AF56515E0")
+        this.$axios.$get("/webapi/CollectPrize/GetPrize?guid=" + this.$route.query.guid)
       ]);
       this.collectPrizeDTO = collectPrizeDTO
     } catch (err) {
