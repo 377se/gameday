@@ -16,7 +16,6 @@ export default {
     ZENDESK: 'b2384b65-02c4-40fe-b25f-c195c554d089'
 
   },
-  mode: 'universal',
   /*
    ** Headers of the page
    */
@@ -136,6 +135,23 @@ export default {
     scss: [
     './assets/scss/vars.scss'
     ]
+  },
+  pwa: {
+    meta:{
+      name: 'Gameday',
+      description: 'Gameday',
+      lang: 'sv',
+      theme_color: '#ffffff'
+    },
+    manifest: {
+      name: 'Gameday',
+      short_name: 'Sam Dodds',
+      lang: 'sv',
+      description: 'Gameday',
+    },
+    icon: {
+      iconFileName: 'icon_gameday.png'
+    }
   },
   webfontloader: {
     google: {
