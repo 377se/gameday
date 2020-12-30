@@ -16,7 +16,6 @@ export default {
     ZENDESK: 'fd07ec75-ec92-4ea1-ad6c-49e883112e6c'
 
   },
-  mode: 'universal',
   /*
    ** Headers of the page
    */
