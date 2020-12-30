@@ -76,7 +76,7 @@ export default {
     try {
       const [a,sb] = await Promise.all([
         this.$axios.$get(
-          '/webapi/extension/GetExtensionListByArticleId?articleId='+this.$route.params.id
+          '/webapi/'+this.$i18n.locale+'/extension/GetExtensionListByArticleId?articleId='+this.$route.params.id
         ),
         this.$storyapi.get('cdn/stories?starts_with=' + process.env.STORYBLOK_CATALOGUE.replace('/','') + '/' +this.$i18n.locale+ '/extension/'+this.$route.params.id, {
           version: version,

@@ -180,22 +180,22 @@ export default {
     try {
       const [a, p, c, s, g, b, sb] = await Promise.all([
         this.$axios.$get(
-          '/webapi/Article/getArticleList?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale=true&pageNum='+ pageNum +'&seoName=nhl'
+          '/webapi/'+this.$i18n.locale+'/Article/getArticleList?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale=true&pageNum='+ pageNum +'&seoName=nhl'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetProductTypeList?seoName=nhl&teamName=null&brandName=null'
+          '/webapi/'+this.$i18n.locale+'/Filter/GetProductTypeList?seoName=nhl&teamName=null&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetColourList?categoryName=nhl&teamName=null&garmentName=null&brandName=null'
+          '/webapi/'+this.$i18n.locale+'/Filter/GetColourList?categoryName=nhl&teamName=null&garmentName=null&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetSizeList?categoryName=nhl&teamName=null&garmentName=null&brandName=null'
+          '/webapi/'+this.$i18n.locale+'/Filter/GetSizeList?categoryName=nhl&teamName=null&garmentName=null&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetGenderList?categoryName=nhl&teamName=null&garmentName=null'
+          '/webapi/'+this.$i18n.locale+'/Filter/GetGenderList?categoryName=nhl&teamName=null&garmentName=null'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetBrandList?categoryName=nhl&teamName=null&garmentName=null'
+          '/webapi/'+this.$i18n.locale+'/Filter/GetBrandList?categoryName=nhl&teamName=null&garmentName=null'
         ),
         this.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}/nhl-shop/sale`, {
           version: version,

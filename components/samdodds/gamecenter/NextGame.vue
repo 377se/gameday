@@ -23,7 +23,7 @@ export default {
   async fetch() {
     try {
       let [gameList] = await Promise.all([
-          this.$axios.$get('/webapi/gamecenter/GetUpcomingGames')
+          this.$axios.$get('/webapi/'+this.$i18n.locale+'/gamecenter/GetUpcomingGames')
       ]);
       this.gameList = gameList
     } catch (err) {

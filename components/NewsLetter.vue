@@ -65,7 +65,7 @@ export default {
     async newsletter(event) {
         this.isSubmitting=true
         var _this = this
-        await this.$axios.post('/webapi/Signup/PostNewsLetterSignup?email='+this.email)
+        await this.$axios.post('/webapi/'+this.$i18n.locale+'/Signup/PostNewsLetterSignup?email='+this.email)
         .then(function (response) {
           _this.isSubmitting=false
           if(response.data.ErrorList.length>0){

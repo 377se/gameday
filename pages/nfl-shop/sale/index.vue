@@ -179,22 +179,22 @@ export default {
     try {
       const [a, p, c, s, g, b, sb] = await Promise.all([
         this.$axios.$get(
-          '/webapi/Article/getArticleList?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale=true&pageNum='+ pageNum +'&seoName=nfl'
+          '/webapi/'+this.$i18n.locale+'/Article/getArticleList?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale=true&pageNum='+ pageNum +'&seoName=nfl'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetProductTypeList?seoName=nfl&teamName=null'
+          '/webapi/'+this.$i18n.locale+'/Filter/GetProductTypeList?seoName=nfl&teamName=null'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetColourList?categoryName=nfl&teamName=null&garmentName=null&brandName=null'
+          '/webapi/'+this.$i18n.locale+'/Filter/GetColourList?categoryName=nfl&teamName=null&garmentName=null&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetSizeList?categoryName=nfl&teamName=null&garmentName=null&brandName=null'
+          '/webapi/'+this.$i18n.locale+'/Filter/GetSizeList?categoryName=nfl&teamName=null&garmentName=null&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetGenderList?categoryName=nfl&teamName=null&garmentName=null'
+          '/webapi/'+this.$i18n.locale+'/Filter/GetGenderList?categoryName=nfl&teamName=null&garmentName=null'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetBrandList?categoryName=nfl&teamName=null&garmentName=null'
+          '/webapi/'+this.$i18n.locale+'/Filter/GetBrandList?categoryName=nfl&teamName=null&garmentName=null'
         ),
         this.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}/nfl-shop/sale`, {
           version: version,

@@ -221,7 +221,7 @@ export default {
   methods:{
     async updateCart(){
       var _this = this
-      await this.$axios.$get('/webapi/cart/Get')
+      await this.$axios.$get('/webapi/'+this.$i18n.locale+'/cart/Get')
       .then(res => {
         _this.$store.commit('basket/add', res)
         _this.$cookies.set('session', res.SessionId)
@@ -233,7 +233,7 @@ export default {
     },
     async getCartExtension(){
       try {
-      const cartextensions = await this.$axios.$get('/webapi/cart/GetCartExtension');
+      const cartextensions = await this.$axios.$get('/webapi/'+this.$i18n.locale+'/cart/GetCartExtension');
       this.cartextensions = cartextensions
     } catch (err) {
       console.log(err);
@@ -245,7 +245,7 @@ export default {
     },
     async deleteFromCart(id){
       let _this = this
-      await this.$axios.delete('/webapi/cart?id='+id
+      await this.$axios.delete('/webapi/'+this.$i18n.locale+'/cart?id='+id
       ).then(function (response) {
       _this.$store.commit('basket/add', response.data)
       })

@@ -121,25 +121,25 @@ export default {
     try {
       const [a, p, c, s, g, b, t] = await Promise.all([
         this.$axios.$get(
-          '/webapi/Article/getArticleListByCategoryId?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +this.$route.params.categoryid
+          '/webapi/'+this.$i18n.locale+'/Article/getArticleListByCategoryId?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +this.$route.params.categoryid
         ),
         this.$axios.$get(
-          `/webapi/Filter/GetProductTypeListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&brandName=null`
+          `/webapi/${this.$i18n.locale}/Filter/GetProductTypeListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&brandName=null`
         ),
         this.$axios.$get(
-          `/webapi/Filter/GetColourListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null&brandName=null`
+          `/webapi/${this.$i18n.locale}/Filter/GetColourListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null&brandName=null`
         ),
         this.$axios.$get(
-          `/webapi/Filter/GetSizeListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null&brandName=null`
+          `/webapi/${this.$i18n.locale}/Filter/GetSizeListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null&brandName=null`
         ),
         this.$axios.$get(
-          `/webapi/Filter/GetGenderListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null`
+          `/webapi/${this.$i18n.locale}/Filter/GetGenderListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null`
         ),
         this.$axios.$get(
-          `/webapi/Filter/GetBrandListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null`
+          `/webapi/${this.$i18n.locale}/Filter/GetBrandListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null`
         ),
         this.$axios.$get(
-          `/webapi/Filter/GetTeamListByCategory?categoryId=${this.$route.params.categoryid}&productTypeId=0&brandId=0`
+          `/webapi/${this.$i18n.locale}/Filter/GetTeamListByCategory?categoryId=${this.$route.params.categoryid}&productTypeId=0&brandId=0`
         )
       ]);
       this.articles=a[0].ArticleList

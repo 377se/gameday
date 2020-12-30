@@ -129,7 +129,7 @@ export default {
         this.errors=[]
         this.isSubmitting = true
         var _this = this;
-        await this.$axios.post('/webapi/account/PostUpdatePassword',{
+        await this.$axios.post('/webapi/'+this.$i18n.locale+'/account/PostUpdatePassword',{
           Guid: _this.$route.params.guid,
           Password:_this.pwd,
           RepeatPassword: _this.repeatpwd
@@ -156,7 +156,7 @@ export default {
     try {
       const [g] = await Promise.all([
         await context.app.$axios.$post(
-          '/webapi/account/PostValidateGuid?guid=' +context.route.params.guid
+          '/webapi/'+this.$i18n.locale+'/account/PostValidateGuid?guid=' +context.route.params.guid
         )
       ]);
       return {

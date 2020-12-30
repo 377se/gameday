@@ -53,7 +53,7 @@ export default {
     try{
       const [s] = await Promise.all([
       await this.$axios.$get(
-        '/webapi/metadata/GetBrandName?name='+this.$route.params.id
+        '/webapi/'+this.$i18n.locale+'/metadata/GetBrandName?name='+this.$route.params.id
       )])
       this.seo = s
     }catch(err){

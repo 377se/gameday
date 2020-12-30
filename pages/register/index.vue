@@ -122,7 +122,7 @@ export default {
   methods: {
     async register(event) {
       var _this = this
-      await this.$axios.post('/webapi/customer/PostRegister', {
+      await this.$axios.post('/webapi/'+this.$i18n.locale+'/customer/PostRegister', {
         customerUserName: this.form.email,
         customerPassword: this.form.password,
         customerRepeatPassword: this.form.repeatpassword

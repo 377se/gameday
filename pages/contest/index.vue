@@ -107,7 +107,7 @@ export default {
 
     try{
       let [contest] = await Promise.all([
-        this.$axios.$get("/webapi/contest")
+        this.$axios.$get('/webapi/'+this.$i18n.locale+'/contest')
       ]);
       this.contestDTO = contest
     }catch(err){console.log(err)}
@@ -134,7 +134,7 @@ export default {
       this.isSubmitting=true
       this.errors = []
       var _this = this
-      await this.$axios.post('/webapi/Contest', _this.contestDTO)
+      await this.$axios.post('/webapi/'+this.$i18n.locale+'/Contest', _this.contestDTO)
       .then(function (response) {
         _this.isSubmitting=false
         if(response.data.ErrorList.length>0){

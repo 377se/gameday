@@ -61,7 +61,7 @@ export default {
     async customer(){
       var _this = this
       this.isSubmitting=true
-      await this.$axios.post('/webapi/Customer/PostCustomer', {
+      await this.$axios.post('/webapi/'+this.$i18n.locale+'/Customer/PostCustomer', {
         customerUserName: this.form.email,
         customerPassword: this.form.password
       }).then(function (response) {
@@ -81,7 +81,7 @@ export default {
     try {
       const [c] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Customer/GetCustomer'
+          '/webapi/'+this.$i18n.locale+'/Customer/GetCustomer'
         )
       ]);
       return {

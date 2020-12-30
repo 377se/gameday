@@ -82,7 +82,7 @@ export default {
     try{
     const [c, s] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Coins/GetCoins'
+          '/webapi/'+this.$i18n.locale+'/Coins/GetCoins'
         ),
         await context.app.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}/my-account/coins`, {
           version: version,

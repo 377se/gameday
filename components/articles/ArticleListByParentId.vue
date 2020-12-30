@@ -113,22 +113,22 @@ export default {
     try {
       const [a, p, c, s, g, b] = await Promise.all([
         this.$axios.$get(
-          '/webapi/Article/getArticleList?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +this.$route.params.team
+          '/webapi/'+this.$i18n.locale+'/Article/getArticleList?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +this.$route.params.team
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetProductTypeList?seoName='+this.$route.params.league+'&teamName='+this.$route.params.team
+          '/webapi/'+this.$i18n.locale+'/Filter/GetProductTypeList?seoName='+this.$route.params.league+'&teamName='+this.$route.params.team
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetColourList?categoryName='+this.$route.params.league+'&teamName='+this.$route.params.team +'&garmentName=null&brandName=null'
+          '/webapi/'+this.$i18n.locale+'/Filter/GetColourList?categoryName='+this.$route.params.league+'&teamName='+this.$route.params.team +'&garmentName=null&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetSizeList?categoryName='+this.$route.params.league+'&teamName='+this.$route.params.team +'&garmentName=null&brandName=null'
+          '/webapi/'+this.$i18n.locale+'/Filter/GetSizeList?categoryName='+this.$route.params.league+'&teamName='+this.$route.params.team +'&garmentName=null&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetGenderList?categoryName='+this.$route.params.league+'&teamName='+this.$route.params.team +'&garmentName=null'
+          '/webapi/'+this.$i18n.locale+'/Filter/GetGenderList?categoryName='+this.$route.params.league+'&teamName='+this.$route.params.team +'&garmentName=null'
         ),
         this.$axios.$get(
-          '/webapi/Filter/GetBrandList?categoryName='+this.$route.params.league+'&teamName='+this.$route.params.team +'&garmentName=null'
+          '/webapi/'+this.$i18n.locale+'/Filter/GetBrandList?categoryName='+this.$route.params.league+'&teamName='+this.$route.params.team +'&garmentName=null'
         )
       ]);
       this.articles=a[0].ArticleList

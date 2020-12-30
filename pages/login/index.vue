@@ -130,7 +130,7 @@ export default {
     async login(event) {
       var _this = this
       this.isSubmitting=true
-      await this.$axios.post('/webapi/customer/PostLogin', {
+      await this.$axios.post('/webapi/'+this.$i18n.locale+'/customer/PostLogin', {
         customerUserName: this.form.email,
         customerPassword: this.form.password
       }).then(function (response) {

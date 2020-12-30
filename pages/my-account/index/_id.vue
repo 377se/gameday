@@ -37,7 +37,7 @@ export default {
   },
   async asyncData({ app, route }) {
     try {
-      const url = `/webapi/Order/GetOrderDetails?orderId=${
+      const url = `/webapi/${this.$i18n.locale}/Order/GetOrderDetails?orderId=${
         route.params.id
       }`;
       const order = await app.$axios.$get(url);

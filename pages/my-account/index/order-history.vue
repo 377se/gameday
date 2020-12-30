@@ -87,7 +87,7 @@ export default {
     try {
       const [o] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/Order/GetOrderlist'
+          '/webapi/'+this.$i18n.locale+'/Order/GetOrderlist'
         )
       ]);
       return {

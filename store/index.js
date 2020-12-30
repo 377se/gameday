@@ -103,8 +103,8 @@ export const actions = {
 
     if(process.env.SITE_ID==6 || process.env.SITE_ID==1){ //Gameday
       await Promise.all([
-        context.app.$axios.$get('/webapi/Filter/GetProductTypeListByShopId'),
-        context.app.$axios.$get('/webapi/Filter/GetBrandListByShopId')
+        context.app.$axios.$get('/webapi/'+context.app.i18n.locale+'/Filter/GetProductTypeListByShopId'),
+        context.app.$axios.$get('/webapi/'+context.app.i18n.locale+'/Filter/GetBrandListByShopId')
       ]).then(res => {
           commit('setProductTypeMenu', res[0])
           commit('setBrandMenu', res[1])
@@ -113,10 +113,10 @@ export const actions = {
       })
 
       await Promise.all([
-        context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=202'),
-        context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=327'),
-        context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=328'),
-        context.app.$axios.$get('/webapi/Filter/GetTeamListByCategory?categoryId=329')
+        context.app.$axios.$get('/webapi/'+context.app.i18n.locale+'/Filter/GetTeamListByCategory?categoryId=202'),
+        context.app.$axios.$get('/webapi/'+context.app.i18n.locale+'/Filter/GetTeamListByCategory?categoryId=327'),
+        context.app.$axios.$get('/webapi/'+context.app.i18n.locale+'/Filter/GetTeamListByCategory?categoryId=328'),
+        context.app.$axios.$get('/webapi/'+context.app.i18n.locale+'/Filter/GetTeamListByCategory?categoryId=329')
       ]).then(res => {
           commit('setNHLMenu', res[0])
           commit('setNBAMenu', res[1])
