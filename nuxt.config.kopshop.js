@@ -144,7 +144,7 @@ export default {
   },
   webfontloader: {
     google: {
-      families: ['Source+Sans+Pro:wght@400;600;700','Ubuntu:wght@400;500;700&display=swap'] //Loads Source Sans and Ubuntu
+      families: ['Lato:wght@400;600;700','Oswald:wght@400;500;700&display=swap']
     }
   },
   /*
