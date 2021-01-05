@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="uk-card uk-card-hover bottom-line">
+    <div class="uk-card uk-card-hover bottom-line card-border">
       <nuxt-link 
         :to="getUrl()"
         class="uk-link-reset">
@@ -13,15 +13,13 @@
             :class="article.Label.LabelClass">{{ article.Label.LabelMessage }}</span>
         </div>
         <div class="vertical-spreader">
-
           <div class="uk-card-body uk-padding-remove-bottom head-category">
             <span>{{ article.HeadCategory }}</span>
             <br>
             <span class="article-name">{{ article.Name }}</span>
+            <hr>
           </div>
-          <div
-            class="uk-padding-remove-top uk-text-small price-container"
-          >
+          <div class="uk-padding-remove-top uk-text-small price-container">
             <template
               v-if="article.DiscountType==1">
               <div 
@@ -90,39 +88,41 @@ export default {
 </script>
 <style lang="scss">
 .vertical-spreader {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.price-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 10px !important;
-    height: 35px;
+  display: grid;
 }
 .head-category{
+  align-self: start;
+  color: #444;
   font-family: $base-heading-font-family;
-  height: $vertical-space-articlecard;
   padding: 10px !important;
   font-size: 1.0rem;
-  & > span{
-    font-weight:bold;
-  }
+  max-height: 2rem;
   & > .article-name{
+    color: #000;
     font-family: $global-font-family;
-    font-weight:normal;
+    /* font-weight:normal; */
     display: inline-block;
     vertical-align: top;
     font-size: 0.9rem;
     line-height: 1.1;
   }
+  & hr {
+    margin: 3px 0 0 0;
+  }
+}
+.price-container {
+  align-self: end;
+  height: 65px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 10px !important;
 }
 
 .your-price{
   color: $discounted-price-color;
   font-family: $base-heading-font-family;
-  margin-top: 0.5rem;
+  margin-top: 0.3rem;
   font-size: 1.0rem;
   line-height: 1.0;
   font-weight:bold;
@@ -130,7 +130,7 @@ export default {
 .orig-price{
   color:$global-color;
   font-family: $base-heading-font-family;
-  margin-top: 0.3rem;
+  margin-top: 0.2rem;
   line-height: 1.0;
   font-size: 1.0rem;
   font-weight:bold;
@@ -142,8 +142,11 @@ export default {
   font-family: $global-font-family;
   font-weight:normal;
 }
-.bottom-line {
+/* .bottom-line {
   border-bottom: 3px solid $global-primary-background;
+} */
+.card-border {
+  border: 1px solid #bbb;
 }
 .article-image{
   position:relative;
