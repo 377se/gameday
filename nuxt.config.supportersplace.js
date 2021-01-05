@@ -114,8 +114,13 @@ export default {
           onlyOnRoot: true,  // recommended
         },
         defaultLocale: 'sv-se',
-        strategy: 'prefix',
+        strategy: 'prefix_and_default',
         locales: [
+          {
+            code: 'en',
+            iso: 'en',
+            name: 'International (english)'
+          },
           {
             code: 'sv-se',
             iso: 'sv',
@@ -130,11 +135,6 @@ export default {
             code: 'da-dk',
             iso: 'da',
             name: 'Denmark'
-          },
-          {
-            code: 'en',
-            iso: 'en',
-            name: 'International (english)'
           },
           {
             code: 'fi-fi',
