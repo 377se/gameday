@@ -1,6 +1,6 @@
 $inverse-global-color-mode: none;
 
-$global-font-family: "Lato", sans-serif;
+$global-font-family: "Oswald", sans-serif;
 
 $global-background: #fff;
 $global-muted-background: #f2f4f5;
@@ -22,7 +22,7 @@ $global-inverse-color: #fff;
 $global-link-color: #a91c30;
 $global-link-hover-color: #a91c30;
 
-$base-heading-font-weight: 700;
+$base-heading-font-weight: 600;
 $base-heading-font-family: "Oswald", sans-serif;
 //#c0eef7
 
@@ -36,5 +36,5 @@ $inverse-global-muted-background: rgba($global-inverse-color, 0.1);
 
 $inverse-global-border: rgba($global-inverse-color, 0.2);
 
-$vertical-space-articlecard: 65px;
+$vertical-space-articlecard: 55spx;
 $discounted-price-color: #a91c30;
