@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <img :src="teamicon" style="width:90px; float: right;" />
+  <div class="team-icon">
+    <img :src="teamicon" />
   </div>
 </template>
 <script>
@@ -19,4 +19,8 @@ data() {
 }
 </script>
 <style lang="scss">
+.team-icon {
+  float: right;
+  width: 70px;
+}
 </style>
