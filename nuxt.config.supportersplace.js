@@ -117,27 +117,22 @@ export default {
         locales: [
           {
             code: 'sv-se',
-            iso: 'sv-SE',
             name: 'Sweden'
           },
           {
             code: 'nb-no',
-            iso: 'nb-NO',
             name: 'Norway'
           },
           {
             code: 'da-dk',
-            iso: 'da-DK',
             name: 'Denmark'
           },
           {
             code: 'en',
-            iso: 'en-GB',
             name: 'International (english)'
           },
           {
             code: 'fi-fi',
-            iso: 'fi-FI',
             name: 'Finland'
           }
         ],
