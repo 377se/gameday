@@ -20,9 +20,9 @@
       </div>
     </template>
     <template v-else>
-      <div v-if="!sb">
+        <div v-if="!sb">
           <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
-          <img :src="this.article.ImageThumb" style="width:90px; float: right;" />
+          <img :src="this.article.ImageThumb" class="team-icon" />
         <div 
           :class="{'read-more':readmore}"
           @click="setReadMore()"
@@ -260,5 +260,9 @@ export default {
     left: 0;
     width: 100%;
     box-sizing: border-box;
+}
+.team-icon {
+  float: right;
+  width: 70px;
 }
 </style>
