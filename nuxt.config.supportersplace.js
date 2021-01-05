@@ -114,7 +114,7 @@ export default {
           onlyOnRoot: true,  // recommended
         },
         defaultLocale: 'sv-se',
-        strategy: 'prefix_and_default',
+        strategy: 'prefix',
         locales: [
           {
             code: 'en',
