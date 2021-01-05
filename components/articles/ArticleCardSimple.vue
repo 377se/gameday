@@ -13,7 +13,7 @@
             :class="article.Label.LabelClass">{{ article.Label.LabelMessage }}</span>
         </div>
         <div class="vertical-spreader">
-          <div class="uk-card-body uk-padding-remove-bottom head-category">
+          <div class="uk-padding-remove-bottom head-category">
             <span>{{ article.HeadCategory }}</span>
             <br>
             <span class="article-name">{{ article.Name }}</span>
@@ -87,20 +87,20 @@ export default {
 }
 </script>
 <style lang="scss">
+
 .vertical-spreader {
   display: grid;
+  padding: 10px;
 }
 .head-category{
   align-self: start;
   color: #444;
   font-family: $base-heading-font-family;
-  padding: 10px !important;
   font-size: 1.0rem;
   max-height: 2rem;
   & > .article-name{
     color: #000;
     font-family: $global-font-family;
-    /* font-weight:normal; */
     display: inline-block;
     vertical-align: top;
     font-size: 0.9rem;
@@ -116,7 +116,6 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 10px !important;
 }
 
 .your-price{
@@ -142,9 +141,6 @@ export default {
   font-family: $global-font-family;
   font-weight:normal;
 }
-/* .bottom-line {
-  border-bottom: 3px solid $global-primary-background;
-} */
 .card-border {
   border: 1px solid #bbb;
 }
