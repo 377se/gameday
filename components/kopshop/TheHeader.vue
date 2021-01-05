@@ -9,7 +9,7 @@
         <TheHamburger/>
         <nuxt-link 
           class="uk-navbar-item uk-padding-small uk-logo" 
-          :to="localePath('/')"><img :src="logo" class="logo"></nuxt-link>
+          :to="localePath('/')"><img :src="logo" class="logo" alt="KopShop Logo"></nuxt-link>
       </div>
 
       <div 

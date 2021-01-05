@@ -5,7 +5,7 @@
     <!-- Prize already claimed -->
     <section v-if="collectPrizeDTO.IsClaimed" class="uk-width-1-1@s uk-width-1-2@m uk-padding-small uk-align-center">
       <div class="uk-background-primary uk-border-rounded uk-padding uk-width-1-1">
-        <img src="/logos/samdodds_lfc.png" width="200px">
+        <img src="/logos/samdodds_lfc.png" alt="Sam Dodds" width="200px">
       </div>
       <h2 class="thankyou">Du har redan hämtat ut ditt pris! Shoppa gärna andra grymma prylar.</h2>
       <nuxt-link
@@ -70,7 +70,7 @@
           <!-- Thank you -->
           <section v-else key="visible" class="uk-width-1-1@s uk-width-1-2@m uk-padding-small uk-align-center">
             <div class="uk-background-primary uk-border-rounded uk-padding uk-width-1-1">
-              <img src="/logos/samdodds_lfc.png" width="200px">
+              <img src="/logos/samdodds_lfc.png" alt="Sam Dodds" width="200px">
             </div>
             <h2 class="thankyou">{{this.thankYouMessage}}</h2>
           </section>
@@ -83,17 +83,17 @@
     <section class="uk-width-1-1@s uk-width-1-1@m uk-background-primary uk-margin-bottom uk-padding" id="app-features">
         <div class="uk-flex uk-flex-wrap uk-flex-top uk-text-center">
           <div class="uk-width-1-1@s uk-width-1-3@l uk-padding-small">
-            <img src="/icons/f_icon1.png" class="icons">
+            <img src="/icons/f_icon1.png" class="icons" alt="">
             <h2 class="uk-text-uppercase">För fans av fans.</h2>
             <p>Vårt motto är enkelt. Vi producerar produkter som vi själva vill ha.</p>
           </div>
         <div class="uk-width-1-1@s uk-width-1-3@l uk-padding-small">
-          <img src="/icons/f_icon2.png" class="icons">
+          <img src="/icons/f_icon2.png" class="icons" alt="">
           <h2 class="uk-text-uppercase">Officiellt licensierade.</h2>
           <p>Vi har ett nära samarbete med Liverpool Football Club och är officiellt licensierade.</p>
         </div>
         <div class="uk-width-1-1@s uk-width-1-3@l uk-padding-small">
-          <img src="/icons/f_icon3.png"  class="icons">
+          <img src="/icons/f_icon3.png" alt="" class="icons">
           <h2 class="uk-text-uppercase">Stort utbud.</h2>
           <p>Vi har en stor mängd med produkter och vi fyller på löpande.</p>
         </div>

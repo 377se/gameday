@@ -14,7 +14,11 @@
           <TheHamburger/>
           <nuxt-link 
             class="uk-navbar-item uk-margin-small-left uk-logo" 
-            :to="localePath('/')"><img :src="logo" class="logo"></nuxt-link>
+            :to="localePath('/')">
+            <img 
+              :src="logo" 
+              class="logo"
+              alt="Gameday Logo"></nuxt-link>
         </div>
 
         <div 
@@ -155,7 +159,7 @@
             :key="team.TeamId"
             class="uk-padding-remove-left">
             <nuxt-link
-              :to="localePath('/lag/nhl/'+team.SeoName)"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+team.ImageName" style="width:30px" /> {{ team.Name }}</nuxt-link>
+              :to="localePath('/lag/nhl/'+team.SeoName)"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+team.ImageName" style="width:30px" :alt="team.Name" /> {{ team.Name }}</nuxt-link>
           </li>
         </ul>
       </div>

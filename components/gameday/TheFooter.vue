@@ -20,7 +20,9 @@
             <a href="https://www.facebook.com/gameday.se/" target="_new"><span uk-icon="icon: facebook;ratio:1.5"></span></a>
           </div>
           <div class="uk-margin">
-            <img src="https://cdn.klarna.com/1.0/shared/image/generic/badge/sv_se/checkout/short-white.png?width=320" alt="Klarna">
+            <img 
+              src="https://cdn.klarna.com/1.0/shared/image/generic/badge/sv_se/checkout/short-white.png?width=320" 
+              alt="Klarna">
           </div>    
         </div>
 

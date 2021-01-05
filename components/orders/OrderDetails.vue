@@ -38,7 +38,7 @@
           
          <tr v-for="item in order.ItemList"
             :key="item.ItemId">
-            <td><img :src="thumb_src + item.ImageThumb" /></td>
+            <td><img :src="thumb_src + item.ImageThumb" :alt="item.ProductName" /></td>
             <td>{{item.ProductName}}</td>
             <td>{{item.ArticleNumber}}</td>
             <td>{{item.SizeDisplay}}</td>

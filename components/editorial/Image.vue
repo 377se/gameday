@@ -1,6 +1,8 @@
 <template>
    <div class="uk-margin">
-     <img :src="blok.editorial_image" />
+     <img 
+      :src="blok.editorial_image"
+      alt="" />
   </div>
 </template>
 <script>

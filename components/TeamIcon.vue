@@ -1,6 +1,6 @@
 <template>
   <div class="team-icon">
-    <img :src="teamicon" />
+    <img :src="teamicon" alt="" />
   </div>
 </template>
 <script>

@@ -1,7 +1,8 @@
 <template>
     <img 
       class="image-list-image"
-      :src="blok.image" />
+      :src="blok.image"
+      alt="" />
 </template>
 <script>
 export default {

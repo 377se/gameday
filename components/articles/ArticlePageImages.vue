@@ -11,6 +11,7 @@
           :key="index">
             <img
               v-bind:src="details_src+image.Name"
+              alt=""
             >
         </li>
       </ul>
@@ -23,7 +24,9 @@
               <a 
                 href="#"
                 style="box-shadow: 4px 4px 41px 0px rgba(0,0,0,0.36);">
-                <img :src="details_src+image.Name" style="width:60px" alt="">
+                <img 
+                  :src="details_src+image.Name" style="width:60px" 
+                  alt="">
               </a></li>
         </ul>
       </div>

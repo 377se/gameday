@@ -41,7 +41,8 @@
                 :key="index">
                 <td class="thumb-image" style="padding-left:6px;">
                   <img 
-                    :src="thumb_src + item.ImageThumb" />
+                    :src="thumb_src + item.ImageThumb" 
+                    :alt="item.Name"/>
                 </td>
                 <td class="article-data">
                   <span class="article-name">
@@ -138,7 +139,9 @@
             <li v-for="item in cartextensions" :key="item.CartExtensionId">
               {{ item.ArticleName }}<br />
               {{ item.DiscountedPriceDisplay }}<br /> 
-              <img :src="thumb_src + item.ImageIdThumb" />
+              <img 
+                :src="thumb_src + item.ImageIdThumb"
+                alt="" />
             </li>
           </ul>          
 

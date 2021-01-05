@@ -8,7 +8,9 @@
         <div class="uk-flex-last uk-width-expand@m uk-width-1-2@s">       
           <h3 class="uk-h4">&nbsp;</h3>           
           <div class="uk-margin">
-            <img :src="'https://cdn.klarna.com/1.0/shared/image/generic/badge/'+this.$i18n.locale.replace('-','_').replace('en','en_gb')+'/checkout/long-white.png?width=720'" alt="Klarna">
+            <img 
+              :src="'https://cdn.klarna.com/1.0/shared/image/generic/badge/'+this.$i18n.locale.replace('-','_').replace('en','en_gb')+'/checkout/long-white.png?width=720'" 
+              alt="Klarna">
           </div>
           <div class="uk-margin uk-text-right">
             <img 

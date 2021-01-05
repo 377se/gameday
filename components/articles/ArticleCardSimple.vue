@@ -6,7 +6,9 @@
         class="uk-link-reset">
         <div class="article-image uk-card-media-top">
           <img 
-            :src="list_src +article.ImageIdThumb" alt ref="mainImage">
+            :src="list_src +article.ImageIdThumb" 
+            :alt="article.Name" 
+            ref="mainImage">
           <span
             v-if="article.Label"
             class="label-article"

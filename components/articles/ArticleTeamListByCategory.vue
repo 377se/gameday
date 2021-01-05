@@ -22,7 +22,10 @@
     <template v-else>
         <div v-if="!sb">
           <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
-          <img :src="this.article.ImageThumb" class="team-icon" />
+          <img 
+            :src="this.article.ImageThumb" 
+            alt=""
+            class="team-icon" />
         <div 
           :class="{'read-more':readmore}"
           @click="setReadMore()"

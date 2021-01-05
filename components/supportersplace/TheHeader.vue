@@ -86,6 +86,7 @@
           :to="localePath('/c/'+(!cat.SubCategoryList.length==0?'0':'0')+'/'+cat.Id+'/'+cat.UrlSafeName)">
             <img
               v-if="cat.ImageThumb" 
+              alt=""
               :src="cat.ImageThumb" style="width:20px;margin-right:8px;"><span>{{ cat.Name }}</span>
         </nuxt-link>
         <a 
@@ -95,6 +96,7 @@
           @click.stop.prevent="showDropDown(index+1)">
           <img
             v-if="cat.ImageThumb" 
+            alt=""
             :src="cat.ImageThumb" style="width:20px;margin-right:8px;"><span>{{ cat.Name }}</span><span v-if="cat.SubCategoryList.length>0" uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"/>
         </a>
       </li>
@@ -113,9 +115,11 @@
             <nuxt-link :to="localePath('/c/'+(index>0?cat.Id:0)+'/'+sub.Id+'/'+sub.UrlSafeName)">
               <img
                 v-if="sub.ImageThumb" 
+                alt=""
                 :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+sub.ImageThumb" style="width:30px" />
               <img
                 v-else-if="cat.ImageThumb" 
+                :alt="sub.Name"
                 :src="cat.ImageThumb" style="width:30px" /> {{ sub.Name }}
             </nuxt-link>
           </li>

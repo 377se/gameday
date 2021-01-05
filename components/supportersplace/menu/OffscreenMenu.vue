@@ -26,10 +26,12 @@
                 :to="localePath('/c/0/'+cat.Id+'/'+cat.UrlSafeName)">
                 <img
                   v-if="cat.ImageThumb" 
+                  :alt="cat.Name"
                   :src="cat.ImageThumb" style="width:20px;margin-right:8px;">{{ cat.Name }}</nuxt-link>
               <a v-else href="#">
                 <img
                   v-if="cat.ImageThumb" 
+                  :alt="cat.Name"
                   :src="cat.ImageThumb" style="width:20px;margin-right:8px;">{{ cat.Name }}</a>
                 <ul
                   v-if="cat.SubCategoryList.length>0">
@@ -39,9 +41,11 @@
                     <nuxt-link :to="localePath('/c/'+(index>0?cat.Id:0)+'/'+sub.Id+'/'+sub.UrlSafeName)">
                     <img
                       v-if="sub.ImageThumb" 
+                      :alt="sub.Name"
                       :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+sub.ImageThumb" style="width:20px;margin-right:8px;" />
                     <img
                       v-else-if="cat.ImageThumb" 
+                      :alt="sub.Name"
                       :src="cat.ImageThumb" style="width:20px;margin-right:8px;" />{{ sub.Name }}</nuxt-link>
                   </li>
                 </ul>
