@@ -31,6 +31,9 @@ import editorial_youtube from '@/components/editorial/Youtube'
 import editorial_quote from '@/components/editorial/Quote'
 import image_list from '@/components/editorial/ImageList'
 
+import GameCenterPromo from '@/components/samdodds/gamecenter/GameCenterPromo'
+
+
 export default {
   components: {
     TextContent,
@@ -49,7 +52,8 @@ export default {
     editorial_image,
     editorial_youtube,
     editorial_quote,
-    image_list
+    image_list,
+    GameCenterPromo
   },
   props: {
     blok: {
@@ -59,7 +63,9 @@ export default {
   },
   data(){
     return {
-      readmore: true
+      readmore: true,
+      isLatest: true,
+      numberOfGames: 1
     }
   },
   methods:{
