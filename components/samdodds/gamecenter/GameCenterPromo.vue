@@ -1,6 +1,7 @@
 <template>
 <!-- LATEST GAME -->
-  <div v-if="this.$route.query.isLatest == 'true'" class="uk-container next-game">
+  <div v-if="isLatest" class="uk-container next-game">
+         {{numberOfGames}}
       <h3>Senaste match</h3>
     <div 
       class="uk-position-relative uk-background-primary uk-margin-large-bottom uk-border-rounded"
@@ -59,6 +60,7 @@
   </div>
 <!-- NEXT GAME -->
   <div v-else class="uk-container next-game">
+    {{isLatest}}
       <h3>Nästa match</h3>
     <div 
       class="next-game-slider uk-position-relative uk-background-primary uk-margin-large-bottom uk-border-rounded"
@@ -121,11 +123,17 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 export default {
+    props: {
+      blok: {
+        type: Object,
+        required: true,
+      }
+    },
     async fetch() {
     try {
       let [lastGame, gameList] = await Promise.all([
           this.$axios.$get('/webapi/gamecenter/GetLastGame'),
-          this.$axios.$get('/webapi/gamecenter/GetUpcomingGames?numberOfGames=' + this.$route.query.numberOfDays)
+          this.$axios.$get('/webapi/gamecenter/GetUpcomingGames?numberOfGames='+this.numberOfGames)
       ]);
       this.lastGame = lastGame
       this.gameList = gameList
@@ -138,13 +146,15 @@ export default {
       homeTeam: 'Liverpool',
       gameList: [],
       lastGame: {},
+      isLatest: this.blok.isLatest,
+      numberOfGames: this.blok.numberOfGames      
     }
   },
   computed: {
     ...mapGetters({
       global_labels:'labels'})
   },
-};
+}
 </script>
 <style lang="scss">
   .next-game, .next-game a {
