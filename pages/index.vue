@@ -50,7 +50,6 @@
 <script>
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import Page from '@/components/Page'
-import NextGame from "@/components/samdodds/gamecenter/NextGame";
 
 export default {
   head () {
@@ -77,9 +76,7 @@ export default {
   },
   components:{
     ArticleCardSimple,
-    Page,
-    NextGame
-
+    Page
   },
   data () {
     return {
