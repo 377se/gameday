@@ -1,13 +1,15 @@
 <template>
   <div class="uk-container uk-container-large uk-padding-small">
-    <NextGame />
+    <GameCenterPromo />
   </div>
 </template>
 <script>
-import NextGame from "@/components/samdodds/gamecenter/NextGame";
+
+import GameCenterPromo from "@/components/samdodds/gamecenter/GameCenterPromo";
+
 export default {
   components:{
-    NextGame
+    GameCenterPromo,
   },
 }
 </script>
