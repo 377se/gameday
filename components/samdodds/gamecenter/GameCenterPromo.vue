@@ -1,6 +1,6 @@
 <template>
-
-  <div v-if="this.$route.query.isLatest" class="uk-container next-game">
+<!-- LATEST GAME -->
+  <div v-if="this.$route.query.isLatest == 'true'" class="uk-container next-game">
       <h3>Senaste match</h3>
     <div 
       class="uk-position-relative uk-background-primary uk-margin-large-bottom uk-border-rounded"
@@ -9,42 +9,41 @@
       <div>
         <div class="uk-width-1-1 uk-padding">
           <div class="game-container">
-            <!-- Teams & Goals -->
+            <!-- TEAMS & GOALS -->
             <div class="first-row">
-              <div class="team-and-goals"> <!-- Home-team -->
+              <div class="team-and-goals"> <!-- HOME-TEAM -->
                 <div v-if="!lastGame.IsAwayGame" class="team"><img :src="lastGame.LiverpoolCrest" /><p>{{ homeTeam }}</p></div>
                 <div v-else class="team"><img :src="lastGame.OpponentCrest" /><p>{{ lastGame.Opponent}}</p></div>
                 <div v-if="!lastGame.IsAwayGame" class="goals"><p>{{ lastGame.HomeGoals }}</p></div>
                 <div v-else class="goals"><p>{{ lastGame.AwayGoals }}</p></div>
               </div>
-              <div class="team-and-goals"> <!-- Away-team -->
+              <div class="team-and-goals"> <!-- AWAY-TEAM -->
                 <div v-if="!lastGame.IsAwayGame" class="goals"><p>{{ lastGame.AwayGoals }}</p></div>
                 <div v-else class="goals"><p>{{ lastGame.HomeGoals }}</p></div>
                 <div v-if="!lastGame.IsAwayGame" class="team"><img :src="lastGame.OpponentCrest" /><p>{{ lastGame.Opponent}}</p></div>
                 <div v-else class="team"><img :src="lastGame.LiverpoolCrest" /><p>{{ homeTeam }}</p></div>
               </div>
             </div>
-            <!-- Match-info -->
-            <div class="uk-flex uk-flex-middle">
-                <div class="uk-flex uk-flex-middle uk-flex-center loc-info uk-width-1-4"> <!-- Date -->
+            <div class="uk-flex uk-flex-middle"> <!-- GAME-INFO -->
+                <div class="uk-flex uk-flex-middle uk-flex-center loc-info uk-width-1-4"> <!-- DATE -->
                   <img class="uk-width-1-6" src="/icons/calendar.svg">
                   <div style="text-transform: capitalize">
                     {{ lastGame.GameDate }}
                   </div>
                 </div>
-                <div class="uk-flex uk-flex-middle uk-flex-center loc-info uk-width-1-4"> <!-- Time -->
+                <div class="uk-flex uk-flex-middle uk-flex-center loc-info uk-width-1-4"> <!-- TIME -->
                   <img class="uk-width-1-6" src="/icons/time.svg">
                   <div>
                     {{ lastGame.GameTime }}
                   </div>
                 </div>
-                <div class="uk-flex uk-flex-middle uk-flex-center loc-info uk-width-1-4"> <!-- Arena -->
+                <div class="uk-flex uk-flex-middle uk-flex-center loc-info uk-width-1-4"> <!-- ARENA -->
                   <img class="uk-width-1-6" src="/icons/soccer-field.svg">
                   <div>
                     {{ lastGame.Arena }}
                   </div>
                 </div>
-                <div class="uk-flex uk-flex-middle uk-flex-center loc-info uk-width-1-4"> <!-- League -->
+                <div class="uk-flex uk-flex-middle uk-flex-center loc-info uk-width-1-4"> <!-- LEAGUE -->
                   <img class="uk-width-1-6" src="/icons/trophy.svg">
                   <div>
                     {{ lastGame.GameType }}
@@ -58,7 +57,7 @@
       </div>
     </div>
   </div>
-
+<!-- NEXT GAME -->
   <div v-else class="uk-container next-game">
       <h3>Nästa match</h3>
     <div 
@@ -71,56 +70,39 @@
 
           <div class="game-container">
 
-            <!-- Teams & Goals -->
+            <!-- TEAMS & GOALS -->
             <div class="first-row">
-              <div class="team-and-goals">
-                <div v-if="!game.IsAwayGame" class="team">
-                  <img :src="game.LiverpoolCrest" />
-                  <p>{{ homeTeam }}</p>
-                </div>
-                <div v-else class="team">
-                  <img :src="game.OpponentCrest" />
-                  <p>{{ game.Opponent}}</p>
-                </div>
-                <div class="goals"><p>
-                  -
-                </p></div>
+              <div class="team-and-goals"> <!-- HOME-TEAM -->
+                <div v-if="!game.IsAwayGame" class="team"><img :src="game.LiverpoolCrest" /><p>{{ homeTeam }}</p></div>
+                <div v-else class="team"><img :src="game.OpponentCrest" /><p>{{ game.Opponent}}</p></div>
+                <div class="goals"><p>-</p></div>
               </div>
-              <div class="team-and-goals">
-                <div class="goals"><p>
-                  -
-                </p></div>
-                <div v-if="!game.IsAwayGame" class="team">
-                  <img :src="game.OpponentCrest" />
-                  <p>{{ game.Opponent}}</p>
-                </div>
-                <div v-else class="team">
-                  <img :src="game.LiverpoolCrest" />
-                  <p>{{ homeTeam }}</p>
-                </div>
+              <div class="team-and-goals"> <!-- AWAY-TEAM -->
+                <div class="goals"><p>-</p></div>
+                <div v-if="!game.IsAwayGame" class="team"><img :src="game.OpponentCrest" /><p>{{ game.Opponent}}</p></div>
+                <div v-else class="team"><img :src="game.LiverpoolCrest" /><p>{{ homeTeam }}</p></div>
               </div>
             </div>
-            <!-- Match-info -->
-            <div class="uk-flex uk-flex-middle">
-                <div class="uk-flex uk-flex-middle uk-flex-center loc-info uk-width-1-4">
+            <div class="uk-flex uk-flex-middle"> <!-- GAME-INFO -->
+                <div class="uk-flex uk-flex-middle uk-flex-center loc-info uk-width-1-4"> <!-- DATE -->
                   <img class="uk-width-1-6" src="/icons/calendar.svg">
                   <div style="text-transform: capitalize">
                     {{ game.GameDate }}
                   </div>
                 </div>
-                <div class="uk-flex uk-flex-middle uk-flex-center loc-info uk-width-1-4">
+                <div class="uk-flex uk-flex-middle uk-flex-center loc-info uk-width-1-4"> <!-- TIME -->
                   <img class="uk-width-1-6" src="/icons/time.svg">
                   <div>
                     {{ game.GameTime }}
                   </div>
                 </div>
-                <div class="uk-flex uk-flex-middle uk-flex-center loc-info uk-width-1-4">
+                <div class="uk-flex uk-flex-middle uk-flex-center loc-info uk-width-1-4"> <!-- ARENA -->
                   <img class="uk-width-1-6" src="/icons/soccer-field.svg">
                   <div>
                     {{ game.Arena }}
                   </div>
                 </div>
-                <div class="uk-flex uk-flex-middle uk-flex-center loc-info uk-width-1-4">
+                <div class="uk-flex uk-flex-middle uk-flex-center loc-info uk-width-1-4"> <!-- LEAGUE -->
                   <img class="uk-width-1-6" src="/icons/trophy.svg">
                   <div>
                     {{ game.GameType }}
@@ -135,8 +117,6 @@
         <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
     </div>
   </div>
-
-
 </template>
 <script>
 import { mapGetters, mapActions } from 'vuex'
@@ -145,7 +125,7 @@ export default {
     try {
       let [lastGame, gameList] = await Promise.all([
           this.$axios.$get('/webapi/gamecenter/GetLastGame'),
-          this.$axios.$get('/webapi/gamecenter/GetUpcomingGames?numberOfGames=4')
+          this.$axios.$get('/webapi/gamecenter/GetUpcomingGames?numberOfGames=' + this.$route.query.numberOfDays)
       ]);
       this.lastGame = lastGame
       this.gameList = gameList
