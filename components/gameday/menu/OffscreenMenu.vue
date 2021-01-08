@@ -207,7 +207,7 @@ export default {
 
 <style lang="scss">
 #offscreenmenu-accordion > li > a{
-  color: #002a32;
+  color: #333;
 }
 
 #offscreenmenu-accordion > :nth-child(n+2) {
