@@ -99,6 +99,7 @@ export default {
   color: #444;
   font-family: $base-heading-font-family;
   font-size: 1.0rem;
+  line-height: 1;
   max-height: 2rem;
   & > .article-name{
     color: #000;
@@ -106,7 +107,13 @@ export default {
     display: inline-block;
     vertical-align: top;
     font-size: 0.9rem;
-    line-height: 1.1;
+    line-height: 1.2;
+    @media (max-width: 420px) {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 130px;
+    }
   }
   & hr {
     margin: 3px 0 0 0;
