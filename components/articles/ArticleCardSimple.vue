@@ -112,7 +112,7 @@ export default {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      width: 130px;
+      width: 125px;
     }
   }
   & hr {
