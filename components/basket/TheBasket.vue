@@ -36,44 +36,86 @@
             </thead>
             <tbody
               class="uk-background-default">
-              <tr
-                v-for="(item, index) in cart.data"
-                :key="index">
-                <td class="thumb-image" style="padding-left:6px;">
-                  <img 
-                    :src="thumb_src + item.ImageThumb" 
-                    :alt="item.Name"/>
-                </td>
-                <td class="article-data">
-                  <span class="article-name">
-                    {{ item.Category }}<br/>{{ item.Name }}
-                    <span
-                      v-if="item.AddOnDisplay!=''"><br />{{ item.AddOnDisplay }}
+              <template
+                v-for="(item) in cart.data">
+                <tr
+                  :key="item.Id">
+                  <td class="thumb-image" style="padding-left:6px;">
+                    <img 
+                      :src="thumb_src + item.ImageThumb" 
+                      :alt="item.Name"/>
+                  </td>
+                  <td class="article-data">
+                    <span class="article-name">
+                      {{ item.Category }}<br/>{{ item.Name }}
+                      <span
+                        v-if="item.AddOnDisplay!=''"><br />{{ item.AddOnDisplay }}
+                      </span>
                     </span>
-                  </span>
-                  <br/>
-                  <span
-                    v-for="size in item.Size"
-                    :key="size.Value" 
-                    class="article-size">
-                    {{ size.Name }}<br/>
-                  </span>
-                </td>
-                <td 
-                  class="total" style="padding-right:6px;">
-                  <div 
-                  v-if="item.IsDiscount"
-                  style="text-decoration:line-through;">{{ item.PriceDisplay }}</div>
-                  <div
-                    v-if="item.PriceAddOn">+{{ PriceAddOnDisplay }}</div>
-                  {{item.PriceTotalDisplay}}
-                  <br>
-                  <a 
-                    href="#"
-                    style="text-decoration:underline;color:#333;"
-                    @click.prevent.stop="deleteFromCart(item.Id)">{{ $getCMSEntry(global_labels,'basket_delete_from_cart', 'Ta bort') }}</a>
-                </td>
-              </tr>
+                    <br/>
+                    <span
+                      v-for="size in item.Size"
+                      :key="size.Value" 
+                      class="article-size">
+                      {{ size.Name }}<br/>
+                    </span>
+                  </td>
+                  <td 
+                    class="total" style="padding-right:6px;">
+                    <div 
+                    v-if="item.IsDiscount"
+                    style="text-decoration:line-through;">{{ item.PriceDisplay }}</div>
+                    <div
+                      v-if="item.PriceAddOn">+{{ PriceAddOnDisplay }}</div>
+                    {{item.PriceTotalDisplay}}
+                    <br>
+                    <a 
+                      href="#"
+                      style="text-decoration:underline;color:#333;"
+                      @click.prevent.stop="deleteFromCart(item.Id)">{{ $getCMSEntry(global_labels,'basket_delete_from_cart', 'Ta bort') }}</a>
+                  </td>
+                </tr>
+                <template
+                  v-for="(i) in item.ItemList">
+                  <tr
+                    :key="i.Id">
+                    <td class="thumb-image" style="padding-left:15px;">
+                      <img 
+                        :src="thumb_src + i.ImageThumb" 
+                        :alt="i.Name"/>
+                    </td>
+                    <td class="article-data">
+                      <span class="article-name">
+                        {{ i.Category }}<br/>{{ i.Name }}
+                        <span
+                          v-if="i.AddOnDisplay!=''"><br />{{ i.AddOnDisplay }}
+                        </span>
+                      </span>
+                      <br/>
+                      <span
+                        v-for="size in i.Size"
+                        :key="size.Value" 
+                        class="article-size">
+                        {{ size.Name }}<br/>
+                      </span>
+                    </td>
+                    <td 
+                      class="total" style="padding-right:6px;">
+                      <div 
+                      v-if="i.IsDiscount"
+                      style="text-decoration:line-through;">{{ i.PriceDisplay }}</div>
+                      <div
+                        v-if="i.PriceAddOn">+{{ PriceAddOnDisplay }}</div>
+                      {{i.PriceTotalDisplay}}
+                      <br>
+                      <a 
+                        href="#"
+                        style="text-decoration:underline;color:#333;"
+                        @click.prevent.stop="deleteFromCart(i.Id)">{{ $getCMSEntry(global_labels,'basket_delete_from_cart', 'Ta bort') }}</a>
+                    </td>
+                  </tr>
+                </template>
+              </template>
             </tbody>
             <tfoot
               class="uk-background-default"
@@ -279,5 +321,11 @@ export default {
 #offscreen-basket .uk-modal-dialog{
   margin-left: auto;
   max-width:340px !important;
+}
+.thumb-image{
+  width:40px;
+  > img{
+    max-width:40px;
+  }
 }
 </style>
