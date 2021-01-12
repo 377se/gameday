@@ -31,7 +31,7 @@ export default {
   async fetch(){
     try{
       let [storyblok] = await Promise.all([
-          this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+ this.$i18n.locale +"&datasource=fe-rolling-text-"+process.env.STORYBLOK_LABELS+"&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
+          this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+ this.$i18n.locale +"&datasource=fe-rolling-text-"+process.env.STORYBLOK_LABELS+"&token="+process.env.STORYBLOK +"&cv=1"+this.$store.getters.version)
       ]);
       
       this.labels = storyblok.datasource_entries
@@ -41,7 +41,8 @@ export default {
   },
   data() {
     return {
-      labels: []
+      labels: [],
+      story: process.env.STORYBLOK_LABELS
     }
   },
 }

@@ -104,17 +104,45 @@ export default {
       }
     }],
     ['nuxt-i18n',
-      {
-        defaultLocale: 'sv-se',
-        strategy: 'prefix_except_default',
-        locales: [
-          {
-            code: 'sv-se',
-            iso: 'sv-SE'
-          }
-        ],
-        seo:false
-      }
+    {
+      baseUrl: 'https://www.samdodds.com',
+      detectBrowserLanguage: {
+        useCookie: true,
+        alwaysRedirect: true,
+        cookieKey: 'i18n_redirected',
+        onlyOnRoot: true,  // recommended
+      },
+      defaultLocale: 'sv-se',
+      strategy: 'prefix',
+      locales: [
+        {
+          code: 'en',
+          iso: 'en',
+          name: 'International (english)'
+        },
+        {
+          code: 'sv-se',
+          iso: 'sv',
+          name: 'Sweden'
+        },
+        {
+          code: 'nb-no',
+          iso: 'nb',
+          name: 'Norway'
+        },
+        {
+          code: 'da-dk',
+          iso: 'da',
+          name: 'Denmark'
+        },
+        {
+          code: 'fi-fi',
+          iso: 'fi',
+          name: 'Finland'
+        }
+      ],
+      seo:false
+    }
     ],
     '@nuxtjs/axios',
     'cookie-universal-nuxt',
