@@ -17,6 +17,26 @@
         style="flex-wrap:nowrap"
         class="uk-navbar-right uk-text-center"
       >
+        <span style="color:#fff;margin-right:4px;"><img :src="'/flags/'+locale+'.svg'" style="width:20px;" /> 
+          <span 
+            uk-icon="icon:chevron-down;ratio:1.0"/>
+        </span>
+        <div 
+          class="uk-dropdown uk-padding-small"
+          uk-dropdown>
+            <ul 
+              class="uk-nav uk-dropdown-nav uk-text-left">
+                <li 
+                  v-for="loc in availableLocales"
+                  :key="loc.code"
+                  :class="{'uk-active':locale===loc.code}">
+                  <a
+                    :href="switchLocalePath(loc.code)"
+                    @click.stop.prevent="switchLang(loc.code)"
+                    style="vertical-align:middle"><img :src="'/flags/'+loc.code+'.svg'" style="width:30px;margin-right:5px;" /> {{ loc.name }}</a>
+                </li>
+            </ul>
+        </div>
         <nuxt-link
           v-if="cid==null"
           :to="localePath('/login')"
@@ -66,6 +86,7 @@
 </template>
 
 <script>
+import ClickOutside from 'vue-click-outside'
 import TheHamburger from "./TheHamburger";
 import { mapGetters, mapActions } from 'vuex'
 export default {
@@ -75,6 +96,7 @@ export default {
           this.$axios.$get('/webapi/'+this.$i18n.locale+'/category')
       ]);
       this.menu = menu
+      this.locale = this.$i18n.locale
     } catch (err) {
       console.log(err);
     }
@@ -85,7 +107,10 @@ export default {
   data(){
     return{
       logo:process.env.LOGO_URL,
-      menu: []
+      menu: null,
+      chosenDropDown: 0,
+      timeout: null,
+      locale: ''
     }
   },
   computed: {
@@ -93,7 +118,30 @@ export default {
       counter: 'basket/counter',
       cid: 'cid',
       global_labels: 'labels'
-    })
+    }),
+    availableLocales () {
+      return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
+    }
+  },
+  directives: {
+    ClickOutside
+  },
+  methods:{
+    switchLang(code){
+      this.$i18n.setLocaleCookie(code)
+      location.href = '/'+code;
+    },
+    hideDropDown(){
+      var _this = this
+      setTimeout(function(){
+        _this.chosenDropDown = 0
+      },200)
+    },
+    showDropDown(num){
+      var _this = this
+      clearTimeout(_this.timeout)
+      this.chosenDropDown = this.chosenDropDown!=num?num:0
+    }
   }
 };
 </script>
