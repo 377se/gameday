@@ -66,7 +66,7 @@
                     v-if="item.IsDiscount"
                     style="text-decoration:line-through;">{{ item.PriceDisplay }}</div>
                     <div
-                      v-if="item.PriceAddOn">+{{ PriceAddOnDisplay }}</div>
+                      v-if="item.PriceAddOn">+{{ item.PriceAddOnDisplay }}</div>
                     {{item.PriceTotalDisplay}}
                     <br>
                     <a 
