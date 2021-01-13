@@ -118,4 +118,21 @@ export default {
 .uk-offcanvas-page .ts-filter.uk-active{
   z-index:999999;
 }
+
+/*Transition animation*/
+  .slide-left-enter-active,
+  .slide-right-leave-active,
+  .slide-left-leave-active,
+  .slide-right-enter-active {
+    transition: 1s;
+  }
+
+  .slide-left-enter,
+  .slide-right-leave-active {
+    transform: translateX(100%);
+  }
+  .slide-left-leave-active,
+  .slide-right-enter {
+    transform: translateX(100vw);
+  }
 </style>

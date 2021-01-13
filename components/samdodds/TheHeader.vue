@@ -26,14 +26,30 @@
           uk-dropdown>
             <ul 
               class="uk-nav uk-dropdown-nav uk-text-left">
-                <li 
-                  v-for="loc in availableLocales"
-                  :key="loc.code"
-                  :class="{'uk-active':locale===loc.code}">
+                <li>
                   <a
-                    :href="switchLocalePath(loc.code)"
-                    @click.stop.prevent="switchLang(loc.code)"
-                    style="vertical-align:middle"><img :src="'/flags/'+loc.code+'.svg'" style="width:30px;margin-right:5px;" /> {{ loc.name }}</a>
+                    href="https://www.samdodds.dk"
+                    style="vertical-align:middle"><img src="/flags/da-dk.svg" style="width:30px;margin-right:5px;" /> Denmark</a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.samdodds.com/fi-fi"
+                    style="vertical-align:middle"><img src="/flags/fi-fi.svg" style="width:30px;margin-right:5px;" /> Suomi</a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.kopshop.no"
+                    style="vertical-align:middle"><img src="/flags/nb-no.svg" style="width:30px;margin-right:5px;" /> Norway</a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.samdodds.com/sv-se"
+                    style="vertical-align:middle"><img src="/flags/sv-se.svg" style="width:30px;margin-right:5px;" /> Sweden</a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.samdodds.com/en"
+                    style="vertical-align:middle"><img src="/flags/en.svg" style="width:30px;margin-right:5px;" /> International</a>
                 </li>
             </ul>
         </div>

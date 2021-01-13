@@ -1,5 +1,6 @@
 <template>
   <section>
+    <nuxt-child />
     <template v-if="$fetchState.pending">
       <div class="uk-container uk-container-large uk-padding-small">
         <content-placeholders :rounded="true">
@@ -27,7 +28,6 @@
           :blok="story.content" 
           :is="story.content.component" />
         <div
-          v-else
           class="uk-container uk-container-large uk-padding-small">
           <div
             class="ts-article-list uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
@@ -37,7 +37,7 @@
               v-for="article in articles"
               :key="article.Id"
               :article="article"
-              :url="`/extension/a/${article.Id}?cartid=${$route.query.cartid}`"
+              :url="`/extension/${$route.params.id}/a/${article.Id}?cartid=${$route.query.cartid}`"
             />
             <div
               v-if="articles.length<1"
@@ -66,6 +66,7 @@
 </template>
 <script>
 import {mapGetters} from 'vuex'
+import Page from '@/components/Page'
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 
 export default {
@@ -116,7 +117,8 @@ export default {
     }
   },*/
   components:{
-    ArticleCardSimple
+    ArticleCardSimple,
+    Page
   },
   data () {
     return {
