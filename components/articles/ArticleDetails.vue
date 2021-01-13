@@ -362,7 +362,7 @@ export default {
           }else{
             _this.$store.commit('basket/add', response.data)
             if(response.data.CartId && response.data.CartId>0 && response.data.IsMemberPackage){
-              _this.$router.push('/extension/'+_this.$route.params.id+'?cartid='+response.data.CartId)
+              _this.$router.push(_this.localePath('/extension/'+_this.$route.params.id+'?cartid='+response.data.CartId))
             }else{
               UIkit.modal('#offscreen-basket').show();
             }
