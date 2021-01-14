@@ -10,10 +10,8 @@
       id="klarna-checkout"
       class="uk-container uk-padding-remove"
       v-html="klarnahtml.Html"/>
-    <div 
-      v-if="obj"
-      style="display:none;">
-      {{ obj }}
+    <div style="display:none">
+      {{ klarnahtml }}
     </div>
   </section>
 </template>
@@ -91,7 +89,6 @@ export default {
       this.klarnahtml=klarnahtml;
       try{
         var _obj = {currencyCode: process.env.CURRENCY_CODE, purchase: {actionField: this.klarnahtml.Order.actionField, products: this.klarnahtml.Order.products}}
-        this.obj = _obj
         this.$gtm.push({ event: 'paymentThanks', ecommerce: _obj })
       }catch(err){console.log(err)}
     } catch (err) {
