@@ -118,7 +118,9 @@ export default {
   }
   & hr {
     margin: 3px 0 0 0;
-  }
+    height: 1px;
+    background-color: #bbb;
+    border: none;  }
 }
 .price-container {
   align-self: end;
@@ -135,6 +137,7 @@ export default {
   font-size: 1.0rem;
   line-height: 1.0;
   font-weight:bold;
+  text-transform: capitalize;
 }
 .orig-price{
   color:$global-color;
