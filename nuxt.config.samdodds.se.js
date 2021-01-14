@@ -108,7 +108,7 @@ export default {
       baseUrl: 'https://www.samdodds.com',
       detectBrowserLanguage: {
         useCookie: true,
-        alwaysRedirect: true,
+        alwaysRedirect: false,
         cookieKey: 'i18n_redirected',
         onlyOnRoot: true,  // recommended
       },
@@ -117,30 +117,36 @@ export default {
       locales: [
         {
           code: 'en',
+          domain: process.env.NODE_ENV !== 'production'?'localhost:3000':'https://www.samdodds.com/',
           iso: 'en',
           name: 'International (english)'
         },
         {
           code: 'sv-se',
+          domain: process.env.NODE_ENV !== 'production'?'localhost:3000':'https://www.samdodds.com/',
           iso: 'sv',
           name: 'Sweden'
         },
         {
           code: 'nb-no',
+          domain: process.env.NODE_ENV !== 'production'?'localhost:3000':'https://www.kopshop.no/',
           iso: 'nb',
           name: 'Norway'
         },
         {
           code: 'da-dk',
+          domain: process.env.NODE_ENV !== 'production'?'localhost:3000':'https://www.samdodds.dk/',
           iso: 'da',
           name: 'Denmark'
         },
         {
           code: 'fi-fi',
+          domain: process.env.NODE_ENV !== 'production'?'localhost:3000':'https://www.samdodds.com/',
           iso: 'fi',
           name: 'Finland'
         }
       ],
+      differentDomains: true,
       seo:false
     }
     ],
