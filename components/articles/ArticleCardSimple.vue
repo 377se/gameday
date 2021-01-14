@@ -39,7 +39,7 @@
               <div 
                 v-if="memberprices"
                 class="your-price">
-                Medlem {{ article.DiscountedPriceDisplay }}
+                {{ $getCMSEntry(global_labels,'article_details_member', 'Medlem') }} {{ article.DiscountedPriceDisplay }}
               </div>
               <div 
                 class="orig-price"
