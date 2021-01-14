@@ -10,7 +10,7 @@
         style="outline:0;"
         uk-navbar>
 
-        <div class="uk-navbar-left">
+        <div class="uk-navbar-left uk-flex-nowrap">
           <TheHamburger/>
           <nuxt-link 
             class="uk-navbar-item uk-margin-small-left uk-logo" 
