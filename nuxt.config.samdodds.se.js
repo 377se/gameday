@@ -147,6 +147,9 @@ export default {
     ]
   },
   pwa: {
+    workbox:{
+      enabled: false
+    },
     meta:{
       name: 'SamDodds',
       description: 'SamDodds.com',

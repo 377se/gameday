@@ -89,7 +89,7 @@ export default {
         this.$gtm.push({ event: 'paymentThanks', ecommerce: _obj })
       }catch(err){console.log(err)}
     } catch (err) {
-      this.klarnahtml={Ordernumber:'', Html: '<p>Din order är nu hos oss. Var vänlig kolla din mail och se så att du fått en orderbekräftelse.</p>'}
+      this.klarnahtml={Ordernumber:'', Html: '<div class="uk-container uk-padding">Din order är nu hos oss. Var vänlig kolla din mail och se så att du fått en orderbekräftelse.</div>'}
       console.log(err);
     }
     try{
