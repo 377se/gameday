@@ -141,6 +141,7 @@ export default {
   }
   > li > a{
     color:#fff !important;
+    font-family: $base-heading-font-family;
   }
 }
 
