@@ -107,7 +107,7 @@ export default {
     display: inline-block;
     vertical-align: top;
     font-size: 0.9rem;
-    line-height: 1.2;
+    line-height: 1.8;
     @media (max-width: 420px) {
       overflow: hidden;
       text-overflow: ellipsis;
