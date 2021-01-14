@@ -10,9 +10,6 @@
       id="klarna-checkout"
       class="uk-container uk-padding-remove"
       v-html="klarnahtml.Html"/>
-    <div style="display:none">
-      {{ klarnahtml }}
-    </div>
   </section>
 </template>
 <script>
@@ -92,6 +89,7 @@ export default {
         this.$gtm.push({ event: 'paymentThanks', ecommerce: _obj })
       }catch(err){console.log(err)}
     } catch (err) {
+      this.klarnahtml={Ordernumber:'', Html: '<p>Din order är nu hos oss. Var vänlig kolla din mail och se så att du fått en orderbekräftelse.</p>'}
       console.log(err);
     }
     try{
