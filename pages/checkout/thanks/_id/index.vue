@@ -86,7 +86,7 @@ export default {
   async fetch() {
     var _this = this;
     try {
-      const url = `/webapi/klarnacheckout3/GetKlarnaAcknowledge?id=${this.$route.params.id}&iso=null`;
+      const url = `/webapi/klarnacheckout3/GetKlarnaAcknowledge?id=${this.$route.params.id}`;
       const klarnahtml = await this.$axios.$get(url);
       this.klarnahtml=klarnahtml;
       try{
