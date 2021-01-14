@@ -5,23 +5,16 @@
       <div 
         class="uk-flex uk-grid uk-grid-small uk-grid-stack" 
         uk-grid>
-        <div class="uk-flex-last uk-flex-first@m uk-width-expand@m uk-width-1-2@s">                  
+        <div class="uk-flex-last uk-width-expand@m uk-width-1-2@s">       
+          <h3 class="uk-h4">&nbsp;</h3>           
           <div class="uk-margin">
-            <nuxt-link :to="localePath('/')">
-              <img 
-                style="width:100px;"
-                src="/sites/samdodds/samdodds-logo.png" 
-                alt="Sam Dodds">
-            </nuxt-link>
+            <img :src="'https://cdn.klarna.com/1.0/shared/image/generic/badge/'+this.$i18n.locale.replace('-','_').replace('en','en_gb')+'/checkout/long-white.png?width=720'" alt="Klarna">
           </div>
-          <div class="uk-margin-small">
-            <a href="https://www.instagram.com/samdodds_lfc/" target="_new"><span uk-icon="icon: instagram;ratio:1.5"></span></a>
-            <a href="https://www.youtube.com/channel/UCKO8hvK3uertXw_GFilb0qQ" target="_new"><span uk-icon="icon: youtube;ratio:1.5"></span></a>
-            <a href="https://sv-se.facebook.com/SamDoddsLiverpool" target="_new"><span uk-icon="icon: facebook;ratio:1.5"></span></a>
-          </div>
-          <div class="uk-margin">
-            <img src="https://cdn.klarna.com/1.0/shared/image/generic/badge/da_dk/checkout/short-white.png?width=320" alt="Klarna">
-          </div>    
+          <div class="uk-margin uk-text-right">
+            <img 
+              style="height:30px;width:auto;" 
+              :src="'/delivery_method_'+this.$i18n.locale.replace('-','_').replace('en','en_us')+'.svg'" alt="">
+          </div>   
         </div>
 
         <div class="uk-width-expand@m uk-width-1-2@s">               
@@ -33,6 +26,19 @@
             <li><nuxt-link :to="localeRoute($getCMSEntry(global_labels,'localepath_faq', '/faq'))">{{ $getCMSEntry(global_labels,'footer_faq', 'Vanliga frågor') }}</nuxt-link></li>
           </ul>
         </div>
+
+        <div class="uk-width-1-1 uk-width-expand@m uk-width-1-2@s">               
+          <h3 class="uk-h4">{{ $getCMSEntry(global_labels,'footer_header_about_us', 'Om Supportersplace') }}</h3>
+          <ul class="uk-list uk-text-small">
+             <li><nuxt-link :to="localeRoute($getCMSEntry(global_labels,'localepath_corporate_information', '/foretagsinformation'))">{{ $getCMSEntry(global_labels,'footer_company_information', 'Företagsinformation') }}</nuxt-link></li>
+          </ul>
+          <div class="uk-margin-medium uk-bottom-padding-large">
+            <a href="https://www.instagram.com/samdodds_lfc/" target="_new"><span uk-icon="icon: instagram;ratio:1.5"></span></a>
+            <a href="https://www.youtube.com/channel/UCKO8hvK3uertXw_GFilb0qQ" target="_new"><span uk-icon="icon: youtube;ratio:1.5"></span></a>
+            <a href="https://sv-se.facebook.com/SamDoddsLiverpool" target="_new"><span uk-icon="icon: facebook;ratio:1.5"></span></a>
+          </div>
+        </div>
+
 
         <div class="uk-width-expand@m uk-width-1-2@s">               
           <h3 class="uk-h4">{{ $getCMSEntry(global_labels,'footer_header_about_us', 'Om Sam Dodds') }}</h3>
