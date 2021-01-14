@@ -5,7 +5,7 @@
       class="uk-navbar-container uk-navbar uk-margin header uk-margin-remove-bottom uk-light" 
       uk-navbar>
 
-      <div class="uk-navbar-left">
+      <div class="uk-navbar-left uk-flex-nowrap">
         <TheHamburger/>
         <nuxt-link 
           class="uk-navbar-item uk-padding-small uk-logo" 
