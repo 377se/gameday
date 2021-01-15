@@ -4,7 +4,7 @@
     <div 
       v-if="guidok.StatusId==0"
       class="uk-container uk-padding-small">
-      <h3>Återställ ditt lösenord</h3>
+      <h3>{{ $getCMSEntry(labels,'reset_your_password', 'Återställ ditt lösenord') }}</h3>
       <form 
         v-if="!success"
         @submit.prevent="forgotten">
@@ -12,7 +12,7 @@
 
           <div  
             class="uk-margin">
-            <label class="uk-form-label">Lösenord</label>
+            <label class="uk-form-label">{{ $getCMSEntry(labels,'password', 'Lösenord') }}</label>
             <div class="uk-form-controls">
               <input 
                 v-model="pwd"
@@ -21,7 +21,7 @@
                 name="pwd"
                 required>
             </div>
-            <label class="uk-form-label">Repetera lösenordet</label>
+            <label class="uk-form-label">{{ $getCMSEntry(labels,'repeat_password', 'Repetera lösenordet') }}</label>
             <div class="uk-form-controls">
               <input 
                 v-model="repeatpwd"
@@ -41,10 +41,10 @@
             <ButtonSubmit 
               :is-submitting="isSubmitting"
               theme="uk-button-primary"
-              button-text="Spara"
+              :button-text="$getCMSEntry(labels,'save', 'Spara')"
               :is-submit="true"/>
           </div>
-          
+
         </fieldset>
       </form>
       <div 
@@ -67,6 +67,8 @@
 <script>
 import Alert from '@/components/Alert'
 import ButtonSubmit from '@/components/ButtonSubmit'
+import { mapGetters } from 'vuex'
+
 export default {
   head () {
     return {
@@ -90,19 +92,29 @@ export default {
       ]
     }
   },
+  async fetch () {
+    try{
+      let [storyblok] = await Promise.all([
+          this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+this.$i18n.locale +"&datasource=fe-labels-forgotten-password&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
+      ]);
+      this.labels = storyblok.datasource_entries
+    }catch(error){
+      console.log(error);
+    }
+  },
   components: {
     Alert,
     ButtonSubmit
   },
   data () {
     return { 
-      labels: {},
       pwd: '',
       repeatpwd:'',
       guidok:{StatusId:0, Message:''},
       errors: [],
       success: false,
-      isSubmitting: false 
+      isSubmitting: false,
+      labels: []
     }
   },
   watch:{
