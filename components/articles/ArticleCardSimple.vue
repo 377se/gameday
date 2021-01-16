@@ -19,7 +19,7 @@
             <span>{{ article.HeadCategory }}</span>
             <br>
             <span class="article-name">{{ article.Name }}</span>
-            <hr>
+
           </div>
           <div class="uk-padding-remove-top uk-text-small price-container">
             <template
@@ -92,60 +92,19 @@ export default {
 
 .vertical-spreader {
   display: grid;
-  padding: 10px;
+  padding: 8px;
 }
 .head-category{
-  align-self: start;
-  color: #444;
-  font-family: $base-heading-font-family;
-  font-size: 1.0rem;
-  line-height: 1;
-  max-height: 2rem;
-  & > .article-name{
-    color: #000;
-    font-family: $global-font-family;
-    display: inline-block;
-    vertical-align: top;
-    font-size: 0.9rem;
-    line-height: 1.1;
-    margin-top: 4px;
-    @media (max-width: 420px) {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      width: 125px;
-    }
-  }
-  & hr {
-    margin: 3px 0 0 0;
-    height: 1px;
-    background-color: #bbb;
-    border: none;  }
+  @include head-category; /* styling inside assets/scss/mixins */
 }
 .price-container {
-  align-self: end;
-  height: 65px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  @include price-container; /* styling inside assets/scss/mixins */
 }
-
 .your-price{
-  color: $discounted-price-color;
-  font-family: $base-heading-font-family;
-  margin-top: 0.3rem;
-  font-size: 1.0rem;
-  line-height: 1.0;
-  font-weight:bold;
-  text-transform: capitalize;
+  @include your-price; /* styling inside assets/scss/mixins */
 }
 .orig-price{
-  color:$global-color;
-  font-family: $base-heading-font-family;
-  margin-top: 0.2rem;
-  line-height: 1.0;
-  font-size: 1.0rem;
-  font-weight:bold;
+  @include orig-price; /* styling inside assets/scss/mixins */
 }
 .line-through{
   text-decoration:line-through;
@@ -163,12 +122,12 @@ export default {
 .label-article{
   font-size:0.8rem;
   line-height:1;
-  padding: 8px 8px;
+  padding: 2.5% 2.5%;
   position:absolute;
-  min-width:60px;
+  min-width:23%;
   text-align:center;
   position:absolute;
-  top:20px;
+  bottom:11px;
   left:0;
 }
 .label-campaign, .label-member-package{

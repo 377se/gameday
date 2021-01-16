@@ -133,7 +133,8 @@ export default {
   ],
   styleResources: {
     scss: [
-    './assets/scss/vars.scss'
+    './assets/scss/vars.scss',
+    './assets/scss/mixins.scss'
     ]
   },
   pwa: {

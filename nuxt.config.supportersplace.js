@@ -153,7 +153,8 @@ export default {
   ],
   styleResources: {
     scss: [
-    './assets/scss/vars.supportersplace.scss'
+    './assets/scss/vars.supportersplace.scss',
+    './assets/scss/mixins.supportersplace.scss'
     ]
   },
   pwa: {

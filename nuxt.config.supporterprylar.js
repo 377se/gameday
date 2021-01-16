@@ -132,7 +132,8 @@ export default {
   ],
   styleResources: {
     scss: [
-    './assets/scss/vars.supporterprylar.scss'
+    './assets/scss/vars.supporterprylar.scss',
+    './assets/scss/mixins.supporterprylar.scss'
     ]
   },
   pwa: {

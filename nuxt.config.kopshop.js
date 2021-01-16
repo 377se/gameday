@@ -122,7 +122,8 @@ export default {
   ],
   styleResources: {
     scss: [
-    './assets/scss/vars.samdodds.scss'
+    './assets/scss/vars.samdodds.scss',
+    './assets/scss/mixins.samdodds.scss'
     ]
   },
   pwa: {
