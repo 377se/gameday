@@ -75,24 +75,22 @@ export default {
       }
     })
   },
-  async asyncData (context) {
+  async fetch () {
     // Check if we are in the editor mode
-    let version = context.query._storyblok || context.isDev ? 'draft' : 'published'
+    let version = this.$nuxt.context.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
     // Load the JSON from the API
     try{
     const [c, s] = await Promise.all([
-        await context.app.$axios.$get(
+        await this.$nuxt.context.app.$axios.$get(
           '/webapi/'+this.$i18n.locale+'/Coins/GetCoins'
         ),
-        await context.app.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}/my-account/coins`, {
+        await this.$nuxt.context.app.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}/my-account/coins`, {
           version: version,
-          cv: context.store.getters.version
+          cv: this.$nuxt.context.store.getters.version
         })
       ]);
-      return {
-        coins: c,
-        story: s.data.story
-      };
+      this.coins = c
+      this.story = s.data.story
     } catch (err) {
       console.log(err);
       console.log(err.request);

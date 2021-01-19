@@ -35,14 +35,14 @@ export default {
       order: {}
     };
   },
-  async asyncData({ app, route }) {
+  async fetch() {
     try {
       const url = `/webapi/${this.$i18n.locale}/Order/GetOrderDetails?orderId=${
-        route.params.id
+        this.$route.params.id
       }`;
       const order = await app.$axios.$get(url);
 
-      return { order };
+      this.order = order
     } catch (err) {
       console.log(err);
     }

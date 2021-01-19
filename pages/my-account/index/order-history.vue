@@ -83,16 +83,14 @@ export default {
   mounted(){
 
   },
-  async asyncData (context) {
+  async fetch () {
     try {
       const [o] = await Promise.all([
-        await context.app.$axios.$get(
+        await this.$nuxt.context.app.$axios.$get(
           '/webapi/'+this.$i18n.locale+'/Order/GetOrderlist'
         )
       ]);
-      return {
-        orders: o
-      };
+        this.orders = o
     } catch (err) {
       console.log(err);
       console.log(err.request);

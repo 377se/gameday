@@ -77,16 +77,14 @@ export default {
       })
     }
   },
-  async asyncData (context) {
+  async fetch () {
     try {
       const [c] = await Promise.all([
-        await context.app.$axios.$get(
+        await this.$nuxt.context.app.$axios.$get(
           '/webapi/'+this.$i18n.locale+'/Customer/GetCustomer'
         )
       ]);
-      return {
-        cust: c
-      };
+      this.cust =  c
     } catch (err) {
       console.log(err);
       console.log(err.request);
