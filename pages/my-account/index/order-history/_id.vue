@@ -1,19 +1,54 @@
 <template>
-  <section>
-    <div class="uk-container uk-padding-small">
-      <h3>Order for orderid {{ route.params.id }} will be shown here.</h3>
-    </div>
-  </section>
+  <OrderDetails v-bind:order="order"></OrderDetails>
 </template>
 <script>
-export default {
-  name: 'Child',
-  validate ({ params }) {
-    console.log('here I am')
-    return true
-  }
-}
-</script>
-<style lang="scss">
+import OrderDetails from "@/components/orders/OrderDetails"; 
 
+export default {
+  head () {
+    return {
+      title: "Orderdetaljer",
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: "Orderdetaljer"
+        },
+        {
+          hid: 'og:title',
+          name:  'og:title',
+          content:  'Orderdetaljer',
+        },
+        {
+          hid: 'og:description',
+          name:  'og:description',
+          content: 'Orderdetaljer',
+        }
+      ]
+    }
+  },
+  components: {
+    OrderDetails
+  },
+  data() {
+    return {
+      order: {}
+    };
+  },
+  async fetch() {
+    try {
+      const url = `/webapi/${this.$i18n.locale}/Order/GetOrderDetails?orderId=${
+        this.$route.params.id
+      }`;
+      const order = await app.$axios.$get(url);
+
+      this.order = order
+    } catch (err) {
+      console.log(err);
+    }
+  }
+};
+</script>
+
+<style lang="scss">
 </style>
