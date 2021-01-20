@@ -83,7 +83,7 @@ export default {
   },
   methods:{
     async logOut(){
-      await this.$axios.post('webapi/'+this.$i18n.locale+'/Customer/PostLogout')
+      await this.$axios.post('webapi/Customer/PostLogout')
       this.$cookies.set('cid', null)
       this.$store.commit('setCid', null)
       this.$router.push(this.$root.context.app.localePath('/'))

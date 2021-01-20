@@ -115,11 +115,11 @@ export default {
       defaultLocale: 'sv-se',
       strategy: 'prefix',
       locales: [
-        {
+        /*{
           code: 'en',
           iso: 'en',
           name: 'International (english)'
-        },
+        },*/
         {
           code: 'sv-se',
           iso: 'sv',

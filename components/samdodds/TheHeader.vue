@@ -46,11 +46,11 @@
                     href="https://www.samdodds.com/sv-se"
                     style="vertical-align:middle"><img src="/flags/sv-se.svg" style="width:30px;margin-right:5px;" /> Sweden</a>
                 </li>
-                <li>
+                <!--li>
                   <a
                     href="https://www.samdodds.com/en"
                     style="vertical-align:middle"><img src="/flags/en.svg" style="width:30px;margin-right:5px;" /> International</a>
-                </li>
+                </li-->
             </ul>
         </div>
         <nuxt-link
