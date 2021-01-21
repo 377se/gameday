@@ -89,7 +89,8 @@ export default {
     }
   },
   beforeRouteLeave(to, from, next){
-    try{
+  try{
+      this.errors = []
       //Iterate through each object field, key is name of the object field`
       let _this = this
       Object.keys(_this.form).forEach(function(key,index) {
