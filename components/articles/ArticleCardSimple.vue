@@ -118,9 +118,12 @@ export default {
 }
 .article-image{
   position:relative;
+  padding: 3px;
 }
 .label-article{
-  font-size:0.8rem;
+  font-family: $base-heading-font-family;
+  font-weight: bolder;
+  font-size:0.75rem;
   line-height:1;
   padding: 2.5% 2.5%;
   position:absolute;
@@ -128,7 +131,7 @@ export default {
   text-align:center;
   position:absolute;
   bottom:11px;
-  left:0;
+  left:-7px;
 }
 .label-campaign, .label-member-package{
   background: yellow;

@@ -88,15 +88,15 @@ img {
   z-index: 10;
 }
 .article-images .label-article{
-  font-size: 1em;
+  font-size: 1.15em;
   line-height:1;
-  padding: 2.5% 2.5%;
+  padding: 1.7% 2.5%;
   position: absolute;
   height: 1em;
   min-width:20%;
   text-align:center;
   top:11px;
-  left:0;
+  left:-7px;
   z-index: 1;
 }
 .label-campaign, .label-member-package{
