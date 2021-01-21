@@ -15,12 +15,12 @@
               <div class="team-and-goals"> <!-- HOME-TEAM -->
                 <div v-if="!lastGame.IsAwayGame" class="team"><img :src="lastGame.LiverpoolCrest" /><p>{{ homeTeam }}</p></div>
                 <div v-else class="team"><img :src="lastGame.OpponentCrest" /><p>{{ lastGame.Opponent}}</p></div>
-                <div v-if="!lastGame.IsAwayGame" class="goals"><p>{{ lastGame.HomeGoals }}</p></div>
-                <div v-else class="goals"><p>{{ lastGame.AwayGoals }}</p></div>
-              </div>
-              <div class="team-and-goals"> <!-- AWAY-TEAM -->
                 <div v-if="!lastGame.IsAwayGame" class="goals"><p>{{ lastGame.AwayGoals }}</p></div>
                 <div v-else class="goals"><p>{{ lastGame.HomeGoals }}</p></div>
+              </div>
+              <div class="team-and-goals"> <!-- AWAY-TEAM -->
+                <div v-if="!lastGame.IsAwayGame" class="goals"><p>{{ lastGame.HomeGoals }}</p></div>
+                <div v-else class="goals"><p>{{ lastGame.AwayGoals }}</p></div>
                 <div v-if="!lastGame.IsAwayGame" class="team"><img :src="lastGame.OpponentCrest" /><p>{{ lastGame.Opponent}}</p></div>
                 <div v-else class="team"><img :src="lastGame.LiverpoolCrest" /><p>{{ homeTeam }}</p></div>
               </div>
