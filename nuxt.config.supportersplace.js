@@ -106,7 +106,6 @@ export default {
     }],
     ['nuxt-i18n',
       {
-        baseUrl: 'https://supportersplace.com',
         detectBrowserLanguage: {
           useCookie: true,
           alwaysRedirect: true,

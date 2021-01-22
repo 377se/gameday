@@ -105,7 +105,6 @@ export default {
     }],
     ['nuxt-i18n',
     {
-      baseUrl: 'https://www.samdodds.com',
       detectBrowserLanguage: {
         useCookie: true,
         alwaysRedirect: true,
