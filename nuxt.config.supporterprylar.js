@@ -89,10 +89,6 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
-    ['@netsells/nuxt-hotjar', { 
-      id: '1686545', 
-      sv: '',
-    }],
     // Doc: https://axios.nuxtjs.org/usage
     ['@dansmaculotte/nuxt-zendesk',
     { 

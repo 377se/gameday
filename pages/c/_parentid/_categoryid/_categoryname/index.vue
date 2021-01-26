@@ -1,16 +1,22 @@
 <template>
   <section class="uk-position-relative">
-    <component 
-      v-if="story.content.component" 
-      :key="story.content._uid" 
-      :blok="story.content" 
-      :is="story.content.component" />
-    <div
-      v-else
-      class="uk-container uk-container-large uk-padding-small">
-      <ArticleTeamListByCategory 
-        :sb="story.content.component?true:false"/>
-    </div>
+    <template
+      v-if="$fetchState.pending"
+    ></template>
+    <template
+      v-else>
+      <component 
+        v-if="story.content.component" 
+        :key="story.content._uid" 
+        :blok="story.content" 
+        :is="story.content.component" />
+      <div
+        v-else
+        class="uk-container uk-container-large uk-padding-small">
+        <ArticleTeamListByCategory 
+          :sb="story.content.component?true:false"/>
+      </div>
+    </template>
   </section>
 </template>
 <script>
@@ -36,7 +42,7 @@ export default {
     }
 
   },
-  fetchDelay:0,
+  fetchDelay: 0,
   activated() {
     if (this.$fetchState.timestamp <= Date.now() - 600000) {// Call fetch again if last fetch more than 60 sec ago
       this.$fetch()
