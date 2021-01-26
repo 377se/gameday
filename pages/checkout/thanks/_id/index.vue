@@ -2,7 +2,9 @@
   <section>
     <template
       v-if="$fetchState.pending"
-    ></template>
+    >
+      <div>Loading klarna...</div>
+    </template>
     <template
       v-else>
       <div
