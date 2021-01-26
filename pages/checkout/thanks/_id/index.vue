@@ -1,16 +1,22 @@
 <template>
   <section>
-    <div
-      v-if="klarnahtml" 
-      class="uk-container uk-text-center">
-      <h1>{{ klarnahtml.Ordernumber }}</h1>
-      <div class="uk-container" style="padding-left:20px;padding-right:20px;"><h3>Tack!</h3><p>Din order är nu hos oss. Var vänlig kolla din mail och se så att du fått en orderbekräftelse.</p></div>
-    </div>
-    <!--div 
-      v-if="klarnahtml"
-      id="klarna-checkout"
-      class="uk-container uk-padding-remove"
-      v-html="klarnahtml.Html"/-->
+    <template
+      v-if="$fetchState.pending"
+    ></template>
+    <template
+      v-else>
+      <div
+        v-if="klarnahtml" 
+        class="uk-container uk-text-center">
+        <h1>{{ klarnahtml.Ordernumber }}</h1>
+        <div class="uk-container" style="padding-left:20px;padding-right:20px;"><h3>Tack!</h3><p>Din order är nu hos oss. Var vänlig kolla din mail och se så att du fått en orderbekräftelse.</p></div>
+      </div>
+      <div 
+        v-if="klarnahtml"
+        id="klarna-checkout"
+        class="uk-container uk-padding-remove"
+        v-html="klarnahtml.Html"/>
+    </template>
   </section>
 </template>
 <script>
@@ -60,7 +66,7 @@ export default {
       console.log(err)
     }
     try{
-      /*var checkoutContainer = document.getElementById('klarna-checkout')
+      var checkoutContainer = document.getElementById('klarna-checkout')
       var scriptsTags = checkoutContainer.getElementsByTagName('script')
       // This is necessary otherwise the scripts tags are not going to be evaluated
       for (var i = 0; i < scriptsTags.length; i++) {
@@ -70,7 +76,7 @@ export default {
           newScriptTag.text = scriptsTags[i].text
           parentNode.removeChild(scriptsTags[i])
           parentNode.appendChild(newScriptTag)
-      }*/
+      }
     }catch(err){
       console.log(err)
     }
