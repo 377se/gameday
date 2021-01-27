@@ -31,7 +31,8 @@ import editorial_youtube from '@/components/editorial/Youtube'
 import editorial_quote from '@/components/editorial/Quote'
 import image_list from '@/components/editorial/ImageList'
 
-import GameCenterPromo from '@/components/samdodds/gamecenter/GameCenterPromo'
+import GameCenterLatestNext from '@/components/samdodds/gamecenter/GameCenterLatestNext'
+import GameCenterResultContest from '@/components/samdodds/gamecenter/GameCenterResultContest'
 
 
 export default {
@@ -53,7 +54,8 @@ export default {
     editorial_youtube,
     editorial_quote,
     image_list,
-    GameCenterPromo
+    GameCenterLatestNext,
+    GameCenterResultContest
   },
   props: {
     blok: {

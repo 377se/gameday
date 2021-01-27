@@ -14,7 +14,8 @@
 <script>
 import Page from '@/components/Page'
 import TextContent from '@/components/TextContent'
-import GameCenterPromo from '@/components/samdodds/gamecenter/GameCenterPromo'
+import GameCenterLatestNext from '@/components/samdodds/gamecenter/GameCenterLatestNext'
+import GameCenterResultContest from '@/components/samdodds/gamecenter/GameCenterResultContest'
 
 export default {
     head () {
@@ -42,7 +43,8 @@ export default {
   components: {
     Page,
     TextContent,
-    GameCenterPromo
+    GameCenterLatestNext,
+    GameCenterResultContest
   },
   data () {
     return { story: { content: {SEO:{title:'',description:''}} } }
