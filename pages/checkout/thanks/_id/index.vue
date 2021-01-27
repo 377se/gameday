@@ -14,7 +14,7 @@
         <div class="uk-container" style="padding-left:20px;padding-right:20px;"><h3>Tack!</h3><p>Din order är nu hos oss. Var vänlig kolla din mail och se så att du fått en orderbekräftelse.</p></div>
       </div>
       <div 
-        v-if="klarnahtml"
+        v-if="false && klarnahtml"
         id="klarna-checkout"
         class="uk-container uk-padding-remove"
         v-html="klarnahtml.Html"/>
@@ -55,6 +55,7 @@ export default {
   mounted(){
     try{
       //remove voucher-header and clear localStorage, if set
+      alert('mounted')
       if(localStorage.voucher!=undefined){
         try{
           this.voucher = null
@@ -64,9 +65,12 @@ export default {
           console.log(err)
         }
       }
+      this.loadScripts()
     }catch(err){
       console.log(err)
     }
+  },
+  loadScripts(){
     try{
       var checkoutContainer = document.getElementById('klarna-checkout')
       var scriptsTags = checkoutContainer.getElementsByTagName('script')
@@ -82,10 +86,6 @@ export default {
     }catch(err){
       console.log(err)
     }
-    try{
-      var _this = this
-      this.$gtm.push({ event: 'paymentThanks', ecommerce: _this.obj })
-    }catch(err){console.log(err)}
   },
   async fetch() {
     var _this = this;
@@ -101,6 +101,10 @@ export default {
       this.klarnahtml={Ordernumber:'', Html: '<div class="uk-container" style="padding-left:20px;padding-right:20px;"><h3>Tack!</h3><p>Din order är nu hos oss. Var vänlig kolla din mail och se så att du fått en orderbekräftelse.</p></div>'}
       console.log(err);
     }
+    if(!process.server){
+      this.loadScripts()
+    }
+    
     try{
       //Remove voucher-cookie if there is one
       if(this.$cookies.get('voucherid')!=undefined){

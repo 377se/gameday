@@ -192,9 +192,9 @@
           <div 
             class="uk-padding-small uk-padding-remove-bottom"
             @click="close()">
-            <a
-              :href="localePath('/checkout')"
-              class="uk-button uk-width-1-1 uk-button-primary">{{ $getCMSEntry(global_labels,'basket_to_checkout', 'Till betalning') }}</a>
+            <nuxt-link
+              :to="localePath('/checkout')"
+              class="uk-button uk-width-1-1 uk-button-primary">{{ $getCMSEntry(global_labels,'basket_to_checkout', 'Till betalning') }}</nuxt-link>
           </div>
           <div 
             class="uk-padding-small uk-padding-remove-bottom"

@@ -23,14 +23,56 @@
               :class="{'uk-parent':cat.SubCategoryList.length>0}">
               <nuxt-link
                 v-if="!cat.SubCategoryList.length>0"
-                :to="localePath('/c/0/'+cat.Id+'/'+cat.UrlSafeName)">{{ cat.Name }}</nuxt-link>
-              <a v-else href="#">{{ cat.Name }}</a>
+                :to="localePath('/c/0/'+cat.Id+'/'+cat.UrlSafeName)">
+                <img
+                  v-if="cat.ImageThumb" 
+                  :alt="cat.Name"
+                  :src="cat.ImageThumb" style="width:20px;margin-right:8px;">{{ cat.Name }}</nuxt-link>
+              <a v-else href="#">
+                <img
+                  v-if="cat.ImageThumb" 
+                  :alt="cat.Name"
+                  :src="cat.ImageThumb" style="width:20px;margin-right:8px;">{{ cat.Name }}</a>
                 <ul
                   v-if="cat.SubCategoryList.length>0">
                   <li
                     v-for="(sub, index) in cat.SubCategoryList"
-                    :key="sub.Id">{{ cat.parentId }}<nuxt-link :to="localePath('/c/'+(index>0?cat.Id:0)+'/'+sub.Id+'/'+sub.UrlSafeName)">{{ sub.Name }}</nuxt-link></li>
+                    :key="sub.Id">
+                    <nuxt-link :to="localePath('/c/'+(index>0?cat.Id:0)+'/'+sub.Id+'/'+sub.UrlSafeName)">
+                    <img
+                      v-if="sub.ImageThumb" 
+                      :alt="sub.Name"
+                      :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+sub.ImageThumb" style="width:20px;margin-right:8px;" />
+                    <img
+                      v-else-if="cat.ImageThumb" 
+                      :alt="sub.Name"
+                      :src="cat.ImageThumb" style="width:20px;margin-right:8px;" />{{ sub.Name }}</nuxt-link>
+                  </li>
                 </ul>
+            </li>
+            <li
+              class="uk-parent">
+              <a href="#">{{ $getCMSEntry(global_labels,'menu-brand', 'Varumärke') }}</a>
+              <ul>
+                <li
+                  v-for="brand in brandMenu"
+                  :key="brand.Id">
+                  <nuxt-link
+                    :to="localePath('/varumarke/'+brand.SeoName)">{{ brand.Name }}</nuxt-link>
+                </li>
+              </ul>
+            </li>
+            <li
+              class="uk-parent">
+              <a href="#">{{ $getCMSEntry(global_labels,'menu-producttypes', 'Produkttyper') }}</a>
+              <ul>
+                <li
+                  v-for="brand in productTypeMenu"
+                  :key="brand.GarmentId">
+                  <nuxt-link
+                    :to="localePath('/produkttyp/'+brand.GarmentId+'/'+brand.SeoName)">{{ brand.Name }}</nuxt-link>
+                </li>
+              </ul>
             </li>
           </ul>
         </div>
@@ -62,7 +104,10 @@ export default {
   },
   computed: {
     ...mapGetters({
-      global_labels:'labels'})
+      global_labels:'labels',
+      brandMenu: 'brandMenu',
+      productTypeMenu: 'productTypeMenu'
+    })
   },
   watch:{
     $route (to, from){
@@ -87,6 +132,11 @@ export default {
   width: 310px;
   height: 100%;
 }
+
+#offscreen-menu .uk-nav ul li > a{ 
+  padding:6px;
+}
+
 
 .uk-offcanvas-bar{
   padding:0;
