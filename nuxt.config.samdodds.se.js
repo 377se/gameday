@@ -55,8 +55,8 @@ export default {
    */
   plugins: [
     {src: '~/plugins/jsonld.js'},
-    {src: '~/plugins/vue-placeholders.js'},
     {src: '~/plugins/samdodds.js'},
+    {src: '~/plugins/vue-placeholders.js'},
     {src: "~/plugins/uikit.js", ssr: false },
     {src: '~/plugins/axios'},
     {src: '~/plugins/get'},

@@ -13,7 +13,6 @@
           style="color:#fff;top:27px;" 
           type="button" uk-close></button>
       </div>
-      
       <div>
         <div>
           <ul class="uk-padding-small uk-nav uk-nav-default uk-nav-parent-icon" uk-nav>

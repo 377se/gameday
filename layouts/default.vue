@@ -3,10 +3,12 @@
     <TheRollingText />
     <TheHeader/>
     <nuxt keep-alive/>
-    <OffscreenMenu/>
-    <OffscreenProductTypeMenu/>
-    <OffscreenBrandMenu/>
-    <OffscreenBasket/>
+    <client-only>
+      <OffscreenMenu/>
+      <OffscreenProductTypeMenu/>
+      <OffscreenBrandMenu/>
+      <OffscreenBasket/>
+    </client-only>
     <TheFooter/>
   </div>
 </template>
