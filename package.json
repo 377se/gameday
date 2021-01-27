@@ -12,7 +12,7 @@
     "dev:samdodds": "nuxt --config-file nuxt.config.samdodds.js",
     "dev:samdodds-se": "nuxt --config-file nuxt.config.samdodds.se.js",
     "dev:kopshop": "nuxt --config-file nuxt.config.kopshop.js",
-    "build": "nuxt build --config-file nuxt.config.samdodds.sejs",
+    "build": "nuxt build --config-file nuxt.config.samdodds.se.js",
     "build:gameday-fi": "nuxt build --config-file nuxt.config.gameday.fi.js",
     "build:supportersplace": "nuxt build --config-file nuxt.config.supportersplace.js",
     "build:laxen": "nuxt build --config-file nuxt.config.laxen.js",
