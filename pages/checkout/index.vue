@@ -1,30 +1,22 @@
 <template>
   <section>
-    <template
-      v-if="$fetchState.pending"
-    >
-      <div>Loading klarna...</div>
-    </template>
-    <template
-      v-else>
-      <div 
-        v-if="$i18n.locale=='en'"
-        class="uk-container uk-padding-small">
-        <select
-          v-model="chosenCountry"
-          @change="loadKlarna"
-          class="uk-select uk-margin">
-          <option value="null">Choose your country</option>
-          <option
-            v-for="c in countries"
-            v-bind:key="c.Iso"
-            :value="c.Iso">{{ c.CountryName }}</option>
-        </select>
-      </div>
-      <div 
-        id="klarna-checkout"
-        class="uk-container uk-padding-remove"/>
-    </template>
+    <div 
+      v-if="$i18n.locale=='en'"
+      class="uk-container uk-padding-small">
+      <select
+        v-model="chosenCountry"
+        @change="loadKlarna"
+        class="uk-select uk-margin">
+        <option value="null">Choose your country</option>
+        <option
+          v-for="c in countries"
+          v-bind:key="c.Iso"
+          :value="c.Iso">{{ c.CountryName }}</option>
+      </select>
+    </div>
+    <div 
+      id="klarna-checkout"
+      class="uk-container uk-padding-remove"/>
   </section>
 </template>
 <script>
