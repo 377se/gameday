@@ -19,6 +19,11 @@
       id="klarna-checkout-thanks"
       class="uk-container uk-padding-remove"
       v-html="klarnahtml.Html"/>
+    <div 
+      v-if="klarnahtml"
+      style="display:none;"
+      v-html="klarnahtml.Html">
+    </div>
   </section>
 </template>
 <script>
