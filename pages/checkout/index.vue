@@ -3,7 +3,7 @@
     <template
       v-if="$fetchState.pending"
     >
-      <div>Loading klarna...</div>
+      <div><br><br><br><br><br><br><br><br></div>
     </template>
     <template
       v-else>
@@ -21,10 +21,10 @@
             :value="c.Iso">{{ c.CountryName }}</option>
         </select>
       </div>
-      <div 
-        id="klarna-checkout"
-        class="uk-container uk-padding-remove"/>
     </template>
+    <div 
+      id="klarna-checkout"
+      class="uk-container uk-padding-remove"/>
   </section>
 </template>
 <script>
@@ -43,15 +43,13 @@ export default {
         const klarnahtml = await this.$axios.$post(url);
 
         this.klarnahtml = klarnahtml;
-        if (!process.server) {
+        if(!process.server){
           this.loadScripts()
         }
       } catch (err) {
         console.log(err);
       }
     }
-    
-
   },
   head () {
     return {

@@ -3,7 +3,7 @@
     <template
       v-if="$fetchState.pending"
     >
-      <div>Loading klarna...</div>
+      <div><br><br><br><br><br><br><br><br></div>
     </template>
     <template
       v-else>
@@ -13,12 +13,10 @@
         <h1>{{ klarnahtml.Ordernumber }}</h1>
         <div class="uk-container" style="padding-left:20px;padding-right:20px;"><h3>Tack!</h3><p>Din order är nu hos oss. Var vänlig kolla din mail och se så att du fått en orderbekräftelse.</p></div>
       </div>
-      <div 
-        v-if="false && klarnahtml"
-        id="klarna-checkout"
-        class="uk-container uk-padding-remove"
-        v-html="klarnahtml.Html"/>
     </template>
+    <div 
+      id="klarna-checkout-thanks"
+      class="uk-container uk-padding-remove"/>
   </section>
 </template>
 <script>
@@ -55,7 +53,6 @@ export default {
   mounted(){
     try{
       //remove voucher-header and clear localStorage, if set
-      alert('mounted')
       if(localStorage.voucher!=undefined){
         try{
           this.voucher = null
@@ -64,15 +61,17 @@ export default {
         }catch(err){
           console.log(err)
         }
+      }if(klarnahtml!=null){
+        this.loadScripts()
       }
-      this.loadScripts()
     }catch(err){
       console.log(err)
     }
   },
   loadScripts(){
     try{
-      var checkoutContainer = document.getElementById('klarna-checkout')
+      var checkoutContainer = document.getElementById('klarna-checkout-thanks')
+      checkoutContainer.innerHTML = this.klarnahtml
       var scriptsTags = checkoutContainer.getElementsByTagName('script')
       // This is necessary otherwise the scripts tags are not going to be evaluated
       for (var i = 0; i < scriptsTags.length; i++) {
