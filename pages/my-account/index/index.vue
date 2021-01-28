@@ -159,9 +159,13 @@ export default {
 
   async fetch () {
     try{
-      let [storyblok] = await Promise.all([
+      let [c, storyblok] = await Promise.all([
+          this.$nuxt.context.app.$axios.$get(
+            '/webapi/'+this.$i18n.locale+'/Customer/GetCustomer'
+          ),
           this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+this.$i18n.locale +"&datasource=fe-labels-myaccount&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
       ]);
+      this.cust =  c
       this.labels = storyblok.datasource_entries
     }catch(error){
       console.log(error);
@@ -244,20 +248,7 @@ export default {
         context.error({ statusCode: res.response.status, message: res.response.data })
       }
     })
-  },
-      async fetch () {
-    try {
-      const [c] = await Promise.all([
-        await this.$nuxt.context.app.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Customer/GetCustomer'
-        )
-      ]);
-      this.cust =  c
-    } catch (err) {
-      console.log(err);
-      console.log(err.request);
-    }
-  },
+  }
 
 }
 

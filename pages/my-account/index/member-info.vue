@@ -38,7 +38,7 @@ export default {
   },
    async fetch () {
     try{
-      let [cust, storyblok] = await Promise.all([
+      let [c, storyblok] = await Promise.all([
         this.$nuxt.context.app.$axios.$get(
         '/webapi/'+this.$i18n.locale+'/Customer/GetCustomer'
         ),
