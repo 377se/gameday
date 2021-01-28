@@ -11,16 +11,13 @@
           <nuxt-link :to="localePath('/my-account/change-password')">{{ $getCMSEntry(labels,'change_password', 'Ändra lösenord') }}</nuxt-link>
         </li>
         <li>
-          <nuxt-link :to="localePath('/my-account/member-info')">{{ $getCMSEntry(labels,'memberInformation', 'Medlemsinformation') }}</nuxt-link>
-        </li>
-        <li>
           <nuxt-link :to="localePath('/my-account/order-history')">{{ $getCMSEntry(labels,'orderHistory', 'Orderhistorik') }}</nuxt-link>
         </li>
         <li>
           <nuxt-link :to="localePath('/my-account/coins')">{{ $getCMSEntry(labels,'coins', 'Coins') }}</nuxt-link>
         </li>
       </ul>
-      <nuxt-child/>
+      <nuxt-child :cust="this.cust"/>
     </div>
   </section>
 </template>
@@ -28,23 +25,29 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex'
 
-
 export default {
    async fetch () {
     try{
-      let [storyblok] = await Promise.all([
+      let [c, storyblok] = await Promise.all([
+          this.$nuxt.context.app.$axios.$get(
+            '/webapi/'+this.$i18n.locale+'/Customer/GetCustomer'
+          ),
           this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+this.$i18n.locale +"&datasource=fe-labels-myaccount&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
       ]);
+      this.cust =  c
       this.labels = storyblok.datasource_entries
+
     }catch(error){
       console.log(error);
     }
   },
   data() {
     return {
-      labels: []
+      labels: [],
+      cust: {},
     }
-  }
+  },
+
 }
 </script>
 <style lang="scss">

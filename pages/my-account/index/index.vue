@@ -22,7 +22,6 @@
     >
 
     <fieldset class="uk-fieldset">
-      <!-- <legend class="uk-legend">{{ $getCMSEntry(labels,'myAccountInfo', 'Mina kontouppgifter') }}</legend> -->
       <h2>{{ $getCMSEntry(labels,'myAccountInfo', 'Mina kontouppgifter') }}</h2>
 
       <div class="uk-margin">
@@ -30,9 +29,9 @@
           <div class="uk-form-controls">
               <input 
               v-model="form.FirstName"
-              class="uk-input uk-form-width-medium" 
+              class="uk-input uk-width-1-3@s" 
               type="text" 
-              :placeholder="cust.FirstName" 
+              :placeholder="$getCMSEntry(labels,'placeholder_new_firstName', 'Skriv in ditt nya förnamn')" 
               name="firstName"
               :disabled="disabled">
           </div>
@@ -43,9 +42,9 @@
           <div class="uk-form-controls">
               <input 
               v-model="form.LastName"
-              class="uk-input uk-form-width-medium" 
+              class="uk-input uk-width-1-3@s" 
               type="text" 
-              :placeholder="cust.LastName" 
+              :placeholder="$getCMSEntry(labels,'placeholder_new_lastName', 'Skriv in ditt nya efternamn')" 
               name="lastName"
               :disabled="disabled">
           </div>
@@ -56,22 +55,23 @@
           <div class="uk-form-controls">
               <input 
               v-model="form.Email"
-              class="uk-input uk-form-width-medium" 
+              class="uk-input uk-width-1-3@s" 
               type="email" 
-              :placeholder="cust.Email" 
+              :placeholder="$getCMSEntry(labels,'placeholder_current_email', 'Skriv in din nuvarande email')" 
               name="email"
               :disabled="disabled">
           </div>
       </div>
+
       <div v-else>
         <div class="uk-margin">
             <label class="uk-form-label">{{ $getCMSEntry(labels,'email', 'Email') }}:</label>
             <div class="uk-form-controls">
                 <input 
                 v-model="form.Email"
-                class="uk-input uk-form-width-medium" 
+                class="uk-input uk-width-1-3@s" 
                 type="email" 
-                :placeholder="$getCMSEntry(labels,'placeholder_new_email', 'Skriv in din nya email.')" 
+                :placeholder="$getCMSEntry(labels,'placeholder_new_email', 'Skriv in din nya email')" 
                 name="email"
                 :disabled="disabled">
             </div>
@@ -81,7 +81,7 @@
             <div class="uk-form-controls">
                 <input 
                 v-model="form.RepeatEmail"
-                class="uk-input uk-form-width-medium" 
+                class="uk-input uk-width-1-3@s" 
                 type="email" 
                 :placeholder="$getCMSEntry(labels,'placeholder_repeat_email', 'Upprepa email')" 
                 name="email"
@@ -113,10 +113,6 @@
 
     </fieldset>
     </form>
-
-
-
-      <!-- {{ cust }} -->
 
   </section>
 </template>
@@ -167,6 +163,12 @@ export default {
       ]);
       this.cust =  c
       this.labels = storyblok.datasource_entries
+
+      this.form.FirstName = this.cust.FirstName
+      this.form.LastName = this.cust.LastName
+      this.form.Email = this.cust.Email
+      this.form.RepeatEmail = this.cust.RepeatEmail
+
     }catch(error){
       console.log(error);
     }
@@ -184,12 +186,20 @@ export default {
         LastName: '',
         Email: '',
         RepeatEmail: '',
-        Message: null,
-        ErrorList: null
       }
     }
   },
-  mounted () {
+  beforeRouteLeave(to, from, next){
+    try{
+      //Iterate through each object field, key is name of the object field`
+      let _this = this
+      Object.keys(_this.form).forEach(function(key,index) {
+        _this.form[key] = ''
+      })
+    }catch(err){console.log(err)}
+    next() 
+  },
+    mounted () {
     this.$storybridge.on(['input', 'published', 'change'], (event) => {
       if (event.action == 'input') {
         if (event.story.id === this.story.id) {
@@ -222,7 +232,7 @@ export default {
         if (response.data.ErrorList.length>0) {
           _this.errors = response.data.ErrorList
         } else {
-          _this.isUpdating=false
+          isUpdating = false
         }
       }).catch(function (error) {
         alert('Error')
