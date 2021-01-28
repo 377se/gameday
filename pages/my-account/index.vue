@@ -17,7 +17,7 @@
           <nuxt-link :to="localePath('/my-account/coins')">{{ $getCMSEntry(labels,'coins', 'Coins') }}</nuxt-link>
         </li>
       </ul>
-      <nuxt-child :cust="this.cust"/>
+      <nuxt-child/>
     </div>
   </section>
 </template>

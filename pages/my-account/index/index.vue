@@ -91,8 +91,10 @@
       </div>
 
           <Alert 
-            v-if="errors.length>0"
+            v-if="errors.length>0 || this.message !== ''"
             :errorlist="errors"
+            :message="message"
+            :alertClass="alertClass"
           />
 
       <button v-if="!isUpdating"
@@ -169,6 +171,7 @@ export default {
       this.form.Email = this.cust.Email
       this.form.RepeatEmail = this.cust.RepeatEmail
 
+
     }catch(error){
       console.log(error);
     }
@@ -177,6 +180,8 @@ export default {
     return { 
       labels: [],
       errors: [],
+      message: '',
+      alertClass: '',
       story: { content: {SEO:{title:'',description:''}} },
       cust: {},
       isUpdating: false,
@@ -230,11 +235,17 @@ export default {
         RepeatEmail: this.form.RepeatEmail
       }).then(function (response) {
         if (response.data.ErrorList.length>0) {
+          _this.message = ''
+          _this.alertClass = 'uk-alert-danger'
           _this.errors = response.data.ErrorList
         } else {
-          isUpdating = false
+          _this.errors = []
+          _this.message = response.data.Message
+          _this.alertClass = 'uk-alert-success'
+          _this.switchForm()
         }
-      }).catch(function (error) {
+      })
+      .catch(function (error) {
         alert('Error')
       })
     },
