@@ -49,30 +49,6 @@
                   </li>
                 </ul>
             </li>
-            <li
-              class="uk-parent">
-              <a href="#">{{ $getCMSEntry(global_labels,'menu-brand', 'Varumärke') }}</a>
-              <ul>
-                <li
-                  v-for="brand in brandMenu"
-                  :key="brand.Id">
-                  <nuxt-link
-                    :to="localePath('/varumarke/'+brand.SeoName)">{{ brand.Name }}</nuxt-link>
-                </li>
-              </ul>
-            </li>
-            <li
-              class="uk-parent">
-              <a href="#">{{ $getCMSEntry(global_labels,'menu-producttypes', 'Produkttyper') }}</a>
-              <ul>
-                <li
-                  v-for="brand in productTypeMenu"
-                  :key="brand.GarmentId">
-                  <nuxt-link
-                    :to="localePath('/produkttyp/'+brand.GarmentId+'/'+brand.SeoName)">{{ brand.Name }}</nuxt-link>
-                </li>
-              </ul>
-            </li>
           </ul>
         </div>
       </div>
