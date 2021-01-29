@@ -41,6 +41,9 @@ export default {
       console.log(error);
     }
   },
+  activated(){
+    this.$fetch()
+  },
   data() {
     return {
       labels: [],
