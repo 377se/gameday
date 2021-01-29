@@ -51,6 +51,9 @@ export default {
       }
     }
   },
+  activated(){
+    this.$fetch()
+  },
   head () {
     return {
       title: 'Checkout',

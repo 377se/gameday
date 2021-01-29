@@ -117,6 +117,9 @@ export default {
       }
     }catch(err){console.log(err)}
  
+  },
+  activated(){
+    this.$fetch()
   }
 }
 </script>
