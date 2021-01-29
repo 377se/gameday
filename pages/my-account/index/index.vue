@@ -107,7 +107,7 @@
 
       <button v-if="isUpdating"
         type="submit"
-        class="uk-button uk-button-default uk-margin-small-top"
+        class="uk-button uk-button-primary uk-margin-small-top"
         @click.prevent="updateAccount()"
         >
         {{ $getCMSEntry(labels,'btn-save', 'Spara') }}
@@ -204,6 +204,8 @@ export default {
       Object.keys(_this.form).forEach(function(key,index) {
         _this.form[key] = ''
       })
+      _this.message = ''
+      _this.errors = []
     }catch(err){console.log(err)}
     next() 
   },

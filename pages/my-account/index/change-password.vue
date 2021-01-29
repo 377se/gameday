@@ -3,14 +3,12 @@
     <div class="uk-container uk-padding-small">
       <h1>{{ $getCMSEntry(labels,'change_password', 'Ändra lösenord') }}</h1>
       <form 
-        v-if="!success"
         method="post"
         @submit.prevent="change">
         <fieldset class="uk-fieldset">
           <div  
             class="uk-margin">
             <!-- CURRENT PASSWORD -->
-            <!-- <label class="uk-form-label">{{ $getCMSEntry(labels,'current_password', 'Nuvarande lösenord') }}</label> -->
             <div class="uk-form-controls">
               <input 
                 v-model="form.current_password"
@@ -21,7 +19,6 @@
                 required>
             </div>
             <!-- NEW PASSWORD -->
-            <!-- <label class="uk-form-label">{{ $getCMSEntry(labels,'new_password', 'Nytt lösenord') }}</label> -->
             <div class="uk-form-controls">
               <input 
                 v-model="form.new_password"
@@ -32,7 +29,6 @@
                 required>
             </div>
             <!-- REPEAT NEW PASSWORD -->
-            <!-- <label class="uk-form-label">{{ $getCMSEntry(labels,'repeat_password', 'Repetera lösenord') }}</label> -->
             <div class="uk-form-controls">
               <input 
                 v-model="form.repeat_password"
@@ -46,8 +42,10 @@
           </div>
 
           <Alert 
-            v-if="errors.length>0"
+            v-if="errors.length>0 || this.message !== ''"
             :errorlist="errors"
+            :message="message"
+            :alertClass="alertClass"
           />
 
           <div class="uk-margin">
@@ -58,12 +56,6 @@
 
         </fieldset>
       </form>
-      <div 
-        v-else>
-        <p>
-          {{ $getCMSEntry(labels,'change_success_message', 'Du har nu ändrat ditt lösenord.') }}
-        </p>
-      </div>
     </div>
   </section>
 
@@ -120,6 +112,9 @@ export default {
     }catch(err){console.log(err)}
     next() 
   },
+  activated(){
+    this.$fetch()
+  },
   data () {
     return {
       form: {
@@ -131,7 +126,8 @@ export default {
       },
       labels: [],
       errors: [],
-      success: false,
+      message: '',
+      alertClass: '',
       isSubmitting: false
     }
   },
@@ -144,12 +140,18 @@ export default {
         RepeatPassword: this.form.repeat_password
       }).then(function (response) {
         if (response.data.ErrorList.length>0) {
-          _this.errors = response.data.ErrorList
+              _this.message = ''
+              _this.alertClass = 'uk-alert-danger'
+              _this.errors = response.data.ErrorList
         } else {
-          _this.success=true
+              _this.errors = []
+              _this.alertClass = 'uk-alert-success'
+              _this.message = response.data.Message
         }
       }).catch(function (error) {
-        alert('Error')
+        // alert('Error')
+        console.log(error)
+        
       })
     }
   },

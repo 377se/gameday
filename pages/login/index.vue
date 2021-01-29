@@ -39,10 +39,12 @@
                   style="color:#8c8c8c">{{ $getCMSEntry(labels,'forgotten_password', 'Glömt ditt lösenord?') }}</nuxt-link></div>
             </div>
 
-            <Alert 
-              v-if="errors.length>0"
-              :errorlist="errors"
-            />
+          <Alert 
+            v-if="errors.length>0 || this.message !== ''"
+            :errorlist="errors"
+            message=""
+            :alertClass="alertClass"
+          />
 
             <div class="uk-margin uk-text-center">
               <ButtonSubmit 

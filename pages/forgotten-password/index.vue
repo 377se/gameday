@@ -23,8 +23,10 @@
           </div>
 
           <Alert 
-            v-if="errors.length>0"
+            v-if="errors.length>0 || this.message !== ''"
             :errorlist="errors"
+            :message="message"
+            :alertClass="alertClass"
           />
 
           <div class="uk-margin uk-text-center">
@@ -92,9 +94,20 @@ export default {
       labels: [],
       email: '',
       errors: [],
+      message: '',
+      alertClass: '',
       success: false,
       isSubmitting: false 
     }
+  },
+  beforeRouteLeave(to, from, next){
+    try{
+      let _this = this
+      _this.email = ''
+      _this.message = ''
+      _this.errors = []
+    } catch(err){console.log(err)}
+    next() 
   },
   watch:{
     "$route.hash"(value) {
@@ -125,11 +138,16 @@ export default {
           try{
             if(res.data.ErrorList!=null && res.data.ErrorList.length>0) 
             {
-              errors = res.data.ErrorList
+              _this.message = ''
+              _this.alertClass = 'uk-alert-danger'
+              _this.errors = res.data.ErrorList
             }
             else 
             {
-              UIkit.notification({message: res.data.Message, status: 'success'})
+              _this.errors = []
+              _this.alertClass = 'uk-alert-success'
+              _this.message = res.data.Message
+              _this.email = ''
             }
           }catch(err){console.log(err)}
         })
