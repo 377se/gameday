@@ -14,10 +14,13 @@
 @mixin hook-pagination-item-hover(){
   color: #fa6900;
 }
-
 @mixin hook-alert-primary(){
   background: lighten(mix(white, $global-secondary-background, 40%), 20%);
   color: $global-secondary-background;
+}
+@mixin hook-alert-success(){
+  background: #caf7d5;
+  color: #109b33;
 }
 
 // 4. Import UIkit.
