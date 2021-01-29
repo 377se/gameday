@@ -28,6 +28,8 @@
   </section>
 </template>
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   async fetch(){
     if(this.$i18n.locale=='en'){
@@ -82,6 +84,16 @@ export default {
       countries: [],
       chosenCountry: null
     };
+  },
+  computed: {
+    ...mapGetters({
+      counter: 'basket/counter'
+    })
+  },
+  watch:{
+    counter(oldQuery, newQuery){
+      this.$fetch()
+    }
   },
   mounted(){
     if(this.klarnahtml!=null){
