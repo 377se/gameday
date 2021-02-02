@@ -74,6 +74,10 @@ export default {
     }catch(err){
       console.log(err)
     }
+    try{
+      var _this = this
+      this.$gtm.push({ event: 'paymentThanks', ecommerce: _this.obj })
+    }catch(err){console.log(err)}
   },
   loadScripts(){
     try{
@@ -100,6 +104,7 @@ export default {
       this.klarnahtml=klarnahtml;
       try{
         var _obj = {currencyCode: process.env.CURRENCY_CODE, purchase: {actionField: this.klarnahtml.Order.actionField, products: this.klarnahtml.Order.products}}
+        this.obj = _obj
         this.$gtm.push({ event: 'paymentThanks', ecommerce: _obj })
       }catch(err){console.log(err)}
     } catch (err) {
