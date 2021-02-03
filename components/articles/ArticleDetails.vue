@@ -167,7 +167,7 @@
           {{$getCMSEntry(global_labels,'article_details_favourite', 'Favorit')}} <span uk-icon="heart"/>
         </button>
 
-        <div class="uk-padding uk-padding-remove-horizontal">
+        <div class="uk-padding uk-padding-remove-horizontal uk-padding-remove-bottom">
           <ul uk-accordion>
             <li class="uk-open">
               <a class="uk-accordion-title" href="#">{{$getCMSEntry(global_labels,'article_details_description', 'Beskrivning')}}</a>
@@ -196,6 +196,44 @@
           </ul>
         </div>
 
+        <div v-if="article.SizeGuide" class="uk-padding-small uk-padding-remove-horizontal uk-padding-remove-bottom">
+          <ul uk-accordion>
+              <li class="uk-open">
+                <a class="uk-accordion-title" href="#">Storleksguide</a>
+                <div class="uk-accordion-content size-guide-grid uk-width-1-1 uk-width-2-3@s" :class="{ sizeguideheading: showSizeGuideHeading, sizeguidenoheading: !showSizeGuideHeading }">
+
+                <div v-if="article.SizeTypeId==1 || article.SizeTypeId==2" class="uk-width-1-1">
+                  <div>
+                    <h4 class="size-guide-item">&nbsp;</h4>
+                  </div>
+                  <div class="size-guide-item uk-width-1-1">Längd</div>
+                  <div class="size-guide-item uk-width-1-1">Bredd</div>
+                </div>
+
+                <div v-else class="uk-width-1-1">
+                  <div class="size-guide-item uk-width-1-1">EU</div>
+                  <div class="size-guide-item uk-width-1-1">UK</div>
+                  <div class="size-guide-item uk-width-1-1">US</div>
+                </div>
+                        <div
+                            v-for="guide in article.SizeGuide"
+                            :key="guide.Value"
+                            class="uk-width-1-1">
+                          <h4 v-if="guide.DisplaySize" class="size-guide-item">{{ guide.DisplaySize }}</h4>
+                          <div
+                            v-for="size in guide.DisplayProperties"
+                            :key="size.SizeName"
+                            class="size-guide-item uk-width-1-1">
+
+                            {{ size.Value }}
+
+                          </div>
+
+                        </div>
+                </div>
+              </li>
+          </ul>
+        </div>
       </section>
 
       <section 
@@ -265,6 +303,7 @@ export default {
         Name: "",
         Images: [],
         SizeList: [],
+        SizeGuide: [],
         Description: "",
         IsOneSize: false,
         TeamName: "",
@@ -287,7 +326,7 @@ export default {
       nameNumber: '',
       relatedarticles: [],
       siteid: process.env.SITE_ID,
-      brand_src:process.env.BRAND_SRC
+      brand_src:process.env.BRAND_SRC,
     }
   },
   jsonld() {
@@ -318,7 +357,10 @@ export default {
   },
   computed: {
     ...mapGetters({
-      global_labels:'labels'})
+      global_labels:'labels'}),
+    showSizeGuideHeading() { 
+      return (this.article.SizeTypeId==1 || this.article.SizeTypeId==2) ? true : false
+    }
   },
   watch: {
     showNameNumber: function(oldQ, newQ){
@@ -455,4 +497,23 @@ export default {
   font-size:1.5rem;
   margin-right:10px;
 }
+
+.size-guide-grid {
+  display: grid;
+  row-gap: 20px;
+  justify-items: flex-start;
+  & h4 {
+    margin: 0;
+  }
+}
+.sizeguidenoheading {
+  grid-template-columns: repeat( 7, 1fr );
+  }
+.sizeguideheading {
+  grid-template-columns: 2fr repeat( 6, 1fr );
+}
+.size-guide-item {
+  border-bottom: 1px solid #000000;
+}
+
 </style>
