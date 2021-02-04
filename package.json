@@ -1,10 +1,6 @@
 {
   "name": "gameday",
   "version": "1.0.0",
-  "engines": {
-    "node": "12.18.3",
-    "npm": "6.14.8"
-  },
   "description": "Gameday.se",
   "author": "Mats Barkemo",
   "private": true,
@@ -16,7 +12,7 @@
     "dev:samdodds": "nuxt --config-file nuxt.config.samdodds.js",
     "dev:samdodds-se": "nuxt --config-file nuxt.config.samdodds.se.js",
     "dev:kopshop": "nuxt --config-file nuxt.config.kopshop.js",
-    "build": "nuxt build --config-file nuxt.config.samdodds.se.js",
+    "build": "nuxt build --config-file nuxt.config.samdodds.js",
     "build:gameday-fi": "nuxt build --config-file nuxt.config.gameday.fi.js",
     "build:supportersplace": "nuxt build --config-file nuxt.config.supportersplace.js",
     "build:laxen": "nuxt build --config-file nuxt.config.laxen.js",
@@ -29,7 +25,7 @@
     "debug:samdodds": "node --inspect node_modules/.bin/nuxt --config-file nuxt.config.samdodds.js",
     "debug:samdodds-se": "node --inspect node_modules/.bin/nuxt --config-file nuxt.config.samdodds.se.js",
     "debug:kopshop": "node --inspect node_modules/.bin/nuxt --config-file nuxt.config.kopshop.js",
-    "start": "nuxt start --config-file nuxt.config.samdodds.se.js",
+    "start": "nuxt start --config-file nuxt.config.samdodds.js",
     "start:gameday-fi": "nuxt start --config-file nuxt.config.gameday.fi.js",
     "start:supportersplace": "nuxt start --config-file nuxt.config.supportersplace.js",
     "start:laxen": "nuxt start --config-file nuxt.config.laxen.js",
