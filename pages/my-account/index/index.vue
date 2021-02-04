@@ -56,7 +56,6 @@
         >
 
         <fieldset class="uk-fieldset">
-          {{ form.AvatarId }}
           <div class="uk-margin-small">
               <label class="uk-form-label">{{ $getCMSEntry(labels,'firstName', 'Förnamn') }}:</label>
               <div class="uk-form-controls">
