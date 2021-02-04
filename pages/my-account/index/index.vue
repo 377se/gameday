@@ -206,7 +206,7 @@ export default {
       ]);
       this.cust =  c
       this.labels = storyblok.datasource_entries
-      this.story = sb.data.story
+      this.story = story.data.story
 
       this.form.FirstName = this.cust.FirstName
       this.form.LastName = this.cust.LastName
@@ -247,13 +247,8 @@ export default {
   },
   beforeRouteLeave(to, from, next){
     try{
-      //Iterate through each object field, key is name of the object field`
-      let _this = this
-      Object.keys(_this.form).forEach(function(key,index) {
-        _this.form[key] = ''
-      })
-      _this.message = ''
-      _this.errors = []
+      this.message = ''
+      this.errors = []
     }catch(err){console.log(err)}
     next() 
   },
