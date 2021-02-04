@@ -8,7 +8,7 @@
   <section class="myAccount">
     <div class="uk-container">
       <div v-if="!this.cust.FirstName && this.cust.FirstName == ''" class="uk-alert-success uk-padding-small uk-margin-medium-bottom">
-              Färdigställ din profil <a href="#my-profile" uk-scroll='{"offset": 140}'>här</a>
+              <a href="#my-profile" uk-scroll='{"offset": 140}'>{{ $getCMSEntry(labels,'topLink-profileUpdate', 'Färdigställ din profil här') }}</a>
       </div>
       <div class="uk-width-1-1 uk-flex uk-flex-stretch uk-flex-center uk-margin-small-bottom">
         <h1 class="uk-width-1-2 uk-margin-remove-bottom">{{ $getCMSEntry(labels,'myAccount', 'Mitt konto') }}</h1>
@@ -29,7 +29,7 @@
         :is="story.content.component" />
       </div>
         <div v-if="this.cust.IsBranchMember" class="uk-margin-small-bottom">
-          Gå direkt till din medlemsinfo <a href="#my-member-section" uk-scroll='{"offset": 140}'>här</a>
+          <a href="#my-member-section" uk-scroll='{"offset": 140}'>{{ $getCMSEntry(labels,'topLink-memberInfo', 'Gå direkt till din medlemsinfo här') }}</a>
         </div>
         <div v-if="this.cust.BranchInfo && this.cust.BranchInfo.AlertMessage !== null" class="uk-background-primary uk-border-rounded alert-container uk-position-relative uk-padding uk-margin-medium-bottom">
           <div>
@@ -128,7 +128,7 @@
       </form>
       <div v-if="this.cust.IsBranchMember" id="my-member-section" class="membership-container uk-background-primary uk-padding-large uk-border-rounded">
         <img class="uk-width-1-2@s" src="/logos/logo-liverpool-sweden.svg" alt="Logo LFC">
-        <h2 class="uk-margin-remove-bottom">Jajemensan, du är medlem i svenska supporterklubben!</h2>
+        <h2 class="uk-margin-remove-bottom">{{ $getCMSEntry(labels,'memberGreeting', 'Jajemensan, du är medlem i svenska supporterklubben!') }}</h2>
         <p>{{ this.cust.DiscountMessage }}</p>
           <div v-if="this.cust.BranchInfo && this.cust.BranchInfo.AlertMessage !== null">
             <p>{{ this.cust.BranchInfo.AlertMessage }}</p>
