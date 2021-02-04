@@ -1,123 +1,145 @@
 <template>
-  <section>
+<section>
+<template v-if="$fetchState.pending">
+  <content-placeholders-img />
+  <content-placeholders-text :lines="4" />
+</template>
+<template v-else>
+  <section class="myAccount">
     <div class="uk-container">
-      <h1>{{ $getCMSEntry(labels,'myAccount', 'Mitt konto') }}</h1>
-      <div>
-        <button 
-          type="button"
-          class="uk-button uk-button-default"
-          @click.prevent="logOut()">
-          {{ $getCMSEntry(labels,'btn-logout', 'Logga ut') }}
-        </button>
+      <div v-if="this.cust.FirstName && this.cust.FirstName !== ''" class="uk-alert-success uk-padding-small uk-margin-medium-bottom">
+              Färdigställ din profil <a href="#my-profile" uk-scroll='{"offset": 140}'>här</a>
+      </div>
+      <div class="uk-width-1-1 uk-flex uk-flex-stretch uk-flex-center uk-margin-small-bottom">
+        <h1 class="uk-width-1-2 uk-margin-remove-bottom">{{ $getCMSEntry(labels,'myAccount', 'Mitt konto') }}</h1>
+        <div class="uk-width-1-2">
+          <button 
+            type="button"
+            class="uk-button uk-button-default uk-align-right uk-margin-remove-bottom"
+            @click.prevent="logOut()">
+            {{ $getCMSEntry(labels,'btn-logout', 'Logga ut') }}
+          </button>
+        </div>
       </div>
       <component 
+        class="uk-padding-remove-top uk-padding-remove-bottom"
         v-if="story.content.component" 
         :key="story.content._uid" 
         :blok="story.content" 
         :is="story.content.component" />
-    </div>
-
-    <form 
-      class="uk-margin-small uk-form-stacked myAccountInfo"
-    >
-
-    <fieldset class="uk-fieldset">
-      <h2>{{ $getCMSEntry(labels,'myAccountInfo', 'Mina kontouppgifter') }}</h2>
-
-      <div class="uk-margin">
-          <label class="uk-form-label">{{ $getCMSEntry(labels,'firstName', 'Förnamn') }}:</label>
-          <div class="uk-form-controls">
-              <input 
-              v-model="form.FirstName"
-              class="uk-input uk-width-1-3@s" 
-              type="text" 
-              :placeholder="$getCMSEntry(labels,'placeholder_new_firstName', 'Skriv in ditt nya förnamn')" 
-              name="firstName"
-              :disabled="disabled">
-          </div>
       </div>
-
-      <div class="uk-margin">
-          <label class="uk-form-label">{{ $getCMSEntry(labels,'lastName', 'Efternamn') }}:</label>
-          <div class="uk-form-controls">
-              <input 
-              v-model="form.LastName"
-              class="uk-input uk-width-1-3@s" 
-              type="text" 
-              :placeholder="$getCMSEntry(labels,'placeholder_new_lastName', 'Skriv in ditt nya efternamn')" 
-              name="lastName"
-              :disabled="disabled">
-          </div>
-      </div>
-
-      <div v-if="!isUpdating" class="uk-margin">
-          <label class="uk-form-label">{{ $getCMSEntry(labels,'email', 'Email') }}:</label>
-          <div class="uk-form-controls">
-              <input 
-              v-model="form.Email"
-              class="uk-input uk-width-1-3@s" 
-              type="email" 
-              :placeholder="$getCMSEntry(labels,'placeholder_current_email', 'Skriv in din nuvarande email')" 
-              name="email"
-              :disabled="disabled">
-          </div>
-      </div>
-
-      <div v-else>
-        <div class="uk-margin">
+        <div v-if="this.cust.IsBranchMember" class="uk-margin-small-bottom">
+          Gå direkt till min medlemsinfo <a href="#my-member-section" uk-scroll='{"offset": 140}'>här</a>
+        </div>
+        <div v-if="this.cust.BranchInfo && this.cust.BranchInfo.AlertMessage !== null" class="uk-background-primary uk-border-rounded alert-container uk-position-relative uk-padding uk-margin-medium-bottom">
+          <div>
+            <p>{{ this.cust.BranchInfo.AlertMessage }}</p>
+            <img class="uk-margin-small-top uk-margin-remove-bottom thebomb" src="/icons/the-bomb-vibrating.gif" alt="Vibrating bomb">
+        </div>
+        </div>
+      <form 
+        class="uk-margin-small uk-form-stacked"
+      >
+      <fieldset class="uk-fieldset">
+        <h2 id="my-profile" class="uk-margin-remove-bottom">{{ $getCMSEntry(labels,'myAccountInfo', 'Mina kontouppgifter') }}</h2>
+        <div class="uk-margin-small">
+            <label class="uk-form-label">{{ $getCMSEntry(labels,'firstName', 'Förnamn') }}:</label>
+            <div class="uk-form-controls">
+                <input 
+                v-model="form.FirstName"
+                class="uk-input uk-width-1-3@s" 
+                type="text" 
+                :placeholder="$getCMSEntry(labels,'placeholder_new_firstName', 'Skriv in ditt nya förnamn')" 
+                name="firstName"
+                :disabled="disabled">
+            </div>
+        </div>
+        <div class="uk-margin-small">
+            <label class="uk-form-label">{{ $getCMSEntry(labels,'lastName', 'Efternamn') }}:</label>
+            <div class="uk-form-controls">
+                <input 
+                v-model="form.LastName"
+                class="uk-input uk-width-1-3@s" 
+                type="text" 
+                :placeholder="$getCMSEntry(labels,'placeholder_new_lastName', 'Skriv in ditt nya efternamn')" 
+                name="lastName"
+                :disabled="disabled">
+            </div>
+        </div>
+        <div v-if="!isUpdating" class="uk-margin-small">
             <label class="uk-form-label">{{ $getCMSEntry(labels,'email', 'Email') }}:</label>
             <div class="uk-form-controls">
                 <input 
                 v-model="form.Email"
                 class="uk-input uk-width-1-3@s" 
                 type="email" 
-                :placeholder="$getCMSEntry(labels,'placeholder_new_email', 'Skriv in din nya email')" 
+                :placeholder="$getCMSEntry(labels,'placeholder_current_email', 'Skriv in din nuvarande email')" 
                 name="email"
                 :disabled="disabled">
             </div>
         </div>
-        <div class="uk-margin">
-            <label class="uk-form-label">{{ $getCMSEntry(labels,'placeholder_repeat_email', 'Upprepa email') }}:</label>
-            <div class="uk-form-controls">
-                <input 
-                v-model="form.RepeatEmail"
-                class="uk-input uk-width-1-3@s" 
-                type="email" 
-                :placeholder="$getCMSEntry(labels,'placeholder_repeat_email', 'Upprepa email')" 
-                name="email"
-                :disabled="disabled">
-            </div>
+        <div v-else>
+          <div class="uk-margin-small">
+              <label class="uk-form-label">{{ $getCMSEntry(labels,'email', 'Email') }}:</label>
+              <div class="uk-form-controls">
+                  <input 
+                  v-model="form.Email"
+                  class="uk-input uk-width-1-3@s" 
+                  type="email" 
+                  :placeholder="$getCMSEntry(labels,'placeholder_new_email', 'Skriv in din nya email')" 
+                  name="email"
+                  :disabled="disabled">
+              </div>
+          </div>
+          <div class="uk-margin-small">
+              <label class="uk-form-label">{{ $getCMSEntry(labels,'placeholder_repeat_email', 'Upprepa email') }}:</label>
+              <div class="uk-form-controls">
+                  <input 
+                  v-model="form.RepeatEmail"
+                  class="uk-input uk-width-1-3@s" 
+                  type="email" 
+                  :placeholder="$getCMSEntry(labels,'placeholder_repeat_email', 'Upprepa email')" 
+                  name="email"
+                  :disabled="disabled">
+              </div>
+          </div>
+        </div>
+            <Alert 
+              v-if="errors.length>0 || this.message !== ''"
+              :errorlist="errors"
+              :message="message"
+              :alertClass="alertClass"
+            />
+        <button v-if="!isUpdating"
+            type="button"
+            class="uk-button uk-button-default uk-margin-small-top uk-margin-medium-bottom"
+            @click.prevent="switchForm()"
+            >
+            {{ $getCMSEntry(labels,'btn-change', 'Uppdatera mina uppgifter') }}
+        </button>
+        <button v-if="isUpdating"
+          type="submit"
+          class="uk-button uk-button-primary uk-margin-small-top uk-margin-medium-bottom"
+          @click.prevent="updateAccount()"
+          >
+          {{ $getCMSEntry(labels,'btn-save', 'Spara') }}
+        </button>
+      </fieldset>
+      </form>
+      <div v-if="this.cust.IsBranchMember" id="my-member-section" class="membership-container uk-background-primary uk-padding-large uk-border-rounded">
+        <img class="uk-width-1-2@s" src="/logos/logo-liverpool-sweden.svg" alt="Logo LFC">
+        <h2 class="uk-margin-remove-bottom">Jajemensan, du är medlem i svenska supporterklubben!</h2>
+        <p>{{ this.cust.DiscountMessage }}</p>
+          <div v-if="this.cust.BranchInfo && this.cust.BranchInfo.AlertMessage !== null">
+            <p>{{ this.cust.BranchInfo.AlertMessage }}</p>
+            <img class="uk-margin-small-top uk-margin-remove-bottom thebomb" src="/icons/the-bomb-vibrating.gif" alt="Vibrating bomb">
         </div>
       </div>
-
-          <Alert 
-            v-if="errors.length>0 || this.message !== ''"
-            :errorlist="errors"
-            :message="message"
-            :alertClass="alertClass"
-          />
-
-      <button v-if="!isUpdating"
-          type="button"
-          class="uk-button uk-button-default uk-margin-small-top"
-          @click.prevent="switchForm()"
-          >
-          {{ $getCMSEntry(labels,'btn-change', 'Ändra') }}
-      </button>
-
-      <button v-if="isUpdating"
-        type="submit"
-        class="uk-button uk-button-primary uk-margin-small-top"
-        @click.prevent="updateAccount()"
-        >
-        {{ $getCMSEntry(labels,'btn-save', 'Spara') }}
-      </button>
-
-    </fieldset>
-    </form>
-
   </section>
 </template>
+</section>
+</template>
+
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import Page from '@/components/Page'
@@ -280,9 +302,40 @@ export default {
 
 </script>
 <style lang="scss">
-  .myAccountInfo {
-    & h2 {
-      margin: 0 0 15px 0;
+
+.membership-container {
+      color: #fff;
+      & h2 {
+        color: #fff;
+        margin: 10px 0 0 0;
+        line-height: 1.1;
+      }
+      & p {
+        margin: 10px 0 0 0;
+        line-height: 1.1;
+      }
     }
+
+  .alert-container {
+    color: #fff;
+    & p {
+      margin: 0;
+    }
+  }
+  .thebomb {
+    margin-left: -2.5vw;
+    width: 25%;
+    @media (max-width: 400px) {
+      width: 45%;
+    }
+    @media (min-width: 900px) {
+      width: 20%;
+      margin-left: -1.6vw;
+    }
+    @media (min-width: 1100px) {
+      width: 15%;
+      margin-left: -1.2vw;
+    }
+
   }
 </style>
