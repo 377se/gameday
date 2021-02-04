@@ -1,74 +1,76 @@
 <template>
-<section>
-  <template v-if="$fetchState.pending">
-    <content-placeholders-img />
-    <content-placeholders-text :lines="4" />
-  </template>
-  <template v-else>
-    <section class="myAccount">
-      <div class="uk-container">
-        <div v-if="!this.cust.FirstName && this.cust.FirstName == ''" class="uk-alert-success uk-padding-small uk-margin-medium-bottom">
-                <a href="#my-profile" uk-scroll='{"offset": 140}'>{{ $getCMSEntry(labels,'topLink-profileUpdate', 'Färdigställ din profil här') }}</a>
-        </div>
-        <div class="uk-width-1-1 uk-flex uk-flex-stretch uk-flex-center uk-margin-small-bottom">
-          <h1 class="uk-width-1-2 uk-margin-remove-bottom">{{ $getCMSEntry(labels,'myAccount', 'Mitt konto') }}</h1>
-          <div class="uk-width-1-2">
-            <button 
-              type="button"
-              class="uk-button uk-button-default uk-align-right uk-margin-remove-bottom"
-              @click.prevent="logOut()">
-              {{ $getCMSEntry(labels,'btn-logout', 'Logga ut') }}
-            </button>
+  <section>
+    <template v-if="$fetchState.pending">
+      <content-placeholders-img />
+      <content-placeholders-text :lines="4" />
+    </template>
+    <template v-else>
+      <section class="myAccount">
+        <div class="uk-container">
+          <div 
+            v-if="!this.cust.FirstName && this.cust.FirstName == ''" 
+            class="uk-alert-success uk-padding-small uk-margin-medium-bottom">
+            <a href="#my-profile" uk-scroll='{"offset": 140}'>{{ $getCMSEntry(labels,'topLink-profileUpdate', 'Färdigställ din profil här') }}</a>
           </div>
-        </div>
-        <component 
-          class="uk-padding-remove-top uk-padding-remove-bottom"
-          v-if="story.content.component" 
-          :key="story.content._uid" 
-          :blok="story.content" 
-          :is="story.content.component" />
-        </div>
-          <div v-if="this.cust.IsBranchMember" class="uk-margin-small-bottom">
-            <a href="#my-member-section" uk-scroll='{"offset": 140}'>{{ $getCMSEntry(labels,'topLink-memberInfo', 'Gå direkt till din medlemsinfo här') }}</a>
-          </div>
-          <div v-if="this.cust.BranchInfo && this.cust.BranchInfo.AlertMessage !== null" class="uk-background-primary uk-border-rounded alert-container uk-padding-small uk-margin-medium-bottom uk-overflow-auto">
-
-              <img class="thebomb" src="/icons/the-bomb-vibrating.gif" alt="Vibrating bomb">
-              <p>{{ this.cust.BranchInfo.AlertMessage }}</p>
-
-          </div>
-          <h2 id="my-profile" class="uk-margin-remove-bottom">{{ $getCMSEntry(labels,'myAccountInfo', 'Mina kontouppgifter') }}</h2>
-
-          <div class="avatar-container">
-            <img :src="avatarUrl[form.AvatarId]" class="uk-height-1-1 uk-width-auto">
-          </div>
-          <div v-if="isUpdating" class="avatar-chooser">
-            <div>
-              <a href="#"><img :src="avatarUrl[1]" class="uk-height-1-1 uk-width-auto" @click.prevent="switchAvatar(1)"></a>
-            </div>
-            <div>
-              <a href="#"><img :src="avatarUrl[2]" class="uk-height-1-1 uk-width-auto" @click.prevent="switchAvatar(2)"></a>
+          <div class="uk-width-1-1 uk-flex uk-flex-stretch uk-flex-center uk-margin-small-bottom">
+            <h1 class="uk-width-1-2 uk-margin-remove-bottom">{{ $getCMSEntry(labels,'myAccount', 'Mitt konto') }}</h1>
+            <div class="uk-width-1-2">
+              <button 
+                type="button"
+                class="uk-button uk-button-default uk-align-right uk-margin-remove-bottom"
+                @click.prevent="logOut()">
+                {{ $getCMSEntry(labels,'btn-logout', 'Logga ut') }}
+              </button>
             </div>
           </div>
+          <component 
+            class="uk-padding-remove-top uk-padding-remove-bottom"
+            v-if="story.content.component" 
+            :key="story.content._uid" 
+            :blok="story.content" 
+            :is="story.content.component" />
+        </div>
+
+        <div 
+          v-if="this.cust.IsBranchMember" class="uk-margin-small-bottom">
+          <a href="#my-member-section" uk-scroll='{"offset": 140}'>{{ $getCMSEntry(labels,'topLink-memberInfo', 'Gå direkt till din medlemsinfo här') }}</a>
+        </div>
+        <div 
+          v-if="this.cust.BranchInfo && this.cust.BranchInfo.AlertMessage !== null" class="uk-background-primary uk-border-rounded alert-container uk-padding-small uk-margin-medium-bottom uk-overflow-auto">
+            <img class="thebomb" src="/icons/the-bomb-vibrating.gif" alt="Vibrating bomb">
+            <p>{{ this.cust.BranchInfo.AlertMessage }}</p>
+        </div>
+        <h2 id="my-profile" class="uk-margin-remove-bottom">{{ $getCMSEntry(labels,'myAccountInfo', 'Mina kontouppgifter') }}</h2>
+
+        <div class="avatar-container">
+          <img :src="avatarUrl[form.AvatarId]" class="uk-height-1-1 uk-width-auto">
+        </div>
+        <div v-if="isUpdating" class="avatar-chooser">
+          <div>
+            <a href="#"><img :src="avatarUrl[1]" class="uk-height-1-1 uk-width-auto" @click.prevent="switchAvatar(1)"></a>
+          </div>
+          <div>
+            <a href="#"><img :src="avatarUrl[2]" class="uk-height-1-1 uk-width-auto" @click.prevent="switchAvatar(2)"></a>
+          </div>
+        </div>
 
         <form 
           class="uk-margin-small uk-form-stacked"
         >
-
-        <fieldset class="uk-fieldset">
-          <div class="uk-margin-small">
+          <fieldset class="uk-fieldset">
+            <div class="uk-margin-small">
               <label class="uk-form-label">{{ $getCMSEntry(labels,'firstName', 'Förnamn') }}:</label>
               <div class="uk-form-controls">
-                  <input 
-                  v-model="form.FirstName"
-                  class="uk-input uk-width-1-3@s" 
-                  type="text" 
-                  :placeholder="$getCMSEntry(labels,'placeholder_new_firstName', 'Skriv in ditt nya förnamn')" 
-                  name="firstName"
-                  :disabled="disabled">
+                <input 
+                v-model="form.FirstName"
+                class="uk-input uk-width-1-3@s" 
+                type="text" 
+                :placeholder="$getCMSEntry(labels,'placeholder_new_firstName', 'Skriv in ditt nya förnamn')" 
+                name="firstName"
+                :disabled="disabled">
               </div>
-          </div>
-          <div class="uk-margin-small">
+            </div>
+            <div class="uk-margin-small">
               <label class="uk-form-label">{{ $getCMSEntry(labels,'lastName', 'Efternamn') }}:</label>
               <div class="uk-form-controls">
                   <input 
@@ -79,8 +81,8 @@
                   name="lastName"
                   :disabled="disabled">
               </div>
-          </div>
-          <div v-if="!isUpdating" class="uk-margin-small">
+            </div>
+            <div v-if="!isUpdating" class="uk-margin-small">
               <label class="uk-form-label">{{ $getCMSEntry(labels,'email', 'Email') }}:</label>
               <div class="uk-form-controls">
                   <input 
@@ -91,64 +93,62 @@
                   name="email"
                   :disabled="disabled">
               </div>
-          </div>
-          <div v-else>
-            <div class="uk-margin-small">
+            </div>
+            <div v-else>
+              <div class="uk-margin-small">
                 <label class="uk-form-label">{{ $getCMSEntry(labels,'email', 'Email') }}:</label>
                 <div class="uk-form-controls">
-                    <input 
-                    v-model="form.Email"
-                    class="uk-input uk-width-1-3@s" 
-                    type="email" 
-                    :placeholder="$getCMSEntry(labels,'placeholder_new_email', 'Skriv in din nya email')" 
-                    name="email"
-                    :disabled="disabled">
+                  <input 
+                  v-model="form.Email"
+                  class="uk-input uk-width-1-3@s" 
+                  type="email" 
+                  :placeholder="$getCMSEntry(labels,'placeholder_new_email', 'Skriv in din nya email')" 
+                  name="email"
+                  :disabled="disabled">
                 </div>
-            </div>
-            <div class="uk-margin-small">
+              </div>
+              <div class="uk-margin-small">
                 <label class="uk-form-label">{{ $getCMSEntry(labels,'placeholder_repeat_email', 'Upprepa email') }}:</label>
                 <div class="uk-form-controls">
-                    <input 
-                    v-model="form.RepeatEmail"
-                    class="uk-input uk-width-1-3@s" 
-                    type="email" 
-                    :placeholder="$getCMSEntry(labels,'placeholder_repeat_email', 'Upprepa email')" 
-                    name="email"
-                    :disabled="disabled">
+                  <input 
+                  v-model="form.RepeatEmail"
+                  class="uk-input uk-width-1-3@s" 
+                  type="email" 
+                  :placeholder="$getCMSEntry(labels,'placeholder_repeat_email', 'Upprepa email')" 
+                  name="email"
+                  :disabled="disabled">
                 </div>
+              </div>
             </div>
-          </div>
-              <Alert 
-                v-if="errors.length>0 || this.message !== ''"
-                :errorlist="errors"
-                :message="message"
-                :alertClass="alertClass"
-              />
-          <button v-if="!isUpdating"
+            <Alert 
+              v-if="errors.length>0 || this.message !== ''"
+              :errorlist="errors"
+              :message="message"
+              :alertClass="alertClass"
+            />
+            <button v-if="!isUpdating"
               type="button"
               class="uk-button uk-button-default uk-margin-small-top uk-margin-medium-bottom"
               @click.prevent="switchForm()"
               >
               {{ $getCMSEntry(labels,'btn-change', 'Uppdatera mina uppgifter') }}
-          </button>
-          <button v-if="isUpdating"
-            type="submit"
-            class="uk-button uk-button-primary uk-margin-small-top uk-margin-medium-bottom"
-            @click.prevent="updateAccount()"
-            >
-            {{ $getCMSEntry(labels,'btn-save', 'Spara') }}
-          </button>
-        </fieldset>
+            </button>
+            <button v-if="isUpdating"
+              type="submit"
+              class="uk-button uk-button-primary uk-margin-small-top uk-margin-medium-bottom"
+              @click.prevent="updateAccount()"
+              >
+              {{ $getCMSEntry(labels,'btn-save', 'Spara') }}
+            </button>
+          </fieldset>
         </form>
         <div v-if="this.cust.IsBranchMember" id="my-member-section" class="membership-container uk-background-primary uk-padding-large uk-border-rounded uk-overflow-hidden">
           <img class="uk-width-1-2@s" src="/logos/logo-liverpool-sweden.svg" alt="Logo LFC">
           <h2 class="uk-margin-remove-bottom">{{ $getCMSEntry(labels,'memberGreeting', 'Jajemensan, du är medlem i svenska supporterklubben!') }}</h2>
           <p>{{ this.cust.DiscountMessage }}</p>
-            <div v-if="this.cust.BranchInfo && this.cust.BranchInfo.AlertMessage !== null">
-
-              <img class="thebomb" src="/icons/the-bomb-vibrating.gif" alt="Vibrating bomb">
-              <p>{{ this.cust.BranchInfo.AlertMessage }}</p>
-
+          <div v-if="this.cust.BranchInfo && this.cust.BranchInfo.AlertMessage !== null">
+            <img class="thebomb" src="/icons/the-bomb-vibrating.gif" alt="Vibrating bomb">
+            <p>{{ this.cust.BranchInfo.AlertMessage }}</p>
           </div>
         </div>
       </section>
@@ -157,13 +157,11 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
 import Page from '@/components/Page'
 import TextContent from '@/components/TextContent'
 import Alert from '@/components/Alert'
 
 export default {
-  
   head () {
     return {
       title: 'Mitt konto',
@@ -194,15 +192,23 @@ export default {
   },
 
   async fetch () {
+    // Check if we are in the editor mode
+    let version = this.$nuxt.context.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
+    // Load the JSON from the API
     try{
-      let [c, storyblok] = await Promise.all([
+      let [c, storyblok, story] = await Promise.all([
           this.$nuxt.context.app.$axios.$get(
             '/webapi/'+this.$i18n.locale+'/Customer/GetCustomer'
           ),
-          this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+this.$i18n.locale +"&datasource=fe-labels-myaccount&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
+          this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+this.$i18n.locale +"&datasource=fe-labels-myaccount&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version),
+          this.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}/my-account`, {
+            version: version,
+            cv: this.$store.getters.version
+          })
       ]);
       this.cust =  c
       this.labels = storyblok.datasource_entries
+      this.story = sb.data.story
 
       this.form.FirstName = this.cust.FirstName
       this.form.LastName = this.cust.LastName
@@ -301,29 +307,8 @@ export default {
       .catch(function (error) {
         alert('Error')
       })
-    },
-  },
-  asyncData (context) {
-    
-    // Check if we are in the editor mode
-    let version = context.query._storyblok || context.isDev ? 'draft' : 'published'
-    // Load the JSON from the API
-    return context.app.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${context.app.i18n.locale}/my-account`, {
-      version: version,
-      cv: context.store.getters.version
-    }).then((res) => {
-      return res.data
-    }).catch((res) => {
-      if (!res.response) {
-        console.error(res)
-        context.error({ statusCode: 404, message: 'Failed to receive content form api' })
-      } else {
-        console.error(res.response.data)
-        context.error({ statusCode: res.response.status, message: res.response.data })
-      }
-    })
+    }
   }
-
 }
 
 </script>

@@ -23,18 +23,12 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
-
 export default {
    async fetch () {
     try{
-      let [c, storyblok] = await Promise.all([
-          this.$nuxt.context.app.$axios.$get(
-            '/webapi/'+this.$i18n.locale+'/Customer/GetCustomer'
-          ),
+      let [storyblok] = await Promise.all([
           this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+this.$i18n.locale +"&datasource=fe-labels-myaccount&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
       ]);
-      this.cust =  c
       this.labels = storyblok.datasource_entries
 
     }catch(error){
@@ -46,10 +40,9 @@ export default {
   },
   data() {
     return {
-      labels: [],
-      cust: {},
+      labels: []
     }
-  },
+  }
 
 }
 </script>
