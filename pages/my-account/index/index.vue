@@ -40,14 +40,14 @@
         <h2 id="my-profile" class="uk-margin-remove-bottom">{{ $getCMSEntry(labels,'myAccountInfo', 'Mina kontouppgifter') }}</h2>
 
         <div class="avatar-container">
-          <img :src="this.avatarUrl[form.AvatarId]" class="uk-height-1-1 uk-width-auto">
+          <img :src="avatarUrl[form.AvatarId]" class="uk-height-1-1 uk-width-auto">
         </div>
         <div v-if="isUpdating" class="avatar-chooser">
           <div>
-            <a href="#"><img :src="this.avatarUrl[1]" class="uk-height-1-1 uk-width-auto" @click.prevent="switchAvatar(1)"></a>
+            <a href="#"><img :src="avatarUrl[1]" class="uk-height-1-1 uk-width-auto" @click.prevent="switchAvatar(1)"></a>
           </div>
           <div>
-            <a href="#"><img :src="this.avatarUrl[2]" class="uk-height-1-1 uk-width-auto" @click.prevent="switchAvatar(2)"></a>
+            <a href="#"><img :src="avatarUrl[2]" class="uk-height-1-1 uk-width-auto" @click.prevent="switchAvatar(2)"></a>
           </div>
         </div>
 
@@ -56,7 +56,7 @@
       >
 
       <fieldset class="uk-fieldset">
-
+        {{ form.AvatarId }}
         <div class="uk-margin-small">
             <label class="uk-form-label">{{ $getCMSEntry(labels,'firstName', 'Förnamn') }}:</label>
             <div class="uk-form-controls">
@@ -154,8 +154,6 @@
       </div>
   </section>
 </template>
-</section>
-</template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
@@ -209,7 +207,7 @@ export default {
       this.form.LastName = this.cust.LastName
       this.form.Email = this.cust.Email
       this.form.RepeatEmail = this.cust.RepeatEmail
-      this.form.AvatarId = this.cust.AvatarId
+      this.form.AvatarId = Number.isInteger(this.cust.AvatarId)?this.cust.AvatarId:0
 
     }catch(error){
       console.log(error);
