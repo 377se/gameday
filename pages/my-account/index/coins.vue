@@ -1,26 +1,24 @@
 <template>
-<section>
-<template v-if="$fetchState.pending">
-  <content-placeholders-img />
-  <content-placeholders-text :lines="4" />
-</template>
-<template v-else>
   <section>
-    <div class="uk-container">
-      <h1>{{ $getCMSEntry(labels,'coins', 'Coins') }}</h1>
-     
-      {{ $getCMSEntry(labels,'numberOfCoins', 'Antal coins:') }} {{ coins.CoinsValue }}
-      <div v-if="coins.CoinsValue > 0">
-        {{ $getCMSEntry(labels,'coinsValidThru', 'Giltiga t.o.m.:') }} {{ coins.ExpirationDate }}
+    <template v-if="$fetchState.pending">
+      <content-placeholders-img />
+      <content-placeholders-text :lines="4" />
+    </template>
+    <template v-else>
+      <div class="uk-container">
+        <h1>{{ $getCMSEntry(labels,'coins', 'Coins') }}</h1>
+        
+        {{ $getCMSEntry(labels,'numberOfCoins', 'Antal coins:') }} {{ coins.CoinsValue }}
+        <div v-if="coins.CoinsValue > 0">
+          {{ $getCMSEntry(labels,'coinsValidThru', 'Giltiga t.o.m.:') }} {{ coins.ExpirationDate }}
+        </div>
+        <component 
+          v-if="story.content.component" 
+          :key="story.content._uid" 
+          :blok="story.content" 
+          :is="story.content.component" />
       </div>
-      <component 
-        v-if="story.content.component" 
-        :key="story.content._uid" 
-        :blok="story.content" 
-        :is="story.content.component" />
-    </div>
-  </section>
-</template>
+    </template>
   </section>
 </template>
 <script>

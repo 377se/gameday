@@ -1,41 +1,39 @@
 <template>
-<section>
-<template v-if="$fetchState.pending">
-  <content-placeholders-img />
-  <content-placeholders-text :lines="4" />
-</template>
-<template v-else>
   <section>
-    <div class="uk-container">
-      <h1>{{ $getCMSEntry(labels,'orderHistory', 'Orderhistorik') }}</h1>
+    <template v-if="$fetchState.pending">
+      <content-placeholders-img />
+      <content-placeholders-text :lines="4" />
+    </template>
+    <template v-else>
+        <div class="uk-container">
+          <h1>{{ $getCMSEntry(labels,'orderHistory', 'Orderhistorik') }}</h1>
 
-    <table class="uk-table">
-      <thead>
-        <tr>
-          <th>{{ $getCMSEntry(labels,'orderNumber', 'Ordernummer') }}</th>
-          <th>{{ $getCMSEntry(labels,'orderDate', 'Orderdatum') }}</th>
-          <th class="uk-text-right">{{ $getCMSEntry(labels,'orderSum', 'Ordersumma') }}</th>
-          <th>{{ $getCMSEntry(labels,'paymentMethod', 'Betalningsmetod') }}</th>
-          <th>{{ $getCMSEntry(labels,'orderStatus', 'Status') }}</th>
-         </tr> 
-       </thead> 
-      <tr v-for="order in orders"
-          :key="order.OrderId">
-          <td>
-            <nuxt-link
-              :to="localePath('/my-account/order-history/'+order.OrderId)">{{ order.OrderId }}
-            </nuxt-link>
-          </td>
-          <td>{{ order.OrderDate }}</td>  
-          <td class="uk-text-right">{{ order.OrderSum }} {{ order.Currency }}</td>  
-          <td>{{ order.PaymentMethod }}</td>  
-          <td>{{ order.StatusDisplay }}</td>  
-        </tr>
-    </table>
+        <table class="uk-table">
+          <thead>
+            <tr>
+              <th>{{ $getCMSEntry(labels,'orderNumber', 'Ordernummer') }}</th>
+              <th>{{ $getCMSEntry(labels,'orderDate', 'Orderdatum') }}</th>
+              <th class="uk-text-right">{{ $getCMSEntry(labels,'orderSum', 'Ordersumma') }}</th>
+              <th>{{ $getCMSEntry(labels,'paymentMethod', 'Betalningsmetod') }}</th>
+              <th>{{ $getCMSEntry(labels,'orderStatus', 'Status') }}</th>
+            </tr> 
+          </thead> 
+          <tr v-for="order in orders"
+              :key="order.OrderId">
+              <td>
+                <nuxt-link
+                  :to="localePath('/my-account/order-history/'+order.OrderId)">{{ order.OrderId }}
+                </nuxt-link>
+              </td>
+              <td>{{ order.OrderDate }}</td>  
+              <td class="uk-text-right">{{ order.OrderSum }} {{ order.Currency }}</td>  
+              <td>{{ order.PaymentMethod }}</td>  
+              <td>{{ order.StatusDisplay }}</td>  
+            </tr>
+        </table>
 
-    </div>
-  </section>
-</template>
+        </div>
+    </template>
   </section>
 </template>
 <script>
