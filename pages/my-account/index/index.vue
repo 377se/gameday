@@ -7,7 +7,7 @@
 <template v-else>
   <section class="myAccount">
     <div class="uk-container">
-      <div v-if="this.cust.FirstName && this.cust.FirstName !== ''" class="uk-alert-success uk-padding-small uk-margin-medium-bottom">
+      <div v-if="!this.cust.FirstName && this.cust.FirstName == ''" class="uk-alert-success uk-padding-small uk-margin-medium-bottom">
               Färdigställ din profil <a href="#my-profile" uk-scroll='{"offset": 140}'>här</a>
       </div>
       <div class="uk-width-1-1 uk-flex uk-flex-stretch uk-flex-center uk-margin-small-bottom">
@@ -29,7 +29,7 @@
         :is="story.content.component" />
       </div>
         <div v-if="this.cust.IsBranchMember" class="uk-margin-small-bottom">
-          Gå direkt till min medlemsinfo <a href="#my-member-section" uk-scroll='{"offset": 140}'>här</a>
+          Gå direkt till din medlemsinfo <a href="#my-member-section" uk-scroll='{"offset": 140}'>här</a>
         </div>
         <div v-if="this.cust.BranchInfo && this.cust.BranchInfo.AlertMessage !== null" class="uk-background-primary uk-border-rounded alert-container uk-position-relative uk-padding uk-margin-medium-bottom">
           <div>

@@ -1,4 +1,10 @@
 <template>
+<section>
+<template v-if="$fetchState.pending">
+  <content-placeholders-img />
+  <content-placeholders-text :lines="4" />
+</template>
+<template v-else>
   <section>
     <div class="uk-container">
       <h1>{{ $getCMSEntry(labels,'orderHistory', 'Orderhistorik') }}</h1>
@@ -27,8 +33,9 @@
         </tr>
     </table>
 
-     
     </div>
+  </section>
+</template>
   </section>
 </template>
 <script>

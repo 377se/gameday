@@ -1,4 +1,10 @@
 <template>
+<section>
+<template v-if="$fetchState.pending">
+  <content-placeholders-img />
+  <content-placeholders-text :lines="4" />
+</template>
+<template v-else>
   <section>
     <div class="uk-container">
       <h1>{{ $getCMSEntry(labels,'coins', 'Coins') }}</h1>
@@ -13,6 +19,8 @@
         :blok="story.content" 
         :is="story.content.component" />
     </div>
+  </section>
+</template>
   </section>
 </template>
 <script>
