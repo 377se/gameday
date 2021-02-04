@@ -1,6 +1,9 @@
 {
   "name": "gameday",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.18.3"
+  },
   "description": "Gameday.se",
   "author": "Mats Barkemo",
   "private": true,
