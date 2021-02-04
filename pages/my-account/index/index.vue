@@ -37,11 +37,26 @@
             <p>{{ this.cust.BranchInfo.AlertMessage }}</p>
 
         </div>
+        <h2 id="my-profile" class="uk-margin-remove-bottom">{{ $getCMSEntry(labels,'myAccountInfo', 'Mina kontouppgifter') }}</h2>
+
+        <div class="avatar-container">
+          <img :src="this.avatarUrl[form.AvatarId]" class="uk-height-1-1 uk-width-auto">
+        </div>
+        <div v-if="isUpdating" class="avatar-chooser">
+          <div>
+            <a href="#"><img :src="this.avatarUrl[1]" class="uk-height-1-1 uk-width-auto" @click.prevent="switchAvatar(1)"></a>
+          </div>
+          <div>
+            <a href="#"><img :src="this.avatarUrl[2]" class="uk-height-1-1 uk-width-auto" @click.prevent="switchAvatar(2)"></a>
+          </div>
+        </div>
+
       <form 
         class="uk-margin-small uk-form-stacked"
       >
+
       <fieldset class="uk-fieldset">
-        <h2 id="my-profile" class="uk-margin-remove-bottom">{{ $getCMSEntry(labels,'myAccountInfo', 'Mina kontouppgifter') }}</h2>
+
         <div class="uk-margin-small">
             <label class="uk-form-label">{{ $getCMSEntry(labels,'firstName', 'Förnamn') }}:</label>
             <div class="uk-form-controls">
@@ -194,7 +209,7 @@ export default {
       this.form.LastName = this.cust.LastName
       this.form.Email = this.cust.Email
       this.form.RepeatEmail = this.cust.RepeatEmail
-
+      this.form.AvatarId = this.cust.AvatarId
 
     }catch(error){
       console.log(error);
@@ -206,6 +221,11 @@ export default {
   data () {
     return { 
       labels: [],
+      avatarUrl: {
+        0: "/avatars/avatar-gray-unisex.png",
+        1: "/avatars/avatar-white-man-short-hair.png",
+        2: "/avatars/avatar-white-woman-long-hair.png",
+      },
       errors: [],
       message: '',
       alertClass: '',
@@ -218,6 +238,7 @@ export default {
         LastName: '',
         Email: '',
         RepeatEmail: '',
+        AvatarId: 0,
       }
     }
   },
@@ -255,13 +276,17 @@ export default {
       this.isUpdating = !this.isUpdating
       this.disabled = !this.disabled
     },
+    switchAvatar(chosenAvatar){
+      this.form.AvatarId = chosenAvatar
+    },
     async updateAccount(event) {
       var _this = this
       await this.$axios.post('/webapi/Customer/PostUpdateCustomer', {
         FirstName: this.form.FirstName,
         LastName: this.form.LastName,
         Email: this.form.Email,
-        RepeatEmail: this.form.RepeatEmail
+        RepeatEmail: this.form.RepeatEmail,
+        AvatarId: this.form.AvatarId,
       }).then(function (response) {
         if (response.data.ErrorList.length>0) {
           _this.message = ''
@@ -332,6 +357,28 @@ export default {
     }
     @media (min-width: 600px) {
       width: 9vw;
+    }
+  }
+  .avatar-container {
+    margin: 20px 0;
+    @media (max-width: 599px) {
+      height: 40vw;
+    }
+    @media (min-width: 600px) {
+      height: 20vw;
+    }
+  }
+  .avatar-chooser {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    @media (max-width: 599px) {
+      width: 40vw;
+      height: 20vw;
+    }
+    @media (min-width: 600px) {
+      width: 23vw;
+      height: 11vw;
     }
   }
 </style>
