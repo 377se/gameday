@@ -31,11 +31,11 @@
         <div v-if="this.cust.IsBranchMember" class="uk-margin-small-bottom">
           <a href="#my-member-section" uk-scroll='{"offset": 140}'>{{ $getCMSEntry(labels,'topLink-memberInfo', 'Gå direkt till din medlemsinfo här') }}</a>
         </div>
-        <div v-if="this.cust.BranchInfo && this.cust.BranchInfo.AlertMessage !== null" class="uk-background-primary uk-border-rounded alert-container uk-position-relative uk-padding uk-margin-medium-bottom">
-          <div>
+        <div v-if="this.cust.BranchInfo && this.cust.BranchInfo.AlertMessage !== null" class="uk-background-primary uk-border-rounded alert-container uk-padding-small uk-margin-medium-bottom uk-overflow-auto">
+
+            <img class="thebomb" src="/icons/the-bomb-vibrating.gif" alt="Vibrating bomb">
             <p>{{ this.cust.BranchInfo.AlertMessage }}</p>
-            <img class="uk-margin-small-top uk-margin-remove-bottom thebomb" src="/icons/the-bomb-vibrating.gif" alt="Vibrating bomb">
-        </div>
+
         </div>
       <form 
         class="uk-margin-small uk-form-stacked"
@@ -126,13 +126,15 @@
         </button>
       </fieldset>
       </form>
-      <div v-if="this.cust.IsBranchMember" id="my-member-section" class="membership-container uk-background-primary uk-padding-large uk-border-rounded">
+      <div v-if="this.cust.IsBranchMember" id="my-member-section" class="membership-container uk-background-primary uk-padding-large uk-border-rounded uk-overflow-hidden">
         <img class="uk-width-1-2@s" src="/logos/logo-liverpool-sweden.svg" alt="Logo LFC">
         <h2 class="uk-margin-remove-bottom">{{ $getCMSEntry(labels,'memberGreeting', 'Jajemensan, du är medlem i svenska supporterklubben!') }}</h2>
         <p>{{ this.cust.DiscountMessage }}</p>
           <div v-if="this.cust.BranchInfo && this.cust.BranchInfo.AlertMessage !== null">
+
+            <img class="thebomb" src="/icons/the-bomb-vibrating.gif" alt="Vibrating bomb">
             <p>{{ this.cust.BranchInfo.AlertMessage }}</p>
-            <img class="uk-margin-small-top uk-margin-remove-bottom thebomb" src="/icons/the-bomb-vibrating.gif" alt="Vibrating bomb">
+
         </div>
       </div>
   </section>
@@ -323,19 +325,13 @@ export default {
     }
   }
   .thebomb {
-    margin-left: -2.5vw;
-    width: 25%;
-    @media (max-width: 400px) {
-      width: 45%;
+    float: left;
+    margin-right: 10px;
+    @media (max-width: 599px) {
+      width: 20vw;
     }
-    @media (min-width: 900px) {
-      width: 20%;
-      margin-left: -1.6vw;
+    @media (min-width: 600px) {
+      width: 9vw;
     }
-    @media (min-width: 1100px) {
-      width: 15%;
-      margin-left: -1.2vw;
-    }
-
   }
 </style>
