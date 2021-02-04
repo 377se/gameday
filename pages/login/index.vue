@@ -101,6 +101,28 @@ export default {
     }catch(err){console.log(err)}
     next() 
   },
+    head () {
+    return {
+      title: 'Login',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Login',
+        },
+        {
+          hid: 'og:title',
+          name:  'og:title',
+          content: 'Login',
+        },
+        {
+          hid: 'og:description',
+          name:  'og:description',
+          content: 'Login',
+        }
+      ]
+    }
+  },
   components:{
     Alert,
     ButtonSubmit,
