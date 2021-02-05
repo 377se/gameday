@@ -6,7 +6,8 @@
       uk-grid>
       
 
-        <div class="uk-width-1-1 uk-margin-small">
+        <div 
+          class="uk-width-1-1 uk-margin-small">
           <h1>Order {{order.OrderId}}</h1>
           {{ $getCMSEntry(labels,'orderDate', 'Orderdatum') }}: {{order.OrderDate}}<br />
           {{ $getCMSEntry(labels,'orderStatus', 'Orderstatus') }}:  {{order.StatusDisplay}}<br />
@@ -22,7 +23,8 @@
             {{order.Address.Email}}<br />
             {{order.Address.Mobile}}
 
-        <table class="uk-table">
+        <div class="uk-overflow-auto">
+          <table class="uk-table">
 
           <thead>
             <tr>
@@ -73,8 +75,8 @@
             </tr> 
 
           </tfoot>
-        </table>
-
+          </table>
+        </div>
 
         </div>
       

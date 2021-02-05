@@ -112,9 +112,6 @@ export default {
     }catch(err){console.log(err)}
     next() 
   },
-  activated(){
-    this.$fetch()
-  },
   data () {
     return {
       form: {

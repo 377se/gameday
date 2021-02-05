@@ -23,7 +23,7 @@
                 :key="order.OrderId">
                 <td>
                   <nuxt-link
-                    :to="localePath('/my-account/order-history/'+order.OrderId)">{{ order.OrderId }}
+                    :to="localePath('/my-account/'+order.OrderId)">{{ order.OrderId }}
                   </nuxt-link>
                 </td>
                 <td>{{ order.OrderDate }}</td>  

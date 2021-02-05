@@ -40,10 +40,9 @@
             </div>
 
           <Alert 
-            v-if="errors.length>0 || this.message !== ''"
+            v-if="errors.length>0"
             :errorlist="errors"
             message=""
-            :alertClass="alertClass"
           />
 
             <div class="uk-margin uk-text-center">
@@ -136,7 +135,7 @@ export default {
         password: ''
       },
       labels: [],
-      errors: [],
+      errors: [],    
       isSubmitting: false
     }
   },
