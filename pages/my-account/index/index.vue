@@ -40,7 +40,6 @@
           <p>{{ this.cust.BranchInfo.AlertMessage }}</p>
       </div>
       <h2 id="my-profile" class="uk-margin-remove-bottom">{{ $getCMSEntry(labels,'myAccountInfo', 'Mina kontouppgifter') }}</h2>
-
       <div class="avatar-container">
         <img :src="avatarUrl[form.AvatarId]" class="uk-height-1-1 uk-width-auto">
       </div>
