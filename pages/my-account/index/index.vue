@@ -214,6 +214,10 @@ export default {
       this.form.RepeatEmail = this.cust.RepeatEmail
       this.form.AvatarId = Number.isInteger(this.cust.AvatarId)?this.cust.AvatarId:0
 
+      if(cust.Id==0){
+        this.logOut()
+      }
+
     }catch(error){
       console.log(error);
     }
