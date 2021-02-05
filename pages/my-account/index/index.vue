@@ -143,9 +143,12 @@
       <div v-if="this.cust.IsBranchMember" id="my-member-section" class="membership-container uk-background-primary uk-padding-large uk-border-rounded uk-overflow-hidden">
         <img class="uk-width-1-2@s" src="/logos/logo-liverpool-sweden.svg" alt="Logo LFC">
         <h2 class="uk-margin-remove-bottom">{{ $getCMSEntry(labels,'memberGreeting', 'Jajemensan, du är medlem i svenska supporterklubben!') }}</h2>
+        <p>{{ $getCMSEntry(labels,'MembershipNumber', 'Medlemsnummer') }}: {{ this.cust.BranchInfo.MembershipNumber }}</p>
+        <p>{{ $getCMSEntry(labels,'Alias', 'Alias') }}: {{ this.cust.BranchInfo.Alias }}</p>
+        <p>{{ $getCMSEntry(labels,'ExpirationDate', 'Utgångsdatum') }}: {{ this.cust.BranchInfo.ExpirationDate }}</p>
         <p>{{ this.cust.DiscountMessage }}</p>
         <div v-if="this.cust.BranchInfo && this.cust.BranchInfo.AlertMessage !== null">
-          <lottie-player class="thebomb" src="/animations/thebomb.json" autoplay loop />
+          <lottie-player class="thebomb" src="/animations/thebomb.json" :options="{autoplay:true,loop:true}" />
           <p>{{ this.cust.BranchInfo.AlertMessage }}</p>
         </div>
       </div>
