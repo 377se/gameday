@@ -54,6 +54,7 @@ export default {
    */
   plugins: [
     {src: '~/plugins/jsonld.js'},
+    {src: '~/plugins/lottie-client.js', ssr:false},
     {src: '~/plugins/gameday.js'},
     {src: '~/plugins/vue-placeholders.js'},
     {src: "~/plugins/uikit.js", ssr: false },
