@@ -36,7 +36,7 @@
       </div>
       <div 
         v-if="this.cust.BranchInfo && this.cust.BranchInfo.AlertMessage !== null" class="uk-background-primary uk-border-rounded alert-container uk-padding-small uk-margin-medium-bottom uk-overflow-auto">
-          <img class="thebomb" src="/icons/the-bomb-vibrating.gif" alt="Vibrating bomb">
+          <lottie-player class="thebomb" src="/animations/thebomb.json" autoplay loop />
           <p>{{ this.cust.BranchInfo.AlertMessage }}</p>
       </div>
       <h2 id="my-profile" class="uk-margin-remove-bottom">{{ $getCMSEntry(labels,'myAccountInfo', 'Mina kontouppgifter') }}</h2>
@@ -146,7 +146,7 @@
         <h2 class="uk-margin-remove-bottom">{{ $getCMSEntry(labels,'memberGreeting', 'Jajemensan, du är medlem i svenska supporterklubben!') }}</h2>
         <p>{{ this.cust.DiscountMessage }}</p>
         <div v-if="this.cust.BranchInfo && this.cust.BranchInfo.AlertMessage !== null">
-          <img class="thebomb" src="/icons/the-bomb-vibrating.gif" alt="Vibrating bomb">
+          <lottie-player class="thebomb" src="/animations/thebomb.json" autoplay loop />
           <p>{{ this.cust.BranchInfo.AlertMessage }}</p>
         </div>
       </div>
