@@ -28,16 +28,23 @@
                 margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
           <li><nuxt-link :to="localePath('/nfl-shop')">NFL-shop</nuxt-link></li>
         </ul>
-        <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
-        <div
-          :class="{'read-more':readmore}" 
-          @click="setReadMore()" 
-          v-html="article.SeoContentDescription"/>
-      </div>
-      <div class="uk-container uk-container-large uk-padding-small uk-padding-remove-top">
         <TeamList
           :cat-id="328"
           class="uk-margin-remove-top"/>
+        <component 
+          v-if="story.content.component" 
+          :key="story.content._uid" 
+          :blok="story.content" 
+          :is="story.content.component" />
+        <div v-else>
+          <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
+          <div
+            :class="{'read-more':readmore}" 
+            @click="setReadMore()" 
+            v-html="article.SeoContentDescription"/>
+        </div>
+      </div>
+      <div class="uk-container uk-container-large uk-padding-small uk-padding-remove-top">
         <div 
           class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
           uk-sticky="offset:118;width-element:body;bottom:true"
@@ -137,6 +144,17 @@ export default {
       global_labels:'labels'
     })
   },
+  mounted(){
+    this.$storybridge.on(['input', 'published', 'change'], (event) => {
+      if (event.action == 'input') {
+        if (event.story.id === this.story.id) {
+          this.story.content = event.story.content
+        }
+      } else {
+        window.location.reload()
+      }
+    })
+  },
   methods:{
     setReadMore(){
       this.readmore = false
@@ -161,6 +179,7 @@ export default {
     }
   },
   async fetch () {
+    let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
     let pageNum = this.$route.query.page?this.$route.query.page:1
     let color = this.$route.query.color?this.$route.query.color:null
     let gender = this.$route.query.gender?this.$route.query.gender:null
@@ -171,7 +190,11 @@ export default {
     let team = this.$route.query.team?this.$route.query.team:null
     let brand = this.$route.query.brand?this.$route.query.brand:null
     try {
-      const [a, p, c, s, g, b] = await Promise.all([
+      const [sb, a, p, c, s, g, b] = await Promise.all([
+        this.$storyapi.get('cdn/stories?starts_with=gameday/'+this.$i18n.locale+'/lag/'+this.$route.params.league+'/'+this.$route.params.team, {
+          version: version,
+          cv: this.$store.getters.version
+        }),
         this.$axios.$get(
           '/webapi/'+this.$i18n.locale+'/Article/getArticleList?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=nfl'
         ),

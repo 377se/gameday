@@ -36,7 +36,7 @@
       </div>
       <div 
         v-if="this.cust.BranchInfo && this.cust.BranchInfo.AlertMessage !== null" class="uk-background-primary uk-border-rounded alert-container uk-padding-small uk-margin-medium-bottom uk-overflow-auto">
-          <lottie-player class="thebomb" src="/animations/thebomb.json" autoplay loop />
+          <lottie-player class="thebomb" src="/animations/thebomb.json" :options="{autoplay:true,loop:true}" />
           <p>{{ this.cust.BranchInfo.AlertMessage }}</p>
       </div>
       <h2 id="my-profile" class="uk-margin-remove-bottom">{{ $getCMSEntry(labels,'myAccountInfo', 'Mina kontouppgifter') }}</h2>
@@ -214,7 +214,7 @@ export default {
       this.form.RepeatEmail = this.cust.RepeatEmail
       this.form.AvatarId = Number.isInteger(this.cust.AvatarId)?this.cust.AvatarId:0
 
-      if(cust.Id==0){
+      if(this.cust.Id==0){
         this.logOut()
       }
 
