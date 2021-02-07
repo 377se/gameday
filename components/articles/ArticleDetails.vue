@@ -200,36 +200,26 @@
           <ul uk-accordion>
               <li class="uk-open">
                 <a class="uk-accordion-title" href="#">Storleksguide</a>
-                <div class="uk-accordion-content size-guide-grid uk-width-1-1 uk-width-2-3@s" :class="{ sizeguideheading: showSizeGuideHeading, sizeguidenoheading: !showSizeGuideHeading }">
+                <div class="uk-accordion-content uk-margin-remove-top">
 
-                <div v-if="article.SizeTypeId==1 || article.SizeTypeId==2" class="uk-width-1-1">
-                  <div>
-                    <h4 class="size-guide-item">&nbsp;</h4>
-                  </div>
-                  <div class="size-guide-item uk-width-1-1">Längd</div>
-                  <div class="size-guide-item uk-width-1-1">Bredd</div>
-                </div>
+          <div class="uk-overflow-auto">
+            <table class="uk-table uk-table-condensed uk-text-nowrap uk-table-striped">
+                  <thead>
+                    <tr>
+                      <th>&nbsp;</th>
+                      <th v-for="sizeHeading in article.SizeGuide" :key="sizeHeading.DisplaySize" class="uk-text-center">{{ sizeHeading.DisplaySize }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="line in article.SizeGuide[0].DisplayProperties.length" :key="line">
+                      <td>{{ showLegend(line-1, article.SizeTypeId) }}</td>
+                      <td v-for="sizeValue in article.SizeGuide" :key="sizeValue.Value" class="uk-text-center">{{ sizeValue.DisplayProperties[line-1].Value }}</td>
+                    </tr>
+                  </tbody>
+            </table>
+          </div>
 
-                <div v-else class="uk-width-1-1">
-                  <div class="size-guide-item uk-width-1-1">EU</div>
-                  <div class="size-guide-item uk-width-1-1">UK</div>
-                  <div class="size-guide-item uk-width-1-1">US</div>
-                </div>
-                        <div
-                            v-for="guide in article.SizeGuide"
-                            :key="guide.Value"
-                            class="uk-width-1-1">
-                          <h4 v-if="guide.DisplaySize" class="size-guide-item">{{ guide.DisplaySize }}</h4>
-                          <div
-                            v-for="size in guide.DisplayProperties"
-                            :key="size.SizeName"
-                            class="size-guide-item uk-width-1-1">
 
-                            {{ size.Value }}
-
-                          </div>
-
-                        </div>
                 </div>
               </li>
           </ul>
@@ -268,6 +258,7 @@ import ButtonSubmit from "@/components/ButtonSubmit"
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple"; //Related articles to be shown
 
 export default {
+
   async fetch(){
     //Fetch related articles
     try {
@@ -358,9 +349,6 @@ export default {
   computed: {
     ...mapGetters({
       global_labels:'labels'}),
-    showSizeGuideHeading() { 
-      return (this.article.SizeTypeId==1 || this.article.SizeTypeId==2) ? true : false
-    }
   },
   watch: {
     showNameNumber: function(oldQ, newQ){
@@ -379,6 +367,13 @@ export default {
   },
   methods:{
     
+    showLegend(line, sizeTypeId) {
+      if (sizeTypeId==1 || sizeTypeId==2) {
+        return line==0 ? 'Längd' : 'Bredd'
+      } else {
+        return line==0 ? 'EU' : line==1 ? 'UK' : 'US'
+      }
+    },
     setPrint(){
       this.printName = this.nameNumber.Name
       this.printNumber = this.nameNumber.Number
@@ -433,6 +428,7 @@ export default {
     },
   }
 };
+
 </script>
 
 <style lang="scss">
@@ -496,24 +492,6 @@ export default {
 .washing-instructions{
   font-size:1.5rem;
   margin-right:10px;
-}
-
-.size-guide-grid {
-  display: grid;
-  row-gap: 20px;
-  justify-items: flex-start;
-  & h4 {
-    margin: 0;
-  }
-}
-.sizeguidenoheading {
-  grid-template-columns: repeat( 7, 1fr );
-  }
-.sizeguideheading {
-  grid-template-columns: 2fr repeat( 6, 1fr );
-}
-.size-guide-item {
-  border-bottom: 1px solid #000000;
 }
 
 </style>
