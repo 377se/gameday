@@ -326,7 +326,7 @@ export default {
       '@context': 'http://schema.org',
       '@type': 'Product',
       "productID":article.ArticleNumber,
-      "name":article.Name,
+      "name":article.MetaTitle,
       "description":article.Description,
       "url": process.env.SITE_URL + this.$route.path,
       "image": process.env.DETAILS_SRC + article.Images[0].Name,
