@@ -322,29 +322,25 @@ export default {
   },
   jsonld() {
     var article = this.article
-    if(article.CartId===0){
-      return {
-        '@context': 'http://schema.org',
-        '@type': 'Product',
-        "productID":article.ArticleNumber,
-        "name":article.Name,
-        "description":article.Description,
-        "url": process.env.SITE_URL + this.$route.path,
-        "image": process.env.DETAILS_SRC + article.Images[0].Name,
-        "brand": article.Brand,
-        "offers": [
-          {
-            "@type": "Offer",
-            "price": article.Price.toFixed(2),
-            "priceCurrency": process.env.CURRENCY_CODE,
-            "itemCondition": "https://schema.org/NewCondition",
-            "availability": "https://schema.org/InStock"
-          }
-        ]
-      };
-    }else{
-      return {}
-    }
+    return {
+      '@context': 'http://schema.org',
+      '@type': 'Product',
+      "productID":article.ArticleNumber,
+      "name":article.Name,
+      "description":article.Description,
+      "url": process.env.SITE_URL + this.$route.path,
+      "image": process.env.DETAILS_SRC + article.Images[0].Name,
+      "brand": article.Brand,
+      "offers": [
+        {
+          "@type": "Offer",
+          "price": article.Price.toFixed(2),
+          "priceCurrency": process.env.CURRENCY_CODE,
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/InStock"
+        }
+      ]
+    };
   },
   computed: {
     ...mapGetters({
