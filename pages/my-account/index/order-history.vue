@@ -8,31 +8,31 @@
         <div class="uk-container">
           <h1>{{ $getCMSEntry(labels,'orderHistory', 'Orderhistorik') }}</h1>
 
-        <div class="uk-overflow-auto uk-height-small">
-          <table class="uk-table uk-table-striped uk-table-condensed uk-text-nowrap">
-            <thead>
-              <tr>
-                <th>{{ $getCMSEntry(labels,'orderNumber', 'Ordernummer') }}</th>
-                <th>{{ $getCMSEntry(labels,'orderDate', 'Orderdatum') }}</th>
-                <th class="uk-text-right">{{ $getCMSEntry(labels,'orderSum', 'Ordersumma') }}</th>
-                <th>{{ $getCMSEntry(labels,'paymentMethod', 'Betalningsmetod') }}</th>
-                <th>{{ $getCMSEntry(labels,'orderStatus', 'Status') }}</th>
-              </tr> 
-            </thead> 
-            <tr v-for="order in orders"
-                :key="order.OrderId">
-                <td>
-                  <nuxt-link
-                    :to="localePath('/my-account/'+order.OrderId)">{{ order.OrderId }}
-                  </nuxt-link>
-                </td>
-                <td>{{ order.OrderDate }}</td>  
-                <td class="uk-text-right">{{ order.OrderSum }} {{ order.Currency }}</td>  
-                <td>{{ order.PaymentMethod }}</td>  
-                <td>{{ order.StatusDisplay }}</td>  
-              </tr>
-          </table>
-        </div>
+          <div class="uk-overflow-auto uk-height-small">
+            <table class="uk-table uk-table-striped uk-table-condensed uk-text-nowrap">
+              <thead>
+                <tr>
+                  <th>{{ $getCMSEntry(labels,'orderNumber', 'Ordernummer') }}</th>
+                  <th>{{ $getCMSEntry(labels,'orderDate', 'Orderdatum') }}</th>
+                  <th class="uk-text-right">{{ $getCMSEntry(labels,'orderSum', 'Ordersumma') }}</th>
+                  <th>{{ $getCMSEntry(labels,'paymentMethod', 'Betalningsmetod') }}</th>
+                  <th>{{ $getCMSEntry(labels,'orderStatus', 'Status') }}</th>
+                </tr> 
+              </thead> 
+              <tr v-for="order in orders"
+                  :key="order.OrderId">
+                  <td>
+                    <nuxt-link
+                      :to="localePath('/my-account/'+order.OrderId)">{{ order.OrderId }}
+                    </nuxt-link>
+                  </td>
+                  <td>{{ order.OrderDate }}</td>  
+                  <td class="uk-text-right">{{ order.OrderSum }} {{ order.Currency }}</td>  
+                  <td>{{ order.PaymentMethod }}</td>  
+                  <td>{{ order.StatusDisplay }}</td>  
+                </tr>
+            </table>
+          </div>
 
         </div>
     </template>
