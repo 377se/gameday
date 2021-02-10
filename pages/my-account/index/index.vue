@@ -45,10 +45,10 @@
       </div>
       <div v-if="isUpdating" class="avatar-chooser">
         <div>
-          <a href="#"><img :src="avatarUrl[1]" class="uk-height-1-1 uk-width-auto" @click.prevent="switchAvatar(1)"></a>
+          <a href="#"><img :src="avatarUrl[siteid==2 || siteid==3 ? 1 : 3]" class="uk-height-1-1 uk-width-auto" @click.prevent="switchAvatar(1)"></a>
         </div>
         <div>
-          <a href="#"><img :src="avatarUrl[2]" class="uk-height-1-1 uk-width-auto" @click.prevent="switchAvatar(2)"></a>
+          <a href="#"><img :src="avatarUrl[siteid==2 || siteid==3 ? 2 : 4]" class="uk-height-1-1 uk-width-auto" @click.prevent="switchAvatar(2)"></a>
         </div>
       </div>
 
@@ -234,6 +234,8 @@ export default {
         0: "/avatars/avatar-gray-unisex.png",
         1: "/avatars/avatar-white-man-short-hair.png",
         2: "/avatars/avatar-white-woman-long-hair.png",
+        3: "/avatars/avatar-white-man-short-hair-no-scarf.png",
+        4: "/avatars/avatar-white-woman-long-hair-no-scarf.png",
       },
       errors: [],
       message: '',
@@ -248,7 +250,8 @@ export default {
         Email: '',
         RepeatEmail: '',
         AvatarId: 0,
-      }
+      },
+      siteid: process.env.SITE_ID
     }
   },
   beforeRouteLeave(to, from, next){
