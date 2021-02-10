@@ -45,10 +45,10 @@
       </div>
       <div v-if="isUpdating" class="avatar-chooser">
         <div>
-          <a href="#"><img :src="avatarUrl[siteid==2 || siteid==3 ? 1 : 3]" class="uk-height-1-1 uk-width-auto" @click.prevent="switchAvatar(1)"></a>
+          <a href="#"><img :src="avatarUrl[siteid==2 || siteid==3 ? 1 : 3]" class="uk-height-1-1 uk-width-auto" @click.prevent="switchAvatar(siteid==2 || siteid==3 ? 1 : 3)"></a>
         </div>
         <div>
-          <a href="#"><img :src="avatarUrl[siteid==2 || siteid==3 ? 2 : 4]" class="uk-height-1-1 uk-width-auto" @click.prevent="switchAvatar(2)"></a>
+          <a href="#"><img :src="avatarUrl[siteid==2 || siteid==3 ? 2 : 4]" class="uk-height-1-1 uk-width-auto" @click.prevent="switchAvatar(siteid==2 || siteid==3 ? 2 : 4)"></a>
         </div>
       </div>
 
