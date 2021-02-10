@@ -16,7 +16,6 @@
     </template>
     <div 
       v-if="klarnahtml"
-      style="display:none;"
       id="klarna-checkout-thanks"
       class="uk-container uk-padding-remove"
       v-html="klarnahtml.Html"/>
