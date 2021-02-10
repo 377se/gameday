@@ -8,7 +8,7 @@
       uk-slider>
       <div>
         <div class="uk-width-1-1 uk-padding">
-      <div class="gc-headline">
+      <div v-if="this.showHeading" class="gc-headline">
         STANDINGS
       </div>
 
@@ -29,7 +29,7 @@
                 </tr>
             </thead>
             <tbody>
-            <tr v-for="game in standings" :key="game" class="uk-table-middle">
+            <tr v-for="game in standings.slice(0, this.numberOfRows)" :key="game" class="uk-table-middle">
                 <td class="center">{{ game.Position }}</td>
                 <td><img :src="game.Crest" :alt="game.Team">&nbsp;&nbsp;{{ game.Team }}</td>
                 <td>{{ game.Played }}</td>
@@ -73,6 +73,8 @@ export default {
   data(){
     return{
       standings: [],
+      showHeading: this.blok.showHeading,
+      numberOfRows: this.blok.numberOfRows
     }
   },
   computed: {
@@ -114,7 +116,6 @@ export default {
             color: #fff;
             font-size: 0.9rem;
             font-family: Oswald;
-            font-weight: bolder;
         }
     }
     & tbody {
