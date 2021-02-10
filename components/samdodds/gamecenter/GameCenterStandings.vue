@@ -1,52 +1,41 @@
 <template>
-<!-- LATEST GAME -->
   <div class="uk-container gc-standings">
-
     <div 
-      class="gc-standings-container uk-position-relative uk-background-primary uk-margin-large-bottom uk-border-rounded"
-      tabindex="-1"
-      uk-slider>
+      class="gc-standings-container uk-margin-large-bottom uk-border-rounded uk-padding-small">
       <div>
-        <div class="uk-width-1-1 uk-padding">
-      <div v-if="this.showHeading" class="gc-headline">
-        STANDINGS
-      </div>
-
-    <div class="uk-overflow-auto">
-        <table class="uk-table uk-border-rounded uk-overflow-hidden">
-            <thead>
-                <tr>
-                    <th class="uk-table-shrink">Pos</th>
-                    <th>Team</th>
-                    <th>GP</th>
-                    <th class="uk-visible@s">W</th>
-                    <th class="uk-visible@s">D</th>
-                    <th class="uk-visible@s">L</th>
-                    <th class="uk-visible@s">F</th>
-                    <th class="uk-visible@s">A</th>
-                    <th>+/-</th>
-                    <th>PTS</th>
-                </tr>
-            </thead>
-            <tbody>
-            <tr v-for="game in standings.slice(0, this.numberOfRows)" :key="game" class="uk-table-middle">
-                <td class="center">{{ game.Position }}</td>
-                <td><img :src="game.Crest" :alt="game.Team">&nbsp;&nbsp;{{ game.Team }}</td>
-                <td>{{ game.Played }}</td>
-                <td class="uk-visible@s">{{ game.Won }}</td>
-                <td class="uk-visible@s">{{ game.Draw }}</td>
-                <td class="uk-visible@s">{{ game.Lost }}</td>
-                <td class="uk-visible@s">{{ game.Fore }}</td>
-                <td class="uk-visible@s">{{ game.Against }}</td>
-                <td>{{ game.GoalDifference }}</td>
-                <td>{{ game.Points }}</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-        
-        </div>
-
+          <div v-if="this.showHeading" class="gc-headline">STANDINGS</div>
+            <div class="uk-overflow-auto">
+                <table class="uk-table uk-border-rounded uk-overflow-hidden">
+                    <thead>
+                        <tr>
+                            <th class="uk-table-shrink">Pos</th>
+                            <th>Team</th>
+                            <th>GP</th>
+                            <th class="uk-visible@s">W</th>
+                            <th class="uk-visible@s">D</th>
+                            <th class="uk-visible@s">L</th>
+                            <th class="uk-visible@s">F</th>
+                            <th class="uk-visible@s">A</th>
+                            <th>+/-</th>
+                            <th>PTS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="game in standings.slice(0, this.numberOfRows)" :key="game" class="uk-table-middle">
+                        <td class="center">{{ game.Position }}</td>
+                        <td><img :src="game.Crest" :alt="game.Team">&nbsp;&nbsp;{{ game.Team }}</td>
+                        <td>{{ game.Played }}</td>
+                        <td class="uk-visible@s">{{ game.Won }}</td>
+                        <td class="uk-visible@s">{{ game.Draw }}</td>
+                        <td class="uk-visible@s">{{ game.Lost }}</td>
+                        <td class="uk-visible@s">{{ game.Fore }}</td>
+                        <td class="uk-visible@s">{{ game.Against }}</td>
+                        <td>{{ game.GoalDifference }}</td>
+                        <td>{{ game.Points }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
       </div>
     </div>
   </div>
@@ -85,9 +74,8 @@ export default {
 </script>
 <style lang="scss">
 .gc-standings-container {
-    width: 100%;
     background: url("/backgrounds/background-gradient-red.svg") center;
-      font-size: 1.6vw;
+    font-size: 1.6vw;
 }
 .gc-standings a {
   color: #000;
@@ -99,9 +87,12 @@ export default {
   color: #fff;
   font-family: Oswald;
   margin: 0 0 0.3em 0;
-  font-size: 4em;
+  font-size: 7vw;
   line-height: 1;
   font-weight: bold;
+  @media only screen  and (max-width : 640px) {
+    font-size: 10vw;
+  }
 }
 .gc-standings {
     & table {
