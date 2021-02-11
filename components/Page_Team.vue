@@ -1,5 +1,6 @@
 <template>
-  <div> 
+  <div
+    v-editable="blok"> 
     <component v-for="child in blok.body" :key="child._uid" :blok="child" :is="child.component"></component>
   </div>
 </template>

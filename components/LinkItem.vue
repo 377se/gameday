@@ -1,5 +1,6 @@
 <template>
-  <li>
+  <li
+    v-editable="blok">
     <nuxt-link
       :to="'/'+blok.url.cached_url">{{ blok.label }}</nuxt-link>
   </li>

@@ -1,5 +1,6 @@
 <template>
   <div
+    v-editable="blok"
     class="youtube-container uk-margin"
     v-html="blok.editorial_youtube" />
 </template>
