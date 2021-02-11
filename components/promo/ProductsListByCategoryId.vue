@@ -1,5 +1,6 @@
 <template>
   <div
+    v-editable="blok"
     class="uk-flex uk-grid-small uk-margin-medium-bottom uk-padding uk-padding-remove-horizontal uk-padding-remove-top uk-margin-large-top product-list-slider uk-flex-nowrap"
     uk-height-match="target: .uk-card">
     <ArticleCardSimple

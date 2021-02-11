@@ -1,5 +1,6 @@
 <template>
   <div
+    v-editable="blok"
     class="uk-margin-bottom">
     <h1
       v-if="blok.category_header">{{ blok.category_header }}</h1>

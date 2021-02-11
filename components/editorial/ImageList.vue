@@ -1,5 +1,6 @@
 <template>
    <div 
+    v-editable="blok"
     class="uk-child-width-1-2"
     uk-grid>
      <component v-for="child in blok.images" :key="child._uid" :blok="child" :is="child.component"></component>

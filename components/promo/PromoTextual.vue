@@ -1,5 +1,6 @@
 <template>
   <div
+    v-editable="blok"
     class="uk-margin-bottom uk-text-center promo-textual"
     :style="{'background-color':blok.background_color.color}">
       <div v-html="blok.content.html" />

@@ -1,5 +1,7 @@
 <template>
-  <div class="uk-container result-contest">
+  <div
+    v-editable="blok" 
+    class="uk-container result-contest">
     <div class="result-contest-container uk-margin-large-bottom">
       <!-- <div class="rc-background-image"></div> -->
       <div class="rc-headline">

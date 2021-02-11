@@ -1,5 +1,6 @@
 <template>
   <div
+    v-editable="blok"
     class="uk-margin uk-margin-auto uk-width-1-1 uk-width-3-4@m"
     v-html="blok.editorial_text.html"/>
 </template>

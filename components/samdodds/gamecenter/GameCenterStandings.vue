@@ -1,5 +1,7 @@
 <template>
-  <div class="uk-container gc-standings">
+  <div 
+    v-editable="blok"
+    class="uk-container gc-standings">
     <div 
       class="gc-standings-container uk-margin-large-bottom uk-border-rounded uk-padding-small">
       <div>
