@@ -47,11 +47,21 @@
       <div class="rc-form-container">
         <div class="rc-crests"> <!-- CRESTS -->
           <div class="rc-hometeam">
-            <img src="/logos/teams/liverpool_fc_600x600.png" alt="">
+            <div>
+              <img src="/logos/teams/liverpool_fc_600x600.png" alt="">
+            </div>
+            <div>
+              Liverpool
+            </div>
           </div>
           <div class="rc-dash">-</div>
           <div class="rc-awayteam">
+            <div>
               <img src="/logos/teams/liverpool_fc_600x600.png" alt="">
+            </div>
+            <div>
+              Liverpool
+            </div>
           </div>
         </div>
       </div>
@@ -284,10 +294,32 @@ export default {
   display: flex;
   width: 100%;
   height: 100%;
-  justify-content: center;
+  padding-top: 0.3em;
+  justify-content: flex-end;
   align-items: center;
   & img {
-    height: 100%;
+    width: 4.3em;
+    height: auto;
+  }
+}
+.rc-hometeam {
+  text-align: center;
+  margin-right: 0.8em;
+  & div:last-child {
+    font-size: 0.9em;
+    font-weight: bold;
+  }
+}
+.rc-dash {
+  font-size: 4em;
+  opacity: 0.77;
+}
+.rc-awayteam {
+  margin-left: 0.8em;
+  text-align: center;
+  & div:last-child {
+    font-size: 0.9em;
+    font-weight: bold;
   }
 }
 

@@ -64,31 +64,31 @@
       <nav 
         class="uk-navbar-container">
       <ul 
-      class="gd-subnav uk-navbar-nav uk-background-secondary uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-margin-remove-left">
+      class="gd-subnav uk-navbar-nav uk-background-secondary uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-margin-remove-left uk-flex-middle">
       <li>
         <a 
           href="/nhl-shop"
           class="subnav"
-          @click.stop.prevent="showDropDown(3)">NHL <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
+          @click.stop.prevent="showDropDown(3)"><img src="/logos/nhl_ikon_600x600.png" style="width:30px" />NHL <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
       </li>
       <li>
         <a 
           href="/nfl-shop"
           class="subnav"
-          @click.stop.prevent="showDropDown(4)">NFL <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
+          @click.stop.prevent="showDropDown(4)"><img src="/logos/nfl_ikon_600x600.png" style="width:30px" />NFL <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
           
       </li>
       <li>
         <a 
           href="/nba-shop"
           class="subnav"
-          @click.stop.prevent="showDropDown(5)">NBA <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
+          @click.stop.prevent="showDropDown(5)"><img src="/logos/nba_ikon_600x600.png" style="width:30px" />NBA <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
       </li>
       <li>
         <a 
           href="/mlb-shop"
           class="subnav"
-          @click.stop.prevent="showDropDown(6)">MLB <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
+          @click.stop.prevent="showDropDown(6)"><img src="/logos/mlb_ikon_600x600.png" style="width:30px" />MLB <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
       </li>
       <li>
         <nuxt-link
