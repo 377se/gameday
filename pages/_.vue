@@ -15,6 +15,7 @@
 import Page from '@/components/Page'
 import TextContent from '@/components/TextContent'
 import GameCenterLatestNext from '@/components/samdodds/gamecenter/GameCenterLatestNext'
+import GameCenterStandings from '@/components/samdodds/gamecenter/GameCenterStandings'
 import GameCenterResultContest from '@/components/samdodds/gamecenter/GameCenterResultContest'
 
 export default {

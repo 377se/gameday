@@ -32,6 +32,7 @@ import editorial_quote from '@/components/editorial/Quote'
 import image_list from '@/components/editorial/ImageList'
 
 import GameCenterLatestNext from '@/components/samdodds/gamecenter/GameCenterLatestNext'
+import GameCenterStandings from '@/components/samdodds/gamecenter/GameCenterStandings'
 import GameCenterResultContest from '@/components/samdodds/gamecenter/GameCenterResultContest'
 
 
@@ -55,6 +56,7 @@ export default {
     editorial_quote,
     image_list,
     GameCenterLatestNext,
+    GameCenterStandings,
     GameCenterResultContest
   },
   props: {

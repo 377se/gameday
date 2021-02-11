@@ -149,5 +149,9 @@ export default {
   background: rgb(79, 151, 79);
   color:#fff;
 }
+.label-soldout-product{
+  background: rgb(184, 38, 38);
+  color:#fff;
+}
 </style>
 

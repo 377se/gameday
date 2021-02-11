@@ -8,7 +8,7 @@
         <div class="uk-container">
           <h1>{{ $getCMSEntry(labels,'orderHistory', 'Orderhistorik') }}</h1>
 
-          <div class="uk-overflow-auto uk-height-small">
+          <div class="uk-overflow-auto">
             <table class="uk-table uk-table-striped uk-table-condensed uk-text-nowrap">
               <thead>
                 <tr>
@@ -18,19 +18,21 @@
                   <th>{{ $getCMSEntry(labels,'paymentMethod', 'Betalningsmetod') }}</th>
                   <th>{{ $getCMSEntry(labels,'orderStatus', 'Status') }}</th>
                 </tr> 
-              </thead> 
-              <tr v-for="order in orders"
+              </thead>
+              <tbody>
+                <tr v-for="order in orders"
                   :key="order.OrderId">
                   <td>
                     <nuxt-link
                       :to="localePath('/my-account/'+order.OrderId)">{{ order.OrderId }}
                     </nuxt-link>
                   </td>
-                  <td>{{ order.OrderDate }}</td>  
-                  <td class="uk-text-right">{{ order.OrderSum }} {{ order.Currency }}</td>  
-                  <td>{{ order.PaymentMethod }}</td>  
-                  <td>{{ order.StatusDisplay }}</td>  
+                  <td>{{ order.OrderDate }}</td>
+                  <td class="uk-text-right">{{ order.OrderSum | thousandsDelimiter }} {{ order.Currency }}</td>
+                  <td>{{ order.PaymentMethod }}</td>
+                  <td>{{ order.StatusDisplay }}</td>
                 </tr>
+              </tbody>
             </table>
           </div>
 

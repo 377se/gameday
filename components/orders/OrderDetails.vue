@@ -13,6 +13,8 @@
           {{ $getCMSEntry(labels,'orderStatus', 'Orderstatus') }}:  {{order.StatusDisplay}}<br />
           {{ $getCMSEntry(labels,'trackingNumber', 'Kollinummer') }}:  {{order.TrackingNumber}}<br />
           {{ $getCMSEntry(labels,'paymentMethod', 'Betalningsmetod') }}:  {{order.PaymentMethod}}<br />
+          {{ $getCMSEntry(labels,'forwarding-agent', 'Speditör') }}:  {{order.ForwardingAgent}}<br />
+          
 
           <hr class="uk-divider-icon">
 
