@@ -6,11 +6,11 @@ export const state = () => ({
 export const mutations = {
   add(state, cart) {
     state.cart=cart
-    state.counter=state.cart.data.length
+    state.counter=state.cart.ItemsInCart
   },
   setCart(state, cart){
     state.cart = cart
-    state.counter =state.cart.data.length
+    state.counter =state.cart.ItemsInCart
   }
 }
 export const getters = {
