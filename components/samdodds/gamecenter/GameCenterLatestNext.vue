@@ -1,6 +1,8 @@
 <template>
 <!-- LATEST GAME -->
-  <div v-if="isLatest" class="uk-container next-game">
+  <div 
+    v-editable="blok"
+    v-if="isLatest" class="uk-container next-game">
          {{numberOfGames}}
       <h3>Senaste match</h3>
     <div 

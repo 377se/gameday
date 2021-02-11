@@ -1,5 +1,7 @@
 <template>
-   <div class="uk-margin">
+   <div
+    v-editable="blok" 
+    class="uk-margin">
      <img 
       :src="blok.editorial_image"
       alt="" />

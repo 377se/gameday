@@ -1,5 +1,6 @@
 <template>
     <img 
+      v-editable="blok"
       class="image-list-image"
       :src="blok.image"
       alt="" />

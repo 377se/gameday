@@ -1,5 +1,7 @@
 <template>
-  <div class="team-icon">
+  <div
+    v-editable="blok" 
+    class="team-icon">
     <img :src="teamicon" alt="" />
   </div>
 </template>
