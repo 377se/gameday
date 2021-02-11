@@ -60,7 +60,8 @@ export default {
     {src: "~/plugins/uikit.js", ssr: false },
     {src: '~/plugins/axios'},
     {src: '~/plugins/get'},
-    {src: '~/plugins/lottie-client.js', ssr:false}
+    {src: '~/plugins/lottie-client.js', ssr:false},
+    {src: '~/plugins/filters.js', ssr:false},
   ],
   render: {
     http2: {

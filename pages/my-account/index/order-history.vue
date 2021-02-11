@@ -27,10 +27,10 @@
                       :to="localePath('/my-account/'+order.OrderId)">{{ order.OrderId }}
                     </nuxt-link>
                   </td>
-                  <td>{{ order.OrderDate }}</td>  
-                  <td class="uk-text-right">{{ order.OrderSum }} {{ order.Currency }}</td>  
-                  <td>{{ order.PaymentMethod }}</td>  
-                  <td>{{ order.StatusDisplay }}</td>  
+                  <td>{{ order.OrderDate }}</td>
+                  <td class="uk-text-right">{{ order.OrderSum | thousandsDelimiter }} {{ order.Currency }}</td>
+                  <td>{{ order.PaymentMethod }}</td>
+                  <td>{{ order.StatusDisplay }}</td>
                 </tr>
               </tbody>
             </table>
