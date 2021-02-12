@@ -1,12 +1,11 @@
 <template>
   <section>
-    <div class="uk-container">
-      <component 
-        v-if="story.content.component" 
-        :key="story.content._uid" 
-        :blok="story.content" 
-        :is="story.content.component" />
-    </div>
+    <component 
+      v-if="story.content.component" 
+      :key="story.content._uid" 
+      :blok="story.content" 
+      :is="story.content.component"
+      :remove-padding="true" />
   </section>
 </template>
 
