@@ -1,25 +1,25 @@
 <template>
   <div 
     v-editable="blok"
-    class="uk-container gc-standings">
+    class="uk-container gc-standings uk-border-rounded">
     <div 
-      class="gc-standings-container uk-margin-large-bottom uk-border-rounded uk-padding-small">
-      <div>
+      class="gc-standings-container uk-padding-small">
+
           <div v-if="this.showHeading" class="gc-headline">STANDINGS</div>
-            <div class="uk-overflow-auto">
-                <table class="uk-table uk-border-rounded uk-overflow-hidden">
+            <div class="uk-overflow-auto uk-border-rounded">
+                <table class="uk-table remove-scrolls">
                     <thead>
                         <tr>
-                            <th class="uk-table-shrink">Pos</th>
+                            <th class="uk-table-shrink">P</th>
                             <th>Team</th>
                             <th>GP</th>
-                            <th class="uk-visible@s">W</th>
-                            <th class="uk-visible@s">D</th>
-                            <th class="uk-visible@s">L</th>
-                            <th class="uk-visible@s">F</th>
-                            <th class="uk-visible@s">A</th>
+                            <th>W</th>
+                            <th>D</th>
+                            <th>L</th>
+                            <!-- <th class="uk-visible@s">F</th>
+                            <th class="uk-visible@s">A</th> -->
                             <th>+/-</th>
-                            <th>PTS</th>
+                            <th>P</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,18 +27,17 @@
                         <td class="center">{{ game.Position }}</td>
                         <td><img :src="game.Crest" :alt="game.Team">&nbsp;&nbsp;{{ game.Team }}</td>
                         <td>{{ game.Played }}</td>
-                        <td class="uk-visible@s">{{ game.Won }}</td>
-                        <td class="uk-visible@s">{{ game.Draw }}</td>
-                        <td class="uk-visible@s">{{ game.Lost }}</td>
-                        <td class="uk-visible@s">{{ game.Fore }}</td>
-                        <td class="uk-visible@s">{{ game.Against }}</td>
+                        <td>{{ game.Won }}</td>
+                        <td>{{ game.Draw }}</td>
+                        <td>{{ game.Lost }}</td>
+                        <!-- <td class="uk-visible@s">{{ game.Fore }}</td>
+                        <td class="uk-visible@s">{{ game.Against }}</td> -->
                         <td>{{ game.GoalDifference }}</td>
                         <td>{{ game.Points }}</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-      </div>
     </div>
   </div>
 </template>
@@ -75,28 +74,8 @@ export default {
 }
 </script>
 <style lang="scss">
-.gc-standings-container {
-    background: url("/backgrounds/background-gradient-red.svg") center;
-    font-size: 1.6vw;
-}
-.gc-standings a {
-  color: #000;
-}
-.gc-standings a:hover {
-  text-decoration: underline;
-}
-.gc-headline {
-  color: #fff;
-  font-family: Oswald;
-  margin: 0 0 0.3em 0;
-  font-size: 7vw;
-  line-height: 1;
-  font-weight: bold;
-  @media only screen  and (max-width : 640px) {
-    font-size: 10vw;
-  }
-}
 .gc-standings {
+    background: url("/backgrounds/background-gradient-red.svg") center;
     & table {
         border-collapse: collapse;
         width: 100%;
@@ -137,5 +116,27 @@ export default {
             }
         }
     }
+}
+.gc-standings a {
+  color: #000;
+}
+.gc-standings a:hover {
+  text-decoration: underline;
+}
+.remove-scrolls {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+.remove-scrolls::-webkit-scrollbar { /* WebKit */
+    height: 0;
+    width: 0;
+}
+.gc-headline {
+  color: #fff;
+  font-family: Oswald;
+  margin: 0 0 0.3em 0;
+  font-size: 2.3rem;
+  line-height: 1;
+  font-weight: bold;
 }
 </style>

@@ -31,6 +31,7 @@ import editorial_youtube from '@/components/editorial/Youtube'
 import editorial_quote from '@/components/editorial/Quote'
 import image_list from '@/components/editorial/ImageList'
 
+import GameCenterContainer from '@/components/samdodds/gamecenter/GameCenterContainer'
 import GameCenterLatestNext from '@/components/samdodds/gamecenter/GameCenterLatestNext'
 import GameCenterStandings from '@/components/samdodds/gamecenter/GameCenterStandings'
 import GameCenterResultContest from '@/components/samdodds/gamecenter/GameCenterResultContest'
@@ -55,6 +56,7 @@ export default {
     editorial_youtube,
     editorial_quote,
     image_list,
+    GameCenterContainer,
     GameCenterLatestNext,
     GameCenterStandings,
     GameCenterResultContest
