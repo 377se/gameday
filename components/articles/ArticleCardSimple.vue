@@ -30,7 +30,8 @@
               </div> 
               <div 
                 class="orig-price"
-                :class="{'line-through':article.DiscountedPriceDisplay}">
+                :class="{'line-through':article.DiscountedPriceDisplay, 'orig-price-when-discounted':article.DiscountedPriceDisplay}"
+                >
                 ({{ $getCMSEntry(global_labels,'article_details_original_price', 'Ord.') }} {{ article.PriceDisplay }})
               </div>
             </template>
@@ -112,6 +113,9 @@ export default {
 .orig-price.line-through{
   font-family: $global-font-family;
   font-weight:normal;
+}
+.orig-price-when-discounted{
+  font-size: 0.9rem;
 }
 .card-border {
   border: 1px solid #bbb;
