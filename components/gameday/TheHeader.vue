@@ -313,7 +313,7 @@ export default {
 }
 .header {
   background-color: $global-primary-background !important;
-  height: 80px;
+  height: 75px;
 }
 
 .logo {
