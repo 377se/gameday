@@ -49,6 +49,13 @@ export default {
           name:  'og:description',
           content: `${this.article.MetaDescription}`.replace(/<\/?[^>]+(>|$)/g, ""),
         }
+      ],
+      link:[
+        {
+          rel: 'canonical',
+          hid: 'can',
+          href: this.siteid<3?'/'+this.$i18n.locale+this.metadata.Canonical:this.metadata.Canonical
+        }
       ]
     }
   },
@@ -57,15 +64,20 @@ export default {
   },
   data() {
     return {
-      article: {}
+      article: {},
+      metadata: {Canonical:this.$route.path},
+      siteid: process.env.SITE_ID
     }
   },
   async fetch() {
     try {
       const url = `/webapi/${this.$i18n.locale}/Article/GetArticleDetailsById?teamName=null&articleId=${this.$route.params.id}`;
+      const metadataurl = `/webapi/${this.$i18n.locale}/MetaData/GetMetadataByArticleId?articleId=${this.$route.params.id}`;
       const article = await this.$axios.$get(url);
+      const metadata = await this.$axios.$get(metadataurl);
  
       this.article=article
+      this.metadata = metadata
       var _this = this
       try{
         this.$gtm.push({event:'ViewContent',

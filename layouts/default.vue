@@ -20,7 +20,12 @@ import TheRollingText from "@/components/TheRollingText";
 
 export default {
   head () {
-    return this.$nuxtI18nSeo()
+    let i18nHead = this.$nuxtI18nSeo()
+    try{
+      let links = i18nHead.link.filter(el => (el.rel!='canonical'))
+      i18nHead.link = links
+    }catch(err){console.log(err)}
+    return i18nHead
   },
   components: {
     OffscreenBasket,

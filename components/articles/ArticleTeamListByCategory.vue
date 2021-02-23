@@ -123,7 +123,7 @@ export default {
     let team = this.$route.query.team?this.$route.query.team:null
     
     try {
-      const [a, p, c, s, g, b, t] = await Promise.all([
+      const [a, p, c, s, g, b, t, metadata] = await Promise.all([
         this.$axios.$get(
           '/webapi/'+this.$i18n.locale+'/Article/getArticleListByCategoryId?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +this.$route.params.categoryid
         ),
@@ -144,6 +144,9 @@ export default {
         ),
         this.$axios.$get(
           `/webapi/${this.$i18n.locale}/Filter/GetTeamListByCategory?categoryId=${this.$route.params.categoryid}&productTypeId=0&brandId=0`
+        ),
+          this.$axios.$get(
+            `/webapi/${this.$i18n.locale}/MetaData/GetMetadataByCategoryId?categoryId=${this.$route.params.categoryid}`
         )
       ]);
       this.articles=a[0].ArticleList
@@ -155,6 +158,7 @@ export default {
       this.teamlist=t
       this.article=a[0]
       this.pageNum=pageNum
+      this.metadata = metadata
     } catch (err) {
       console.log('_team error')
       console.log(err);
@@ -180,6 +184,13 @@ export default {
           hid: 'og:description',
           name:  'og:description',
           content: `${this.article.MetaDescription}`.replace(/<\/?[^>]+(>|$)/g, ""),
+        }
+      ],
+      link:[
+        {
+          rel: 'canonical',
+          hid: 'can',
+          href: this.siteid<3?'/'+this.$i18n.locale+this.metadata.Canonical:this.metadata.Canonical
         }
       ]
     }
@@ -209,7 +220,9 @@ export default {
       pageNum: 1,
       totalPages:1,
       numOfProducts: 1,
-      readmore: true
+      readmore: true,
+      metadata: {Canonical: ''},
+      siteid: process.env.SITE_ID
     }
   },
   computed: {
