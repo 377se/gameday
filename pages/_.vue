@@ -17,6 +17,7 @@ import GameCenterContainer from '@/components/samdodds/gamecenter/GameCenterCont
 import GameCenterLatestNext from '@/components/samdodds/gamecenter/GameCenterLatestNext'
 import GameCenterStandings from '@/components/samdodds/gamecenter/GameCenterStandings'
 import GameCenterResultContest from '@/components/samdodds/gamecenter/GameCenterResultContest'
+import BranchMemberPush from '@/components/samdodds/branchmemberpush/BranchMemberPush'
 
 export default {
     head () {
@@ -46,7 +47,8 @@ export default {
     TextContent,
     GameCenterContainer,
     GameCenterLatestNext,
-    GameCenterResultContest
+    GameCenterResultContest,
+    BranchMemberPush
   },
   data () {
     return { story: { content: {SEO:{title:'',description:''}} } }

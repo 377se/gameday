@@ -36,6 +36,9 @@ import GameCenterLatestNext from '@/components/samdodds/gamecenter/GameCenterLat
 import GameCenterStandings from '@/components/samdodds/gamecenter/GameCenterStandings'
 import GameCenterResultContest from '@/components/samdodds/gamecenter/GameCenterResultContest'
 
+import BranchMemberPush from '@/components/samdodds/branchmemberpush/BranchMemberPush'
+import BranchMemberPushButton from '@/components/samdodds/branchmemberpush/BranchMemberPushButton'
+
 
 export default {
   components: {
@@ -59,7 +62,9 @@ export default {
     GameCenterContainer,
     GameCenterLatestNext,
     GameCenterStandings,
-    GameCenterResultContest
+    GameCenterResultContest,
+    BranchMemberPush,
+    BranchMemberPushButton
   },
   props: {
     blok: {
