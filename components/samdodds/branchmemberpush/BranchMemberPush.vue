@@ -5,28 +5,8 @@
     <a 
       style="position:relative;display:block;"
       :href="blok.BranchMemberPushURL.url">
-      <!-- <picture>
-        <source 
-          media="(min-width: 1441px)" 
-          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/w_2560,fl_lossy,f_auto,fl_progressive/http:'+blok.BranchMemberPushImage">
-        <source 
-          media="(min-width: 768px)" 
-          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/w_1440,fl_lossy,f_auto,fl_progressive/http:'+blok.BranchMemberPushImage">
-        <source 
-          media="(min-width: 640px)" 
-          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/y_0,x_0.25,w_1200,c_limit/w_768,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.BranchMemberPushImage">
-        <source 
-          media="(min-width: 480px)" 
-          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/h_1.0,ar_1:1,c_crop/w_640,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.BranchMemberPushImage">
-        <source 
-          media="(min-width: 360px)" 
-          :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/h_1.0,ar_1:1,c_crop/w_480,c_scale,fl_lossy,f_auto,fl_progressive/http:'+blok.BranchMemberPushImage">
-        <img 
-          alt="Promotion Image" 
-          :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_2560,fl_lossy,f_auto,fl_progressive/http:'+blok.BranchMemberPushImage">
-      </picture> -->
 
-<video :poster="'https://res.cloudinary.com/supportersplace/image/fetch/w_2560,fl_lossy,f_auto,fl_progressive/http:'+blok.BranchMemberPushImage" muted autoplay webkit-playsinline playsinline preload="auto" loop style="width: 100%;">
+<video :poster="'https://res.cloudinary.com/supportersplace/image/fetch/w_1400,fl_lossy,f_auto,fl_progressive/http:'+blok.BranchMemberPushImage" muted autoplay webkit-playsinline playsinline preload="auto" loop style="width: 100%;">
 <source src="https://res.cloudinary.com/supportersplace/video/upload/v1614780456/bmp-videobackground_vpb7zn.mp4" type="video/mp4">
 </video>
 
