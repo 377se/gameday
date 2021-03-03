@@ -6,12 +6,14 @@
       style="position:relative;display:block;"
       :href="blok.BranchMemberPushURL.url">
 
-<video :poster="'https://res.cloudinary.com/supportersplace/image/fetch/w_1400,fl_lossy,f_auto,fl_progressive/http:'+blok.BranchMemberPushImage" muted autoplay webkit-playsinline playsinline preload="auto" loop style="width: 100%;">
-<source src="https://res.cloudinary.com/supportersplace/video/upload/v1614780456/bmp-videobackground_vpb7zn.mp4" type="video/mp4">
-</video>
-
-
       <div class="bmp-container">
+
+
+        <video :poster="'https://res.cloudinary.com/supportersplace/image/fetch/w_1400,fl_lossy,f_auto,fl_progressive/http:'+blok.BranchMemberPushImage" muted autoplay webkit-playsinline playsinline preload="auto" loop style="width: 100%;">
+          <source src="https://res.cloudinary.com/supportersplace/video/upload/v1614780456/bmp-videobackground_vpb7zn.mp4" type="video/mp4">
+        </video>
+
+
         <div class="bmp-infobox">
 
           <div class="bmp-push-promo-text" uk-scrollspy="target: > div; cls: uk-animation-slide-right; delay: 500">
@@ -68,7 +70,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .bmp-container {
-  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -76,47 +77,91 @@ export default {
   top: 0px;
   width: 100%;
   height: 100%;
+  font-size: 2vw;
+}
+.bmp-container video {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      @media (max-width: 449px) {
+        height: 500px;
+      }
+      @media (min-width: 450px) and (max-width: 999px) {
+        height: 450px;
+      }
 }
 .bmp-infobox {
-  position: relative;
+  position: absolute;
   width: 50%;
+  @media (max-width: 449px) {
+    width: 90%;
+  }
+  @media (min-width: 450px) and (max-width: 999px) {
+    width: 70%;
+  }
+
+
 }
 .bmp-push-promo-text {
   font-family: "Oswald", sans-serif;
-  font-size: 7rem;
+  font-size: 90px;
+  line-height: 98px;
+  @media (min-width: 450px) and (max-width: 999px) {
+    font-size: 70px;
+    line-height: 70px;
+  }
+  @media (max-width: 449px) {
+    font-size: 60px;
+    line-height: 65px;
+  }
   font-weight: bold;
-  line-height: 1;
   color:rgb(255, 255, 255);
-  margin: 0 0 2rem 0;
-  padding: 0 0 0 2rem;
+  margin: 0 0 0.15em 0;
+  padding: 0 0 0 1.7rem;
 }
 .bmp-push-price-message {
   font-family: "Oswald", sans-serif;
-  font-size: 1.7rem;
-  margin: 0 0 2rem 0;
-  padding: 0 0 0 2rem;
+  font-size: 20px;
+  line-height: 25px;
+  margin: 0 0 1em 0;
+  padding: 0 0 0 1.7rem;
   color:rgb(255, 255, 255);
 }
 .nuxt-link-exact-active {
   font-family: "Oswald", sans-serif;
-  font-size: 1.2rem;
-  line-height: 1.9;
+  font-size: 1.1em;
+  line-height: 1.5;
   color: #000;
   font-weight: bold;
   display: inline-block;
   background-color: #FBB03B;
   width: 100%;
-  height: 2.2rem;
+  height: 1.6em;
+  @media (max-width: 449px) {
+    font-size: 17px;
+    line-height: 25px;
+    width: 80%;
+    margin: 0 20px 0 20px;
+    height: 1.6em;
+  }
+  @media (min-width: 450px) and (max-width: 999px) {
+    font-size: 20px;
+    line-height: 30px;
+    width: 80%;
+    margin: 0 20px 0 20px;
+    height: 1.6em;
+  }
+
   border-radius: 5px;
   text-align: center;
-  -webkit-box-shadow: 8px 8px 0px 0px rgba(0,0,0,0.40); 
-  box-shadow: 8px 8px 0px 0px rgba(0,0,0,0.40);
+  -webkit-box-shadow: 0.3em 0.3em 0px 0px rgba(0,0,0,0.40); 
+  box-shadow: 0.3em 0.3em 0px 0px rgba(0,0,0,0.40);
   transition: 300ms;
 }
 .nuxt-link-exact-active:hover {
   text-decoration: none;
-  -webkit-box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.40); 
-  box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.40);
+  -webkit-box-shadow: 0.05em 0.05em 0px 0px rgba(0,0,0,0.40); 
+  box-shadow: 0.05em 0.05em 0px 0px rgba(0,0,0,0.40);
 }
 .bmp-crest {
   position: absolute;
@@ -125,12 +170,12 @@ export default {
   align-items: center;
   flex-direction: column;
   top: 0;
-  right: 60px;
-  width: 170px;
-  height: 150px;
+  right: 2.3em;
+  width: 7em;
+  height: 7em;
   background-color: #fff;
-  -webkit-box-shadow: 8px 8px 0px 0px rgba(0,0,0,0.40); 
-  box-shadow: 8px 8px 0px 0px rgba(0,0,0,0.40);
+  -webkit-box-shadow: 0.3em 0.3em 0px 0px rgba(0,0,0,0.40); 
+  box-shadow: 0.3em 0.3em 0px 0px rgba(0,0,0,0.40);
 }
 
 </style>
