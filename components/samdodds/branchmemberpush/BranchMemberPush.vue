@@ -5,7 +5,7 @@
     <a 
       style="position:relative;display:block;"
       :href="blok.BranchMemberPushURL.url">
-      <picture>
+      <!-- <picture>
         <source 
           media="(min-width: 1441px)" 
           :srcset="'https://res.cloudinary.com/supportersplace/image/fetch/w_2560,fl_lossy,f_auto,fl_progressive/http:'+blok.BranchMemberPushImage">
@@ -24,11 +24,11 @@
         <img 
           alt="Promotion Image" 
           :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_2560,fl_lossy,f_auto,fl_progressive/http:'+blok.BranchMemberPushImage">
-      </picture>
+      </picture> -->
 
+<video src="https://res.cloudinary.com/supportersplace/video/upload/v1614780456/bmp-videobackground_vpb7zn.mp4" autoplay loop object-fit="cover" width="1400" height="560"></video>
 
       <div class="bmp-container">
-
         <div class="bmp-infobox">
 
           <div class="bmp-push-promo-text" uk-scrollspy="target: > div; cls: uk-animation-slide-right; delay: 500">
