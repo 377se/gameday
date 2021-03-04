@@ -84,10 +84,10 @@ export default {
       width: 100%;
       height: 100%;
       @media (max-width: 449px) {
-        height: 500px;
+        height: 600px;
       }
       @media (min-width: 450px) and (max-width: 999px) {
-        height: 450px;
+        height: 500px;
       }
 }
 .bmp-infobox {
@@ -170,9 +170,19 @@ export default {
   align-items: center;
   flex-direction: column;
   top: 0;
-  right: 2.3em;
-  width: 7em;
-  height: 7em;
+  right: 70px;
+  width: 180px;
+  height: 180px;
+  @media (min-width: 450px) and (max-width: 999px) {
+    right: 60px;
+    width: 120px;
+    height: 120px;
+  }
+  @media (max-width: 449px) {
+    right: 40px;
+    width: 100px;
+    height: 100px;
+  }
   background-color: #fff;
   -webkit-box-shadow: 0.3em 0.3em 0px 0px rgba(0,0,0,0.40); 
   box-shadow: 0.3em 0.3em 0px 0px rgba(0,0,0,0.40);
