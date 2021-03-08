@@ -6,7 +6,7 @@ export default {
     BRAND_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_200,f_auto/http://static.supportersplace.se/brand/',
     STORYBLOK_CATALOGUE: '/supporterprylar',
     STORYBLOK_LABELS: 'supporterprylar',
-    SITE_URL: 'https://supporterprylar.se',
+    SITE_URL: 'https://www.supporterprylar.se',
     LOGO_URL: '/sites/supporterprylar/supporterprylar-rectangle.png',
     SITE_ID: 7,
     MEMBER_PRICES: false,
@@ -109,7 +109,7 @@ export default {
     }],
     ['nuxt-i18n',
       {
-        baseUrl: 'https://supporterprylar.se',
+        baseUrl: 'https://www.supporterprylar.se',
         defaultLocale: 'sv-se',
         strategy: 'prefix_except_default',
         locales: [

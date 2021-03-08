@@ -6,7 +6,7 @@ export default {
     BRAND_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_200,f_auto/http://static.supportersplace.se/brand/',
     STORYBLOK_CATALOGUE: '/supportersplace',
     STORYBLOK_LABELS: 'supporters-place',
-    SITE_URL: 'https://www.supportersplace.com',
+    SITE_URL: 'https://supportersplace.com',
     LOGO_URL: '/sites/supportersplace/supportersplace_logo_light.svg',
     SITE_ID: 1,
     MEMBER_PRICES: true,
@@ -111,7 +111,7 @@ export default {
           cookieKey: 'i18n_redirected',
           onlyOnRoot: true,  // recommended
         },
-        baseUrl: 'https://www.supportersplace.com',
+        baseUrl: 'https://supportersplace.com',
         defaultLocale: 'sv-se',
         strategy: 'prefix',
         locales: [
