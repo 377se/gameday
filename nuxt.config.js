@@ -118,7 +118,7 @@ export default {
         locales: [
           {
             code: 'sv-se',
-            iso: 'sv-SE'
+            iso: 'sv'
           }
         ],
         seo:false
