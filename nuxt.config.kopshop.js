@@ -38,11 +38,6 @@ export default {
     '~/assets/pe-laundry-icons/css/pe-laundry-icons.css'
     //'uikit/dist/css/uikit.css'
   ],
-  router: {
-    /*scrollBehavior: function (to, from, savedPosition) {
-      return { x: 0, y: 0 }
-    }*/
-  },
   /*
    ** Plugins to load before mounting the App
    */
@@ -63,6 +58,7 @@ export default {
     }
   },
   router: {
+    trailingSlash: true,
     extendRoutes (routes, resolve) {
       routes.push({
         name: 'home',
@@ -85,6 +81,7 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
+    '@nuxtjs/redirect-module',
     // Doc: https://axios.nuxtjs.org/usage
     ['@dansmaculotte/nuxt-zendesk',
     { 
@@ -105,6 +102,7 @@ export default {
     }],
     ['nuxt-i18n',
       {
+        baseUrl: 'https://www.kopshop.no',
         defaultLocale: 'nb-no',
         strategy: 'prefix_except_default',
         locales: [
@@ -121,6 +119,12 @@ export default {
     'nuxt-webfontloader',
     ['storyblok-nuxt', { accessToken: 'rGRW1HEorfNfSoGS5CzoDwtt', cacheProvider: 'memory' }],
     ['@nuxtjs/style-resources']    
+  ],
+  redirect: [
+    {
+        from: '^(\\/[^\\?]*[^\\/])(\\?.*)?$',
+        to: '$1/$2',
+    },
   ],
   styleResources: {
     scss: [

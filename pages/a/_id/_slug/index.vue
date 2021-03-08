@@ -54,7 +54,7 @@ export default {
         {
           rel: 'canonical',
           hid: 'can',
-          href: this.siteid<3?'/'+this.$i18n.locale+this.metadata.Canonical:this.metadata.Canonical
+          href: this.siteid<3?process.env.SITE_URL +this.metadata.Canonical:process.env.SITE_URL +this.metadata.Canonical
         }
       ]
     }

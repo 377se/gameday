@@ -21,10 +21,10 @@ import TheRollingText from "@/components/TheRollingText";
 export default {
   head () {
     let i18nHead = this.$nuxtI18nSeo()
-    try{
+    /*try{
       let links = i18nHead.link.filter(el => (el.rel!='canonical'))
       i18nHead.link = links
-    }catch(err){console.log(err)}
+    }catch(err){console.log(err)}*/
     return i18nHead
   },
   components: {
