@@ -6,7 +6,7 @@ export default {
     BRAND_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_200,f_auto/http://static.supportersplace.se/brand/',
     STORYBLOK_CATALOGUE: '/samdodds',
     STORYBLOK_LABELS: 'samdodds',
-    SITE_URL: 'https://www.samdodds.se',
+    SITE_URL: 'https://www.samdodds.com',
     LOGO_URL: '/sites/samdodds/samdodds-logo.png',
     SITE_ID: 2,
     MEMBER_PRICES: true,
@@ -114,11 +114,11 @@ export default {
       defaultLocale: 'sv-se',
       strategy: 'prefix',
       locales: [
-        /*{
+        {
           code: 'en',
           iso: 'en',
           name: 'International (english)'
-        },*/
+        },
         {
           code: 'sv-se',
           iso: 'sv',

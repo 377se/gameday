@@ -44,11 +44,6 @@ export default {
     '~/assets/pe-laundry-icons/css/pe-laundry-icons.css'
     //'uikit/dist/css/uikit.css'
   ],
-  router: {
-    /*scrollBehavior: function (to, from, savedPosition) {
-      return { x: 0, y: 0 }
-    }*/
-  },
   /*
    ** Plugins to load before mounting the App
    */
