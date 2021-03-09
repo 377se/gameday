@@ -159,12 +159,7 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    proxy: true
-  },
-  proxy: {
-    '/webapi': {
-      target: process.env.NODE_ENV !== 'production'?'https://api.kopshop.no':'https://api.kopshop.no'
-    }
+    proxy: false
   },
   /*
    ** Build configuration

@@ -139,12 +139,7 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    proxy: true
-  },
-  proxy: {
-    '/webapi': {
-      target: process.env.NODE_ENV !== 'production'?'https://beta.gameday.se':'https://api.gameday.se'
-    }
+    proxy: false
   },
   /*
    ** Build configuration

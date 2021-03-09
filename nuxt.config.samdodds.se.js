@@ -178,12 +178,7 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    proxy: true
-  },
-  proxy: {
-    '/webapi': {
-      target: process.env.NODE_ENV !== 'production'?'https://beta.samdodds.com':'https://api.samdodds.com'
-    }
+    proxy: false
   },
   /*
    ** Build configuration

@@ -166,12 +166,7 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    proxy: true
-  },
-  proxy: {
-    '/webapi': {
-      target: 'https://api.supporterprylar.se'
-    }
+    proxy: false
   },
   /*
    ** Build configuration

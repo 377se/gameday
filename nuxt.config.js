@@ -7,6 +7,7 @@ export default {
     STORYBLOK_CATALOGUE: '/gameday',
     STORYBLOK_LABELS: 'gameday',
     SITE_URL: 'https://gameday.se',
+    API_URL: 'https://api.gameday.se',
     LOGO_URL: '/sites/gameday/gameday-logo.svg',
     SITE_ID: 6,
     MEMBER_PRICES: false,
@@ -16,11 +17,12 @@ export default {
     ZENDESK: 'b2384b65-02c4-40fe-b25f-c195c554d089'
 
   },
-  /*
-   ** Headers of the page
-   */
+  target: 'static',
+  generate:{
+    fallback:true
+  },
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Gameday',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -169,12 +171,7 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    proxy: true
-  },
-  proxy: {
-    '/webapi': {
-      target: process.env.NODE_ENV !== 'production'?'https://beta.gameday.se':'https://api.gameday.se'
-    }
+    proxy: false
   },
   /*
    ** Build configuration
