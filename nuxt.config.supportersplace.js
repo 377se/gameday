@@ -65,6 +65,7 @@ export default {
     }
   },
   router: {
+    trailingSlash: true,
     extendRoutes (routes, resolve) {
       routes.push({
         name: 'home',
@@ -149,12 +150,12 @@ export default {
     ['storyblok-nuxt', { accessToken: 'rGRW1HEorfNfSoGS5CzoDwtt', cacheProvider: 'memory' }],
     ['@nuxtjs/style-resources']    
   ],
-  /*redirect: [
+  redirect: [
     {
-        from: '^(\\/[^\\?]*[^\\/])(\\?.*)?$',
+        from: '^((?!.*webapi).*\/[^\\?]*[^\\/])(\\?.*)?$',
         to: '$1/$2',
     },
-  ],*/
+  ],
   styleResources: {
     scss: [
     './assets/scss/vars.supportersplace.scss',

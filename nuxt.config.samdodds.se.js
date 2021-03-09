@@ -139,12 +139,12 @@ export default {
     ['storyblok-nuxt', { accessToken: 'rGRW1HEorfNfSoGS5CzoDwtt', cacheProvider: 'memory' }],
     ['@nuxtjs/style-resources']    
   ],
-  /*redirect: [
-      {
-          from: '^(\\/[^\\?]*[^\\/])(\\?.*)?$',
-          to: '$1/$2',
-      },
-  ],*/
+  redirect: [
+    {
+        from: '^((?!.*webapi).*\/[^\\?]*[^\\/])(\\?.*)?$',
+        to: '$1/$2',
+    },
+  ],
   styleResources: {
     scss: [
     './assets/scss/vars.samdodds.scss',
