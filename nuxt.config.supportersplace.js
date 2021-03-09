@@ -65,7 +65,6 @@ export default {
     }
   },
   router: {
-    trailingSlash: true,
     extendRoutes (routes, resolve) {
       routes.push({
         name: 'home',
