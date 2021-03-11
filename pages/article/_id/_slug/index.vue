@@ -71,7 +71,7 @@ export default {
   },
   async fetch() {
     try {
-      const url = `/webapi/${this.$i18n.locale}/Article/GetArticleDetails?teamName=${
+      const url = `${process.env.API_URL}/webapi/${this.$i18n.locale}/Article/GetArticleDetails?teamName=${
         this.$route.params.id
       }&articleName=${this.$route.params.slug}`;
       const article = await this.$axios.$get(url);

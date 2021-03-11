@@ -5,4 +5,5 @@ static/manifest*.json
 static/sw.js
 sw.js
 static/workbox-sw*.js
+dist/
 

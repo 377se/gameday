@@ -196,22 +196,22 @@ export default {
           cv: this.$store.getters.version
         }),
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Article/getArticleList?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=nfl'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Article/getArticleList?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=nfl'
         ),
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetProductTypeList?seoName=nfl&teamName=null&brandName=null'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Filter/GetProductTypeList?seoName=nfl&teamName=null&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetColourList?categoryName=nfl&teamName=null&garmentName=null&brandName=null'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Filter/GetColourList?categoryName=nfl&teamName=null&garmentName=null&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetSizeList?categoryName=nfl&teamName=null&garmentName=null&brandName=null'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Filter/GetSizeList?categoryName=nfl&teamName=null&garmentName=null&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetGenderList?categoryName=nfl&teamName=null&garmentName=null'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Filter/GetGenderList?categoryName=nfl&teamName=null&garmentName=null'
         ),
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetBrandList?categoryName=nfl&teamName=null&garmentName=null'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Filter/GetBrandList?categoryName=nfl&teamName=null&garmentName=null'
         )
       ]);
         this.articles= a[0].ArticleList

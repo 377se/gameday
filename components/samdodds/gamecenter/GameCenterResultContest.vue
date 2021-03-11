@@ -92,7 +92,7 @@ export default {
     async fetch() {
     try {
       let [contestData] = await Promise.all([
-          this.$axios.$get('/webapi/contest/GetContest'),
+          this.$axios.$get(process.env.API_URL + '/webapi/contest/GetContest'),
       ]);
       this.contestData = contestData
     } catch (err) {

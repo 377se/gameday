@@ -53,7 +53,7 @@ export default {
     async fetch() {
     try {
       let [standings] = await Promise.all([
-          this.$axios.$get('/webapi/gamecenter/GetStanding'),
+          this.$axios.$get(process.env.API_URL + '/webapi/gamecenter/GetStanding'),
       ]);
       this.standings = standings
     } catch (err) {

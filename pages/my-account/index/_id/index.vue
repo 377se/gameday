@@ -55,7 +55,7 @@ export default {
   },
   async fetch() {
     let _this = this
-    await this.$axios.$get('/webapi/'+this.$i18n.locale+'/Order/GetOrderDetails?orderId='+this.$route.params.id)
+    await this.$axios.$get(process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Order/GetOrderDetails?orderId='+this.$route.params.id)
     .then(function(response) {
         if (response.ErrorList !== null) {
             _this.errors = response.ErrorList

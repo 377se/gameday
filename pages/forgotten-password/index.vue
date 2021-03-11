@@ -133,7 +133,7 @@ export default {
         this.errors=[]
         this.isSubmitting = true
         var _this = this;
-        await this.$axios.post('/webapi/'+this.$i18n.locale+'/account/PostResetAccount?email='+this.email).then(function (res) {
+        await this.$axios.post(process.env.API_URL + '/webapi/'+this.$i18n.locale+'/account/PostResetAccount?email='+this.email).then(function (res) {
           _this.isSubmitting = false
           try{
             if(res.data.ErrorList!=null && res.data.ErrorList.length>0) 

@@ -59,7 +59,7 @@ export default {
 	async fetch () {
 		try {
 			const [branchStatus] = await Promise.all([
-				this.$axios.$get('/webapi/BranchSe/GetBranchStatus'),
+				this.$axios.$get(process.env.API_URL + '/webapi/BranchSe/GetBranchStatus'),
       		])
 			this.branchStatus = branchStatus
 		} catch (err) {

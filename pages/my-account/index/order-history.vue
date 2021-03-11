@@ -98,7 +98,7 @@ export default {
     try {
       const [o] = await Promise.all([
         await this.$nuxt.context.app.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Order/GetOrderlist'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Order/GetOrderlist'
         )
       ]);
         this.orders = o

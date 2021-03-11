@@ -58,7 +58,7 @@ export default {
     try {
       const [t] = await Promise.all([
         this.$axios.$get(
-          `/webapi/${this.$i18n.locale}/Filter/GetTeamListByCategory?categoryId=${_catid}&productTypeId=0&brandId=0`
+          `${process.env.API_URL}/webapi/${this.$i18n.locale}/Filter/GetTeamListByCategory?categoryId=${_catid}&productTypeId=0&brandId=0`
         )
       ]);
       this.teams=t

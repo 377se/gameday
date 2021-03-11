@@ -71,8 +71,8 @@ export default {
   },
   async fetch() {
     try {
-      const url = `/webapi/${this.$i18n.locale}/Article/GetArticleDetailsById?teamName=null&articleId=${this.$route.params.id}`;
-      const metadataurl = `/webapi/${this.$i18n.locale}/MetaData/GetMetadataByArticleId?articleId=${this.$route.params.id}`;
+      const url = `${process.env.API_URL}/webapi/${this.$i18n.locale}/Article/GetArticleDetailsById?teamName=null&articleId=${this.$route.params.id}`;
+      const metadataurl = `${process.env.API_URL}/webapi/${this.$i18n.locale}/MetaData/GetMetadataByArticleId?articleId=${this.$route.params.id}`;
       const article = await this.$axios.$get(url);
       const metadata = await this.$axios.$get(metadataurl);
  

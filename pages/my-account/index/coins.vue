@@ -91,7 +91,7 @@ export default {
     try{
     const [c, s] = await Promise.all([
         await this.$nuxt.context.app.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Coins/GetCoins'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Coins/GetCoins'
         ),
         await this.$nuxt.context.app.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}/my-account/coins`, {
           version: version,

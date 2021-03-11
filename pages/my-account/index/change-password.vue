@@ -131,7 +131,7 @@ export default {
   methods:{
     async change(event) {
       var _this = this
-      await this.$axios.post('/webapi/Password/PostUpdatePassword', {
+      await this.$axios.post(process.env.API_URL + '/webapi/Password/PostUpdatePassword', {
         Password: this.form.current_password,
         NewPassword: this.form.new_password,
         RepeatPassword: this.form.repeat_password

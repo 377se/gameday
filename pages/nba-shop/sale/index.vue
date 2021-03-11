@@ -178,22 +178,22 @@ export default {
     try {
       const [a, p, c, s, g, b, sb] = await Promise.all([
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Article/getArticleList?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale=true&pageNum='+ pageNum +'&seoName=nba'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Article/getArticleList?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale=true&pageNum='+ pageNum +'&seoName=nba'
         ),
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetProductTypeList?seoName=nba&teamName=null&brandName=null'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Filter/GetProductTypeList?seoName=nba&teamName=null&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetColourList?categoryName=nba&teamName=null&garmentName=null&brandName=null'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Filter/GetColourList?categoryName=nba&teamName=null&garmentName=null&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetSizeList?categoryName=nba&teamName=null&garmentName=null&brandName=null'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Filter/GetSizeList?categoryName=nba&teamName=null&garmentName=null&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetGenderList?categoryName=nba&teamName=null&garmentName=null'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Filter/GetGenderList?categoryName=nba&teamName=null&garmentName=null'
         ),
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetBrandList?categoryName=nba&teamName=null&garmentName=null'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Filter/GetBrandList?categoryName=nba&teamName=null&garmentName=null'
         ),
         this.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}/nba-shop/sale`, {
           version: version,

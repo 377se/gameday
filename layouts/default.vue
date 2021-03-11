@@ -3,12 +3,10 @@
     <TheRollingText />
     <TheHeader/>
     <nuxt keep-alive/>
-    <client-only>
-      <OffscreenMenu/>
-      <OffscreenProductTypeMenu/>
-      <OffscreenBrandMenu/>
-      <OffscreenBasket/>
-    </client-only>
+    <OffscreenMenu/>
+    <OffscreenProductTypeMenu/>
+    <OffscreenBrandMenu/>
+    <OffscreenBasket/>
     <TheFooter/>
   </div>
 </template>
@@ -19,6 +17,55 @@ import OffscreenBasket from "@/components/basket/TheBasket";
 import TheRollingText from "@/components/TheRollingText";
 
 export default {
+  async fetch(){
+    var _this = this
+    if(this.$cookies.get('cid')!=undefined){
+      this.$store.commit('setCid', this.$cookies.get('cid'))
+    }
+
+    await Promise.all(
+      [this.$axios.$get('https://api.storyblok.com/v1/cdn/spaces/me?token='+process.env.STORYBLOK)]
+    ).then(res =>{
+      _this.$store.commit('setVersion', res[0].space)
+    }).catch((err)=>{
+      throw new Error("Error getting version:" + err)
+    })
+
+    try {
+      let [storyblok] = await Promise.all([
+        this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+context.app.i18n.locale +"&datasource=fe-labels-global&token="+process.env.STORYBLOK +"&per_page=1000&cv="+this.$store.getters.version)
+      ]);
+      _this.$store.commit('setLabels', storyblok.datasource_entries.concat(storyblok.datasource_entries))
+    } catch (err) {
+      console.log(err);
+    }
+
+    if(process.env.SITE_ID==6 || process.env.SITE_ID==1){ //Gameday
+      await Promise.all([
+        this.$axios.$get(process.env.API_URL + '/webapi/'+context.app.i18n.locale+'/Filter/GetProductTypeListByShopId'),
+        this.$axios.$get(process.env.API_URL + '/webapi/'+context.app.i18n.locale+'/Filter/GetBrandListByShopId')
+      ]).then(res => {
+          _this.$store.commit('setProductTypeMenu', res[0])
+          _this.$store.commit('setBrandMenu', res[1])
+      }).catch((err)=>{
+        throw new Error("Error getting productType or brand for menu:" + err)
+      })
+
+      await Promise.all([
+        this.$axios.$get(process.env.API_URL + '/webapi/'+context.app.i18n.locale+'/Filter/GetTeamListByCategory?categoryId=202'),
+        this.$axios.$get(process.env.API_URL + '/webapi/'+context.app.i18n.locale+'/Filter/GetTeamListByCategory?categoryId=327'),
+        this.$axios.$get(process.env.API_URL + '/webapi/'+context.app.i18n.locale+'/Filter/GetTeamListByCategory?categoryId=328'),
+        this.$axios.$get(process.env.API_URL + '/webapi/'+context.app.i18n.locale+'/Filter/GetTeamListByCategory?categoryId=329')
+      ]).then(res => {
+          _this.$store.commit('setNHLMenu', res[0])
+          _this.$store.commit('setNBAMenu', res[1])
+          _this.$store.commit('setNFLMenu', res[2])
+          _this.$store.commit('setMLBMenu', res[3])
+      }).catch((err)=>{
+        throw new Error("Error getting teams for menu:" + err)
+      })
+    }
+  },
   head () {
     let i18nHead = this.$nuxtI18nSeo()
     /*try{

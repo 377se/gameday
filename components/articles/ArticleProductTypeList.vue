@@ -90,22 +90,22 @@ export default {
     try {
       const [a, c, s, g, b, t] = await Promise.all([
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Article/getArticleList?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=null'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Article/getArticleList?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=null'
         ),
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetColourList?categoryName=null&teamName=null&garmentName='+productType+'&brandName=null'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Filter/GetColourList?categoryName=null&teamName=null&garmentName='+productType+'&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetSizeList?categoryName=null&teamName=null&garmentName='+productType+'&brandName=null'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Filter/GetSizeList?categoryName=null&teamName=null&garmentName='+productType+'&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetGenderList?categoryName=null&teamName=null&garmentName='+productType
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Filter/GetGenderList?categoryName=null&teamName=null&garmentName='+productType
         ),
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetBrandList?categoryName=null&teamName=null&garmentName='+productType
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Filter/GetBrandList?categoryName=null&teamName=null&garmentName='+productType
         ),
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetTeamListByCategory?categoryId=0&productTypeId='+productType+'&brandId=0'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Filter/GetTeamListByCategory?categoryId=0&productTypeId='+productType+'&brandId=0'
         )
       ]);
       this.articles=a[0].ArticleList

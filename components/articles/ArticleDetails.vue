@@ -264,7 +264,7 @@ export default {
     try {
       const [a] = await Promise.all([
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Article/GetRelatedArticleList?categoryId='+this.article.CategoryId+'&productId='+this.article.Id+'&productTypeId='+this.article.ProductTypeId
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Article/GetRelatedArticleList?categoryId='+this.article.CategoryId+'&productId='+this.article.Id+'&productTypeId='+this.article.ProductTypeId
         )
       ]);
       this.relatedarticles=a.ArticleList
@@ -381,7 +381,7 @@ export default {
       let _this = this
       if(this.chosenSize>-1){
           this.isSubmitting = true
-          await this.$axios.post('/webapi/'+this.$i18n.locale+'/cart/PostAddToCart',{
+          await this.$axios.post(process.env.API_URL + '/webapi/'+this.$i18n.locale+'/cart/PostAddToCart',{
             AddOn: {Name:this.printName, Number:this.printNumber, Patches:this.patches, PrintTypeId:1},
             ArticleId: this.article.Id,
             Quantity: 1,

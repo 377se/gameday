@@ -19,8 +19,8 @@ export default {
     async fetch() {
     try {
       let [lastGame, gameList] = await Promise.all([
-          this.$axios.$get('/webapi/gamecenter/GetLastGame'),
-          this.$axios.$get('/webapi/gamecenter/GetUpcomingGames?numberOfGames='+this.numberOfGames)
+          this.$axios.$get(process.env.API_URL + '/webapi/gamecenter/GetLastGame'),
+          this.$axios.$get(process.env.API_URL + '/webapi/gamecenter/GetUpcomingGames?numberOfGames='+this.numberOfGames)
       ]);
       this.lastGame = lastGame
       this.gameList = gameList

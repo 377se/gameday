@@ -112,7 +112,7 @@ export default {
   async fetch() {
     try {
       let [menu] = await Promise.all([
-          this.$axios.$get('/webapi/'+this.$i18n.locale+'/category')
+          this.$axios.$get(process.env.API_URL + '/webapi/'+this.$i18n.locale+'/category')
       ]);
       this.menu = menu
       this.locale = this.$i18n.locale

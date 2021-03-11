@@ -170,22 +170,22 @@ export default {
     try {
       const [a, p, c, s, g, b] = await Promise.all([
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Article/getArticleList?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=mlb'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Article/getArticleList?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=mlb'
         ),
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetProductTypeList?seoName=mlb&teamName=null'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Filter/GetProductTypeList?seoName=mlb&teamName=null'
         ),
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetColourList?categoryName=mlb&teamName=null&garmentName=null&brandName=null'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Filter/GetColourList?categoryName=mlb&teamName=null&garmentName=null&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetSizeList?categoryName=mlb&teamName=null&garmentName=null&brandName=null'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Filter/GetSizeList?categoryName=mlb&teamName=null&garmentName=null&brandName=null'
         ),
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetGenderList?categoryName=mlb&teamName=null&garmentName=null'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Filter/GetGenderList?categoryName=mlb&teamName=null&garmentName=null'
         ),
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetBrandList?categoryName=mlb&teamName=null&garmentName=null'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Filter/GetBrandList?categoryName=mlb&teamName=null&garmentName=null'
         )
       ]);
         this.articles= a[0].ArticleList

@@ -115,7 +115,7 @@ export default {
   async fetch () {
     try {
       let [collectPrizeDTO] = await Promise.all([
-        this.$axios.$get('/webapi/'+this.$i18n.locale+'/CollectPrize/GetPrize?guid=' + this.$route.query.guid)
+        this.$axios.$get(process.env.API_URL + '/webapi/'+this.$i18n.locale+'/CollectPrize/GetPrize?guid=' + this.$route.query.guid)
       ]);
       this.collectPrizeDTO = collectPrizeDTO
     } catch (err) {
@@ -166,7 +166,7 @@ export default {
 
           if(this.chosenSize>-1){
               this.isSubmitting = true
-            await this.$axios.post('/webapi/'+this.$i18n.locale+'/CollectPrize/PostPrize', _this.collectPrizeDTO)
+            await this.$axios.post(process.env.API_URL + '/webapi/'+this.$i18n.locale+'/CollectPrize/PostPrize', _this.collectPrizeDTO)
             .then(function (response) {
               _this.isSubmitting = false
 

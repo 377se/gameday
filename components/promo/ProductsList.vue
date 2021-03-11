@@ -16,6 +16,9 @@
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 
 export default {
+  async fetch(){
+    await this.getList()
+  },
   components:{
     ArticleCardSimple
   },
@@ -31,9 +34,6 @@ export default {
       siteid: process.env.SITE_ID
     }
   },
-  mounted(){
-    this.getList()
-  },
   methods:{
     async getList(){
       let _params = '&brand=null&attribute=null&teamList=null&color=null&size=null&gender=null&sale=false&pageNum=1'
@@ -41,7 +41,7 @@ export default {
       let _seoname = this.blok.team_seo_name?this.blok.team_seo_name:null
       let _pagesize = this.blok.page_size?this.blok.page_size:5
       var _this = this
-      await this.$axios.get('/webapi/'+this.$i18n.locale+'/Article/getArticleList?lookUpBrand=false&productType='+_producttype+'&seoName='+_seoname+'&pageSize='+_pagesize+_params)
+      await this.$axios.get(process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Article/getArticleList?lookUpBrand=false&productType='+_producttype+'&seoName='+_seoname+'&pageSize='+_pagesize+_params)
       .then(function(res){
         if(res.data.length>0){
           _this.articles = res.data[0].ArticleList

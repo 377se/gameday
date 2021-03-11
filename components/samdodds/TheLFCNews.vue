@@ -29,7 +29,7 @@ export default {
   async fetch(){
     try{
       let [lfc] = await Promise.all([
-          this.$axios.$get('/webapi/'+this.$i18n.locale+'/BranchSe/GetNewsList')
+          this.$axios.$get(process.env.API_URL + '/webapi/'+this.$i18n.locale+'/BranchSe/GetNewsList')
       ]);
 
       this.lfc = lfc

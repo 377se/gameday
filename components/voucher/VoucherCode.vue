@@ -67,7 +67,7 @@ export default {
     async activateVoucher(){
       let _this = this
       this.errors = []
-      await this.$axios.get('/webapi/'+this.$i18n.locale+'/voucher/GetInitVoucher?code='+this.code).then(function (response) {
+      await this.$axios.get(process.env.API_URL + '/webapi/'+this.$i18n.locale+'/voucher/GetInitVoucher?code='+this.code).then(function (response) {
         if(response.data.ErrorList && response.data.ErrorList.length>0){
           _this.errors = response.data.ErrorList
         }else{

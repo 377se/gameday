@@ -57,10 +57,10 @@ export default {
     try {
       const [a,m] = await Promise.all([
         await context.app.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Article/getArticleList?pageSize=0&lookUpBrand=false&pi='+context.route.params.shopid+'&ci='+context.route.params.teamid+'&fi=0'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/Article/getArticleList?pageSize=0&lookUpBrand=false&pi='+context.route.params.shopid+'&ci='+context.route.params.teamid+'&fi=0'
         ),
         await context.app.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/metadata/GetFilterMetaData?pi=0&ci='+context.route.params.teamid+'&fi=0'
+          process.env.API_URL + '/webapi/'+this.$i18n.locale+'/metadata/GetFilterMetaData?pi=0&ci='+context.route.params.teamid+'&fi=0'
         )
       ]);
       return {

@@ -19,7 +19,10 @@ export default {
   },
   target: 'static',
   generate:{
-    fallback:true
+    fallback:true,
+    exclude: [
+      /^\/my-account/ // path starts with /admin
+    ]
   },
   head: {
     title: 'Gameday - Static',

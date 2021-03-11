@@ -34,7 +34,7 @@ export default {
   async fetch(){
     if(this.$i18n.locale=='en'){
       try{
-        const countries = await this.$axios.$get('/webapi/Country/GetKlarnaCountryList');
+        const countries = await this.$axios.$get(process.env.API_URL + '/webapi/Country/GetKlarnaCountryList');
         this.countries = countries
       }catch(err){
         console.log(err)

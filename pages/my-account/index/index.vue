@@ -288,7 +288,7 @@ export default {
     },
     async updateAccount(event) {
       var _this = this
-      await this.$axios.post('/webapi/Customer/PostUpdateCustomer', {
+      await this.$axios.post(process.env.API_URL + '/webapi/Customer/PostUpdateCustomer', {
         FirstName: this.form.FirstName,
         LastName: this.form.LastName,
         Email: this.form.Email,
