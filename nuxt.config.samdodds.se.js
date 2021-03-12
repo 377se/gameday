@@ -132,11 +132,11 @@ export default {
     '@nuxtjs/pwa',
     'nuxt-webfontloader',
     ['storyblok-nuxt', { accessToken: 'rGRW1HEorfNfSoGS5CzoDwtt', cacheProvider: 'memory' }],
-    ['@nuxtjs/style-resources']    
+    ['@nuxtjs/style-resources']
   ],
   redirect: [
     {
-        from: '^((?!.*webapi).*\/[^\\?]*(?<=\\w))([\\/])(\\?.*)?$',
+        from: '^((?!.*webapi).*\/[^\\?]*(?<=\\w))([\/])(\\?.*)?$',
         to: '$1$3',
         statusCode: 301
     },
