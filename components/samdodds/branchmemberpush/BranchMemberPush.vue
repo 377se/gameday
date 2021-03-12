@@ -1,8 +1,10 @@
 <template>
-  <div
+  <div v-if="!branchStatus.ShowMeTheMoney">
+  </div>
+  <div v-else
     v-editable="blok"
     class="uk-margin-bottom">
-    <a 
+    <a
       style="position:relative;display:block;"
       :href="blok.BranchMemberPushURL.url">
 
@@ -154,13 +156,13 @@ export default {
 
   border-radius: 5px;
   text-align: center;
-  -webkit-box-shadow: 0.3em 0.3em 0px 0px rgba(0,0,0,0.40); 
+  -webkit-box-shadow: 0.3em 0.3em 0px 0px rgba(0,0,0,0.40);
   box-shadow: 0.3em 0.3em 0px 0px rgba(0,0,0,0.40);
   transition: 300ms;
 }
 .nuxt-link-exact-active:hover {
   text-decoration: none;
-  -webkit-box-shadow: 0.05em 0.05em 0px 0px rgba(0,0,0,0.40); 
+  -webkit-box-shadow: 0.05em 0.05em 0px 0px rgba(0,0,0,0.40);
   box-shadow: 0.05em 0.05em 0px 0px rgba(0,0,0,0.40);
 }
 .bmp-crest {
@@ -184,7 +186,7 @@ export default {
     height: 100px;
   }
   background-color: #fff;
-  -webkit-box-shadow: 0.3em 0.3em 0px 0px rgba(0,0,0,0.40); 
+  -webkit-box-shadow: 0.3em 0.3em 0px 0px rgba(0,0,0,0.40);
   box-shadow: 0.3em 0.3em 0px 0px rgba(0,0,0,0.40);
 }
 
