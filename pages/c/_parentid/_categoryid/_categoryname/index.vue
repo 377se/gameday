@@ -24,6 +24,30 @@ import ArticleTeamListByCategory from "@/components/articles/ArticleTeamListByCa
 import Page from '@/components/Page'
 
 export default {
+  head () {
+    if(this.story.content.SEO){
+      return {
+        title: `${this.story.content.SEO.title}`,
+        meta: [
+          {
+            hid: 'description',
+            name: 'description',
+            content: `${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ""),
+          },
+          {
+            hid: 'og:title',
+            name:  'og:title',
+            content:  `${this.story.content.SEO.title}`,
+          },
+          {
+            hid: 'og:description',
+            name:  'og:description',
+            content: `${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ""),
+          }
+        ]
+      }
+    }
+  },
   async fetch () {
     // Check if we are in the editor mode
     let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
