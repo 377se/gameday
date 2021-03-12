@@ -1,5 +1,5 @@
 <template>
-  <div v-if="branchStatus.ShowMeTheMoney">
+  <div v-if="!branchStatus.ShowMeTheMoney">
   </div>
   <div v-else
     v-editable="blok"
