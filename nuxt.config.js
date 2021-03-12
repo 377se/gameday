@@ -134,6 +134,7 @@ export default {
     {
         from: '^((?!.*webapi).*\/[^\\?]*[^\\/])(\\?.*)?$',
         to: '$1/$2',
+        statusCode: 301
     },
   ],
   styleResources: {
