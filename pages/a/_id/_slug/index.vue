@@ -54,7 +54,7 @@ export default {
         {
           rel: 'canonical',
           hid: 'i18n-can',
-          href: this.siteid<3?process.env.SITE_URL +this.metadata.Canonical:process.env.SITE_URL +this.metadata.Canonical
+          href: this.metadata.Canonical
         }
       ]
     }
