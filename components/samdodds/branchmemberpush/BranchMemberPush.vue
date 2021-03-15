@@ -60,13 +60,6 @@ export default {
 			branchStatus: [],
 		}
 	},
-  mounted(){
-    try{
-      document.getElementById('branchVideo').play()
-    }catch(err){
-      console.log(err)
-    }
-  },
 	async fetch () {
 		try {
 			const [branchStatus] = await Promise.all([
@@ -76,7 +69,14 @@ export default {
 		} catch (err) {
       		console.log(err);
 		}
-    },
+  },
+  activated(){
+    try{
+      document.getElementById('branchVideo').play()
+    }catch(err){
+      console.log(err)
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
