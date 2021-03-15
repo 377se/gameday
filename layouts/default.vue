@@ -22,7 +22,7 @@ export default {
   head () {
     let i18nHead = this.$nuxtI18nSeo()
     if(process.env.SITE_ID==2){ //Sam Dodds
-      var _route=this.$route.path.replace('sv-se/','').replace('da-dk/').replace('fi-fi/')
+      var _route=this.$route.path.replace('/sv-se','').replace('/da-dk').replace('/fi-fi')
       let _obj_sv = {
                     'hid':'i18n-alt-sv',
                     'rel': 'alternate',
