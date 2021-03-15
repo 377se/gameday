@@ -110,11 +110,11 @@ export default {
       {
         baseUrl: 'https://www.samdodds.dk',
         defaultLocale: 'da-dk',
-        strategy: 'prefix_except_default',
+        strategy: 'no_prefix',
         locales: [
           {
             code: 'da-dk',
-            iso: 'da-DK'
+            iso: 'da'
           }
         ],
         seo:false

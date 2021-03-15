@@ -111,7 +111,7 @@ export default {
       {
         baseUrl: 'https://www.supporterprylar.se',
         defaultLocale: 'sv-se',
-        strategy: 'prefix_except_default',
+        strategy: 'no_prefix',
         locales: [
           {
             code: 'sv-se',

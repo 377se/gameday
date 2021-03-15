@@ -110,7 +110,7 @@ export default {
       {
         baseUrl: 'https://www.kopshop.no',
         defaultLocale: 'nb-no',
-        strategy: 'prefix_except_default',
+        strategy: 'no_prefix',
         locales: [
           {
             code: 'nb-no',
