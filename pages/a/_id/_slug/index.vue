@@ -30,7 +30,35 @@
 import ArticleDetails from "@/components/articles/ArticleDetails";
 
 export default {
-  head () {
+   head () {
+    let _link = new Array()
+    for(var i=0;i<this.metadata.LangHref.length;i++){
+      let _obj = {
+                  'hid':'i18n-alt-'+this.metadata.LangHref[i].Culture.split('-')[0],
+                  'rel': 'alternate',
+                  'href': this.metadata.LangHref[i].Url,
+                  'hreflang': this.metadata.LangHref[i].Culture.split('-')[0]
+                }
+      if(this.siteid!=2 || (this.siteid!=2 && this.metadata.LangHref[i].Culture!='en-gb')){
+        _link.push(_obj)
+      } 
+      if(this.metadata.LangHref[i].Culture==this.$i18n.defaultLocale){
+        let _obj = {
+                  'hid':'i18n-xd',
+                  'rel': 'alternate',
+                  'href': this.metadata.LangHref[i].Url,
+                  'hreflang': 'x-default'
+                }
+      _link.push(_obj)
+      }
+    }
+    _link.push(
+      {
+        rel: 'canonical',
+        hid: 'i18n-can',
+        href: this.metadata.Canonical
+      }
+    )
     return {
       title: this.article.MetaTitle,
       meta: [
@@ -50,13 +78,7 @@ export default {
           content: `${this.article.MetaDescription}`.replace(/<\/?[^>]+(>|$)/g, ""),
         }
       ],
-      link:[
-        {
-          rel: 'canonical',
-          hid: 'i18n-can',
-          href: this.metadata.Canonical
-        }
-      ]
+      link:_link
     }
   },
   components: {
@@ -65,7 +87,7 @@ export default {
   data() {
     return {
       article: {},
-      metadata: {Canonical:this.$route.path},
+      metadata: {Canonical:this.$route.path, LangHref:[]},
       siteid: process.env.SITE_ID
     }
   },

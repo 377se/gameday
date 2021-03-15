@@ -167,6 +167,34 @@ export default {
 
   },
   head () {
+    let _link = new Array()
+    for(var i=0;i<this.metadata.LangHref.length;i++){
+      let _obj = {
+                  'hid':'i18n-alt-'+this.metadata.LangHref[i].Culture.split('-')[0],
+                  'rel': 'alternate',
+                  'href': this.metadata.LangHref[i].Url,
+                  'hreflang': this.metadata.LangHref[i].Culture.split('-')[0]
+                }
+      if(this.siteid!=2 || (this.siteid==2 && this.metadata.LangHref[i].Culture!='en-gb')){
+        _link.push(_obj)
+      } 
+      if(this.metadata.LangHref[i].Culture==this.$i18n.defaultLocale){
+        let _obj = {
+                  'hid':'i18n-xd',
+                  'rel': 'alternate',
+                  'href': this.metadata.LangHref[i].Url,
+                  'hreflang': 'x-default'
+                }
+        _link.push(_obj)
+      }
+    }
+    _link.push(
+      {
+        rel: 'canonical',
+        hid: 'i18n-can',
+        href: this.metadata.Canonical
+      }
+    )
     return {
       title: this.article.MetaTitle,
       meta: [
@@ -186,13 +214,7 @@ export default {
           content: `${this.article.MetaDescription}`.replace(/<\/?[^>]+(>|$)/g, ""),
         }
       ],
-      link:[
-        {
-          rel: 'canonical',
-          hid: 'i18n-can',
-          href: this.metadata.Canonical
-        }
-      ]
+      link: _link
     }
   },
   components:{
@@ -221,7 +243,7 @@ export default {
       totalPages:1,
       numOfProducts: 1,
       readmore: true,
-      metadata: {Canonical: ''},
+      metadata: {Canonical: '', LangHref:[]},
       siteid: process.env.SITE_ID
     }
   },
