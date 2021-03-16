@@ -5,7 +5,7 @@
         id="myaccountmenu" 
         uk-tab>
         <li class="uk-active">
-          <nuxt-link :to="localePath('/my-account/')">{{ $getCMSEntry(labels,'myAccount', 'Mitt konto') }}</nuxt-link>
+          <nuxt-link :to="localePath('my-account-index')">{{ $getCMSEntry(labels,'myAccount', 'Mitt konto') }}</nuxt-link>
         </li>
         <li>
           <nuxt-link :to="localePath('/my-account/change-password')">{{ $getCMSEntry(labels,'change_password', 'Ändra lösenord') }}</nuxt-link>

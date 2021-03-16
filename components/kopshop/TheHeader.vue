@@ -30,7 +30,7 @@
         </nuxt-link>
         <nuxt-link
           v-else
-          :to="localePath('/my-account')"
+          :to="localePath('my-account-index')"
           >
           <span 
             style="color:#fff;"

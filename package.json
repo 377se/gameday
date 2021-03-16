@@ -56,7 +56,7 @@
     "lodash": "^4.17.21",
     "lottie-player-vue": "0.0.16",
     "nuxt": "^2.15.2",
-    "nuxt-i18n": "^6.20.6",
+    "nuxt-i18n": "^6.21.1",
     "nuxt-jsonld": "^1.5.0",
     "nuxt-webfontloader": "^1.1.0",
     "smoothscroll-polyfill": "^0.4.4",
