@@ -6,8 +6,8 @@
         class="uk-link-reset">
         <div class="article-image uk-card-media-top">
           <img 
-            :src="list_src +article.ImageIdThumb" 
-            :alt="article.Name" 
+            :src="list_src +article.ImageName" 
+            :alt="article.ProductName" 
             ref="mainImage">
           <span
             v-if="article.Label"
@@ -16,9 +16,9 @@
         </div>
         <div class="vertical-spreader">
           <div class="uk-padding-remove-bottom head-category">
-            <span>{{ article.HeadCategory }}</span>
+            <span>{{ article.TeamName }}</span>
             <br>
-            <span class="article-name">{{ article.Name }}</span>
+            <span class="article-name">{{ article.ProductName }}</span>
 
           </div>
           <div class="uk-padding-remove-top uk-text-small price-container">
@@ -26,11 +26,11 @@
               v-if="article.DiscountType==1">
               <div 
                 class="your-price"
-                >{{ article.DiscountedPriceDisplay }}
+                >{{ article.PriceOnSaleDisplay }}
               </div> 
               <div 
                 class="orig-price"
-                :class="{'line-through':article.DiscountedPriceDisplay, 'orig-price-when-discounted':article.DiscountedPriceDisplay}"
+                :class="{'line-through':article.PriceOnSaleDisplay, 'orig-price-when-discounted':article.PriceOnSaleDisplay}"
                 >
                 ({{ $getCMSEntry(global_labels,'article_details_original_price', 'Ord.') }} {{ article.PriceDisplay }})
               </div>
@@ -40,7 +40,7 @@
               <div 
                 v-if="memberprices"
                 class="your-price">
-                {{ $getCMSEntry(global_labels,'article_details_member', 'Medlem') }} {{ article.DiscountedPriceDisplay }}
+                {{ $getCMSEntry(global_labels,'article_details_member', 'Medlem') }} {{ article.PriceOnSaleDisplay }}
               </div>
               <div 
                 class="orig-price"
@@ -80,7 +80,7 @@ export default {
       if(this.url!=undefined){
         return this.$nuxt.context.app.localePath(this.url)
       }
-      return this.$nuxt.context.app.localePath('/article/'+this.article.Id+'/'+this.article.UrlSafeName)
+      return this.$nuxt.context.app.localePath('/article/'+this.article.ProductId+'/'+this.article.UrlSafeName)
     }
   },
     computed: {
