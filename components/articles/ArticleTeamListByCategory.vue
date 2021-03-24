@@ -149,7 +149,7 @@ export default {
             `/webapi/${this.$i18n.locale}/MetaData/GetMetadataByCategoryId?categoryId=${this.$route.params.categoryid}`
         )
       ]);
-      this.articles=a.ArticleListContainerDto
+      this.articles=a.ArticleList
       this.producttypes=p
       this.colors=c
       this.sizes=s
