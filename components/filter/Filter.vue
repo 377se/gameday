@@ -40,7 +40,7 @@
             </ul>
             <ul 
               class="uk-nav uk-list uk-list-divider"
-              style="margin-top:10px;"
+              style="margin-top:10px;padding-bottom:150px;"
               uk-accordion="multiple:true">
               <li 
                 v-if="teams!=null && teams.length>0">
