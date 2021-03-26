@@ -15,16 +15,16 @@
         <div class="uk-flex uk-flex-middle">
           <ArticlePageHeader 
             class="uk-width-expand"
-            :title="article.Name" 
+            :title="article.ProductName" 
             :teamtitle="article.TeamName"
-            :subtitle="article.Brand"
+            :subtitle="article.BrandName"
           />
           <div
             class="uk-width-1-6">
             <img 
               class="uk-width-auto"
               :src="brand_src+article.BrandImage" 
-              :alt="article.Brand"
+              :alt="article.BrandName"
             />
           </div>
         </div>
@@ -34,10 +34,10 @@
               v-if="article.DiscountType==1">
               <span 
                 class="sale-price"
-                >{{ article.DiscountedPriceDisplay }}</span> 
+                >{{ article.PriceOnSaleDisplay }}</span> 
               <span 
                 class="orig-price"
-                :class="{'line-through':article.DiscountedPriceDisplay}">
+                :class="{'line-through':article.PriceOnSaleDisplay}">
                 ({{$getCMSEntry(global_labels,'article_details_original_price', 'ord.')}} {{ article.PriceDisplay }})
               </span>
             </template>
@@ -49,7 +49,7 @@
               <span 
                 v-if="memberprices"
                 class="your-price">
-                ({{$getCMSEntry(global_labels,'article_details_member', 'medlem')}} {{ article.DiscountedPriceDisplay }})
+                ({{$getCMSEntry(global_labels,'article_details_member', 'medlem')}} {{ article.PriceOnSaleDisplay }})
               </span>
             </template>
             <template
@@ -236,9 +236,9 @@
           uk-height-match="target: .uk-card">
           <ArticleCardSimple
             v-for="article in relatedarticles"
-            :key="article.Id"
+            :key="article.ProductId"
             :article="article"
-            :url="(siteid==6)?`/article/${article.HeadCategorySeoName}/${article.SeoName}`:`/a/${article.Id}/${article.SeoName}`"
+            :url="(siteid==6)?`/article/${article.HeadCategorySeoName}/${article.UrlSafeName}`:`/a/${article.ProductId}/${article.UrlSafeName}`"
           />
         </div>
       </section>
@@ -264,7 +264,7 @@ export default {
     try {
       const [a] = await Promise.all([
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Article/GetRelatedArticleList?categoryId='+this.article.CategoryId+'&productId='+this.article.Id+'&productTypeId='+this.article.ProductTypeId
+          '/webapi/'+this.$i18n.locale+'/Article/GetRelatedArticleList?categoryId='+this.article.CategoryId+'&productId='+this.article.ProductId+'&productTypeId='+this.article.ProductTypeId
         )
       ]);
       this.relatedarticles=a.ArticleList

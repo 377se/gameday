@@ -5,9 +5,9 @@
     uk-height-match="target: .uk-card">
     <ArticleCardSimple
       v-for="article in articles"
-      :key="article.Id"
+      :key="article.ProductId"
       :article="article"
-      :url="(siteid==6)?`/article/${article.HeadCategorySeoName}/${article.SeoName}`:`/a/${article.Id}/${article.UrlSafeName}`"
+      :url="(siteid==6)?`/article/${article.HeadCategorySeoName}/${article.SeoName}`:`/a/${article.ProductId}/${article.UrlSafeName}`"
     />
   </div>
 </template>
