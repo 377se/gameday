@@ -198,7 +198,7 @@ export default {
   },
   watch: {
     '$route.query': function(oldQuery, newQuery){
-      if((this._inactive === false || this._inactive==null) && JSON.stringify(newQuery) !== JSON.stringify(oldQuery)){
+      if((!this._inactive) && JSON.stringify(newQuery) !== JSON.stringify(oldQuery)){
         window.scrollTo(0,0)
         this.$fetch()
       }
