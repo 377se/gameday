@@ -59,6 +59,14 @@ export default {
       shop: ''
     }
   },
+  watch: {
+    '$route.query': function(oldQuery, newQuery){
+      if(this._inactive === false && JSON.stringify(newQuery) !== JSON.stringify(oldQuery)){
+        window.scrollTo(0,0)
+        this.$fetch()
+      }
+    }
+  },
   mounted(){
     this.$storybridge.on(['input', 'published', 'change'], (event) => {
       if (event.action == 'input') {
@@ -86,7 +94,6 @@ export default {
     }
   },
   activated(){
-    console.log('activated')
     if (this.$fetchState.timestamp <= Date.now() - 600000) {
       this.$fetch()
     }
