@@ -59,14 +59,6 @@ export default {
       shop: ''
     }
   },
-  watch: {
-    '$route.query': function(oldQuery, newQuery){
-      if(this._inactive === false && JSON.stringify(newQuery) !== JSON.stringify(oldQuery)){
-        window.scrollTo(0,0)
-        this.$fetch()
-      }
-    }
-  },
   mounted(){
     this.$storybridge.on(['input', 'published', 'change'], (event) => {
       if (event.action == 'input') {
