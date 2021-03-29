@@ -42,8 +42,8 @@ export default {
       var _this = this
       await this.$axios.get('/webapi/'+this.$i18n.locale+'/Article/getArticleListByCategoryId?lookUpBrand=false&productType='+_producttype+'&seoName='+_seoname+'&pageSize='+_pagesize+_params)
       .then(function(res){
-        if(res.data.length>0){
-          _this.articles = res.data[0].ArticleList
+        if(res.data.ArticleList && res.data.ArticleList.length>0){
+          _this.articles = res.data.ArticleList
         }
       })
       .catch(function(err){
