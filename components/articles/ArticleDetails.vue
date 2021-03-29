@@ -383,7 +383,7 @@ export default {
           this.isSubmitting = true
           await this.$axios.post('/webapi/'+this.$i18n.locale+'/cart/PostAddToCart',{
             AddOn: {Name:this.printName, Number:this.printNumber, Patches:this.patches, PrintTypeId:1},
-            ArticleId: this.article.Id,
+            ArticleId: this.article.ProductId,
             Quantity: 1,
             SizeId: this.chosenSize,
             Id: this.article.CartId?this.article.CartId:0
