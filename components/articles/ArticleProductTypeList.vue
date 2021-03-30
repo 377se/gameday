@@ -108,12 +108,12 @@ export default {
           '/webapi/'+this.$i18n.locale+'/Filter/GetTeamListByCategory?categoryId=0&productTypeId='+productType+'&brandId=0'
         )
       ]);
-      this.articles=a[0].ArticleList
+      this.articles=a.ArticleList
       this.brands=b
       this.colors=c
       this.sizes=s
       this.gender=g
-      this.article=a[0]
+      this.article=a
       this.pageNum=pageNum
       this.teams = t
     } catch (err) {
