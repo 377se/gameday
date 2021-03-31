@@ -4,12 +4,12 @@
     class="uk-grid uk-grid-small uk-margin-medium-bottom uk-padding uk-padding-remove-horizontal uk-padding-remove-top uk-margin-large-top product-list-slider uk-flex-nowrap"
     uk-grid
     uk-height-match="target: .uk-card">
-    
+
     <ArticleCardSimple
       v-for="article in articles"
       :key="article.Id"
       :article="article"
-      :url="(siteid==6)?`/article/${article.TeamSeoName}/${article.SeoName}`:`/a/${article.Id}/${article.UrlSafeName}`"
+      :url="(siteid==6)?`/article/${article.TeamNameSeo}/${article.SeoName}`:`/a/${article.Id}/${article.UrlSafeName}`"
     />
   </div>
 </template>

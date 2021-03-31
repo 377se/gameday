@@ -202,23 +202,22 @@
                 <a class="uk-accordion-title" href="#">Storleksguide</a>
                 <div class="uk-accordion-content uk-margin-remove-top">
 
-          <div class="uk-overflow-auto">
-            <table class="uk-table uk-table-condensed uk-text-nowrap uk-table-striped">
-                  <thead>
-                    <tr>
-                      <th>&nbsp;</th>
-                      <th v-for="sizeHeading in article.SizeGuide" :key="sizeHeading.DisplaySize" class="uk-text-center">{{ sizeHeading.DisplaySize }}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="line in article.SizeGuide[0].DisplayProperties.length" :key="line">
-                      <td>{{ showLegend(line-1, article.SizeTypeId) }}</td>
-                      <td v-for="sizeValue in article.SizeGuide" :key="sizeValue.Value" class="uk-text-center">{{ sizeValue.DisplayProperties[line-1].Value }}</td>
-                    </tr>
-                  </tbody>
-            </table>
-          </div>
-
+                  <div class="uk-overflow-auto">
+                    <table class="uk-table uk-table-condensed uk-text-nowrap uk-table-striped">
+                          <thead>
+                            <tr>
+                              <th>&nbsp;</th>
+                              <th v-for="sizeHeading in article.SizeGuide" :key="sizeHeading.DisplaySize" class="uk-text-center">{{ sizeHeading.DisplaySize }}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr v-for="line in article.SizeGuide[0].DisplayProperties.length" :key="line">
+                              <td>{{ showLegend(line-1, article.SizeTypeId) }}</td>
+                              <td v-for="sizeValue in article.SizeGuide" :key="sizeValue.Value" class="uk-text-center">{{ sizeValue.DisplayProperties[line-1].Value }}</td>
+                            </tr>
+                          </tbody>
+                    </table>
+                  </div>
 
                 </div>
               </li>
@@ -239,7 +238,7 @@
             v-for="article in relatedarticles"
             :key="article.ProductId"
             :article="article"
-            :url="(siteid==6)?`/article/${article.TeamSeoName}/${article.UrlSafeName}`:`/a/${article.ProductId}/${article.UrlSafeName}`"
+            :url="(siteid==6)?`/article/${article.TeamNameSeo}/${article.UrlSafeName}`:`/a/${article.ProductId}/${article.UrlSafeName}`"
           />
         </div>
       </section>
@@ -299,6 +298,7 @@ export default {
         Description: "",
         IsOneSize: false,
         TeamName: "",
+        TeamNameSeo: "",
         PriceDisplay: "",
         IsSoldOut: false,
         CartId: 0

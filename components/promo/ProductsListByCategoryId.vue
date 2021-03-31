@@ -3,12 +3,12 @@
     v-editable="blok"
     class="uk-flex uk-grid-small uk-margin-medium-bottom uk-padding uk-padding-remove-horizontal uk-padding-remove-top uk-margin-large-top product-list-slider uk-flex-nowrap"
     uk-height-match="target: .uk-card">
-    
+
     <ArticleCardSimple
       v-for="article in articles"
       :key="article.ProductId"
       :article="article"
-      :url="(siteid==6)?`/article/${article.TeamSeoName}/${article.SeoName}`:`/a/${article.ProductId}/${article.UrlSafeName}`"
+      :url="(siteid==6)?`/article/${article.TeamNameSeo}/${article.SeoName}`:`/a/${article.ProductId}/${article.UrlSafeName}`"
     />
   </div>
 </template>

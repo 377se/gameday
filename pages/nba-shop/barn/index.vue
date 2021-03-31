@@ -17,12 +17,12 @@
         class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
         uk-grid
         uk-height-match="target:.uk-card">
-        
+
         <ArticleCardSimple
           v-for="article in articles"
           :key="article.Id"
           :article="article"
-          :url="`/lag/nba/${article.TeamSeoName}/${article.SeoName}`"
+          :url="`/lag/nba/${article.TeamNameSeo}/${article.SeoName}`"
         />
       </div>
       <ul 
