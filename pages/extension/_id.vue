@@ -84,7 +84,8 @@ export default {
           cv: this.$store.getters.version
         })
       ]);
-      this.articles=a[0].ArticleList
+      this.articles=a.ArticleList
+      
       this.story=sb.data.stories.length>0?sb.data.stories[0]:{ content: {} }
       this.pageNum=pageNum
     } catch (err) {
