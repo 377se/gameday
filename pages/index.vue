@@ -7,7 +7,6 @@
         :blok="story.content" 
         :is="story.content.component" />
     </div>
-    <a href="javascript:window.open('https://www.dn.se', '_new', 'location=0, status=0')">test test</a>
   </section>
 </template>
 <script>
