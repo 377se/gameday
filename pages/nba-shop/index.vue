@@ -191,13 +191,13 @@ export default {
           '/webapi/'+this.$i18n.locale+'/Filter/GetBrandList?categoryName=nba&teamName=null&garmentName=null'
         )
       ]);
-        this.articles= a[0].ArticleList
+        this.articles= a.ArticleList
         this.producttypes= p
         this.colors= c
         this.sizes= s
         this.gender= g
         this.brands= b
-        this.article= a[0]
+        this.article= a
         this.pageNum= pageNum
     } catch (err) {
       console.log('nba-shop error')

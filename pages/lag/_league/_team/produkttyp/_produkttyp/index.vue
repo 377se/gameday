@@ -174,12 +174,12 @@ export default {
         )
       ]);
       
-        this.articles= a[0].ArticleList
+        this.articles= a.ArticleList
         this.colors= c
         this.sizes= s
         this.gender= g
         this.brands= b
-        this.article= a[0]
+        this.article= a
         this.pageNum= pageNum
         this.shop= shop
     } catch (err) {

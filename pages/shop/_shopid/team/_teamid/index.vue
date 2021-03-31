@@ -64,7 +64,7 @@ export default {
         )
       ]);
       return {
-        articles: a[0].ArticleList,
+        articles: a.ArticleList,
         metadata: m
       };
     } catch (err) {

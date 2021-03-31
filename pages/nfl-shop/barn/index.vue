@@ -134,12 +134,12 @@ export default {
         })
       ]);
       return {
-        articles: a[0].ArticleList,
+        articles: a.ArticleList,
         producttypes: p,
         colors: c,
         sizes: s,
         story: sb.data.story,
-        article: a[0],
+        article: a,
         pageNum: pageNum
         
       };
