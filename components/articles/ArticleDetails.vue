@@ -238,7 +238,7 @@
             v-for="article in relatedarticles"
             :key="article.ProductId"
             :article="article"
-            :url="(siteid==6)?`/article/${article.HeadCategorySeoName}/${article.UrlSafeName}`:`/a/${article.ProductId}/${article.UrlSafeName}`"
+            :url="(siteid==6)?`/article/${article.TeamSeoName}/${article.UrlSafeName}`:`/a/${article.ProductId}/${article.UrlSafeName}`"
           />
         </div>
       </section>

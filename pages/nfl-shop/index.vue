@@ -67,7 +67,7 @@
             v-for="article in articles"
             :key="article.Id"
             :article="article"
-            :url="`/lag/nfl/${article.HeadCategorySeoName}/${article.SeoName}`"
+            :url="`/lag/nfl/${article.TeamSeoName}/${article.SeoName}`"
           />
         </div>
         <ul 

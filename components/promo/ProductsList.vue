@@ -8,7 +8,7 @@
       v-for="article in articles"
       :key="article.Id"
       :article="article"
-      :url="(siteid==6)?`/article/${article.HeadCategorySeoName}/${article.SeoName}`:`/a/${article.Id}/${article.UrlSafeName}`"
+      :url="(siteid==6)?`/article/${article.TeamSeoName}/${article.SeoName}`:`/a/${article.Id}/${article.UrlSafeName}`"
     />
   </div>
 </template>
