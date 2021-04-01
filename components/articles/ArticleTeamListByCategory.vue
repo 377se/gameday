@@ -23,6 +23,7 @@
         <div v-if="!sb">
           <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
           <img 
+            v-if="article.SeoContentDescription !== ''"
             :src="this.article.ImageThumb" 
             alt=""
             class="team-icon" />
