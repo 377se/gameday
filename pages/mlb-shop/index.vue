@@ -56,11 +56,12 @@
           class="ts-article-list uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
           uk-grid
           uk-height-match="target:.uk-card">
+
           <ArticleCardSimple
             v-for="article in articles"
             :key="article.Id"
             :article="article"
-            :url="`/lag/mlb/${article.HeadCategorySeoName}/${article.SeoName}`"
+            :url="`/lag/mlb/${article.TeamNameSeo}/${article.UrlSafeName}`"
           />
         </div>
         <ul 
@@ -188,13 +189,13 @@ export default {
           '/webapi/'+this.$i18n.locale+'/Filter/GetBrandList?categoryName=mlb&teamName=null&garmentName=null'
         )
       ]);
-        this.articles= a[0].ArticleList
+        this.articles= a.ArticleList
         this.producttypes= p
         this.colors= c
         this.sizes= s
         this.gender= g
         this.brands= b
-        this.article= a[0]
+        this.article= a
         this.pageNum= pageNum
     } catch (err) {
       console.log('mlb-shop error')

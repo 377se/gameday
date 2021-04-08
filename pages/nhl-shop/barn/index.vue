@@ -17,11 +17,12 @@
         class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
         uk-grid
         uk-height-match="target:.uk-card">
+        
         <ArticleCardSimple
           v-for="article in articles"
           :key="article.Id"
           :article="article"
-          :url="`/lag/nhl/${article.HeadCategorySeoName}/${article.SeoName}`"
+          :url="`/lag/nhl/${article.TeamNameSeo}/${article.UrlSafeName}`"
         />
       </div>
       <ul 
@@ -133,12 +134,12 @@ export default {
         })
       ]);
       return {
-        articles: a[0].ArticleList,
+        articles: a.ArticleList,
         producttypes: p,
         colors: c,
         sizes: s,
         story: sb.data.story,
-        article: a[0],
+        article: a,
         pageNum: pageNum
         
       };

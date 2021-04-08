@@ -23,7 +23,7 @@
         <div v-if="!sb">
           <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
           <img 
-            v-if="article.SeoContentDescription !== ''"
+            v-if="article.SeoContentDescription !== null"
             :src="this.article.ImageThumb" 
             alt=""
             class="team-icon" />
@@ -80,7 +80,7 @@
               v-for="article in articles"
               :key="article.Id"
               :article="article"
-              :url="`/a/${article.Id}/${article.UrlSafeName}`"
+              :url="`/a/${article.ProductId}/${article.UrlSafeName}`"
             />
             <div
               v-if="articles.length<1"
@@ -150,14 +150,14 @@ export default {
             `/webapi/${this.$i18n.locale}/MetaData/GetMetadataByCategoryId?categoryId=${this.$route.params.categoryid}`
         )
       ]);
-      this.articles=a[0].ArticleList
+      this.articles=a.ArticleList
       this.producttypes=p
       this.colors=c
       this.sizes=s
       this.gender=g
       this.brands=b
       this.teamlist=t
-      this.article=a[0]
+      this.article=a
       this.pageNum=pageNum
       this.metadata = metadata
     } catch (err) {

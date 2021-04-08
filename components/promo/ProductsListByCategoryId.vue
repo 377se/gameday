@@ -3,11 +3,12 @@
     v-editable="blok"
     class="uk-flex uk-grid-small uk-margin-medium-bottom uk-padding uk-padding-remove-horizontal uk-padding-remove-top uk-margin-large-top product-list-slider uk-flex-nowrap"
     uk-height-match="target: .uk-card">
+
     <ArticleCardSimple
       v-for="article in articles"
-      :key="article.Id"
+      :key="article.ProductId"
       :article="article"
-      :url="(siteid==6)?`/article/${article.HeadCategorySeoName}/${article.SeoName}`:`/a/${article.Id}/${article.UrlSafeName}`"
+      :url="(siteid==6)?`/article/${article.TeamNameSeo}/${article.UrlSafeName}`:`/a/${article.ProductId}/${article.UrlSafeName}`"
     />
   </div>
 </template>
@@ -42,8 +43,8 @@ export default {
       var _this = this
       await this.$axios.get('/webapi/'+this.$i18n.locale+'/Article/getArticleListByCategoryId?lookUpBrand=false&productType='+_producttype+'&seoName='+_seoname+'&pageSize='+_pagesize+_params)
       .then(function(res){
-        if(res.data.length>0){
-          _this.articles = res.data[0].ArticleList
+        if(res.data.ArticleList && res.data.ArticleList.length>0){
+          _this.articles = res.data.ArticleList
         }
       })
       .catch(function(err){

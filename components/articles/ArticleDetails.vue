@@ -15,16 +15,16 @@
         <div class="uk-flex uk-flex-middle">
           <ArticlePageHeader 
             class="uk-width-expand"
-            :title="article.Name" 
+            :title="article.ProductName" 
             :teamtitle="article.TeamName"
-            :subtitle="article.Brand"
+            :subtitle="article.BrandName"
           />
           <div
             class="uk-width-1-6">
             <img 
               class="uk-width-auto"
               :src="brand_src+article.BrandImage" 
-              :alt="article.Brand"
+              :alt="article.BrandName"
             />
           </div>
         </div>
@@ -34,10 +34,10 @@
               v-if="article.DiscountType==1">
               <span 
                 class="sale-price"
-                >{{ article.DiscountedPriceDisplay }}</span> 
+                >{{ article.PriceOnSaleDisplay }}</span> 
               <span 
                 class="orig-price"
-                :class="{'line-through':article.DiscountedPriceDisplay}">
+                :class="{'line-through':article.PriceOnSaleDisplay}">
                 ({{$getCMSEntry(global_labels,'article_details_original_price', 'ord.')}} {{ article.PriceDisplay }})
               </span>
             </template>
@@ -49,7 +49,7 @@
               <span 
                 v-if="memberprices"
                 class="your-price">
-                ({{$getCMSEntry(global_labels,'article_details_member', 'medlem')}} {{ article.DiscountedPriceDisplay }})
+                ({{$getCMSEntry(global_labels,'article_details_member', 'medlem')}} {{ article.PriceOnSaleDisplay }})
               </span>
             </template>
             <template
@@ -202,23 +202,22 @@
                 <a class="uk-accordion-title" href="#">Storleksguide</a>
                 <div class="uk-accordion-content uk-margin-remove-top">
 
-          <div class="uk-overflow-auto">
-            <table class="uk-table uk-table-condensed uk-text-nowrap uk-table-striped">
-                  <thead>
-                    <tr>
-                      <th>&nbsp;</th>
-                      <th v-for="sizeHeading in article.SizeGuide" :key="sizeHeading.DisplaySize" class="uk-text-center">{{ sizeHeading.DisplaySize }}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="line in article.SizeGuide[0].DisplayProperties.length" :key="line">
-                      <td>{{ showLegend(line-1, article.SizeTypeId) }}</td>
-                      <td v-for="sizeValue in article.SizeGuide" :key="sizeValue.Value" class="uk-text-center">{{ sizeValue.DisplayProperties[line-1].Value }}</td>
-                    </tr>
-                  </tbody>
-            </table>
-          </div>
-
+                  <div class="uk-overflow-auto">
+                    <table class="uk-table uk-table-condensed uk-text-nowrap uk-table-striped">
+                          <thead>
+                            <tr>
+                              <th>&nbsp;</th>
+                              <th v-for="sizeHeading in article.SizeGuide" :key="sizeHeading.DisplaySize" class="uk-text-center">{{ sizeHeading.DisplaySize }}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr v-for="line in article.SizeGuide[0].DisplayProperties.length" :key="line">
+                              <td>{{ showLegend(line-1, article.SizeTypeId) }}</td>
+                              <td v-for="sizeValue in article.SizeGuide" :key="sizeValue.Value" class="uk-text-center">{{ sizeValue.DisplayProperties[line-1].Value }}</td>
+                            </tr>
+                          </tbody>
+                    </table>
+                  </div>
 
                 </div>
               </li>
@@ -234,11 +233,12 @@
           class="uk-grid uk-grid-small uk-width-1-1 uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
           uk-grid
           uk-height-match="target: .uk-card">
+    
           <ArticleCardSimple
             v-for="article in relatedarticles"
-            :key="article.Id"
+            :key="article.ProductId"
             :article="article"
-            :url="(siteid==6)?`/article/${article.HeadCategorySeoName}/${article.SeoName}`:`/a/${article.Id}/${article.SeoName}`"
+            :url="(siteid==6)?`/article/${article.TeamNameSeo}/${article.UrlSafeName}`:`/a/${article.ProductId}/${article.UrlSafeName}`"
           />
         </div>
       </section>
@@ -264,7 +264,7 @@ export default {
     try {
       const [a] = await Promise.all([
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Article/GetRelatedArticleList?categoryId='+this.article.CategoryId+'&productId='+this.article.Id+'&productTypeId='+this.article.ProductTypeId
+          '/webapi/'+this.$i18n.locale+'/Article/GetRelatedArticleList?categoryId='+this.article.CategoryId+'&productId='+this.article.ProductId+'&productTypeId='+this.article.ProductTypeId
         )
       ]);
       this.relatedarticles=a.ArticleList
@@ -298,6 +298,7 @@ export default {
         Description: "",
         IsOneSize: false,
         TeamName: "",
+        TeamNameSeo: "",
         PriceDisplay: "",
         IsSoldOut: false,
         CartId: 0
@@ -383,7 +384,7 @@ export default {
           this.isSubmitting = true
           await this.$axios.post('/webapi/'+this.$i18n.locale+'/cart/PostAddToCart',{
             AddOn: {Name:this.printName, Number:this.printNumber, Patches:this.patches, PrintTypeId:1},
-            ArticleId: this.article.Id,
+            ArticleId: this.article.ProductId,
             Quantity: 1,
             SizeId: this.chosenSize,
             Id: this.article.CartId?this.article.CartId:0

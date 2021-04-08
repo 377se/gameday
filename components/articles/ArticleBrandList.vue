@@ -42,9 +42,9 @@
           uk-height-match="target: .uk-card">
           <ArticleCardSimple
             v-for="article in articles"
-            :key="article.Id"
+            :key="article.ProductId"
             :article="article"
-            :url="(siteid==6)?`/article/${article.HeadCategorySeoName}/${article.SeoName}`:`/a/${article.Id}/${article.SeoName}`"
+            :url="(siteid==6)?`/article/${article.TeamNameSeo}/${article.UrlSafeName}`:`/a/${article.ProductId}/${article.UrlSafeName}`"
           />
           <div
             v-if="articles.length<1"
@@ -108,12 +108,12 @@ export default {
           '/webapi/'+this.$i18n.locale+'/Filter/GetTeamListByCategory?categoryId=0&productTypeId=0&brandId='+brand
         )
       ]);
-      this.articles=a[0].ArticleList
+      this.articles=a.ArticleList
       this.producttypes=p
       this.colors=c
       this.sizes=s
       this.gender=g
-      this.article=a[0]
+      this.article=a
       this.pageNum=pageNum
       this.teams = t
     } catch (err) {

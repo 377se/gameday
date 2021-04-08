@@ -35,9 +35,9 @@
             uk-height-match="target: .uk-card">
             <ArticleCardSimple
               v-for="article in articles"
-              :key="article.Id"
+              :key="article.ProductId"
               :article="article"
-              :url="`/extension/${$route.params.id}/a/${article.Id}?cartid=${$route.query.cartid}`"
+              :url="`/extension/${$route.params.id}/a/${article.ProductId}?cartid=${$route.query.cartid}`"
             />
             <div
               v-if="articles.length<1"
@@ -84,7 +84,8 @@ export default {
           cv: this.$store.getters.version
         })
       ]);
-      this.articles=a[0].ArticleList
+      this.articles=a.ArticleList
+      
       this.story=sb.data.stories.length>0?sb.data.stories[0]:{ content: {} }
       this.pageNum=pageNum
     } catch (err) {
