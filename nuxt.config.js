@@ -88,10 +88,6 @@ export default {
    */
   modules: [
     '@nuxtjs/redirect-module',
-    ['@netsells/nuxt-hotjar', { 
-      id: '1686545', 
-      sv: '',
-    }],
     // Doc: https://axios.nuxtjs.org/usage
     ['@dansmaculotte/nuxt-zendesk',
     { 
