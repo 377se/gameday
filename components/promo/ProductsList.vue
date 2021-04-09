@@ -1,7 +1,8 @@
 <template>
   <div
     v-editable="blok"
-    class="uk-grid uk-grid-small uk-margin-medium-bottom uk-padding uk-padding-remove-horizontal uk-padding-remove-top uk-margin-large-top product-list-slider uk-flex-nowrap"
+    class="uk-grid uk-grid-small uk-margin-medium-bottom uk-padding uk-padding-remove-horizontal uk-padding-remove-top uk-margin-large-top"
+    :class="{'product-list-slider uk-flex-nowrap':!blok.wrap, 'uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l uk-flex-wrap':blok.wrap}"
     uk-grid
     uk-height-match="target: .uk-card">
 
