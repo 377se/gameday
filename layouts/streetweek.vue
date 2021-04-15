@@ -1,7 +1,7 @@
 <template>
   <div>
     <TheRollingText />
-    <TheHeader/>
+    <TheHeaderSW/>
     <nuxt keep-alive/>
     <client-only>
       <OffscreenMenu/>
@@ -16,7 +16,8 @@
 <script>
 import {mapGetters} from 'vuex'
 import OffscreenBasket from "@/components/basket/TheBasket";
-import TheRollingText from "@/components/TheRollingText";
+import TheRollingText from "@/components/gameday/streetweek/TheRollingText";
+import TheHeaderSW from "@/components/gameday/streetweek/TheHeader";
 
 export default {
   head () {
@@ -62,6 +63,7 @@ export default {
   components: {
     OffscreenBasket,
     TheRollingText,
+    TheHeaderSW
   },
   computed: {
     ...mapGetters({

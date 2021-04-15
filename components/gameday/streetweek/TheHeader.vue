@@ -7,7 +7,7 @@
     tabindex="0">
       <nav 
         class="uk-navbar-container uk-navbar uk-margin header uk-margin-remove-bottom uk-light" 
-        style="outline:0;"
+        style="outline:0;background-color:#bd162c;"
         uk-navbar>
         <div class="header-wrapper">
           <div class="uk-navbar-left uk-flex-nowrap">
@@ -63,7 +63,7 @@
         </div>
       </nav>
       <nav 
-        class="uk-background-secondary">
+        style="background:#222224;">
         <div class="header-wrapper">
           <ul 
           class="gd-subnav uk-navbar-nav  uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-margin-remove-left uk-flex-middle">
@@ -238,7 +238,7 @@
 
 <script>
 import ClickOutside from 'vue-click-outside'
-import TheHamburger from "./TheHamburger";
+import TheHamburger from "../TheHamburger";
 import { mapGetters, mapActions } from 'vuex'
 export default {
   components: {
@@ -283,7 +283,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .header-wrapper {
   position: relative;
   display: flex;
@@ -311,8 +311,7 @@ export default {
   color: #fff;
   font-weight:700;
 }
-.uk-navbar-container:not(.uk-navbar-transparent), .header {
-  background-color: $global-primary-background;
+.header {
   height: 75px;
 }
 
