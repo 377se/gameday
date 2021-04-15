@@ -19,35 +19,11 @@
         id="offscreenmenu-accordion"
         class="uk-padding-small uk-nav uk-nav-default uk-nav-parent-icon" uk-nav>
         <li
-          class="uk-parent">
-          <a href="#">{{ $getCMSEntry(global_labels,'menu-brand', 'Varumärke') }}</a>
-          <ul>
-            <li
-              v-for="brand in brandMenu"
-              :key="brand.Id">
-              <nuxt-link
-                :to="localePath('/varumarke/'+brand.SeoName)">{{ brand.Name }}</nuxt-link>
-            </li>
-          </ul>
-        </li>
-        <li
-          class="uk-parent">
-          <a href="#">{{ $getCMSEntry(global_labels,'menu-producttypes', 'Produkttyper') }}</a>
-          <ul>
-            <li
-              v-for="brand in productTypeMenu"
-              :key="brand.GarmentId">
-              <nuxt-link
-                :to="localePath('/produkttyp/'+brand.GarmentId+'/'+brand.SeoName)">{{ brand.Name }}</nuxt-link>
-            </li>
-          </ul>
-        </li>
-        <li
           v-for="cat in menu"
           :key="cat.CategoryId"
-          :class="{'uk-parent':cat.SubList.length>0}">
+          :class="{'uk-parent':cat.SubList && cat.SubList.length>0}">
           <nuxt-link
-            v-if="!cat.SubList.length>0"
+            v-if="cat.SubList && !cat.SubList.length>0"
             :to="localePath(cat.Url)">
             <img
               v-if="cat.ImageName" 
@@ -59,7 +35,7 @@
               :alt="cat.Name"
               :src="cat.ImageName" style="width:20px;margin-right:8px;">{{ cat.Name }}</a>
             <ul
-              v-if="cat.SubList.length>0">
+              v-if="cat.SubList && cat.SubList.length>0">
               <li
                 v-for="(sub) in cat.SubList"
                 :key="sub.CategoryId">
