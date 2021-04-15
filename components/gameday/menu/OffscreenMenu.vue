@@ -43,116 +43,36 @@
           </ul>
         </li>
         <li
-          class="uk-parent">
-          <a 
-            href="#">NHL</a>
-            <ul>
-              <li>
-                <nuxt-link
-                  :to="localePath('/nhl-shop')">{{ $getCMSEntry(labels,'to-nhl-shop', 'Till NHL Shopen') }}</nuxt-link>
-              </li>
-              <li>
-                <nuxt-link
-                  class="menu-item-sale"
-                  :to="localePath('/nhl-shop/sale')">{{ $getCMSEntry(labels,'nhl-sale', 'NHL REA') }}</nuxt-link>
-              </li>
-              <li class="uk-nav-header">{{ $getCMSEntry(labels,'most-popular-teams', 'Populäraste lagen') }}</li>
-              <li><nuxt-link :to="localePath('/lag/nhl/boston-bruins')">Boston Bruins</nuxt-link></li>
-              <li><nuxt-link :to="localePath('/lag/nhl/chicago-blackhawks')">Chicago Blackhawks</nuxt-link></li>
-              <li><nuxt-link :to="localePath('/lag/nhl/new-york-rangers')">New York Rangers</nuxt-link></li>
-              <li><nuxt-link :to="localePath('/lag/nhl/pittsburgh-penguins')">Pittsburgh Penguins</nuxt-link></li>
-              <li class="uk-nav-header">{{ $getCMSEntry(labels,'all-teams-a-z', 'Alla lag (A-Z)') }}
+          v-for="cat in menu"
+          :key="cat.CategoryId"
+          :class="{'uk-parent':cat.SubList.length>0}">
+          <nuxt-link
+            v-if="!cat.SubList.length>0"
+            :to="localePath(cat.Url)">
+            <img
+              v-if="cat.ImageName" 
+              :alt="cat.Name"
+              :src="cat.ImageName" style="width:20px;margin-right:8px;">{{ cat.Name }}</nuxt-link>
+          <a v-else href="#">
+            <img
+              v-if="cat.ImageName" 
+              :alt="cat.Name"
+              :src="cat.ImageName" style="width:20px;margin-right:8px;">{{ cat.Name }}</a>
+            <ul
+              v-if="cat.SubList.length>0">
               <li
-                v-for="team in nhlMenu"
-                :key="team.TeamId">
-                <nuxt-link
-                  :to="localePath('/lag/nhl/'+team.SeoName)">{{ team.Name }}</nuxt-link>
+                v-for="(sub) in cat.SubList"
+                :key="sub.CategoryId">
+                <nuxt-link :to="localePath(sub.Url)">
+                <img
+                  v-if="sub.ImageName" 
+                  :alt="sub.Name"
+                  :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+sub.ImageName" style="width:20px;margin-right:8px;" />
+                <span
+                  v-else 
+                  style="width:20px;margin-right:8px;" />{{ sub.Name }}</nuxt-link>
               </li>
             </ul>
-        </li>
-        <li
-          class="uk-parent">
-          <a 
-            href="#">NFL</a>
-          <ul>
-            <li>
-              <nuxt-link
-                :to="localePath('/nfl-shop')">{{ $getCMSEntry(labels,'to-nfl-shop', 'Till NFL Shopen') }}</nuxt-link>
-            </li>
-            <li>
-              <nuxt-link
-                class="menu-item-sale"
-                :to="localePath('/nfl-shop/sale')">{{ $getCMSEntry(labels,'nfl-sale', 'NFL REA') }}</nuxt-link>
-            </li>
-            <li class="uk-nav-header">{{ $getCMSEntry(labels,'most-popular-teams', 'Populäraste lagen') }}</li>
-            <li><nuxt-link :to="localePath('/lag/nfl/new-england-patriots')">New England Patriots</nuxt-link></li>
-            <li><nuxt-link :to="localePath('/lag/nfl/las-vegas-raiders')">Las Vegas Raiders</nuxt-link></li>
-            <li><nuxt-link :to="localePath('/lag/nfl/seattle-seahawks')">Seattle Seahawks</nuxt-link></li>
-            <li><nuxt-link :to="localePath('/lag/nfl/dallas-cowboys')">Dallas Cowboys</nuxt-link></li>
-            <li class="uk-nav-header">{{ $getCMSEntry(labels,'all-teams-a-z', 'Alla lag (A-Z)') }}</li>
-            <li
-              v-for="team in nflMenu"
-              :key="team.TeamId">
-              <nuxt-link
-                :to="localePath('/lag/nfl/'+team.SeoName)">{{ team.Name }}</nuxt-link>
-            </li>
-          </ul>
-        </li>
-        <li
-          class="uk-parent">
-          <a 
-            href="#">NBA</a>
-          <ul>
-            <li>
-              <nuxt-link
-                :to="localePath('/nba-shop')">{{ $getCMSEntry(labels,'to-nba-shop', 'Till NBA Shopen') }}</nuxt-link>
-            </li>
-            <li>
-              <nuxt-link
-                class="menu-item-sale"
-                :to="localePath('/nba-shop/sale')">{{ $getCMSEntry(labels,'nba-sale', 'NBA REA') }}</nuxt-link>
-            </li>
-            <li class="uk-nav-header">{{ $getCMSEntry(labels,'most-popular-teams', 'Populäraste lagen') }}</li>
-            <li><nuxt-link :to="localePath('/lag/nba/chicago-bulls')">Chicago Bulls</nuxt-link></li>
-            <li><nuxt-link :to="localePath('/lag/nba/cleveland-cavaliers')">Cleveland Cavaliers</nuxt-link></li>
-            <li><nuxt-link :to="localePath('/lag/nba/golden-state-warriors')">Golden State Warriors</nuxt-link></li>
-            <li><nuxt-link :to="localePath('/lag/nba/brooklyn-nets')">Brooklyn Nets</nuxt-link></li>
-            <li class="uk-nav-header">{{ $getCMSEntry(labels,'all-teams-a-z', 'Alla lag (A-Z)') }}</li>
-            <li
-              v-for="team in nbaMenu"
-              :key="team.TeamId">
-              <nuxt-link
-                :to="localePath('/lag/nba/'+team.SeoName)">{{ team.Name }}</nuxt-link>
-            </li>
-          </ul>
-        </li>
-        <li
-          class="uk-parent">
-          <a 
-            href="#">MLB</a>
-          <ul>
-            <li>
-              <nuxt-link
-                :to="localePath('/mlb-shop')">{{ $getCMSEntry(labels,'to-mlb-shop', 'Till MLB Shopen') }}</nuxt-link>
-            </li>
-            <li>
-              <nuxt-link
-                class="menu-item-sale"
-                :to="localePath('/mlb-shop/sale')">{{ $getCMSEntry(labels,'mlb-sale', 'MLB REA') }}</nuxt-link>
-            </li>
-            <li class="uk-nav-header">{{ $getCMSEntry(labels,'most-popular-teams', 'Populäraste lagen') }}</li>
-            <li><nuxt-link :to="localePath('/lag/mlb/new-york-yankees')">New York Yankees</nuxt-link></li>
-            <li><nuxt-link :to="localePath('/lag/mlb/detroit-tigers')">Detroit Tigers</nuxt-link></li>
-            <li><nuxt-link :to="localePath('/lag/mlb/los-angeles-dodgers')">Los Angeles Dodgers</nuxt-link></li>
-            <li><nuxt-link :to="localePath('/lag/mlb/new-york-mets')">New York Mets</nuxt-link></li>
-            <li class="uk-nav-header">{{ $getCMSEntry(labels,'all-teams-a-z', 'Alla lag (A-Z)') }}</li>
-            <li
-              v-for="team in mlbMenu"
-              :key="team.TeamId">
-              <nuxt-link
-                :to="localePath('/lag/mlb/'+team.SeoName)">{{ team.Name }}</nuxt-link>
-            </li>
-          </ul>
         </li>
       </ul>
     </div>
@@ -167,10 +87,11 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   async fetch () {
     try{
-      let [storyblok] = await Promise.all([
-          this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+this.$i18n.locale +"&datasource=gameday-fe-labels-offscreenmenu&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
+      let [storyblok, menu] = await Promise.all([
+          this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+this.$i18n.locale +"&datasource=gameday-fe-labels-offscreenmenu&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version),
+          this.$axios.$get('/webapi/'+this.$i18n.locale+'/Navigation/Get')
       ]);
-      
+      this.menu = menu
       this.labels = storyblok.datasource_entries
     }catch(error){
       console.log('No data sources '+error);
@@ -178,6 +99,7 @@ export default {
   },
   data() {
     return {
+      menu: [],
       labels: [],
       isolang: process.env.ISO_LANG
     }
