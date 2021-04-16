@@ -128,7 +128,7 @@ export default {
   ],
   redirect: [
     {
-        from: '^((?!.*webapi).*\/[^\\?]*(?<=\\w))([\/])(\\?.*)?$',
+        from: '^((?!.*webapi)(?!.*streetweek).*\/[^\\?]*(?<=\\w))([\/])(\\?.*)?$',
         to: '$1$3',
         statusCode: 301
     },
