@@ -23,7 +23,7 @@
           :key="cat.CategoryId"
           :class="{'uk-parent':cat.SubList && cat.SubList.length>0}">
           <nuxt-link
-            v-if="cat.SubList && !cat.SubList.length>0"
+            v-if="!cat.SubList || !cat.SubList.length>0"
             :to="localePath(cat.Url)">
             <img
               v-if="cat.ImageName" 
