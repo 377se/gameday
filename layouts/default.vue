@@ -85,7 +85,9 @@ export default {
     })
     
     this.$nextTick(() => {
+      try{
       UIkit.offcanvas('#offscreen-menu').hide();
+      }catch(err){}
     })
   }
 };

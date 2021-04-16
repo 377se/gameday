@@ -8,17 +8,17 @@
           <ul class="uk-slider-items uk-child-width-1-1 uk-text-small"> 
             <li>
               <div class="uk-text-center gd-slider-item uk-padding-small">
-                <strong>{{ $getCMSEntry(labels,'rolling_text_one', 'Street Week Souther Swing - History in the Making') }}</strong>
+                <strong>{{ $getCMSEntry(labels,'rolling_text_one', 'Street Week Southern Swing - History in the Making') }}</strong>
               </div>
             </li>
             <li>
               <div class="uk-text-center gd-slider-item uk-padding-small">
-                <strong>{{ $getCMSEntry(labels,'rolling_text_two', 'Street Week Souther Swing - History in the Making') }}</strong>
+                <strong>{{ $getCMSEntry(labels,'rolling_text_two', 'Street Week Southern Swing - History in the Making') }}</strong>
               </div>
             </li>
             <li>
               <div class="uk-text-center gd-slider-item uk-padding-small">
-                <strong>{{ $getCMSEntry(labels,'rolling_text_three', 'Street Week Souther Swing - History in the Making') }}</strong>
+                <strong>{{ $getCMSEntry(labels,'rolling_text_three', 'Street Week Southern Swing - History in the Making') }}</strong>
               </div>
             </li>
           </ul>
