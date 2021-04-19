@@ -59,8 +59,11 @@
       <li
         v-for="cat in menu"
         :key="cat.Id">
+        <li
+        v-for="cat in menu"
+        :key="cat.Id">
         <nuxt-link
-          :to="localePath('/c/'+(!cat.SubCategoryList.length==0?cat.Id:'0')+'/'+cat.Id+'/'+cat.UrlSafeName)">{{ cat.Name }}</nuxt-link>
+          :to="localePath('/c/0/'+cat.Id+'/'+cat.UrlSafeName)">{{ cat.Name }}</nuxt-link>
       </li>
     </ul>
   </div>
