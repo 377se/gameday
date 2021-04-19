@@ -83,10 +83,14 @@
             alt=""
             :src="cat.ImageThumb" style="width:20px;margin-right:8px;"><span>{{ cat.Name }}</span><span v-if="cat.SubCategoryList.length>0" uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"/>
         </a>
-        <nuxt-link
-          :to="localePath('/produkttyp/18/kepsar')">
-          <span>Kepsar</span>
-        </nuxt-link>
+      </li>
+      <li>
+      <nuxt-link
+        :to="localePath('/produkttyp/18/kepsar')">
+        <span>Kepsar</span>
+      </nuxt-link>
+      </li>
+      <li>
         <nuxt-link
           :to="localePath('/produkttyp/12/t-shirt')">
           <span>T-Shirts</span>
