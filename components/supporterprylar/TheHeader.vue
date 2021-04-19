@@ -231,7 +231,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 /*Overriding styles in layout-default*/
 .gd-slider{
   text-transform:uppercase;
