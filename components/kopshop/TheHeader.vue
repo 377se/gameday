@@ -54,19 +54,16 @@
       </div>
     </nav>
     <div class="header-wrapper">
-    <ul 
-      class="gd-subnav uk-subnav uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-margin-remove-left">
-      <li
-        v-for="cat in menu"
-        :key="cat.Id">
+      <ul 
+        class="gd-subnav uk-subnav uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-margin-remove-left">
         <li
-        v-for="cat in menu"
-        :key="cat.Id">
-        <nuxt-link
-          :to="localePath('/c/0/'+cat.Id+'/'+cat.UrlSafeName)">{{ cat.Name }}</nuxt-link>
-      </li>
-    </ul>
-  </div>
+          v-for="cat in menu"
+          :key="cat.Id">
+          <nuxt-link
+            :to="localePath('/c/0/'+cat.Id+'/'+cat.UrlSafeName)">{{ cat.Name }}</nuxt-link>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
