@@ -38,7 +38,7 @@ export default {
     },
     blok: {
       type: Object,
-      required: true,
+      required: false,
     }
   },
   data(){

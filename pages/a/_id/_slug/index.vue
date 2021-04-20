@@ -20,17 +20,19 @@
       </template>
       <template
         v-else>
-        <ul class="uk-breadcrumb">
-          <li>
-            <nuxt-link :to="localePath('/')">
-              <span style="vertical-align: bottom;
-                margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
-          <li
-            v-for="(a,index) in article.Breadcrumbs"
-            :key="index">
-            <nuxt-link :to="localePath(a.Url)">{{ a.Name }}</nuxt-link>
-          </li>
-        </ul>
+        <div class="uk-container uk-container-large uk-padding-small uk-padding-remove-top">
+          <ul class="uk-breadcrumb">
+            <li>
+              <nuxt-link :to="localePath('/')">
+                <span style="vertical-align: bottom;
+                  margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
+            <li
+              v-for="(a,index) in article.Breadcrumb"
+              :key="index">
+              <nuxt-link :to="localePath(a.Url)">{{ a.Name }}</nuxt-link>
+            </li>
+          </ul>
+        </div>
         <ArticleDetails 
           v-bind:article="article"/>
       </template>
