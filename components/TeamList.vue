@@ -35,6 +35,10 @@ export default {
       type: Number,
       required: false,
       default: 0
+    },
+    blok: {
+      type: Object,
+      required: true,
     }
   },
   data(){
@@ -50,6 +54,8 @@ export default {
     let _catid=0
     if(this.catId>0){
       _catid = this.catId
+    }else if(this.blok && parseInt(this.blok.category_id)>0){
+       _catid = parseInt(this.blok.category_id)
     }else{
        _catid = this.$route.params.categoryid?this.$route.params.categoryid:0
     }

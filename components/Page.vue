@@ -13,6 +13,7 @@ import TextContent from '@/components/TextContent'
 import article_team_list from "@/components/articles/ArticleTeamList";
 import TeamList from "@/components/TeamList";
 import ArticleTeamListByCategory from "@/components/articles/ArticleTeamListByCategory";
+import ArticleListByLeague from "@/components/articles/ArticleListByLeague";
 import promo from '@/components/promo/Promo'
 
 import promo_list from '@/components/promo/PromoList'
@@ -45,6 +46,7 @@ export default {
     TextContent,
     TeamList,
     article_team_list,
+    ArticleListByLeague,
     ArticleTeamListByCategory,
     promo,
     PromoTextual,

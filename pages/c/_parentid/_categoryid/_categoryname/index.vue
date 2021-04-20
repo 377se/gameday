@@ -2,7 +2,25 @@
   <section class="uk-position-relative">
     <template
       v-if="$fetchState.pending"
-    ></template>
+    >
+      <div class="uk-container uk-container-large uk-padding-small">
+        <content-placeholders :rounded="true">
+          <content-placeholders-img />
+          <content-placeholders-heading />
+        </content-placeholders>
+        <div class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l">
+          <content-placeholders 
+            v-for="p in 20"
+            :key="p"
+            :rounded="true"
+            class="uk-padding-small">
+            <content-placeholders-img 
+            class="ph-img"/>
+            <content-placeholders-text :lines="2" />
+          </content-placeholders>
+        </div>
+      </div>
+    </template>
     <template
       v-else>
       <component 

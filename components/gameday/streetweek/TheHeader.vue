@@ -12,26 +12,33 @@
         <div class="header-wrapper">
           <div class="uk-navbar-left uk-flex-nowrap">
             <TheHamburger/>
-            <nuxt-link
-              class="uk-navbar-item uk-margin-left uk-logo"
-              :to="localePath('/')">
               <span
                 class="uk-flex uk-flex-middle">
-                <img
-                  src="/streetweek/street_week_shop.svg"
-                  alt="Street Week Shop"
-                  style="width:150px;margin-top:-20px;"
-                />
-                <img 
-                  style="width:50px;"
-                  src="~assets/gameday_fox.svg" 
-                  alt="Gameday">
-                <span
-                  style="margin-left:8px;font-size:0.6rem;color:#fff;">
-                  Powered by <br>Gameday
-                </span>
+                <nuxt-link
+                  class="uk-navbar-item uk-margin-left uk-logo"
+                  :to="localePath('/street-week')">
+                  <img
+                    src="/streetweek/street_week_shop.svg"
+                    alt="Street Week Shop"
+                    style="width:150px;margin-top:-20px;"
+                  />
+                </nuxt-link>
+                <nuxt-link
+                  :to="localePath('/')"
+                  class="uk-logo">
+                  <img 
+                    style="width:50px;"
+                    src="~assets/gameday_fox.svg" 
+                    alt="Gameday">
+                </nuxt-link>
+                <nuxt-link
+                  :to="localePath('/')">
+                  <span
+                    style="font-size:0.6rem;line-height:0.8rem;color:#fff;">
+                    Powered by <br>Gameday
+                  </span>
+                </nuxt-link>
               </span>
-            </nuxt-link>
           </div>
 
           <div
