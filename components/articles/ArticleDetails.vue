@@ -327,18 +327,20 @@ export default {
       '@context': 'http://schema.org',
       '@type': 'Product',
       "productID":article.ArticleNumber,
+      "sku" : article.ProductId,
       "name":article.MetaTitle,
       "description":article.Description,
       "url": process.env.SITE_URL + this.$route.path,
       "image": process.env.DETAILS_SRC + article.Images[0].Name,
+      "inProductGroupWithID" : article.TeamName,
       "brand": article.Brand,
       "offers": [
         {
           "@type": "Offer",
-          "price": article.Price.toFixed(2),
+          "price": article.PriceOnSale>0?article.PriceOnSale.toFixed(2):article.Price.toFixed(2),
           "priceCurrency": process.env.CURRENCY_CODE,
           "itemCondition": "https://schema.org/NewCondition",
-          "availability": "https://schema.org/InStock"
+          "availability": article.IsSoldOut?"https://schema.org/OutOfStock":"https://schema.org/InStock"
         }
       ]
     };
