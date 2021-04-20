@@ -124,7 +124,7 @@ export default {
     let team = this.$route.query.team?this.$route.query.team:null
     
     try {
-      const [a, p, c, s, g, b, t, metadata] = await Promise.all([
+      const [a, p, c, s, g, b, t] = await Promise.all([
         this.$axios.$get(
           '/webapi/'+this.$i18n.locale+'/Article/getArticleListByCategoryId?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +this.$route.params.categoryid
         ),
@@ -145,9 +145,6 @@ export default {
         ),
         this.$axios.$get(
           `/webapi/${this.$i18n.locale}/Filter/GetTeamListByCategory?categoryId=${this.$route.params.categoryid}&productTypeId=0&brandId=0`
-        ),
-          this.$axios.$get(
-            `/webapi/${this.$i18n.locale}/MetaData/GetMetadataByCategoryId?categoryId=${this.$route.params.categoryid}`
         )
       ]);
       this.articles=a.ArticleList
@@ -159,64 +156,12 @@ export default {
       this.teamlist=t
       this.article=a
       this.pageNum=pageNum
-      this.metadata = metadata
     } catch (err) {
       console.log('_team error')
       console.log(err);
       console.log(err.request);
     }
 
-  },
-  head () {
-    let _link = new Array()
-    for(var i=0;i<this.metadata.LangHref.length;i++){
-      let _obj = {
-                  'hid':'i18n-alt-'+this.metadata.LangHref[i].Culture.split('-')[0],
-                  'rel': 'alternate',
-                  'href': this.metadata.LangHref[i].Url,
-                  'hreflang': this.metadata.LangHref[i].Culture.split('-')[0]
-                }
-      if(this.siteid!=2 || (this.siteid==2 && this.metadata.LangHref[i].Culture!='en-gb')){
-        _link.push(_obj)
-      } 
-      if(this.metadata.LangHref[i].Culture==this.$i18n.defaultLocale){
-        let _obj = {
-                  'hid':'i18n-xd',
-                  'rel': 'alternate',
-                  'href': this.metadata.LangHref[i].Url,
-                  'hreflang': 'x-default'
-                }
-        _link.push(_obj)
-      }
-    }
-    _link.push(
-      {
-        rel: 'canonical',
-        hid: 'i18n-can',
-        href: this.metadata.Canonical
-      }
-    )
-    return {
-      title: this.article.MetaTitle,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.article.MetaDescription
-        },
-        {
-          hid: 'og:title',
-          name:  'og:title',
-          content:  this.article.MetaTitle,
-        },
-        {
-          hid: 'og:description',
-          name:  'og:description',
-          content: `${this.article.MetaDescription}`.replace(/<\/?[^>]+(>|$)/g, ""),
-        }
-      ],
-      link: _link
-    }
   },
   components:{
     ArticleCardSimple,
@@ -244,7 +189,6 @@ export default {
       totalPages:1,
       numOfProducts: 1,
       readmore: true,
-      metadata: {Canonical: '', LangHref:[]},
       siteid: process.env.SITE_ID
     }
   },

@@ -21,15 +21,17 @@
       <template
         v-else>
         <div class="uk-container uk-container-large uk-padding-small uk-padding-remove-top">
-          <ul class="uk-breadcrumb">
+          <ul
+            v-if="(siteid==7 || siteid==8) && metadata.Breadcrumb" 
+            class="uk-breadcrumb">
             <li>
               <nuxt-link :to="localePath('/')">
                 <span style="vertical-align: bottom;
                   margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
             <li
-              v-for="(a,index) in article.Breadcrumb"
+              v-for="(b,index) in metadata.Breadcrumb"
               :key="index">
-              <nuxt-link :to="localePath(a.Url)">{{ a.Name }}</nuxt-link>
+              <nuxt-link :to="localePath(b.Url)">{{ b.Name }}</nuxt-link>
             </li>
           </ul>
         </div>

@@ -43,6 +43,34 @@ import Page from '@/components/Page'
 
 export default {
   head () {
+    let _link = new Array()
+    for(var i=0;i<this.metadata.LangHref.length;i++){
+      let _obj = {
+                  'hid':'i18n-alt-'+this.metadata.LangHref[i].Culture.split('-')[0],
+                  'rel': 'alternate',
+                  'href': this.metadata.LangHref[i].Url,
+                  'hreflang': this.metadata.LangHref[i].Culture.split('-')[0]
+                }
+      if(this.siteid!=2 || (this.siteid==2 && this.metadata.LangHref[i].Culture!='en-gb')){
+        _link.push(_obj)
+      } 
+      if(this.metadata.LangHref[i].Culture==this.$i18n.defaultLocale){
+        let _obj = {
+                  'hid':'i18n-xd',
+                  'rel': 'alternate',
+                  'href': this.metadata.LangHref[i].Url,
+                  'hreflang': 'x-default'
+                }
+        _link.push(_obj)
+      }
+    }
+    _link.push(
+      {
+        rel: 'canonical',
+        hid: 'i18n-can',
+        href: this.metadata.Canonical
+      }
+    )
     if(this.story.content.SEO){
       return {
         title: `${this.story.content.SEO.title}`,
@@ -62,7 +90,12 @@ export default {
             name:  'og:description',
             content: `${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ""),
           }
-        ]
+        ],
+        link: _link
+      }
+    }else{
+      return {
+        link: _link
       }
     }
   },
@@ -70,13 +103,17 @@ export default {
     // Check if we are in the editor mode
     let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
     try {
-      const [sb] = await Promise.all([
+      const [sb, metadata] = await Promise.all([
         this.$storyapi.get('cdn/stories?starts_with=' + process.env.STORYBLOK_CATALOGUE.replace('/','') + '/' +this.$i18n.locale+ '/c/'+this.$route.params.parentid+'/'+this.$route.params.categoryid +'/', {
           version: version,
           cv: this.$store.getters.version
-        })
+        }),
+        this.$axios.$get(
+          `/webapi/${this.$i18n.locale}/MetaData/GetMetadataByCategoryId?categoryId=${this.$route.params.categoryid}`
+        )
       ]);
       this.story=sb.data.stories.length>0?sb.data.stories[0]:{ content: {} }
+      this.metadata = metadata
     } catch (err) {
       console.log('_team error')
       console.log(err);
@@ -97,6 +134,7 @@ export default {
   data () {
     return {
       story: { content: {} },
+      metadata: {Canonical: '', LangHref:[]},
       article: {},
       readmore: true,
       shop: ''
