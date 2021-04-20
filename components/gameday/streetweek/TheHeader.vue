@@ -31,13 +31,6 @@
                     src="~assets/gameday_fox.svg" 
                     alt="Gameday">
                 </nuxt-link>
-                <nuxt-link
-                  :to="localePath('/')">
-                  <span
-                    style="font-size:0.6rem;line-height:0.8rem;color:#fff;">
-                    Powered by <br>Gameday
-                  </span>
-                </nuxt-link>
               </span>
           </div>
 
