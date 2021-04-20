@@ -33,6 +33,7 @@
             <li><nuxt-link :to="localePath('/nba-shop')">{{ $getCMSEntry(global_labels,'footer_link_nba', 'NBA Shop') }}</nuxt-link></li>
             <li><nuxt-link :to="localePath('/nfl-shop')">{{ $getCMSEntry(global_labels,'footer_link_nfl', 'NFL Shop') }}</nuxt-link></li>
             <li><nuxt-link :to="localePath('/mlb-shop')">{{ $getCMSEntry(global_labels,'footer_link_mlb', 'MLB Shop') }}</nuxt-link></li>
+            <li><nuxt-link :to="localePath('/street-week')">{{ $getCMSEntry(global_labels,'footer_link_streetweek', 'Street Week') }}</nuxt-link></li>
           </ul>
         </div>
 
