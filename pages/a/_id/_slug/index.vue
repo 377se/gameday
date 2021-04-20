@@ -31,7 +31,10 @@
             <li
               v-for="(b,index) in metadata.Breadcrumb"
               :key="index">
-              <nuxt-link :to="localePath(b.Url)">{{ b.Name }}</nuxt-link>
+              <nuxt-link 
+                v-if="b.Url"
+                :to="localePath(b.Url)">{{ b.Name }}</nuxt-link>
+              <span v-else>{{ b.Name }}</span>
             </li>
           </ul>
         </div>
