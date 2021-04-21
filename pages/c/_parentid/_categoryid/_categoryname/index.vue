@@ -25,7 +25,7 @@
       v-else>
       <div class="uk-container uk-container-large uk-padding-small uk-padding-remove-bottom">
         <ul
-          v-if="(siteid==7 || siteid==8) && metadata.Breadcrumb" 
+          v-if="(siteid==7 || siteid==1) && metadata.Breadcrumb" 
           class="uk-breadcrumb">
           <li>
             <nuxt-link :to="localePath('/')">
