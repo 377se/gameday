@@ -25,14 +25,14 @@
       v-else>
       <div class="uk-container uk-container-large uk-padding-small uk-padding-remove-bottom">
         <ul
-          v-if="(siteid==7 || siteid==1) && metadata.Breadcrumb" 
+          v-if="metadata.Breadcrumb && metadata.Breadcrumb.length>0" 
           class="uk-breadcrumb">
           <li>
             <nuxt-link :to="localePath('/')">
               <span style="vertical-align: bottom;
                 margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
           <li
-            v-for="(b,index) in metadata.Breadcrumb"
+            v-for="(b,index) in metadata.Breadcrumb[0].ItemList"
             :key="index">
             <nuxt-link 
               v-if="b.Url"
