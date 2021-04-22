@@ -1,16 +1,58 @@
 <template>
   <section class="uk-position-relative">
-    <component 
-      v-if="story.content.component" 
-      :key="story.content._uid" 
-      :blok="story.content" 
-      :is="story.content.component" />
-    <div
-      v-else
-      class="uk-container uk-container-large uk-padding-small">
-      <ArticleTeamListByCategory 
-        :sb="story.content.component?true:false"/>
-    </div>
+    <template
+      v-if="$fetchState.pending"
+    >
+      <div class="uk-container uk-container-large uk-padding-small">
+        <content-placeholders :rounded="true">
+          <content-placeholders-img />
+          <content-placeholders-heading />
+        </content-placeholders>
+        <div class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l">
+          <content-placeholders 
+            v-for="p in 20"
+            :key="p"
+            :rounded="true"
+            class="uk-padding-small">
+            <content-placeholders-img 
+            class="ph-img"/>
+            <content-placeholders-text :lines="2" />
+          </content-placeholders>
+        </div>
+      </div>
+    </template>
+    <template
+      v-else>
+      <div class="uk-container uk-container-large uk-padding-small uk-padding-remove-bottom">
+        <ul
+          v-if="metadata.Breadcrumb && metadata.Breadcrumb.length>0" 
+          class="uk-breadcrumb">
+          <li>
+            <nuxt-link :to="localePath('/')">
+              <span style="vertical-align: bottom;
+                margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
+          <li
+            v-for="(b,index) in metadata.Breadcrumb[0].ItemList"
+            :key="index">
+            <nuxt-link 
+              v-if="b.Url"
+              :to="localePath(b.Url)">{{ b.Name }}</nuxt-link>
+            <span v-else>{{ b.Name }}</span>
+          </li>
+        </ul>
+      </div>
+      <component 
+        v-if="story.content.component" 
+        :key="story.content._uid" 
+        :blok="story.content" 
+        :is="story.content.component" />
+      <div
+        v-else
+        class="uk-container uk-container-large uk-padding-small">
+        <ArticleTeamListByCategory 
+          :sb="story.content.component?true:false"/>
+      </div>
+    </template>
   </section>
 </template>
 <script>
@@ -18,16 +60,77 @@ import ArticleTeamListByCategory from "@/components/articles/ArticleTeamListByCa
 import Page from '@/components/Page'
 
 export default {
+  head () {
+    let _link = new Array()
+    for(var i=0;i<this.metadata.LangHref.length;i++){
+      let _obj = {
+                  'hid':'i18n-alt-'+this.metadata.LangHref[i].Culture.split('-')[0],
+                  'rel': 'alternate',
+                  'href': this.metadata.LangHref[i].Url,
+                  'hreflang': this.metadata.LangHref[i].Culture.split('-')[0]
+                }
+      if(this.siteid!=2 || (this.siteid==2 && this.metadata.LangHref[i].Culture!='en-gb')){
+        _link.push(_obj)
+      } 
+      if(this.metadata.LangHref[i].Culture==this.$i18n.defaultLocale){
+        let _obj = {
+                  'hid':'i18n-xd',
+                  'rel': 'alternate',
+                  'href': this.metadata.LangHref[i].Url,
+                  'hreflang': 'x-default'
+                }
+        _link.push(_obj)
+      }
+    }
+    _link.push(
+      {
+        rel: 'canonical',
+        hid: 'i18n-can',
+        href: this.metadata.Canonical
+      }
+    )
+    if(this.story.content.SEO){
+      return {
+        title: `${this.story.content.SEO.title}`,
+        meta: [
+          {
+            hid: 'description',
+            name: 'description',
+            content: `${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ""),
+          },
+          {
+            hid: 'og:title',
+            name:  'og:title',
+            content:  `${this.story.content.SEO.title}`,
+          },
+          {
+            hid: 'og:description',
+            name:  'og:description',
+            content: `${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ""),
+          }
+        ],
+        link: _link
+      }
+    }else{
+      return {
+        link: _link
+      }
+    }
+  },
   async fetch () {
     // Check if we are in the editor mode
     let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
     try {
-      const [sb] = await Promise.all([
+      const [sb, metadata] = await Promise.all([
         this.$storyapi.get('cdn/stories?starts_with=' + process.env.STORYBLOK_CATALOGUE.replace('/','') + '/' +this.$i18n.locale+ '/c/'+this.$route.params.parentid+'/'+this.$route.params.categoryid +'/'+this.$route.params.categoryname +'/'+this.$route.params.filterid +'/', {
           version: version,
           cv: this.$store.getters.version
-        })
+        }),
+        this.$axios.$get(
+          `/webapi/${this.$i18n.locale}/MetaData/GetMetadataByProductTypeId?categoryId=${this.$route.params.categoryid}&productTypeId=${this.$route.params.filterid}`
+        )
       ]);
+      this.metadata = metadata
       this.story=sb.data.stories.length>0?sb.data.stories[0]:{ content: {} }
     } catch (err) {
       console.log('_team error')
@@ -36,6 +139,12 @@ export default {
     }
 
   },
+  fetchDelay: 0,
+  activated() {
+    if (this.$fetchState.timestamp <= Date.now() - 600000) {// Call fetch again if last fetch more than 60 sec ago
+      this.$fetch()
+    }
+  },
   components:{
     ArticleTeamListByCategory,
     Page
@@ -43,6 +152,7 @@ export default {
   data () {
     return {
       story: { content: {} },
+      metadata: {Canonical: '', LangHref:[]},
       article: {},
       readmore: true,
       shop: ''
