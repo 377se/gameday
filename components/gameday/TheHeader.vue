@@ -90,7 +90,13 @@
             <a 
               href="/mlb-shop"
               class="subnav"
-              @click.stop.prevent="showDropDown(6)"><img src="/logos/mlb_ikon_600x600.png" style="width:30px" />MLB <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
+              @click.stop.prevent="showDropDown(6)"><img src="/logos/mlb_ikon_600x600.png" style="width:30px;margin-right:8px;" />MLB <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
+          </li>
+          <li>
+            <nuxt-link 
+              to="/street-week"
+              class="subnav">
+              <img alt="Street Week" src="https://static.supportersplace.se/category/streetweek_shop_1_600x600.png" style="width: 30px;margin-left:8px;margin-right:8px;">Street Week</nuxt-link>
           </li>
           <li>
             <nuxt-link
