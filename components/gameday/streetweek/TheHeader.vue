@@ -18,7 +18,7 @@
                   class="uk-navbar-item uk-margin-left uk-logo"
                   :to="localePath('/street-week')">
                   <img
-                    src="/streetweek/street_week_shop_logo_ny.svg"
+                    src="/streetweek/street_week_shop_logo_uppd.svg"
                     alt="Street Week Shop"
                     style="width:150px;margin-top:-20px;"
                   />
