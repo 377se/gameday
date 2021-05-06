@@ -203,6 +203,11 @@ export default {
     /*
      ** You can extend webpack config here
      */
+     babel:{
+      plugins: [
+        ['@babel/plugin-proposal-private-methods', { loose: true }]
+      ]
+    },
     extend(config, ctx) {}
   }
 }
