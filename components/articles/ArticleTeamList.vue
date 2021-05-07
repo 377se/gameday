@@ -85,7 +85,7 @@
           <li><span>{{ pageNum }}/{{ article.TotalPages }}</span></li>
           <li>
             <nuxt-link 
-              :to="localePath({query:{...this.$route.query,page:(parseInt(pageNum)+1)>article.TotalPages?(parseInt(pageNum)+1):article.TotalPages}})">{{ $getCMSEntry(global_labels,'paging_next', 'Nästa') }} <span uk-pagination-next></span></nuxt-link></li>
+              :to="localePath({query:{...this.$route.query,page:(parseInt(pageNum)+1)<article.TotalPages?(parseInt(pageNum)+1):article.TotalPages}})">{{ $getCMSEntry(global_labels,'paging_next', 'Nästa') }} <span uk-pagination-next></span></nuxt-link></li>
         </ul>
       </div>
     </template>
