@@ -72,7 +72,9 @@ export default {
   },
   activated(){
     try{
-      document.getElementById('branchVideo').play()
+      if(document.getElementById('branchVideo')){
+        document.getElementById('branchVideo').play()
+      }
     }catch(err){
       console.log(err)
     }
