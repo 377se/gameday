@@ -13,10 +13,9 @@
 
         <video
           id="branchVideo" 
-          :poster="'https://res.cloudinary.com/supportersplace/image/fetch/w_1400,fl_lossy,f_auto,fl_progressive/http:'+blok.BranchMemberPushImage" muted autoplay webkit-playsinline playsinline preload="auto" loop style="width: 100%;">
+          :poster="'https://res.cloudinary.com/supportersplace/image/fetch/w_1400,fl_lossy,f_auto,fl_progressive/'+blok.BranchMemberPushImage.filename" muted autoplay webkit-playsinline playsinline preload="auto" loop style="width: 100%;">
           <source src="https://res.cloudinary.com/supportersplace/video/upload/q_auto,f_auto/v1614780456/bmp-videobackground_vpb7zn.mp4" type="video/mp4">
         </video>
-
 
         <div class="bmp-infobox">
 
