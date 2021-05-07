@@ -147,11 +147,6 @@ export default {
     margin: 10px 0 0 0;
     line-height: 1;
   }
-  @media only screen and (min-width: 1000px) {
-    .game-info {
-      margin: 10px 150px 0 150px;
-    }
-  }
   .icons {
     width: 17px;
     margin-right: 4px;
