@@ -47,6 +47,7 @@ export default {
     TextContent,
     GameCenterContainer,
     GameCenterLatestNext,
+    GameCenterStandings,
     GameCenterResultContest,
     BranchMemberPush
   },

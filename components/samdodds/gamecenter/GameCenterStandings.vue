@@ -1,11 +1,11 @@
 <template>
   <div 
     v-editable="blok"
-    class="uk-container gc-standings uk-border-rounded">
+    class="uk-container gc-standings uk-border-rounded uk-margin-small-bottom">
     <div 
       class="gc-standings-container uk-padding-small">
 
-          <div v-if="this.showHeading" class="gc-headline">STANDINGS</div>
+          <div v-if="this.showHeading" class="gc-standings-headline">STANDINGS</div>
             <div class="uk-overflow-auto uk-border-rounded">
                 <table class="uk-table remove-scrolls">
                     <thead>
@@ -75,19 +75,21 @@ export default {
 </script>
 <style lang="scss">
 .gc-standings {
-    background: url("/backgrounds/background-gradient-red.svg") center;
+        background: rgb(242,241,241);
+        background: radial-gradient(circle, rgba(242,241,241,1) 0%, rgba(228,227,227,1) 46%, rgba(175,175,175,1) 100%);
     & table {
         border-collapse: collapse;
         width: 100%;
     }
     & thead {
         & tr {
-            background-color: #65181e;
+            background-color: #838383;
         }
         & th {
             color: #fff;
             font-size: 0.9rem;
             font-family: Oswald;
+            padding: 2px 6px;
         }
     }
     & tbody {
@@ -131,11 +133,11 @@ export default {
     height: 0;
     width: 0;
 }
-.gc-headline {
-  color: #fff;
+.gc-standings-headline {
+  color: rgb(0, 0, 0);
   font-family: Oswald;
   margin: 0 0 0.3em 0;
-  font-size: 2.3rem;
+  font-size: 1.2rem;
   line-height: 1;
   font-weight: bold;
 }
