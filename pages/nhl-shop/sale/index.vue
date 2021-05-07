@@ -147,14 +147,20 @@ export default {
     }
   },
   mounted () {
-    this.$storybridge.on(['input', 'published', 'change'], (event) => {
-      if (event.action == 'input') {
-        if (event.story.id === this.story.id) {
-          this.story.content = event.story.content
+    this.$storybridge(() => {
+      const storyblokInstance = new StoryblokBridge()
+
+      storyblokInstance.on(['input', 'published', 'change'], (event) => {
+        if (event.action == 'input') {
+          if (event.story.id === this.story.id) {
+            this.story.content = event.story.content
+          }
+        } else {
+          window.location.reload()
         }
-      } else {
-        window.location.reload()
-      }
+      })
+    }, (error) => {
+      console.error(error)
     })
   },
   watch: {
