@@ -72,9 +72,9 @@ export default {
   },
   methods: {
     addLineBreaks(oldText) {
-      const reg = /(?<!\d) /g
-      const newText = oldText.replace(reg, '<br />')
-      return newText
+      /*const reg = /(?<!\d) /g
+      const newText = oldText.replace(reg, '<br />')*/
+      return oldText
     }
   },
   async fetch() {
