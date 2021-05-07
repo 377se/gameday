@@ -81,11 +81,11 @@
           class="uk-pagination uk-flex-center uk-margin-large uk-margin-bottom">
           <li>
             <nuxt-link 
-              :to="localePath({query:{...this.$route.query,page:(pageNum-1)>0?(pageNum-1):1}})"><span uk-pagination-previous></span> {{ $getCMSEntry(global_labels,'paging_previous', 'Föregående') }}</nuxt-link></li>
+              :to="localePath({query:{...this.$route.query,page:(parseInt(pageNum)-1)>0?(parseInt(pageNum)-1):1}})"><span uk-pagination-previous></span> {{ $getCMSEntry(global_labels,'paging_previous', 'Föregående') }}</nuxt-link></li>
           <li><span>{{ pageNum }}/{{ article.TotalPages }}</span></li>
           <li>
             <nuxt-link 
-              :to="localePath({query:{...this.$route.query,page:(pageNum+1)>article.TotalPages?(pageNum+1):article.TotalPages}})">{{ $getCMSEntry(global_labels,'paging_next', 'Nästa') }} <span uk-pagination-next></span></nuxt-link></li>
+              :to="localePath({query:{...this.$route.query,page:(parseInt(pageNum)+1)>article.TotalPages?(parseInt(pageNum)+1):article.TotalPages}})">{{ $getCMSEntry(global_labels,'paging_next', 'Nästa') }} <span uk-pagination-next></span></nuxt-link></li>
         </ul>
       </div>
     </template>
