@@ -1,7 +1,7 @@
 <template>
   <div 
     v-editable="blok"
-    class="uk-container uk-margin-large-bottom"
+    class="uk-container"
     tabindex="-1"
     uk-slider>
     <ul class="uk-slider-items uk-grid-small uk-grid-match" uk-grid>
