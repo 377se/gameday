@@ -1,6 +1,7 @@
 <template>
     <div
       v-editable="blok"
+      v-if="game"
       class="uk-container gc-nextlastgame uk-border-rounded uk-margin-small-bottom uk-grid-item-match">
       <div class="uk-flex uk-flex-column uk-padding-small">
         <div v-if="this.showHeading" class="gc-nextprev-headline">
