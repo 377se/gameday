@@ -35,9 +35,9 @@
           v-html="article.SeoContentDescription"/>
       </div>
       <div class="uk-container uk-container-large uk-padding-small uk-padding-remove-top">
-        <!--TeamList
+        <TeamList
           :cat-id="202"
-          class="uk-margin-remove-top"/-->
+          class="uk-margin-remove-top"/>
         <div 
           class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
           uk-sticky="offset:118;width-element:body;bottom:true"
