@@ -28,9 +28,9 @@
                 margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
           <li><nuxt-link :to="localePath('/nfl-shop')">NFL-shop</nuxt-link></li>
         </ul>
-        <TeamList
+        <!--TeamList
           :cat-id="328"
-          class="uk-margin-remove-top"/>
+          class="uk-margin-remove-top"/-->
         <component 
           v-if="story.content.component" 
           :key="story.content._uid" 
