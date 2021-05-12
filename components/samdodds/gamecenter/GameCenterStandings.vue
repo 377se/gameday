@@ -16,14 +16,12 @@
                             <th>W</th>
                             <th>D</th>
                             <th>L</th>
-                            <!-- <th class="uk-visible@s">F</th>
-                            <th class="uk-visible@s">A</th> -->
                             <th>+/-</th>
                             <th>P</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="game in standings.slice(0, this.numberOfRows)" :key="game" class="uk-table-middle">
+                    <tr v-for="game in standings.slice(0, this.numberOfRows)" :key="game.Position" class="uk-table-middle">
                         <td class="center">{{ game.Position }}</td>
                         <td><img :src="game.Crest" :alt="game.Team">&nbsp;&nbsp;{{ game.Team }}</td>
                         <td>{{ game.Played }}</td>
@@ -87,7 +85,7 @@ export default {
         }
         & th {
             color: #fff;
-            font-size: 0.9rem;
+            font-size: 0.65rem;
             font-family: Oswald;
             padding: 2px 6px;
         }
@@ -106,12 +104,12 @@ export default {
             font-family: Oswald;
             padding: 5px 4px;
             font-weight: bolder;
-            font-size: 0.9rem;
+            font-size: 0.65rem;
             overflow: hidden;
             white-space: nowrap;
             & img {
-                width: 20px;
-                margin: -0.2rem 0 -0.5rem 0;
+                width: 17px;
+                margin: -0.32rem 0 -0.4rem 0;
             }
             & .center {
                 text-align: center;

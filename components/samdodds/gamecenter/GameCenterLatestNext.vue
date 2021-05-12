@@ -7,43 +7,39 @@
         <div v-if="this.showHeading" class="gc-nextprev-headline">
           {{ this.isLatest ? 'FÖREGÅENDE MATCH' : 'NÄSTA MATCH' }}
         </div>
-        <!-- <div tabindex="-1" uk-slider>
-          <ul class="uk-slider-items">
-            <li class="uk-width-1-1" v-for="game in games" :key="game.GameId"> -->
-              <div class="gc-nextlastgame-outer-container uk-flex uk-flex-column uk-flex-center">
-                <div class="goal-info uk-flex uk-flex-around uk-flex-middle uk-flex-center"> <!-- GOAL-INFO -->
+            <div class="gc-nextlastgame-outer-container uk-flex uk-flex-column uk-flex-center">
+                <div class="goal-info uk-flex uk-flex-middle uk-flex-center uk-flex-around uk-margin-small-left uk-margin-small-right"> <!-- GOAL-INFO -->
                   <div class="uk-flex uk-flex-middle"> <!-- LEFT-TEAM -->
-                    <div class="uk-flex uk-flex-column uk-flex-middle"> <!-- CREST + NAME -->
+                    <div class="uk-flex uk-flex-column uk-flex-middle uk-flex-1"> <!-- CREST + NAME -->
                       <div class="crests"><img :src="game.LiverpoolCrest" /></div>
-                      <div>{{ homeTeam }}</div>
+                      <div class="team-names uk-text-center">{{ homeTeam }}</div>
                     </div>
-                    <div class="goals uk-margin-small-left uk-flex uk-flex-center">{{ this.isLatest ? game.HomeGoals : '-' }}</div> <!-- GOALS -->
+                    <div class="goals uk-flex uk-flex-center">{{ this.isLatest ? game.HomeGoals : '-' }}</div> <!-- GOALS -->
                   </div>
                   <div class="uk-flex uk-flex-middle"> <!-- RIGHT-TEAM -->
-                    <div class="goals uk-margin-small-right uk-flex uk-flex-center">{{ this.isLatest ? game.AwayGoals : '-' }}</div> <!-- GOALS -->
-                    <div class="uk-flex uk-flex-column uk-flex-middle"> <!-- CREST + NAME -->
+                    <div class="goals uk-flex uk-flex-center">{{ this.isLatest ? game.AwayGoals : '-' }}</div> <!-- GOALS -->
+                    <div class="uk-flex uk-flex-column uk-flex-middle uk-flex-1"> <!-- CREST + NAME -->
                       <div class="crests"><img :src="game.OpponentCrest" /></div>
-                      <div>{{ game.Opponent }}</div>
+                      <div class="team-names uk-text-center">{{ game.Opponent }}</div>
                     </div>
                   </div>
                 </div>
                 <div class="divider"></div>
                 <div class="game-info uk-flex uk-flex-around uk-flex-middle uk-flex-center"> <!-- GAME-INFO -->
-                  <div class="uk-flex uk-flex-center uk-width-1-4" v-html="addLineBreaks(game.GameDate)"></div>
-                  <div class="uk-flex uk-flex-center uk-width-1-4 uk-flex-middle">
-                    <div>{{ game.GameTime }}</div>
+                  <div class="uk-flex uk-flex-center uk-text-nowrap" v-html="addLineBreaks(game.GameDate)"></div>
+                  <div>&nbsp;|&nbsp;</div>
+                  <div class="uk-flex uk-flex-center uk-flex-middle">
+                    <div class="uk-text-nowrap">{{ game.GameTime }}</div>
                   </div>
-                  <div class="uk-flex uk-flex-center uk-width-1-4 uk-flex-middle">
-                    <!-- <img class="icons" src="/icons/soccer-field-black.svg"> -->
-                    <div v-html="addLineBreaks(game.Arena)"></div>
+                  <div>&nbsp;|&nbsp;</div>
+                  <div class="uk-flex uk-flex-center uk-flex-middle">
+                    <div class="uk-text-nowrap" v-html="addLineBreaks(game.Arena)"></div>
                   </div>
-                  <div class="uk-flex uk-flex-center uk-width-1-4" v-html="addLineBreaks(game.GameType)">
+                  <div>&nbsp;|&nbsp;</div>
+                  <div class="uk-flex uk-flex-center uk-text-nowrap" v-html="addLineBreaks(game.GameType)">
                   </div>
                 </div>
-              </div>
-            <!-- </li>
-          </ul>
-        </div> -->
+            </div>
     </div>
   </div>
 </template>
@@ -97,7 +93,7 @@ export default {
     background: rgb(242,241,241);
     background: radial-gradient(circle, rgba(242,241,241,1) 0%, rgba(228,227,227,1) 46%, rgba(175,175,175,1) 100%);
     font-family: 'Oswald';
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   @media only screen and (max-width: 700px) and (min-width: 640px) {
     .gc-nextlastgame {
@@ -119,12 +115,13 @@ export default {
     height: 100%;
   }
   .goal-info {
+    font-size: 0.75rem;
     margin: 0 0 10px 0;
   }
   @media only screen and (min-width: 1000px) {
-    .goal-info {
-      margin: 0 150px 10px 150px;
-    }
+    // .goal-info {
+    //   margin: 0 150px 10px 150px;
+    // }
   }
   .goals {
     width: 1.4em;
@@ -145,8 +142,13 @@ export default {
     width: 100%;
   }
   .game-info {
+    font-size: 0.67rem;
     margin: 10px 0 0 0;
     line-height: 1;
+  }
+  .team-names {
+    font-size: 0.67rem;
+    line-height: 1.1;
   }
   .icons {
     width: 17px;

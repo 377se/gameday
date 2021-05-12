@@ -1,12 +1,12 @@
 <template>
   <div 
     v-editable="blok"
-    class="uk-container"
+    class="uk-position-relative uk-grid-small uk-margin-large-bottom"
     tabindex="-1"
     uk-slider>
-    <ul class="uk-slider-items uk-grid-small uk-grid-match" uk-grid>
+    <ul class="uk-slider-items uk-grid-small uk-grid-match">
       <li 
-        class=""
+        class="uk-width-5-6"
         :class="{
             'uk-width-1-2@s uk-width-1-2@m  uk-width-1-2@l  uk-width-1-2@xl':blok.GameCenterBlocks.length==2,
             'uk-width-2-5@s uk-width-1-3@m  uk-width-1-3@l  uk-width-1-3@xl':blok.GameCenterBlocks.length==3,
