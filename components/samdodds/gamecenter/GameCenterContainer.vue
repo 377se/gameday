@@ -1,24 +1,26 @@
 <template>
-  <div 
-    v-editable="blok"
-    class="uk-position-relative uk-grid-small uk-margin-large-bottom"
-    tabindex="-1"
-    uk-slider>
-    <ul class="uk-slider-items uk-grid-small uk-grid-match">
-      <li 
-        class="uk-width-5-6"
-        :class="{
-            'uk-width-1-2@s uk-width-1-2@m  uk-width-1-2@l  uk-width-1-2@xl':blok.GameCenterBlocks.length==2,
-            'uk-width-2-5@s uk-width-1-3@m  uk-width-1-3@l  uk-width-1-3@xl':blok.GameCenterBlocks.length==3,
-            'uk-width-2-5@s uk-width-2-5@m  uk-width-1-4@l  uk-width-1-4@xl':blok.GameCenterBlocks.length>3,
-            }"
-        v-for="child in blok.GameCenterBlocks" 
-        :key="child._uid">
-        <component 
-          :blok="child" 
-          :is="child.component"/>
-      </li>
-    </ul>
+  <div class="uk-container">
+    <div
+      v-editable="blok"
+      class="uk-position-relative uk-grid-small uk-margin-large-bottom"
+      tabindex="-1"
+      uk-slider>
+      <ul class="uk-slider-items uk-grid-small uk-grid-match">
+        <li
+          class="uk-width-5-6"
+          :class="{
+              'uk-width-1-2@s uk-width-1-2@m  uk-width-1-2@l  uk-width-1-2@xl':blok.GameCenterBlocks.length==2,
+              'uk-width-2-5@s uk-width-1-3@m  uk-width-1-3@l  uk-width-1-3@xl':blok.GameCenterBlocks.length==3,
+              'uk-width-2-5@s uk-width-2-5@m  uk-width-1-4@l  uk-width-1-4@xl':blok.GameCenterBlocks.length>3,
+              }"
+          v-for="child in blok.GameCenterBlocks"
+          :key="child._uid">
+          <component
+            :blok="child"
+            :is="child.component"/>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
