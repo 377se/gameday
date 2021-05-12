@@ -4,7 +4,8 @@
     class="uk-container"
     tabindex="-1"
     uk-slider>
-    <ul class="uk-slider-items uk-grid-small uk-grid-match" uk-grid>
+    <ul 
+      class="uk-slider-items uk-grid-small uk-grid-match" uk-grid>
       <li 
         class=""
         :class="{
@@ -12,7 +13,8 @@
             'uk-width-2-5@s uk-width-1-3@m  uk-width-1-3@l  uk-width-1-3@xl':blok.GameCenterBlocks.length==3,
             'uk-width-2-5@s uk-width-2-5@m  uk-width-1-4@l  uk-width-1-4@xl':blok.GameCenterBlocks.length>3,
             }"
-        v-for="child in blok.GameCenterBlocks" :key="child._uid">
+        v-for="child in blok.GameCenterBlocks" 
+        :key="child._uid">
         <component 
           :blok="child" 
           :is="child.component"/>

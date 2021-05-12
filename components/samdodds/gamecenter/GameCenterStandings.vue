@@ -23,7 +23,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="game in standings.slice(0, this.numberOfRows)" :key="game" class="uk-table-middle">
+                    <tr 
+                      v-for="(game, index) in standings.slice(0, this.numberOfRows)" 
+                      :key="index" class="uk-table-middle">
                         <td class="center">{{ game.Position }}</td>
                         <td><img :src="game.Crest" :alt="game.Team">&nbsp;&nbsp;{{ game.Team }}</td>
                         <td>{{ game.Played }}</td>
