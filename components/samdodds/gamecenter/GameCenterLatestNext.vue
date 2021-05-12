@@ -26,18 +26,17 @@
                 </div>
                 <div class="divider"></div>
                 <div class="game-info uk-flex uk-flex-around uk-flex-middle uk-flex-center"> <!-- GAME-INFO -->
-                  <div class="uk-flex uk-flex-center uk-text-nowrap" v-html="addLineBreaks(game.GameDate)"></div>
+                  <div class="uk-flex uk-flex-center uk-text-nowrap"> {{ game.GameDate }}</div>
                   <div>&nbsp;|&nbsp;</div>
                   <div class="uk-flex uk-flex-center uk-flex-middle">
                     <div class="uk-text-nowrap">{{ game.GameTime }}</div>
                   </div>
                   <div>&nbsp;|&nbsp;</div>
                   <div class="uk-flex uk-flex-center uk-flex-middle">
-                    <div class="uk-text-nowrap" v-html="addLineBreaks(game.Arena)"></div>
+                    <div class="uk-text-nowrap">{{ game.Arena }}</div>
                   </div>
                   <div>&nbsp;|&nbsp;</div>
-                  <div class="uk-flex uk-flex-center uk-text-nowrap" v-html="addLineBreaks(game.GameType)">
-                  </div>
+                  <div class="uk-flex uk-flex-center uk-text-nowrap">{{ game.GameType }}</div>
                 </div>
             </div>
     </div>
@@ -68,11 +67,6 @@ export default {
     }
   },
   methods: {
-    addLineBreaks(oldText) {
-      /*const reg = /(?<!\d) /g
-      const newText = oldText.replace(reg, '<br />')*/
-      return oldText
-    }
   },
   async fetch() {
     try {
