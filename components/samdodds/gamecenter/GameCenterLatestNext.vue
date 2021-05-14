@@ -10,17 +10,17 @@
             <div class="gc-nextlastgame-outer-container uk-flex uk-flex-column uk-flex-center">
                 <div class="goal-info uk-flex uk-flex-middle uk-flex-center uk-flex-around uk-margin-small-left uk-margin-small-right"> <!-- GOAL-INFO -->
                   <div class="uk-flex uk-flex-middle"> <!-- LEFT-TEAM -->
-                    <div class="uk-flex uk-flex-column uk-flex-middle uk-flex-1"> <!-- CREST + NAME -->
-                      <div class="crests"><img :src="game.LiverpoolCrest" /></div>
-                      <div class="team-names uk-text-center">{{ homeTeam }}</div>
+                    <div class="uk-flex uk-flex-column uk-flex-middle uk-flex-1">
+                      <div class="crests"><img :src="game.IsAwayGame ? game.OpponentCrest : game.LiverpoolCrest" /></div> <!-- CREST -->
+                      <div class="team-names uk-text-center">{{ game.IsAwayGame ? game.Opponent : homeTeam }}</div> <!-- NAME -->
                     </div>
-                    <div class="goals uk-flex uk-flex-center">{{ this.isLatest ? game.HomeGoals : '-' }}</div> <!-- GOALS -->
+                    <div class="goals uk-flex uk-flex-center">{{ this.isLatest ? game.IsAwayGame ? game.HomeGoals : game.AwayGoals : '-' }}</div> <!-- GOALS -->
                   </div>
                   <div class="uk-flex uk-flex-middle"> <!-- RIGHT-TEAM -->
-                    <div class="goals uk-flex uk-flex-center">{{ this.isLatest ? game.AwayGoals : '-' }}</div> <!-- GOALS -->
-                    <div class="uk-flex uk-flex-column uk-flex-middle uk-flex-1"> <!-- CREST + NAME -->
-                      <div class="crests"><img :src="game.OpponentCrest" /></div>
-                      <div class="team-names uk-text-center">{{ game.Opponent }}</div>
+                    <div class="goals uk-flex uk-flex-center">{{ this.isLatest ? game.IsAwayGame ? game.AwayGoals : game.HomeGoals : '-' }}</div> <!-- GOALS -->
+                    <div class="uk-flex uk-flex-column uk-flex-middle uk-flex-1">
+                      <div class="crests"><img :src="game.IsAwayGame ? game.LiverpoolCrest : game.OpponentCrest" /></div> <!-- CREST -->
+                      <div class="team-names uk-text-center">{{ game.IsAwayGame ? homeTeam : game.Opponent }}</div> <!-- NAME -->
                     </div>
                   </div>
                 </div>
