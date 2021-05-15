@@ -1,48 +1,81 @@
 <template>
-    <div
-      v-editable="blok"
-      v-if="game"
-      class="uk-container gc-nextlastgame uk-border-rounded uk-margin-small-bottom uk-grid-item-match">
-      <div class="uk-flex uk-flex-column uk-padding-small">
-        <div v-if="this.showHeading" class="gc-nextprev-headline">
-          {{ this.isLatest ? 'FÖREGÅENDE MATCH' : 'NÄSTA MATCH' }}
-        </div>
-            <div class="gc-nextlastgame-outer-container uk-flex uk-flex-column uk-flex-center">
-                <div class="goal-info uk-flex uk-flex-middle uk-flex-center uk-flex-around uk-margin-small-left uk-margin-small-right"> <!-- GOAL-INFO -->
-                  <div class="uk-flex uk-flex-middle"> <!-- LEFT-TEAM -->
-                    <div class="uk-flex uk-flex-column uk-flex-middle uk-flex-1">
-                      <div class="crests"><img :src="game.IsAwayGame ? game.OpponentCrest : game.LiverpoolCrest" /></div> <!-- CREST -->
-                      <div class="team-names uk-text-center">{{ game.IsAwayGame ? game.Opponent : homeTeam }}</div> <!-- NAME -->
+    <div v-editable="blok" v-if="game">
+      <div class="uk-position-relative uk-height-1-1">
+        <transition name="flip">
+          <div v-if="!cardIsFlipped" class="uk-margin-small-bottom gc-nextlastgame uk-border-rounded flip-card uk-flex uk-flex-column uk-padding-small uk-width-1-1 uk-height-1-1"> <!-- FRONT -->
+              <div v-if="this.showHeading" class="gc-nextprev-headline uk-flex uk-flex-middle uk-flex-middle uk-flex-between"> <!-- HEADLINE -->
+                <div>{{ this.isLatest ? 'FÖREGÅENDE MATCH' : 'NÄSTA MATCH' }}</div>
+                <div v-if="isLatest"><span @click="cardIsFlipped = !cardIsFlipped" uk-icon="info" class="cursor"></span></div>
+              </div>
+              <div class="gc-nextlastgame-outer-container uk-flex uk-flex-column uk-flex-center"> <!-- CONTENT -->
+                  <div class="goal-info uk-flex uk-flex-middle uk-flex-center uk-flex-around uk-margin-small-left uk-margin-small-right"> <!-- GOAL-INFO -->
+                    <div class="uk-flex uk-flex-middle"> <!-- LEFT-TEAM -->
+                      <div class="uk-flex uk-flex-column uk-flex-middle uk-flex-1">
+                        <div class="crests"><img :src="game.IsAwayGame ? game.OpponentCrest : game.LiverpoolCrest" /></div> <!-- CREST -->
+                        <div class="team-names uk-text-center">{{ game.IsAwayGame ? game.Opponent : homeTeam }}</div> <!-- NAME -->
+                      </div>
+                      <div class="goals uk-flex uk-flex-center">{{ this.isLatest ? game.IsAwayGame ? game.HomeGoals : game.AwayGoals : '-' }}</div> <!-- GOALS -->
                     </div>
-                    <div class="goals uk-flex uk-flex-center">{{ this.isLatest ? game.IsAwayGame ? game.HomeGoals : game.AwayGoals : '-' }}</div> <!-- GOALS -->
-                  </div>
-                  <div class="uk-flex uk-flex-middle"> <!-- RIGHT-TEAM -->
-                    <div class="goals uk-flex uk-flex-center">{{ this.isLatest ? game.IsAwayGame ? game.AwayGoals : game.HomeGoals : '-' }}</div> <!-- GOALS -->
-                    <div class="uk-flex uk-flex-column uk-flex-middle uk-flex-1">
-                      <div class="crests"><img :src="game.IsAwayGame ? game.LiverpoolCrest : game.OpponentCrest" /></div> <!-- CREST -->
-                      <div class="team-names uk-text-center">{{ game.IsAwayGame ? homeTeam : game.Opponent }}</div> <!-- NAME -->
+                    <div class="uk-flex uk-flex-middle"> <!-- RIGHT-TEAM -->
+                      <div class="goals uk-flex uk-flex-center">{{ this.isLatest ? game.IsAwayGame ? game.AwayGoals : game.HomeGoals : '-' }}</div> <!-- GOALS -->
+                      <div class="uk-flex uk-flex-column uk-flex-middle uk-flex-1">
+                        <div class="crests"><img :src="game.IsAwayGame ? game.LiverpoolCrest : game.OpponentCrest" /></div> <!-- CREST -->
+                        <div class="team-names uk-text-center">{{ game.IsAwayGame ? homeTeam : game.Opponent }}</div> <!-- NAME -->
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="divider"></div>
-                <div class="game-info uk-flex uk-flex-around uk-flex-middle uk-flex-center"> <!-- GAME-INFO -->
-                  <div class="uk-flex uk-flex-center uk-text-nowrap"> {{ game.GameDate }}</div>
-                  <div>&nbsp;|&nbsp;</div>
-                  <div class="uk-flex uk-flex-center uk-flex-middle">
-                    <div class="uk-text-nowrap">{{ game.GameTime }}</div>
+                  <div class="divider"></div>
+                  <div class="game-info uk-flex uk-flex-around uk-flex-middle uk-flex-center"> <!-- GAME-INFO -->
+                    <div class="uk-flex uk-flex-center uk-text-nowrap"> {{ game.GameDate }}</div>
+                    <div>&nbsp;|&nbsp;</div>
+                    <div class="uk-flex uk-flex-center uk-flex-middle">
+                      <div class="uk-text-nowrap">{{ game.GameTime }}</div>
+                    </div>
+                    <div>&nbsp;|&nbsp;</div>
+                    <div class="uk-flex uk-flex-center uk-flex-middle">
+                      <div class="uk-text-nowrap">{{ game.Arena }}</div>
+                    </div>
+                    <div>&nbsp;|&nbsp;</div>
+                    <div class="uk-flex uk-flex-center uk-text-nowrap">{{ game.GameType }}</div>
                   </div>
-                  <div>&nbsp;|&nbsp;</div>
-                  <div class="uk-flex uk-flex-center uk-flex-middle">
-                    <div class="uk-text-nowrap">{{ game.Arena }}</div>
-                  </div>
-                  <div>&nbsp;|&nbsp;</div>
-                  <div class="uk-flex uk-flex-center uk-text-nowrap">{{ game.GameType }}</div>
+              </div>
+          </div>
+        </transition>
+        <transition name="flip">
+          <div v-if="cardIsFlipped" class="uk-margin-small-bottom gc-nextlastgame uk-border-rounded flip-card uk-flex uk-flex-column uk-padding-small uk-width-1-1 uk-height-1-1"> <!-- FRONT -->
+              <div v-if="this.showHeading" class="gc-nextprev-headline uk-flex uk-flex-middle uk-flex-middle uk-flex-between"> <!-- HEADLINE -->
+                <div>MATCHHÄNDELSER</div>
+                <div v-if="isLatest"><span @click="cardIsFlipped = !cardIsFlipped" uk-icon="close" class="cursor"></span></div>
+              </div>
+               <div class="uk-overflow-auto uk-border-rounded">
+                  <table class="uk-table remove-scrolls">
+                      <thead>
+                          <tr>
+                              <th style="width:5%; tex-allign:center;">MIN</th>
+                              <th style="width:8%;" class="uk-table-shrink"></th>
+                              <th style="width:8%;">HÄNDELSE</th>
+                              <th style="width:5%;" class="uk-table-shrink"></th>
+                              <th style="width:72%;">SPELARE</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                      <tr v-for="event in lastGame.EventList" :key="event.EventTypeId" class="uk-table-middle">
+                          <td>{{ event.Minute }}</td>
+                          <td><img :src="event.EventImage"></td>
+                          <td>{{ event.Description }}</td>
+                          <td><img :src="event.ImageName"></td>
+                          <td>{{ event.Name }}</td>
+                      </tr>
+                      </tbody>
+                  </table>
                 </div>
-            </div>
-    </div>
+          </div>
+        </transition>
+      </div>
   </div>
 </template>
 <script>
+
 export default {
     props: {
       blok: {
@@ -50,35 +83,37 @@ export default {
         required: true,
       }
     },
-  data(){
-    return{
-      homeTeam: 'Liverpool',
-      gameList: [],
-      lastGame: {},
-      isLatest: this.blok.isLatest,
-      numberOfGames: this.blok.numberOfGames,
-      showHeading: this.blok.showHeading,
-    }
-  },
-  computed: {
-    game: function () {
-      return this.isLatest ? this.lastGame : this.gameList[0]
-    }
-  },
-  methods: {
-  },
-  async fetch() {
-    try {
-      let [lastGame, gameList] = await Promise.all([
-          this.$axios.$get('/webapi/gamecenter/GetLastGame'),
-          this.$axios.$get('/webapi/gamecenter/GetUpcomingGames?numberOfGames='+this.numberOfGames)
-      ]);
-      this.lastGame = lastGame
-      this.gameList = gameList
-    } catch (err) {
-      console.log(err);
-    }
-  },
+    data(){
+      return{
+        homeTeam: 'Liverpool',
+        gameList: [],
+        lastGame: {},
+        lastGameStats: {},
+        isLatest: this.blok.isLatest,
+        numberOfGames: this.blok.numberOfGames,
+        showHeading: this.blok.showHeading,
+        cardIsFlipped: false,
+      }
+    },
+    computed: {
+      game: function () {
+        return this.isLatest ? this.lastGame.GameInfo : this.gameList[0]
+      }
+    },
+    methods: {
+    },
+    async fetch() {
+      try {
+        let [lastGame, gameList] = await Promise.all([
+            this.$axios.$get('/webapi/gamecenter/GetLastGame'),
+            this.$axios.$get('/webapi/gamecenter/GetUpcomingGames?numberOfGames='+this.numberOfGames)
+        ]);
+        this.lastGame = lastGame
+        this.gameList = gameList
+      } catch (err) {
+        console.log(err);
+      }
+    },
 }
 </script>
 <style lang="scss">
@@ -87,7 +122,49 @@ export default {
     background: radial-gradient(circle, rgba(242,241,241,1) 0%, rgba(228,227,227,1) 46%, rgba(175,175,175,1) 100%);
     font-family: 'Oswald';
     font-size: 0.9rem;
+    & table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    & thead {
+        & tr {
+            background-color: #838383;
+        }
+        & th {
+            color: #fff;
+            font-size: 0.65rem;
+            font-family: Oswald;
+            padding: 2px 6px;
+        }
+    }
+    & tbody {
+        & tr {
+            overflow: hidden;
+        }
+        & tr:nth-child(2n+0) {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        & tr:nth-child(2n+1) {
+            background-color: #fff;
+        }
+        & td {
+            font-family: Oswald;
+            padding: 5px 4px;
+            font-weight: bolder;
+            font-size: 0.65rem;
+            overflow: hidden;
+            white-space: nowrap;
+            & img {
+                width: 17px;
+                margin: -0.32rem 0 -0.4rem 0;
+            }
+            & .center {
+                text-align: center;
+            }
+        }
+    }
   }
+
   @media only screen and (max-width: 700px) and (min-width: 640px) {
     .gc-nextlastgame {
       font-size: 0.9rem;
@@ -146,5 +223,24 @@ export default {
   .icons {
     width: 17px;
     margin-right: 4px;
+  }
+  .flip-card {
+    position: absolute;
+    backface-visibility: hidden;
+  }
+  .flip-enter {
+    transform: rotateY(180deg);
+  }
+  .flip-enter-to {
+    transform: rotateY(0deg);
+  }
+  .flip-enter-active, .flip-leave-active {
+    transition: transform 1s;
+  }
+  .flip-leave-to {
+    transform: rotateY(180deg);
+  }
+  .cursor {
+    cursor: pointer;
   }
 </style>
