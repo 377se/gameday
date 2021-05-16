@@ -54,8 +54,8 @@
                               <th style="width:5%; tex-allign:center;">MIN</th>
                               <th style="width:8%;" class="uk-table-shrink"></th>
                               <th style="width:8%;">HÄNDELSE</th>
-                              <th style="width:5%;" class="uk-table-shrink"></th>
-                              <th style="width:72%;">SPELARE</th>
+                              <th style="width:8%;" class="uk-table-shrink"></th>
+                              <th style="width:64%;">SPELARE</th>
                           </tr>
                       </thead>
                       <tbody>
