@@ -79,6 +79,6 @@
     "prettier": "^1.16.4",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
-    "sass-loader": "^10.1.1"
+    "sass-loader": "^10.2.0"
   }
 }
