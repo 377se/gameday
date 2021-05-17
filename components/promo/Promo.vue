@@ -1,7 +1,7 @@
 <template>
   <div
     v-editable="blok"
-    class="uk-margin-bottom">
+    class="uk-margin-bottom uk-overflow-hidden">
     <h1
       v-if="blok.category_header">{{ blok.category_header }}</h1>
     <a 
@@ -59,6 +59,17 @@
           class="uk-button uk-button-default uk-animation-fade"
           :to="b.button_url.url">{{ b.button_text }}</nuxt-link>
       </div>
+      <transition v-if="blok.swipe" name="swipe">
+          <div v-if="swiperActive" class="white-back"></div>
+      </transition>
+      <transition v-if="blok.swipe" name="swipe">
+          <div v-if="swiperActive" class="swiper"></div>
+      </transition>
+      <transition v-if="blok.swipe" name="swipe">
+          <div v-if="swiperActive" class="swipe-logo-container">
+            <img style="width:30%" src="/sites/samdodds/samdodds-logo.png" alt="Samdodds Logo">
+          </div>
+      </transition>
     </a>
   </div>
 </template>
@@ -75,9 +86,24 @@ export default {
       default: false
     }
   },
+  data(){
+    return {
+      swiperActive: false,
+    }
+  },
   mounted(){
-
-  }
+    this.setSwiperActive()
+  },
+  methods:{
+    setSwiperActive(){
+      setTimeout(() => {
+        this.swiperActive = true
+      }, 200);
+      setTimeout(() => {
+        this.swiperActive = false
+      }, 3050);
+    }
+  },
 }
 </script>
 <style lang="scss">
@@ -102,4 +128,45 @@ export default {
     font-size:2rem;
   }
 }
+.white-back {
+    position:absolute;
+    top:0px;
+    left:100%;
+    width:400%;
+    height:100%;
+    background-color:#ffffff;
+}
+.swiper {
+  position:absolute;
+  top:0px;
+  left:0px;
+  width:150%;
+  height:100%;
+  background-color:#A91C30;
+  opacity:1;
+  clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+}
+.swipe-logo-container {
+  position:absolute;
+  top:0px;
+  left:0px;
+  width:150%;
+  height:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swipe-enter {
+  transform: translateX(-100%);
+}
+.swipe-enter-active {
+  transition: transform 3s;
+}
+.swipe-enter-to {
+  transform: translateX(100%);
+}
+.swipe-leave {
+  transform: translateX(100%);
+}
+
 </style>

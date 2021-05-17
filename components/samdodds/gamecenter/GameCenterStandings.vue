@@ -1,9 +1,8 @@
 <template>
   <div 
     v-editable="blok"
-    class="uk-container gc-standings uk-border-rounded uk-margin-small-bottom">
-    <div 
-      class="gc-standings-container uk-padding-small">
+    class="uk-container gc-standings uk-border-rounded">
+    <div class="gc-standings-container uk-padding-small">
 
           <div v-if="this.showHeading" class="gc-standings-headline">STANDINGS</div>
             <div class="uk-overflow-auto uk-border-rounded">
