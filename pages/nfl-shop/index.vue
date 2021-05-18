@@ -28,240 +28,76 @@
                 margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
           <li><nuxt-link :to="localePath('/nfl-shop')">NFL-shop</nuxt-link></li>
         </ul>
-        <TeamList
-          :cat-id="328"
-          class="uk-margin-remove-top"/>
-        <component 
-          v-if="story.content.component" 
-          :key="story.content._uid" 
-          :blok="story.content" 
-          :is="story.content.component" />
-        <div v-else>
-          <h1 class="uk-margin-remove-top">{{ article.SeoTitle }}</h1>
-          <div
-            :class="{'read-more':readmore}" 
-            @click="setReadMore()" 
-            v-html="article.SeoContentDescription"/>
-        </div>
       </div>
-      <div class="uk-container uk-container-large uk-padding-small uk-padding-remove-top">
-        <div 
-          class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
-          uk-sticky="offset:118;width-element:body;bottom:true"
-          style="z-index:3">
-          <strong>{{ article.TotalNumberOfProducts }} {{ $getCMSEntry(global_labels,'info_products', 'produkter') }}</strong>
-          <FilterItems
-            :product-types="producttypes"
-            :colors="colors"
-            :sizes="sizes"
-            :gender="gender"
-            :teams="menu"
-            :brands="brands"
-            :show_sale="true"/>
-        </div>
-        <div
-          class="ts-article-list uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
-          uk-grid
-          uk-height-match="target: .uk-card">
-
-          <ArticleCardSimple
-            v-for="article in articles"
-            :key="article.Id"
-            :article="article"
-            :url="`/lag/nfl/${article.TeamNameSeo}/${article.UrlSafeName}`"
-          />
-        </div>
-        <ul 
-          v-if="article.TotalPages>1"
-          class="uk-pagination uk-flex-center uk-margin-large uk-margin-bottom">
-          <li>
-            <a 
-              href="#"
-              @click.stop.prevent="previous()"><span uk-pagination-previous></span> {{ $getCMSEntry(global_labels,'paging_previous', 'Föregående') }}</a></li>
-          <li><span>{{ pageNum }}/{{ article.TotalPages }}</span></li>
-          <li>
-            <a 
-              href="#"
-              @click.stop.prevent="next()">{{ $getCMSEntry(global_labels,'paging_next', 'Nästa') }} <span uk-pagination-next></span></a></li>
-        </ul>
-      </div>
+      <component 
+        v-if="story.content.component" 
+        :key="story.content._uid" 
+        :blok="story.content" 
+        :is="story.content.component" />
     </template>
   </section>
 </template>
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
-import FilterItems from "@/components/filter/Filter";
-import TeamList from "@/components/TeamList";
+import Page from '@/components/Page'
 export default {
-   //['page','color','size','producttype','attribute','gender','sale','brand','team'],
-  head () {
-    return {
-      title: this.article.MetaTitle,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.article.MetaDescription
-        },
-        {
-          hid: 'og:title',
-          name:  'og:title',
-          content:  this.article.MetaTitle,
-        },
-        {
-          hid: 'og:description',
-          name:  'og:description',
-          content: `${this.article.MetaDescription}`.replace(/<\/?[^>]+(>|$)/g, ""),
-        }
-      ]
-    }
-  },
-  components:{
-    ArticleCardSimple,
-    FilterItems,
-    TeamList
-  },
-  data () {
-    return {
-      story: { content: {} },
-      article: {},
-      articles: [],
-      producttypes: [], //To filter on
-      colors: [],
-      sizes: [],
-      gender: [],
-      brands: [],
-      sale: false,
-      pageNum: 1,
-      totalPages:1,
-      numOfProducts: 1,
-      readmore: true
-    }
-  },
-  computed: {
-    ...mapGetters({
-      menu: 'nflMenu',
-      global_labels:'labels'
-    })
-  },
-  mounted(){
-    this.$storybridge(() => {
-      const storyblokInstance = new StoryblokBridge()
-
-      storyblokInstance.on(['input', 'published', 'change'], (event) => {
-        if (event.action == 'input') {
-          if (event.story.id === this.story.id) {
-            this.story.content = event.story.content
-          }
-        } else {
-          window.location.reload()
-        }
-      })
-    }, (error) => {
-      console.error(error)
-    })
-  },
-  methods:{
-    setReadMore(){
-      this.readmore = false
-    },
-    next(){
-      if(this.pageNum<this.article.TotalPages){
-        this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)+1)}})
-      } 
-    },
-    previous(){
-      if(this.pageNum>1){
-        this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)-1)}})
-      } 
-    }
-  },
-  watch: {
-    '$route.query': function(oldQuery, newQuery){
-      if(this._inactive === false && JSON.stringify(newQuery) !== JSON.stringify(oldQuery)){
-        window.scrollTo(0,0)
-        this.$fetch()
-      }
-    }
-  },
-  async fetch () {
+  async fetch(){
+  // Check if we are in the editor mode
     let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
-    let pageNum = this.$route.query.page?this.$route.query.page:1
-    let color = this.$route.query.color?this.$route.query.color:null
-    let gender = this.$route.query.gender?this.$route.query.gender:null
-    let productType = this.$route.query.producttype?this.$route.query.producttype:null
-    let size = this.$route.query.size?this.$route.query.size:null
-    let attribute = this.$route.query.attribute?this.$route.query.size:null
-    let sale = this.$route.query.sale?this.$route.query.sale:'false'
-    let team = this.$route.query.team?this.$route.query.team:null
-    let brand = this.$route.query.brand?this.$route.query.brand:null
     try {
-      const [sb, a, p, c, s, g, b] = await Promise.all([
-        this.$storyapi.get('cdn/stories?starts_with=gameday/'+this.$i18n.locale+'/lag/'+this.$route.params.league+'/'+this.$route.params.team, {
+      const [sb] = await Promise.all([
+        this.$storyapi.get('cdn/stories?starts_with=' + process.env.STORYBLOK_CATALOGUE.replace('/','') + '/' +this.$i18n.locale+ '/nfl-shop', {
           version: version,
           cv: this.$store.getters.version
-        }),
-        this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Article/getArticleList?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=nfl'
-        ),
-        this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetProductTypeList?seoName=nfl&teamName=null&brandName=null'
-        ),
-        this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetColourList?categoryName=nfl&teamName=null&garmentName=null&brandName=null'
-        ),
-        this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetSizeList?categoryName=nfl&teamName=null&garmentName=null&brandName=null'
-        ),
-        this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetGenderList?categoryName=nfl&teamName=null&garmentName=null'
-        ),
-        this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetBrandList?categoryName=nfl&teamName=null&garmentName=null'
-        )
+        })
       ]);
-        this.articles= a.ArticleList
-        this.producttypes= p
-        this.colors= c
-        this.sizes= s
-        this.gender= g
-        this.brands= b
-        this.article= a
-        this.pageNum= pageNum
+      this.story=sb.data.stories.length>0?sb.data.stories[0]:{ content: {} }
     } catch (err) {
-      console.log('nfl-shop error')
+      console.log('_team error')
       console.log(err);
       console.log(err.request);
     }
 
   },
-  fetchDelay:0,
-  activated(){
-    if (this.$fetchState.timestamp <= Date.now() - 600000) {
+  fetchDelay: 0,
+  activated() {
+    if (this.$fetchState.timestamp <= Date.now() - 600000) {// Call fetch again if last fetch more than 60 sec ago
       this.$fetch()
+    }
+  },
+  head () {
+    if(this.story.content.SEO){
+      return {
+        title: `${this.story.content.SEO.title}`,
+        meta: [
+          {
+            hid: 'description',
+            name: 'description',
+            content: `${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ""),
+          },
+          {
+            hid: 'og:title',
+            name:  'og:title',
+            content:  `${this.story.content.SEO.title}`,
+          },
+          {
+            hid: 'og:description',
+            name:  'og:description',
+            content: `${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ""),
+          }
+        ]
+      }
+    }
+  },
+  components:{
+    Page
+  },
+  data () {
+    return {
+      story: { content: {} }
     }
   }
 }
 </script>
 <style lang="scss">
 
-.read-more{
-  max-height: 74px;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-}
-.read-more:after{
-    content: "";
-    opacity: 1;
-    display: block;
-    background: linear-gradient(rgba(255,255,255,0) 0%, rgba(255,255,255,1) 70%);
-    position: absolute;
-    bottom: 0;
-    padding: 20px 10px 0;
-    left: 0;
-    width: 100%;
-    box-sizing: border-box;
-}
 </style>
