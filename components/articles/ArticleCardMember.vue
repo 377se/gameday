@@ -1,7 +1,8 @@
 <template>
-  <nuxt-link
+  <a
     class="uk-margin-small-bottom uk-link-reset"
-    :to="localePath('/bli-medlem/'+article.Id)"
+    :href="localePath('/bli-medlem/'+article.Id)"
+    @click.stop.prevent="$router.push({path:localePath('/bli-medlem/'+article.Id)})"
   >
     <div class="uk-card uk-card-hover bottom-red-line">
       <div class="uk-card-media-top">
@@ -19,7 +20,7 @@
         <span class="your-price">{{ article.PriceDisplay }}</span> 
       </div>
     </div>
-  </nuxt-link>
+  </a>
 </template>
 <script>
 export default {

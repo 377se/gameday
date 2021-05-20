@@ -43,19 +43,21 @@
             uk-grid
             >
             <div>
-              <nuxt-link
+              <a
                 class="uk-label"
                 :class="!$route.params.filterid?'uk-background-secondary':'uk-background-primary'"
-                :to="localePath(`/c/${$route.params.parentid}/${$route.params.categoryid}/${$route.params.categoryname}`)"><span>{{ $getCMSEntry(global_labels,'category_all', 'Alla') }}</span></nuxt-link>
+                :href="localePath(`/c/${$route.params.parentid}/${$route.params.categoryid}/${$route.params.categoryname}`)"
+                @click.stop.prevent="$router.push({path:localePath(`/c/${$route.params.parentid}/${$route.params.categoryid}/${$route.params.categoryname}`)})"><span>{{ $getCMSEntry(global_labels,'category_all', 'Alla') }}</span></a>
             </div>
             <div
               v-for="pt in producttypes"
               :key="pt.GarmentId"
               >
-              <nuxt-link
+              <a
                 class="uk-label"
                 :class="($route.params.filterid && $route.params.filterid==pt.GarmentId)?'uk-background-secondary':'uk-background-primary'"
-                :to="localePath(`/c/${$route.params.parentid}/${$route.params.categoryid}/${$route.params.categoryname}/${pt.GarmentId}/${pt.SeoName}`)"><span>{{ pt.Name }}</span></nuxt-link>
+                :href="localePath(`/c/${$route.params.parentid}/${$route.params.categoryid}/${$route.params.categoryname}/${pt.GarmentId}/${pt.SeoName}`)"
+                @click.stop.prevent="$router.push({path:localePath(`/c/${$route.params.parentid}/${$route.params.categoryid}/${$route.params.categoryname}/${pt.GarmentId}/${pt.SeoName}`)})"><span>{{ pt.Name }}</span></a>
             </div>
           </div>
           <div 

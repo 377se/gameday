@@ -22,13 +22,14 @@
           v-for="cat in menu"
           :key="cat.CategoryId"
           :class="{'uk-parent':cat.SubList && cat.SubList.length>0}">
-          <nuxt-link
+          <a
             v-if="!cat.SubList || !cat.SubList.length>0"
-            :to="localePath(cat.Url)">
+            :href="localePath(cat.Url)"
+            @click.stop.prevent="$router.push({path:localePath(cat.Url)})">
             <img
               v-if="cat.ImageName" 
               :alt="cat.Name"
-              :src="cat.ImageName" style="width:20px;margin-right:8px;">{{ cat.Name }}</nuxt-link>
+              :src="cat.ImageName" style="width:20px;margin-right:8px;">{{ cat.Name }}</a>
           <a v-else href="#">
             <img
               v-if="cat.ImageName" 
@@ -39,14 +40,16 @@
               <li
                 v-for="(sub) in cat.SubList"
                 :key="sub.CategoryId">
-                <nuxt-link :to="localePath(sub.Url)">
+                <a 
+                  :href="localePath(sub.Url)"
+                  @click.stop.prevent="$router.push({path:localePath(sub.Url)})">
                 <img
                   v-if="sub.ImageName" 
                   :alt="sub.Name"
                   :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+sub.ImageName" style="width:20px;margin-right:8px;" />
                 <span
                   v-else 
-                  style="width:20px;margin-right:8px;" />{{ sub.Name }}</nuxt-link>
+                  style="width:20px;margin-right:8px;" />{{ sub.Name }}</a>
               </li>
             </ul>
         </li>

@@ -18,10 +18,11 @@
         v-for="t in teams"
         :key="t.TeamId"
         >
-        <nuxt-link
-          :to="(t.Url!=null)?t.Url:'/'">
+        <a
+          :href="(t.Url!=null)?t.Url:'/'"
+          @click.stop.prevent="$router.push({path:(t.Url!=null)?t.Url:'/'})">
           <img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+t.ImageName" alt="" />
-        </nuxt-link>
+        </a>
       </div>
     </div>
   </div>

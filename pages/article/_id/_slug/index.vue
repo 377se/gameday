@@ -23,9 +23,10 @@
         v-else>
         <ul class="uk-breadcrumb">
           <li>
-            <nuxt-link to="/">
+            <a to="/"
+            @click.stop.prevent="$router.push({path:localePath('/')})">
               <span style="vertical-align: bottom;
-                margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
+                margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></a></li>
           <li><span>{{ article.Name }}</span></li>
         </ul>
         <ArticleDetails v-bind:article="article"></ArticleDetails>

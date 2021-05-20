@@ -3,11 +3,19 @@
     <div class="uk-container uk-container-large uk-padding-small">
       <ul class="uk-breadcrumb">
         <li>
-          <nuxt-link :to="localePath('/')">
+          <a 
+            :href="localePath('/')"
+            @click.stop.prevent="$router.push({path:localePath('/')})">
             <span style="vertical-align: bottom;
-              margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
-        <li><nuxt-link :to="localePath('/'+shop.toLowerCase())">{{ shop }}</nuxt-link></li>
-        <li><nuxt-link :to="localePath('/lag/'+$route.params.league+'/'+$route.params.team)">{{ $route.params.team }}</nuxt-link></li>
+              margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></a></li>
+        <li>
+          <a 
+            :href="localePath('/'+shop.toLowerCase())"
+            @click.stop.prevent="$router.push({path:localePath('/'+shop.toLowerCase())})">{{ shop }}</a></li>
+        <li>
+          <a 
+            :href="localePath('/lag/'+$route.params.league+'/'+$route.params.team)"
+            @click.stop.prevent="$router.push({path:localePath('/lag/'+$route.params.league+'/'+$route.params.team)})">{{ $route.params.team }}</a></li>
       </ul>
     </div>
     <component 

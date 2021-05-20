@@ -41,9 +41,10 @@
             v-for="pt in producttypes"
             :key="pt.GarmentId"
             >
-            <nuxt-link
+            <a
               class="uk-label"
-              :to="localePath(`/lag/${$route.params.league}/${$route.params.team}/produkttyp/${pt.SeoName}`)"><span>{{ pt.Name }}</span></nuxt-link>
+              :href="localePath(`/lag/${$route.params.league}/${$route.params.team}/produkttyp/${pt.SeoName}`)"
+              @click.stop.prevent="$router.push({path:localePath(`/lag/${$route.params.league}/${$route.params.team}/produkttyp/${pt.SeoName}`)})"><span>{{ pt.Name }}</span></a>
           </div>
         </div>
         <div 
@@ -80,12 +81,14 @@
           v-if="article.TotalPages>1"
           class="uk-pagination uk-flex-center uk-margin-large uk-margin-bottom">
           <li>
-            <nuxt-link 
-              :to="localePath({query:{...this.$route.query,page:(parseInt(pageNum)-1)>0?(parseInt(pageNum)-1):1}})"><span uk-pagination-previous></span> {{ $getCMSEntry(global_labels,'paging_previous', 'Föregående') }}</nuxt-link></li>
+            <a 
+              :href="localePath({query:{...this.$route.query,page:(parseInt(pageNum)-1)>0?(parseInt(pageNum)-1):1}})"
+              @click.stop.prevent="$router.push({path:localePath({query:{...this.$route.query,page:(parseInt(pageNum)-1)>0?(parseInt(pageNum)-1):1}})})"><span uk-pagination-previous></span> {{ $getCMSEntry(global_labels,'paging_previous', 'Föregående') }}</a></li>
           <li><span>{{ pageNum }}/{{ article.TotalPages }}</span></li>
           <li>
-            <nuxt-link 
-              :to="localePath({query:{...this.$route.query,page:(parseInt(pageNum)+1)<article.TotalPages?(parseInt(pageNum)+1):article.TotalPages}})">{{ $getCMSEntry(global_labels,'paging_next', 'Nästa') }} <span uk-pagination-next></span></nuxt-link></li>
+            <a
+              :href="localePath({query:{...this.$route.query,page:(parseInt(pageNum)+1)<article.TotalPages?(parseInt(pageNum)+1):article.TotalPages}})"
+              @click.stop.prevent="$router.push({path:localePath({query:{...this.$route.query,page:(parseInt(pageNum)+1)<article.TotalPages?(parseInt(pageNum)+1):article.TotalPages}})})">{{ $getCMSEntry(global_labels,'paging_next', 'Nästa') }} <span uk-pagination-next></span></a></li>
         </ul>
       </div>
     </template>

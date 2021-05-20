@@ -7,12 +7,14 @@
         uk-grid>
         <div class="uk-flex-last uk-flex-first@m uk-width-expand@m uk-width-1-2@s">                  
           <div class="uk-margin">
-            <nuxt-link :to="localePath('/')">
+            <a 
+              :href="localePath('/')"
+              @click.stop.prevent="$router.push({path:localePath('/')})">
               <img 
                 style="width:100px;"
                 src="~assets/gameday_fox.svg" 
                 alt="Gameday">
-            </nuxt-link>
+            </a>
           </div>
           <div class="uk-margin-small">
             <a href="https://www.instagram.com/gamedaysverige/" target="_new"><span uk-icon="icon: instagram;ratio:1.5"></span></a>
@@ -29,27 +31,30 @@
         <div class="uk-width-1-1 uk-width-expand@m uk-width-1-2@s">               
           <h3 class="uk-h4">{{ $getCMSEntry(global_labels,'footer_header_shops', 'Shoppar') }}</h3>
           <ul class="uk-list uk-text-small">
-            <li><nuxt-link :to="localePath('/nhl-shop')">{{ $getCMSEntry(global_labels,'footer_link_nhl', 'NHL Shop') }}</nuxt-link></li>
-            <li><nuxt-link :to="localePath('/nba-shop')">{{ $getCMSEntry(global_labels,'footer_link_nba', 'NBA Shop') }}</nuxt-link></li>
-            <li><nuxt-link :to="localePath('/nfl-shop')">{{ $getCMSEntry(global_labels,'footer_link_nfl', 'NFL Shop') }}</nuxt-link></li>
-            <li><nuxt-link :to="localePath('/mlb-shop')">{{ $getCMSEntry(global_labels,'footer_link_mlb', 'MLB Shop') }}</nuxt-link></li>
-            <li><nuxt-link :to="localePath('/street-week')">{{ $getCMSEntry(global_labels,'footer_link_streetweek', 'Street Week') }}</nuxt-link></li>
+            <li><a :href="localePath('/nhl-shop')" @click.stop.prevent="$router.push({path:localePath('/nhl-shop')})">{{ $getCMSEntry(global_labels,'footer_link_nhl', 'NHL Shop') }}</a></li>
+            <li><a :href="localePath('/nba-shop')" @click.stop.prevent="$router.push({path:localePath('/nba-shop')})">{{ $getCMSEntry(global_labels,'footer_link_nba', 'NBA Shop') }}</a></li>
+            <li><a :href="localePath('/nfl-shop')" @click.stop.prevent="$router.push({path:localePath('/nfl-shop')})">{{ $getCMSEntry(global_labels,'footer_link_nfl', 'NFL Shop') }}</a></li>
+            <li><a :href="localePath('/mlb-shop')" @click.stop.prevent="$router.push({path:localePath('/mlb-shop')})">{{ $getCMSEntry(global_labels,'footer_link_mlb', 'MLB Shop') }}</a></li>
+            <li><a :href="localePath('/street-week')" @click.stop.prevent="$router.push({path:localePath('/street-week')})">{{ $getCMSEntry(global_labels,'footer_link_streetweek', 'Street Week') }}</a></li>
           </ul>
         </div>
 
         <div class="uk-width-1-1 uk-width-expand@m uk-width-1-2@s">               
           <h3 class="uk-h4">{{ $getCMSEntry(global_labels,'footer_header_gethelp', 'Få hjälp') }}</h3>
           <ul class="uk-list uk-text-small">
-            <li><nuxt-link :to="$getCMSEntry(global_labels,'localepath_purchase_conditions', '/kopvillkor')">{{ $getCMSEntry(global_labels,'footer_purchase_conditions', 'Köpvillkor') }}</nuxt-link></li>
-            <li><nuxt-link :to="$getCMSEntry(global_labels,'localepath_delivery', '/leverans-betalning')">{{ $getCMSEntry(global_labels,'footer_delivery', 'Leverans &amp; betalning') }}</nuxt-link></li>
-            <li><nuxt-link :to="$getCMSEntry(global_labels,'localepath_returns', '/returer-byten')">{{ $getCMSEntry(global_labels,'footer_exchanges', 'Returer &amp; byten') }}</nuxt-link></li>
+            <li><a :href="$getCMSEntry(global_labels,'localepath_purchase_conditions', '/kopvillkor')" @click.stop.prevent="$router.push({path:$getCMSEntry(global_labels,'localepath_purchase_conditions', '/kopvillkor')})">{{ $getCMSEntry(global_labels,'footer_purchase_conditions', 'Köpvillkor') }}</a></li>
+            <li><a :href="$getCMSEntry(global_labels,'localepath_delivery', '/leverans-betalning')" @click.stop.prevent="$router.push({path:$getCMSEntry(global_labels,'localepath_delivery', '/leverans-betalning')})">{{ $getCMSEntry(global_labels,'footer_delivery', 'Leverans &amp; betalning') }}</a></li>
+            <li><a :href="$getCMSEntry(global_labels,'localepath_returns', '/returer-byten')" @click.stop.prevent="$router.push({path:$getCMSEntry(global_labels,'localepath_returns', '/returer-byten')})">{{ $getCMSEntry(global_labels,'footer_exchanges', 'Returer &amp; byten') }}</a></li>
           </ul>
         </div>
 
         <div class="uk-width-1-1 uk-width-expand@m uk-width-1-2@s">               
           <h3 class="uk-h4">{{ $getCMSEntry(global_labels,'footer_header_about_us', 'Om Gameday') }}</h3>
           <ul class="uk-list uk-text-small">
-            <li><nuxt-link :to="$getCMSEntry(global_labels,'localepath_corporate_information', '/foretagsinformation')">{{ $getCMSEntry(global_labels,'footer_company_information', 'Företagsinformation') }}</nuxt-link></li>
+            <li>
+              <a 
+                :href="$getCMSEntry(global_labels,'localepath_corporate_information', '/foretagsinformation')"
+                @click.stop.prevent="$router.push({path:$getCMSEntry(global_labels,'localepath_corporate_information', '/foretagsinformation')})">{{ $getCMSEntry(global_labels,'footer_company_information', 'Företagsinformation') }}</a></li>
           </ul>
         </div>
 
@@ -62,7 +67,9 @@
     <div 
       class="uk-container uk-margin gd-copyright">
       <span class="uk-margin-small-right">Copyright © 2019 This site is Licensed to 377 Sport AB</span> 
-      <nuxt-link :to="$getCMSEntry(global_labels,'localepath_integrity', '/integritetspolicy')">{{ $getCMSEntry(global_labels,'footer_integrity_policy', 'Integritetspolicy') }}</nuxt-link> <nuxt-link :to="$getCMSEntry(global_labels,'localepath_cookies', '/cookies')">{{ $getCMSEntry(global_labels,'footer_cookies', 'Cookies') }}</nuxt-link>
+      <a 
+        :href="$getCMSEntry(global_labels,'localepath_integrity', '/integritetspolicy')"
+        @click.stop.prevent="$router.push({path:$getCMSEntry(global_labels,'localepath_integrity', '/integritetspolicy')})">{{ $getCMSEntry(global_labels,'footer_integrity_policy', 'Integritetspolicy') }}</a> <a :href="$getCMSEntry(global_labels,'localepath_cookies', '/cookies')" @click.stop.prevent="$router.push({path:$getCMSEntry(global_labels,'localepath_cookies', '/cookies')})">{{ $getCMSEntry(global_labels,'footer_cookies', 'Cookies') }}</a>
     </div>
 
       <div 

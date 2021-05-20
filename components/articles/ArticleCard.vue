@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link
+  <a
     @click="handleClick"
     @mousedown="mouseDown"
     @mouseover="mouseOver"
@@ -20,7 +20,7 @@
         class="uk-card-footer uk-padding-small uk-padding-remove-top uk-text-small"
       >{{ article.PriceDisplay }}</div>
     </div>
-  </nuxt-link>
+  </a>
 </template>
 
 <script>

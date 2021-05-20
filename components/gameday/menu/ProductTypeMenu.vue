@@ -22,8 +22,9 @@
             <li
               v-for="brand in productTypeMenu"
               :key="brand.GarmentId">
-              <nuxt-link
-                :to="localePath('/produkttyp/'+brand.GarmentId+'/'+brand.SeoName)">{{ brand.Name }}</nuxt-link>
+              <a
+                :to="localePath('/produkttyp/'+brand.GarmentId+'/'+brand.SeoName)"
+                @click.stop.prevent="$router.push({path:localePath('/produkttyp/'+brand.GarmentId+'/'+brand.SeoName)})">{{ brand.Name }}</a>
             </li>
           </ul>
         </div>

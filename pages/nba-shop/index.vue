@@ -23,10 +23,12 @@
       <div class="uk-container uk-container-large uk-padding-small">
         <ul class="uk-breadcrumb">
           <li>
-            <nuxt-link :to="localePath('/')">
+            <a 
+              :href="localePath('/')"
+              @click.stop.prevent="$router.push({path:localePath('/')})">
               <span style="vertical-align: bottom;
-                margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
-          <li><nuxt-link :to="localePath('/nba-shop')">NBA-shop</nuxt-link></li>
+                margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></a></li>
+          <li><a :href="localePath('/nba-shop')" @click.stop.prevent="$router.push({path:localePath('/nba-shop')})">NBA-shop</a></li>
         </ul>
       </div>
       <component 

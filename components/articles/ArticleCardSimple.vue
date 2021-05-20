@@ -1,8 +1,9 @@
 <template>
   <div>
     <div class="uk-card uk-card-hover bottom-line card-border">
-      <nuxt-link 
-        :to="getUrl()"
+      <a 
+        :href="getUrl()"
+        @click.stop.prevent="$router.push({path:getUrl()})"
         class="uk-link-reset">
         <div class="article-image uk-card-media-top">
           <img 
@@ -55,7 +56,7 @@
             </template>
           </div>
         </div>
-      </nuxt-link>
+      </a>
     </div>
   </div>
 </template>

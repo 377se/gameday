@@ -12,22 +12,24 @@
         <div class="header-wrapper">
           <div class="uk-navbar-left uk-flex-nowrap">
             <TheHamburger/>
-            <nuxt-link
+            <a
               class="uk-navbar-item uk-margin-small-left uk-logo"
-              :to="localePath('/')">
+              :href="localePath('/')"
+              @click.stop.prevent="$router.push({path:localePath('/')})">
               <img
                 :src="logo"
                 class="logo"
-                alt="Gameday Logo"></nuxt-link>
+                alt="Gameday Logo"></a>
           </div>
 
           <div
             style="flex-wrap:nowrap"
             class="uk-navbar-right uk-text-center"
           >
-            <nuxt-link
+            <a
               v-if="cid==null"
-              :to="localePath('/login')"
+              :href="localePath('/login')"
+              @click.stop.prevent="$router.push({path:localePath('/login')})"
               >
               <span
                 style="color:#fff;"
@@ -36,10 +38,11 @@
                 style="display:block;font-size:0.6rem;color:#fff;white-space:nowrap">
                 {{ $getCMSEntry(global_labels,'header_login', 'Logga in') }}
               </span>
-            </nuxt-link>
-            <nuxt-link
+            </a>
+            <a
               v-else
-              :to="localePath('my-account-index')"
+              :href="localePath('my-account-index')"
+              @click.stop.prevent="$router.push({path:localePath('my-account-index')})"
               >
               <span
                 style="color:#fff;"
@@ -48,7 +51,7 @@
                 style="display:block;font-size:0.6rem;color:#fff;white-space:nowrap">
                 {{ $getCMSEntry(global_labels,'header_myaccount', 'Mitt konto') }}
               </span>
-            </nuxt-link>
+            </a>
             <a
               href="#offscreen-basket"
               uk-toggle="target: #offscreen-basket"
@@ -93,20 +96,23 @@
               @click.stop.prevent="showDropDown(6)"><img src="/logos/mlb_ikon_600x600.png" style="width:30px;margin-right:8px;" />MLB <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
           </li>
           <li>
-            <nuxt-link 
-              to="/street-week"
+            <a 
+              href="/street-week"
+              @click.stop.prevent="$router.push({path:'/street-week'})"
               class="subnav">
-              <img alt="Street Week" src="https://static.supportersplace.se/category/streetweek_shop_1_600x600.png" style="width: 30px;margin-left:8px;margin-right:8px;">Street Week</nuxt-link>
+              <img alt="Street Week" src="https://static.supportersplace.se/category/streetweek_shop_1_600x600.png" style="width: 30px;margin-left:8px;margin-right:8px;">Street Week</a>
           </li>
           <li>
-            <nuxt-link
-              to="/produkttyp/18/kepsar"
-              class="subnav">Kepsar</nuxt-link>
+            <a
+              href="/produkttyp/18/kepsar"
+              @click.stop.prevent="$router.push({path:'/produkttyp/18/kepsar'})"
+              class="subnav">Kepsar</a>
           </li>
           <li>
-            <nuxt-link
-              to="/produkttyp/12/t-shirt-pike"
-              class="subnav">T-shirts</nuxt-link>
+            <a
+              href="/produkttyp/12/t-shirt-pike"
+              @click.stop.prevent="$router.push({path:'/produkttyp/12/t-shirt-pike'})"
+              class="subnav">T-shirts</a>
           </li>
           <li>
             <a 
@@ -133,8 +139,9 @@
           <li
             v-for="p in productTypeMenu"
             :key="p.GarmentId">
-            <nuxt-link
-              :to="localePath('/produkttyp/'+p.GarmentId+'/'+p.SeoName)">{{ p.Name }}</nuxt-link>
+            <a
+              :href="localePath('/produkttyp/'+p.GarmentId+'/'+p.SeoName)"
+              @click.stop.prevent="$router.push({path:localePath('/produkttyp/'+p.GarmentId+'/'+p.SeoName)})">{{ p.Name }}</a>
           </li>
         </ul>
         <div class="gradient"/>
@@ -146,9 +153,10 @@
             v-for="brand in brandMenu"
             :key="brand.Id"
             class="uk-padding-remove-left">
-            <nuxt-link
-              :to="localePath('/varumarke/'+brand.SeoName)"
-              class="uk-flex uk-flex-middle"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/http://static.supportersplace.se/brand/'+brand.BrandImage" style="width:30px" /> <span>{{ brand.Name }}</span></nuxt-link>
+            <a
+              :href="localePath('/varumarke/'+brand.SeoName)"
+              @click.stop.prevent="$router.push({path:localePath('/varumarke/'+brand.SeoName)})"
+              class="uk-flex uk-flex-middle"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/http://static.supportersplace.se/brand/'+brand.BrandImage" style="width:30px" /> <span>{{ brand.Name }}</span></a>
           </li>
         </ul>
       </div>
@@ -156,20 +164,23 @@
         :class="{'uk-display-block':chosenDropDown == 3}">
         <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s">
           <li>
-            <nuxt-link
-              :to="localePath('/nhl-shop')">{{ $getCMSEntry(global_labels,'to-nhl-shop', 'Till NHL Shopen') }}</nuxt-link>
+            <a
+              :href="localePath('/nhl-shop')"
+              @click.stop.prevent="$router.push({path:localePath('/nhl-shop')})">{{ $getCMSEntry(global_labels,'to-nhl-shop', 'Till NHL Shopen') }}</a>
           </li>
           <li>
-            <nuxt-link
+            <a
               class="menu-item-sale"
-              :to="localePath('/nhl-shop/sale')">{{ $getCMSEntry(global_labels,'nhl-sale', 'NHL REA') }}</nuxt-link>
+              :href="localePath('/nhl-shop/sale')"
+              @click.stop.prevent="$router.push({path:localePath('/nhl-shop/sale')})">{{ $getCMSEntry(global_labels,'nhl-sale', 'NHL REA') }}</a>
           </li>
           <li
             v-for="team in nhlMenu"
             :key="team.TeamId"
             class="uk-padding-remove-left">
-            <nuxt-link
-              :to="localePath('/lag/nhl/'+team.SeoName)"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+team.ImageName" style="width:30px" :alt="team.Name" /> {{ team.Name }}</nuxt-link>
+            <a
+              :href="localePath('/lag/nhl/'+team.SeoName)"
+              @click.stop.prevent="$router.push({path:localePath('/lag/nhl')})"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+team.ImageName" style="width:30px" :alt="team.Name" /> {{ team.Name }}</a>
           </li>
         </ul>
       </div>
@@ -177,20 +188,23 @@
         :class="{'uk-display-block':chosenDropDown == 4}">
         <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s">
           <li>
-            <nuxt-link
-              :to="localePath('/nfl-shop')">{{ $getCMSEntry(global_labels,'to-nfl-shop', 'Till NFL Shopen') }}</nuxt-link>
+            <a
+              :href="localePath('/nfl-shop')"
+              @click.stop.prevent="$router.push({path:localePath('/nfl-shop')})">{{ $getCMSEntry(global_labels,'to-nfl-shop', 'Till NFL Shopen') }}</a>
           </li>
           <li>
-            <nuxt-link
+            <a
               class="menu-item-sale"
-              :to="localePath('/nfl-shop/sale')">{{ $getCMSEntry(global_labels,'nfl-sale', 'NFL REA') }}</nuxt-link>
+              :href="localePath('/nfl-shop/sale')"
+              @click.stop.prevent="$router.push({path:localePath('/nfl-shop/sale')})">{{ $getCMSEntry(global_labels,'nfl-sale', 'NFL REA') }}</a>
           </li>
           <li
             v-for="team in nflMenu"
             :key="team.TeamId"
             class="uk-padding-remove-left">
-            <nuxt-link
-              :to="localePath('/lag/nfl/'+team.SeoName)"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+team.ImageName" style="width:30px" /> {{ team.Name }}</nuxt-link>
+            <a
+              :href="localePath('/lag/nfl/'+team.SeoName)"
+              @click.stop.prevent="$router.push({path:localePath('/lag/nfl/'+team.SeoName)})"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+team.ImageName" style="width:30px" /> {{ team.Name }}</a>
           </li>
         </ul>
       </div>
@@ -198,20 +212,23 @@
         :class="{'uk-display-block':chosenDropDown == 5}">
         <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s">
           <li>
-            <nuxt-link
-              :to="localePath('/nba-shop')">{{ $getCMSEntry(global_labels,'to-nba-shop', 'Till NBA Shopen') }}</nuxt-link>
+            <a
+              :href="localePath('/nba-shop')"
+              @click.stop.prevent="$router.push({path:localePath('/nba-shop')})">{{ $getCMSEntry(global_labels,'to-nba-shop', 'Till NBA Shopen') }}</a>
           </li>
           <li>
-            <nuxt-link
+            <a
               class="menu-item-sale"
-              :to="localePath('/nba-shop/sale')">{{ $getCMSEntry(global_labels,'nba-sale', 'NBA REA') }}</nuxt-link>
+              :href="localePath('/nba-shop/sale')"
+              @click.stop.prevent="$router.push({path:localePath('/nba-shop/sale')})">{{ $getCMSEntry(global_labels,'nba-sale', 'NBA REA') }}</a>
           </li>
           <li
             v-for="team in nbaMenu"
             :key="team.TeamId"
             class="uk-padding-remove-left">
-            <nuxt-link
-              :to="localePath('/lag/nba/'+team.SeoName)"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+team.ImageName" style="width:30px" /> {{ team.Name }}</nuxt-link>
+            <a
+              :href="localePath('/lag/nba/'+team.SeoName)"
+              @click.stop.prevent="$router.push({path:localePath('/nba-shop/sale')})"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+team.ImageName" style="width:30px" /> {{ team.Name }}</a>
           </li>
         </ul>
       </div>
@@ -219,22 +236,25 @@
         :class="{'uk-display-block':chosenDropDown == 6}">
         <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s">
           <li>
-            <nuxt-link
-              :to="localePath('/mlb-shop')">{{ $getCMSEntry(global_labels,'to-mlb-shop', 'Till MLB Shopen') }}</nuxt-link>
+            <a
+              :href="localePath('/mlb-shop')"
+              @click.stop.prevent="$router.push({path:localePath('/mlb-shop')})">{{ $getCMSEntry(global_labels,'to-mlb-shop', 'Till MLB Shopen') }}</a>
           </li>
           <li>
-            <nuxt-link
+            <a
               class="menu-item-sale"
-              :to="localePath('/mlb-shop/sale')">{{ $getCMSEntry(global_labels,'mlb-sale', 'MLB REA') }}</nuxt-link>
+              :href="localePath('/mlb-shop/sale')"
+              @click.stop.prevent="$router.push({path:localePath('/mlb-shop/sale')})">{{ $getCMSEntry(global_labels,'mlb-sale', 'MLB REA') }}</a>
           </li>
           <li
             v-for="team in mlbMenu"
             :key="team.TeamId"
             class="uk-padding-remove-left">
-            <nuxt-link
-              :to="localePath('/lag/mlb/'+team.SeoName)">
+            <a
+              :href="localePath('/lag/mlb/'+team.SeoName)"
+              @click.stop.prevent="$router.push({path:localePath('/lag/mlb/'+team.SeoName)})">
               <img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+team.ImageName" style="width:30px" /> {{ team.Name }}
-            </nuxt-link>
+            </a>
           </li>
         </ul>
       </div>

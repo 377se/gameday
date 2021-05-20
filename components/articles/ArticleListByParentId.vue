@@ -41,9 +41,10 @@
             v-for="pt in producttypes"
             :key="pt.GarmentId"
             >
-            <nuxt-link
+            <a
               class="uk-label"
-              :to="localePath(`/lag/${$route.params.league}/${$route.params.team}/produkttyp/${pt.SeoName}`)"><span>{{ pt.Name }}</span></nuxt-link>
+              :href="localePath(`/lag/${$route.params.league}/${$route.params.team}/produkttyp/${pt.SeoName}`)"
+              @click.stop.prevent="$router.push({path:localePath(`/lag/${$route.params.league}/${$route.params.team}/produkttyp/${pt.SeoName}`)})"><span>{{ pt.Name }}</span></a>
           </div>
         </div>
         <div 
