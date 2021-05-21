@@ -3,8 +3,7 @@
     id="offscreen-basket"
     class="uk-modal-full uk-modal"
     uk-modal>
-    <div
-      class="uk-modal-dialog">
+    <div :class="{ 'uk-modal-dialog': extensionlist, 'uk-modal-dialog-no-extensions': !extensionlist }">
       <div
         class="uk-modal-body uk-overflow-auto"
         style="padding:0px;height:100vh;background:#ffffff;"
@@ -20,8 +19,8 @@
             uk-close
             uk-toggle="target: #offscreen-basket"/>
         </div>
-        <div class="uk-flex uk-flex-wrap"> <!-- FLEX CONTAINER TWO COLUMNS -->
-          <div class="uk-padding-small uk-width-1-1 uk-width-1-2@m uk-flex-last@m"> <!-- CART -->
+        <div :class="{ 'uk-flex uk-flex-wrap': extensionlist }"> <!-- FLEX CONTAINER TWO COLUMNS -->
+          <div class="uk-padding-small" :class="{ 'uk-width-1-1 uk-width-1-2@m uk-flex-last@m': extensionlist }"> <!-- CART -->
             <div
               v-if="cart.data.length>0">
               <h3>Detta har du i varukorgen</h3>
@@ -204,7 +203,6 @@
               {{ $getCMSEntry(global_labels,'basket_nothing_in_basket', 'Du har inte lagt något i varukorgen ännu!') }}
             </div>
           </div>
-
           <div v-if="extensionlist" class="uk-padding-small uk-width-1-1 uk-width-1-2@m"> <!-- EXTENSIONS -->
             <h3>{{ extensionlist.Title }}</h3>
             <table
@@ -274,7 +272,6 @@ import VoucherCode from '@/components/voucher/VoucherCode'
 
 export default {
   async fetch() {
-    //this.getCartExtension()
   },
   components:{
     VoucherCode,
@@ -286,9 +283,8 @@ export default {
       global_labels:'labels'})
   },
   watch:{
-    cart(newCart, oldCart){
-      //Cart has changed, let's call fetch again
-      //this.getCartExtension()
+    cart(newCart, oldCart) {
+        this.getExtensionListForCart()
     },
     counter(oldQuery, newQuery){
       if(newQuery<1){
@@ -304,7 +300,7 @@ export default {
     return{
       thumb_src:process.env.THUMB_SRC,
       labels: [],
-      cartextensions: null,
+      // cartextensions: null,
       extensionlist: null,
       isSubmitting:false,
     }
@@ -317,13 +313,13 @@ export default {
     }catch(err){
       console.log(err)
     }
-    this.getExtensionListForCart()
     this.updateCart()
 
   },
   methods:{
     async updateCart(){
       var _this = this
+      _this.getExtensionListForCart()
       await this.$axios.$get('/webapi/'+this.$i18n.locale+'/cart/Get')
       .then(res => {
         _this.$store.commit('basket/add', res)
@@ -333,14 +329,6 @@ export default {
       .catch(function (error) {
 
       })
-    },
-    async getCartExtension(){
-      try {
-      const cartextensions = await this.$axios.$get('/webapi/'+this.$i18n.locale+'/cart/GetCartExtension');
-      this.cartextensions = cartextensions
-    } catch (err) {
-      console.log(err);
-    }
     },
     async getExtensionListForCart() {
       try {
@@ -430,9 +418,13 @@ export default {
 #offscreen-basket.uk-modal-full {
   background: rgba(0, 0, 0, 0.6);
 }
-#offscreen-basket .uk-modal-dialog{
+#offscreen-basket .uk-modal-dialog {
   margin-left: auto;
   max-width:85vw !important;
+}
+#offscreen-basket .uk-modal-dialog-no-extensions {
+  margin-left: auto;
+  max-width: 21vw !important;
 }
 .thumb-image{
   width:40px;
