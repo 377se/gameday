@@ -205,7 +205,7 @@
             </div>
           </div>
 
-          <div class="uk-padding-small uk-width-1-1 uk-width-1-2@m"> <!-- EXTENSIONS -->
+          <div v-if="extensionlist" class="uk-padding-small uk-width-1-1 uk-width-1-2@m"> <!-- EXTENSIONS -->
             <h3>{{ extensionlist.Title }}</h3>
             <table
                 class="uk-table uk-table-justify uk-table-divider uk-margin-remove"
