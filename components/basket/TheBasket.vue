@@ -424,7 +424,7 @@ export default {
 }
 #offscreen-basket .uk-modal-dialog-no-extensions {
   margin-left: auto;
-  max-width: 21vw !important;
+  max-width: 23vw !important;
 }
 .thumb-image{
   width:40px;
