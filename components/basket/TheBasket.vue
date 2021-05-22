@@ -214,7 +214,9 @@
                   class="uk-background-default">
                    <template v-for="extension in extensionlist.ArticleList">
                       <tr
-                      :key="extension.ExtensionId">
+                      :key="extension.ExtensionId"
+                      uk-scrollspy="target: > td; cls: uk-animation-slide-left; repeat: true; delay: 250"
+                      >
                       <td style="padding-left:6px;" class="uk-width-1-4"> <!-- BILD -->
                         <img
                           class="uk-width-1-1"
