@@ -1,5 +1,6 @@
 <template>
-  <section>
+  <section
+    v-once>
     <div class="uk-container uk-container-large uk-padding-small"> 
       <component 
         v-if="story.content.component" 
