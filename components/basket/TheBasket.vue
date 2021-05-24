@@ -369,7 +369,7 @@ export default {
         ).then(function (response) {
           _this.isSubmitting = false
           if(response.data.ErrorList){
-            _this.errors = response.ErrorList[0].Value
+            _this.errors = response.ErrorList[0]
           }else{
             _this.$store.commit('basket/add', response.data)
             // if(response.data.CartId && response.data.CartId>0 && response.data.IsMemberPackage){
@@ -397,7 +397,7 @@ export default {
           console.log(error)
         })
       }else{
-        UIkit.modal.alert(this.$getCMSEntry(this.global_labels,'article_details_forgot_choose_size', 'Du glömde välja storlek!'))
+        this.errors = [{Name:'Err', Value:this.$getCMSEntry(this.global_labels,'article_details_forgot_choose_size', 'Du glömde välja storlek!')}]
       }
     },
     async deleteFromCart(id){
