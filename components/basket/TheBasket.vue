@@ -205,6 +205,11 @@
           </div>
           <div v-if="extensionlist" class="uk-padding-small uk-width-1-1 uk-width-1-2@m"> <!-- EXTENSIONS -->
             <h3>{{ extensionlist.Title }}</h3>
+              <Alert
+                v-if="errors.length > 0"
+                :errorlist="errors"
+                message=""
+              />
             <table
                 class="uk-table uk-table-justify uk-table-divider uk-margin-remove"
                 style="color:#333333;font-size:0.7rem">
@@ -233,14 +238,14 @@
                           <div>
                               <div class="uk-flex ext-buttons-container">
                                   <div class="uk-width-1-2">
-                                    <select 
+                                    <select
                                       v-model="extension.SizeId"
                                       class="uk-select"
                                       style="font-size:0.75rem; height:30px;"
                                       :disabled="extension.IsOneSize"
                                       >
                                       <option v-if="!extension.IsOneSize" value="0">{{$getCMSEntry(global_labels,'article_addon_names', 'Välj storlek')}}</option>
-                                      <option 
+                                      <option
                                         v-for="size in extension.SizeList"
                                         :value="size.Value"
                                         :key="size.Value">{{ size.Name }}
@@ -272,12 +277,14 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import VoucherCode from '@/components/voucher/VoucherCode'
+import Alert from '@/components/Alert'
 
 export default {
   async fetch() {
   },
   components:{
     VoucherCode,
+    Alert,
   },
   computed: {
     ...mapGetters({
@@ -303,9 +310,10 @@ export default {
     return{
       thumb_src:process.env.THUMB_SRC,
       labels: [],
-      // cartextensions: null,
+      cartextensions: null,
       extensionlist: null,
       isSubmitting:false,
+      errors: [],
     }
   },
   mounted(){
@@ -345,8 +353,9 @@ export default {
       let _el = document.getElementById('offscreen-basket')
       UIkit.modal(_el).hide();
     },
-    async addToCartFromExtension(extension){
+    async addToCartFromExtension(extension) {
       let _this = this
+      _this.errors = []
       if (extension.SizeId > -1) {
           _this.isSubmitting = true
           await this.$axios.post('/webapi/'+this.$i18n.locale+'/cart/PostAddToCart',{
@@ -360,7 +369,8 @@ export default {
         ).then(function (response) {
           _this.isSubmitting = false
           if(response.data.ErrorList){
-            UIkit.modal.alert(response.data.ErrorList[0].Value)
+            _this.errors = response.ErrorList[0].Value
+          console.log(response)
           }else{
             _this.$store.commit('basket/add', response.data)
             // if(response.data.CartId && response.data.CartId>0 && response.data.IsMemberPackage){
