@@ -244,7 +244,7 @@
                                       style="font-size:0.75rem; height:30px;"
                                       :disabled="extension.IsOneSize"
                                       >
-                                      <option v-if="!extension.IsOneSize" value="0">{{$getCMSEntry(global_labels,'article_addon_names', 'Välj storlek')}}</option>
+                                      <option v-if="!extension.IsOneSize" value="-1">{{$getCMSEntry(global_labels,'article_addon_names', 'Välj storlek')}}</option>
                                       <option
                                         v-for="size in extension.SizeList"
                                         :value="size.Value"
@@ -370,7 +370,6 @@ export default {
           _this.isSubmitting = false
           if(response.data.ErrorList){
             _this.errors = response.ErrorList[0].Value
-          console.log(response)
           }else{
             _this.$store.commit('basket/add', response.data)
             // if(response.data.CartId && response.data.CartId>0 && response.data.IsMemberPackage){
