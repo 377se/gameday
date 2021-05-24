@@ -227,19 +227,19 @@
                         <span class="article-name">
                           <div class="ext-container">
                             <div>{{ extension.TeamName }}</div>
-                            <div class="uk-text-small uk-text-bold">{{ extension.ProductName }}</div>
-                            <div class="uk-text-small uk-text-bold uk-text-danger">{{ extension.PriceOnSaleDisplay }}</div>
+                            <div class="uk-text-bold">{{ extension.ProductName }}</div>
+                            <div class="uk-text-bold uk-text-danger">{{ extension.PriceOnSaleDisplay }}</div>
                           </div>
                           <div>
                               <div class="uk-flex ext-buttons-container">
                                   <div class="uk-width-1-2">
                                     <select 
                                       v-model="extension.SizeId"
-                                      style="height: 30px;"
-                                      class="uk-select uk-text-small"
+                                      class="uk-select"
+                                      style="font-size:0.75rem; height:30px;"
                                       :disabled="extension.IsOneSize"
                                       >
-                                      <option v-if="!extension.IsOneSize" value="">{{$getCMSEntry(global_labels,'article_addon_names', 'Välj storlek')}}</option>
+                                      <option v-if="!extension.IsOneSize" value="0">{{$getCMSEntry(global_labels,'article_addon_names', 'Välj storlek')}}</option>
                                       <option 
                                         v-for="size in extension.SizeList"
                                         :value="size.Value"
@@ -248,6 +248,7 @@
                                     </select>
                                   </div>
                                   <button
+                                    style="font-size:0.75rem;"
                                     class="uk-width-1-2 uk-margin-small-left ext-button"
                                     @click="addToCartFromExtension(extension)"
                                   >{{ $getCMSEntry(global_labels,'article_details_add_to_cart', 'Lägg i varukorgen') }}</button>
