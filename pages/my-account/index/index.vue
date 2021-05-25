@@ -140,7 +140,7 @@
           </button>
         </fieldset>
       </form>
-      <div v-if="this.cust.IsBranchMember" id="my-member-section" class="membership-container uk-background-primary uk-padding-large uk-border-rounded uk-overflow-hidden">
+      <div v-if="this.cust.IsBranchMember && this.cust && this.cust.BranchInfo" id="my-member-section" class="membership-container uk-background-primary uk-padding-large uk-border-rounded uk-overflow-hidden">
         <img class="uk-width-1-2@s" src="/logos/logo-liverpool-sweden.svg" alt="Logo LFC">
         <h2 class="uk-margin-remove-bottom">{{ $getCMSEntry(labels,'memberGreeting', 'Jajemensan, du är medlem i svenska supporterklubben!') }}</h2>
         <p>{{ $getCMSEntry(labels,'MembershipNumber', 'Medlemsnummer') }}: {{ this.cust.BranchInfo.MembershipNumber }}</p>
