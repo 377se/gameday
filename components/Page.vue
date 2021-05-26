@@ -40,6 +40,8 @@ import GameCenterResultContest from '@/components/samdodds/gamecenter/GameCenter
 import BranchMemberPush from '@/components/samdodds/branchmemberpush/BranchMemberPush'
 import BranchMemberPushButton from '@/components/samdodds/branchmemberpush/BranchMemberPushButton'
 
+import TheMemberCruncher from '@/components/samdodds/TheMemberCruncher'
+
 
 export default {
   components: {
@@ -66,7 +68,8 @@ export default {
     GameCenterStandings,
     GameCenterResultContest,
     BranchMemberPush,
-    BranchMemberPushButton
+    BranchMemberPushButton,
+    TheMemberCruncher,
   },
   props: {
     blok: {
