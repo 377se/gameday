@@ -14,7 +14,7 @@
           <button
             id="close-basket"
             class="uk-offcanvas-close uk-icon uk-close"
-            style="color:#fff;top:27px;right:6px;"
+            style="color:#fff;top:27px;right:16px;"
             type="button"
             uk-close
             uk-toggle="target: #offscreen-basket"/>
@@ -222,42 +222,40 @@
                       :key="extension.ExtensionId"
                       uk-scrollspy="target: > td; cls: uk-animation-slide-left; repeat: true; delay: 250"
                       >
-                      <td style="padding-left:6px;" class="uk-width-1-4"> <!-- BILD -->
+                      <td style="padding-left:6px;" class="uk-width-1-3"> <!-- BILD -->
                         <img
                           class="uk-width-1-1"
                           :src="extension.ImageName"
                           :alt="extension.ProductName"/>
                       </td>
-                      <td class="article-data uk-width-3-4"> <!-- ARTIKELDATA -->
+                      <td class="article-data uk-width-2-3"> <!-- ARTIKELDATA -->
                         <span class="article-name">
                           <div class="ext-container">
                             <div>{{ extension.TeamName }}</div>
                             <div class="uk-text-bold">{{ extension.ProductName }}</div>
                             <div class="uk-text-bold uk-text-danger">{{ extension.PriceOnSaleDisplay }}</div>
                           </div>
-                          <div>
-                              <div class="uk-flex ext-buttons-container">
-                                  <div class="uk-width-1-2">
-                                    <select
-                                      v-model="extension.SizeId"
-                                      class="uk-select"
-                                      style="font-size:0.75rem; height:30px;"
-                                      :disabled="extension.IsOneSize"
-                                      >
-                                      <option v-if="!extension.IsOneSize" value="-1">{{$getCMSEntry(global_labels,'article_addon_names', 'Välj storlek')}}</option>
-                                      <option
-                                        v-for="size in extension.SizeList"
-                                        :value="size.Value"
-                                        :key="size.Value">{{ size.Name }}
-                                      </option>
-                                    </select>
-                                  </div>
-                                  <button
-                                    style="font-size:0.75rem;"
-                                    class="uk-width-1-2 uk-margin-small-left ext-button"
-                                    @click="addToCartFromExtension(extension)"
-                                  >{{ $getCMSEntry(global_labels,'article_details_add_to_cart', 'Lägg i varukorgen') }}</button>
+                          <div> <!-- DROP & KNAPP -->
+                              <div class="uk-width-3-4">
+                                <select
+                                  v-model="extension.SizeId"
+                                  class="uk-select"
+                                  style="font-size:0.75rem; height:30px; margin-top: 5px;"
+                                  :disabled="extension.IsOneSize"
+                                  >
+                                  <option v-if="!extension.IsOneSize" value="-1">{{$getCMSEntry(global_labels,'article_addon_names', 'Välj storlek')}}</option>
+                                  <option
+                                    v-for="size in extension.SizeList"
+                                    :value="size.Value"
+                                    :key="size.Value">{{ size.Name }}
+                                  </option>
+                                </select>
                               </div>
+                              <button
+                                style="font-size:0.75rem; white-space: nowrap;"
+                                class="uk-width-3-4 ext-button"
+                                @click="addToCartFromExtension(extension)"
+                              >{{ $getCMSEntry(global_labels,'article_details_add_to_cart_ext', 'Köp') }}</button>
                           </div>
                         </span>
                       </td>
@@ -267,6 +265,7 @@
               <tfoot>
               </tfoot>
             </table>
+            <div class="spacer-below-extensions"></div>
           </div>
         </div>
 
@@ -372,25 +371,7 @@ export default {
             _this.errors = response.ErrorList[0]
           }else{
             _this.$store.commit('basket/add', response.data)
-            // if(response.data.CartId && response.data.CartId>0 && response.data.IsMemberPackage){
-            //   _this.$router.push(_this.localePath('/extension/'+_this.$route.params.id+'?cartid='+response.data.CartId))
-            // }else{
-            //   UIkit.modal('#offscreen-basket').show();
-            // }
-            // try{
-            // _this.$gtm.push({event: 'AddToCart', content:{
-            //   content_name: _this.article.Name,
-            //   content_category: _this.article.HeadCategory,
-            //   content_ids: [_this.article.ArticleNumber],
-            //   content_type: 'product',
-            //   value: _this.article.Price.toFixed(2),
-            //   currency: process.env.CURRENCY_CODE
-            // }});
-            // }catch(err){
-            //   console.log(err)
-            // }
           }
-          //console.log(response)
         })
         .catch(function (error) {
           _this.isSubmitting = false
@@ -432,7 +413,7 @@ export default {
 }
 #offscreen-basket .uk-modal-dialog {
   margin-left: auto;
-  max-width:85vw !important;
+  max-width:55vw !important;
 }
 #offscreen-basket .uk-modal-dialog-no-extensions {
   margin-left: auto;
@@ -444,18 +425,22 @@ export default {
     max-width:40px;
   }
 }
-.ext-buttons-container {
-  margin-top: 3px;
-  height: 30px;
-}
 .ext-button {
-  background-color: white;
-  border: 1px solid #ccc;
+  margin-top: 5px;
+  height: 30px;
+  background-color: #A91C30;
+  border: 0px;
+  border-radius: 15px;
+  color: white;
   font-family: 'Lato', sans-serif;
   font-size: 14px;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1s;
   &:hover {
-    background-color: #eee;
+    transform: scale(1.04);
     cursor: pointer;
   }
+}
+.spacer-below-extensions {
+  height: 150px;
 }
 </style>
