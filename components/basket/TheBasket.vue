@@ -303,7 +303,12 @@ export default {
 
         }
       }
-    }
+    },
+    errors() {
+      setTimeout(() => {
+        this.errors = []
+      }, 8000);
+    },
   },
   data(){
     return{
