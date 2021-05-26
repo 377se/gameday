@@ -24,7 +24,7 @@
           <div class="uk-padding-small" :class="{ 'uk-width-1-1 uk-width-1-2@m uk-flex-last@m': extensionlist }"> <!-- CART -->
             <div
               v-if="cart.data.length>0">
-              <h3>Detta har du i varukorgen</h3>
+              <h3>{{ $getCMSEntry(global_labels,'basket_items_header', 'Detta har du i varukorgen') }}</h3>
               <table
                 class="uk-table uk-table-justify uk-table-divider uk-margin-remove"
                 style="color:#333333;font-size:0.7rem">
