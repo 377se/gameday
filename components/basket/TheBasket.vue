@@ -243,7 +243,7 @@
                                   style="font-size:0.75rem; height:30px; margin-top: 5px;"
                                   :disabled="extension.IsOneSize"
                                   >
-                                  <option v-if="!extension.IsOneSize" value="-1">{{$getCMSEntry(global_labels,'article_addon_names', 'Välj storlek')}}</option>
+                                  <option v-if="!extension.IsOneSize" value="-1">{{$getCMSEntry(global_labels,'article_details_choose_size', 'Välj storlek')}}</option>
                                   <option
                                     v-for="size in extension.SizeList"
                                     :value="size.Value"
