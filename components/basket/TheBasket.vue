@@ -9,7 +9,7 @@
         style="padding:0px;height:100vh;background:#ffffff;"
         uk-overflow-auto>
         <div
-          class="uk-flex basket-ribbon">
+          class="uk-flex basket-ribbon uk-position-relative">
           <h3 style="color:#fff;line-height:80px;margin-left:12px;">{{ $getCMSEntry(global_labels,'basket_header', 'Varukorg') }}</h3>
           <button
             id="close-basket"
@@ -419,10 +419,16 @@ export default {
 #offscreen-basket .uk-modal-dialog {
   margin-left: auto;
   max-width:55vw !important;
+  @media only screen and (max-width: 600px) {
+    max-width:90vw !important;
+  }
 }
 #offscreen-basket .uk-modal-dialog-no-extensions {
   margin-left: auto;
   max-width: 23vw !important;
+  @media only screen and (max-width: 600px) {
+    max-width:90vw !important;
+  }
 }
 .thumb-image{
   width:40px;
