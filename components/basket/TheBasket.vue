@@ -9,6 +9,7 @@
         style="padding:0px;height:100vh;background:#ffffff;"
         uk-overflow-auto>
         <div
+          id="cart"
           class="uk-flex basket-ribbon uk-position-relative">
           <h3 style="color:#fff;line-height:80px;margin-left:12px;">{{ $getCMSEntry(global_labels,'basket_header', 'Varukorg') }}</h3>
           <button
@@ -252,6 +253,7 @@
                                 </select>
                               </div>
                               <button
+                                id="buy-button"
                                 style="font-size:0.75rem; white-space: nowrap;"
                                 class="uk-width-3-4 ext-button"
                                 @click="addToCartFromExtension(extension)"
@@ -376,6 +378,7 @@ export default {
             _this.errors = response.ErrorList[0]
           }else{
             _this.$store.commit('basket/add', response.data)
+            UIkit.scroll('#buy-button').scrollTo('#cart');
           }
         })
         .catch(function (error) {
