@@ -59,7 +59,7 @@
                                         name="MembershipNumber"
                                         required>
                                 </div>
-                                <div class="uk-text-center uk-width-1-1 uk-margin-remove" uk-tooltip="title: Men äru hält dömm i hövvää?; pos: bottom-left"><small>{{ $getCMSEntry(global_labels, 'membership_', 'Var hittar jag mitt medlemsnummer?') }}</small></div>
+                                <div class="uk-width-1-1 uk-margin-remove" uk-tooltip="title: Men äru hält dömm i hövvää?; pos: bottom-left"><small>{{ $getCMSEntry(global_labels, 'membership_', 'Var hittar jag mitt medlemsnummer?') }}</small></div>
                             </div>
                             <div class="uk-width-1-3 uk-margin-small-right">
                                 <div class="uk-form-controls">
