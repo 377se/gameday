@@ -11,16 +11,17 @@
         <h2>{{emptyMembershipObject.Title}}</h2>
         <div class="uk-flex uk-flex-between uk-margin-small-bottom">
             <div class="uk-width-2-5 uk-padding-small account-container"> <!-- MEDLEMSINFO -->
-                <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'tom', 'Medlemsinfo') }}</h3>
+                <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Medlemsinfo') }}</h3>
                 <div class="uk-margin-small-top">
-                    <div><strong>{{ $getCMSEntry(global_labels, 'tom', 'Giltigt t.o.m') }}:</strong> {{emptyMembershipObject.Account.ValidThru}}</div>
-                    <div>{{ $getCMSEntry(global_labels, 'tom', 'Medlemsnummer') }}: {{emptyMembershipObject.Account.MembershipNumber}}</div>
-                    <div>{{ $getCMSEntry(global_labels, 'tom', 'Förnamn') }}: {{emptyMembershipObject.Account.FirstName}}</div>
-                    <div>{{ $getCMSEntry(global_labels, 'tom', 'Efternamn') }}: {{emptyMembershipObject.Account.LastName}}</div>
+                    <div>{{ $getCMSEntry(global_labels, 'membership_', 'Giltigt t.o.m') }}: {{emptyMembershipObject.Account.ValidThru}}</div>
+                    <div>{{ $getCMSEntry(global_labels, 'membership_', 'Medlemsnummer') }}: {{emptyMembershipObject.Account.MembershipNumber}}</div>
+                    <div>{{ $getCMSEntry(global_labels, 'membership_', 'Förnamn') }}: {{emptyMembershipObject.Account.FirstName}}</div>
+                    <div>{{ $getCMSEntry(global_labels, 'membership_', 'Efternamn') }}: {{emptyMembershipObject.Account.LastName}}</div>
+                    <div v-if="emptyMembershipObject.Account.Message" class="uk-alert-danger uk-padding-small uk-margin-small-top">{{emptyMembershipObject.Account.Message}}</div>
                 </div>
             </div>
             <div class="uk-width-2-5 prices-container uk-padding-small"> <!-- MEDLEMSPRISER -->
-                <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'tom', 'Medlemspriser') }}</h3>
+                <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Medlemspriser') }}</h3>
                 <div class="uk-margin-small-top border-top">
                     <div v-for="(membership, index) in emptyMembershipObject.Pricing.PriceList" :key="index">
                         <div class="uk-flex uk-flex-between"><div>{{ membership.Name }}</div> <div>{{ membership.Price }} {{ membership.Currency }}</div></div>
@@ -29,75 +30,71 @@
                 <div class="uk-margin-small-top uk-text-small">{{ emptyMembershipObject.Pricing.Description }}</div>
             </div>
         </div>
-        <div> <!-- FAMILJEMEDLEMMAR -->
-            <div class="uk-margin">
-              <button
-                class="uk-button uk-button-primary uk-margin-small-top"
-                @click.prevent="emptyMembershipObject.FamilyMembers.push(emptyFamilyMember)"
-                >
-                {{ $getCMSEntry(global_labels, 'tom', 'Lägg till familjemedlem') }}
-              </button>
-            </div>
+        <div class="uk-margin-medium-top"> <!-- FAMILJEMEDLEMMAR -->
             <div v-if="emptyMembershipObject.FamilyMembers.length > 0">
-                <h3>{{ $getCMSEntry(global_labels, 'tom', 'Sök befintlig medlem att lägga till som familjemedlem') }}</h3>
-                <form
-                    v-if="!success"
-                    method="post"
-                    @submit.prevent="findFamilyMember">
-                    <fieldset class="uk-fieldset uk-flex uk-flex-between uk-width-1-1 uk-width-2-3@m">
-                    <div class="uk-width-1-3 uk-margin-small-right">
-                        <div class="uk-form-controls">
-                        <input
-                            v-model="tempFamilyMember.MembershipNumber"
-                            class="uk-input"
-                            type="text"
-                            :placeholder="$getCMSEntry(global_labels, 'membership_member_id_placeholder', 'Skriv in medlemsnummer')"
-                            name="MembershipNumber"
-                            required>
-                        </div>
-                    </div>
-                    <div class="uk-width-1-3 uk-margin-small-right">
-                        <div class="uk-form-controls">
-                        <input
-                            v-model="tempFamilyMember.PostalCode"
-                            class="uk-input"
-                            type="text"
-                            :placeholder="$getCMSEntry(global_labels, 'membership_postal_code_placeholder', 'Skriv in postnummer')"
-                            name="PostalCode"
-                            required>
-                        </div>
-                    </div>
-                    <div class="uk-width-1-3">
-                        <ButtonSubmit
-                        :is-submitting="isSubmitting"
-                        theme="uk-button-primary"
-                        :button-text="$getCMSEntry(global_labels, 'membership_search', 'Sök')"
-                        :is-submit="true"
-                        />
-                    </div>
-                    </fieldset>
-                </form>
                 <Alert
                 v-if="errors.length > 0"
                 :errorlist="errors"
                 message=""
                 :alertClass="alertClass"
                 />
-                <h3 class="uk-margin-remove-bottom">{{ $getCMSEntry(global_labels, 'tom', 'Familjemedlemmar') }}</h3>
+                <h3 class="uk-margin-remove-bottom">{{ $getCMSEntry(global_labels, 'membership_', 'Familjemedlemmar') }}</h3>
                 <p class="uk-margin-remove-top">Lägg till dina familjemedlemmar, så får de ett eget medlemsnummer
                 som används vid anmälan till aktiviteter.</p>
-                <div class="uk-margin-small-bottom" v-for="(familyMember, index) in emptyMembershipObject.FamilyMembers" :key="index">
+
+                <div class="uk-margin-small-top uk-margin-medium-bottom"> <!-- SÖK MEDLEM -->
+                    <h4 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Sök befintlig medlem att lägga till som familjemedlem') }}</h4>
+                    <form
+                        v-if="!success"
+                        method="post"
+                        @submit.prevent="findFamilyMember">
+                        <fieldset class="uk-fieldset uk-flex uk-flex-between uk-width-1-1 uk-width-2-3@m">
+                        <div class="uk-width-1-3 uk-margin-small-right">
+                            <div class="uk-form-controls">
+                            <input
+                                v-model="tempFamilyMember.MembershipNumber"
+                                class="uk-input"
+                                type="text"
+                                :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in medlemsnummer')"
+                                name="MembershipNumber"
+                                required>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-3 uk-margin-small-right">
+                            <div class="uk-form-controls">
+                            <input
+                                v-model="tempFamilyMember.PostalCode"
+                                class="uk-input"
+                                type="text"
+                                :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in postnummer')"
+                                name="PostalCode"
+                                required>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-3">
+                            <ButtonSubmit
+                            :is-submitting="isSubmitting"
+                            theme="uk-button-primary"
+                            :button-text="$getCMSEntry(global_labels, 'membership_', 'Sök')"
+                            :is-submit="true"
+                            />
+                        </div>
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div class="uk-margin-small-bottom" v-for="(familyMember, index) in emptyMembershipObject.FamilyMembers" :key="index"> <!-- FAMILY-LIST -->
                     <form
                         method="post"
                         @submit.prevent="updateFamilyMember">
                         <div class="uk-flex uk-flex-middle uk-margin-small-bottom">
-                            <h4 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'tom', 'Familjemedlem') }} {{ index+1 }}</h4>
+                            <h4 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Familjemedlem') }} {{ index+1 }}</h4>
                             <button
                                 class="uk-button uk-button-small uk-button-primary uk-margin-small-left"
                                 style="height: 25px; line-height:1;"
                                 @click.prevent="emptyMembershipObject.FamilyMembers.splice(index,1)"
                             >
-                                {{ $getCMSEntry(global_labels, 'tom', 'Ta bort familjemedlem') }}
+                                {{ $getCMSEntry(global_labels, 'membership_', 'Ta bort familjemedlem') }}
                             </button>
                         </div>
                         <fieldset class="uk-fieldset uk-flex uk-flex-between uk-width-2-3">
@@ -107,7 +104,7 @@
                                 v-model="familyMember.FirstName"
                                 class="uk-input"
                                 type="text"
-                                :placeholder="$getCMSEntry(global_labels, 'tom', 'Skriv in förnamn')"
+                                :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in förnamn')"
                                 name="FirstName"
                                 required>
                             </div>
@@ -118,7 +115,7 @@
                                 v-model="familyMember.LastName"
                                 class="uk-input"
                                 type="text"
-                                :placeholder="$getCMSEntry(global_labels, 'tom', 'Skriv in efternamn')"
+                                :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in efternamn')"
                                 name="LastName"
                                 required>
                             </div>
@@ -131,7 +128,7 @@
                                 v-model="familyMember.Email"
                                 class="uk-input"
                                 type="text"
-                                :placeholder="$getCMSEntry(global_labels, 'tom', 'Skriv in email')"
+                                :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in email')"
                                 name="Email"
                             >
                             </div>
@@ -142,7 +139,7 @@
                                 v-model="familyMember.Mobile"
                                 class="uk-input"
                                 type="text"
-                                :placeholder="$getCMSEntry(global_labels, 'tom', 'Skriv in mobilnummer')"
+                                :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in mobilnummer')"
                                 name="Mobile"
                             >
                             </div>
@@ -150,6 +147,15 @@
                         </fieldset>
                     </form>
                 </div>
+                <div class="uk-margin">
+                    <button
+                        class="uk-button uk-button-small uk-button-primary uk-margin-small-top"
+                        @click.prevent="emptyMembershipObject.FamilyMembers.push(emptyFamilyMember)"
+                        >
+                        {{ $getCMSEntry(global_labels, 'membership_', 'Lägg till familjemedlem') }}
+                    </button>
+                </div>
+
             </div>
         </div>
     </div>
@@ -185,7 +191,7 @@ export default {
             message: '',
             alertClass: '',
             success: false,
-            isSubmitting: false 
+            isSubmitting: false
         }
     },
     methods: {
