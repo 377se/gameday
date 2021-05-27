@@ -13,11 +13,13 @@
             <div class="uk-width-2-5 uk-padding-small account-container"> <!-- MEDLEMSINFO -->
                 <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Medlemsinfo') }}</h3>
                 <div class="uk-margin-small-top">
-                    <div>{{ $getCMSEntry(global_labels, 'membership_', 'Giltigt t.o.m') }}: {{emptyMembershipObject.Account.ValidThru}}</div>
+                    <div v-if="emptyMembershipObject.Account.Message" :class="{ 'uk-alert-success': emptyMembershipObject.Account.IsActive, 'uk-alert-danger': !emptyMembershipObject.Account.IsActive }" class="uk-padding-small uk-margin-small-top uk-margin-small-bottom">{{emptyMembershipObject.Account.Message}}</div>
                     <div>{{ $getCMSEntry(global_labels, 'membership_', 'Medlemsnummer') }}: {{emptyMembershipObject.Account.MembershipNumber}}</div>
-                    <div>{{ $getCMSEntry(global_labels, 'membership_', 'Förnamn') }}: {{emptyMembershipObject.Account.FirstName}}</div>
-                    <div>{{ $getCMSEntry(global_labels, 'membership_', 'Efternamn') }}: {{emptyMembershipObject.Account.LastName}}</div>
-                    <div v-if="emptyMembershipObject.Account.Message" class="uk-alert-danger uk-padding-small uk-margin-small-top">{{emptyMembershipObject.Account.Message}}</div>
+                    <div>{{ $getCMSEntry(global_labels, 'membership_', 'Namn') }}: {{emptyMembershipObject.Account.FirstName}} {{emptyMembershipObject.Account.LastName}}</div>
+                    <div v-if="emptyMembershipObject.IsSelectable" class="uk-margin-small-top">
+                        <div><input class="uk-checkbox" type="checkbox" :checked="emptyMembershipObject.ExtendMembership">&nbsp;&nbsp;{{ emptyMembershipObject.SelectableTitle }}</div>
+                        <div style="line-height:1;"><small>{{ emptyMembershipObject.SelectableInformation }}</small></div>
+                    </div>
                 </div>
             </div>
             <div class="uk-width-2-5 prices-container uk-padding-small"> <!-- MEDLEMSPRISER -->
@@ -32,12 +34,6 @@
         </div>
         <div class="uk-margin-medium-top"> <!-- FAMILJEMEDLEMMAR -->
             <div>
-                <Alert
-                v-if="errors.length > 0"
-                :errorlist="errors"
-                message=""
-                :alertClass="alertClass"
-                />
                 <h3 class="uk-margin-remove-bottom">{{ $getCMSEntry(global_labels, 'membership_', 'Familjemedlemmar') }}</h3>
                 <p class="uk-margin-remove-top">Lägg till dina familjemedlemmar, så får de ett eget medlemsnummer
                 som används vid anmälan till aktiviteter.</p>
@@ -82,6 +78,12 @@
                         </div>
                         </fieldset>
                     </form>
+                    <Alert
+                        v-if="errors.length > 0"
+                        :errorlist="errors"
+                        message=""
+                        :alertClass="alertClass"
+                    />
                 </div>
 
                 <div class="uk-margin-small-bottom" v-for="(familyMember, index) in emptyMembershipObject.FamilyMembers" :key="index"> <!-- FAMILY-LIST -->
