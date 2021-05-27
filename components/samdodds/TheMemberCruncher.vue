@@ -10,16 +10,16 @@
     <div v-else v-editable="blok" class="uk-container">
         <h2>{{emptyMembershipObject.Title}}</h2>
         <div class="uk-flex uk-flex-between uk-margin-small-bottom">
-            <div class="uk-width-1-3 uk-padding-small account-container"> <!-- MEDLEMSINFO -->
+            <div class="uk-width-2-5 uk-padding-small account-container"> <!-- MEDLEMSINFO -->
                 <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'tom', 'Medlemsinfo') }}</h3>
                 <div class="uk-margin-small-top">
-                    <div>{{ $getCMSEntry(global_labels, 'tom', 'Giltigt t.o.m') }}: {{emptyMembershipObject.Account.ValidThru}}</div>
+                    <div><strong>{{ $getCMSEntry(global_labels, 'tom', 'Giltigt t.o.m') }}:</strong> {{emptyMembershipObject.Account.ValidThru}}</div>
                     <div>{{ $getCMSEntry(global_labels, 'tom', 'Medlemsnummer') }}: {{emptyMembershipObject.Account.MembershipNumber}}</div>
                     <div>{{ $getCMSEntry(global_labels, 'tom', 'Förnamn') }}: {{emptyMembershipObject.Account.FirstName}}</div>
                     <div>{{ $getCMSEntry(global_labels, 'tom', 'Efternamn') }}: {{emptyMembershipObject.Account.LastName}}</div>
                 </div>
             </div>
-            <div class="uk-width-1-3 prices-container uk-padding-small"> <!-- MEDLEMSPRISER -->
+            <div class="uk-width-2-5 prices-container uk-padding-small"> <!-- MEDLEMSPRISER -->
                 <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'tom', 'Medlemspriser') }}</h3>
                 <div class="uk-margin-small-top border-top">
                     <div v-for="(membership, index) in emptyMembershipObject.Pricing.PriceList" :key="index">
