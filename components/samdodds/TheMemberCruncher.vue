@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="uk-margin-medium-top"> <!-- FAMILJEMEDLEMMAR -->
-            <div v-if="emptyMembershipObject.FamilyMembers.length > 0">
+            <div>
                 <Alert
                 v-if="errors.length > 0"
                 :errorlist="errors"
@@ -48,29 +48,30 @@
                         v-if="!success"
                         method="post"
                         @submit.prevent="findFamilyMember">
-                        <fieldset class="uk-fieldset uk-flex uk-flex-between uk-width-1-1 uk-width-2-3@m">
-                        <div class="uk-width-1-3 uk-margin-small-right">
-                            <div class="uk-form-controls">
-                            <input
-                                v-model="tempFamilyMember.MembershipNumber"
-                                class="uk-input"
-                                type="text"
-                                :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in medlemsnummer')"
-                                name="MembershipNumber"
-                                required>
+                        <fieldset class="uk-fieldset uk-flex uk-flex-between uk-width-1-1 uk-width-2-3@m"> <!-- MEDLEMSNUMMER & POSTNR -->
+                            <div class="uk-width-1-3 uk-margin-small-right">
+                                <div class="uk-form-controls">
+                                    <input
+                                        v-model="tempFamilyMember.MembershipNumber"
+                                        class="uk-input"
+                                        type="text"
+                                        :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in medlemsnummer')"
+                                        name="MembershipNumber"
+                                        required>
+                                </div>
+                                <div class="uk-text-center uk-width-1-1 uk-margin-remove"><small>{{ $getCMSEntry(global_labels, 'membership_', 'Var hittar jag mitt medlemsnummer?') }}</small></div>
                             </div>
-                        </div>
-                        <div class="uk-width-1-3 uk-margin-small-right">
-                            <div class="uk-form-controls">
-                            <input
-                                v-model="tempFamilyMember.PostalCode"
-                                class="uk-input"
-                                type="text"
-                                :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in postnummer')"
-                                name="PostalCode"
-                                required>
+                            <div class="uk-width-1-3 uk-margin-small-right">
+                                <div class="uk-form-controls">
+                                <input
+                                    v-model="tempFamilyMember.PostalCode"
+                                    class="uk-input"
+                                    type="text"
+                                    :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in postnummer')"
+                                    name="PostalCode"
+                                    required>
+                                </div>
                             </div>
-                        </div>
                         <div class="uk-width-1-3">
                             <ButtonSubmit
                             :is-submitting="isSubmitting"
@@ -100,24 +101,31 @@
                         <fieldset class="uk-fieldset uk-flex uk-flex-between uk-width-2-3">
                         <div class="uk-width-1-2 uk-margin-small-right">
                             <div class="uk-form-controls">
-                            <input
-                                v-model="familyMember.FirstName"
-                                class="uk-input"
-                                type="text"
-                                :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in förnamn')"
-                                name="FirstName"
-                                required>
+                                <div class="uk-inline uk-width-1-1">
+                                    <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: check"></span>
+                                    <input
+                                        v-model="familyMember.FirstName"
+                                        class="uk-input"
+                                        type="text"
+                                        :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in förnamn')"
+                                        name="FirstName"
+                                        required
+                                    >
+                                </div>
                             </div>
                         </div>
                         <div class="uk-width-1-2 uk-margin-small-right">
                             <div class="uk-form-controls">
-                            <input
-                                v-model="familyMember.LastName"
-                                class="uk-input"
-                                type="text"
-                                :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in efternamn')"
-                                name="LastName"
-                                required>
+                                <div class="uk-inline uk-width-1-1">
+                                    <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: check"></span>
+                                    <input
+                                        v-model="familyMember.LastName"
+                                        class="uk-input"
+                                        type="text"
+                                        :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in efternamn')"
+                                        name="LastName"
+                                        required>
+                                    </div>
                             </div>
                         </div>
                         </fieldset>
