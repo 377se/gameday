@@ -9,6 +9,26 @@
     </div>
     <div v-else v-editable="blok" class="uk-container">
         <h2>{{emptyMembershipObject.Title}}</h2>
+        <div class="uk-flex uk-flex-between uk-margin-small-bottom">
+            <div class="uk-width-1-3 uk-padding-small account-container"> <!-- MEDLEMSINFO -->
+                <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'tom', 'Medlemsinfo') }}</h3>
+                <div class="uk-margin-small-top">
+                    <div>{{ $getCMSEntry(global_labels, 'tom', 'Giltigt t.o.m') }}: {{emptyMembershipObject.Account.ValidThru}}</div>
+                    <div>{{ $getCMSEntry(global_labels, 'tom', 'Medlemsnummer') }}: {{emptyMembershipObject.Account.MembershipNumber}}</div>
+                    <div>{{ $getCMSEntry(global_labels, 'tom', 'Förnamn') }}: {{emptyMembershipObject.Account.FirstName}}</div>
+                    <div>{{ $getCMSEntry(global_labels, 'tom', 'Efternamn') }}: {{emptyMembershipObject.Account.LastName}}</div>
+                </div>
+            </div>
+            <div class="uk-width-1-3 prices-container uk-padding-small"> <!-- MEDLEMSPRISER -->
+                <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'tom', 'Medlemspriser') }}</h3>
+                <div class="uk-margin-small-top border-top">
+                    <div v-for="(membership, index) in emptyMembershipObject.Pricing.PriceList" :key="index">
+                        <div class="uk-flex uk-flex-between"><div>{{ membership.Name }}</div> <div>{{ membership.Price }} {{ membership.Currency }}</div></div>
+                    </div>
+                </div>
+                <div class="uk-margin-small-top uk-text-small">{{ emptyMembershipObject.Pricing.Description }}</div>
+            </div>
+        </div>
         <div> <!-- FAMILJEMEDLEMMAR -->
             <div class="uk-margin">
               <button
@@ -19,7 +39,7 @@
               </button>
             </div>
             <div v-if="emptyMembershipObject.FamilyMembers.length > 0">
-                <h3>Sök befintlig medlem att lägga till som familjemedlem</h3>
+                <h3>{{ $getCMSEntry(global_labels, 'tom', 'Sök befintlig medlem att lägga till som familjemedlem') }}</h3>
                 <form
                     v-if="!success"
                     method="post"
@@ -215,6 +235,11 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+    .account-container {
+        background-color: #eee;
+    }
+    .prices-container {
+        background-color: #eee;
+    }
 </style>
