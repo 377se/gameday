@@ -82,74 +82,72 @@
                 </div>
                 <div class=""> <!-- FAMILJE-LISTA -->
                     <div class="uk-margin-small-top" v-for="(familyMember, index) in currentMembershipObject.FamilyMembers" :key="index">
-                        <form method="post">
-                            <div class="uk-flex uk-flex-between uk-flex-middle uk-margin-small-bottom"> <!-- RUBRIK & TA BORT -->
-                                <h4 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Familjemedlem') }} {{ index+1 }}</h4>
-                                <button
-                                    v-if="!familyMember.IsActive"
-                                    class="uk-button uk-button-small uk-button-default uk-margin-small-left"
-                                    style="height: 25px; line-height:1;"
-                                    @click.prevent="currentMembershipObject.FamilyMembers.splice(index,1)"
-                                >
-                                    {{ $getCMSEntry(global_labels, 'membership_', 'Ta bort familjemedlem') }}
-                                </button>
+                        <div class="uk-flex uk-flex-between uk-flex-middle uk-margin-small-bottom"> <!-- RUBRIK & TA BORT -->
+                            <h4 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Familjemedlem') }} {{ index+1 }}</h4>
+                            <button
+                                v-if="!familyMember.IsActive"
+                                class="uk-button uk-button-small uk-button-default uk-margin-small-left"
+                                style="height: 25px; line-height:1;"
+                                @click.prevent="currentMembershipObject.FamilyMembers.splice(index,1)"
+                            >
+                                {{ $getCMSEntry(global_labels, 'membership_', 'Ta bort familjemedlem') }}
+                            </button>
+                        </div>
+                        <div class="uk-fieldset uk-grid-small uk-child-width-expand@s" uk-grid>
+                            <div>
+                                <div class="uk-form-controls">
+                                    <div class="uk-inline uk-width-1-1">
+                                        <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: check"></span>
+                                        <input
+                                            v-model="familyMember.FirstName"
+                                            class="uk-input"
+                                            type="text"
+                                            :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in förnamn')"
+                                            name="FirstName"
+                                            required
+                                        >
+                                    </div>
+                                </div>
                             </div>
-                            <fieldset class="uk-fieldset uk-grid-small uk-child-width-expand@s" uk-grid>
-                                <div>
-                                    <div class="uk-form-controls">
-                                        <div class="uk-inline uk-width-1-1">
-                                            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: check"></span>
-                                            <input
-                                                v-model="familyMember.FirstName"
-                                                class="uk-input"
-                                                type="text"
-                                                :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in förnamn')"
-                                                name="FirstName"
-                                                required
-                                            >
+                            <div>
+                                <div class="uk-form-controls">
+                                    <div class="uk-inline uk-width-1-1">
+                                        <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: check"></span>
+                                        <input
+                                            v-model="familyMember.LastName"
+                                            class="uk-input"
+                                            type="text"
+                                            :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in efternamn')"
+                                            name="LastName"
+                                            required>
                                         </div>
-                                    </div>
                                 </div>
-                                <div>
-                                    <div class="uk-form-controls">
-                                        <div class="uk-inline uk-width-1-1">
-                                            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: check"></span>
-                                            <input
-                                                v-model="familyMember.LastName"
-                                                class="uk-input"
-                                                type="text"
-                                                :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in efternamn')"
-                                                name="LastName"
-                                                required>
-                                            </div>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="uk-fieldset uk-grid-small uk-child-width-expand@s" uk-grid>
+                            <div>
+                                <div class="uk-form-controls">
+                                <input
+                                    v-model="familyMember.Email"
+                                    class="uk-input"
+                                    type="text"
+                                    :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in email')"
+                                    name="Email"
+                                >
                                 </div>
-                            </fieldset>
-                            <fieldset class="uk-fieldset uk-grid-small uk-child-width-expand@s" uk-grid>
-                                <div>
-                                    <div class="uk-form-controls">
-                                    <input
-                                        v-model="familyMember.Email"
-                                        class="uk-input"
-                                        type="text"
-                                        :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in email')"
-                                        name="Email"
-                                    >
-                                    </div>
+                            </div>
+                            <div>
+                                <div class="uk-form-controls">
+                                <input
+                                    v-model="familyMember.Mobile"
+                                    class="uk-input"
+                                    type="text"
+                                    :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in mobilnummer')"
+                                    name="Mobile"
+                                >
                                 </div>
-                                <div>
-                                    <div class="uk-form-controls">
-                                    <input
-                                        v-model="familyMember.Mobile"
-                                        class="uk-input"
-                                        type="text"
-                                        :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in mobilnummer')"
-                                        name="Mobile"
-                                    >
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </form>
+                            </div>
+                        </div>
                     </div>
                     <div class="uk-margin uk-text-right"> <!-- LÄGG TILL FAMILJEMEDLEM KNAPP -->
                         <button
