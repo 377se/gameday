@@ -41,10 +41,9 @@
                 <h3 class="uk-margin-remove-bottom">{{ $getCMSEntry(global_labels, 'membership_', 'Familjemedlemmar') }}</h3>
                 <p class="uk-margin-remove-top">Lägg till dina familjemedlemmar, så får de ett eget medlemsnummer
                 som används vid anmälan till aktiviteter.</p>
-
                 <div class="uk-margin-small-top uk-margin-medium-bottom"> <!-- SÖK MEDLEM -->
                     <h4 style="padding-bottom: 5px;" class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Sök befintlig medlem att lägga till som familjemedlem') }}</h4>
-                        <div class="uk-fieldset uk-grid-small uk-child-width-expand@s" uk-grid> <!-- MEDLEMSNUMMER & POSTNR -->
+                        <div class="uk-grid-small uk-child-width-expand@s" uk-grid> <!-- MEDLEMSNUMMER & POSTNR -->
                             <div>
                                 <div class="uk-form-controls">
                                     <input
@@ -69,9 +68,9 @@
                                 </div>
                             </div>
                             <div>
-                            <button class="uk-button uk-button-default" @click.prevent="findFamilyMember()"> <!-- SÖK FAMILJEMEDLEM -->
-                                {{ $getCMSEntry(global_labels, 'membership_', 'Sök') }}
-                            </button>
+                                <button id="search-button" class="uk-button uk-button-default uk-align-right" @click.prevent="findFamilyMember()"> <!-- SÖK FAMILJEMEDLEM -->
+                                    {{ $getCMSEntry(global_labels, 'membership_', 'Sök') }}
+                                </button>
                             </div>
                         </div>
                     <Alert
@@ -163,7 +162,7 @@
                 </div>
             </div>
         </div>
-        <button class="uk-button uk-button-primary uk-margin-small-top" @click.prevent="addMembershipToCart()"> <!-- LÄGG I VARUKORG -->
+        <button id="add-to-cart-button" class="uk-button uk-button-primary uk-margin-small-top" @click.prevent="addMembershipToCart()"> <!-- LÄGG I VARUKORG -->
             {{ $getCMSEntry(global_labels, 'membership_', 'Lägg i varukorg') }}
         </button>
     </div>
@@ -222,6 +221,7 @@ export default {
                         _this.message = res.data.Message
                         _this.currentFamilyMember = res.data
                         _this.addMemberAsFamilyMember()
+                        UIkit.scroll('#search-button').scrollTo('#add-to-cart-button')
                     }
                 } catch(err) { console.log(err) }
             })
