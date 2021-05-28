@@ -65,7 +65,7 @@ export default {
   margin-right:-15px;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
-  padding-bottom:15px;
+  padding-bottom:30px;
   padding-right:15px;
 }
 
