@@ -247,12 +247,27 @@ export default {
                         _this.errors = []
                         _this.alertClass = 'uk-alert-success'
                         _this.message = res.data.Message
+                        _this.updateCart()
                     }
-                } catch(err) { console.log(err) }
+                } catch(err) {
+                    console.log(err)
+                }
             })
             .catch(function (error) {
                 _this.isSubmitting = false
-            console.log(error)
+                console.log(error)
+            })
+        },
+        async updateCart(){
+            var _this = this
+            await this.$axios.$get('/webapi/'+this.$i18n.locale+'/cart/Get')
+            .then(res => {
+                _this.$store.commit('basket/add', res)
+                _this.$cookies.set('session', res.SessionId)
+                _this.$axios.setHeader('x-session', res.SessionId)
+            })
+            .catch(function (error) {
+                console.log(error)
             })
         },
     },
