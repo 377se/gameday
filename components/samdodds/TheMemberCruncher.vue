@@ -9,8 +9,8 @@
     </div>
     <div v-else v-editable="blok" class="uk-container">
         <h2>{{currentMembershipObject.Title}}</h2>
-        <div class="uk-grid-small uk-grid-match uk-margin-small-bottom" uk-grid> <!-- MEDLEMSINFO & PRISER -->
-            <div class="uk-width-expand">
+        <div class="uk-grid-small uk-child-width-expand@s uk-grid-match uk-margin-small-bottom" uk-grid> <!-- MEDLEMSINFO & PRISER -->
+            <div>
                 <div class="uk-padding-small account-container"> <!-- INFO -->
                     <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Medlemsinfo') }}</h3>
                     <div class="uk-margin-small-top">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            <div class="uk-width-expand">
+            <div>
                 <div class="uk-padding-small prices-container"> <!-- PRISER -->
                     <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Medlemspriser') }}</h3>
                     <div class="uk-margin-small-top border-top">
