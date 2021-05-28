@@ -36,7 +36,7 @@
                 </div>
             </div>
         </div>
-        <div class="uk-margin-medium-top"> <!-- FAMILJEMEDLEMMAR -->
+        <div class="uk-margin-medium-top uk-width-1-1 uk-width-2-3@m"> <!-- FAMILJEMEDLEMMAR -->
             <div>
                 <h3 class="uk-margin-remove-bottom">{{ $getCMSEntry(global_labels, 'membership_', 'Familjemedlemmar') }}</h3>
                 <p class="uk-margin-remove-top">Lägg till dina familjemedlemmar, så får de ett eget medlemsnummer
@@ -80,7 +80,7 @@
                         :alertClass="alertClass"
                     />
                 </div>
-                <div class=""> <!-- FAMILJE-LISTA -->
+                <div> <!-- FAMILJE-LISTA -->
                     <div class="uk-margin-small-top" v-for="(familyMember, index) in currentMembershipObject.FamilyMembers" :key="index">
                         <div class="uk-flex uk-flex-between uk-flex-middle uk-margin-small-bottom"> <!-- RUBRIK & TA BORT -->
                             <h4 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Familjemedlem') }} {{ index+1 }}</h4>
