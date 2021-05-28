@@ -9,27 +9,31 @@
     </div>
     <div v-else v-editable="blok" class="uk-container">
         <h2>{{currentMembershipObject.Title}}</h2>
-        <div class="uk-flex uk-flex-between uk-margin-small-bottom"> <!-- MEDLEMSINFO & PRISER -->
-            <div class="uk-width-2-5 uk-padding-small account-container"> <!-- INFO -->
-                <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Medlemsinfo') }}</h3>
-                <div class="uk-margin-small-top">
-                    <div v-if="currentMembershipObject.Account.Message" :class="{ 'uk-alert-success': currentMembershipObject.Account.IsActive, 'uk-alert-danger': !currentMembershipObject.Account.IsActive }" class="uk-padding-small uk-margin-small-top uk-margin-small-bottom">{{currentMembershipObject.Account.Message}}</div>
-                    <div>{{ $getCMSEntry(global_labels, 'membership_', 'Medlemsnummer') }}: {{currentMembershipObject.Account.MembershipNumber}}</div>
-                    <div>{{ $getCMSEntry(global_labels, 'membership_', 'Namn') }}: {{currentMembershipObject.Account.FirstName}} {{currentMembershipObject.Account.LastName}}</div>
-                    <div v-if="currentMembershipObject.IsSelectable" class="uk-margin-small-top">
-                        <div><input class="uk-checkbox" type="checkbox" :checked="currentMembershipObject.ExtendMembership">&nbsp;&nbsp;{{ currentMembershipObject.SelectableTitle }}</div>
-                        <div style="line-height:1;"><small>{{ currentMembershipObject.SelectableInformation }}</small></div>
+        <div class="uk-grid-small uk-grid-match uk-margin-small-bottom" uk-grid> <!-- MEDLEMSINFO & PRISER -->
+            <div class="uk-width-expand">
+                <div class="uk-padding-small account-container"> <!-- INFO -->
+                    <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Medlemsinfo') }}</h3>
+                    <div class="uk-margin-small-top">
+                        <div v-if="currentMembershipObject.Account.Message" :class="{ 'uk-alert-success': currentMembershipObject.Account.IsActive, 'uk-alert-danger': !currentMembershipObject.Account.IsActive }" class="uk-padding-small uk-margin-small-top uk-margin-small-bottom">{{currentMembershipObject.Account.Message}}</div>
+                        <div>{{ $getCMSEntry(global_labels, 'membership_', 'Medlemsnummer') }}: {{currentMembershipObject.Account.MembershipNumber}}</div>
+                        <div>{{ $getCMSEntry(global_labels, 'membership_', 'Namn') }}: {{currentMembershipObject.Account.FirstName}} {{currentMembershipObject.Account.LastName}}</div>
+                        <div v-if="currentMembershipObject.IsSelectable" class="uk-margin-small-top">
+                            <div><input class="uk-checkbox" type="checkbox" :checked="currentMembershipObject.ExtendMembership">&nbsp;&nbsp;{{ currentMembershipObject.SelectableTitle }}</div>
+                            <div style="line-height:1;"><small>{{ currentMembershipObject.SelectableInformation }}</small></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="uk-width-2-5 prices-container uk-padding-small"> <!-- PRISER -->
-                <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Medlemspriser') }}</h3>
-                <div class="uk-margin-small-top border-top">
-                    <div v-for="(membership, index) in currentMembershipObject.Pricing.PriceList" :key="index">
-                        <div class="uk-flex uk-flex-between"><div>{{ membership.Name }}</div> <div>{{ membership.Price }} {{ membership.Currency }}</div></div>
+            <div class="uk-width-expand">
+                <div class="uk-padding-small prices-container"> <!-- PRISER -->
+                    <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Medlemspriser') }}</h3>
+                    <div class="uk-margin-small-top border-top">
+                        <div v-for="(membership, index) in currentMembershipObject.Pricing.PriceList" :key="index">
+                            <div class="uk-flex uk-flex-between"><div>{{ membership.Name }}</div> <div>{{ membership.Price }} {{ membership.Currency }}</div></div>
+                        </div>
                     </div>
+                    <div class="uk-margin-small-top uk-text-small">{{ currentMembershipObject.Pricing.Description }}</div>
                 </div>
-                <div class="uk-margin-small-top uk-text-small">{{ currentMembershipObject.Pricing.Description }}</div>
             </div>
         </div>
         <div class="uk-margin-medium-top"> <!-- FAMILJEMEDLEMMAR -->
@@ -39,14 +43,9 @@
                 som används vid anmälan till aktiviteter.</p>
 
                 <div class="uk-margin-small-top uk-margin-medium-bottom"> <!-- SÖK MEDLEM -->
-                    <h4 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Sök befintlig medlem att lägga till som familjemedlem') }}</h4>
-                    <form
-                        v-if="!success"
-                        class="uk-margin-small-top"
-                        method="post"
-                        @submit.prevent="findFamilyMember">
-                        <fieldset class="uk-fieldset uk-flex uk-flex-between uk-width-1-1 uk-width-2-3@m"> <!-- MEDLEMSNUMMER & POSTNR -->
-                            <div class="uk-width-2-5 uk-margin-small-right">
+                    <h4 style="padding-bottom: 5px;" class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Sök befintlig medlem att lägga till som familjemedlem') }}</h4>
+                        <div class="uk-fieldset uk-grid-small uk-child-width-expand@s" uk-grid> <!-- MEDLEMSNUMMER & POSTNR -->
+                            <div>
                                 <div class="uk-form-controls">
                                     <input
                                         v-model="currentFamilyMember.MembershipNumber"
@@ -58,7 +57,7 @@
                                 </div>
                                 <div class="uk-width-1-1 uk-margin-remove" uk-tooltip="title: Men äru hält dömm i hövvää?; pos: bottom-left"><small>{{ $getCMSEntry(global_labels, 'membership_', 'Var hittar jag mitt medlemsnummer?') }}</small></div>
                             </div>
-                            <div class="uk-width-2-5 uk-margin-small-right">
+                            <div>
                                 <div class="uk-form-controls">
                                 <input
                                     v-model="currentFamilyMember.PostalCode"
@@ -69,16 +68,12 @@
                                     required>
                                 </div>
                             </div>
-                            <div class="uk-width-1-5 uk-text-right">
-                                <ButtonSubmit
-                                :is-submitting="isSubmitting"
-                                theme="uk-button-default"
-                                :button-text="$getCMSEntry(global_labels, 'membership_', 'Sök')"
-                                :is-submit="true"
-                                />
+                            <div>
+                            <button class="uk-button uk-button-default" @click.prevent="findFamilyMember()"> <!-- SÖK FAMILJEMEDLEM -->
+                                {{ $getCMSEntry(global_labels, 'membership_', 'Sök') }}
+                            </button>
                             </div>
-                        </fieldset>
-                    </form>
+                        </div>
                     <Alert
                         v-if="errors.length > 0"
                         :errorlist="errors"
@@ -86,10 +81,10 @@
                         :alertClass="alertClass"
                     />
                 </div>
-                <div class="uk-width-1-1 uk-width-2-3@m">
-                    <div class="uk-margin-small-top" v-for="(familyMember, index) in currentMembershipObject.FamilyMembers" :key="index"> <!-- FAMILY-LIST -->
+                <div class=""> <!-- FAMILJE-LISTA -->
+                    <div class="uk-margin-small-top" v-for="(familyMember, index) in currentMembershipObject.FamilyMembers" :key="index">
                         <form method="post">
-                            <div class="uk-flex uk-flex-between uk-flex-middle uk-margin-small-bottom">
+                            <div class="uk-flex uk-flex-between uk-flex-middle uk-margin-small-bottom"> <!-- RUBRIK & TA BORT -->
                                 <h4 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Familjemedlem') }} {{ index+1 }}</h4>
                                 <button
                                     v-if="!familyMember.IsActive"
@@ -100,60 +95,60 @@
                                     {{ $getCMSEntry(global_labels, 'membership_', 'Ta bort familjemedlem') }}
                                 </button>
                             </div>
-                            <fieldset class="uk-fieldset uk-flex uk-flex-between">
-                            <div class="uk-width-1-2 uk-margin-small-right">
-                                <div class="uk-form-controls">
-                                    <div class="uk-inline uk-width-1-1">
-                                        <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: check"></span>
-                                        <input
-                                            v-model="familyMember.FirstName"
-                                            class="uk-input"
-                                            type="text"
-                                            :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in förnamn')"
-                                            name="FirstName"
-                                            required
-                                        >
+                            <fieldset class="uk-fieldset uk-grid-small uk-child-width-expand@s" uk-grid>
+                                <div>
+                                    <div class="uk-form-controls">
+                                        <div class="uk-inline uk-width-1-1">
+                                            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: check"></span>
+                                            <input
+                                                v-model="familyMember.FirstName"
+                                                class="uk-input"
+                                                type="text"
+                                                :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in förnamn')"
+                                                name="FirstName"
+                                                required
+                                            >
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="uk-width-1-2 uk-margin-small-right">
-                                <div class="uk-form-controls">
-                                    <div class="uk-inline uk-width-1-1">
-                                        <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: check"></span>
-                                        <input
-                                            v-model="familyMember.LastName"
-                                            class="uk-input"
-                                            type="text"
-                                            :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in efternamn')"
-                                            name="LastName"
-                                            required>
-                                        </div>
+                                <div>
+                                    <div class="uk-form-controls">
+                                        <div class="uk-inline uk-width-1-1">
+                                            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: check"></span>
+                                            <input
+                                                v-model="familyMember.LastName"
+                                                class="uk-input"
+                                                type="text"
+                                                :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in efternamn')"
+                                                name="LastName"
+                                                required>
+                                            </div>
+                                    </div>
                                 </div>
-                            </div>
                             </fieldset>
-                            <fieldset class="uk-fieldset uk-flex uk-flex-between uk-margin-small-top">
-                            <div class="uk-width-1-2 uk-margin-small-right">
-                                <div class="uk-form-controls">
-                                <input
-                                    v-model="familyMember.Email"
-                                    class="uk-input"
-                                    type="text"
-                                    :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in email')"
-                                    name="Email"
-                                >
+                            <fieldset class="uk-fieldset uk-grid-small uk-child-width-expand@s" uk-grid>
+                                <div>
+                                    <div class="uk-form-controls">
+                                    <input
+                                        v-model="familyMember.Email"
+                                        class="uk-input"
+                                        type="text"
+                                        :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in email')"
+                                        name="Email"
+                                    >
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="uk-width-1-2 uk-margin-small-right">
-                                <div class="uk-form-controls">
-                                <input
-                                    v-model="familyMember.Mobile"
-                                    class="uk-input"
-                                    type="text"
-                                    :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in mobilnummer')"
-                                    name="Mobile"
-                                >
+                                <div>
+                                    <div class="uk-form-controls">
+                                    <input
+                                        v-model="familyMember.Mobile"
+                                        class="uk-input"
+                                        type="text"
+                                        :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in mobilnummer')"
+                                        name="Mobile"
+                                    >
+                                    </div>
                                 </div>
-                            </div>
                             </fieldset>
                         </form>
                     </div>
@@ -168,7 +163,7 @@
                 </div>
             </div>
         </div>
-        <button class="uk-button uk-button-small uk-button-default uk-margin-small-top" @click.prevent="addMembershipToCart()"> <!-- LÄGG I VARUKORG -->
+        <button class="uk-button uk-button-primary uk-margin-small-top" @click.prevent="addMembershipToCart()"> <!-- LÄGG I VARUKORG -->
             {{ $getCMSEntry(global_labels, 'membership_', 'Lägg i varukorg') }}
         </button>
     </div>
