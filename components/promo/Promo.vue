@@ -92,13 +92,13 @@ export default {
     }
   },
   mounted(){
-    this.setSwiperActive()
+    this.blok.swipe ? this.setSwiperActive() : null
   },
   methods:{
     setSwiperActive(){
       setTimeout(() => {
         this.swiperActive = true
-      }, 200);
+      }, 10);
       setTimeout(() => {
         this.swiperActive = false
       }, 3050);
