@@ -186,12 +186,12 @@ export default {
   width: 180px;
   height: 180px;
   @media (min-width: 450px) and (max-width: 999px) {
-    right: 60px;
-    width: 120px;
-    height: 120px;
+    right: 30px;
+    width: 110px;
+    height: 110px;
   }
   @media (max-width: 449px) {
-    right: 40px;
+    right: 20px;
     width: 100px;
     height: 100px;
   }
