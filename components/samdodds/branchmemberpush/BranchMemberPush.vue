@@ -181,7 +181,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  top: 0;
+  top: 1px;
   right: 70px;
   width: 180px;
   height: 180px;
