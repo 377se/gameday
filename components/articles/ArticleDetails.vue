@@ -262,12 +262,14 @@ export default {
   async fetch(){
     //Fetch related articles
     try {
-      const [a] = await Promise.all([
-        this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Article/GetRelatedArticleList?categoryId='+this.article.CategoryId+'&productId='+this.article.ProductId+'&productTypeId='+this.article.ProductTypeId
-        )
-      ]);
-      this.relatedarticles=a.ArticleList
+      if(this.showrelated){
+        const [a] = await Promise.all([
+          this.$axios.$get(
+            '/webapi/'+this.$i18n.locale+'/Article/GetRelatedArticleList?categoryId='+this.article.CategoryId+'&productId='+this.article.ProductId+'&productTypeId='+this.article.ProductTypeId
+          )
+        ]);
+        this.relatedarticles=a.ArticleList
+      }
     } catch (err) {
       console.log('Related articles error')
       console.log(err);
@@ -284,6 +286,11 @@ export default {
     ArticleCardSimple
   },
   props: {
+    showrelated: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
     article: {
       type: Object,
       default: () => ({
