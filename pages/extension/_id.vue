@@ -151,6 +151,23 @@ export default {
       }
     }
   },
+  mounted(){
+    this.$storybridge(() => {
+      const storyblokInstance = new StoryblokBridge()
+
+      storyblokInstance.on(['input', 'published', 'change'], (event) => {
+        if (event.action == 'input') {
+          if (event.story.id === this.story.id) {
+            this.story.content = event.story.content
+          }
+        } else {
+          window.location.reload()
+        }
+      })
+    }, (error) => {
+      console.error(error)
+    })
+  },
   methods:{
     setReadMore(){
       this.readmore=false

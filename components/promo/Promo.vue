@@ -67,7 +67,7 @@
       </transition>
       <transition v-if="blok.swipe" name="swipe">
           <div v-if="swiperActive" class="swipe-logo-container">
-            <img style="width:30%" src="/sites/samdodds/samdodds-logo.png" alt="Samdodds Logo">
+            <img style="width:30%" :src="blok.promo_image?blok.swipe_image:'/sites/samdodds/samdodds-logo.png'" alt="Samdodds Logo">
           </div>
       </transition>
     </a>
