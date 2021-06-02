@@ -93,7 +93,7 @@
                                 {{ $getCMSEntry(global_labels, 'membership_', 'Ta bort familjemedlem') }}
                             </button>
                         </div>
-                        <div class="uk-fieldset uk-grid-small uk-grid uk-child-width-expand@s" uk-grid>
+                        <div class="uk-fieldset uk-grid uk-grid-small uk-grid uk-child-width-expand@s" uk-grid>
                             <div>
                                 <div class="uk-form-controls">
                                     <div class="uk-inline uk-width-1-1">
