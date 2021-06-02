@@ -43,13 +43,13 @@
                 som används vid anmälan till aktiviteter.</p>
                 <div class="uk-margin-small-top uk-margin-medium-bottom"> <!-- SÖK MEDLEM -->
                     <h4 style="padding-bottom: 5px;" class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Sök befintlig medlem att lägga till som familjemedlem') }}</h4>
-                        <div class="uk-grid-small uk-child-width-expand@s" uk-grid> <!-- MEDLEMSNUMMER & POSTNR -->
+                        <div class="uk-grid uk-grid-small uk-child-width-expand@s" uk-grid> <!-- MEDLEMSNUMMER & POSTNR -->
                             <div>
                                 <div class="uk-form-controls">
                                     <input
                                         v-model="currentFamilyMember.MembershipNumber"
                                         class="uk-input"
-                                        type="text"
+                                        type="number"
                                         :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in medlemsnummer')"
                                         name="MembershipNumber"
                                         required>
@@ -61,7 +61,7 @@
                                 <input
                                     v-model="currentFamilyMember.PostalCode"
                                     class="uk-input"
-                                    type="text"
+                                    type="number"
                                     :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in postnummer')"
                                     name="PostalCode"
                                     required>
@@ -93,7 +93,7 @@
                                 {{ $getCMSEntry(global_labels, 'membership_', 'Ta bort familjemedlem') }}
                             </button>
                         </div>
-                        <div class="uk-fieldset uk-grid-small uk-child-width-expand@s" uk-grid>
+                        <div class="uk-fieldset uk-grid-small uk-grid uk-child-width-expand@s" uk-grid>
                             <div>
                                 <div class="uk-form-controls">
                                     <div class="uk-inline uk-width-1-1">
@@ -124,7 +124,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="uk-fieldset uk-grid-small uk-child-width-expand@s" uk-grid>
+                        <div class="uk-fieldset uk-grid uk-grid-small uk-child-width-expand@s" uk-grid>
                             <div>
                                 <div class="uk-form-controls">
                                 <input
