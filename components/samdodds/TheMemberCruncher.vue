@@ -18,7 +18,7 @@
                         <div>{{ $getCMSEntry(global_labels, 'membership_', 'Medlemsnummer') }}: {{currentMembershipObject.Account.MembershipNumber}}</div>
                         <div>{{ $getCMSEntry(global_labels, 'membership_', 'Namn') }}: {{currentMembershipObject.Account.FirstName}} {{currentMembershipObject.Account.LastName}}</div>
                         <div v-if="currentMembershipObject.IsSelectable" class="uk-margin-small-top">
-                            <div><input class="uk-checkbox" type="checkbox" :checked="currentMembershipObject.ExtendMembership">&nbsp;&nbsp;{{ currentMembershipObject.SelectableTitle }}</div>
+                            <div><input class="uk-checkbox" type="checkbox" v-model="currentMembershipObject.ExtendMembership">&nbsp;&nbsp;{{ currentMembershipObject.SelectableTitle }}</div>
                             <div style="line-height:1;"><small>{{ currentMembershipObject.SelectableInformation }}</small></div>
                         </div>
                     </div>
@@ -38,11 +38,11 @@
         </div>
         <div class="uk-margin-medium-top uk-width-1-1 uk-width-2-3@m"> <!-- FAMILJEMEDLEMMAR -->
             <div>
-                <h3 class="uk-margin-remove-bottom">{{ $getCMSEntry(global_labels, 'membership_', 'Familjemedlemmar') }}</h3>
+                <h3 class="uk-margin-remove-bottom">{{ $getCMSEntry(global_labels, 'membership_family_members', 'Familjemedlemmar') }}</h3>
                 <p class="uk-margin-remove-top">Lägg till dina familjemedlemmar, så får de ett eget medlemsnummer
                 som används vid anmälan till aktiviteter.</p>
                 <div class="uk-margin-small-top uk-margin-medium-bottom"> <!-- SÖK MEDLEM -->
-                    <h4 style="padding-bottom: 5px;" class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Sök befintlig medlem att lägga till som familjemedlem') }}</h4>
+                    <h4 style="padding-bottom: 5px;" class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_family_member_search', 'Sök befintlig medlem att lägga till som familjemedlem') }}</h4>
                         <div class="uk-grid uk-grid-small uk-child-width-expand@s" uk-grid> <!-- MEDLEMSNUMMER & POSTNR -->
                             <div>
                                 <div class="uk-form-controls">
@@ -50,11 +50,11 @@
                                         v-model="currentFamilyMember.MembershipNumber"
                                         class="uk-input"
                                         type="number"
-                                        :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in medlemsnummer')"
+                                        :placeholder="$getCMSEntry(global_labels, 'membership_number', 'Skriv in medlemsnummer')"
                                         name="MembershipNumber"
                                         required>
                                 </div>
-                                <div class="uk-width-1-1 uk-margin-remove" uk-tooltip="title: Men äru hält dömm i hövvää?; pos: bottom-left"><small>{{ $getCMSEntry(global_labels, 'membership_', 'Var hittar jag mitt medlemsnummer?') }}</small></div>
+                                <div class="uk-width-1-1 uk-margin-remove" uk-tooltip="title: Men äru hält dömm i hövvää?; pos: bottom-left"><small>{{ $getCMSEntry(global_labels, 'membership_where_to_find_number', 'Var hittar jag mitt medlemsnummer?') }}</small></div>
                             </div>
                             <div>
                                 <div class="uk-form-controls">
@@ -62,7 +62,7 @@
                                     v-model="currentFamilyMember.PostalCode"
                                     class="uk-input"
                                     type="number"
-                                    :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in postnummer')"
+                                    :placeholder="$getCMSEntry(global_labels, 'membership_postal_code', 'Skriv in postnummer')"
                                     name="PostalCode"
                                     required>
                                 </div>
@@ -80,7 +80,8 @@
                         :alertClass="alertClass"
                     />
                 </div>
-                <div> <!-- FAMILJE-LISTA -->
+                <div
+                    class="uk-list uk-list-striped"> <!-- FAMILJE-LISTA -->
                     <div class="uk-margin-small-top" v-for="(familyMember, index) in currentMembershipObject.FamilyMembers" :key="index">
                         <div class="uk-flex uk-flex-between uk-flex-middle uk-margin-small-bottom"> <!-- RUBRIK & TA BORT -->
                             <h4 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Familjemedlem') }} {{ index+1 }}</h4>
@@ -97,12 +98,13 @@
                             <div>
                                 <div class="uk-form-controls">
                                     <div class="uk-inline uk-width-1-1">
+                                        <label class="uk-label">{{ $getCMSEntry(global_labels, 'membership_firstname', 'Skriv in förnamn') }}</label>
                                         <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: check"></span>
                                         <input
                                             v-model="familyMember.FirstName"
                                             class="uk-input"
                                             type="text"
-                                            :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in förnamn')"
+                                            :placeholder="$getCMSEntry(global_labels, 'membership_firstname', 'Skriv in förnamn')"
                                             name="FirstName"
                                             required
                                         >
@@ -112,12 +114,13 @@
                             <div>
                                 <div class="uk-form-controls">
                                     <div class="uk-inline uk-width-1-1">
+                                        <label class="uk-label">{{ $getCMSEntry(global_labels, 'membership_lastname', 'Skriv in efternamn') }}</label>
                                         <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: check"></span>
                                         <input
                                             v-model="familyMember.LastName"
                                             class="uk-input"
                                             type="text"
-                                            :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in efternamn')"
+                                            :placeholder="$getCMSEntry(global_labels, 'membership_lastname', 'Skriv in efternamn')"
                                             name="LastName"
                                             required>
                                         </div>
@@ -127,22 +130,24 @@
                         <div class="uk-fieldset uk-grid uk-grid-small uk-child-width-expand@s" uk-grid>
                             <div>
                                 <div class="uk-form-controls">
+                                <label class="uk-label">{{ $getCMSEntry(global_labels, 'membership_email', 'Skriv in email') }}</label>
                                 <input
                                     v-model="familyMember.Email"
                                     class="uk-input"
                                     type="text"
-                                    :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in email')"
+                                    :placeholder="$getCMSEntry(global_labels, 'membership_email', 'Skriv in email')"
                                     name="Email"
                                 >
                                 </div>
                             </div>
                             <div>
                                 <div class="uk-form-controls">
+                                <label class="uk-label">{{ $getCMSEntry(global_labels, 'membership_mobile', 'Skriv in mobilnummer') }}</label>
                                 <input
                                     v-model="familyMember.Mobile"
                                     class="uk-input"
                                     type="text"
-                                    :placeholder="$getCMSEntry(global_labels, 'membership_', 'Skriv in mobilnummer')"
+                                    :placeholder="$getCMSEntry(global_labels, 'membership_mobile', 'Skriv in mobilnummer')"
                                     name="Mobile"
                                 >
                                 </div>
@@ -151,7 +156,7 @@
                     </div>
                     <div class="uk-margin uk-text-right"> <!-- LÄGG TILL FAMILJEMEDLEM KNAPP -->
                         <button
-                            class="uk-button uk-button-small uk-button-default uk-margin-small-top"
+                            class="uk-button uk-button-small uk-button-secondary uk-margin-small-top"
                             @click.prevent="currentMembershipObject.FamilyMembers.push(emptyFamilyMember)"
                             >
                             {{ $getCMSEntry(global_labels, 'membership_', 'Lägg till familjemedlem') }}
