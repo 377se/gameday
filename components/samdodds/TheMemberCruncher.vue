@@ -9,8 +9,11 @@
     </div>
     <div v-else v-editable="blok" class="uk-container">
         <h2>{{currentMembershipObject.Title}}</h2>
-        <div class="uk-grid uk-grid-small uk-child-width-expand@s uk-grid-match uk-margin-small-bottom" uk-grid> <!-- MEDLEMSINFO & PRISER -->
-            <div>
+        <div
+            class="uk-grid uk-grid-small uk-child-width-expand@s uk-grid-match uk-margin-small-bottom" uk-grid> <!-- MEDLEMSINFO & PRISER -->
+            <div
+                v-if="currentMembershipObject.Account"
+                >
                 <div class="uk-padding-small account-container"> <!-- INFO -->
                     <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Medlemsinfo') }}</h3>
                     <div class="uk-margin-small-top">
@@ -98,7 +101,7 @@
                             <div>
                                 <div class="uk-form-controls">
                                     <div class="uk-inline uk-width-1-1">
-                                        <label class="uk-label">{{ $getCMSEntry(global_labels, 'membership_firstname', 'Skriv in förnamn') }}</label>
+                                        <label class="uk-label">{{ $getCMSEntry(global_labels, 'membership_firstname', 'Skriv in förnamn') }}<span class="form-required">*</span></label>
                                         <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: check"></span>
                                         <input
                                             v-model="familyMember.FirstName"
@@ -114,7 +117,7 @@
                             <div>
                                 <div class="uk-form-controls">
                                     <div class="uk-inline uk-width-1-1">
-                                        <label class="uk-label">{{ $getCMSEntry(global_labels, 'membership_lastname', 'Skriv in efternamn') }}</label>
+                                        <label class="uk-label">{{ $getCMSEntry(global_labels, 'membership_lastname', 'Skriv in efternamn') }}<span class="form-required">*</span></label>
                                         <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: check"></span>
                                         <input
                                             v-model="familyMember.LastName"
@@ -165,7 +168,7 @@
                 </div>
             </div>
         </div>
-        <button id="add-to-cart-button" class="uk-button uk-button-primary uk-margin-small-top" @click.prevent="addMembershipToCart()"> <!-- LÄGG I VARUKORG -->
+        <button id="add-to-cart-button" class="uk-button uk-button-primary uk-margin-small-top uk-align-right" @click.prevent="addMembershipToCart()"> <!-- LÄGG I VARUKORG -->
             {{ $getCMSEntry(global_labels, 'membership_', 'Lägg i varukorg') }}
         </button>
     </div>
