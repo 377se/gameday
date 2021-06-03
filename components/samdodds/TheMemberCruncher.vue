@@ -27,6 +27,15 @@
                     </div>
                 </div>
             </div>
+            <div
+                v-else>
+                <div class="uk-padding-small account-container"> <!-- INFO -->
+                    <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_become_member_how', 'Hur gör jag?') }}</h3>
+                    <div class="uk-margin-small-top">
+                        
+                    </div>
+                </div>
+            </div>
             <div>
                 <div class="uk-padding-small prices-container"> <!-- PRISER -->
                     <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Medlemspriser') }}</h3>
@@ -42,8 +51,7 @@
         <div class="uk-margin-medium-top uk-width-1-1 uk-width-2-3@m"> <!-- FAMILJEMEDLEMMAR -->
             <div>
                 <h3 class="uk-margin-remove-bottom">{{ $getCMSEntry(global_labels, 'membership_family_members', 'Familjemedlemmar') }}</h3>
-                <p class="uk-margin-remove-top">Lägg till dina familjemedlemmar, så får de ett eget medlemsnummer
-                som används vid anmälan till aktiviteter.</p>
+                <p class="uk-margin-remove-top">Här kan du lägga till dina familjemedlemmar. En familjemedlem är skriven på samma adress som huvudkontot. Alla familjemedlemmar får ett eget konto hos LFC.se</p>
                 <div class="uk-margin-small-top uk-margin-medium-bottom"> <!-- SÖK MEDLEM -->
                     <h4 style="padding-bottom: 5px;" class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_family_member_search', 'Sök befintlig medlem att lägga till som familjemedlem') }}</h4>
                         <div class="uk-grid uk-grid-small uk-child-width-expand@s" uk-grid> <!-- MEDLEMSNUMMER & POSTNR -->
