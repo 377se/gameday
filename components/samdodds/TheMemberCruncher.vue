@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                             <div>
-                                <button id="search-button" class="uk-button uk-button-default uk-align-right" @click.prevent="findFamilyMember()"> <!-- SÖK FAMILJEMEDLEM -->
+                                <button id="search-button" class="uk-button uk-button-secondary uk-align-right" @click.prevent="findFamilyMember()"> <!-- SÖK FAMILJEMEDLEM -->
                                     {{ $getCMSEntry(global_labels, 'membership_', 'Sök') }}
                                 </button>
                             </div>
@@ -293,7 +293,12 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+    .uk-label{
+        background:transparent;
+        text-transform:none;
+        color: inherit;
+    }
     .account-container {
         background-color: #eee;
     }
