@@ -32,7 +32,9 @@
                 <div class="uk-padding-small account-container"> <!-- INFO -->
                     <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_become_member_how', 'Hur gör jag?') }}</h3>
                     <div class="uk-margin-small-top">
-                        
+                        Vill du endast köpa ett medlemsskap klickar du bara på "Lägg i varukorgen".
+
+Har du familjemedlemmar som du också vill anmäla bla bla babalbalbla
                     </div>
                 </div>
             </div>
