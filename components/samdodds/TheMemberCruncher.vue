@@ -67,7 +67,7 @@ Har du familjemedlemmar som du också vill anmäla bla bla babalbalbla
                                         name="MembershipNumber"
                                         required>
                                 </div>
-                                <div class="uk-width-1-1 uk-margin-remove" uk-tooltip="title: Men äru hält dömm i hövvää?; pos: bottom-left"><small>{{ $getCMSEntry(global_labels, 'membership_where_to_find_number', 'Var hittar jag mitt medlemsnummer?') }}</small></div>
+                                <div class="uk-width-1-1 uk-margin-remove" uk-tooltip="title: Modal? Är det supermycket text som ska visas?; pos: bottom-left"><small>{{ $getCMSEntry(global_labels, 'membership_where_to_find_number', 'Var hittar jag mitt medlemsnummer?') }}</small></div>
                             </div>
                             <div>
                                 <div class="uk-form-controls">
