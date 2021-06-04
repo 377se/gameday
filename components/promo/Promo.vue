@@ -63,7 +63,7 @@
           <div v-if="swiperActive" class="white-back"></div>
       </transition>
       <transition v-if="blok.swipe" name="swipe">
-          <div v-if="swiperActive" class="swiper"></div>
+          <div v-if="swiperActive" class="swiper" :style="swiperStyles"></div>
       </transition>
       <transition v-if="blok.swipe" name="swipe">
           <div v-if="swiperActive" class="swipe-logo-container">
@@ -89,6 +89,9 @@ export default {
   data(){
     return {
       swiperActive: false,
+      swiperStyles:{
+                backgroundColor: blok.swipe_background_color,
+      },
     }
   },
   mounted(){
@@ -142,7 +145,7 @@ export default {
   left:0px;
   width:150%;
   height:100%;
-  background-color:#A91C30;
+  // background-color:#A91C30;
   opacity:1;
   clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
 }
