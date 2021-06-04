@@ -112,7 +112,6 @@ Har du familjemedlemmar som du också vill anmäla bla bla babalbalbla
                                 <div class="uk-form-controls">
                                     <div class="uk-inline uk-width-1-1">
                                         <label class="uk-label">{{ $getCMSEntry(global_labels, 'membership_firstname', 'Skriv in förnamn') }}<span class="form-required">*</span></label>
-                                        <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: check"></span>
                                         <input
                                             v-model="familyMember.FirstName"
                                             class="uk-input"
@@ -128,7 +127,6 @@ Har du familjemedlemmar som du också vill anmäla bla bla babalbalbla
                                 <div class="uk-form-controls">
                                     <div class="uk-inline uk-width-1-1">
                                         <label class="uk-label">{{ $getCMSEntry(global_labels, 'membership_lastname', 'Skriv in efternamn') }}<span class="form-required">*</span></label>
-                                        <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: check"></span>
                                         <input
                                             v-model="familyMember.LastName"
                                             class="uk-input"
@@ -167,6 +165,7 @@ Har du familjemedlemmar som du också vill anmäla bla bla babalbalbla
                             </div>
                         </div>
                     </div>
+                </div>
                     <div class="uk-margin uk-text-right"> <!-- LÄGG TILL FAMILJEMEDLEM KNAPP -->
                         <button
                             class="uk-button uk-button-small uk-button-secondary uk-margin-small-top"
@@ -175,7 +174,6 @@ Har du familjemedlemmar som du också vill anmäla bla bla babalbalbla
                             {{ $getCMSEntry(global_labels, 'membership_', 'Lägg till familjemedlem') }}
                         </button>
                     </div>
-                </div>
             </div>
         </div>
         <button id="add-to-cart-button" class="uk-button uk-button-primary uk-margin-small-top uk-align-right" @click.prevent="addMembershipToCart()"> <!-- LÄGG I VARUKORG -->
