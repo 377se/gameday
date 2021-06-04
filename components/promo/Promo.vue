@@ -90,7 +90,7 @@ export default {
     return {
       swiperActive: false,
       swiperStyles:{
-                backgroundColor: blok.swipe_background_color,
+                backgroundColor: this.blok.swipe_background_color,
       },
     }
   },
