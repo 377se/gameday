@@ -38,10 +38,12 @@ Har du familjemedlemmar som du också vill anmäla bla bla babalbalbla
                     </div>
                 </div>
             </div>
-            <div>
+            <div
+                v-if="currentMembershipObject.Pricing">
                 <div class="uk-padding-small prices-container"> <!-- PRISER -->
                     <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Medlemspriser') }}</h3>
-                    <div class="uk-margin-small-top border-top">
+                    <div 
+                        class="uk-margin-small-top border-top">
                         <div v-for="(membership, index) in currentMembershipObject.Pricing.PriceList" :key="index">
                             <div class="uk-flex uk-flex-between"><div>{{ membership.Name }}</div> <div>{{ membership.Price }} {{ membership.Currency }}</div></div>
                         </div>
