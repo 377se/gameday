@@ -8,6 +8,22 @@
         </div>
     </div>
     <div v-else v-editable="blok" class="uk-container">
+        <div
+            class="uk-width-1-1 uk-flex uk-middle uk-padding-small"
+            style="background:#fff;"
+            uk-sticky="offset:117">
+            <div
+                class="uk-width-expand uk-text-small"
+                >Lägg medlemskap i varukorgen, de familjemedlemmar du lagt till nedan följer automatiskt med. </div>
+            <button 
+                id="add-to-cart-button" 
+                class="uk-button uk-button-primary uk-align-right uk-margin-bottom-remove" 
+                @click.prevent="addMembershipToCart()"
+                >
+                <!-- LÄGG I VARUKORG -->
+                {{ $getCMSEntry(global_labels, 'membership_', 'Lägg i varukorg') }}
+            </button>
+        </div>
         <h2>{{currentMembershipObject.Title}}</h2>
         <div
             class="uk-grid uk-grid-small uk-child-width-expand@s uk-grid-match uk-margin-small-bottom" uk-grid> <!-- MEDLEMSINFO & PRISER -->
@@ -69,7 +85,9 @@ Har du familjemedlemmar som du också vill anmäla bla bla babalbalbla
                                         name="MembershipNumber"
                                         required>
                                 </div>
-                                <div class="uk-width-1-1 uk-margin-remove" uk-tooltip="title: Modal? Är det supermycket text som ska visas?; pos: bottom-left"><small>{{ $getCMSEntry(global_labels, 'membership_where_to_find_number', 'Var hittar jag mitt medlemsnummer?') }}</small></div>
+                                <div class="uk-width-1-1 uk-margin-remove">
+                                    <small><a href="javascript:void()" :onclick="'UIkit.modal.alert(\''+$getCMSEntry(global_labels, 'membership_where_to_find_number', 'Du hittar ditt medlemsnummer...\'')+')'">{{ $getCMSEntry(global_labels, 'membership_where_to_find_number_label', 'Var hittar jag mitt medlemsnummer?') }}</a></small>
+                                </div>
                             </div>
                             <div>
                                 <div class="uk-form-controls">
@@ -178,9 +196,6 @@ Har du familjemedlemmar som du också vill anmäla bla bla babalbalbla
                     </div>
             </div>
         </div>
-        <button id="add-to-cart-button" class="uk-button uk-button-primary uk-margin-small-top uk-align-right" @click.prevent="addMembershipToCart()"> <!-- LÄGG I VARUKORG -->
-            {{ $getCMSEntry(global_labels, 'membership_', 'Lägg i varukorg') }}
-        </button>
     </div>
 </template>
 
