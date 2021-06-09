@@ -15,6 +15,7 @@
             <div
                 class="uk-width-expand uk-text-small"
                 >
+                <h4>Detta lägger du i varukorgen</h4>
                 <div v-if="currentMembershipObject.IsSelectable">
                     <div><input class="uk-checkbox" type="checkbox" v-model="currentMembershipObject.ExtendMembership">&nbsp;&nbsp;{{ currentMembershipObject.SelectableTitle }}</div>
                     <div style="line-height:1;"><small>{{ currentMembershipObject.SelectableInformation }}</small></div>
