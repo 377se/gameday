@@ -255,7 +255,7 @@
                               <button
                                 id="buy-button"
                                 style="font-size:0.75rem; white-space: nowrap;"
-                                class="uk-width-3-4 ext-button"
+                                class="uk-width-3-4 ext-button uk-button-primary"
                                 @click="addToCartFromExtension(extension)"
                               >{{ $getCMSEntry(global_labels,'article_details_add_to_cart_ext', 'Köp') }}</button>
                           </div>
@@ -442,7 +442,7 @@ export default {
 .ext-button {
   margin-top: 5px;
   height: 30px;
-  background-color: #A91C30;
+  // background-color: #A91C30;
   border: 0px;
   border-radius: 15px;
   color: white;
