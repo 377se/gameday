@@ -104,7 +104,7 @@
                                         required>
                                 </div>
                                 <div class="uk-width-1-1 uk-margin-remove">
-                                    <small><a href="javascript:void()" :onclick="'UIkit.modal.alert(\''+$getCMSEntry(global_labels, 'membership_where_to_find_number', 'Du hittar ditt medlemsnummer...\'')+')'">{{ $getCMSEntry(global_labels, 'membership_where_to_find_number_label', 'Var hittar jag mitt medlemsnummer?') }}</a></small>
+                                    <small><a href="javascript:void()" :onclick="'UIkit.modal.alert(\''+$getCMSEntry(global_labels, 'membership_where_to_find_number', 'Du hittar ditt medlemsnummer...\'')+')'">{{ $getCMSEntry(global_labels, 'membership_where_to_find_number_label', 'Var hittar jag medlemsnumret?') }}</a></small>
                                 </div>
                             </div>
                             <div>
