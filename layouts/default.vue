@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- <ShopTopPromo v-if="(siteId==6 && siteLang=='sv') || (siteId==2 && siteLang=='sv') || (siteId==7 && siteLang=='sv')"/> -->
     <TheRollingText />
     <TheHeader/>
     <nuxt keep-alive/>
@@ -17,6 +18,7 @@
 import {mapGetters} from 'vuex'
 import OffscreenBasket from "@/components/basket/TheBasket";
 import TheRollingText from "@/components/TheRollingText";
+import ShopTopPromo from "@/components/ShopTopPromo";
 
 export default {
   head () {
@@ -62,10 +64,17 @@ export default {
   components: {
     OffscreenBasket,
     TheRollingText,
+    ShopTopPromo,
   },
   computed: {
     ...mapGetters({
       global_labels:'labels'})
+  },
+  data() {
+    return {
+      siteId: process.env.SITE_ID,
+      siteLang: process.env.ISO_LANG
+    }
   },
   mounted(){
     /*if(localStorage.session!=undefined){
