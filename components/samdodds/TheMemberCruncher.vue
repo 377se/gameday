@@ -14,15 +14,29 @@
             uk-sticky="offset:117">
             <div
                 class="uk-width-expand uk-text-small"
-                >Lägg medlemskap i varukorgen, de familjemedlemmar du lagt till nedan följer automatiskt med. </div>
-            <button 
-                id="add-to-cart-button" 
-                class="uk-button uk-button-primary uk-align-right uk-margin-bottom-remove" 
-                @click.prevent="addMembershipToCart()"
                 >
-                <!-- LÄGG I VARUKORG -->
-                {{ $getCMSEntry(global_labels, 'membership_', 'Lägg i varukorg') }}
-            </button>
+                <div v-if="currentMembershipObject.IsSelectable">
+                    <div><input class="uk-checkbox" type="checkbox" v-model="currentMembershipObject.ExtendMembership">&nbsp;&nbsp;{{ currentMembershipObject.SelectableTitle }}</div>
+                    <div style="line-height:1;"><small>{{ currentMembershipObject.SelectableInformation }}</small></div>
+                </div>
+                <div
+                    v-else>
+                    <strong>1</strong> Medlemsskap 21/22 (299kr)
+                </div>
+                <div>
+                    <strong v-if="currentMembershipObject.FamilyMembers!=null">{{ currentMembershipObject.FamilyMembers.length }}</strong><strong v-else>0</strong> Familjemedlemmar (99kr/st) <a href="#familymembers">Lägg till fler</a>
+                </div>
+            </div>
+            <div>
+                <button 
+                    id="add-to-cart-button" 
+                    class="uk-button uk-button-primary uk-align-right uk-margin-remove-bottom" 
+                    @click.prevent="addMembershipToCart()"
+                    >
+                    <!-- LÄGG I VARUKORG -->
+                    {{ $getCMSEntry(global_labels, 'membership_', 'Lägg i varukorgen') }}
+                </button><br>
+            </div>
         </div>
         <h2>{{currentMembershipObject.Title}}</h2>
         <div
@@ -36,7 +50,7 @@
                         <div v-if="currentMembershipObject.Account.Message" :class="{ 'uk-alert-success': currentMembershipObject.Account.IsActive, 'uk-alert-danger': !currentMembershipObject.Account.IsActive }" class="uk-padding-small uk-margin-small-top uk-margin-small-bottom">{{currentMembershipObject.Account.Message}}</div>
                         <div>{{ $getCMSEntry(global_labels, 'membership_', 'Medlemsnummer') }}: {{currentMembershipObject.Account.MembershipNumber}}</div>
                         <div>{{ $getCMSEntry(global_labels, 'membership_', 'Namn') }}: {{currentMembershipObject.Account.FirstName}} {{currentMembershipObject.Account.LastName}}</div>
-                        <div v-if="currentMembershipObject.IsSelectable" class="uk-margin-small-top">
+                        <div v-if="false && currentMembershipObject.IsSelectable" class="uk-margin-small-top">
                             <div><input class="uk-checkbox" type="checkbox" v-model="currentMembershipObject.ExtendMembership">&nbsp;&nbsp;{{ currentMembershipObject.SelectableTitle }}</div>
                             <div style="line-height:1;"><small>{{ currentMembershipObject.SelectableInformation }}</small></div>
                         </div>
@@ -49,8 +63,8 @@
                     <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_become_member_how', 'Hur gör jag?') }}</h3>
                     <div class="uk-margin-small-top">
                         Vill du endast köpa ett medlemsskap klickar du bara på "Lägg i varukorgen".
-
-Har du familjemedlemmar som du också vill anmäla bla bla babalbalbla
+                        <br>
+                        Har du familjemedlemmar som du också vill anmäla då lägger du till dessa i formuläret nedan innan du lägger i varukorgen.
                     </div>
                 </div>
             </div>
@@ -68,9 +82,13 @@ Har du familjemedlemmar som du också vill anmäla bla bla babalbalbla
                 </div>
             </div>
         </div>
-        <div class="uk-margin-medium-top uk-width-1-1 uk-width-2-3@m"> <!-- FAMILJEMEDLEMMAR -->
+        <div 
+            id="familymembers"
+            class="uk-margin-medium-top uk-width-1-1 uk-width-2-3@m"
+            uk-scroll="offset:100"> <!-- FAMILJEMEDLEMMAR -->
             <div>
-                <h3 class="uk-margin-remove-bottom">{{ $getCMSEntry(global_labels, 'membership_family_members', 'Familjemedlemmar') }}</h3>
+                <h3 
+                    class="uk-margin-remove-bottom">{{ $getCMSEntry(global_labels, 'membership_family_members', 'Familjemedlemmar') }}</h3>
                 <p class="uk-margin-remove-top">Här kan du lägga till dina familjemedlemmar. En familjemedlem är skriven på samma adress som huvudkontot. Alla familjemedlemmar får ett eget konto hos LFC.se</p>
                 <div class="uk-margin-small-top uk-margin-medium-bottom"> <!-- SÖK MEDLEM -->
                     <h4 style="padding-bottom: 5px;" class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_family_member_search', 'Sök befintlig medlem att lägga till som familjemedlem') }}</h4>
