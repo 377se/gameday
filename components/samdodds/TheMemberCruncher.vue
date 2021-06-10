@@ -8,7 +8,7 @@
         </div>
     </div>
     <div v-else v-editable="blok" class="uk-container">
-        <div style="background:#fff; padding-top: 10px;" uk-sticky="offset:117">
+        <div style="background:#fff; padding-top: 10px;">
             <h2>{{currentMembershipObject.Title}}</h2>
             <div class="uk-grid uk-grid-small uk-child-width-expand@s uk-grid-match uk-margin-small-bottom" uk-grid>
             <!-- MEDLEMSINFO & PRISER -->
@@ -54,10 +54,12 @@
             </div>
         </div>
         <!-- LÄGG I VARUKORGEN - SUMMERING OCH INFO -->
-        <div class="uk-width-1-1 uk-flex uk-middle">
+        <div 
+            class="uk-width-1-1 uk-flex uk-middle uk-padding-small"
+            style="background:#fff;"
+            uk-sticky="offset:117">
             <div
                 class="uk-width-expand uk-text-small"
-                style="padding-bottom: 10px;"
                 >
                 <h4>Detta lägger du i varukorgen</h4>
                 <div v-if="currentMembershipObject.IsSelectable">
@@ -68,7 +70,7 @@
                     <strong>1</strong> Medlemsskap 21/22
                 </div>
                 <div>
-                    <strong v-if="currentMembershipObject.FamilyMembers!=null">{{ currentMembershipObject.FamilyMembers.length }}</strong><strong v-else>0</strong> Familjemedlemmar <a href="#familymembers">Lägg till fler</a>
+                    <strong v-if="currentMembershipObject.FamilyMembers!=null">{{ currentMembershipObject.FamilyMembers.length }}</strong><strong v-else>0</strong> Familjemedlemmar <a href="#familymembers" uk-scroll="offset:120">Lägg till fler</a>
                 </div>
             </div>
             <div>
