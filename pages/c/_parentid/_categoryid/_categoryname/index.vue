@@ -133,6 +133,9 @@ export default {
       this.story=sb.data.stories.length>0?sb.data.stories[0]:{ content: {} }
       this.metadata = metadata
     } catch (err) {
+      try{
+      this.story=sb.data.stories.length>0?sb.data.stories[0]:{ content: {} }
+      }catch(e){}
       console.log('_team error')
       console.log(err);
       console.log(err.request);
