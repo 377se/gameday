@@ -8,45 +8,44 @@
         </div>
     </div>
     <div v-else v-editable="blok" class="uk-container">
-        <div uk-sticky="offset:117" style="background:#fff; padding-top: 10px;">
-            <h2>{{currentMembershipObject.Title}}</h2>
+        <div
+            class="uk-width-1-1 uk-flex uk-middle uk-padding-small"
+            style="background:#fff;"
+            uk-sticky="offset:117">
             <div
-                class="uk-width-1-1 uk-flex uk-middle"
-                style="padding-bottom: 30px;">
+                class="uk-width-expand uk-text-small"
+                >
+                <h4>Detta lägger du i varukorgen</h4>
+                <div v-if="currentMembershipObject.IsSelectable">
+                    <div><input class="uk-checkbox" type="checkbox" v-model="currentMembershipObject.ExtendMembership">&nbsp;&nbsp;{{ currentMembershipObject.SelectableTitle }}</div>
+                    <div style="line-height:1;"><small>{{ currentMembershipObject.SelectableInformation }}</small></div>
+                </div>
                 <div
-                    class="uk-width-expand uk-text-small"
-                    >
-                    <h4>Detta lägger du i varukorgen</h4>
-                    <div v-if="currentMembershipObject.IsSelectable">
-                        <div><input class="uk-checkbox" type="checkbox" v-model="currentMembershipObject.ExtendMembership">&nbsp;&nbsp;{{ currentMembershipObject.SelectableTitle }}</div>
-                        <div style="line-height:1;"><small>{{ currentMembershipObject.SelectableInformation }}</small></div>
-                    </div>
-                    <div
-                        v-else>
-                        <strong>1</strong> Medlemsskap 21/22 (299kr)
-                    </div>
-                    <div>
-                        <strong v-if="currentMembershipObject.FamilyMembers!=null">{{ currentMembershipObject.FamilyMembers.length }}</strong><strong v-else>0</strong> Familjemedlemmar (99kr/st) <a href="#familymembers">Lägg till fler</a>
-                    </div>
+                    v-else>
+                    <strong>1</strong> Medlemsskap 21/22 (299kr)
                 </div>
                 <div>
-                    <button
-                        id="add-to-cart-button"
-                        class="uk-button uk-button-primary uk-align-right uk-margin-remove-bottom"
-                        @click.prevent="addMembershipToCart()"
-                        >
-                        <!-- LÄGG I VARUKORG -->
-                        {{ $getCMSEntry(global_labels, 'membership_', 'Lägg i varukorgen') }}
-                    </button><br>
+                    <strong v-if="currentMembershipObject.FamilyMembers!=null">{{ currentMembershipObject.FamilyMembers.length }}</strong><strong v-else>0</strong> Familjemedlemmar (99kr/st) <a href="#familymembers">Lägg till fler</a>
                 </div>
             </div>
+            <div>
+                <button 
+                    id="add-to-cart-button" 
+                    class="uk-button uk-button-primary uk-align-right uk-margin-remove-bottom" 
+                    @click.prevent="addMembershipToCart()"
+                    >
+                    <!-- LÄGG I VARUKORG -->
+                    {{ $getCMSEntry(global_labels, 'membership_', 'Lägg i varukorgen') }}
+                </button><br>
+            </div>
         </div>
+        <h2>{{currentMembershipObject.Title}}</h2>
         <div
-            class="uk-grid uk-grid-collapse uk-child-width-expand@s uk-grid-match uk-margin-small-bottom" uk-grid> <!-- MEDLEMSINFO & PRISER -->
+            class="uk-grid uk-grid-small uk-child-width-expand@s uk-grid-match uk-margin-small-bottom" uk-grid> <!-- MEDLEMSINFO & PRISER -->
             <div
                 v-if="currentMembershipObject.Account"
                 >
-                <div class="account-container uk-padding-remove"> <!-- INFO -->
+                <div class="uk-padding-small account-container"> <!-- INFO -->
                     <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Medlemsinfo') }}</h3>
                     <div class="uk-margin-small-top">
                         <div v-if="currentMembershipObject.Account.Message" :class="{ 'uk-alert-success': currentMembershipObject.Account.IsActive, 'uk-alert-danger': !currentMembershipObject.Account.IsActive }" class="uk-padding-small uk-margin-small-top uk-margin-small-bottom">{{currentMembershipObject.Account.Message}}</div>
@@ -281,7 +280,7 @@ export default {
             })
         },
         addMemberAsFamilyMember() {
-            this.currentMembershipObject.FamilyMembers.push(this.currentFamilyMember)
+            this.emptyMembershipObject.FamilyMembers.push(this.currentFamilyMember)
         },
         async addMembershipToCart() {
             var _this = this;
@@ -347,7 +346,7 @@ export default {
         color: inherit;
     }
     .account-container {
-        background-color: #fff;
+        background-color: #eee;
     }
     .prices-container {
         background-color: #eee;
