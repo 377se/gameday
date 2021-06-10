@@ -22,10 +22,10 @@
                 </div>
                 <div
                     v-else>
-                    <strong>1</strong> Medlemsskap 21/22 (299kr)
+                    <strong>1</strong> Medlemsskap 21/22
                 </div>
                 <div>
-                    <strong v-if="currentMembershipObject.FamilyMembers!=null">{{ currentMembershipObject.FamilyMembers.length }}</strong><strong v-else>0</strong> Familjemedlemmar (99kr/st) <a href="#familymembers">Lägg till fler</a>
+                    <strong v-if="currentMembershipObject.FamilyMembers!=null">{{ currentMembershipObject.FamilyMembers.length }}</strong><strong v-else>0</strong> Familjemedlemmar <a href="#familymembers">Lägg till fler</a>
                 </div>
             </div>
             <div>
