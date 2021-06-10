@@ -299,7 +299,8 @@ export default {
                         _this.alertClass = 'uk-alert-success'
                         _this.message = res.data.Message
                         _this.updateCart()
-                        _this.$router.push(_this.localePath('/extension/14885?cartid='+res.data.CartId))
+                        if(res.data.CartId>0)
+                            _this.$router.push(_this.localePath('/extension/14885?cartid='+res.data.CartId))
                     }
                 } catch(err) {
                     console.log(err)
