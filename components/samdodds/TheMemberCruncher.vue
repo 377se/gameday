@@ -10,43 +10,11 @@
     <div v-else v-editable="blok" class="uk-container">
         <div style="background:#fff; padding-top: 10px;" uk-sticky="offset:117">
             <h2>{{currentMembershipObject.Title}}</h2>
-            <div
-                class="uk-width-1-1 uk-flex uk-middle uk-padding-small"
-                >
-                <div
-                    class="uk-width-expand uk-text-small"
-                    >
-                    <h4>Detta lägger du i varukorgen</h4>
-                    <div v-if="currentMembershipObject.IsSelectable">
-                        <div><input class="uk-checkbox" type="checkbox" v-model="currentMembershipObject.ExtendMembership">&nbsp;&nbsp;{{ currentMembershipObject.SelectableTitle }}</div>
-                        <div style="line-height:1;"><small>{{ currentMembershipObject.SelectableInformation }}</small></div>
-                    </div>
-                    <div
-                        v-else>
-                        <strong>1</strong> Medlemsskap 21/22 (299kr)
-                    </div>
-                    <div>
-                        <strong v-if="currentMembershipObject.FamilyMembers!=null">{{ currentMembershipObject.FamilyMembers.length }}</strong><strong v-else>0</strong> Familjemedlemmar (99kr/st) <a href="#familymembers">Lägg till fler</a>
-                    </div>
-                </div>
-                <div>
-                    <button
-                        id="add-to-cart-button"
-                        class="uk-button uk-button-primary uk-align-right uk-margin-remove-bottom"
-                        @click.prevent="addMembershipToCart()"
-                        >
-                        <!-- LÄGG I VARUKORG -->
-                        {{ $getCMSEntry(global_labels, 'membership_', 'Lägg i varukorgen') }}
-                    </button><br>
-                </div>
-            </div>
-        </div>
-        <div
-            class="uk-grid uk-grid-small uk-child-width-expand@s uk-grid-match uk-margin-small-bottom" uk-grid> <!-- MEDLEMSINFO & PRISER -->
-            <div
-                v-if="currentMembershipObject.Account"
-                >
-                <div class="uk-padding-small account-container"> <!-- INFO -->
+            <div class="uk-grid uk-grid-small uk-child-width-expand@s uk-grid-match uk-margin-small-bottom" uk-grid>
+            <!-- MEDLEMSINFO & PRISER -->
+            <!-- INFO - KONTO-->
+            <div v-if="currentMembershipObject.Account">
+                <div class="uk-padding-small account-container">
                     <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Medlemsinfo') }}</h3>
                     <div class="uk-margin-small-top">
                         <div v-if="currentMembershipObject.Account.Message" :class="{ 'uk-alert-success': currentMembershipObject.Account.IsActive, 'uk-alert-danger': !currentMembershipObject.Account.IsActive }" class="uk-padding-small uk-margin-small-top uk-margin-small-bottom">{{currentMembershipObject.Account.Message}}</div>
@@ -59,9 +27,9 @@
                     </div>
                 </div>
             </div>
-            <div
-                v-else>
-                <div class="uk-padding-small account-container"> <!-- INFO -->
+            <!-- INFO - EJ KONTO-->
+            <div v-else>
+                <div class="uk-padding-small account-container">
                     <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_become_member_how', 'Hur gör jag?') }}</h3>
                     <div class="uk-margin-small-top">
                         Vill du endast köpa ett medlemsskap klickar du bara på "Lägg i varukorgen".
@@ -70,11 +38,12 @@
                     </div>
                 </div>
             </div>
+            <!-- PRISER -->
             <div
                 v-if="currentMembershipObject.Pricing">
-                <div class="uk-padding-small prices-container"> <!-- PRISER -->
+                <div class="uk-padding-small prices-container">
                     <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Medlemspriser') }}</h3>
-                    <div 
+                    <div
                         class="uk-margin-small-top border-top">
                         <div v-for="(membership, index) in currentMembershipObject.Pricing.PriceList" :key="index">
                             <div class="uk-flex uk-flex-between"><div>{{ membership.Name }}</div> <div>{{ membership.Price }} {{ membership.Currency }}</div></div>
@@ -84,16 +53,48 @@
                 </div>
             </div>
         </div>
-        <div 
-            id="familymembers"
-            class="uk-margin-medium-top uk-width-1-1 uk-width-2-3@m"> <!-- FAMILJEMEDLEMMAR -->
+        <!-- LÄGG I VARUKORGEN - SUMMERING OCH INFO -->
+        <div class="uk-width-1-1 uk-flex uk-middle">
+            <div
+                class="uk-width-expand uk-text-small"
+                style="padding-bottom: 10px;"
+                >
+                <h4>Detta lägger du i varukorgen</h4>
+                <div v-if="currentMembershipObject.IsSelectable">
+                    <div><input class="uk-checkbox" type="checkbox" v-model="currentMembershipObject.ExtendMembership">&nbsp;&nbsp;{{ currentMembershipObject.SelectableTitle }}</div>
+                    <div style="line-height:1;"><small>{{ currentMembershipObject.SelectableInformation }}</small></div>
+                </div>
+                <div
+                    v-else>
+                    <strong>1</strong> Medlemsskap 21/22 (299kr)
+                </div>
+                <div>
+                    <strong v-if="currentMembershipObject.FamilyMembers!=null">{{ currentMembershipObject.FamilyMembers.length }}</strong><strong v-else>0</strong> Familjemedlemmar (99kr/st) <a href="#familymembers">Lägg till fler</a>
+                </div>
+            </div>
             <div>
-                <h3 
+                <button
+                    id="add-to-cart-button"
+                    class="uk-button uk-button-primary uk-align-right uk-margin-remove-bottom"
+                    @click.prevent="addMembershipToCart()"
+                    >
+                    <!-- LÄGG I VARUKORG -->
+                    {{ $getCMSEntry(global_labels, 'membership_', 'Lägg i varukorgen') }}
+                </button><br>
+            </div>
+        </div>
+        </div>
+        <!-- FAMILJEMEDLEMMAR -->
+        <div id="familymembers" class="uk-margin-medium-top uk-width-1-1 uk-width-2-3@m">
+            <div>
+                <h3
                     class="uk-margin-remove-bottom">{{ $getCMSEntry(global_labels, 'membership_family_members', 'Familjemedlemmar') }}</h3>
                 <p class="uk-margin-remove-top">Här kan du lägga till dina familjemedlemmar. En familjemedlem är skriven på samma adress som huvudkontot. Alla familjemedlemmar får ett eget konto hos LFC.se</p>
-                <div class="uk-margin-small-top uk-margin-medium-bottom"> <!-- SÖK MEDLEM -->
+                <!-- SÖK MEDLEM -->
+                <div class="uk-margin-small-top uk-margin-medium-bottom">
                     <h4 style="padding-bottom: 5px;" class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_family_member_search', 'Sök befintlig medlem att lägga till som familjemedlem') }}</h4>
-                        <div class="uk-grid uk-grid-small uk-child-width-expand@s" uk-grid> <!-- MEDLEMSNUMMER & POSTNR -->
+                        <!-- MEDLEMSNUMMER & POSTNR FÄLT -->
+                        <div class="uk-grid uk-grid-small uk-child-width-expand@s" uk-grid>
                             <div>
                                 <div class="uk-form-controls">
                                     <input
@@ -105,7 +106,7 @@
                                         required>
                                 </div>
                                 <div class="uk-width-1-1 uk-margin-remove">
-                                    <small><a href="javascript:void()" :onclick="'UIkit.modal.alert(\''+$getCMSEntry(global_labels, 'membership_where_to_find_number', '<pNär du vill lägga till en familjemedlem kan du söka fram denna person via medlemsnummer och postnummer om det är så att denne redan finns i supporterklubbens medlemsregister.</p><p>Medlemsnumret hittar ni genom att logga in på LFC.se och gå till “Mina sidor”. Alternativt öppnar ni Cardskipper och tittar på det digitala medlemskortet.</p><p>Ni kan alltid kontakta oss på info@samdodds.com för hjälp kring detta.</p>\'')+')'">{{ $getCMSEntry(global_labels, 'membership_where_to_find_number_label', 'Var hittar jag medlemsnumret?') }}</a></small>
+                                    <small><a href="javascript:void()" :onclick="'UIkit.modal.alert(\''+$getCMSEntry(global_labels, 'membership_where_to_find_number', 'När du vill lägga till en familjemedlem kan du söka fram denna person via medlemsnummer och postnummer om det är så att denne redan finns i supporterklubbens medlemsregister.</p><p>Medlemsnumret hittar ni genom att logga in på LFC.se och gå till “Mina sidor”. Alternativt öppnar ni Cardskipper och tittar på det digitala medlemskortet.</p><p>Ni kan alltid kontakta oss på info@samdodds.com för hjälp kring detta.</p>\'')+')'">{{ $getCMSEntry(global_labels, 'membership_where_to_find_number_label', 'Var hittar jag medlemsnumret?') }}</a></small>
                                 </div>
                             </div>
                             <div>
@@ -119,12 +120,14 @@
                                     required>
                                 </div>
                             </div>
+                            <!-- KNAPP FÖR SÖK FAMILJEMEDLEM -->
                             <div>
-                                <button id="search-button" class="uk-button uk-button-secondary uk-align-right" @click.prevent="findFamilyMember()"> <!-- SÖK FAMILJEMEDLEM -->
+                                <button id="search-button" class="uk-button uk-button-secondary uk-align-right" @click.prevent="findFamilyMember()">
                                     {{ $getCMSEntry(global_labels, 'membership_', 'Sök') }}
                                 </button>
                             </div>
                         </div>
+                    <!-- ERRORS -->
                     <Alert
                         v-if="errors.length > 0"
                         :errorlist="errors"
@@ -132,10 +135,15 @@
                         :alertClass="alertClass"
                     />
                 </div>
-                <div
-                    class="uk-list uk-list-striped"> <!-- FAMILJE-LISTA -->
-                    <div class="uk-margin-small-top" v-for="(familyMember, index) in currentMembershipObject.FamilyMembers" :key="index">
-                        <div class="uk-flex uk-flex-between uk-flex-middle uk-margin-small-bottom"> <!-- RUBRIK & TA BORT -->
+                <!-- FAMILJE-LISTA -->
+                <div class="uk-list uk-list-striped">
+                    <div
+                    class="uk-margin-small-top"
+                    v-for="(familyMember, index) in currentMembershipObject.FamilyMembers"
+                    :key="familyMember.Id"
+                    >
+                        <!-- RUBRIK & TA BORT -->
+                        <div class="uk-flex uk-flex-between uk-flex-middle uk-margin-small-bottom">
                             <h4 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_', 'Familjemedlem') }} {{ index+1 }}</h4>
                             <button
                                 v-if="!familyMember.IsActive"
@@ -146,9 +154,9 @@
                                 {{ $getCMSEntry(global_labels, 'membership_', 'Ta bort familjemedlem') }}
                             </button>
                         </div>
+                        <!-- FÄLT FÖR FAMILJEMEDLEM -->
                         <div class="uk-fieldset uk-grid uk-grid-small uk-grid uk-child-width-expand@s" uk-grid>
                             <div>
-                                <div class="uk-form-controls">
                                     <div class="uk-inline uk-width-1-1">
                                         <label class="uk-label">{{ $getCMSEntry(global_labels, 'membership_firstname', 'Skriv in förnamn') }}<span class="form-required">*</span></label>
                                         <input
@@ -160,10 +168,8 @@
                                             required
                                         >
                                     </div>
-                                </div>
                             </div>
                             <div>
-                                <div class="uk-form-controls">
                                     <div class="uk-inline uk-width-1-1">
                                         <label class="uk-label">{{ $getCMSEntry(global_labels, 'membership_lastname', 'Skriv in efternamn') }}<span class="form-required">*</span></label>
                                         <input
@@ -174,12 +180,11 @@
                                             name="LastName"
                                             required>
                                         </div>
-                                </div>
                             </div>
                         </div>
                         <div class="uk-fieldset uk-grid uk-grid-small uk-child-width-expand@s" uk-grid>
                             <div>
-                                <div class="uk-form-controls">
+
                                 <label class="uk-label">{{ $getCMSEntry(global_labels, 'membership_email', 'Skriv in email') }}</label>
                                 <input
                                     v-model="familyMember.Email"
@@ -188,10 +193,10 @@
                                     :placeholder="$getCMSEntry(global_labels, 'membership_email', 'Skriv in email')"
                                     name="Email"
                                 >
-                                </div>
+
                             </div>
                             <div>
-                                <div class="uk-form-controls">
+
                                 <label class="uk-label">{{ $getCMSEntry(global_labels, 'membership_mobile', 'Skriv in mobilnummer') }}</label>
                                 <input
                                     v-model="familyMember.Mobile"
@@ -200,19 +205,20 @@
                                     :placeholder="$getCMSEntry(global_labels, 'membership_mobile', 'Skriv in mobilnummer')"
                                     name="Mobile"
                                 >
-                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
-                    <div class="uk-margin uk-text-right"> <!-- LÄGG TILL FAMILJEMEDLEM KNAPP -->
-                        <button
-                            class="uk-button uk-button-small uk-button-secondary uk-margin-small-top"
-                            @click.prevent="currentMembershipObject.FamilyMembers.push(emptyFamilyMember)"
-                            >
-                            {{ $getCMSEntry(global_labels, 'membership_', 'Lägg till familjemedlem') }}
-                        </button>
-                    </div>
+                <!-- LÄGG TILL FAMILJEMEDLEM KNAPP -->
+                <div class="uk-margin uk-text-right">
+                    <button
+                        class="uk-button uk-button-small uk-button-secondary uk-margin-small-top"
+                        @click.prevent="getEmptyFamilyMember"
+                        >
+                        {{ $getCMSEntry(global_labels, 'membership_', 'Lägg till familjemedlem') }}
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -239,6 +245,9 @@ export default {
             global_labels: 'labels'
         })
     },
+    mounted(){
+        // this.getEmptyFamilyMember()
+    },
     data(){
         return{
             emptyMembershipObject: [],
@@ -253,6 +262,33 @@ export default {
         }
     },
     methods: {
+        async getEmptyFamilyMember() {
+            var _this = this;
+            _this.errors = []
+            _this.isSubmitting = true
+            await this.$axios.get('/webapi/'+this.$i18n.locale+'/BranchSe/GetEmptyFamilyMember', _this.currentMembershipObject.FamilyMembers)
+            .then(function (res) {
+                _this.isSubmitting = false
+                try{
+                    if (res.data.ErrorList!=null && res.data.ErrorList.length > 0) {
+                        _this.message = ''
+                        _this.alertClass = 'uk-alert-danger'
+                        _this.errors = res.data.ErrorList
+                    } else {
+                        _this.errors = []
+                        _this.alertClass = 'uk-alert-success'
+                        _this.message = res.data.Message
+                        _this.emptyFamilyMember = res.data
+                        _this.currentFamilyMember = res.data
+                        _this.addMemberAsFamilyMember()
+                    }
+                } catch(err) { console.log(err) }
+            })
+            .catch(function (error) {
+                _this.isSubmitting = false
+            console.log(error)
+            })
+        },
         async findFamilyMember() {
             var _this = this;
             _this.errors = []
@@ -281,13 +317,13 @@ export default {
             })
         },
         addMemberAsFamilyMember() {
-            this.emptyMembershipObject.FamilyMembers.push(this.currentFamilyMember)
+            this.currentMembershipObject.FamilyMembers.push(this.currentFamilyMember)
         },
         async addMembershipToCart() {
             var _this = this;
             _this.errors = []
             _this.isSubmitting = true
-            await this.$axios.post('/webapi/'+this.$i18n.locale+'/Cart/AddMembershipToCart', _this.emptyMembershipObject)
+            await this.$axios.post('/webapi/'+this.$i18n.locale+'/Cart/AddMembershipToCart', _this.currentMembershipObject)
             .then(function (res) {
                 _this.isSubmitting = false
                 try{
@@ -325,14 +361,11 @@ export default {
     },
     async fetch() {
         try {
-            let [ emptymembershipobject, emptyfamilymember ] = await Promise.all([
-                this.$axios.$get('/webapi/BranchSe/GetEmptyMembershipObject'),
-                this.$axios.$get('/webapi/BranchSe/GetEmptyFamilyMember'),
+            let [ emptymembershipobject ] = await Promise.all([
+                this.$axios.$get('/webapi/BranchSe/GetEmptyMembershipObject')
             ]);
                 this.emptyMembershipObject = emptymembershipobject
                 this.currentMembershipObject = emptymembershipobject
-                this.emptyFamilyMember = emptyfamilymember
-                this.currentFamilyMember = emptyfamilymember
         } catch (err) {
             console.log(err);
         }
@@ -348,6 +381,7 @@ export default {
     }
     .account-container {
         background-color: #fff;
+        border: 1px solid #ddd;
     }
     .prices-container {
         background-color: #eee;
