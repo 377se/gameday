@@ -106,7 +106,7 @@
                                         required>
                                 </div>
                                 <div class="uk-width-1-1 uk-margin-remove">
-                                    <small><a href="javascript:void()" :onclick="'UIkit.modal.alert(\''+$getCMSEntry(global_labels, 'membership_where_to_find_number', 'När du vill lägga till en familjemedlem kan du söka fram denna person via medlemsnummer och postnummer om det är så att denne redan finns i supporterklubbens medlemsregister.</p><p>Medlemsnumret hittar ni genom att logga in på LFC.se och gå till “Mina sidor”. Alternativt öppnar ni Cardskipper och tittar på det digitala medlemskortet.</p><p>Ni kan alltid kontakta oss på info@samdodds.com för hjälp kring detta.</p>\'')+')'">{{ $getCMSEntry(global_labels, 'membership_where_to_find_number_label', 'Var hittar jag medlemsnumret?') }}</a></small>
+                                    <small><a href="javascript:void()" :onclick="'UIkit.modal.alert(\''+$getCMSEntry(global_labels, 'membership_where_to_find_number', 'När du vill lägga till en familjemedlem kan du söka fram denna person via medlemsnummer och postnummer om det är så att denne redan finns i supporterklubbens medlemsregister.</p><p>Medlemsnumret hittar ni genom att logga in på LFC.se och gå till “Mina sidor”. Alternativt öppnar ni Cardskipper och tittar på det digitala medlemskortet.</p><p>Ni kan alltid kontakta oss på info@samdodds.com för hjälp kring detta.</p>\'')+')'">{{ $getCMSEntry(global_labels, 'membership_where_to_find_number_label', 'Var hittar jag familjemedlemmens medlemsnummer?') }}</a></small>
                                 </div>
                             </div>
                             <div>
@@ -336,6 +336,7 @@ export default {
                         _this.alertClass = 'uk-alert-success'
                         _this.message = res.data.Message
                         _this.updateCart()
+                        _this.$router.push(_this.localePath('/extension/14885?cartid='+res.data.CartId))
                     }
                 } catch(err) {
                     console.log(err)
