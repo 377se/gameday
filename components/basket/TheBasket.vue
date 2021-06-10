@@ -421,9 +421,11 @@ export default {
 }
 #offscreen-basket .uk-modal-dialog {
   margin-left: auto;
-  max-width:55vw !important;
+  width:55vw !important;
+  max-width: 800px !important;
   @media only screen and (max-width: 600px) {
-    max-width:90vw !important;
+    width:85vw !important;
+    max-width: 800px !important;
   }
 }
 #offscreen-basket .uk-modal-dialog-no-extensions {
