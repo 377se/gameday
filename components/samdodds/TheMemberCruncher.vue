@@ -254,7 +254,7 @@ export default {
             emptyMembershipObject: [],
             currentMembershipObject: [],
             emptyFamilyMember: [],
-            currentFamilyMember: {MembershipNumber:0,PostalCode:0},
+            currentFamilyMember: {MembershipNumber:'',PostalCode:''},
             errors: [],
             message: '',
             alertClass: '',
