@@ -67,7 +67,7 @@
                     <div style="line-height:1;"><small>{{ currentMembershipObject.SelectableInformation }}</small></div>
                 </div>
                 <div v-else>
-                    <strong>1</strong> Medlemsskap 21/22
+                    <strong>1</strong> Medlemsskap 21/22 (Din leveransadress blir medlemsinformationen)
                 </div>
                 <div>
                     <strong v-if="currentMembershipObject.FamilyMembers!=null">{{ currentMembershipObject.FamilyMembers.length }}</strong><strong v-else>0</strong> Familjemedlemmar <a href="#familymembers" uk-scroll="offset:120">Lägg till fler</a>
@@ -91,51 +91,6 @@
                 <h3
                     class="uk-margin-remove-bottom">{{ $getCMSEntry(global_labels, 'membership_family_members', 'Familjemedlemmar') }}</h3>
                 <p class="uk-margin-remove-top">Här kan du lägga till dina familjemedlemmar. En familjemedlem är skriven på samma adress som huvudkontot. Alla familjemedlemmar får ett eget konto hos LFC.se</p>
-                <!-- SÖK MEDLEM -->
-                <div class="uk-margin-small-top uk-margin-medium-bottom">
-                    <h4 style="padding-bottom: 5px;" class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_family_member_search', 'Sök befintlig medlem att lägga till som familjemedlem') }}</h4>
-                        <!-- MEDLEMSNUMMER & POSTNR FÄLT -->
-                        <div class="uk-grid uk-grid-small uk-child-width-expand@s" uk-grid>
-                            <div>
-                                <div class="uk-form-controls">
-                                    <input
-                                        v-model="currentFamilyMember.MembershipNumber"
-                                        class="uk-input"
-                                        type="number"
-                                        :placeholder="$getCMSEntry(global_labels, 'membership_number', 'Skriv in medlemsnummer')"
-                                        name="MembershipNumber"
-                                        required>
-                                </div>
-                                <div class="uk-width-1-1 uk-margin-remove">
-                                    <small><a href="javascript:void()" :onclick="'UIkit.modal.alert(\''+$getCMSEntry(global_labels, 'membership_where_to_find_number', '<p>När du vill lägga till en familjemedlem kan du söka fram denna person via medlemsnummer och postnummer om det är så att denne redan finns i supporterklubbens medlemsregister.</p><p>Medlemsnumret hittar ni genom att logga in på LFC.se och gå till “Mina sidor”. Alternativt öppnar ni Cardskipper och tittar på det digitala medlemskortet.</p><p>Ni kan alltid kontakta oss på info@samdodds.com för hjälp kring detta.</p>\'')+')'">{{ $getCMSEntry(global_labels, 'membership_where_to_find_number_label', 'Var hittar jag familjemedlemmens medlemsnummer?') }}</a></small>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="uk-form-controls">
-                                <input
-                                    v-model="currentFamilyMember.PostalCode"
-                                    class="uk-input"
-                                    type="number"
-                                    :placeholder="$getCMSEntry(global_labels, 'membership_postal_code', 'Skriv in postnummer')"
-                                    name="PostalCode"
-                                    required>
-                                </div>
-                            </div>
-                            <!-- KNAPP FÖR SÖK FAMILJEMEDLEM -->
-                            <div>
-                                <button id="search-button" class="uk-button uk-button-secondary uk-align-right" @click.prevent="findFamilyMember()">
-                                    {{ $getCMSEntry(global_labels, 'membership_', 'Sök') }}
-                                </button>
-                            </div>
-                        </div>
-                    <!-- ERRORS -->
-                    <Alert
-                        v-if="errors.length > 0"
-                        :errorlist="errors"
-                        message=""
-                        :alertClass="alertClass"
-                    />
-                </div>
                 <!-- FAMILJE-LISTA -->
                 <div class="uk-list uk-list-striped">
                     <div
@@ -219,6 +174,51 @@
                         >
                         {{ $getCMSEntry(global_labels, 'membership_', 'Lägg till familjemedlem') }}
                     </button>
+                </div>
+                <!-- SÖK MEDLEM -->
+                <div class="uk-margin-small-top uk-margin-medium-bottom">
+                    <h4 style="padding-bottom: 5px;" class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_family_member_search', 'Sök befintlig medlem att lägga till som familjemedlem') }}</h4>
+                        <!-- MEDLEMSNUMMER & POSTNR FÄLT -->
+                        <div class="uk-grid uk-grid-small uk-child-width-expand@s" uk-grid>
+                            <div>
+                                <div class="uk-form-controls">
+                                    <input
+                                        v-model="currentFamilyMember.MembershipNumber"
+                                        class="uk-input"
+                                        type="number"
+                                        :placeholder="$getCMSEntry(global_labels, 'membership_number', 'Skriv in medlemsnummer')"
+                                        name="MembershipNumber"
+                                        required>
+                                </div>
+                                <div class="uk-width-1-1 uk-margin-remove">
+                                    <small><a href="javascript:void()" :onclick="'UIkit.modal.alert(\''+$getCMSEntry(global_labels, 'membership_where_to_find_number', '<p>När du vill lägga till en familjemedlem kan du söka fram denna person via medlemsnummer och postnummer om det är så att denne redan finns i supporterklubbens medlemsregister.</p><p>Medlemsnumret hittar ni genom att logga in på LFC.se och gå till “Mina sidor”. Alternativt öppnar ni Cardskipper och tittar på det digitala medlemskortet.</p><p>Ni kan alltid kontakta oss på info@samdodds.com för hjälp kring detta.</p>\'')+')'">{{ $getCMSEntry(global_labels, 'membership_where_to_find_number_label', 'Var hittar jag familjemedlemmens medlemsnummer?') }}</a></small>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="uk-form-controls">
+                                <input
+                                    v-model="currentFamilyMember.PostalCode"
+                                    class="uk-input"
+                                    type="number"
+                                    :placeholder="$getCMSEntry(global_labels, 'membership_postal_code', 'Skriv in postnummer')"
+                                    name="PostalCode"
+                                    required>
+                                </div>
+                            </div>
+                            <!-- KNAPP FÖR SÖK FAMILJEMEDLEM -->
+                            <div>
+                                <button id="search-button" class="uk-button uk-button-secondary uk-align-right" @click.prevent="findFamilyMember()">
+                                    {{ $getCMSEntry(global_labels, 'membership_', 'Sök') }}
+                                </button>
+                            </div>
+                        </div>
+                    <!-- ERRORS -->
+                    <Alert
+                        v-if="errors.length > 0"
+                        :errorlist="errors"
+                        message=""
+                        :alertClass="alertClass"
+                    />
                 </div>
             </div>
         </div>
@@ -368,6 +368,7 @@ export default {
             ]);
                 this.emptyMembershipObject = emptymembershipobject
                 this.currentMembershipObject = emptymembershipobject
+                await this.getEmptyFamilyMember()
         } catch (err) {
             console.log(err);
         }
