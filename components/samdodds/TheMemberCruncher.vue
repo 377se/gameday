@@ -368,7 +368,6 @@ export default {
             ]);
                 this.emptyMembershipObject = emptymembershipobject
                 this.currentMembershipObject = emptymembershipobject
-                await this.getEmptyFamilyMember()
         } catch (err) {
             console.log(err);
         }
