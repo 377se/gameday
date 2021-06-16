@@ -4,7 +4,7 @@
     style="display:block;">
     <div 
       class="uk-modal-dialog"
-      style="min-height:100%">
+      style="min-height:100%;max-width:800px!important;margin-left:auto;">
       <div class="uk-modal-header uk-flex uk-flex-middle">
         <a
           :href="localePath('/')"
