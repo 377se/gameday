@@ -78,7 +78,7 @@
                 <button
                     id="add-to-cart-button"
                     class="uk-button uk-button-primary uk-align-right uk-margin-remove-bottom"
-                    @click.prevent="addMembershipToCart()"
+                    @click.prevent="addMembership()"
                     >
                     <!-- LÄGG I VARUKORG -->
                     {{ $getCMSEntry(global_labels, 'membership_', 'Lägg i varukorgen') }}
@@ -320,6 +320,19 @@ export default {
         },
         addMemberAsFamilyMember() {
             this.currentMembershipObject.FamilyMembers.push(this.currentFamilyMember)
+        },
+        addMembership(){
+            var _this = this
+            if(this.currentMembershipObject.FamilyMembers.length==0){
+                UIkit.modal.confirm('Glöm inte att lägga till familjemedlemmar innan du lägger i varukorgen också!',{ labels: { ok: 'Lägg till familjemedlemmar', cancel: 'Nej, tack!' } }).then(function() {
+                    //Do nothing
+                }, function () {
+                    _this.addMembershipToCart()
+                    //Rejected
+                });
+            }else{
+                this.addMembershipToCart()
+            }
         },
         async addMembershipToCart() {
             var _this = this;
