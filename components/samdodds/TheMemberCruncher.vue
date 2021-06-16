@@ -67,7 +67,7 @@
                     <div style="line-height:1;"><small>{{ currentMembershipObject.SelectableInformation }}</small></div>
                 </div>
                 <div v-else>
-                    <strong>1</strong> Medlemsskap 21/22 (Din leveransadress blir medlemsinformationen)
+                    <strong>1</strong> Medlemsskap (Din leveransadress blir medlemsinformationen)
                 </div>
                 <div>
                     <strong v-if="currentMembershipObject.FamilyMembers!=null">{{ currentMembershipObject.FamilyMembers.length }}</strong><strong v-else>0</strong> Familjemedlemmar <a href="#familymembers" uk-scroll="offset:120">Lägg till fler</a>
