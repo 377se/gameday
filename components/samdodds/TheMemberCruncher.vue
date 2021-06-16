@@ -33,6 +33,7 @@
                     <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_become_member_how', 'Hur gör jag?') }}</h3>
                     <div class="uk-margin-small-top">
                         Vill du endast köpa ett medlemsskap klickar du bara på "Lägg i varukorgen".
+                        <br>Vill du förlänga ditt medlemsskap? <nuxt-link :to="localePath('/login')">Logga in</nuxt-link>.
                         <br>
                         Har du familjemedlemmar som du också vill anmäla då lägger du till dessa i formuläret nedan innan du lägger i varukorgen.
                     </div>
