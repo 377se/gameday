@@ -56,11 +56,11 @@
         </div>
         <!-- LÄGG I VARUKORGEN - SUMMERING OCH INFO -->
         <div 
-            class="uk-width-1-1 uk-flex uk-middle uk-padding-small"
+            class="uk-width-1-1 uk-flex uk-flex-wrap uk-padding-small"
             style="background:#fff;"
             uk-sticky="offset:117">
             <div
-                class="uk-width-expand uk-text-small"
+                class="uk-width-1-1 uk-width-3-4@s uk-text-small"
                 >
                 <h4>Detta lägger du i varukorgen</h4>
                 <div v-if="currentMembershipObject.IsSelectable">
@@ -74,7 +74,7 @@
                     <strong v-if="currentMembershipObject.FamilyMembers!=null">{{ currentMembershipObject.FamilyMembers.length }}</strong><strong v-else>0</strong> Familjemedlemmar <a href="#familymembers" uk-scroll="offset:120">Lägg till fler</a>
                 </div>
             </div>
-            <div>
+            <div class="uk-width-1-1 uk-width-1-4@s uk-padding-small uk-padding-remove-bottom">
                 <button
                     id="add-to-cart-button"
                     class="uk-button uk-button-primary uk-align-right uk-margin-remove-bottom"
