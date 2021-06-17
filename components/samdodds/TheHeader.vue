@@ -97,7 +97,7 @@
         v-for="cat in menu"
         :key="cat.Id">
         <nuxt-link
-          :to="localePath('/c/0/'+cat.Id+'/'+cat.UrlSafeName)">{{ cat.Name }}</nuxt-link>
+          :to="cat.Id!=61?localePath('/c/0/'+cat.Id+'/'+cat.UrlSafeName):'/sv-se/supporterklubben'">{{ cat.Name }}</nuxt-link>
       </li>
     </ul>
   </div>

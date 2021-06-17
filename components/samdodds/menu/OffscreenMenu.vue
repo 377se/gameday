@@ -22,7 +22,7 @@
               :class="{'uk-parent':cat.SubCategoryList.length>0}">
               <nuxt-link
                 v-if="!cat.SubCategoryList.length>0"
-                :to="localePath('/c/0/'+cat.Id+'/'+cat.UrlSafeName)">
+                :to="cat.Id!=61?localePath('/c/0/'+cat.Id+'/'+cat.UrlSafeName):'/sv-se/supporterklubben'">
                 <img
                   v-if="cat.ImageThumb" 
                   :alt="cat.Name"
