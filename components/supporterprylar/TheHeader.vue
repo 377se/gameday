@@ -103,7 +103,7 @@
         v-for="(cat, ind) in menu"
         :key="cat.Id"
         :class="{'uk-display-block':chosenDropDown == ind+1}">
-        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s">
+        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-2@s uk-child-width-1-4@m uk-child-width-1-6@l">
           <li
             v-for="(sub, index) in cat.SubCategoryList"
             :key="sub.Id"
@@ -321,7 +321,7 @@ export default {
 
 #dropdowns > .uk-navbar-dropdown > .uk-navbar-dropdown-nav{
   max-height:400px;
-  padding-bottom:20px;
+  padding-bottom:5px;
   width:100%;
   overflow-y:scroll;
 }
