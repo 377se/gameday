@@ -29,7 +29,7 @@ export default {
         name: 'description',
         content: 'Sam Dodds'
       }
-    ]
+    ],
   },
   /*
    ** Customize the progress-bar color
@@ -166,7 +166,7 @@ export default {
   },
   webfontloader: {
     google: {
-      families: ['Lato:wght@400;600;700','Oswald:wght@400;500;700;900&display=swap'] //Loads Source Sans and Ubuntu
+      families: ['Lato:400,600,700','Oswald:400,500,700,900']
     }
   },
   /*
