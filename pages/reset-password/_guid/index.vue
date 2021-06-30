@@ -162,6 +162,9 @@ export default {
           _this.isSubmitting = false
           console.log(error)
         })
+        setTimeout(() => {
+          _this.$router.push('login')
+        }, 5000)
     }
   },
   async asyncData (context) {
