@@ -158,7 +158,7 @@ export default {
   },
   webfontloader: {
     google: {
-      families: ['Lato:wght@400;600;700','Oswald:wght@400;500;600;700&display=swap']
+      families: ['Lato:400,600,700','Oswald:400,500,700,900']
     }
   },
   /*
