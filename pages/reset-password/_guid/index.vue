@@ -163,7 +163,7 @@ export default {
           console.log(error)
         })
         setTimeout(() => {
-          _this.$router.push({path: _this.localePath('login')
+          _this.$router.push({ path: _this.localePath('login') })
         }, 5000)
     }
   },
