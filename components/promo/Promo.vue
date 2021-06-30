@@ -1,7 +1,7 @@
 <template>
   <div
     v-editable="blok"
-    class="uk-margin-bottom uk-overflow-hidden">
+    class="uk-margin-bottom uk-overflow-hidden promo">
     <h1
       v-if="blok.category_header">{{ blok.category_header }}</h1>
     <a 
@@ -117,6 +117,11 @@ export default {
 }
 </script>
 <style lang="scss">
+
+.promo img, .promo source {
+  width: 100%;
+}
+
 .promo-pre-header{
   color:#fff;
   margin-bottom:0;
