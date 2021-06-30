@@ -219,7 +219,7 @@ export default {
   width: 100%;
 }
 .uk-logo{
-  padding:0;margin:0 15px;
+  padding:0;margin:0 15px !important;
 }
 .basket-counter{
   position: absolute;
