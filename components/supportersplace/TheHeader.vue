@@ -245,7 +245,7 @@ export default {
 
 .logo {
   height: 50px;
-  width: auto;
+  width: auto !important;
 }
 
 .hamburger {
