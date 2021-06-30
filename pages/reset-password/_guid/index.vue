@@ -163,7 +163,7 @@ export default {
           console.log(error)
         })
         setTimeout(() => {
-          _this.$router.push('login')
+          _this.$router.push('/login')
         }, 5000)
     }
   },
