@@ -1,5 +1,6 @@
 <template>
   <section>
+    <nuxt-child />
     <template v-if="$fetchState.pending">
       <div class="uk-container uk-container-large uk-padding-small">
         <content-placeholders :rounded="true">
@@ -36,7 +37,7 @@
               v-for="article in articles"
               :key="article.ProductId"
               :article="article"
-              :url="`/sv-se/medlemsprodukter/${article.ProductId}`"
+              :url="`/sv-se/medlemserbjudanden/a/${article.ProductId}`"
             />
             <div
               v-if="articles.length<1"
