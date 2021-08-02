@@ -25,9 +25,15 @@
         v-if="article.ErrorList && article.ErrorList.length>0" 
         class="uk-position-relative uk-container uk-padding">
         <Alert 
-            :errorlist="article.ErrorList"
-            message=""
-          />
+          :errorlist="article.ErrorList"
+          message=""
+        />
+        <div class="uk-text-center">
+          <nuxt-link
+            v-if="cid==null"
+            class="uk-button uk-button-default"
+            :to="localePath('/login')">Logga in</nuxt-link> <nuxt-link to="/sv-se/supporterklubben" class="uk-button uk-button-primary">Bli medlem</nuxt-link>
+        </div>
       </section>
       <section
         v-else 
@@ -154,7 +160,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      global_labels:'labels'})
+      global_labels:'labels',
+      cid: 'cid'})
   },
   watch: {
     '$route.query': function(oldQuery, newQuery){
