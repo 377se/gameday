@@ -40,9 +40,16 @@
         </template>
         <template
           v-else>
+          <Alert 
+            v-if="article.ErrorList && article.ErrorList.length>0"
+            :errorlist="article.ErrorList"
+            message=""
+          />
           <ArticleDetails 
+            v-else
             v-bind:article="article"
             :showrelated="false"/>
+          
         </template>
       </div>
     </div>
@@ -51,6 +58,7 @@
 
 <script>
 import ArticleDetails from "@/components/articles/ArticleDetails";
+import Alert from '@/components/Alert'
 
 export default {
   transition (to, from) {
@@ -80,7 +88,8 @@ export default {
     }
   },
   components: {
-    ArticleDetails
+    ArticleDetails,
+    Alert
   },
   data() {
     return {

@@ -21,7 +21,17 @@
       </div>
     </template>
     <template v-else>
-      <section class="uk-position-relative">
+      <section
+        v-if="article.ErrorList && article.ErrorList.length>0" 
+        class="uk-position-relative uk-container uk-padding">
+        <Alert 
+            :errorlist="article.ErrorList"
+            message=""
+          />
+      </section>
+      <section
+        v-else 
+        class="uk-position-relative">
         <component 
           v-if="story.content.component" 
           :key="story.content._uid" 
@@ -34,10 +44,10 @@
             uk-grid
             uk-height-match="target: .uk-card">
             <ArticleCardSimple
-              v-for="article in articles"
-              :key="article.ProductId"
-              :article="article"
-              :url="`/sv-se/medlemserbjudanden/a/${article.ProductId}`"
+              v-for="a in articles"
+              :key="a.ProductId"
+              :article="a"
+              :url="`/sv-se/medlemserbjudanden/a/${a.ProductId}`"
             />
             <div
               v-if="articles.length<1"
@@ -68,6 +78,7 @@
 import {mapGetters} from 'vuex'
 import Page from '@/components/Page'
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
+import Alert from '@/components/Alert'
 
 export default {
   async fetch () {
@@ -84,6 +95,7 @@ export default {
           cv: this.$store.getters.version
         })
       ]);
+      this.article = a
       this.articles=a.ArticleList
       
       this.story=sb.data.stories.length>0?sb.data.stories[0]:{ content: {} }
@@ -119,6 +131,7 @@ export default {
   },*/
   components:{
     ArticleCardSimple,
+    Alert,
     Page
   },
   data () {
