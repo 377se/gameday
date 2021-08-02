@@ -103,6 +103,8 @@ export default {
 </script>
 
 <style lang="scss">
+/*Cookie consent hidden*/
+#qc-cmp2-persistent-link{display:none;}
 /*Header*/
 
 .uk-breadcrumb > * > * {
