@@ -62,33 +62,36 @@ import Page from '@/components/Page'
 export default {
   head () {
     let _link = new Array()
-    for(var i=0;i<this.metadata.LangHref.length;i++){
-      let _obj = {
-                  'hid':'i18n-alt-'+this.metadata.LangHref[i].Culture.split('-')[0],
-                  'rel': 'alternate',
-                  'href': this.metadata.LangHref[i].Url,
-                  'hreflang': this.metadata.LangHref[i].Culture.split('-')[0]
-                }
-      if(this.siteid!=2 || (this.siteid==2 && this.metadata.LangHref[i].Culture!='en-gb')){
-        _link.push(_obj)
-      } 
-      if(this.metadata.LangHref[i].Culture==this.$i18n.defaultLocale){
+    if(this.metadata){
+      for(var i=0;i<this.metadata.LangHref.length;i++){
         let _obj = {
-                  'hid':'i18n-xd',
-                  'rel': 'alternate',
-                  'href': this.metadata.LangHref[i].Url,
-                  'hreflang': 'x-default'
-                }
-        _link.push(_obj)
+                    'hid':'i18n-alt-'+this.metadata.LangHref[i].Culture.split('-')[0],
+                    'rel': 'alternate',
+                    'href': this.metadata.LangHref[i].Url,
+                    'hreflang': this.metadata.LangHref[i].Culture.split('-')[0]
+                  }
+        if(this.siteid!=2 || (this.siteid==2 && this.metadata.LangHref[i].Culture!='en-gb')){
+          _link.push(_obj)
+        } 
+        if(this.metadata.LangHref[i].Culture==this.$i18n.defaultLocale){
+          let _obj = {
+                    'hid':'i18n-xd',
+                    'rel': 'alternate',
+                    'href': this.metadata.LangHref[i].Url,
+                    'hreflang': 'x-default'
+                  }
+          _link.push(_obj)
+        }
       }
+
+      _link.push(
+        {
+          rel: 'canonical',
+          hid: 'i18n-can',
+          href: this.metadata.Canonical
+        }
+      )
     }
-    _link.push(
-      {
-        rel: 'canonical',
-        hid: 'i18n-can',
-        href: this.metadata.Canonical
-      }
-    )
     if(this.story.content.SEO){
       return {
         title: `${this.story.content.SEO.title}`,
