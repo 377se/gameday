@@ -96,7 +96,7 @@ export default {
         this.$axios.$get(
           '/webapi/'+this.$i18n.locale+'/Extension/GetExtensionListByCategoryId?categoryId=308'
         ),
-        this.$storyapi.get('cdn/stories?starts_with=' + process.env.STORYBLOK_CATALOGUE.replace('/','') + '/' +this.$i18n.locale+ '/medlemsprodukter', {
+        this.$storyapi.get('cdn/stories?starts_with=' + process.env.STORYBLOK_CATALOGUE.replace('/','') + '/' +this.$i18n.locale+ '/medlemserbjudanden', {
           version: version,
           cv: this.$store.getters.version
         })
