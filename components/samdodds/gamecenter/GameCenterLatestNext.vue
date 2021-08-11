@@ -1,76 +1,76 @@
 <template>
     <div v-editable="blok" v-if="game">
       <div class="uk-position-relative uk-height-1-1">
-        <transition name="flip">
-          <div v-if="!cardIsFlipped" class="uk-margin-small-bottom gc-nextlastgame uk-border-rounded flip-card uk-flex uk-flex-column uk-padding-small uk-width-1-1 uk-height-1-1"> <!-- FRONT -->
-              <div v-if="this.showHeading" class="gc-nextprev-headline uk-flex uk-flex-middle uk-flex-middle uk-flex-between"> <!-- HEADLINE -->
-                <div>{{ this.isLatest ? 'FÖREGÅENDE MATCH' : 'NÄSTA MATCH' }}</div>
-                <div v-if="isLatest"><span @click="cardIsFlipped = !cardIsFlipped" uk-icon="info" class="cursor"></span></div>
-              </div>
-              <div class="gc-nextlastgame-outer-container uk-flex uk-flex-column uk-flex-center"> <!-- CONTENT -->
-                  <div class="goal-info uk-flex uk-flex-middle uk-flex-center uk-flex-around uk-margin-small-left uk-margin-small-right"> <!-- GOAL-INFO -->
-                    <div class="uk-flex uk-flex-middle"> <!-- LEFT-TEAM -->
-                      <div class="uk-flex uk-flex-column uk-flex-middle uk-flex-1">
-                        <div class="crests"><img :src="game.HomeCrest" /></div> <!-- CREST -->
-                        <div class="team-names uk-text-center">{{ game.HomeTeam }}</div> <!-- NAME -->
-                      </div>
-                      <div class="goals uk-flex uk-flex-center">{{ this.isLatest ? game.HomeGoals : '-' }}</div> <!-- GOALS -->
+        
+        <div v-if="!cardIsFlipped" class="uk-margin-small-bottom gc-nextlastgame uk-border-rounded flip-card uk-flex uk-flex-column uk-padding-small uk-width-1-1 uk-height-1-1 uk-position-relative"> <!-- FRONT -->
+            <div v-if="isLatest"><span @click="cardIsFlipped = !cardIsFlipped" uk-icon="info" class="cursor uk-position-absolute" style="top:5px; right:5px;"></span></div>
+            <div v-if="this.showHeading" class="gc-nextprev-headline uk-flex uk-flex-middle uk-flex-middle uk-flex-between"> <!-- HEADLINE -->
+              <div>{{ this.isLatest ? 'FÖREGÅENDE MATCH' : 'NÄSTA MATCH' }}</div>
+            </div>
+            <div class="gc-nextlastgame-outer-container uk-flex uk-flex-column uk-flex-center"> <!-- CONTENT -->
+                <div class="goal-info uk-flex uk-flex-middle uk-flex-center uk-flex-around uk-margin-small-left uk-margin-small-right"> <!-- GOAL-INFO -->
+                  <div class="uk-flex uk-flex-middle"> <!-- LEFT-TEAM -->
+                    <div class="uk-flex uk-flex-column uk-flex-middle uk-flex-1">
+                      <div class="crests"><img :src="game.HomeCrest" /></div> <!-- CREST -->
+                      <div class="team-names uk-text-center">{{ game.HomeTeam }}</div> <!-- NAME -->
                     </div>
-                    <div class="uk-flex uk-flex-middle"> <!-- RIGHT-TEAM -->
-                      <div class="goals uk-flex uk-flex-center">{{ this.isLatest ? game.AwayGoals : '-' }}</div> <!-- GOALS -->
-                      <div class="uk-flex uk-flex-column uk-flex-middle uk-flex-1">
-                        <div class="crests"><img :src="game.AwayCrest" /></div> <!-- CREST -->
-                        <div class="team-names uk-text-center">{{ game.AwayTeam }}</div> <!-- NAME -->
-                      </div>
+                    <div class="goals uk-flex uk-flex-center">{{ this.isLatest ? game.HomeGoals : '-' }}</div> <!-- GOALS -->
+                  </div>
+                  <div class="uk-flex uk-flex-middle"> <!-- RIGHT-TEAM -->
+                    <div class="goals uk-flex uk-flex-center">{{ this.isLatest ? game.AwayGoals : '-' }}</div> <!-- GOALS -->
+                    <div class="uk-flex uk-flex-column uk-flex-middle uk-flex-1">
+                      <div class="crests"><img :src="game.AwayCrest" /></div> <!-- CREST -->
+                      <div class="team-names uk-text-center">{{ game.AwayTeam }}</div> <!-- NAME -->
                     </div>
                   </div>
-                  <div class="divider"></div>
-                  <div class="game-info uk-flex uk-flex-around uk-flex-middle uk-flex-center"> <!-- GAME-INFO -->
-                    <div class="uk-flex uk-flex-center uk-text-nowrap"> {{ game.GameDate }}</div>
-                    <div>&nbsp;|&nbsp;</div>
-                    <div class="uk-flex uk-flex-center uk-flex-middle">
-                      <div class="uk-text-nowrap">{{ game.GameTime }}</div>
-                    </div>
-                    <div>&nbsp;|&nbsp;</div>
-                    <div class="uk-flex uk-flex-center uk-flex-middle">
-                      <div class="uk-text-nowrap">{{ game.Arena }}</div>
-                    </div>
-                    <div>&nbsp;|&nbsp;</div>
-                    <div class="uk-flex uk-flex-center uk-text-nowrap">{{ game.GameType }}</div>
-                  </div>
-              </div>
-          </div>
-        </transition>
-        <transition name="flip">
-          <div v-if="cardIsFlipped" class="uk-margin-small-bottom gc-nextlastgame uk-border-rounded flip-card uk-flex uk-flex-column uk-padding-small uk-width-1-1 uk-height-1-1"> <!-- FRONT -->
-              <div v-if="this.showHeading" class="gc-nextprev-headline uk-flex uk-flex-middle uk-flex-middle uk-flex-between"> <!-- HEADLINE -->
-                <div>MATCHHÄNDELSER</div>
-                <div v-if="isLatest"><span @click="cardIsFlipped = !cardIsFlipped" uk-icon="close" class="cursor"></span></div>
-              </div>
-               <div class="uk-overflow-auto uk-border-rounded">
-                  <table class="uk-table remove-scrolls">
-                      <thead>
-                          <tr>
-                              <th style="width:5%; tex-allign:center;">MIN</th>
-                              <th style="width:8%;" class="uk-table-shrink"></th>
-                              <th style="width:8%;">HÄNDELSE</th>
-                              <th style="width:8%;" class="uk-table-shrink"></th>
-                              <th style="width:64%;">SPELARE</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                      <tr v-for="event in lastGame.EventList" :key="event.EventTypeId" class="uk-table-middle">
-                          <td>{{ event.Minute }}</td>
-                          <td><img :src="event.EventImage"></td>
-                          <td>{{ event.Description }}</td>
-                          <td><img :src="event.ImageName"></td>
-                          <td>{{ event.Name }}</td>
-                      </tr>
-                      </tbody>
-                  </table>
                 </div>
-          </div>
-        </transition>
+                <div class="divider"></div>
+                <div class="game-info uk-flex uk-flex-around uk-flex-middle uk-flex-center"> <!-- GAME-INFO -->
+                  <div class="uk-flex uk-flex-center uk-text-nowrap"> {{ game.GameDate }}</div>
+                  <div>&nbsp;|&nbsp;</div>
+                  <div class="uk-flex uk-flex-center uk-flex-middle">
+                    <div class="uk-text-nowrap">{{ game.GameTime }}</div>
+                  </div>
+                  <div>&nbsp;|&nbsp;</div>
+                  <div class="uk-flex uk-flex-center uk-flex-middle">
+                    <div class="uk-text-nowrap">{{ game.Arena }}</div>
+                  </div>
+                  <div>&nbsp;|&nbsp;</div>
+                  <div class="uk-flex uk-flex-center uk-text-nowrap">{{ game.GameType }}</div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div v-if="cardIsFlipped" class="uk-margin-small-bottom gc-nextlastgame uk-border-rounded flip-card uk-flex uk-flex-column uk-width-1-1 uk-height-1-1 uk-position-relative" style="padding:30px 15px 15px 15px;"> <!-- FRONT -->
+            <div v-if="isLatest"><span @click="cardIsFlipped = !cardIsFlipped" uk-icon="close" class="cursor uk-position-absolute" style="top:5px; right:5px;"></span></div>
+            <div v-if="this.showHeading" class="gc-nextprev-headline uk-flex uk-flex-middle uk-flex-middle uk-flex-between"> <!-- HEADLINE -->
+              <div>MATCHHÄNDELSER</div>
+            </div>
+             <div class="uk-overflow-auto uk-border-rounded">
+                <table class="uk-table remove-scrolls">
+                    <thead>
+                        <tr>
+                            <th style="width:5%; tex-allign:center;">MIN</th>
+                            <th style="width:8%;" class="uk-table-shrink"></th>
+                            <th style="width:8%;">HÄNDELSE</th>
+                            <th style="width:8%;" class="uk-table-shrink"></th>
+                            <th style="width:64%;">SPELARE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="event in lastGame.EventList" :key="event.EventTypeId" class="uk-table-middle">
+                        <td>{{ event.Minute }}</td>
+                        <td><img :src="event.EventImage"></td>
+                        <td>{{ event.Description }}</td>
+                        <td><img :src="event.ImageName"></td>
+                        <td>{{ event.Name }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+              </div>
+        </div>
+        
       </div>
   </div>
 </template>
@@ -225,7 +225,7 @@ export default {
     margin-right: 4px;
   }
   .flip-card {
-    position: absolute;
+    // position: absolute;
     backface-visibility: hidden;
   }
   .flip-enter {
