@@ -97,7 +97,7 @@
         v-for="cat in menu"
         :key="cat.Id">
         <nuxt-link
-          :to="cat.Id!=61?localePath('/c/0/'+cat.Id+'/'+cat.UrlSafeName):'/sv-se/supporterklubben'">{{ cat.Name }}</nuxt-link>
+          :to="getCatLink(cat.Id, cat.UrlSafeName)">{{ cat.Name }}</nuxt-link>
       </li>
     </ul>
   </div>
@@ -146,6 +146,15 @@ export default {
     ClickOutside
   },
   methods:{
+    getCatLink(lID, urlsafe){
+      var cid = this.$nuxt.context.app.localePath('/c/0/'+lID+'/'+urlsafe)
+      if(lID==61){
+        cid='/sv-se/supporterklubben'
+      }else if(lID==308){
+        cid='/sv-se/medlemserbjudanden'
+      }
+      return cid
+    },
     switchLang(code){
       this.$i18n.setLocaleCookie(code)
       location.href = '/'+code;
