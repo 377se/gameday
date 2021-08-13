@@ -22,7 +22,7 @@
               :class="{'uk-parent':cat.SubCategoryList.length>0}">
               <nuxt-link
                 v-if="!cat.SubCategoryList.length>0"
-                :to="cat.Id!=61?localePath('/c/0/'+cat.Id+'/'+cat.UrlSafeName):'/sv-se/supporterklubben'">
+                :to="getCatLink(cat.Id, cat.UrlSafeName)">
                 <img
                   v-if="cat.ImageThumb" 
                   :alt="cat.Name"
@@ -91,6 +91,17 @@ export default {
       },10);
     }
   },
+  methods:{
+    getCatLink(lID, urlsafe){
+      var cid = this.$nuxt.context.app.localePath('/c/0/'+lID+'/'+urlsafe)
+      if(lID==61){
+        cid='/sv-se/supporterklubben'
+      }else if(lID==308){
+        cid='/sv-se/medlemserbjudanden'
+      }
+      return cid
+    },
+  }
 };
 </script>
 
