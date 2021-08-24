@@ -3,7 +3,9 @@
     <!-- <ShopTopPromo v-if="(siteId==6 && siteLang=='sv') || (siteId==2 && siteLang=='sv') || (siteId==7 && siteLang=='sv')"/> -->
     <TheRollingText />
     <TheHeader/>
-    <nuxt keep-alive/>
+    <nuxt 
+      keep-alive
+      :keep-alive-props="{ exclude: ['Medlemserbjudanden'] }"/>
     <client-only>
       <OffscreenMenu/>
       <OffscreenProductTypeMenu/>

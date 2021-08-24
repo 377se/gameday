@@ -87,6 +87,7 @@ import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import Alert from '@/components/Alert'
 
 export default {
+  name: "Medlemserbjudanden",
   async fetch () {
     let pageNum = this.$route.query.page?this.$route.query.page:1
     // Check if we are in the editor mode
