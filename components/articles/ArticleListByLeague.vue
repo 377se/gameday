@@ -7,12 +7,12 @@
           <content-placeholders-heading />
         </content-placeholders>
         <div class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l">
-          <content-placeholders 
+          <content-placeholders
             v-for="p in 20"
             :key="p"
             :rounded="true"
             class="uk-padding-small">
-            <content-placeholders-img 
+            <content-placeholders-img
             class="ph-img"/>
             <content-placeholders-text :lines="2" />
           </content-placeholders>
@@ -20,7 +20,26 @@
       </div>
     </template>
     <template v-else>
-      <div 
+
+
+      <!-- PRODUKTKATEGORIER PÅ SHOP-SIDORNA -->
+        <div
+          v-if="producttypes!=null && producttypes.length>0"
+          class="uk-grid uk-grid-small uk-margin-bottom uk-margin-top category-list-slider"
+          uk-grid
+          >
+          <div
+            v-for="pt in producttypes"
+            :key="pt.GarmentId"
+            >
+            <nuxt-link
+              class="uk-label"
+              :to="localePath(`/${blok.league[0]}-shop?producttype=${pt.SeoName}`)"><span>{{ pt.Name }}</span></nuxt-link>
+          </div>
+        </div>
+
+
+        <div
         class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
         uk-sticky="offset:118;width-element:body;bottom:true"
         style="z-index:3">
@@ -46,15 +65,15 @@
           :url="`/lag/mlb/${article.TeamNameSeo}/${article.UrlSafeName}`"
         />
       </div>
-      <ul 
+      <ul
         class="uk-pagination uk-flex-center uk-margin-large uk-margin-bottom">
         <li>
-          <a 
+          <a
             href="#"
             @click.stop.prevent="previous()"><span uk-pagination-previous></span> Previous</a></li>
         <li><span>{{ pageNum }}/{{ article.TotalPages }}</span></li>
         <li>
-          <a 
+          <a
             href="#"
             @click.stop.prevent="next()">Next <span uk-pagination-next></span></a></li>
       </ul>
@@ -104,16 +123,16 @@ export default {
     ,menu(){
       var m = null
       switch(this.blok.league){
-        case 'nhl': 
+        case 'nhl':
           m = this.nhlMenu
           break;
-        case 'nba': 
+        case 'nba':
           m = this.nbaMenu
           break;
-        case 'nfl': 
+        case 'nfl':
           m = this.nflMenu
           break;
-        case 'mlb': 
+        case 'mlb':
           m = this.mlbMenu
           break;
       }
@@ -128,12 +147,12 @@ export default {
     next(){
       if(this.pageNum<this.article.TotalPages){
         this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)+1)}})
-      } 
+      }
     },
     previous(){
       if(this.pageNum>1){
         this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)-1)}})
-      } 
+      }
     }
   },
   watch: {
