@@ -234,30 +234,37 @@
                           <div class="ext-container">
                             <div>{{ extension.TeamName }}</div>
                             <div class="uk-text-bold">{{ extension.ProductName }}</div>
-                            <div class="uk-text-bold uk-text-danger">{{ extension.PriceOnSaleDisplay }}</div>
+                            <div class="uk-flex uk-flex-start uk-flex-nowrap">
+                              <div class="uk-text-bold uk-text-danger">{{ extension.PriceOnSaleDisplay }}</div>
+                              <div class="line-through uk-margin-small-left">{{ $getCMSEntry(global_labels,'article_details_original_price', 'ord.') }} {{ extension.Price }}</div>
+                            </div>
                           </div>
                           <div> <!-- DROP & KNAPP -->
-                              <div class="uk-width-3-4">
-                                <select
-                                  v-model="extension.SizeId"
-                                  class="uk-select"
-                                  style="font-size:0.75rem; height:30px; margin-top: 5px;"
-                                  :disabled="extension.IsOneSize"
-                                  >
-                                  <option v-if="!extension.IsOneSize" value="-1">{{$getCMSEntry(global_labels,'article_details_choose_size', 'Välj storlek')}}</option>
-                                  <option
-                                    v-for="size in extension.SizeList"
-                                    :value="size.Value"
-                                    :key="size.Value">{{ size.Name }}
-                                  </option>
-                                </select>
+                              <div class="uk-flex uk flex-between uk-flex-nowrapp">
+                                <div class="uk-width-1-2">
+                                  <select
+                                    v-model="extension.SizeId"
+                                    class="uk-select"
+                                    style="font-size:0.75rem; height:30px; margin-top: 5px;"
+                                    :disabled="extension.IsOneSize"
+                                    >
+                                    <option v-if="!extension.IsOneSize" value="-1">{{$getCMSEntry(global_labels,'article_details_choose_size', 'Välj storlek')}}</option>
+                                    <option
+                                      v-for="size in extension.SizeList"
+                                      :value="size.Value"
+                                      :key="size.Value">{{ size.Name }}
+                                    </option>
+                                  </select>
+                                </div>
+
+                                <button
+                                  id="buy-button"
+                                  style="font-size:0.75rem; white-space: nowrap;"
+                                  class="uk-width-1-2 ext-button uk-button-primary uk-margin-small-left"
+                                  @click="addToCartFromExtension(extension)"
+                                >{{ $getCMSEntry(global_labels,'article_details_add_to_cart_ext', 'Köp') }}</button>
+
                               </div>
-                              <button
-                                id="buy-button"
-                                style="font-size:0.75rem; white-space: nowrap;"
-                                class="uk-width-3-4 ext-button uk-button-primary"
-                                @click="addToCartFromExtension(extension)"
-                              >{{ $getCMSEntry(global_labels,'article_details_add_to_cart_ext', 'Köp') }}</button>
                           </div>
                         </span>
                       </td>
@@ -459,4 +466,8 @@ export default {
 .spacer-below-extensions {
   height: 150px;
 }
+.line-through{
+  text-decoration:line-through;
+}
+
 </style>
