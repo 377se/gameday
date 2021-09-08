@@ -338,7 +338,7 @@ export default {
       "name":article.MetaTitle,
       "description":article.Description,
       "url": process.env.SITE_URL + this.$route.path,
-      "image": process.env.DETAILS_SRC + article.Images[0].Name,
+      "image": article.Images ? process.env.DETAILS_SRC + article.Images[0].Name:null,
       "inProductGroupWithID" : article.TeamName,
       "brand": article.BrandName,
       "offers": [
