@@ -100,7 +100,7 @@ export default {
   overflow-x: scroll;
   max-width: 1420px;
   flex-wrap:nowrap;
-  @media (min-width: 1200px) { 
+  @media (min-width: 1200px) {
     flex-wrap:wrap;
   }
   scrollbar-width: none; /* Firefox */
