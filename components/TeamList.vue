@@ -92,7 +92,7 @@ export default {
 }
 </script>
 <style lang="scss">
-.team-list-slider{
+.team-list-slider {
   display: flex;
   width: 100vw;
   margin-left:-15px;
@@ -100,8 +100,14 @@ export default {
   overflow-x: scroll;
   max-width: 1420px;
   flex-wrap:nowrap;
-  @media (min-width: 1200px) { 
+  @media (min-width: 1200px) {
     flex-wrap:wrap;
+  }
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE 10+ */
+  &::-webkit-scrollbar {
+    background: transparent; /* Chrome/Safari/Webkit */
+    width: 0px;
   }
 }
 .team-list-slider > div{
@@ -117,4 +123,5 @@ export default {
   width:50px;
   max-width:none;
 }
+
 </style>
