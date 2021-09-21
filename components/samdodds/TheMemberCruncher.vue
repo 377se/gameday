@@ -395,6 +395,7 @@ export default {
             if(this.currentMembershipObject.FamilyMembers.length==0){
                 UIkit.modal.confirm('Glöm inte att lägga till familjemedlemmar innan du lägger i varukorgen också!',{ labels: { ok: 'Lägg till familjemedlemmar', cancel: 'Nej, tack!' } }).then(function() {
                     //Do nothing
+                    _this.showAddFamilyMember()
                 }, function () {
                     _this.addMembershipToCart()
                     //Rejected
