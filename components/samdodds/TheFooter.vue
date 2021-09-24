@@ -39,14 +39,6 @@
           </div>
         </div>
 
-
-        <div class="uk-width-expand@m uk-width-1-2@s">               
-          <h3 class="uk-h4">{{ $getCMSEntry(global_labels,'footer_header_about_us', 'Om Sam Dodds') }}</h3>
-          <ul class="uk-list uk-text-small">
-            <li><nuxt-link :to="localeRoute($getCMSEntry(global_labels,'localepath_corporate_information', '/faq'))">{{ $getCMSEntry(global_labels,'footer_company_information', 'Företagsinformation') }}</nuxt-link></li>
-          </ul>
-        </div>
-
       </div>
     </div>
     <div 
