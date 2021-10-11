@@ -131,7 +131,6 @@ export default {
         })
       ]);
       this.story=sb.data.stories.length>0?sb.data.stories[0]:{ content: {} }
-      this.metadata = metadata
     
     const [metadata] = await Promise.all([
       this.$axios.$get(
