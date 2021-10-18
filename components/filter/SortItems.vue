@@ -5,6 +5,7 @@
       <select
         v-model="selected"
         @change="sort()"
+        style="font-size: 16px;"
         >
         <option
           v-for="sort in sortItemList"
