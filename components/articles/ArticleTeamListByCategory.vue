@@ -58,11 +58,11 @@
                 :to="localePath(`/c/${$route.params.parentid}/${$route.params.categoryid}/${$route.params.categoryname}/${pt.GarmentId}/${pt.SeoName}`)"><span>{{ pt.Name }}</span></nuxt-link>
             </div>
           </div>
+          <strong>{{ article.TotalNumberOfProducts }} {{ $getCMSEntry(global_labels,'info_products', 'produkter') }}</strong> 
           <div 
           class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
           uk-sticky="offset:118;width-element:body;bottom:true"
           style="z-index:3">
-          <strong>{{ article.TotalNumberOfProducts }} {{ $getCMSEntry(global_labels,'info_products', 'produkter') }}</strong> 
           <FilterItems
             class="uk-width-expand"
             :product-types="producttypes"

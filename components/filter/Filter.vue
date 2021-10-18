@@ -4,7 +4,7 @@
       <a 
         href="#filter-menu"
         type="button"
-        class="uk-button uk-button-secondary uk-button-small uk-margin-small-left"
+        class="uk-button uk-button-secondary uk-button-small"
         @click.prevent="showFilter()"><span uk-icon="icon: settings;"/> {{ $getCMSEntry(global_labels,'filter_header', 'Filter') }} <span v-if="numfilters>0">({{ numfilters }})</span></a>
     </span>  
     <div 

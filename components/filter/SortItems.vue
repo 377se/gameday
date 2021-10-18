@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div
+    class="sort-item-list">
     <div uk-form-custom="target: > * > span:first-child">
       <select
         v-model="selected"
@@ -42,6 +43,8 @@ export default {
   }
 }
 </script>
-<style lang="scss">
-
+<style lang="scss" scoped>
+.uk-sticky.uk-active > .sort-item-list{
+  margin-right:20px;
+}
 </style>
