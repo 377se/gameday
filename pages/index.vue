@@ -15,25 +15,63 @@ import Page from '@/components/Page'
 
 export default {
   head () {
-    return {
-      title: `${this.story.content.SEO.title}`,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: `${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ""),
-        },
-        {
-          hid: 'og:title',
-          name:  'og:title',
-          content:  `${this.story.content.SEO.title}`,
-        },
-        {
-          hid: 'og:description',
-          name:  'og:description',
-          content: `${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ""),
+    let _link = new Array()
+    if(this.metadata){
+      for(var i=0;i<this.metadata.LangHref.length;i++){
+        let _obj = {
+                    'hid':'i18n-alt-'+this.metadata.LangHref[i].Culture.split('-')[0],
+                    'rel': 'alternate',
+                    'href': this.metadata.LangHref[i].Url,
+                    'hreflang': this.metadata.LangHref[i].Culture.split('-')[0]
+                  }
+        if(this.siteid!=2 || (this.siteid==2 && this.metadata.LangHref[i].Culture!='en-gb')){
+          _link.push(_obj)
+        } 
+        if(this.metadata.LangHref[i].Culture==this.$i18n.defaultLocale){
+          let _obj = {
+                    'hid':'i18n-xd',
+                    'rel': 'alternate',
+                    'href': this.metadata.LangHref[i].Url,
+                    'hreflang': 'x-default'
+                  }
+          _link.push(_obj)
         }
-      ]
+      }
+
+      _link.push(
+        {
+          rel: 'canonical',
+          hid: 'i18n-can',
+          href: this.metadata.Canonical
+        }
+      )
+    }
+    if(this.story.content.SEO){
+      return {
+        title: `${this.story.content.SEO.title}`,
+        meta: [
+          {
+            hid: 'description',
+            name: 'description',
+            content: `${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ""),
+          },
+          {
+            hid: 'og:title',
+            name:  'og:title',
+            content:  `${this.story.content.SEO.title}`,
+          },
+          {
+            hid: 'og:description',
+            name:  'og:description',
+            content: `${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ""),
+          }
+        ],
+        link: _link
+      }
+    }else{
+      return {
+        link: _link
+      }
     }
   },
   components:{
@@ -70,10 +108,16 @@ export default {
     let version = this.$nuxt.context.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
     // Load the JSON from the API
     try{
-      var sb = await this.$nuxt.context.app.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}${(this.$route.path.replace(this.$i18n.locale,'')).replace('//','')}/home`, {
+      const [sb, metadata] = await Promise.all([
+        this.$nuxt.context.app.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}${(this.$route.path.replace(this.$i18n.locale,'')).replace('//','')}/home`, {
         version: version,
         cv: this.$nuxt.context.store.getters.version
-      })
+        }),
+        this.$axios.$get(
+          `/webapi/${this.$i18n.locale}/MetaData/GetMetadataByCategoryId?categoryId=0`
+        )
+        ]);
+      this.metadata = metadata
       this.story = sb.data.story
     }catch(res){
       if (!res.response) {

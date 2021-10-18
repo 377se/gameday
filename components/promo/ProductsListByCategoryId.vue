@@ -42,7 +42,7 @@ export default {
       let _seoname = this.blok.category_id?this.blok.category_id:null
       let _pagesize = this.blok.page_size?this.blok.page_size:5
       var _this = this
-      await this.$axios.get('/webapi/'+this.$i18n.locale+'/Article/getArticleListByCategoryId?lookUpBrand=false&productType='+_producttype+'&seoName='+_seoname+'&pageSize='+_pagesize+_params)
+      await this.$axios.get('/webapi/'+this.$i18n.locale+'/Article/getArticleListByCategoryId?sortorder=0&lookUpBrand=false&productType='+_producttype+'&seoName='+_seoname+'&pageSize='+_pagesize+_params)
       .then(function(res){
         if(res.data.ArticleList && res.data.ArticleList.length>0){
           _this.articles = res.data.ArticleList

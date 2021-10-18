@@ -64,6 +64,7 @@
           style="z-index:3">
           <strong>{{ article.TotalNumberOfProducts }} {{ $getCMSEntry(global_labels,'info_products', 'produkter') }}</strong> 
           <FilterItems
+            class="uk-width-expand"
             :product-types="producttypes"
             :colors="colors"
             :sizes="sizes"
@@ -71,6 +72,9 @@
             :brands="brands"
             :teams="teamlist"
             :show_sale="true"/>
+          <SortItems
+            :sort-item-list="article.SortItemList"
+          />
           </div>
           <div
             class="ts-article-list uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
@@ -110,6 +114,7 @@
 import {mapGetters} from 'vuex'
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
+import SortItems from "@/components/filter/SortItems";
 
 export default {
   async fetch () {
@@ -122,11 +127,12 @@ export default {
     let sale = this.$route.query.sale?this.$route.query.sale:false
     let brand = this.$route.query.brand?this.$route.query.brand:null
     let team = this.$route.query.team?this.$route.query.team:null
+    let sortorder = this.$route.query.sortorder?this.$route.query.sortorder:0
     
     try {
       const [a, p, c, s, g, b, t] = await Promise.all([
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Article/getArticleListByCategoryId?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +this.$route.params.categoryid
+          '/webapi/'+this.$i18n.locale+'/Article/getArticleListByCategoryId?sortorder='+sortorder+'&pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +this.$route.params.categoryid
         ),
         this.$axios.$get(
           `/webapi/${this.$i18n.locale}/Filter/GetProductTypeListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&brandName=null`
@@ -165,7 +171,8 @@ export default {
   },
   components:{
     ArticleCardSimple,
-    FilterItems
+    FilterItems,
+    SortItems
   },
   props: {
     sb: {
