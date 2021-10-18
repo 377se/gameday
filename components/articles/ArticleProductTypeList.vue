@@ -22,11 +22,11 @@
     <template v-else>
       <div 
         class="uk-container uk-container-large uk-padding-small">
+        <strong>{{ article.TotalNumberOfProducts }} {{ $getCMSEntry(global_labels,'info_products', 'produkter') }}</strong> 
         <div 
           class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
           uk-sticky="offset:118;width-element:body;bottom:true"
           style="z-index:3">
-          <strong>{{ article.TotalNumberOfProducts }} {{ $getCMSEntry(global_labels,'info_products', 'produkter') }}</strong> 
           <FilterItems
             :product-types="producttypes"
             :colors="colors"
@@ -34,7 +34,11 @@
             :gender="gender"
             :brands="brands"
             :teams="teams"
-            :show_sale="true"/>
+            :show_sale="true"
+            class="uk-width-expand"/>
+          <SortItems
+            :sort-item-list="article.SortItemList"
+          />
         </div>
         <div
           class="ts-article-list uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
@@ -74,6 +78,7 @@
 import {mapGetters} from 'vuex'
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import FilterItems from "@/components/filter/Filter";
+import SortItems from "@/components/filter/SortItems";
 
 export default {
   async fetch () {
@@ -86,11 +91,12 @@ export default {
     let sale = this.$route.query.sale?this.$route.query.sale:false
     let brand = this.$route.query.brand?this.$route.query.brand:null
     let team = this.$route.query.team?this.$route.query.team:null
+    let sortorder = this.$route.query.sortorder?this.$route.query.sortorder:0
     
     try {
       const [a, c, s, g, b, t] = await Promise.all([
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Article/getArticleList?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=null'
+          '/webapi/'+this.$i18n.locale+'/Article/getArticleList?sortorder='+sortorder+'&pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=null'
         ),
         this.$axios.$get(
           '/webapi/'+this.$i18n.locale+'/Filter/GetColourList?categoryName=null&teamName=null&garmentName='+productType+'&brandName=null'
@@ -147,7 +153,8 @@ export default {
   }*/,
   components:{
     ArticleCardSimple,
-    FilterItems
+    FilterItems,
+    SortItems
   },
   computed: {
     ...mapGetters({
@@ -173,7 +180,7 @@ export default {
   },
   watch: {
     '$route.query': function(oldQuery, newQuery){
-      if(this._inactive === false && JSON.stringify(newQuery) !== JSON.stringify(oldQuery)){
+      if((this._inactive === false || this._inactive===null) && JSON.stringify(newQuery) !== JSON.stringify(oldQuery)){
         window.scrollTo(0,0)
         this.$fetch()
       }

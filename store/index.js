@@ -109,7 +109,8 @@ export const actions = {
           commit('setProductTypeMenu', res[0])
           commit('setBrandMenu', res[1])
       }).catch((err)=>{
-        throw new Error("Error getting productType or brand for menu:" + err)
+        console.log("Error getting productType or brand for menu:" + err)
+        //throw new Error("Error getting productType or brand for menu:" + err)
       })
 
     if(process.env.SITE_ID==6){ //Gameday

@@ -43,7 +43,8 @@
             :sizes="sizes"
             :gender="gender"
             :brands="brands"
-            :show_sale="true"/>
+            :show_sale="true"
+          />
         </div>
         <div
           class="ts-article-list uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
@@ -158,7 +159,7 @@ export default {
     try {
       const [a, c, s, g, b] = await Promise.all([
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Article/getArticleList?pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+this.$route.params.produkttyp+'&sale=false&pageNum='+ pageNum +'&seoName=' +this.$route.params.team
+          '/webapi/'+this.$i18n.locale+'/Article/getArticleList?sortorder=0&pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList=null&color='+color+'&size='+size+'&gender='+gender+'&productType='+this.$route.params.produkttyp+'&sale=false&pageNum='+ pageNum +'&seoName=' +this.$route.params.team
         ),
         this.$axios.$get(
           '/webapi/'+this.$i18n.locale+'/Filter/GetColourList?categoryName='+this.$route.params.league+'&teamName='+this.$route.params.team +'&garmentName='+this.$route.params.produkttyp+'&brandName=null'
