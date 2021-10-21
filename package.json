@@ -14,7 +14,7 @@
     "dev:samdodds-se": "nuxt --config-file nuxt.config.samdodds.se.js",
     "dev:samdodds-test": "nuxt --config-file nuxt.config.samdodds.test.js",
     "dev:kopshop": "nuxt --config-file nuxt.config.kopshop.js",
-    "build": "nuxt build --config-file nuxt.config.supportersplace.ser.js",
+    "build": "nuxt build --config-file nuxt.config.supportersplace.se.js",
     "build:gameday-fi": "nuxt build --config-file nuxt.config.gameday.fi.js",
     "build:supportersplace": "nuxt build --config-file nuxt.config.supportersplace.js",
     "build:laxen": "nuxt build --config-file nuxt.config.laxen.js",
