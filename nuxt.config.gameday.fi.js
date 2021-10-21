@@ -5,6 +5,7 @@ export default {
     DETAILS_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_640,f_auto/http://static.supportersplace.se/product/',
     BRAND_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_200,f_auto/http://static.supportersplace.se/brand/',
     STORYBLOK_CATALOGUE: '/gameday',
+    STORYBLOK_LABELS: 'gameday',
     SITE_URL: 'https://gameday.fi',
     LOGO_URL: '/sites/gameday/gameday-logo.svg',
     SITE_ID: 6,
@@ -15,19 +16,18 @@ export default {
     ZENDESK: 'b2384b65-02c4-40fe-b25f-c195c554d089'
 
   },
-  mode: 'universal',
   /*
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Gameday',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
+        content: 'Gameday'
       }
     ]
   },
@@ -64,6 +64,7 @@ export default {
     }
   },
   router: {
+    trailingSlash: false,
     extendRoutes (routes, resolve) {
       routes.push({
         name: 'home',
@@ -79,38 +80,41 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     //'@nuxtjs/eslint-module'
     '@nuxtjs/gtm', 
+    '@nuxtjs/pwa',
   ],
   gtm: { id: 'GTM-WDJLNSJ' },
   /*
    ** Nuxt.js modules
    */
   modules: [
-    ['@netsells/nuxt-hotjar', { 
-      id: '1686545', 
-      sv: '',
-    }],
+    '@nuxtjs/redirect-module',
     // Doc: https://axios.nuxtjs.org/usage
     ['@dansmaculotte/nuxt-zendesk',
     { 
       key: 'b2384b65-02c4-40fe-b25f-c195c554d089',
       disabled: true,
+      hideOnLoad: true,
       settings: {
         webWidget: {
           color: {
             theme: '#fa6900',
             launcherText: '#ffffff',
+          },
+          chat: {
+            connectOnPageLoad: false
           }
         }
       }
     }],
     ['nuxt-i18n',
       {
+        baseUrl: 'https://gameday.fi',
         defaultLocale: 'fi-fi',
-        strategy: 'prefix_except_default',
+        strategy: 'no_prefix',
         locales: [
           {
             code: 'fi-fi',
-            iso: 'fi-FI'
+            iso: 'fi'
           }
         ],
         seo:false
@@ -118,16 +122,39 @@ export default {
     ],
     '@nuxtjs/axios',
     'cookie-universal-nuxt',
-    '@nuxtjs/pwa',
     'nuxt-webfontloader',
     ['storyblok-nuxt', { accessToken: 'rGRW1HEorfNfSoGS5CzoDwtt', cacheProvider: 'memory' }],
-    ['@nuxtjs/style-resources']    
+    ['@nuxtjs/style-resources'] 
+  ],
+  redirect: [
+    {
+        from: '^((?!.*webapi).*\/[^\\?]*(?<=\\w))([\/])(\\?.*)?$',
+        to: '$1$3',
+        statusCode: 301
+    },
   ],
   styleResources: {
     scss: [
     './assets/scss/vars.scss',
     './assets/scss/mixins.scss'
     ]
+  },
+  pwa: {
+    meta:{
+      name: 'Gameday',
+      description: 'Gameday',
+      lang: 'fi',
+      theme_color: '#ffffff'
+    },
+    manifest: {
+      name: 'Gameday',
+      short_name: 'Gameday',
+      lang: 'fi',
+      description: 'Gameday',
+    },
+    icon: {
+      fileName: 'icon_gameday.png'
+    }
   },
   webfontloader: {
     google: {
@@ -143,16 +170,22 @@ export default {
   },
   proxy: {
     '/webapi': {
-      target: process.env.NODE_ENV !== 'production'?'https://beta.gameday.se':'https://api.gameday.se'
+      target: process.env.NODE_ENV !== 'production'?'https://api.gameday.se':'https://api.gameday.se'
     }
   },
   /*
    ** Build configuration
    */
   build: {
+    //analyze: true, //if we wish to do npm run build --analyze
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(config, ctx) {},
+    babel:{
+      plugins: [
+        ['@babel/plugin-proposal-private-methods', { loose: true }]
+      ]
+    }
   }
 }
