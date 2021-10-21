@@ -104,20 +104,13 @@ export default {
     }],
     ['nuxt-i18n',
       {
-        detectBrowserLanguage: {
-          useCookie: true,
-          alwaysRedirect: true,
-          cookieKey: 'i18n_redirected',
-          onlyOnRoot: true,  // recommended
-        },
         baseUrl: 'https://supportersplace.se',
         defaultLocale: 'sv-se',
         strategy: 'prefix_and_default',
         locales: [
           {
             code: 'sv-se',
-            iso: 'sv',
-            name: 'Sweden'
+            iso: 'sv'
           }
         ],
         seo:false
