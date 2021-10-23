@@ -106,23 +106,18 @@ export default {
       {
         detectBrowserLanguage: {
           useCookie: true,
-          alwaysRedirect: true,
+          alwaysRedirect: false,
           cookieKey: 'i18n_redirected',
           onlyOnRoot: true,  // recommended
         },
         baseUrl: 'https://supportersplace.com',
-        defaultLocale: 'sv-se',
+        defaultLocale: 'en',
         strategy: 'prefix',
         locales: [
           {
             code: 'en',
             iso: 'en',
             name: 'International (english)'
-          },
-          {
-            code: 'sv-se',
-            iso: 'sv',
-            name: 'Sweden'
           },
           {
             code: 'nb-no',
