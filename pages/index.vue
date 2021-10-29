@@ -112,12 +112,8 @@ export default {
         this.$nuxt.context.app.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}${(this.$route.path.replace(this.$i18n.locale,'')).replace('//','')}/home`, {
         version: version,
         cv: this.$nuxt.context.store.getters.version
-        }),
-        this.$axios.$get(
-          `/webapi/${this.$i18n.locale}/MetaData/GetMetadataByCategoryId?categoryId=0`
-        )
+        })
         ]);
-      this.metadata = metadata
       this.story = sb.data.story
     }catch(res){
       if (!res.response) {

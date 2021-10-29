@@ -84,6 +84,9 @@ export const actions = {
       commit('setCid', context.app.$cookies.get('cid'))
     }
 
+    var _locale = context.app.i18n.locale?context.app.i18n.locale:context.app.i18n.defaultLocale
+    console.log('Locale: '+_locale)
+
     await Promise.all(
       [context.app.$axios.$get('https://api.storyblok.com/v1/cdn/spaces/me?token='+process.env.STORYBLOK)]
     ).then(res =>{
@@ -94,7 +97,7 @@ export const actions = {
 
     try {
       let [storyblok] = await Promise.all([
-        context.app.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+context.app.i18n.locale +"&datasource=fe-labels-global&token="+process.env.STORYBLOK +"&per_page=1000&cv="+getters.version)
+        context.app.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+_locale +"&datasource=fe-labels-global&token="+process.env.STORYBLOK +"&per_page=1000&cv="+getters.version)
       ]);
       commit('setLabels', storyblok.datasource_entries.concat(storyblok.datasource_entries))
     } catch (err) {
@@ -103,8 +106,8 @@ export const actions = {
 
     
       await Promise.all([
-        context.app.$axios.$get('/webapi/'+context.app.i18n.locale+'/Filter/GetProductTypeListByShopId'),
-        context.app.$axios.$get('/webapi/'+context.app.i18n.locale+'/Filter/GetBrandListByShopId')
+        context.app.$axios.$get('/webapi/'+_locale+'/Filter/GetProductTypeListByShopId'),
+        context.app.$axios.$get('/webapi/'+_locale+'/Filter/GetBrandListByShopId')
       ]).then(res => {
           commit('setProductTypeMenu', res[0])
           commit('setBrandMenu', res[1])
@@ -114,11 +117,12 @@ export const actions = {
       })
 
     if(process.env.SITE_ID==6){ //Gameday
+      
       await Promise.all([
-        context.app.$axios.$get('/webapi/'+context.app.i18n.locale+'/Filter/GetTeamListByCategory?categoryId=202'),
-        context.app.$axios.$get('/webapi/'+context.app.i18n.locale+'/Filter/GetTeamListByCategory?categoryId=327'),
-        context.app.$axios.$get('/webapi/'+context.app.i18n.locale+'/Filter/GetTeamListByCategory?categoryId=328'),
-        context.app.$axios.$get('/webapi/'+context.app.i18n.locale+'/Filter/GetTeamListByCategory?categoryId=329')
+        context.app.$axios.$get('/webapi/'+_locale+'/Filter/GetTeamListByCategory?categoryId=202'),
+        context.app.$axios.$get('/webapi/'+_locale+'/Filter/GetTeamListByCategory?categoryId=327'),
+        context.app.$axios.$get('/webapi/'+_locale+'/Filter/GetTeamListByCategory?categoryId=328'),
+        context.app.$axios.$get('/webapi/'+_locale+'/Filter/GetTeamListByCategory?categoryId=329')
       ]).then(res => {
           commit('setNHLMenu', res[0])
           commit('setNBAMenu', res[1])
