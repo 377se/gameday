@@ -108,7 +108,7 @@ export default {
     let version = this.$nuxt.context.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
     // Load the JSON from the API
     try{
-      const [sb, metadata] = await Promise.all([
+      const [sb] = await Promise.all([
         this.$nuxt.context.app.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}${(this.$route.path.replace(this.$i18n.locale,'')).replace('//','')}/home`, {
         version: version,
         cv: this.$nuxt.context.store.getters.version

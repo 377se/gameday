@@ -30,13 +30,13 @@
             <ul 
               class="uk-nav uk-dropdown-nav uk-text-left">
               <li
-                :class="{'uk-active':locale==='en'}"><a href="/en" style="vertical-align:middle"><img src="/flags/en.svg" style="width:30px;margin-right:5px;"> International (english)</a></li>
+                :class="{'uk-active':locale==='en'}"><a href="https://supportersplace.com/en" target="_self" style="vertical-align:middle"><img src="/flags/en.svg" style="width:30px;margin-right:5px;"> International (english)</a></li>
               <li
-                :class="{'uk-active':locale==='sv-se'}"><a href="https://supportersplace.se" style="vertical-align:middle"><img src="/flags/sv-se.svg" style="width:30px;margin-right:5px;"> Sweden</a></li>
+                :class="{'uk-active':locale==='sv-se'}"><a href="https://supportersplace.se" target="_self" style="vertical-align:middle"><img src="/flags/sv-se.svg" style="width:30px;margin-right:5px;"> Sweden</a></li>
               <li
-                :class="{'uk-active':locale==='nb-no'}"><a href="/nb-no" style="vertical-align:middle"><img src="/flags/nb-no.svg" style="width:30px;margin-right:5px;"> Norway</a></li>
+                :class="{'uk-active':locale==='nb-no'}"><a href="https://supportersplace.com/nb-no" target="_self" style="vertical-align:middle"><img src="/flags/nb-no.svg" style="width:30px;margin-right:5px;"> Norway</a></li>
               <li
-                :class="{'uk-active':locale==='fi-fi'}"><a href="/fi-fi" style="vertical-align:middle"><img src="/flags/fi-fi.svg" style="width:30px;margin-right:5px;"> Finland</a></li>
+                :class="{'uk-active':locale==='fi-fi'}"><a href="https://supportersplace.com/fi-fi" target="_self" style="vertical-align:middle"><img src="/flags/fi-fi.svg" style="width:30px;margin-right:5px;"> Finland</a></li>
             </ul>
         </div>
         <nuxt-link
@@ -140,11 +140,12 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   async fetch() {
     try {
+      let _locale = this.$i18n.locale?this.$i18n.locale:this.$i18n.defaultLocale
       let [menu] = await Promise.all([
-          this.$axios.$get('/webapi/'+this.$i18n.locale+'/category')
+          this.$axios.$get('/webapi/'+_locale+'/category')
       ]);
       this.menu = menu
-      this.locale = this.$i18n.locale?this.$i18n.locale:this.$i18n.defaultLocale
+      this.locale = _locale
     } catch (err) {
       console.log(err);
     }

@@ -2,7 +2,9 @@
   <div>
     <!-- <ShopTopPromo v-if="(siteId==6 && siteLang=='sv') || (siteId==2 && siteLang=='sv') || (siteId==7 && siteLang=='sv')"/> -->
     <TheRollingText />
+    <client-only>
     <TheHeader/>
+    </client-only>
     <nuxt 
       keep-alive
       :keep-alive-props="{ exclude: ['Medlemserbjudanden'] }"/>

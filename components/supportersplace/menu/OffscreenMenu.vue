@@ -88,9 +88,11 @@ import { mapGetters, mapActions } from 'vuex'
 //”https://beta.supporterprylar.se/webapi/Filter/GetTopTeamListBySeoName?seoName=mlb”
 export default {
   async fetch() {
+    
     try {
+      let _locale = this.$i18n.locale?this.$i18n.locale:this.$i18n.defaultLocale
       let [menu] = await Promise.all([
-          this.$axios.$get('/webapi/'+this.$i18n.locale+'/category')
+          this.$axios.$get('/webapi/'+_locale+'/category')
       ]);
       this.menu = menu
     } catch (err) {
