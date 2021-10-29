@@ -92,7 +92,7 @@ export default {
     try {
       let _locale = this.$i18n.locale?this.$i18n.locale:this.$i18n.defaultLocale
       let [menu] = await Promise.all([
-          this.$axios.$get('/webapi/'+_locale+'/category')
+          this.$axios.$get('/webapi/'+_locale+'/category/Get')
       ]);
       this.menu = menu
     } catch (err) {

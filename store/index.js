@@ -106,8 +106,8 @@ export const actions = {
 
     
       await Promise.all([
-        context.app.$axios.$get('/webapi/'+_locale+'/Filter/GetProductTypeListByShopId'),
-        context.app.$axios.$get('/webapi/'+_locale+'/Filter/GetBrandListByShopId')
+        context.app.$axios.$get('/webapi/'+_locale+'/Filter/GetProductTypeListByShopId/get'),
+        context.app.$axios.$get('/webapi/'+_locale+'/Filter/GetBrandListByShopId/get')
       ]).then(res => {
           commit('setProductTypeMenu', res[0])
           commit('setBrandMenu', res[1])
