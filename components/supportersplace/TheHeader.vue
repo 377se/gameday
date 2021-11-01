@@ -2,22 +2,28 @@
   <div>
     <div 
       id="lang-modal" 
-      class="uk-modal uk-flex-top" 
+      class="uk-modal uk-flex-top"
       uk-modal="container:false">
       <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
         <button class="uk-modal-close-default" type="button" uk-close></button>
         <div>
+          <h4 class="uk-text-center">Choose country</h4>
           <ul 
             class="uk-nav uk-text-left">
             <li
               :class="{'uk-active':locale==='en'}">
-              <a href="https://supportersplace.com/en"  style="vertical-align:middle"><img src="/flags/en.svg" style="width:30px;margin-right:5px;"> International (english)</a></li>
+              <a 
+                href="https://supportersplace.com/en"  
+                style="vertical-align:middle"
+                @click.stop.prevent="switchLang('en')"><img src="/flags/en.svg" style="width:30px;margin-right:5px;"> International (english)</a></li>
             <li
               :class="{'uk-active':locale==='sv-se'}"><a href="https://supportersplace.se" style="vertical-align:middle"><img src="/flags/sv-se.svg" style="width:30px;margin-right:5px;"> Sweden</a></li>
             <li
-              :class="{'uk-active':locale==='nb-no'}"><a href="https://supportersplace.com/nb-no" style="vertical-align:middle"><img src="/flags/nb-no.svg" style="width:30px;margin-right:5px;"> Norway</a></li>
+              :class="{'uk-active':locale==='nb-no'}"
+              @click.stop.prevent="switchLang('nb-no')"><a href="https://supportersplace.com/nb-no" style="vertical-align:middle"><img src="/flags/nb-no.svg" style="width:30px;margin-right:5px;"> Norway</a></li>
             <li
-              :class="{'uk-active':locale==='fi-fi'}"><a href="https://supportersplace.com/fi-fi" style="vertical-align:middle"><img src="/flags/fi-fi.svg" style="width:30px;margin-right:5px;"> Finland</a></li>
+              :class="{'uk-active':locale==='fi-fi'}"
+              @click.stop.prevent="switchLang('fi-fi')"><a href="https://supportersplace.com/fi-fi" style="vertical-align:middle"><img src="/flags/fi-fi.svg" style="width:30px;margin-right:5px;"> Finland</a></li>
           </ul>
         </div>
       </div>
@@ -184,8 +190,16 @@ export default {
   directives: {
     ClickOutside
   },
+  mounted(){
+    try{
+      if(!localStorage.getItem('locale') && this.locale=='en'){
+        UIkit.modal('#lang-modal').show();
+      }
+    }catch(err){}
+  },
   methods:{
     switchLang(code){
+      localStorage.setItem('locale',code)
       this.$i18n.setLocaleCookie(code)
       location.href = '/'+code;
     },
