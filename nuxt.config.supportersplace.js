@@ -107,7 +107,7 @@ export default {
         detectBrowserLanguage: {
           useCookie: true,
           alwaysRedirect: false,
-          cookieKey: 'i18n_redirectcme',
+          cookieKey: 'i18n_redirectcmee',
           onlyOnRoot: true,  // recommended
         },
         baseUrl: 'https://supportersplace.com',
@@ -128,11 +128,6 @@ export default {
             code: 'da-dk',
             iso: 'da',
             name: 'Denmark'
-          },
-          {
-            code: 'fi-fi',
-            iso: 'fi',
-            name: 'Finland'
           }
         ],
         seo:false
