@@ -198,9 +198,14 @@ export default {
   },
   methods:{
     switchLang(code){
-      localStorage.setItem('locale',code)
-      this.$i18n.setLocaleCookie(code)
-      location.href = '/'+code;
+      if(location.href.includes('.com')){
+        localStorage.setItem('locale',code)
+        this.$i18n.setLocaleCookie(code)
+        location.href = '/'+code;
+      }else{
+        location.href = 'https://supportersplace.com/'+code;
+      }
+      
     },
     hideDropDown(){
       var _this = this
