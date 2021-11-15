@@ -63,18 +63,22 @@
           class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
           uk-sticky="offset:118;width-element:body;bottom:true"
           style="z-index:3">
-          <FilterItems
-            class="uk-width-expand"
-            :product-types="producttypes"
-            :colors="colors"
-            :sizes="sizes"
-            :gender="gender"
-            :brands="brands"
-            :teams="teamlist"
-            :show_sale="true"/>
-          <SortItems
-            :sort-item-list="article.SortItemList"
-          />
+            <FilterItems
+              class="uk-width-expand"
+              :product-types="producttypes"
+              :colors="colors"
+              :sizes="sizes"
+              :gender="gender"
+              :brands="brands"
+              :teams="teamlist"
+              :show_sale="true"/>
+            <SortItems
+              :sort-item-list="article.SortItemList"
+            />
+          </div>
+          <div>
+            <Attributes 
+              :attribute="attribute" />
           </div>
           <div
             class="ts-article-list uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
@@ -113,6 +117,7 @@
 <script>
 import {mapGetters} from 'vuex'
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
+import Attributes from "@/components/filter/Attributes";
 import FilterItems from "@/components/filter/Filter";
 import SortItems from "@/components/filter/SortItems";
 
@@ -132,7 +137,7 @@ export default {
     try {
       const [a, p, c, s, g, b, t] = await Promise.all([
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Article/getArticleListByCategoryId?sortorder='+sortorder+'&pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +this.$route.params.categoryid
+          '/webapi/'+this.$i18n.locale+'/Article/getArticleListByCategoryId?sortorder='+sortorder+'&pageSize=0&lookUpBrand=false&brand='+brand+'&attribute='+attribute+'&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +this.$route.params.categoryid
         ),
         this.$axios.$get(
           `/webapi/${this.$i18n.locale}/Filter/GetProductTypeListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&brandName=null`
@@ -153,6 +158,7 @@ export default {
           `/webapi/${this.$i18n.locale}/Filter/GetTeamListByCategory?categoryId=${this.$route.params.categoryid}&productTypeId=0&brandId=0`
         )
       ]);
+      this.attribute = attribute
       this.articles=a.ArticleList
       this.producttypes=p
       this.colors=c
@@ -171,6 +177,7 @@ export default {
   },
   components:{
     ArticleCardSimple,
+    Attributes,
     FilterItems,
     SortItems
   },
@@ -195,6 +202,7 @@ export default {
       pageNum: 1,
       totalPages:1,
       numOfProducts: 1,
+      attribute: '',
       readmore: true,
       siteid: process.env.SITE_ID
     }

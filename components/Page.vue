@@ -11,6 +11,7 @@
 <script>
 import TextContent from '@/components/TextContent'
 import article_team_list from "@/components/articles/ArticleTeamList";
+import Attributes from "@/components/filter/Attributes";
 import TeamList from "@/components/TeamList";
 import ArticleTeamListByCategory from "@/components/articles/ArticleTeamListByCategory";
 import ArticleListByLeague from "@/components/articles/ArticleListByLeague";
@@ -50,6 +51,7 @@ export default {
     article_team_list,
     ArticleListByLeague,
     ArticleTeamListByCategory,
+    Attributes,
     promo,
     PromoTextual,
     promo_list,

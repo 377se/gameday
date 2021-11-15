@@ -109,7 +109,7 @@ export default {
     // Load the JSON from the API
     try{
       const [sb] = await Promise.all([
-        this.$nuxt.context.app.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}${(this.$route.path.replace(this.$i18n.locale,'')).replace('//','')}/home`, {
+        this.$nuxt.context.app.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}/home`, {
         version: version,
         cv: this.$nuxt.context.store.getters.version
         })
