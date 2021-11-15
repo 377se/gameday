@@ -40,6 +40,12 @@
             :sort-item-list="article.SortItemList"
           />
         </div>
+        <div>
+          <Attributes 
+            :attribute="attribute"
+            :producttypeid="$route.params.typeId" 
+          />
+        </div>
         <div
           class="ts-article-list uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"
           uk-grid
@@ -77,6 +83,7 @@
 <script>
 import {mapGetters} from 'vuex'
 import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
+import Attributes from "@/components/filter/Attributes";
 import FilterItems from "@/components/filter/Filter";
 import SortItems from "@/components/filter/SortItems";
 
@@ -96,7 +103,7 @@ export default {
     try {
       const [a, c, s, g, b, t] = await Promise.all([
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Article/getArticleList?sortorder='+sortorder+'&pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=null'
+          '/webapi/'+this.$i18n.locale+'/Article/getArticleList?attribute='+attribute+'&sortorder='+sortorder+'&pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=null'
         ),
         this.$axios.$get(
           '/webapi/'+this.$i18n.locale+'/Filter/GetColourList?categoryName=null&teamName=null&garmentName='+productType+'&brandName=null'
@@ -114,6 +121,7 @@ export default {
           '/webapi/'+this.$i18n.locale+'/Filter/GetTeamListByCategory?categoryId=0&productTypeId='+productType+'&brandId=0'
         )
       ]);
+      this.attribute = attribute
       this.articles=a.ArticleList
       this.brands=b
       this.colors=c
@@ -153,6 +161,7 @@ export default {
   }*/,
   components:{
     ArticleCardSimple,
+    Attributes,
     FilterItems,
     SortItems
   },
@@ -172,6 +181,7 @@ export default {
       sale: [],
       teams: [],
       pageNum: 1,
+      attribute: null,
       totalPages:1,
       numOfProducts: 1,
       readmore: true,

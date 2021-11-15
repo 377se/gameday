@@ -78,7 +78,9 @@
           </div>
           <div>
             <Attributes 
-              :attribute="attribute" />
+              :attribute="attribute"
+              :producttypeid="$route.params.filterid"
+              :categoryid="$route.params.categoryid" />
           </div>
           <div
             class="ts-article-list uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l"

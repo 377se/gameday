@@ -24,7 +24,7 @@ export default {
     try {
       const [attributes] = await Promise.all([
         this.$axios.$get(
-          `/webapi/${this.$i18n.locale}/Attribute/GetAttributeList?categoryId=${this.$route.params.categoryid}&productTypeId=${this.$route.params.filterid}`
+          `/webapi/${this.$i18n.locale}/Attribute/GetAttributeList?categoryId=${this.categoryid}&productTypeId=${this.producttypeid}`
         )
       ]);
       this.attributes = attributes
@@ -43,6 +43,16 @@ export default {
     attribute: {
       type: String,
       default: '',
+      required: false
+    },
+    producttypeid: {
+      type: String,
+      default: '0',
+      required: true
+    },
+    categoryid:{
+      type: String,
+      default: 0,
       required: false
     }
   },
