@@ -7,11 +7,11 @@
       <nuxt-link 
         :to="'?attribute='+attrib.AttributeId"
         class="uk-text-center"
-        style="line-height:0.8;position:relative">
+        style="line-height:0.8;position:relative;font-size:11px;">
         <span class="active-check" uk-icon="check"></span>
         <img 
           :src="attrib.ImageName" 
-          style="width:100px;"
+          style="width:50px;"
           alt="">
         <br>{{ attrib.Name }}
       </nuxt-link>
@@ -50,13 +50,18 @@ export default {
 </script>
 <style lang="scss" scoped>
 .uk-active .active-check{
+  display:block;
+}
+.active-check{
+  display:none;
   position:absolute;
   top:5px;
   right:5px;
   background:skyblue;
   border-radius:50%;
   padding:3px;
+}
+.uk-thumbnav a:hover .active-check{
   display:block;
 }
-.active-check{display:none}
 </style>
