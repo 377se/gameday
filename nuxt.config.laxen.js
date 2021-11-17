@@ -13,7 +13,8 @@ export default {
     ISO_LANG: 'sv',
     CURRENCY_CODE: 'SEK',
     STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt',
-    ZENDESK: 'fd07ec75-ec92-4ea1-ad6c-49e883112e6c'
+    ZENDESK: 'fd07ec75-ec92-4ea1-ad6c-49e883112e6c',
+    DEFAULT_SORT_ORDER: 3 //0 for recommended and 3 for latest
 
   },
   mode: 'universal',
