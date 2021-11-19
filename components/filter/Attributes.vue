@@ -5,7 +5,7 @@
       :key="attrib.AttributeId"
       :class="{'uk-active':attrib.AttributeId==attribute}">
       <nuxt-link 
-        :to="'?attribute='+attrib.AttributeId"
+        :to="attrib.AttributeId!=attribute ? '?attribute='+attrib.AttributeId : ''"
         class="uk-text-center"
         style="line-height:0.8;position:relative;font-size:11px;">
         <span class="active-check" uk-icon="check"></span>
