@@ -25,6 +25,7 @@
               class="uk-width-auto"
               :src="brand_src+article.BrandImage" 
               :alt="article.BrandName"
+              loading="lazy"
             />
           </div>
         </div>

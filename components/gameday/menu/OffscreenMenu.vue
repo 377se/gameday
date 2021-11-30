@@ -77,7 +77,8 @@ export default {
     return {
       menu: [],
       labels: [],
-      isolang: process.env.ISO_LANG
+      isolang: process.env.ISO_LANG,
+      menu_src: process.env.MENU_SRC
     }
   },
   mounted(){

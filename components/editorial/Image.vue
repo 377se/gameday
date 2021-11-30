@@ -4,6 +4,7 @@
     class="uk-margin">
      <img 
       :src="blok.editorial_image"
+      loading="lazy"
       alt="" />
   </div>
 </template>

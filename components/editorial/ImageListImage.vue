@@ -3,6 +3,7 @@
       v-editable="blok"
       class="image-list-image"
       :src="blok.image"
+      loading="lazy"
       alt="" />
 </template>
 <script>

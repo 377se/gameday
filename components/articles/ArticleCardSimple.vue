@@ -8,6 +8,7 @@
           <img 
             :src="list_src +article.ImageName" 
             :alt="article.ProductName" 
+            loading="lazy"
             ref="mainImage">
           <span
             v-if="article.Label"

@@ -9,7 +9,11 @@
   >
     <div class="uk-card uk-card-hover bottom-red-line">
       <div class="uk-card-media-top">
-        <img :src="imageUrl" :alt="article.ArticleName" ref="mainImage">
+        <img 
+          :src="imageUrl" 
+          :alt="article.ArticleName" 
+          loading="lazy"
+          ref="mainImage">
       </div>
       <div class="uk-card-body uk-padding-small uk-padding-remove-bottom uk-text-small">
         <strong>{{ article.HeadCategory }}</strong>
