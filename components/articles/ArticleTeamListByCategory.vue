@@ -78,8 +78,9 @@
           </div>
           <div>
             <Attributes 
+              v-if="$route.params.filterid || blok.producttype"
               :attribute="attribute"
-              :producttypeid="$route.params.filterid"
+              :producttypeid="$route.params.filterid?$route.params.filterid:blok.producttype"
               :categoryid="$route.params.categoryid" />
           </div>
           <div
@@ -128,7 +129,7 @@ export default {
     let pageNum = this.$route.query.page?this.$route.query.page:1
     let color = this.$route.query.color?this.$route.query.color:null
     let gender = this.$route.query.gender?this.$route.query.gender:null
-    let productType = this.$route.query.producttype?this.$route.query.producttype:(this.$route.params.filterid?this.$route.params.filterid:null)
+    let productType = this.$route.query.producttype?this.$route.query.producttype:(this.$route.params.filterid?this.$route.params.filterid:(this.blok.producttype?this.blok.producttype:null))
     let size = this.$route.query.size?this.$route.query.size:null
     let attribute = this.$route.query.attribute?this.$route.query.attribute:null
     let sale = this.$route.query.sale?this.$route.query.sale:false
@@ -184,6 +185,11 @@ export default {
     SortItems
   },
   props: {
+    blok: {
+      type: Object,
+      required: false,
+      default: {component:{producttype:''}}
+    },
     sb: {
       type: Boolean,
       default: false,
