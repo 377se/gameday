@@ -93,7 +93,8 @@
         </div>
       </nav>
       <div 
-        id="dropdowns">
+        id="dropdowns"
+        class="header-wrapper">
         <div class="uk-navbar-dropdown"
           v-for="(cat, ind) in menu"
           :key="cat.CategoryId"
@@ -234,6 +235,8 @@ export default {
   display: flex;
   flex-direction: row;
   overflow-x: scroll;
+  overflow-y: hidden;
+  height:30px;
   width:100%;
   &::-webkit-scrollbar {
     display: none;
