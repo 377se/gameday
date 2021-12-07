@@ -16,7 +16,7 @@
     </template>
     <div 
       v-if="klarnahtml"
-      style="display:none;"
+      style="opacity:0;"
       id="klarna-checkout-thanks"
       class="uk-container uk-padding-remove"
       v-html="klarnahtml.Html"/>
@@ -83,9 +83,10 @@ export default {
   methods:{
     loadScripts(){
       try{
-        var checkoutContainer = document.getElementById('klarna-checkout-container')
+        var checkoutContainer = document.getElementById('klarna-checkout-thanks')
         var scriptsTags = checkoutContainer.getElementsByTagName('script')
         // This is necessary otherwise the scripts tags are not going to be evaluated
+        console.log(scriptsTags.length)
         for (var i = 0; i < scriptsTags.length; i++) {
             var parentNode = scriptsTags[i].parentNode
             var newScriptTag = document.createElement('script')
