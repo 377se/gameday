@@ -69,7 +69,7 @@ export default {
         }catch(err){
           console.log(err)
         }
-      }if(klarnahtml!=null){
+      }if(this.klarnahtml!=null){
         this.loadScripts()
       }
     }catch(err){
