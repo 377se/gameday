@@ -22,8 +22,8 @@
       v-html="klarnahtml.Html"/>
     <div 
       v-if="klarnahtml"
-      style="display:none;"
-      v-html="klarnahtml.Html">
+      style="display:none;">
+      {{ klarnahtml }}
     </div>
   </section>
 </template>
