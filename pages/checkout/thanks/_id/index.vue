@@ -11,11 +11,9 @@
         v-if="klarnahtml" 
         class="uk-container uk-text-center">
         <h1>{{ klarnahtml.Ordernumber }}</h1>
-        <div class="uk-container" style="padding-left:20px;padding-right:20px;"><h3>Tack!</h3><p>Din order är nu hos oss. Var vänlig kolla din mail och se så att du fått en orderbekräftelse.</p></div>
       </div>
     </template>
     <div 
-      style="opacity:0;"
       id="klarna-checkout-thanks"
       class="uk-container uk-padding-remove"/>
   </section>
