@@ -79,7 +79,6 @@ export default {
         var scriptsTags = checkoutContainer.getElementsByTagName('script')
         
         // This is necessary otherwise the scripts tags are not going to be evaluated
-        console.log('Script:' + scriptsTags.length)
         for (var i = 0; i < scriptsTags.length; i++) {
             var parentNode = scriptsTags[i].parentNode
             var newScriptTag = document.createElement('script')
@@ -97,7 +96,7 @@ export default {
     var _this = this;
 
     try {
-      const url = localStorage.version!=undefined?`/webapi/klarnacheckout3/GetKlarnaAcknowledge_v2?id=${this.$route.params.id}`:`/webapi/klarnacheckout3/GetKlarnaAcknowledge?id=${this.$route.params.id}`;
+      const url = `/webapi/klarnacheckout3/GetKlarnaAcknowledge?id=${this.$route.params.id}`;
       const klarnahtml = await this.$axios.$get(url);
       this.klarnahtml=klarnahtml;
       try{
