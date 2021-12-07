@@ -86,7 +86,7 @@ export default {
         var checkoutContainer = document.getElementById('klarna-checkout-thanks')
         var scriptsTags = checkoutContainer.getElementsByTagName('script')
         // This is necessary otherwise the scripts tags are not going to be evaluated
-        console.log(scriptsTags.length)
+        console.log('Script:' + scriptsTags.length)
         for (var i = 0; i < scriptsTags.length; i++) {
             var parentNode = scriptsTags[i].parentNode
             var newScriptTag = document.createElement('script')
