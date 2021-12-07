@@ -62,59 +62,59 @@
           </div>
         </div>
       </nav>
-      <nav class="uk-background-secondary"> 
-        <ul 
-          class="gd-subnav uk-navbar-nav uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-margin-remove-left uk-flex-middle">
-          <li
-            v-for="(cat,index) in menu"
-            :key="cat.CategoryId"
-            class="uk-flex uk-flex-middle">
-            <nuxt-link
-              v-if="!cat.SubList || !cat.SubList.length>0"
-              :to="cat.Url">
+      <nav class="uk-background-secondary">
+        <div class="header-wrapper"> 
+          <ul 
+            class="gd-subnav uk-navbar-nav uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-margin-remove-left uk-flex-middle">
+            <li
+              v-for="(cat,index) in menu"
+              :key="cat.CategoryId"
+              class="uk-flex uk-flex-middle">
+              <nuxt-link
+                v-if="!cat.SubList || !cat.SubList.length>0"
+                :to="cat.Url">
+                  <img
+                    v-if="cat.ImageName" 
+                    alt=""
+                    :src="cat.ImageName" style="width:20px;margin-right:8px;"><span>{{ cat.Name }}</span>
+              </nuxt-link>
+              <a 
+                v-else
+                :href="cat.Url"
+                class="subnav"
+                @click.stop.prevent="showDropDown(index+1)">
                 <img
                   v-if="cat.ImageName" 
                   alt=""
-                  :src="cat.ImageName" style="width:20px;margin-right:8px;"><span>{{ cat.Name }}</span>
-            </nuxt-link>
-            <a 
-              v-else
-              :href="cat.Url"
-              class="subnav"
-              @click.stop.prevent="showDropDown(index+1)">
-              <img
-                v-if="cat.ImageName" 
-                alt=""
-                :src="cat.ImageName" style="width:20px;margin-right:8px;"><span>{{ cat.Name }}</span><span v-if="cat.SubList.length>0" uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"/>
-            </a>
-          </li>
-        </ul>
+                  :src="cat.ImageName" style="width:20px;margin-right:8px;"><span>{{ cat.Name }}</span><span v-if="cat.SubList.length>0" uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"/>
+              </a>
+            </li>
+          </ul>
+        </div>
       </nav>
-      <div class="header-wrapper">
-        <div 
-          id="dropdowns">
-          <div class="uk-navbar-dropdown"
-            v-for="(cat, ind) in menu"
-            :key="cat.CategoryId"
-            :class="{'uk-display-block':chosenDropDown == ind+1}">
-            <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-2@s uk-child-width-1-4@m uk-child-width-1-6@l">
-              <li
-                v-for="(sub) in cat.SubList"
-                :key="sub.CategoryId"
-                class="uk-padding-remove-left">
-                <nuxt-link :to="sub.Url">
-                  <img
-                    v-if="sub.ImageName" 
-                    alt=""
-                    :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+sub.ImageName" style="width:30px" />
-                  <img
-                    v-else-if="cat.ImageName" 
-                    :alt="sub.Name"
-                    :src="cat.ImageName" style="width:30px" /> {{ sub.Name }}
-                </nuxt-link>
-              </li>
-            </ul>
-          </div>
+      <div 
+        id="dropdowns">
+        <div class="uk-navbar-dropdown"
+          v-for="(cat, ind) in menu"
+          :key="cat.CategoryId"
+          :class="{'uk-display-block':chosenDropDown == ind+1}">
+          <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-2@s uk-child-width-1-4@m uk-child-width-1-6@l">
+            <li
+              v-for="(sub) in cat.SubList"
+              :key="sub.CategoryId"
+              class="uk-padding-remove-left">
+              <nuxt-link :to="sub.Url">
+                <img
+                  v-if="sub.ImageName" 
+                  alt=""
+                  :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+sub.ImageName" style="width:30px" />
+                <img
+                  v-else-if="cat.ImageName" 
+                  :alt="sub.Name"
+                  :src="cat.ImageName" style="width:30px" /> {{ sub.Name }}
+              </nuxt-link>
+            </li>
+          </ul>
         </div>
       </div>
   </div>
@@ -235,7 +235,6 @@ export default {
   flex-direction: row;
   overflow-x: scroll;
   width:100%;
-  height:30px;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -246,7 +245,6 @@ export default {
 }
 .uk-navbar-nav > li > a.subnav{
   min-height:auto;
-  white-space:nowrap;
 }
 
 #dropdowns > .uk-navbar-dropdown{
