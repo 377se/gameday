@@ -83,7 +83,7 @@ export default {
   methods:{
     loadScripts(){
       try{
-        var checkoutContainer = document.getElementById('klarna-checkout-thanks')
+        var checkoutContainer = document.getElementById('klarna-checkout-container')
         var scriptsTags = checkoutContainer.getElementsByTagName('script')
         // This is necessary otherwise the scripts tags are not going to be evaluated
         for (var i = 0; i < scriptsTags.length; i++) {
