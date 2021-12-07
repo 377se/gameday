@@ -100,7 +100,7 @@ export default {
   async fetch() {
     var _this = this;
     try {
-      const url = `/webapi/klarnacheckout3/GetKlarnaAcknowledge?id=${this.$route.params.id}`;
+      const url = localStorage.version!=undefined?`/webapi/klarnacheckout3/GetKlarnaAcknowledge_v2?id=${this.$route.params.id}`:`/webapi/klarnacheckout3/GetKlarnaAcknowledge?id=${this.$route.params.id}`;
       const klarnahtml = await this.$axios.$get(url);
       this.klarnahtml=klarnahtml;
       try{

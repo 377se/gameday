@@ -32,6 +32,9 @@ import { mapGetters } from 'vuex'
 
 export default {
   async fetch(){
+    if(this.$route.params.version){
+      localStorage.version = '_v2'
+    }
     if(this.$i18n.locale=='en'){
       try{
         const countries = await this.$axios.$get('/webapi/Country/GetKlarnaCountryList');
