@@ -15,16 +15,9 @@
       </div>
     </template>
     <div 
-      v-if="klarnahtml"
       style="opacity:0;"
       id="klarna-checkout-thanks"
-      class="uk-container uk-padding-remove"
-      v-html="klarnahtml.Html"/>
-    <div 
-      v-if="klarnahtml"
-      style="display:none;">
-      {{ klarnahtml }}
-    </div>
+      class="uk-container uk-padding-remove"/>
   </section>
 </template>
 <script>
@@ -84,7 +77,9 @@ export default {
     loadScripts(){
       try{
         var checkoutContainer = document.getElementById('klarna-checkout-thanks')
+        checkoutContainer.innerHTML = this.klarnahtml.Html
         var scriptsTags = checkoutContainer.getElementsByTagName('script')
+        
         // This is necessary otherwise the scripts tags are not going to be evaluated
         console.log('Script:' + scriptsTags.length)
         for (var i = 0; i < scriptsTags.length; i++) {
