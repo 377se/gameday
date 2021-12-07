@@ -69,8 +69,9 @@ export default {
         }catch(err){
           console.log(err)
         }
+      }if(klarnahtml!=null){
+        this.loadScripts()
       }
-      this.loadScripts()
     }catch(err){
       console.log(err)
     }
@@ -79,7 +80,28 @@ export default {
       this.$gtm.push({ event: 'paymentThanks', ecommerce: _this.obj })
     }catch(err){console.log(err)}
   },
-  async loadScripts(){
+  methods:{
+    loadScripts(){
+      try{
+        var checkoutContainer = document.getElementById('klarna-checkout-thanks')
+        var scriptsTags = checkoutContainer.getElementsByTagName('script')
+        // This is necessary otherwise the scripts tags are not going to be evaluated
+        for (var i = 0; i < scriptsTags.length; i++) {
+            var parentNode = scriptsTags[i].parentNode
+            var newScriptTag = document.createElement('script')
+            newScriptTag.type = 'text/javascript'
+            newScriptTag.text = scriptsTags[i].text
+            parentNode.removeChild(scriptsTags[i])
+            parentNode.appendChild(newScriptTag)
+        }
+      }catch(err){
+        console.log(err)
+      }
+    }
+  },
+  async fetch() {
+    var _this = this;
+
     try {
       const url = localStorage.version!=undefined?`/webapi/klarnacheckout3/GetKlarnaAcknowledge_v2?id=${this.$route.params.id}`:`/webapi/klarnacheckout3/GetKlarnaAcknowledge?id=${this.$route.params.id}`;
       const klarnahtml = await this.$axios.$get(url);
@@ -93,23 +115,9 @@ export default {
       this.klarnahtml={Ordernumber:'', Html: '<div class="uk-container" style="padding-left:20px;padding-right:20px;"><h3>Tack!</h3><p>Din order är nu hos oss. Var vänlig kolla din mail och se så att du fått en orderbekräftelse.</p></div>'}
       console.log(err);
     }
-    try{
-      var checkoutContainer = document.getElementById('klarna-checkout-thanks')
-      var scriptsTags = checkoutContainer.getElementsByTagName('script')
-      // This is necessary otherwise the scripts tags are not going to be evaluated
-      for (var i = 0; i < scriptsTags.length; i++) {
-          var parentNode = scriptsTags[i].parentNode
-          var newScriptTag = document.createElement('script')
-          newScriptTag.type = 'text/javascript'
-          newScriptTag.text = scriptsTags[i].text
-          parentNode.removeChild(scriptsTags[i])
-          parentNode.appendChild(newScriptTag)
-      }
-    }catch(err){
-      console.log(err)
+    if(!process.server){
+      this.loadScripts()
     }
-  },
-  async fetch() {
     
     try{
       //Remove voucher-cookie if there is one
@@ -118,6 +126,9 @@ export default {
       }
     }catch(err){console.log(err)}
  
+  },
+  activated(){
+    this.$fetch()
   }
 }
 </script>
