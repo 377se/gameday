@@ -16,6 +16,8 @@ import Page from '@/components/Page'
 export default {
   head () {
     let _link = new Array()
+    let _lhref = {}
+    
     if(this.metadata){
       for(var i=0;i<this.metadata.LangHref.length;i++){
         let _obj = {
@@ -26,7 +28,7 @@ export default {
                   }
         if(this.siteid!=2 || (this.siteid==2 && this.metadata.LangHref[i].Culture!='en-gb')){
           _link.push(_obj)
-        } 
+        }
         if(this.metadata.LangHref[i].Culture==this.$i18n.defaultLocale){
           let _obj = {
                     'hid':'i18n-xd',
@@ -107,6 +109,9 @@ export default {
     // Check if we are in the editor mode
     let version = this.$nuxt.context.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
     // Load the JSON from the API
+    if(this.siteid==1){
+      this.metadata = {"Canonical":"https://supportersplace.com","LangHref":[{"Culture":"sv-se","Url":"https://supportersplace.se"},{"Culture":"nb-no","Url":"https://supportersplace.com/nb-no"},{"Culture":"da-dk","Url":"https://supportersplace.com/da-dk"},{"Culture":"en","Url":"https://supportersplace.com/en"},{"Culture":"fi-fi","Url":"https://supportersplace.fi"}]}
+    }
     try{
       const [sb] = await Promise.all([
         this.$nuxt.context.app.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}/home`, {
