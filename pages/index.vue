@@ -110,7 +110,7 @@ export default {
     let version = this.$nuxt.context.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
     // Load the JSON from the API
     if(this.siteid==1){
-      this.metadata = {"Canonical":process.env.SITE_URL,"LangHref":[{"Culture":"sv-se","Url":"https://supportersplace.se"},{"Culture":"nb-no","Url":"https://supportersplace.com/nb-no"},{"Culture":"da-dk","Url":"https://supportersplace.com/da-dk"},{"Culture":"en","Url":"https://supportersplace.com/en"},{"Culture":"fi-fi","Url":"https://supportersplace.fi"}]}
+      this.metadata = {"Canonical":"https://supportersplace.com","LangHref":[{"Culture":"sv-se","Url":"https://supportersplace.se"},{"Culture":"nb-no","Url":"https://supportersplace.com/nb-no"},{"Culture":"da-dk","Url":"https://supportersplace.com/da-dk"},{"Culture":"en","Url":"https://supportersplace.com/en"},{"Culture":"fi-fi","Url":"https://supportersplace.fi"}]}
     }
     try{
       const [sb] = await Promise.all([
