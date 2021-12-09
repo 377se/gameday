@@ -7,6 +7,7 @@ export default {
     STORYBLOK_CATALOGUE: '/supporterprylar',
     STORYBLOK_LABELS: 'supporterprylar',
     SITE_URL: 'https://www.supporterprylar.se',
+    X_DEFAULT: 'https://www.supporterprylar.se',
     LOGO_URL: '/sites/supporterprylar/supporterprylar-rectangle.png',
     SITE_ID: 7,
     MEMBER_PRICES: false,

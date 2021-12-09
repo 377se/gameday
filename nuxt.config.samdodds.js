@@ -7,6 +7,7 @@ export default {
     STORYBLOK_CATALOGUE: '/samdodds',
     STORYBLOK_LABELS: 'samdodds',
     SITE_URL: 'https://www.samdodds.dk',
+    X_DEFAULT: 'https://www.samdodds.com',
     LOGO_URL: '/sites/samdodds/samdodds-logo.png',
     SITE_ID: 2,
     MEMBER_PRICES: true,

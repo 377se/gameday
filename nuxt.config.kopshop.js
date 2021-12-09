@@ -7,6 +7,7 @@ export default {
     STORYBLOK_CATALOGUE: '/kopshop',
     STORYBLOK_LABELS: 'kopshop',
     SITE_URL: 'https://www.kopshop.no',
+    X_DEFAULT: 'https://www.samdodds.com',
     LOGO_URL: '/sites/kopshop/kopshop-logo.png',
     SITE_ID: 3,
     MEMBER_PRICES: true,

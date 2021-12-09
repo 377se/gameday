@@ -7,6 +7,7 @@ export default {
     STORYBLOK_CATALOGUE: '/supportersplace',
     STORYBLOK_LABELS: 'supporters-place',
     SITE_URL: 'https://supportersplace.fi',
+    X_DEFAULT: 'https://supportersplace.com',
     LOGO_URL: '/sites/supportersplace/supportersplace_logo_light.svg',
     SITE_ID: 1,
     MEMBER_PRICES: true,

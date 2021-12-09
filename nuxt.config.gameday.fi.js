@@ -7,6 +7,7 @@ export default {
     STORYBLOK_CATALOGUE: '/gameday',
     STORYBLOK_LABELS: 'gameday',
     SITE_URL: 'https://gameday.fi',
+    X_DEFAULT: 'https://gameday.fi',
     LOGO_URL: '/sites/gameday/gameday-logo.svg',
     SITE_ID: 6,
     MEMBER_PRICES: false,

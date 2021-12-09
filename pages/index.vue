@@ -33,7 +33,7 @@ export default {
           let _obj = {
                     'hid':'i18n-xd',
                     'rel': 'alternate',
-                    'href': this.metadata.LangHref[i].Url,
+                    'href': process.env.X_DEFAULT,
                     'hreflang': 'x-default'
                   }
           _link.push(_obj)
