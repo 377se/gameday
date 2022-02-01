@@ -4,6 +4,9 @@
   "description": "Gameday.se",
   "author": "Mats Barkemo",
   "private": true,
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "dev": "nuxt",
     "dev:gameday-fi": "nuxt --config-file nuxt.config.gameday.fi.js",
