@@ -11,7 +11,6 @@
         uk-navbar>
         <div class="header-wrapper">
           <div class="uk-navbar-left uk-flex-nowrap">
-            <TheHamburger/>
               <span
                 class="uk-flex uk-flex-middle">
                 <nuxt-link
@@ -23,14 +22,6 @@
                     style="width:150px;margin-top:-20px;"
                   />
                 </nuxt-link>
-                <nuxt-link
-                  :to="localePath('/')"
-                  class="uk-logo">
-                  <img 
-                    style="width:50px;"
-                    src="~assets/gameday_fox.svg" 
-                    alt="Gameday">
-                </nuxt-link>
               </span>
           </div>
 
@@ -39,19 +30,7 @@
             class="uk-navbar-right uk-text-center"
           >
             <nuxt-link
-              v-if="cid==null"
-              :to="localePath('/login')"
-              >
-              <span
-                style="color:#fff;"
-                uk-icon="icon:user;ratio:1.0"/>
-              <span
-                style="display:block;font-size:0.6rem;color:#fff;white-space:nowrap">
-                {{ $getCMSEntry(global_labels,'header_login', 'Logga in') }}
-              </span>
-            </nuxt-link>
-            <nuxt-link
-              v-else
+              v-if="cid!=null"
               :to="localePath('my-account-index')"
               >
               <span
@@ -75,183 +54,6 @@
           </div>
         </div>
       </nav>
-      <nav 
-        style="background:#222224;">
-        <div class="header-wrapper">
-          <ul 
-          class="gd-subnav uk-navbar-nav  uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-margin-remove-left uk-flex-middle">
-          <li>
-            <a 
-              href="/nhl-shop"
-              class="subnav"
-              @click.stop.prevent="showDropDown(3)"><img src="/logos/nhl_ikon_600x600.png" style="width:30px" />NHL <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
-          </li>
-          <li>
-            <a 
-              href="/nfl-shop"
-              class="subnav"
-              @click.stop.prevent="showDropDown(4)"><img src="/logos/nfl_ikon_600x600.png" style="width:30px" />NFL <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
-              
-          </li>
-          <li>
-            <a 
-              href="/nba-shop"
-              class="subnav"
-              @click.stop.prevent="showDropDown(5)"><img src="/logos/nba_ikon_600x600.png" style="width:30px" />NBA <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
-          </li>
-          <li>
-            <a 
-              href="/mlb-shop"
-              class="subnav"
-              @click.stop.prevent="showDropDown(6)"><img src="/logos/mlb_ikon_600x600.png" style="width:30px;margin-right:8px;" />MLB <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
-          </li>
-          <li>
-            <nuxt-link 
-              to="/street-week"
-              class="subnav">
-              <img alt="Street Week" src="https://static.supportersplace.se/category/streetweek_shop_1_600x600.png" style="width: 30px;margin-left:8px;margin-right:8px;">Street Week</nuxt-link>
-          </li>
-          <li>
-            <nuxt-link
-              to="/produkttyp/18/kepsar"
-              class="subnav">Kepsar</nuxt-link>
-          </li>
-          <li>
-            <nuxt-link
-              to="/produkttyp/12/t-shirt-pike"
-              class="subnav">T-shirts</nuxt-link>
-          </li>
-          <li>
-            <a 
-              href="#"
-              class="subnav"
-              @click.stop.prevent="showDropDown(1)">Mer <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
-          </li>
-          <li>
-            <a 
-              href="#"
-              class="subnav"
-              @click.stop.prevent="showDropDown(2)">Varumärken <span uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"></span></a>
-          </li>
-          </ul>
-        </div>
-    </nav>
-    <div
-      class="header-wrapper" 
-      id="dropdowns">
-      <div 
-        class="uk-navbar-dropdown"
-        :class="{'uk-display-block':chosenDropDown == 1}">
-        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s" uk-grid>
-          <li
-            v-for="p in productTypeMenu"
-            :key="p.GarmentId">
-            <nuxt-link
-              :to="localePath('/produkttyp/'+p.GarmentId+'/'+p.SeoName)">{{ p.Name }}</nuxt-link>
-          </li>
-        </ul>
-        <div class="gradient"/>
-      </div>
-      <div class="uk-navbar-dropdown"
-        :class="{'uk-display-block':chosenDropDown == 2}">
-        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s">
-          <li
-            v-for="brand in brandMenu"
-            :key="brand.Id"
-            class="uk-padding-remove-left">
-            <nuxt-link
-              :to="localePath('/varumarke/'+brand.SeoName)"
-              class="uk-flex uk-flex-middle"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/http://static.supportersplace.se/brand/'+brand.BrandImage" style="width:30px" /> <span>{{ brand.Name }}</span></nuxt-link>
-          </li>
-        </ul>
-      </div>
-      <div class="uk-navbar-dropdown"
-        :class="{'uk-display-block':chosenDropDown == 3}">
-        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s">
-          <li>
-            <nuxt-link
-              :to="localePath('/nhl-shop')">{{ $getCMSEntry(global_labels,'to-nhl-shop', 'Till NHL Shopen') }}</nuxt-link>
-          </li>
-          <li>
-            <nuxt-link
-              class="menu-item-sale"
-              :to="localePath('/nhl-shop/sale')">{{ $getCMSEntry(global_labels,'nhl-sale', 'NHL REA') }}</nuxt-link>
-          </li>
-          <li
-            v-for="team in nhlMenu"
-            :key="team.TeamId"
-            class="uk-padding-remove-left">
-            <nuxt-link
-              :to="localePath('/lag/nhl/'+team.SeoName)"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+team.ImageName" style="width:30px" :alt="team.Name" /> {{ team.Name }}</nuxt-link>
-          </li>
-        </ul>
-      </div>
-      <div class="uk-navbar-dropdown"
-        :class="{'uk-display-block':chosenDropDown == 4}">
-        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s">
-          <li>
-            <nuxt-link
-              :to="localePath('/nfl-shop')">{{ $getCMSEntry(global_labels,'to-nfl-shop', 'Till NFL Shopen') }}</nuxt-link>
-          </li>
-          <li>
-            <nuxt-link
-              class="menu-item-sale"
-              :to="localePath('/nfl-shop/sale')">{{ $getCMSEntry(global_labels,'nfl-sale', 'NFL REA') }}</nuxt-link>
-          </li>
-          <li
-            v-for="team in nflMenu"
-            :key="team.TeamId"
-            class="uk-padding-remove-left">
-            <nuxt-link
-              :to="localePath('/lag/nfl/'+team.SeoName)"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+team.ImageName" style="width:30px" /> {{ team.Name }}</nuxt-link>
-          </li>
-        </ul>
-      </div>
-      <div class="uk-navbar-dropdown"
-        :class="{'uk-display-block':chosenDropDown == 5}">
-        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s">
-          <li>
-            <nuxt-link
-              :to="localePath('/nba-shop')">{{ $getCMSEntry(global_labels,'to-nba-shop', 'Till NBA Shopen') }}</nuxt-link>
-          </li>
-          <li>
-            <nuxt-link
-              class="menu-item-sale"
-              :to="localePath('/nba-shop/sale')">{{ $getCMSEntry(global_labels,'nba-sale', 'NBA REA') }}</nuxt-link>
-          </li>
-          <li
-            v-for="team in nbaMenu"
-            :key="team.TeamId"
-            class="uk-padding-remove-left">
-            <nuxt-link
-              :to="localePath('/lag/nba/'+team.SeoName)"><img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+team.ImageName" style="width:30px" /> {{ team.Name }}</nuxt-link>
-          </li>
-        </ul>
-      </div>
-      <div class="uk-navbar-dropdown"
-        :class="{'uk-display-block':chosenDropDown == 6}">
-        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s">
-          <li>
-            <nuxt-link
-              :to="localePath('/mlb-shop')">{{ $getCMSEntry(global_labels,'to-mlb-shop', 'Till MLB Shopen') }}</nuxt-link>
-          </li>
-          <li>
-            <nuxt-link
-              class="menu-item-sale"
-              :to="localePath('/mlb-shop/sale')">{{ $getCMSEntry(global_labels,'mlb-sale', 'MLB REA') }}</nuxt-link>
-          </li>
-          <li
-            v-for="team in mlbMenu"
-            :key="team.TeamId"
-            class="uk-padding-remove-left">
-            <nuxt-link
-              :to="localePath('/lag/mlb/'+team.SeoName)">
-              <img :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+team.ImageName" style="width:30px" /> {{ team.Name }}
-            </nuxt-link>
-          </li>
-        </ul>
-      </div>
-    </div>
   </div>
 </template>
 
