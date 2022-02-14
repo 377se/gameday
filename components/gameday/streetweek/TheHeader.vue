@@ -7,7 +7,7 @@
     tabindex="0">
       <nav 
         class="uk-navbar-container uk-navbar uk-margin header uk-margin-remove-bottom uk-light" 
-        style="outline:0;background-color:#bd162c;"
+        style="outline:0;background-color:#3c9e25;"
         uk-navbar>
         <div class="header-wrapper">
           <div class="uk-navbar-left uk-flex-nowrap">
@@ -17,7 +17,7 @@
                   class="uk-navbar-item uk-margin-left uk-logo"
                   :to="localePath('/street-week')">
                   <img
-                    src="/streetweek/street_week_shop_logo_uppd.svg"
+                    src="/streetweek/street_week_shop_logo_2022.svg"
                     alt="Street Week Shop"
                     style="width:150px;margin-top:-20px;"
                   />
