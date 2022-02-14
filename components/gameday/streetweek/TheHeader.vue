@@ -7,7 +7,7 @@
     tabindex="0">
       <nav 
         class="uk-navbar-container uk-navbar uk-margin header uk-margin-remove-bottom uk-light" 
-        style="outline:0;background-color:#3c9e25;"
+        style="outline:0;background-color:#307e1d;"
         uk-navbar>
         <div class="header-wrapper">
           <div class="uk-navbar-left uk-flex-nowrap">
