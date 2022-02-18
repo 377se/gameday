@@ -292,6 +292,11 @@ export default {
       required: false,
       default: true
     },
+    league: {
+      type: String,
+      required: false,
+      default: ''
+    },
     article: {
       type: Object,
       default: () => ({
@@ -342,6 +347,7 @@ export default {
       "image": article.Images ? process.env.DETAILS_SRC + article.Images[0].Name:null,
       "inProductGroupWithID" : article.TeamName,
       "brand": article.BrandName,
+      "custom_label_0": league,
       "offers": [
         {
           "@type": "Offer",

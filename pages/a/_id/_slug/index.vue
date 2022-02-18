@@ -39,7 +39,8 @@
           </ul>
         </div>
         <ArticleDetails 
-          v-bind:article="article"/>
+          v-bind:article="article"
+          :league="league"/>
       </template>
   </div>
 </template>
@@ -106,7 +107,8 @@ export default {
     return {
       article: {},
       metadata: {Canonical:this.$route.path, LangHref:[]},
-      siteid: process.env.SITE_ID
+      siteid: process.env.SITE_ID,
+      league:''
     }
   },
   async fetch() {
@@ -133,6 +135,13 @@ export default {
       }catch(err){
         console.log(err)
       }
+
+      try{
+        this.league=this.metadata.Breadcrumb[0].ItemList[0].Name
+      }catch(err){
+        console.log(err)
+      }
+
     } catch (err) {
       console.log(err);
     }
