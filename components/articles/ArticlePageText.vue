@@ -1,5 +1,7 @@
 <template>
-  <div v-html="content"></div>
+  <div 
+    v-html="content"
+    class="white-space:pre-wrap;"></div>
 </template>
 
 <script>
