@@ -2,6 +2,7 @@
   <div 
     v-editable="blok"
     class="uk-position-relative uk-grid-small"
+    style="margin-right:-15px;"
     tabindex="-1"
     uk-slider>
     <ul 
