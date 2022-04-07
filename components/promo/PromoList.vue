@@ -4,7 +4,8 @@
     class="uk-position-relative uk-grid-small"
     tabindex="-1"
     uk-slider>
-    <ul class="uk-slider-items uk-grid-small">
+    <ul 
+      class="uk-slider-items uk-grid-small">
       <li 
         class="uk-width-5-6"
         :class="{
