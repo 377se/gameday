@@ -4,14 +4,14 @@
     <div 
       class="uk-grid uk-grid-small"
       uk-grid>
-      <section class="uk-width-1-1 uk-width-1-2@m">
+      <section class="uk-width-1-1 uk-width-2-3@m">
         <ArticlePageImages
           :images="article.Images"
           :label="article.Label!=null?article.Label:{}"
         />
       </section>
 
-      <section class="uk-width-1-1 uk-width-1-2@m">
+      <section class="uk-width-1-1 uk-width-1-3@m">
         <div class="uk-flex uk-flex-middle">
           <ArticlePageHeader 
             class="uk-width-expand"

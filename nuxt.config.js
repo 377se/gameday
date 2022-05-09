@@ -3,6 +3,7 @@ export default {
     THUMB_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_80,f_auto/https://static.supportersplace.se/product/',
     LIST_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_360,f_auto/',
     DETAILS_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_640,f_auto/http://static.supportersplace.se/product/',
+    DETAILS_LARGE_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_1280,f_auto/http://static.supportersplace.se/product/',
     BRAND_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_200,f_auto/http://static.supportersplace.se/brand/',
     STORYBLOK_CATALOGUE: '/gameday',
     STORYBLOK_LABELS: 'gameday',
@@ -126,8 +127,7 @@ export default {
     'cookie-universal-nuxt',
     'nuxt-webfontloader',
     ['storyblok-nuxt', { accessToken: 'rGRW1HEorfNfSoGS5CzoDwtt', cacheProvider: 'memory' }],
-    ['@nuxtjs/style-resources'],
-    'nuxt-lazy-load'
+    ['@nuxtjs/style-resources']
   ],
   redirect: [
     {

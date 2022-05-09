@@ -1,36 +1,54 @@
 <template>
-  <div class="uk-position-relative article-images uk-visible-toggle" tabindex="-1" uk-slideshow="ratio:1:1;animation: push">
-    <span
-      v-if="label" 
-      class="label-article"
-      :class="label.LabelClass">{{ label.LabelMessage }}</span>
-    <div class="uk-position-relative">
-      <ul class="uk-slideshow-items">
+  <div class="uk-flex">
+    <div class="uk-flex article-images uk-visible-toggle uk-slider uk-slider-container" tabindex="-1" uk-slider="finite: true">
+      <ul 
+        class="uk-thumbnav uk-thumbnav-vertical uk-visible@l"
+        >
         <li 
           v-for="(image, index) in images"
-          :key="index">
-            <img
-              v-bind:src="details_src+image.Name"
-              alt=""
-              loading="lazy"
+          :key="index"
+          :uk-slider-item="index"
+          style="width:60px;">
+          <a 
+            href="#"
+            @click.prevent
             >
+            <img 
+              :src="details_src+image.Name" style="width:60px" 
+              alt=""
+            >
+          </a>
         </li>
       </ul>
-      <div class="uk-position-bottom-center uk-position-small">
-        <ul class="uk-thumbnav">
-            <li 
-              v-for="(image, index) in images"
-              :key="index"
-              :uk-slideshow-item="index">
-              <a 
-                href="#"
-                style="box-shadow: 4px 4px 41px 0px rgba(0,0,0,0.36);">
-                <img 
-                  :src="details_src+image.Name" style="width:60px" 
-                  alt=""
-                  loading="lazy">
-              </a></li>
+      <div 
+        class="uk-position-relative"
+        style="overflow:hidden;">
+        <span
+          v-if="label" 
+          class="label-article"
+          :class="label.LabelClass">{{ label.LabelMessage }}</span>
+        <ul class="uk-slider-items uk-grid-small">
+          <li 
+            v-for="(image, index) in images"
+            :key="index"
+            class="uk-width-5-6 uk-width-1-2@l">
+              <img
+                v-bind:src="details_src+image.Name"
+                alt=""
+              >
+          </li>
         </ul>
+        <a 
+          class="uk-position-center-left uk-position-small uk-hidden-hover"
+          href="#"
+          uk-slidenav-previous uk-slider-item="previous"
+          style="background-color: #fff;border-radius: 50%;"></a>
+        <a 
+          class="uk-position-center-right uk-position-small uk-hidden-hover"
+          href="#"
+          uk-slidenav-next
+          uk-slider-item="next"
+          style="background-color: #fff;border-radius: 50%;"></a>
       </div>
     </div>
   </div>
