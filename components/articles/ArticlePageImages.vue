@@ -1,21 +1,21 @@
 <template>
   <div>
-    <div class="uk-flex article-images uk-visible-toggle uk-slider uk-slider-container" tabindex="-1" uk-slider="center:true;finite: true">
+    <div class="uk-flex article-images uk-visible-toggle uk-slider uk-slider-container" tabindex="-1" uk-slider="finite: true">
       <ul 
-        class="uk-thumbnav uk-thumbnav-vertical uk-visible@l"
+        class="uk-thumbnav uk-thumbnav-vertical uk-visible@m"
         >
         <li 
           v-for="(image, index) in images"
           :key="index"
           :uk-slider-item="index"
           class="uk-visible"
-          style="width:100px;padding-right:15px;">
+          style="width:140px;padding-right:15px;">
           <a 
             href="#"
             @click.prevent
             >
             <img 
-              :src="details_src+image.Name" style="width:85px" 
+              :src="details_src+image.Name" style="width:125px" 
               alt=""
               loading="lazy"
             >
@@ -33,12 +33,13 @@
           <li 
             v-for="(image, index) in images"
             :key="index"
-            :class="images.length>1?'uk-width-5-6 uk-width-1-1@l uk-text-center':'uk-width-1-1 uk-text-center'"
+            :class="images.length>1?'uk-width-5-6 uk-width-1-1@m':'uk-width-1-1'"
             style="padding-right:15px;"
             @click="showFullImage(index)">
               <img
                 v-bind:src="details_src+image.Name"
                 alt=""
+                style="width:100%"
                 loading="lazy"
               >
           </li>
