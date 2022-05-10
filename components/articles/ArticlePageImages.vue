@@ -142,7 +142,9 @@ export default {
 </script>
 
 <style lang="scss">
-
+.uk-slider-items > li{
+  cursor:pointer;
+}
 .relative {
   position: relative;
 }
