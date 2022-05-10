@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="uk-flex article-images uk-visible-toggle uk-slider uk-slider-container" tabindex="-1" uk-slider="finite: true">
+    <div class="uk-flex article-images uk-visible-toggle uk-slider uk-slider-container" tabindex="-1" uk-slider="center:true;finite: true">
       <ul 
         class="uk-thumbnav uk-thumbnav-vertical uk-visible@l"
         >
