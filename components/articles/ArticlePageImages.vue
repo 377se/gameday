@@ -57,7 +57,7 @@
       </div>
     </div>
 
-    <div id="image-modal-full" class="uk-modal-full" uk-modal>
+    <div id="image-modal-full" class="uk-modal-full" uk-modal="container:false">
         <div 
           class="uk-modal-dialog"
           style="height:100vh">
