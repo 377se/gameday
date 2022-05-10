@@ -33,7 +33,7 @@
           <li 
             v-for="(image, index) in images"
             :key="index"
-            :class="images.length>1?'uk-width-5-6 uk-width-1-1@l':'uk-width-1-1'"
+            :class="images.length>1?'uk-width-5-6':'uk-width-1-1 uk-text-center'"
             style="padding-right:15px;"
             @click="showFullImage(index)">
               <img
