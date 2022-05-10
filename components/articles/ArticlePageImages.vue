@@ -7,7 +7,7 @@
         <li 
           v-for="(image, index) in images"
           :key="index"
-          :uk-slider-item="Math.floor(index/2)"
+          :uk-slider-item="index"
           class="uk-visible"
           style="width:100px;padding-right:15px;">
           <a 
