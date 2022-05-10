@@ -1,5 +1,5 @@
 <template>
-  <div class="uk-flex">
+  <div>
     <div class="uk-flex article-images uk-visible-toggle uk-slider uk-slider-container" tabindex="-1" uk-slider="finite: true">
       <ul 
         class="uk-thumbnav uk-thumbnav-vertical uk-visible@l"
@@ -7,34 +7,38 @@
         <li 
           v-for="(image, index) in images"
           :key="index"
-          :uk-slider-item="index"
-          style="width:60px;">
+          :uk-slider-item="Math.floor(index/2)"
+          class="uk-visible"
+          style="width:100px; padding-right:15px;">
           <a 
             href="#"
             @click.prevent
             >
             <img 
-              :src="details_src+image.Name" style="width:60px" 
+              :src="details_src+image.Name" style="width:85px" 
               alt=""
+              loading="lazy"
             >
           </a>
         </li>
       </ul>
       <div 
-        class="uk-position-relative"
-        style="overflow:hidden;">
+        class="uk-position-relative uk-slider-container">
         <span
           v-if="label" 
           class="label-article"
           :class="label.LabelClass">{{ label.LabelMessage }}</span>
-        <ul class="uk-slider-items uk-grid-small">
+        <ul class="uk-slider-items">
           <li 
             v-for="(image, index) in images"
             :key="index"
-            class="uk-width-5-6 uk-width-1-2@l">
+            class="uk-width-5-6 uk-width-1-2@l"
+            style="padding-right:15px;"
+            @click="showFullImage(index)">
               <img
                 v-bind:src="details_src+image.Name"
                 alt=""
+                loading="lazy"
               >
           </li>
         </ul>
@@ -51,6 +55,49 @@
           style="background-color: #fff;border-radius: 50%;"></a>
       </div>
     </div>
+
+    <div id="image-modal-full" class="uk-modal-full" uk-modal>
+        <div 
+          class="uk-modal-dialog"
+          style="height:100vh">
+            <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
+            <div uk-slider>
+              <div class="uk-position-relative">
+                <div class="uk-slider-container">
+                  <ul class="uk-slider-items">
+                    <li 
+                      v-for="(image, index) in images"
+                      :key="index"
+                      class="uk-width-1-1 uk-text-center">
+                        <img
+                          v-bind:src="details_src+image.Name"
+                          alt=""
+                          style="max-height:90vh;max-width:100%;margin:0 auto;"
+                          loading="lazy"
+                        >
+                    </li>
+                  </ul>
+                </div>
+                <a 
+                  class="uk-position-center-left uk-position-small uk-hidden-hover"
+                  href="#"
+                  uk-slidenav-previous uk-slider-item="previous"
+                  style="background-color: #fff;border-radius: 50%;"></a>
+                <a 
+                  class="uk-position-center-right uk-position-small uk-hidden-hover"
+                  href="#"
+                  uk-slidenav-next
+                  uk-slider-item="next"
+                  style="background-color: #fff;border-radius: 50%;"></a>
+
+                
+                <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"/>
+
+              </div>
+            </div>
+        </div>
+    </div>
+
   </div>
 </template>
 
@@ -82,16 +129,19 @@ export default {
   },
   mounted() {},
   methods: {
-    
+    showFullImage(ind){
+      try{
+        UIkit.modal('#image-modal-full').show();
+      }catch(err){
+
+      }
+      
+    }
   }
 };
 </script>
 
 <style lang="scss">
-
-img {
-  width: 100%;
-}
 
 .relative {
   position: relative;
