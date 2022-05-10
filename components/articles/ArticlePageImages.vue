@@ -9,7 +9,7 @@
           :key="index"
           :uk-slider-item="Math.floor(index/2)"
           class="uk-visible"
-          style="padding-right:15px;">
+          style="width:100px;padding-right:15px;">
           <a 
             href="#"
             @click.prevent
@@ -23,7 +23,8 @@
         </li>
       </ul>
       <div 
-        class="uk-position-relative uk-slider-container">
+        class="uk-position-relative uk-slider-container"
+        style="margin-left:-15px;margin-right:-15px;">
         <span
           v-if="label" 
           class="label-article"
