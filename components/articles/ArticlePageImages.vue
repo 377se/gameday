@@ -9,7 +9,7 @@
           :key="index"
           :uk-slider-item="index"
           class="uk-visible"
-          style="width:140px;padding-right:15px;">
+          style="width:125px;padding-right:15px;">
           <a 
             href="#"
             @click.prevent
@@ -29,12 +29,11 @@
           v-if="label" 
           class="label-article"
           :class="label.LabelClass">{{ label.LabelMessage }}</span>
-        <ul class="uk-slider-items">
+        <ul class="uk-slider-items uk-grid-small">
           <li 
             v-for="(image, index) in images"
             :key="index"
             :class="images.length>1?'uk-width-5-6 uk-width-1-1@m':'uk-width-1-1'"
-            style="padding-right:15px;"
             @click="showFullImage(index)">
               <img
                 v-bind:src="details_src+image.Name"

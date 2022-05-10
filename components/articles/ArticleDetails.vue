@@ -11,7 +11,9 @@
         />
       </section>
 
-      <section class="uk-width-1-1 uk-width-1-3@m">
+      <section 
+        class="uk-width-1-1 uk-width-1-3@m"
+        style="padding-left:30px;">
         <div class="uk-flex uk-flex-middle">
           <ArticlePageHeader 
             class="uk-width-expand"
