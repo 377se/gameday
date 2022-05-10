@@ -9,7 +9,7 @@
           :key="index"
           :uk-slider-item="Math.floor(index/2)"
           class="uk-visible"
-          style="width:100px; padding-right:15px;">
+          style="padding-right:15px;">
           <a 
             href="#"
             @click.prevent
