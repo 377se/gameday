@@ -47,7 +47,7 @@
           class="uk-position-center-left uk-position-small uk-hidden-hover"
           href="#"
           uk-slidenav-previous uk-slider-item="previous"
-          style="background-color: #fff;border-radius: 50%;"></a>
+          style="background-color: #fff;border-radius: 50%;left: 15px!important;"></a>
         <a 
           class="uk-position-center-right uk-position-small uk-hidden-hover"
           href="#"
@@ -80,10 +80,10 @@
                   </ul>
                 </div>
                 <a 
-                  class="uk-position-center-left uk-position-small uk-hidden-hover"
+                  class="uk-position-small uk-hidden-hover"
                   href="#"
                   uk-slidenav-previous uk-slider-item="previous"
-                  style="left:15px;background-color: #fff;border-radius: 50%;"></a>
+                  style="background-color: #fff;border-radius: 50%;"></a>
                 <a 
                   class="uk-position-center-right uk-position-small uk-hidden-hover"
                   href="#"
