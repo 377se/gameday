@@ -83,7 +83,7 @@
                   class="uk-position-center-left uk-position-small uk-hidden-hover"
                   href="#"
                   uk-slidenav-previous uk-slider-item="previous"
-                  style="background-color: #fff;border-radius: 50%;"></a>
+                  style="left:15px;background-color: #fff;border-radius: 50%;"></a>
                 <a 
                   class="uk-position-center-right uk-position-small uk-hidden-hover"
                   href="#"
