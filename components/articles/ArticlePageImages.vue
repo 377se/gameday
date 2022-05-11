@@ -33,7 +33,7 @@
           <li 
             v-for="(image, index) in images"
             :key="index"
-            :class="images.length>1?'uk-width-5-6 uk-width-1-1@m':'uk-width-1-1'"
+            :class="images.length>1?'uk-width-5-6 uk-width-1-1@m':'uk-width-1-1 one-image-padding'"
             @click="showFullImage(index)">
               <img
                 v-bind:src="details_src+image.Name"
@@ -143,6 +143,9 @@ export default {
 </script>
 
 <style lang="scss">
+.one-image-padding{
+  padding-right:15px;
+}
 .uk-thumbnav > li.uk-visible{
   display:inline!important;
 }
