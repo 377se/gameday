@@ -143,6 +143,9 @@ export default {
 </script>
 
 <style lang="scss">
+.uk-thumbnav > li.uk-visible{
+  display:inline!important;
+}
 .uk-slider-items > li{
   cursor:pointer;
 }
