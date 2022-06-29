@@ -1,33 +1,6 @@
 <template>
   <div>
     <div 
-      id="lang-modal" 
-      class="uk-modal uk-flex-top"
-      uk-modal="container:false">
-      <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
-        <button class="uk-modal-close-default" type="button" uk-close></button>
-        <div>
-          <h4 class="uk-text-center">Choose country</h4>
-          <ul 
-            class="uk-nav uk-text-left">
-            <li
-              :class="{'uk-active':locale==='en'}">
-              <a 
-                href="https://supportersplace.com/en/street-week"  
-                style="vertical-align:middle"><img src="/flags/en.svg" style="width:30px;margin-right:5px;"> International (english)</a></li>
-            <li
-              :class="{'uk-active':locale==='sv-se'}"><a href="https://supportersplace.se/street-week" style="vertical-align:middle"><img src="/flags/sv-se.svg" style="width:30px;margin-right:5px;"> Sweden</a></li>
-            <li
-              :class="{'uk-active':locale==='da-dk'}"><a href="https://supportersplace.com/da-dk/street-week" style="vertical-align:middle"><img src="/flags/da-dk.svg" style="width:30px;margin-right:5px;"> Denmark</a></li>
-            <li
-              :class="{'uk-active':locale==='nb-no'}"><a href="https://supportersplace.com/nb-no/street-week" style="vertical-align:middle"><img src="/flags/nb-no.svg" style="width:30px;margin-right:5px;"> Norway</a></li>
-            <li
-              :class="{'uk-active':locale==='fi-fi'}"><a href="https://supportersplace.fi/street-week" style="vertical-align:middle"><img src="/flags/fi-fi.svg" style="width:30px;margin-right:5px;"> Finland</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div 
       uk-sticky
       @click.stop.prevent="chosenDropDown=0"
       v-click-outside="hideDropDown"
@@ -156,12 +129,10 @@ import TheHamburger from "./TheHamburger";
 import { mapGetters, mapActions } from 'vuex'
 export default {
   async fetch () {
-    let _locale = this.$i18n.locale?this.$i18n.locale:this.$i18n.defaultLocale
     try{
       let [menu] = await Promise.all([
           this.$axios.$get('/webapi/'+this.$i18n.locale+'/Navigation/Get')
       ]);
-      this.locale = _locale
       this.menu = menu
     }catch(error){
       console.log('No data sources '+error);
@@ -175,8 +146,7 @@ export default {
       menu: [],
       logo:process.env.LOGO_URL,
       chosenDropDown: 0,
-      timeout: null,
-      locale: ''
+      timeout: null
     }
   },
   computed: {
