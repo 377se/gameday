@@ -78,8 +78,11 @@ export default {
   },
   methods:{
     getUrl(){
-      if(this.url!=undefined){
+      if(this.url!=undefined && !this.url.includes('street-week-')){
         return this.$nuxt.context.app.localePath(this.url)
+      }else if(this.url.includes('street-week-'))
+      {
+        return this.$nuxt.context.app.localePath('/article/street-week/'+this.article.UrlSafeName.replace('street-week-',''))
       }
       return this.$nuxt.context.app.localePath('/article/'+this.article.ProductId+'/'+this.article.UrlSafeName)
     }
