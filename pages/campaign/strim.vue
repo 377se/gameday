@@ -7,20 +7,23 @@
         :blok="story.content" 
         :is="story.content.component" />
       <div class="uk-padding">
-        <h1>Du har fått 350kr att handla varor för!</h1>
-        <h2>Har du konto hos oss redan?</h2>
-        <p>Då har vi fyllt på det med 350 coins som automatiskt dras av i varukorgen när du handlar.</p>
-        <p>Logga in med den email vi skickat den här länken till och det lösenord du valt sedan tidigare</p>
+        <h1>Du har fått 350 kr å handle souvenirer for! </h1>
+        <p>
+          I forbindelse med at du har opprettet abonnement hos Strim sender vi deg 350 kr til å handle varer for i KopShop.no 
+Vi fylt på din konto med 350 kr som automatisk trekkes fra i handlekurven. «Pengene» må brukes innen 12 måneder. 
+        </p>
+        <h2>Har du allerede konto hos oss? </h2>
+        <p>Vi har fylt opp din konto med 350 kr som automatisk trekkes når du kommer til handlekurven. </p>
+        <p>Logg på med e-posten vi sendte denne lenken til og det passordet du tidligere har brukt. </p>
         <p><nuxt-link
               :to="localePath('/login')"
-              class="uk-button uk-button-primary">Logga in</nuxt-link></p>
+              class="uk-button uk-button-primary">Logge inn </nuxt-link></p>
 
-        <h2>Har du inte ett konto sedan tidigare?</h2>
-        <p>Då har vi skapat ett konto åt dig och fyllt det med 350kr!</p>
-        <p>Du behöver bara hämta ett nytt lösenord kopplat till den email du fått den här länken genom.</p>
+        <h2>Har du ikke konto fra før? </h2>
+        <p>Vi har opprettet konto for deg. Du trenger bare å opprette passord knyttet til denne e-posten du har mottatt denne lenken til.</p>
         <p><nuxt-link
               :to="localePath('/forgotten-password')"
-              class="uk-button uk-button-primary">Hämta nytt lösenord här</nuxt-link></p>
+              class="uk-button uk-button-primary">Hent nytt passord her </nuxt-link></p>
       </div>
     </div>
   </section>
