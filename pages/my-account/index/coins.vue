@@ -53,16 +53,6 @@ export default {
     Page,
     TextContent
   },
-  async fetch () {
-    try{
-      let [storyblok] = await Promise.all([
-          this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+this.$i18n.locale +"&datasource=fe-labels-myaccount&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
-      ]);
-      this.labels = storyblok.datasource_entries
-    }catch(error){
-      console.log(error);
-    }
-  },
   activated(){
     this.$fetch()
   },
@@ -95,6 +85,14 @@ export default {
     let version = this.$nuxt.context.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
     // Load the JSON from the API
     try{
+    try{
+      let [storyblok] = await Promise.all([
+          this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+this.$i18n.locale +"&datasource=fe-labels-myaccount&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version)
+      ]);
+      this.labels = storyblok.datasource_entries
+    }catch(error){
+      console.log(error);
+    }
     const [c, s] = await Promise.all([
         await this.$nuxt.context.app.$axios.$get(
           '/webapi/'+this.$i18n.locale+'/Coins/GetCoins'
