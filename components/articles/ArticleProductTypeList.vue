@@ -25,8 +25,7 @@
         <strong>{{ article.TotalNumberOfProducts }} {{ $getCMSEntry(global_labels,'info_products', 'produkter') }}</strong> 
         <div 
           class="ts-filter uk-flex uk-flex-middle uk-margin-small-bottom"
-          uk-sticky="offset:118;width-element:body;bottom:true"
-          style="z-index:3">
+          uk-sticky="offset:118;width-element:body;bottom:true">
           <FilterItems
             :product-types="producttypes"
             :colors="colors"
