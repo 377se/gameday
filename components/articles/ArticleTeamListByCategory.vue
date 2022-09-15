@@ -124,6 +124,11 @@ import FilterItems from "@/components/filter/Filter";
 import SortItems from "@/components/filter/SortItems";
 
 export default {
+  head() {
+    return {
+          title: `${this.article.SeoTitle}`,
+    }
+  },
   async fetch () {
     let pageNum = this.$route.query.page?this.$route.query.page:1
     let color = this.$route.query.color?this.$route.query.color:null
@@ -197,7 +202,7 @@ export default {
   },
   data () {
     return {
-      article: {},
+      article: {SeoTitle:''},
       articles: [],
       producttypes: [], //To filter on
       colors: [],
