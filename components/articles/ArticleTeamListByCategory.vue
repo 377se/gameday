@@ -125,8 +125,10 @@ import SortItems from "@/components/filter/SortItems";
 
 export default {
   head() {
-    return {
-          title: `${this.article.SeoTitle}`,
+    if(!this.sb){
+      return {
+            title: `${this.article.SeoTitle}`,
+      }
     }
   },
   async fetch () {
