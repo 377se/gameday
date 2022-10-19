@@ -90,6 +90,7 @@ export default {
         href: this.metadata.Canonical + '/'+this.$route.params.filterid+'/'+this.$route.params.filtername
       }
     )}catch(err){}
+    
     if(this.story.content.SEO){
       return {
         title: `${this.story.content.SEO.title}`,
