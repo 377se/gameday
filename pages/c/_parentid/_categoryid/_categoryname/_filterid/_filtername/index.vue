@@ -82,13 +82,14 @@ export default {
         _link.push(_obj)
       }
     }
+    try{
     _link.push(
       {
         rel: 'canonical',
         hid: 'i18n-can',
-        href: this.metadata.Canonical
+        href: this.metadata.Canonical + '/'+this.$route.params.filterid+'/'+this.$route.params.filtername
       }
-    )
+    )}catch(err){}
     if(this.story.content.SEO){
       return {
         title: `${this.story.content.SEO.title}`,
