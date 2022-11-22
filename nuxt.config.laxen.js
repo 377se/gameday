@@ -84,6 +84,7 @@ export default {
     //'@nuxtjs/eslint-module'
     '@nuxtjs/gtm', 
     '@nuxtjs/pwa',
+    ["@storyblok/nuxt-2/module", { accessToken: "rGRW1HEorfNfSoGS5CzoDwtt" }],
   ],
   gtm: { id: 'GTM-PZ4NQSW' },
   /*
@@ -126,7 +127,6 @@ export default {
     '@nuxtjs/axios',
     'cookie-universal-nuxt',
     'nuxt-webfontloader',
-    ['storyblok-nuxt', { accessToken: 'rGRW1HEorfNfSoGS5CzoDwtt', cacheProvider: 'memory' }],
     ['@nuxtjs/style-resources']    
   ],
   redirect: [
@@ -174,7 +174,7 @@ export default {
   },
   proxy: {
     '/webapi': {
-      target: process.env.NODE_ENV !== 'production'?'https://beta-api.supporterprylar.se':'https://api.supporterprylar.se'
+      target: process.env.NODE_ENV !== 'production'?'https://api.supporterprylar.se':'https://api.supporterprylar.se'
     }
   },
   /*

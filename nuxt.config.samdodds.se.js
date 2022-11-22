@@ -81,7 +81,8 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     //'@nuxtjs/eslint-module'
-    '@nuxtjs/gtm', 
+    '@nuxtjs/gtm',
+    ["@storyblok/nuxt-2/module", { accessToken: "rGRW1HEorfNfSoGS5CzoDwtt" }],
   ],
   gtm: { id: 'GTM-NBCJ6D' },
   /*
@@ -133,7 +134,6 @@ export default {
     'cookie-universal-nuxt',
     '@nuxtjs/pwa',
     'nuxt-webfontloader',
-    ['storyblok-nuxt', { accessToken: 'rGRW1HEorfNfSoGS5CzoDwtt', cacheProvider: 'memory' }],
     ['@nuxtjs/style-resources']
   ],
   redirect: [

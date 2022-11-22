@@ -83,6 +83,7 @@ export default {
     //'@nuxtjs/eslint-module'
     '@nuxtjs/gtm', 
     '@nuxtjs/pwa',
+    ["@storyblok/nuxt-2/module", { accessToken: "rGRW1HEorfNfSoGS5CzoDwtt" }],
   ],
   gtm: { id: 'GTM-5GW9PW' },
   /*
@@ -138,7 +139,6 @@ export default {
     '@nuxtjs/axios',
     'cookie-universal-nuxt',
     'nuxt-webfontloader',
-    ['storyblok-nuxt', { accessToken: 'rGRW1HEorfNfSoGS5CzoDwtt', cacheProvider: 'memory' }],
     ['@nuxtjs/style-resources']    
   ],
   redirect: [

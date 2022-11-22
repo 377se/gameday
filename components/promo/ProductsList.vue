@@ -63,7 +63,7 @@ export default {
   overflow-y:hidden;
   overflow-x:scroll;
   flex-wrap:nowrap;
-  margin-right:-15px;
+  margin-right:-15px !important;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
   padding-bottom:30px;
