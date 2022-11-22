@@ -168,7 +168,8 @@ export default {
     },
     icon: {
       fileName: 'icon_samdodds.png'
-    }
+    },
+    workbox: false
   },
   webfontloader: {
     google: {

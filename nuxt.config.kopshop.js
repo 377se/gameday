@@ -156,7 +156,8 @@ export default {
     },
     icon: {
       fileName: 'icon_kopshop.png'
-    }
+    },
+    workbox: false
   },
   webfontloader: {
     google: {

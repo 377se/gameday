@@ -169,7 +169,8 @@ export default {
     },
     icon: {
       fileName: 'icon_supportersplace.png'
-    }
+    },
+    workbox: false
   },
   webfontloader: {
     google: {

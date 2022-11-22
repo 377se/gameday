@@ -156,7 +156,8 @@ export default {
     },
     icon: {
       fileName: 'icon_gameday.png'
-    }
+    },
+    workbox: false
   },
   webfontloader: {
     google: {

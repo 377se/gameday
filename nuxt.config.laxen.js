@@ -157,7 +157,8 @@ export default {
     },
     icon: {
       fileName: 'icon_supporterprylar.png'
-    }
+    },
+    workbox: false
   },
   webfontloader: {
     google: {
