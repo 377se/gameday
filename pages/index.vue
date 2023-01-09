@@ -17,7 +17,7 @@ export default {
   head () {
     let _link = new Array()
     let _lhref = {}
-    
+
     if(this.metadata){
       for(var i=0;i<this.metadata.LangHref.length;i++){
         let _obj = {

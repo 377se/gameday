@@ -38,9 +38,8 @@
                 </thead>
                 <tbody
                   class="uk-background-default">
-                  <template
-                    v-for="(item) in cart.data">
                     <tr
+                      v-for="(item) in cart.data"
                       :key="item.Id">
                       <td class="thumb-image" style="padding-left:6px;">
                         <img
@@ -77,9 +76,8 @@
                           @click.prevent.stop="deleteFromCart(item.Id)">{{ $getCMSEntry(global_labels,'basket_delete_from_cart', 'Ta bort') }}</a>
                       </td>
                     </tr>
-                    <template
-                      v-for="(i) in item.ItemList">
                       <tr
+                        v-for="(i) in item.ItemList"
                         :key="i.Id">
                         <td class="thumb-image" style="padding-left:15px;">
                           <img
@@ -116,8 +114,6 @@
                             @click.prevent.stop="deleteFromCart(i.Id)">{{ $getCMSEntry(global_labels,'basket_delete_from_cart', 'Ta bort') }}</a>
                         </td>
                       </tr>
-                    </template>
-                  </template>
                 </tbody>
                 <tfoot
                   class="uk-background-default"
@@ -218,8 +214,8 @@
               </thead>
               <tbody
                   class="uk-background-default">
-                   <template v-for="extension in extensionlist.ArticleList">
                       <tr
+                      v-for="extension in extensionlist.ArticleList"
                       :key="extension.ExtensionId"
                       uk-scrollspy="target: > td; cls: uk-animation-slide-left; repeat: true; delay: 250"
                       >
@@ -269,7 +265,6 @@
                         </span>
                       </td>
                       </tr>
-                    </template>
               </tbody>
               <tfoot>
               </tfoot>

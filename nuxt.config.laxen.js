@@ -15,7 +15,10 @@ export default {
     CURRENCY_CODE: 'SEK',
     STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt',
     ZENDESK: 'fd07ec75-ec92-4ea1-ad6c-49e883112e6c',
-    DEFAULT_SORT_ORDER: 3 //0 for recommended and 3 for latest
+    DEFAULT_SORT_ORDER: 3, //0 for recommended and 3 for latest
+    LANG_HREF: {
+      'sv-se':'https://www.supporterprylar.se',
+    }
 
   },
   mode: 'universal',
@@ -110,7 +113,7 @@ export default {
         }
       }
     }],
-    ['nuxt-i18n',
+    ['@nuxtjs/i18n',
       {
         baseUrl: 'https://www.supporterprylar.se',
         defaultLocale: 'sv-se',

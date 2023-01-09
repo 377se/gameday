@@ -32,11 +32,12 @@ export default {
     let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
     let shop = this.$route.params.league.toUpperCase()+'-shop'
     try {
-      const [sb] = await Promise.all([
+      const [sb,redir] = await Promise.all([
         this.$storyapi.get('cdn/stories?starts_with=gameday/'+this.$i18n.locale+'/lag/'+this.$route.params.league+'/'+this.$route.params.team, {
           version: version,
           cv: this.$store.getters.version
-        })
+        }),
+        this.$axios.get('/webapi/Category/GetRedirect?url='+this.$route.path)
       ]);
       this.shop=shop
       this.story=sb.data.stories.length>0?sb.data.stories[0]:{ content: {} }

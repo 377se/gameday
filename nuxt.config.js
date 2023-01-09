@@ -16,7 +16,10 @@ export default {
     CURRENCY_CODE: 'SEK',
     STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt',
     ZENDESK: 'b2384b65-02c4-40fe-b25f-c195c554d089',
-    DEFAULT_SORT_ORDER: 3 //0 for recommended and 3 for latest
+    DEFAULT_SORT_ORDER: 3, //0 for recommended and 3 for latest
+    LANG_HREF: {
+      'sv-se':'https://gameday.se'
+    }
 
   },
   /*
@@ -110,7 +113,7 @@ export default {
         }
       }
     }],
-    ['nuxt-i18n',
+    ['@nuxtjs/i18n',
       {
         baseUrl: 'https://gameday.se',
         defaultLocale: 'sv-se',

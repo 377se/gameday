@@ -11,6 +11,7 @@
         <nuxt-link 
           class="uk-navbar-item uk-padding-small uk-logo" 
           :to="localePath('/')"><img :src="logo" class="logo" alt="Sam Dodds Logo"></nuxt-link>
+        <!--Candle /-->
       </div>
 
       <div 

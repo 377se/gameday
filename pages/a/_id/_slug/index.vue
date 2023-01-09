@@ -20,6 +20,11 @@
       </template>
       <template
         v-else>
+        <SeoHead
+          :title="article.MetaTitle"
+          :description="`${article.MetaDescription}`.replace(/<\/?[^>]+(>|$)/g, '')"
+          :canonical="metadata.Canonical"
+          :lang-hrefs="metadata.LangHref"/>
         <div class="uk-container uk-container-large uk-padding-small uk-padding-remove-top">
           <ul
             v-if="metadata.Breadcrumb && metadata.Breadcrumb.length>0" 
@@ -49,57 +54,6 @@
 import ArticleDetails from "@/components/articles/ArticleDetails";
 
 export default {
-   head () {
-    let _link = new Array()
-    for(var i=0;i<this.metadata.LangHref.length;i++){
-      let _obj = {
-                  'hid':'i18n-alt-'+this.metadata.LangHref[i].Culture.split('-')[0],
-                  'rel': 'alternate',
-                  'href': this.metadata.LangHref[i].Url,
-                  'hreflang': this.metadata.LangHref[i].Culture.split('-')[0]
-                }
-      if(this.siteid!=2 || (this.siteid!=2 && this.metadata.LangHref[i].Culture!='en-gb')){
-        _link.push(_obj)
-      } 
-      if(this.metadata.LangHref[i].Culture==this.$i18n.defaultLocale){
-        let _obj = {
-                  'hid':'i18n-xd',
-                  'rel': 'alternate',
-                  'href': this.metadata.LangHref[i].Url,
-                  'hreflang': 'x-default'
-                }
-      _link.push(_obj)
-      }
-    }
-    _link.push(
-      {
-        rel: 'canonical',
-        hid: 'i18n-can',
-        href: this.metadata.Canonical
-      }
-    )
-    return {
-      title: this.article.MetaTitle,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.article.MetaDescription
-        },
-        {
-          hid: 'og:title',
-          name:  'og:title',
-          content:  this.article.MetaTitle,
-        },
-        {
-          hid: 'og:description',
-          name:  'og:description',
-          content: `${this.article.MetaDescription}`.replace(/<\/?[^>]+(>|$)/g, ""),
-        }
-      ],
-      link:_link
-    }
-  },
   components: {
     ArticleDetails
   },
@@ -113,8 +67,12 @@ export default {
   },
   async fetch() {
     try {
+      if(process.server)
+        console.log('server article')
+      else
+      console.log('client article')
       const url = `/webapi/${this.$i18n.locale}/Article/GetArticleDetailsById?teamName=null&articleId=${this.$route.params.id}`;
-      const metadataurl = `/webapi/${this.$i18n.locale}/MetaData/GetMetaData=${this.$route.path}`;
+      const metadataurl = `/webapi/${this.$i18n.locale}/MetaData/GetMetaData?url=/a/${this.$route.params.id}/${this.$route.params.slug}`;
       const article = await this.$axios.$get(url);
       const metadata = await this.$axios.$get(metadataurl);
  

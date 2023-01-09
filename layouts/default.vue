@@ -23,8 +23,8 @@ import TheRollingText from "@/components/TheRollingText";
 import ShopTopPromo from "@/components/ShopTopPromo";
 
 export default {
-  head () {
-    let i18nHead = this.$nuxtI18nSeo()
+  /*head () {
+    let i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
     if(process.env.SITE_ID==2){ //Sam Dodds
       var _route=this.$route.path.replace('/sv-se','').replace('/da-dk').replace('/fi-fi')
       let _obj_sv = {
@@ -57,12 +57,12 @@ export default {
       i18nHead.link.push(_obj_xd)
     }
       
-    /*try{
-      let links = i18nHead.link.filter(el => (el.rel!='canonical'))
-      i18nHead.link = links
-    }catch(err){console.log(err)}*/
+    //try{
+    //  let links = i18nHead.link.filter(el => (el.rel!='canonical'))
+    //  i18nHead.link = links
+    //}catch(err){console.log(err)}
     return i18nHead
-  },
+  },*/
   components: {
     OffscreenBasket,
     TheRollingText,

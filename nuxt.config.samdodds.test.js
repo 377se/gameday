@@ -103,7 +103,7 @@ export default {
         }
       }
     }],
-    ['nuxt-i18n',
+    ['@nuxtjs/i18n',
     {
       detectBrowserLanguage: {
         useCookie: true,

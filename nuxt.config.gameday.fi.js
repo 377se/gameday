@@ -109,7 +109,7 @@ export default {
         }
       }
     }],
-    ['nuxt-i18n',
+    ['@nuxtjs/i18n',
       {
         baseUrl: 'https://gameday.fi',
         defaultLocale: 'fi-fi',

@@ -15,7 +15,14 @@ export default {
     CURRENCY_CODE: 'EUR',
     STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt',
     ZENDESK: '8e038054-4899-4e86-8561-a33fa7eb78c2',
-    DEFAULT_SORT_ORDER: 3 //0 for recommended and 3 for latest
+    DEFAULT_SORT_ORDER: 3, //0 for recommended and 3 for latest
+    LANG_HREF: {
+      'fi-fi':'https://supportersplace.fi',
+      'sv-se':'https://supportersplace.se',
+      'nb-no':'https://supportersplace.com/nb-no',
+      'da-dk':'https://supportersplace.com/da-dk',
+      'en-gb':'https://supportersplace.com/en',
+    }
   },
   mode: 'universal',
   /*
@@ -105,7 +112,7 @@ export default {
         }
       }
     }],
-    ['nuxt-i18n',
+    ['@nuxtjs/i18n',
       {
         baseUrl: 'https://supportersplace.fi',
         defaultLocale: 'fi-fi',

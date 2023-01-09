@@ -23,6 +23,12 @@
     </template>
     <template
       v-else>
+      <SeoHead
+        :title="story.content.SEO.title"
+        :description="`${story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, '')"
+        :canonical="metadata.Canonical"
+        :lang-hrefs="metadata.LangHref"
+      />
       <div class="uk-container uk-container-large uk-padding-small uk-padding-remove-bottom">
         <ul
           v-if="metadata.Breadcrumb && metadata.Breadcrumb.length>0" 
@@ -60,7 +66,7 @@ import ArticleTeamListByCategory from "@/components/articles/ArticleTeamListByCa
 import Page from '@/components/Page'
 
 export default {
-  head () {
+  /*head () {
     let _link = new Array()
     if(this.metadata){
       for(var i=0;i<this.metadata.LangHref.length;i++){
@@ -119,7 +125,7 @@ export default {
         link: _link
       }
     }
-  },
+  },*/
   async fetch () {
     // Check if we are in the editor mode
     let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
@@ -134,7 +140,7 @@ export default {
     
     const [metadata] = await Promise.all([
       this.$axios.$get(
-          `/webapi/${this.$i18n.locale}/MetaData/GetMetadataByCategoryId?categoryId=${this.$route.params.categoryid}`
+          `/webapi/${this.$i18n.locale}/MetaData/GetMetadataForCategory?url=/c/${this.$route.params.parentid}/${this.$route.params.categoryid}`
         )
         ]);
       this.metadata = metadata
