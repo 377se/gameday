@@ -14,6 +14,7 @@ import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import Page from '@/components/Page'
 
 export default {
+  cache: true,
   head () {
     let _link = new Array()
     let _lhref = {}

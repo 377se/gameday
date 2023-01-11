@@ -54,6 +54,7 @@
 import ArticleDetails from "@/components/articles/ArticleDetails";
 
 export default {
+  cache: true,
   components: {
     ArticleDetails
   },

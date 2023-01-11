@@ -60,6 +60,7 @@ import ArticleTeamListByCategory from "@/components/articles/ArticleTeamListByCa
 import Page from '@/components/Page'
 
 export default {
+  cache: true,
   head () {
     let _link = new Array()
     for(var i=0;i<this.metadata.LangHref.length;i++){

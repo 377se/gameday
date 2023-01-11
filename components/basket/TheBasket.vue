@@ -37,10 +37,11 @@
                   </tr>
                 </thead>
                 <tbody
-                  class="uk-background-default">
-                    <tr
-                      v-for="(item) in cart.data"
-                      :key="item.Id">
+                  v-for="(item) in cart.data"
+                  :key="item.Id"
+                  class="uk-background-default"
+                  >
+                    <tr>
                       <td class="thumb-image" style="padding-left:6px;">
                         <img
                           :src="thumb_src + item.ImageThumb"

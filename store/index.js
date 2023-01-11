@@ -80,10 +80,6 @@ export const getters = {
 //MLB 329
 export const actions = {
   async nuxtServerInit ({getters, commit, dispatch}, context) {
-    if(context.app.$cookies.get('cid')!=undefined){
-      commit('setCid', context.app.$cookies.get('cid'))
-    }
-
     var _locale = context.app.i18n.locale?context.app.i18n.locale:context.app.i18n.defaultLocale
     console.log('Locale: '+_locale)
 
