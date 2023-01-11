@@ -84,6 +84,9 @@ export default {
     }*/
     //UIkit.notification("", {status:'primary'})
     try{
+      if(this.$cookies.get('cid')!=undefined){
+        this.$store.commit('setCid', this.$cookies.get('cid'))
+      }
       //Handle Android Chrome when kepyad is shown (vh is then less and this messes things up)
       var viewport = document.querySelector("meta[name=viewport]");
       viewport.setAttribute("content", viewport.content + ", height=" + innerHeight);

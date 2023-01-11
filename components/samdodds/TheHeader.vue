@@ -146,11 +146,6 @@ export default {
   directives: {
     ClickOutside
   },
-  mounted(){
-    if(this.$cookies.get('cid')!=undefined){
-      this.$store.commit('setCid', this.$cookies.get('cid'))
-    }
-  },
   methods:{
     getCatLink(lID, urlsafe){
       var cid = this.$nuxt.context.app.localePath('/c/0/'+lID+'/'+urlsafe)
