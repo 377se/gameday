@@ -24,8 +24,8 @@
     <template
       v-else>
       <SeoHead
-        :title="story.content.SEO.title?story.content.SEO.title:metadata.title"
-        :description="story.content.SEO.description?`${story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ''):`${metadata.description}`.replace(/<\/?[^>]+(>|$)/g, '')"
+        :title="story.content.SEO.title"
+        :description="`${story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, '')"
         :canonical="metadata.Canonical"
         :lang-hrefs="metadata.LangHref"
       />
