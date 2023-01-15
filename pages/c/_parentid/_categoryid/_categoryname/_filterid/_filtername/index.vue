@@ -27,8 +27,7 @@
         :title="''"
         :description="''"
         :canonical="metadata.Canonical"
-        :lang-hrefs="metadata.LangHref"
-      />
+        :lang-hrefs="metadata.LangHref" />
       <div class="uk-container uk-container-large uk-padding-small uk-padding-remove-bottom">
         <ul
           v-if="metadata.Breadcrumb && metadata.Breadcrumb.length>0" 
