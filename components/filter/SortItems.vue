@@ -23,7 +23,7 @@
 <script>
 export default {
   async fetch(){
-    this.selected = this.$route.query.sortorder?this.$route.query.sortorder:defaultSortOrder
+    this.selected = this.$route.query.sortorder?this.$route.query.sortorder:this.defaultSortOrder
   },
   props:{
     sortItemList:{

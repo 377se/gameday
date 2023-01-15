@@ -134,7 +134,7 @@ export default {
     let sale = this.$route.query.sale?this.$route.query.sale:false
     let brand = this.$route.query.brand?this.$route.query.brand:null
     let team = this.$route.query.team?this.$route.query.team:null
-    let sortorder = this.$route.query.sortorder?this.$route.query.sortorder:defaultSortOrder
+    let sortorder = this.$route.query.sortorder?this.$route.query.sortorder:this.defaultSortOrder
     
     try {
       const [a, p, c, s, g, b, t] = await Promise.all([
