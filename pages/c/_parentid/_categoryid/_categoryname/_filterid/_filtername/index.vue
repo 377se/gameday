@@ -24,8 +24,8 @@
     <template
       v-else>
       <SeoHead
-        :title="story.content.SEO.title?story.content.SEO.title:metadata.title"
-        :description="story.content.SEO.description?`${story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ''):`${metadata.description}`.replace(/<\/?[^>]+(>|$)/g, '')"
+        :title="''"
+        :description="''"
         :canonical="metadata.Canonical"
         :lang-hrefs="metadata.LangHref"
       />
@@ -77,7 +77,7 @@ export default {
           cv: this.$store.getters.version
         }),
         this.$axios.$get(
-          `/webapi/${this.$i18n.locale}/MetaData/GetMetadataForCategory?url=/c/${this.$route.params.parentid}/${this.$route.params.categoryid}/${this.$route.params.categoryname}/${this.$route.params.filterid}/${this.$route.params.filtername}`
+          `/webapi/${this.$i18n.locale}/MetaData/GetMetadataForCategory?url=/c/${this.$route.params.parentid}/${this.$route.params.categoryid}/${this.$route.params.categoryname}/${this.$route.params.filterid}`
         )
       ]);
       this.metadata = metadata
