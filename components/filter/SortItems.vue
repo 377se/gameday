@@ -23,7 +23,7 @@
 <script>
 export default {
   async fetch(){
-    this.selected = this.$route.query.sortorder?this.$route.query.sortorder:process.env.DEFAULT_SORT_ORDER
+    this.selected = this.$route.query.sortorder?this.$route.query.sortorder:defaultSortOrder
   },
   props:{
     sortItemList:{
@@ -34,7 +34,8 @@ export default {
   },
   data() {
     return{
-      selected: 0
+      selected: 0,
+      defaultSortOrder: process.env.DEFAULT_SORT_ORDER,
     }
   },
   methods:{
