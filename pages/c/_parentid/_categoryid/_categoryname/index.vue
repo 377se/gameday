@@ -27,8 +27,8 @@
         :title="story.content.SEO.title"
         :description="`${story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, '')"
         :canonical="metadata.Canonical"
-        :lang-hrefs="metadata.LangHref"
-      />
+        :lang-hrefs="metadata.LangHref" />
+      <span style="display:none">{{ metadata }}</span>
       <div class="uk-container uk-container-large uk-padding-small uk-padding-remove-bottom">
         <ul
           v-if="metadata.Breadcrumb && metadata.Breadcrumb.length>0" 
