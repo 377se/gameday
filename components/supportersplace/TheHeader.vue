@@ -156,13 +156,12 @@ import TheHamburger from "./TheHamburger";
 import { mapGetters, mapActions } from 'vuex'
 export default {
   async fetch() {
+    console.log('Locale: '+this.locale)
     try {
-      let _locale = this.$i18n.locale?this.$i18n.locale:this.$i18n.defaultLocale
       let [menu] = await Promise.all([
-          this.$axios.$get('/webapi/'+_locale+'/category/Get')
+          this.$axios.$get('/webapi/'+this.locale+'/category')
       ]);
       this.menu = menu
-      this.locale = _locale
     } catch (err) {
       console.log(err);
     }
@@ -176,7 +175,7 @@ export default {
       menu: null,
       chosenDropDown: 0,
       timeout: null,
-      locale: ''
+      locale: this.$i18n.locale?this.$i18n.locale:this.$i18n.defaultLocale
     }
   },
   computed: {
