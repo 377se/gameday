@@ -1,5 +1,10 @@
 <template>
   <section>
+    <SeoHead
+      :title="this.story.content.SEO.title"
+      :description="`${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, '')"
+      :canonical="$router.path"
+      :lang-hrefs="langHref"/>
     <div class="uk-container uk-container-large uk-padding-small"> 
       <component 
         v-if="story.content.component" 
@@ -15,68 +20,6 @@ import Page from '@/components/Page'
 
 export default {
   cache: true,
-  head () {
-    let _link = new Array()
-    let _lhref = {}
-
-    if(this.metadata){
-      for(var i=0;i<this.metadata.LangHref.length;i++){
-        let _obj = {
-                    'hid':'i18n-alt-'+this.metadata.LangHref[i].Culture.split('-')[0],
-                    'rel': 'alternate',
-                    'href': this.metadata.LangHref[i].Url,
-                    'hreflang': this.metadata.LangHref[i].Culture.split('-')[0]
-                  }
-        if(this.siteid!=2 || (this.siteid==2 && this.metadata.LangHref[i].Culture!='en-gb')){
-          _link.push(_obj)
-        }
-        if(this.metadata.LangHref[i].Culture==this.$i18n.defaultLocale){
-          let _obj = {
-                    'hid':'i18n-xd',
-                    'rel': 'alternate',
-                    'href': process.env.X_DEFAULT,
-                    'hreflang': 'x-default'
-                  }
-          _link.push(_obj)
-        }
-      }
-
-      _link.push(
-        {
-          rel: 'canonical',
-          hid: 'i18n-can',
-          href: this.metadata.Canonical
-        }
-      )
-    }
-    if(this.story.content.SEO){
-      return {
-        title: `${this.story.content.SEO.title}`,
-        meta: [
-          {
-            hid: 'description',
-            name: 'description',
-            content: `${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ""),
-          },
-          {
-            hid: 'og:title',
-            name:  'og:title',
-            content:  `${this.story.content.SEO.title}`,
-          },
-          {
-            hid: 'og:description',
-            name:  'og:description',
-            content: `${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ""),
-          }
-        ],
-        link: _link
-      }
-    }else{
-      return {
-        link: _link
-      }
-    }
-  },
   components:{
     ArticleCardSimple,
     Page
@@ -86,7 +29,8 @@ export default {
       story: { content: {SEO:{title:'',description:''}} },
       articles: [],
       productTypes: [],
-      siteid: process.env.SITE_ID
+      siteid: process.env.SITE_ID,
+      langHref: process.env.LANG_HREF
     }
   },
   mounted () {

@@ -24,8 +24,8 @@
     <template
       v-else>
       <SeoHead
-        :title="story.content.SEO.title"
-        :description="`${story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, '')"
+        :title="story.content.SEO.title?story.content.SEO.title:metadata.title"
+        :description="story.content.SEO.description?`${story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ''):`${metadata.description}`.replace(/<\/?[^>]+(>|$)/g, '')"
         :canonical="metadata.Canonical"
         :lang-hrefs="metadata.LangHref"
       />
@@ -67,66 +67,6 @@ import Page from '@/components/Page'
 
 export default {
   cache: true,
-  /*head () {
-    let _link = new Array()
-    if(this.metadata){
-      for(var i=0;i<this.metadata.LangHref.length;i++){
-        let _obj = {
-                    'hid':'i18n-alt-'+this.metadata.LangHref[i].Culture.split('-')[0],
-                    'rel': 'alternate',
-                    'href': this.metadata.LangHref[i].Url,
-                    'hreflang': this.metadata.LangHref[i].Culture.split('-')[0]
-                  }
-        if(this.siteid!=2 || (this.siteid==2 && this.metadata.LangHref[i].Culture!='en-gb')){
-          _link.push(_obj)
-        } 
-        if(this.metadata.LangHref[i].Culture==this.$i18n.defaultLocale){
-          let _obj = {
-                    'hid':'i18n-xd',
-                    'rel': 'alternate',
-                    'href': this.metadata.LangHref[i].Url,
-                    'hreflang': 'x-default'
-                  }
-          _link.push(_obj)
-        }
-      }
-
-      _link.push(
-        {
-          rel: 'canonical',
-          hid: 'i18n-can',
-          href: this.metadata.Canonical
-        }
-      )
-    }
-    if(this.story.content.SEO){
-      return {
-        title: `${this.story.content.SEO.title}`,
-        meta: [
-          {
-            hid: 'description',
-            name: 'description',
-            content: `${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ""),
-          },
-          {
-            hid: 'og:title',
-            name:  'og:title',
-            content:  `${this.story.content.SEO.title}`,
-          },
-          {
-            hid: 'og:description',
-            name:  'og:description',
-            content: `${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ""),
-          }
-        ],
-        link: _link
-      }
-    }else{
-      return {
-        link: _link
-      }
-    }
-  },*/
   async fetch () {
     // Check if we are in the editor mode
     let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'

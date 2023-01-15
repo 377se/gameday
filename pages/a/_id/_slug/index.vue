@@ -24,7 +24,8 @@
           :title="article.MetaTitle"
           :description="`${article.MetaDescription}`.replace(/<\/?[^>]+(>|$)/g, '')"
           :canonical="metadata.Canonical"
-          :lang-hrefs="metadata.LangHref"/>
+          :lang-hrefs="metadata.LangHref"
+          :image="detailsSrc + article.Images[0].Name" />
         <div class="uk-container uk-container-large uk-padding-small uk-padding-remove-top">
           <ul
             v-if="metadata.Breadcrumb && metadata.Breadcrumb.length>0" 
@@ -61,6 +62,7 @@ export default {
   data() {
     return {
       article: {},
+      detailsSrc: process.env.DETAILS_SRC,
       metadata: {Canonical:this.$route.path, LangHref:[]},
       siteid: process.env.SITE_ID,
       league:''

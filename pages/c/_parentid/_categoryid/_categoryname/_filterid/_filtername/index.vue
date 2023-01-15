@@ -23,6 +23,12 @@
     </template>
     <template
       v-else>
+      <SeoHead
+        :title="story.content.SEO.title?story.content.SEO.title:metadata.title"
+        :description="story.content.SEO.description?`${story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ''):`${metadata.description}`.replace(/<\/?[^>]+(>|$)/g, '')"
+        :canonical="metadata.Canonical"
+        :lang-hrefs="metadata.LangHref"
+      />
       <div class="uk-container uk-container-large uk-padding-small uk-padding-remove-bottom">
         <ul
           v-if="metadata.Breadcrumb && metadata.Breadcrumb.length>0" 
@@ -61,65 +67,6 @@ import Page from '@/components/Page'
 
 export default {
   cache: true,
-  head () {
-    let _link = new Array()
-    for(var i=0;i<this.metadata.LangHref.length;i++){
-      let _obj = {
-                  'hid':'i18n-alt-'+this.metadata.LangHref[i].Culture.split('-')[0],
-                  'rel': 'alternate',
-                  'href': this.metadata.LangHref[i].Url,
-                  'hreflang': this.metadata.LangHref[i].Culture.split('-')[0]
-                }
-      if(this.siteid!=2 || (this.siteid==2 && this.metadata.LangHref[i].Culture!='en-gb')){
-        _link.push(_obj)
-      } 
-      if(this.metadata.LangHref[i].Culture==this.$i18n.defaultLocale){
-        let _obj = {
-                  'hid':'i18n-xd',
-                  'rel': 'alternate',
-                  'href': this.metadata.LangHref[i].Url,
-                  'hreflang': 'x-default'
-                }
-        _link.push(_obj)
-      }
-    }
-    try{
-    _link.push(
-      {
-        rel: 'canonical',
-        hid: 'i18n-can',
-        href: this.metadata.Canonical + '/'+this.$route.params.filterid+'/'+this.$route.params.filtername
-      }
-    )}catch(err){}
-    
-    if(this.story.content.SEO){
-      return {
-        title: `${this.story.content.SEO.title}`,
-        meta: [
-          {
-            hid: 'description',
-            name: 'description',
-            content: `${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ""),
-          },
-          {
-            hid: 'og:title',
-            name:  'og:title',
-            content:  `${this.story.content.SEO.title}`,
-          },
-          {
-            hid: 'og:description',
-            name:  'og:description',
-            content: `${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ""),
-          }
-        ],
-        link: _link
-      }
-    }else{
-      return {
-        link: _link
-      }
-    }
-  },
   async fetch () {
     // Check if we are in the editor mode
     let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
@@ -130,7 +77,7 @@ export default {
           cv: this.$store.getters.version
         }),
         this.$axios.$get(
-          `/webapi/${this.$i18n.locale}/MetaData/GetMetadataByProductTypeId?categoryId=${this.$route.params.categoryid}&productTypeId=${this.$route.params.filterid}`
+          `/webapi/${this.$i18n.locale}/MetaData/GetMetadataForCategory?url=/c/${this.$route.params.parentid}/${this.$route.params.categoryid}/${this.$route.params.categoryname}/${this.$route.params.filterid}/${this.$route.params.filtername}`
         )
       ]);
       this.metadata = metadata
