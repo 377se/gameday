@@ -1,6 +1,5 @@
 <template>
   <section class="uk-position-relative">
-    <nuxt-child />
     <template
       v-if="!$route.path.includes('/a/') || ($route.path.includes('/a/') && clientside)">
       <template
