@@ -30,7 +30,7 @@ export default {
       articles: [],
       productTypes: [],
       siteid: process.env.SITE_ID,
-      langHref: process.env.LANG_HREF
+      langHref: process.env.BASE_HREF
     }
   },
   mounted () {

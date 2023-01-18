@@ -16,11 +16,17 @@ export default {
     STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt',
     ZENDESK: 'b2384b65-02c4-40fe-b25f-c195c554d089',
     DEFAULT_SORT_ORDER: 3, //0 for recommended and 3 for latest
-    LANG_HREF: [
-      {Culture:'fi-fi',Url:'https://www.samdodds.com/fi-fi'},
-      {Culture:'sv-se',Url:'https://www.samdodds.com/sv-se'},
-      {Culture:'en-gb',Url:'https://www.samdodds.com/en'},
-      {Culture:'da-dk',Url:'https://www.samdodds.dk'}
+    LANG_HREF: 
+      {'fi-fi':'https://www.samdodds.com/fi-fi',
+      'sv-se':'https://www.samdodds.com/sv-se',
+      'en-gb':'https://www.samdodds.com/en',
+      'da-dk':'https://www.samdodds.dk'
+    },
+    BASE_HREF: [
+      {Culture:'fi-fi',Url:''},
+      {Culture:'sv-se',Url:''},
+      {Culture:'en-gb',Url:''},
+      {Culture:'da-dk',Url:''}
     ]
   },
   mode: 'universal',

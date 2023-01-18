@@ -16,12 +16,19 @@ export default {
     STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt',
     ZENDESK: '8e038054-4899-4e86-8561-a33fa7eb78c2',
     DEFAULT_SORT_ORDER: 3, //0 for recommended and 3 for latest
-    LANG_HREF: [
-      {Culture:'fi-fi', Url:'https://supportersplace.fi'},
-      {Culture:'sv-se', Url:'https://supportersplace.se'},
-      {Culture:'nb-no', Url:'https://supportersplace.com/nb-no'},
-      {Culture:'da-dk', Url:'https://supportersplace.com/da-dk'},
-      {Culture:'en-gb', Url:'https://supportersplace.com/en'}
+    LANG_HREF:{
+      'fi-fi':'https://supportersplace.fi',
+      'sv-se':'https://supportersplace.se',
+      'nb-no':'https://supportersplace.com/nb-no',
+      'da-dk':'https://supportersplace.com/da-dk',
+      'en-gb':'https://supportersplace.com/en'
+    },
+    BASE_HREF: [
+      {Culture:'fi-fi', Url:''},
+      {Culture:'sv-se', Url:''},
+      {Culture:'nb-no', Url:''},
+      {Culture:'da-dk', Url:''},
+      {Culture:'en-gb', Url:''}
     ]
   },
   mode: 'universal',
