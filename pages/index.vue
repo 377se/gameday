@@ -3,7 +3,7 @@
     <SeoHead
       :title="this.story.content.SEO.title"
       :description="`${this.story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, '')"
-      :canonical="$router.path"
+      canonical=""
       :lang-hrefs="langHref"/>
     <div class="uk-container uk-container-large uk-padding-small"> 
       <component 
@@ -54,9 +54,6 @@ export default {
     // Check if we are in the editor mode
     let version = this.$nuxt.context.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
     // Load the JSON from the API
-    if(this.siteid==1){
-      this.metadata = {"Canonical":"https://supportersplace.com","LangHref":[{"Culture":"sv-se","Url":"https://supportersplace.se"},{"Culture":"nb-no","Url":"https://supportersplace.com/nb-no"},{"Culture":"da-dk","Url":"https://supportersplace.com/da-dk"},{"Culture":"en","Url":"https://supportersplace.com/en"},{"Culture":"fi-fi","Url":"https://supportersplace.fi"}]}
-    }
     try{
       const [sb] = await Promise.all([
         this.$nuxt.context.app.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}/home`, {

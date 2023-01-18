@@ -16,13 +16,11 @@ export default {
     STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt',
     ZENDESK: '8e038054-4899-4e86-8561-a33fa7eb78c2',
     DEFAULT_SORT_ORDER: 3, //0 for recommended and 3 for latest
-    LANG_HREF: {
-        'fi-fi':'https://supportersplace.fi',
-        'sv-se':'https://supportersplace.se',
-        'nb-no':'https://supportersplace.com/nb-no',
-        'da-dk':'https://supportersplace.com/da-dk',
-        'en-gb':'https://supportersplace.com/en',
-      }
+    LANG_HREF: [{'fi-fi':'https://supportersplace.fi'},
+    {'sv-se':'https://supportersplace.se'},
+    {'nb-no':'https://supportersplace.com/nb-no'},
+    {'da-dk':'https://supportersplace.com/da-dk'},
+    {'en-gb':'https://supportersplace.com/en'}]
   },
   mode: 'universal',
   /*
@@ -88,6 +86,7 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     //'@nuxtjs/eslint-module'
+    '@nuxtjs/router-extras',
     '@nuxtjs/gtm', 
     '@nuxtjs/pwa',
     ["@storyblok/nuxt-2/module", { accessToken: "rGRW1HEorfNfSoGS5CzoDwtt" }],

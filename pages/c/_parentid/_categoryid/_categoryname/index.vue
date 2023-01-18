@@ -1,63 +1,67 @@
 <template>
   <section class="uk-position-relative">
+    <nuxt-child />
     <template
-      v-if="$fetchState.pending"
-    >
-      <div class="uk-container uk-container-large uk-padding-small">
-        <content-placeholders :rounded="true">
-          <content-placeholders-img />
-          <content-placeholders-heading />
-        </content-placeholders>
-        <div class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l">
-          <content-placeholders 
-            v-for="p in 20"
-            :key="p"
-            :rounded="true"
-            class="uk-padding-small">
-            <content-placeholders-img 
-            class="ph-img"/>
-            <content-placeholders-text :lines="2" />
+      v-if="!$route.path.includes('/a/') || ($route.path.includes('/a/') && clientside)">
+      <template
+        v-if="$fetchState.pending"
+      >
+        <div class="uk-container uk-container-large uk-padding-small">
+          <content-placeholders :rounded="true">
+            <content-placeholders-img />
+            <content-placeholders-heading />
           </content-placeholders>
+          <div class="uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l">
+            <content-placeholders 
+              v-for="p in 20"
+              :key="p"
+              :rounded="true"
+              class="uk-padding-small">
+              <content-placeholders-img 
+              class="ph-img"/>
+              <content-placeholders-text :lines="2" />
+            </content-placeholders>
+          </div>
         </div>
-      </div>
-    </template>
-    <template
-      v-else>
-      <SeoHead
-        :title="(story.content.SEO && story.content.SEO.title)?story.content.SEO.title:''"
-        :description="(story.content.SEO && story.content.SEO.title)?`${story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ''):''"
-        :canonical="metadata.Canonical"
-        :lang-hrefs="metadata.LangHref" />
-      <span style="display:none">{{ metadata }}</span>
-      <div class="uk-container uk-container-large uk-padding-small uk-padding-remove-bottom">
-        <ul
-          v-if="metadata.Breadcrumb && metadata.Breadcrumb.length>0" 
-          class="uk-breadcrumb">
-          <li>
-            <nuxt-link :to="localePath('/')">
-              <span style="vertical-align: bottom;
-                margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
-          <li
-            v-for="(b,index) in metadata.Breadcrumb[0].ItemList"
-            :key="index">
-            <nuxt-link 
-              v-if="b.Url"
-              :to="localePath(b.Url)">{{ b.Name }}</nuxt-link>
-            <span v-else>{{ b.Name }}</span>
-          </li>
-        </ul>
-      </div>
-      <component 
-        v-if="story.content.component" 
-        :key="story.content._uid" 
-        :blok="story.content" 
-        :is="story.content.component" />
-      <div
-        v-else
-        class="uk-container uk-container-large uk-padding-small">
-        <ArticleTeamListByCategory 
-          :sb="story.content.component?true:false"/>
-      </div>
+      </template>
+      <template
+        v-else>
+        <SeoHead
+          :title="(story.content.SEO && story.content.SEO.title)?story.content.SEO.title:''"
+          :description="(story.content.SEO && story.content.SEO.title)?`${story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ''):''"
+          :canonical="metadata.Canonical"
+          :lang-hrefs="metadata.LangHref" />
+        <div class="uk-container uk-container-large uk-padding-small uk-padding-remove-bottom">
+          <ul
+            v-if="metadata.Breadcrumb && metadata.Breadcrumb.length>0" 
+            class="uk-breadcrumb">
+            <li>
+              <nuxt-link :to="localePath('/')">
+                <span style="vertical-align: bottom;
+                  margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
+            <li
+              v-for="(b,index) in metadata.Breadcrumb[0].ItemList"
+              :key="index">
+              <nuxt-link 
+                v-if="b.Url"
+                :to="localePath(b.Url)">{{ b.Name }}</nuxt-link>
+              <span v-else>{{ b.Name }}</span>
+            </li>
+          </ul>
+        </div>
+        <nuxt-child />
+        <component 
+          v-if="story.content.component" 
+          :key="story.content._uid" 
+          :blok="story.content" 
+          :is="story.content.component" />
+        <div
+          v-else
+          class="uk-container uk-container-large uk-padding-small">
+          <ArticleTeamListByCategory 
+            :sb="story.content.component?true:false"/>
+        </div>
+      </template>
     </template>
   </section>
 </template>
@@ -108,7 +112,8 @@ export default {
       article: {},
       readmore: true,
       shop: '',
-      siteid: process.env.SITE_ID
+      siteid: process.env.SITE_ID,
+      clientside: !process.server
     }
   },
   mounted(){

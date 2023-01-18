@@ -16,12 +16,12 @@ export default {
     STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt',
     ZENDESK: 'b2384b65-02c4-40fe-b25f-c195c554d089',
     DEFAULT_SORT_ORDER: 3, //0 for recommended and 3 for latest
-    LANG_HREF: {
-      'fi-fi':'https://www.samdodds.com/fi-fi',
-      'sv-se':'https://www.samdodds.com/sv-se',
-      'en-gb':'https://www.samdodds.com/en',
-      'da-dk':'https://www.samdodds.dk',
-    }
+    LANG_HREF: [
+      {'fi-fi':'https://www.samdodds.com/fi-fi'},
+      {'sv-se':'https://www.samdodds.com/sv-se'},
+      {'en-gb':'https://www.samdodds.com/en'},
+      {'da-dk':'https://www.samdodds.dk'}
+    ]
   },
   mode: 'universal',
   /*
@@ -87,6 +87,7 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     //'@nuxtjs/eslint-module'
+    '@nuxtjs/router-extras',
     '@nuxtjs/gtm',
     ["@storyblok/nuxt-2/module", { accessToken: "rGRW1HEorfNfSoGS5CzoDwtt" }],
   ],

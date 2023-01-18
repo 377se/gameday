@@ -16,9 +16,9 @@ export default {
     STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt',
     ZENDESK: '457ea997-85d2-4fa7-a24f-9f1ac8e950f8',
     DEFAULT_SORT_ORDER: 3, //0 for recommended and 3 for latest
-    LANG_HREF: {
+    LANG_HREF: [{
       'nb-no':'https://www.kopshop.no'
-    }
+    }]
   },
   mode: 'universal',
   /*
@@ -84,6 +84,7 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     //'@nuxtjs/eslint-module'
+    '@nuxtjs/router-extras',
     '@nuxtjs/gtm', 
     '@nuxtjs/pwa',
     ["@storyblok/nuxt-2/module", { accessToken: "rGRW1HEorfNfSoGS5CzoDwtt" }],

@@ -16,9 +16,9 @@ export default {
     STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt',
     ZENDESK: 'fd07ec75-ec92-4ea1-ad6c-49e883112e6c',
     DEFAULT_SORT_ORDER: 3, //0 for recommended and 3 for latest
-    LANG_HREF: {
-      'sv-se':'https://www.supporterprylar.se',
-    }
+    LANG_HREF: [{
+      'sv-se':'https://www.supporterprylar.se'
+    }]
 
   },
   mode: 'universal',
@@ -87,6 +87,7 @@ export default {
     //'@nuxtjs/eslint-module'
     '@nuxtjs/gtm', 
     '@nuxtjs/pwa',
+    '@nuxtjs/router-extras',
     ["@storyblok/nuxt-2/module", { accessToken: "rGRW1HEorfNfSoGS5CzoDwtt" }],
   ],
   gtm: { id: 'GTM-PZ4NQSW' },
