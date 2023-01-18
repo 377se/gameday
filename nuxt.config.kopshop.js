@@ -17,7 +17,7 @@ export default {
     ZENDESK: '457ea997-85d2-4fa7-a24f-9f1ac8e950f8',
     DEFAULT_SORT_ORDER: 3, //0 for recommended and 3 for latest
     LANG_HREF: [{
-      'nb-no':'https://www.kopshop.no'
+      Culture:'nb-no',Url:'https://www.kopshop.no'
     }]
   },
   mode: 'universal',
