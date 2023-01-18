@@ -69,6 +69,11 @@ import ArticleTeamListByCategory from "@/components/articles/ArticleTeamListByCa
 import Page from '@/components/Page'
 
 export default {
+  asyncData(ctx){
+    if(!ctx.route.params.categoryid){
+      return ctx.redirect(301, '/')
+    } 
+  },
   async fetch () {
     // Check if we are in the editor mode
     let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
