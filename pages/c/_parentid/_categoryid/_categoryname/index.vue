@@ -49,7 +49,6 @@
             </li>
           </ul>
         </div>
-        <nuxt-child />
         <component 
           v-if="story.content.component" 
           :key="story.content._uid" 
