@@ -2,7 +2,7 @@
   <div
     id="offscreen-basket"
     class="uk-modal-full uk-modal"
-    uk-modal>
+    uk-modal="stack:true;">
     <div :class="{ 'uk-modal-dialog': extensionlist, 'uk-modal-dialog-no-extensions': !extensionlist }">
       <div
         class="uk-modal-body uk-overflow-auto"
