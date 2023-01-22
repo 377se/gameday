@@ -1,6 +1,6 @@
 <template>
   <section class="uk-position-relative">
-    <nuxt-child />
+    <!--nuxt-child /-->
     <template
       v-if="!$route.path.includes('/a/') || ($route.path.includes('/a/') && clientside)">
       <template
@@ -101,7 +101,7 @@ export default {
   },
   fetchDelay: 0,
   activated() {
-    if (this.$fetchState.timestamp <= Date.now() - 60000) {// Call fetch again if last fetch more than 60 sec ago
+    if (this.$fetchState.timestamp <= Date.now() - 600000) {// Call fetch again if last fetch more than 60 sec ago
       this.$fetch()
     }
   },

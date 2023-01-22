@@ -7,11 +7,15 @@
     <div
       class="uk-modal-dialog"
       style="display:block;min-height:100vh;">
-        <button
-          class="uk-modal-close-full uk-close-large"
-          type="button"
-          @click="$router.go(-1)"
-          uk-close></button>
+      <div
+        class="uk-text-right"
+        uk-sticky>
+        <span
+        class="uk-margin-right"
+        style="cursor:pointer;"
+        uk-icon="close"
+        @click="$router.go(-1)"></span>
+      </div>
         <slot/>
     </div>
   </div>

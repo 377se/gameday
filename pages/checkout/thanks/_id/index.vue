@@ -100,7 +100,9 @@ export default {
       const klarnahtml = await this.$axios.$get(url);
       this.klarnahtml=klarnahtml;
       try{
-        var _obj = {currencyCode: process.env.CURRENCY_CODE, purchase: {actionField: this.klarnahtml.Order.actionField, products: this.klarnahtml.Order.products}}
+        const url = `/webapi/Google/GetPurchaseObject?orderId=${klarnahtml.Ordernumber}`;
+        const google = await this.$axios.$get(url);
+        var _obj = {currencyCode: process.env.CURRENCY_CODE, purchase: {actionField: google.actionField, products: google.products}}
         this.obj = _obj
         this.$gtm.push({ event: 'purchase', ecommerce: _obj })
       }catch(err){console.log(err)}

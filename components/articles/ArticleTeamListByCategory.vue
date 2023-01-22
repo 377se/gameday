@@ -90,7 +90,7 @@
               v-for="article in articles"
               :key="article.Id"
               :article="article"
-              :url="$route.path + `/a/${article.ProductId}/${article.UrlSafeName}`"
+              :url="`/a/${article.ProductId}/${article.UrlSafeName}`"
             />
             <div
               v-if="articles.length<1"

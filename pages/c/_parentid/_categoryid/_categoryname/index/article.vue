@@ -23,9 +23,11 @@ export default {
     next((vm) => {
         vm.$nextTick(() => {
       try{
+        if(!process.server){
         setTimeout(function(){
           window.UIkit.modal('#modal-article').show()
         },200)
+      }
       
       }catch(err){}
     })
@@ -42,7 +44,9 @@ export default {
   cache: true,
   mounted(){
     try{
-      UIkit.modal('#modal-article').show()
+      if(!this.ssr){
+        UIkit.modal('#modal-article').show()
+      }
     }catch(err){
       console.log(err)
     }
