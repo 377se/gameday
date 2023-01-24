@@ -20,46 +20,6 @@ import TheRollingText from "@/components/gameday/streetweek/TheRollingText";
 import TheHeaderSW from "@/components/gameday/streetweek/TheHeader";
 
 export default {
-  head () {
-    let i18nHead = this.$nuxtI18nSeo()
-    if(process.env.SITE_ID==2){ //Sam Dodds
-      var _route=this.$route.path.replace('/sv-se','').replace('/da-dk').replace('/fi-fi')
-      let _obj_sv = {
-                    'hid':'i18n-alt-sv',
-                    'rel': 'alternate',
-                    'href': 'https://www.samdodds.com/sv-se'+_route,
-                    'hreflang': 'sv'
-                  }
-      let _obj_da = {
-                    'hid':'i18n-alt-da',
-                    'rel': 'alternate',
-                    'href': 'https://www.samdodds.dk'+_route,
-                    'hreflang': 'da'
-                  }
-      let _obj_fi = {
-                    'hid':'i18n-alt-fi',
-                    'rel': 'alternate',
-                    'href': 'https://www.samdodds.com/fi-fi'+_route,
-                    'hreflang': 'fi'
-                  }
-      let _obj_xd = {
-                    'hid':'i18n-xd',
-                    'rel': 'alternate',
-                    'href': 'https://www.samdodds.com/sv-se'+_route,
-                    'hreflang': 'x-default'
-                  }
-      i18nHead.link.push(_obj_sv)
-      i18nHead.link.push(_obj_da)
-      i18nHead.link.push(_obj_fi)
-      i18nHead.link.push(_obj_xd)
-    }
-      
-    /*try{
-      let links = i18nHead.link.filter(el => (el.rel!='canonical'))
-      i18nHead.link = links
-    }catch(err){console.log(err)}*/
-    return i18nHead
-  },
   components: {
     OffscreenBasket,
     TheRollingText,

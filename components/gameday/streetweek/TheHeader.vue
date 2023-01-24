@@ -57,7 +57,9 @@
               style="flex-wrap:nowrap"
               class="uk-navbar-right uk-text-center"
             >
-              <a href="#lang-modal" style="color:#fff;margin-right:4px;" uk-toggle><img :src="'/flags/'+locale+'.svg'" style="width:20px;" /> 
+              <a
+              v-if="false"
+                href="#lang-modal" style="color:#fff;margin-right:4px;" uk-toggle><img :src="'/flags/'+locale+'.svg'" style="width:20px;" /> 
                 <span 
                   uk-icon="icon:chevron-down;ratio:1.0"/>
               </a>
