@@ -32,7 +32,7 @@
               <!-- Message, sizes and collect-button -->
               <section class="uk-width-1-1@s uk-width-1-2@m uk-padding-small">
                   <h1>Grattis till vinsten {{collectPrizeDTO.WinnerName}}!</h1>
-                    <p>Du har vunnit en {{collectPrizeDTO.Article.ArticleName}}.
+                    <p>Du har vunnit en {{collectPrizeDTO.Article.ArticleName}}.</p>
                       <p v-if="!collectPrizeDTO.Article.IsOneSize">Välj önskad storlek nedan och klicka på "hämta priset" så levererar vi priset till dig så snabbt vi bara kan.</p>
                     <p>Tack för att du är med och tävlar tillsammans med Official Supporters Club Sweden och Sam Dodds.</p>
                     <p>YOU'LL NEVER WALK ALONE</p>
