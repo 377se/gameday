@@ -1,6 +1,7 @@
 <template>
 
-  <div>
+  <div
+    v-if="collectPrizeDTO">
 
     <!-- Prize already claimed -->
     <section v-if="collectPrizeDTO.IsClaimed" class="uk-width-1-1@s uk-width-1-2@m uk-padding-small uk-align-center">
@@ -149,7 +150,7 @@ export default {
     }
   },
     mounted() {
-    if(this.collectPrizeDTO.IsOneSize){
+    if(this.collectPrizeDTO && this.collectPrizeDTO.IsOneSize){
       if(this.collectPrizeDTO.Article.SizeList.length>0 && this.collectPrizeDTO.Article.SizeList[0].ItemsInStock>0) {
         this.chosenSize = this.collectPrizeDTO.Article.SizeList[0].Value
         this.collectPrizeDTO.SelectedSizeId = this.chosenSize
