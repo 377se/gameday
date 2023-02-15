@@ -19,7 +19,7 @@ export default {
     LANG_HREF: {
       'sv-se':'https://www.supporterprylar.se'
     },
-    LANG_HREF: [{
+    BASE_HREF: [{
       Culture:'sv-se',Url:''
     }]
 
