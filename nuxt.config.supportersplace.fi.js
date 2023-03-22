@@ -8,7 +8,7 @@ export default {
     STORYBLOK_LABELS: 'supporters-place',
     SITE_URL: 'https://supportersplace.fi',
     X_DEFAULT: 'https://supportersplace.com',
-    LOGO_URL: '/sites/supportersplace/supportersplace_logo_light.svg',
+    LOGO_URL: '/sites/supportersplace/supportersplace_header_neg.svg',
     SITE_ID: 1,
     MEMBER_PRICES: true,
     ISO_LANG: 'fi',
@@ -167,7 +167,7 @@ export default {
       description: 'SupportersPlace.fi',
     },
     icon: {
-      fileName: 'icon_supportersplace.png'
+      fileName: 'icon_supportersplace_badge.png'
     },
     workbox: false
   },

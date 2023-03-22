@@ -4,46 +4,39 @@ export default {
     LIST_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_360,f_auto/',
     DETAILS_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_640,f_auto/http://static.supportersplace.se/product/',
     BRAND_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_200,f_auto/http://static.supportersplace.se/brand/',
-    STORYBLOK_CATALOGUE: '/supportersplace',
-    STORYBLOK_LABELS: 'supporters-place',
-    SITE_URL: 'https://supportersplace.se',
-    X_DEFAULT: 'https://supportersplace.com',
-    LOGO_URL: '/sites/supportersplace/supportersplace_header_neg.svg',
-    SITE_ID: 1,
-    MEMBER_PRICES: true,
+    STORYBLOK_CATALOGUE: '/streetweek',
+    STORYBLOK_LABELS: 'streetweek',
+    SITE_URL: 'https://www.streetweek.se',
+    X_DEFAULT: 'https://www.streetweek.se',
+    LOGO_URL: '/sites/streetweek/streetweek-rectangle.png',
+    SITE_ID: 7,
+    MEMBER_PRICES: false,
     ISO_LANG: 'sv',
     CURRENCY_CODE: 'SEK',
     STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt',
-    ZENDESK: '8e038054-4899-4e86-8561-a33fa7eb78c2',
+    ZENDESK: 'fd07ec75-ec92-4ea1-ad6c-49e883112e6c',
     DEFAULT_SORT_ORDER: 3, //0 for recommended and 3 for latest
-    LANG_HREF:{
-      'fi-fi':'https://supportersplace.fi',
-      'sv-se':'https://supportersplace.se',
-      'nb-no':'https://supportersplace.com/nb-no',
-      'da-dk':'https://supportersplace.com/da-dk',
-      'en-gb':'https://supportersplace.com/en'
+    LANG_HREF: {
+      'sv-se':'https://www.streetweek.se'
     },
-    BASE_HREF: [
-      {Culture:'fi-fi', Url:''},
-      {Culture:'sv-se', Url:''},
-      {Culture:'nb-no', Url:''},
-      {Culture:'da-dk', Url:''},
-      {Culture:'en-gb', Url:''}
-    ]
+    BASE_HREF: [{
+      Culture:'sv-se',Url:''
+    }]
+
   },
   mode: 'universal',
   /*
    ** Headers of the page
    */
   head: {
-    title: 'Supporters Place',
+    title: 'Supporterprylar',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: 'Supporters Place'
+        content: 'StreetWeek'
       }
     ]
   },
@@ -56,7 +49,7 @@ export default {
    */
   css: [
     // SCSS file in the project
-    '~/assets/scss/site.supportersplace.scss',
+    '~/assets/scss/site.streetweek.scss',
     '~/assets/pe-laundry-icons/css/pe-laundry-icons.css'
     //'uikit/dist/css/uikit.css'
   ],
@@ -67,7 +60,7 @@ export default {
     {src: '~/plugins/jsonld.js'},
     {src: '~/plugins/lottie-client.js', ssr:false},
     {src: '~/plugins/filters.js', ssr:false},
-    {src: '~/plugins/supportersplace.js'},
+    {src: '~/plugins/supporterprylar.js'},
     {src: '~/plugins/vue-placeholders.js'},
     {src: "~/plugins/uikit.js", ssr: false },
     {src: '~/plugins/axios'},
@@ -95,12 +88,12 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     //'@nuxtjs/eslint-module'
-    '@nuxtjs/router-extras',
     '@nuxtjs/gtm', 
     '@nuxtjs/pwa',
+    '@nuxtjs/router-extras',
     ["@storyblok/nuxt-2/module", { accessToken: "rGRW1HEorfNfSoGS5CzoDwtt" }],
   ],
-  gtm: { id: 'GTM-5GW9PW' },
+  gtm: { id: 'GTM-PZ4NQSW' },
   /*
    ** Nuxt.js modules
    */
@@ -110,22 +103,26 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     ['@dansmaculotte/nuxt-zendesk',
     { 
-      key: '8e038054-4899-4e86-8561-a33fa7eb78c2',
+      key: 'fd07ec75-ec92-4ea1-ad6c-49e883112e6c',
       disabled: true,
+      hideOnLoad: true,
       settings: {
         webWidget: {
           color: {
             theme: '#ed8b00',
             launcherText: '#ffffff',
+          },
+          chat: {
+            connectOnPageLoad: false
           }
         }
       }
     }],
     ['@nuxtjs/i18n',
       {
-        baseUrl: 'https://supportersplace.se',
+        baseUrl: 'https://www.streetweek.se',
         defaultLocale: 'sv-se',
-        strategy: 'prefix_and_default',
+        strategy: 'no_prefix',
         locales: [
           {
             code: 'sv-se',
@@ -149,25 +146,25 @@ export default {
   ],
   styleResources: {
     scss: [
-    './assets/scss/vars.supportersplace.scss',
-    './assets/scss/mixins.supportersplace.scss'
+    './assets/scss/vars.streetweek.scss',
+    './assets/scss/mixins.streetweek.scss'
     ]
   },
   pwa: {
     meta:{
-      name: 'Supporters Place',
-      description: 'SupportersPlace.se',
+      name: 'StreetWeek',
+      description: 'StreetWeek.se',
       lang: 'sv',
       theme_color: '#ffffff'
     },
     manifest: {
-      name: 'Supporters Place',
-      short_name: 'SupportersPlace',
+      name: 'StreetWeek',
+      short_name: 'StreetWeek',
       lang: 'sv',
-      description: 'SupportersPlace.se',
+      description: 'StreetWeek.se',
     },
     icon: {
-      fileName: 'icon_supportersplace_badge.png'
+      fileName: 'icon_streetweek.png'
     },
     workbox: false
   },
@@ -185,13 +182,14 @@ export default {
   },
   proxy: {
     '/webapi': {
-      target: process.env.NODE_ENV !== 'production'?'https://api.supportersplace.com':'https://api.supportersplace.com'
+      target: process.env.NODE_ENV !== 'production'?'https://api.supporterprylar.se':'https://api.supporterprylar.se'
     }
   },
   /*
    ** Build configuration
    */
   build: {
+    //analyze: true, //if we wish to do npm run build --analyze
     /*
      ** You can extend webpack config here
      */
