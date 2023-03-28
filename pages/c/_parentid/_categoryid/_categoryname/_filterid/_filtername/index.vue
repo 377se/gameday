@@ -32,7 +32,6 @@
           :canonical="metadata.Canonical"
           :lang-hrefs="metadata.LangHref" />
         <div
-          v-if="false"
           class="uk-container uk-container-large uk-padding-small uk-padding-remove-bottom">
           <ul
             v-if="metadata.Breadcrumb && metadata.Breadcrumb.length>0" 
