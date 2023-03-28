@@ -1,4 +1,4 @@
-<router>
+<!--router>
   {
     path: '/c/:parentid/:categoryid/:categoryname/article',
     alias: [
@@ -7,7 +7,7 @@
       },
     ]
   }
-</router>
+</router-->
 <template>
   <Modal
     v-if="!ssr">

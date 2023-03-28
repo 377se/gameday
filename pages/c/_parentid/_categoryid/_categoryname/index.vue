@@ -1,8 +1,8 @@
 <template>
   <section class="uk-position-relative">
-    <!--nuxt-child /-->
+    <!--nuxt-child /
     <template
-      v-if="!$route.path.includes('/a/') || ($route.path.includes('/a/') && clientside)">
+      v-if="!$route.path.includes('/a/') || ($route.path.includes('/a/') && clientside)">-->
       <template
         v-if="$fetchState.pending"
       >
@@ -61,7 +61,7 @@
             :sb="story.content.component?true:false"/>
         </div>
       </template>
-    </template>
+    <!--</template>-->
   </section>
 </template>
 <script>

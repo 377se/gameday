@@ -1,8 +1,8 @@
-<router>
+<!--router>
   {
     path: '/c/:parentid/:categoryid/:categoryname'
   }
-</router>
+</router-->
 <template>
   <div v-if="false" />
 </template>
