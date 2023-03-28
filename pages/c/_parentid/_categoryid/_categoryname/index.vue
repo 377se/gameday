@@ -31,14 +31,15 @@
           :description="(story.content.SEO && story.content.SEO.title)?`${story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ''):''"
           :canonical="metadata.Canonical"
           :lang-hrefs="metadata.LangHref" />
-        <div class="uk-container uk-container-large uk-padding-small uk-padding-remove-bottom">
+        <div
+          v-if="false"
+          class="uk-container uk-container-large uk-padding-small uk-padding-remove-bottom">
           <ul
             v-if="metadata.Breadcrumb && metadata.Breadcrumb.length>0" 
             class="uk-breadcrumb">
             <li>
               <nuxt-link :to="localePath('/')">
-                <span style="vertical-align: bottom;
-                  margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
+                <span style="vertical-align: bottom;margin-bottom: 2px;" uk-icon="icon:home;ratio:0.7"/></nuxt-link></li>
             <li
               v-for="(b,index) in metadata.Breadcrumb[0].ItemList"
               :key="index">
