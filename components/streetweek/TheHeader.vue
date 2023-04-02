@@ -71,16 +71,6 @@
               alt=""
               style="width:20px;margin-right:8px;"><span>{{ cat.Name }}</span>
         </nuxt-link>
-        <a 
-          v-else
-          :href="localePath('/c/'+(!cat.SubCategoryList.length==0?'0':'0')+'/'+cat.Id+'/'+cat.UrlSafeName)"
-          class="subnav"
-          @click.stop.prevent="showDropDown(index+1)">
-          <img
-            v-if="cat.ImageThumb" 
-            alt=""
-            :src="cat.ImageThumb" style="width:20px;margin-right:8px;"><span>{{ cat.Name }}</span><span v-if="cat.SubCategoryList.length>0" uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"/>
-        </a>
       </li>
     </ul>
   </div>
