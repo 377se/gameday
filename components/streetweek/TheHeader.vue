@@ -1,8 +1,6 @@
 <template>
   <div
     uk-sticky
-    @click.stop.prevent="chosenDropDown=0"
-    v-click-outside="hideDropDown"
     style="outline:0; background-color: #EAEAEA;"
     tabindex="0">
     <nav 
@@ -84,50 +82,12 @@
             :src="cat.ImageThumb" style="width:20px;margin-right:8px;"><span>{{ cat.Name }}</span><span v-if="cat.SubCategoryList.length>0" uk-icon="icon:triangle-down" class="uk-icon" style="width:20px;"/>
         </a>
       </li>
-      <li>
-      <nuxt-link
-        :to="localePath('/produkttyp/18/kepsar')">
-        <span>Kepsar</span>
-      </nuxt-link>
-      </li>
-      <li>
-        <nuxt-link
-          :to="localePath('/produkttyp/12/t-shirt')">
-          <span>T-Shirts</span>
-        </nuxt-link>
-      </li>
     </ul>
-    <div 
-      id="dropdowns">
-      <div class="uk-navbar-dropdown"
-        v-for="(cat, ind) in menu"
-        :key="cat.Id"
-        :class="{'uk-display-block':chosenDropDown == ind+1}">
-        <ul class="uk-nav uk-navbar-dropdown-nav uk-flex uk-grid uk-grid-small uk-child-width-1-2 uk-child-width-1-2@s uk-child-width-1-4@m uk-child-width-1-6@l">
-          <li
-            v-for="(sub, index) in cat.SubCategoryList"
-            :key="sub.Id"
-            class="uk-padding-remove-left">
-            <nuxt-link :to="localePath('/c/'+(index>0?cat.Id:0)+'/'+sub.Id+'/'+sub.UrlSafeName)">
-              <img
-                v-if="sub.ImageThumb" 
-                alt=""
-                :src="'https://res.cloudinary.com/supportersplace/image/fetch/w_60,f_auto/'+sub.ImageThumb" style="width:30px" />
-              <img
-                v-else-if="cat.ImageThumb" 
-                alt=""
-                :src="cat.ImageThumb" style="width:30px" /> {{ sub.Name }}
-            </nuxt-link>
-          </li>
-        </ul>
-      </div>
-    </div>
   </div>
   </div>
 </template>
 
 <script>
-import ClickOutside from 'vue-click-outside'
 import TheHamburger from "./TheHamburger";
 import { mapGetters, mapActions } from 'vuex'
 export default {
@@ -158,172 +118,6 @@ export default {
       counter: 'basket/counter',
       cid: 'cid'
     })
-  },
-  directives: {
-    ClickOutside
-  },
-  methods:{
-    hideDropDown(){
-      var _this = this
-      setTimeout(function(){
-        _this.chosenDropDown = 0
-      },200)
-    },
-    showDropDown(num){
-      var _this = this
-      clearTimeout(_this.timeout)
-      this.chosenDropDown = this.chosenDropDown!=num?num:0
-    }
   }
 };
 </script>
-
-
-<script>
-import ClickOutside from 'vue-click-outside'
-import TheHamburger from "./TheHamburger";
-import { mapGetters, mapActions } from 'vuex'
-export default {
-  async fetch() {
-    try {
-      let [menu] = await Promise.all([
-          this.$axios.$get('/webapi/'+this.$i18n.locale+'/category')
-      ]);
-      this.menu = menu
-    } catch (err) {
-      console.log(err);
-    }
-  },
-  components: {
-    TheHamburger
-  },
-  data(){
-    return{
-      logo:process.env.LOGO_URL,
-      menu: null,
-      chosenDropDown: 0,
-      timeout: null
-    }
-  },
-  computed: {
-    ...mapGetters({
-      global_labels: 'labels',
-      counter: 'basket/counter',
-      cid: 'cid'
-    })
-  },
-  directives: {
-    ClickOutside
-  },
-  methods:{
-    hideDropDown(){
-      var _this = this
-      setTimeout(function(){
-        _this.chosenDropDown = 0
-      },200)
-    },
-    showDropDown(num){
-      var _this = this
-      clearTimeout(_this.timeout)
-      this.chosenDropDown = this.chosenDropDown!=num?num:0
-    }
-  }
-};
-</script>
-
-<style lang="scss" scoped>
-/*Overriding styles in layout-default*/
-.gd-slider{
-  text-transform:uppercase;
-  border-bottom:4px solid #fff;
-}
-/*end overriding*/
-.header-wrapper {
-  position: relative;
-  display: flex;
-  width: 100%;
-  max-width: 1417px;
-  margin: 0 auto;
-}
-.uk-logo{
-  padding:0;margin:0 15px;
-}
-.basket-counter{
-  position: absolute;
-  top: 1px;
-  left: 50%;
-  margin-left: -5px;
-  color: rgb(0, 42, 50);
-  background: #fa6900;
-  padding: 3px;
-  border-radius: 50%;
-  width: 14px;
-  height: 14px;
-  text-align: center;
-  font-size: 10px;
-  line-height: 14px;
-  color: #fff;
-  font-weight:700;
-}
-.header {
-  background-color: $global-primary-background !important;
-  height: 80px;
-}
-
-.logo {
-  height: 50px;
-  width: auto;
-}
-
-.gd-subnav{
-  border-top:1px solid #fff;
-  font-family: 'Poppins';
-  background: $global-secondary-background;
-  padding-top:8px;
-  padding-bottom:8px;
-  display: flex;
-  flex-direction: row;
-  overflow: scroll;
-  overflow-y: hidden;
-  margin-left:0 !important;
-  width:100%;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  > li > a{
-    color:$global-color !important;
-  }
-  > li:first-child{
-    padding-left: 10px !important;
-  }
-  > li:last-child{
-    padding-right: 20px !important;
-  }
-}
-
-#dropdowns > .uk-navbar-dropdown{
-  left:0;
-  width:100%;
-  max-height:440px;
-  overflow-y:hidden;
-  padding:10px 0 0 10px;
-}
-#dropdowns > .gradient{
-  content: "";
-  position: absolute;
-  left: 0;
-  margin-left: 0;
-  height: 50px;
-  width: 100%;
-  bottom: 0;
-  background: linear-gradient(hsla(0,0%,100%,0),#fff);
-}
-
-#dropdowns > .uk-navbar-dropdown > .uk-navbar-dropdown-nav{
-  max-height:400px;
-  padding-bottom:5px;
-  width:100%;
-  overflow-y:scroll;
-}
-</style>
-

@@ -6,10 +6,10 @@ export default {
     BRAND_SRC: 'https://res.cloudinary.com/supportersplace/image/fetch/w_200,f_auto/http://static.supportersplace.se/brand/',
     STORYBLOK_CATALOGUE: '/streetweek',
     STORYBLOK_LABELS: 'streetweek',
-    SITE_URL: 'https://www.streetweek.se',
-    X_DEFAULT: 'https://www.streetweek.se',
+    SITE_URL: 'https://www.streetweekshop.se',
+    X_DEFAULT: 'https://www.streetweekshop.se',
     LOGO_URL: '/sites/streetweek/streetweek-rectangle.png',
-    SITE_ID: 7,
+    SITE_ID: 8,
     MEMBER_PRICES: false,
     ISO_LANG: 'sv',
     CURRENCY_CODE: 'SEK',
@@ -17,7 +17,7 @@ export default {
     ZENDESK: 'fd07ec75-ec92-4ea1-ad6c-49e883112e6c',
     DEFAULT_SORT_ORDER: 3, //0 for recommended and 3 for latest
     LANG_HREF: {
-      'sv-se':'https://www.streetweek.se'
+      'sv-se':'https://www.streetweekshop.se'
     },
     BASE_HREF: [{
       Culture:'sv-se',Url:''
@@ -60,7 +60,7 @@ export default {
     {src: '~/plugins/jsonld.js'},
     {src: '~/plugins/lottie-client.js', ssr:false},
     {src: '~/plugins/filters.js', ssr:false},
-    {src: '~/plugins/supporterprylar.js'},
+    {src: '~/plugins/streetweek.js'},
     {src: '~/plugins/vue-placeholders.js'},
     {src: "~/plugins/uikit.js", ssr: false },
     {src: '~/plugins/axios'},
@@ -120,7 +120,7 @@ export default {
     }],
     ['@nuxtjs/i18n',
       {
-        baseUrl: 'https://www.streetweek.se',
+        baseUrl: 'https://www.streetweekshop.se',
         defaultLocale: 'sv-se',
         strategy: 'no_prefix',
         locales: [
@@ -153,7 +153,7 @@ export default {
   pwa: {
     meta:{
       name: 'StreetWeek',
-      description: 'StreetWeek.se',
+      description: 'streetweekshop.se',
       lang: 'sv',
       theme_color: '#ffffff'
     },
@@ -161,16 +161,13 @@ export default {
       name: 'StreetWeek',
       short_name: 'StreetWeek',
       lang: 'sv',
-      description: 'StreetWeek.se',
-    },
-    icon: {
-      fileName: 'icon_streetweek.png'
+      description: 'streetweekshop.se',
     },
     workbox: false
   },
   webfontloader: {
     google: {
-      families: ['Poppins:800','Source+Sans+Pro'] //Loads Poppins and Source Sans
+      families: ['Archivo:wght@900','Lora'] //Loads Archivo and Lora
     }
   },
   /*
@@ -182,7 +179,7 @@ export default {
   },
   proxy: {
     '/webapi': {
-      target: process.env.NODE_ENV !== 'production'?'https://api.supporterprylar.se':'https://api.supporterprylar.se'
+      target: process.env.NODE_ENV !== 'production'?'https://api-streetweek.377.se':'https://api-streetweek.377.se'
     }
   },
   /*

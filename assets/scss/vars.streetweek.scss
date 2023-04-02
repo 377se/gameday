@@ -1,0 +1,40 @@
+$inverse-global-color-mode: none;
+
+$global-font-family: 'Lora', serif;
+
+$global-background: #fff;
+$global-muted-background: #f2f4f5;
+$global-primary-background: #323133;
+$global-secondary-background: #0085ca;
+
+$global-cart-header: #0085ca;
+
+$global-slider-background: #00caaa;
+$global-slider-color: #ffffff;
+
+$global-slider-background: #00caaa;
+
+$global-label-new-background: #00caaa;
+
+$global-color: #333;
+$global-inverse-color: #fff;
+
+$global-link-color: #0085ca;
+$global-link-hover-color: #0085ca;
+
+$base-heading-font-family: 'Archivo', sans-serif;
+$base-heading-font-weight: 900;
+//#c0eef7
+
+$inverse-global-color: rgba($global-inverse-color, 1);
+$inverse-global-emphasis-color: $global-inverse-color;
+$inverse-global-muted-color: rgba($global-inverse-color, 0.9);
+$inverse-global-inverse-color: $global-color;
+
+$inverse-global-primary-background: $global-inverse-color;
+$inverse-global-muted-background: rgba($global-inverse-color, 0.1);
+
+$inverse-global-border: rgba($global-inverse-color, 0.2);
+
+$vertical-space-articlecard: 67px;
+$discounted-price-color: #ed8b00;
