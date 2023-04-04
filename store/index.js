@@ -101,6 +101,7 @@ export const actions = {
     }
 
     
+    if(process.env.SITE_ID!=8){ //streetweekshop
       await Promise.all([
         context.app.$axios.$get('/webapi/'+_locale+'/Filter/GetProductTypeListByShopId/get'),
         context.app.$axios.$get('/webapi/'+_locale+'/Filter/GetBrandListByShopId/get')
@@ -111,6 +112,7 @@ export const actions = {
         console.log("Error getting productType or brand for menu:" + err)
         //throw new Error("Error getting productType or brand for menu:" + err)
       })
+    }
 
     if(process.env.SITE_ID==6){ //Gameday
       
