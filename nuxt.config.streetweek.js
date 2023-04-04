@@ -179,7 +179,7 @@ export default {
   },
   proxy: {
     '/webapi': {
-      target: process.env.NODE_ENV !== 'production'?'https://api-streetweek.377.se':'https://api-streetweek.377.se'
+      target: process.env.NODE_ENV !== 'production'?'https://api.streetweekshop.se':'api.streetweekshop.se'
     }
   },
   /*

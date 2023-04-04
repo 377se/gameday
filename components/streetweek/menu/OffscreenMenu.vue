@@ -50,30 +50,6 @@
                   </li>
                 </ul>
             </li>
-            <li
-              class="uk-parent">
-              <a href="#">{{ $getCMSEntry(global_labels,'menu-brand', 'Varumärke') }}</a>
-              <ul>
-                <li
-                  v-for="brand in brandMenu"
-                  :key="brand.Id">
-                  <nuxt-link
-                    :to="localePath('/varumarke/'+brand.SeoName)">{{ brand.Name }}</nuxt-link>
-                </li>
-              </ul>
-            </li>
-            <li
-              class="uk-parent">
-              <a href="#">{{ $getCMSEntry(global_labels,'menu-producttypes', 'Produkttyper') }}</a>
-              <ul>
-                <li
-                  v-for="brand in productTypeMenu"
-                  :key="brand.GarmentId">
-                  <nuxt-link
-                    :to="localePath('/produkttyp/'+brand.GarmentId+'/'+brand.SeoName)">{{ brand.Name }}</nuxt-link>
-                </li>
-              </ul>
-            </li>
           </ul>
         </div>
       </div>
@@ -84,13 +60,11 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 
-//To be added to store. Top team list
-//”https://beta.supporterprylar.se/webapi/Filter/GetTopTeamListBySeoName?seoName=mlb”
 export default {
   async fetch() {
     try {
       let [menu] = await Promise.all([
-          this.$axios.$get('/webapi/'+this.$i18n.locale+'/category')
+          this.$axios.$get('/webapi/'+this.$i18n.locale+'/category/Get')
       ]);
       this.menu = menu
     } catch (err) {
@@ -104,9 +78,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      global_labels:'labels',
-      brandMenu: 'brandMenu',
-      productTypeMenu: 'productTypeMenu'
+      global_labels:'labels'
     })
   },
   watch:{
