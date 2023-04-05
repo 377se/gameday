@@ -112,6 +112,9 @@ export default {
 };
 </script>
 <style lang="scss">
+.gd-slider{
+  background:#00caaa;
+}
 .header-wrapper {
   position: relative;
   display: flex;
