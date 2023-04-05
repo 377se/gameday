@@ -171,6 +171,7 @@ export default {
   flex-direction: row;
   overflow-x: scroll;
   width:100%;
+  font-family:"Archivo";
   &::-webkit-scrollbar {
     display: none;
   }
