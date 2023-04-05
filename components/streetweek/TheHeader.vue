@@ -1,7 +1,7 @@
 <template>
   <div
     uk-sticky
-    style="outline:0;"
+    style="outline:0;background:#f0a117;"
     tabindex="0">
     <nav 
       class="uk-navbar-container uk-navbar uk-margin header uk-margin-remove-bottom uk-light" 
