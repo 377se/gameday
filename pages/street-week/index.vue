@@ -15,7 +15,6 @@ import Page from '@/components/Page'
 import TextContent from '@/components/TextContent'
 
 export default {
-    layout: 'sw',
     head () {
     return {
       title: `${this.story.content.SEO.title}`,

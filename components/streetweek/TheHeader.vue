@@ -1,7 +1,7 @@
 <template>
   <div
     uk-sticky
-    style="outline:0; background-color: #EAEAEA;"
+    style="outline:0;"
     tabindex="0">
     <nav 
       class="uk-navbar-container uk-navbar uk-margin header uk-margin-remove-bottom uk-light" 
@@ -84,7 +84,7 @@ export default {
   async fetch() {
     try {
       let [menu] = await Promise.all([
-          this.$axios.$get('/webapi/'+this.$i18n.locale+'/category')
+          this.$axios.$get('/webapi/'+this.$i18n.locale+'/category/Get')
       ]);
       this.menu = menu
     } catch (err) {
@@ -111,3 +111,100 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+.header-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.uk-logo{
+  padding:0;margin:0 15px 0 0;
+}
+.basket-counter{
+  position: absolute;
+  top: 1px;
+  left: 50%;
+  margin-left: -5px;
+  color: rgb(0, 42, 50);
+  background: #fa6900;
+  padding: 3px;
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  text-align: center;
+  font-size: 10px;
+  line-height: 14px;
+  color: #fff;
+  font-weight:700;
+}
+.header {
+  height: 75px;
+  background: #1e1e1e !important;
+}
+
+.logo {
+  @media (max-width: 420px) { 
+    width: 120px;
+  }
+  @media (min-width: 421px) { 
+    width: 150px;
+  }
+  
+}
+
+.hamburger {
+  color: #00bbe0;
+}
+.hamburger:hover {
+  color: #00bbe0;
+}
+
+.gd-subnav{
+  padding-top:8px;
+  padding-bottom:8px;
+  padding-right:20px;
+  background: $global-secondary-background;
+  display: flex;
+  margin-left:0px !important;
+  flex-direction: row;
+  overflow-x: scroll;
+  width:100%;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  > li > a{
+    color:#fff !important;
+  }
+}
+.uk-navbar-nav > li > a.subnav{
+  min-height:auto;
+  white-space:nowrap;
+}
+
+#dropdowns > .uk-navbar-dropdown{
+  left:0;
+  width:100%;
+  max-height:440px;
+  overflow-y:hidden;
+  padding:10px 0 0 10px;
+}
+#dropdowns > .gradient{
+  content: "";
+  position: absolute;
+  left: 0;
+  margin-left: 0;
+  height: 50px;
+  width: 100%;
+  bottom: 0;
+  background: linear-gradient(hsla(0,0%,100%,0),#fff);
+}
+
+#dropdowns > .uk-navbar-dropdown > .uk-navbar-dropdown-nav{
+  max-height:400px;
+  padding-bottom:20px;
+  width:100%;
+  overflow-y:scroll;
+}
+</style>

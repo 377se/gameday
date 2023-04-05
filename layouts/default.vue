@@ -8,8 +8,10 @@
       :keep-alive-props="{ exclude: ['Medlemserbjudanden'] }"/>
     <client-only>
       <OffscreenMenu/>
-      <OffscreenProductTypeMenu/>
-      <OffscreenBrandMenu/>
+      <OffscreenProductTypeMenu
+        v-if="siteId!=8"/>
+      <OffscreenBrandMenu
+        v-if="siteId!=8"/>
       <OffscreenBasket/>
     </client-only>
     <TheFooter/>
@@ -70,7 +72,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      global_labels:'labels'})
+      global_labels:'labels'}
+      )
   },
   data() {
     return {

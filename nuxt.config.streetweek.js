@@ -8,7 +8,7 @@ export default {
     STORYBLOK_LABELS: 'streetweek',
     SITE_URL: 'https://www.streetweekshop.se',
     X_DEFAULT: 'https://www.streetweekshop.se',
-    LOGO_URL: '/sites/streetweek/streetweek-rectangle.png',
+    LOGO_URL: '/sites/streetweek/street_week_shop_23_utan-text_600.png',
     SITE_ID: 8,
     MEMBER_PRICES: false,
     ISO_LANG: 'sv',
@@ -29,14 +29,14 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: 'Supporterprylar',
+    title: 'Streetweek',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: 'StreetWeek'
+        content: 'Streetweek'
       }
     ]
   },
@@ -164,6 +164,9 @@ export default {
       description: 'streetweekshop.se',
     },
     workbox: false
+  },
+  icon: {
+    fileName: 'icon_streetweek.png'
   },
   webfontloader: {
     google: {

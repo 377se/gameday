@@ -38,7 +38,6 @@
 import ArticleDetails from "@/components/articles/ArticleDetails";
 
 export default {
-  layout: 'sw',
   head () {
     return {
       title: this.article.MetaTitle,
