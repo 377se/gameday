@@ -433,7 +433,7 @@ export default {
 }
 #offscreen-basket .uk-modal-dialog-no-extensions {
   margin-left: auto;
-  max-width: 23vw !important;
+  max-width: 50vw !important;
   @media only screen and (max-width: 600px) {
     max-width:90vw !important;
   }
