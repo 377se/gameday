@@ -8,7 +8,7 @@
     <template
       v-else>
       <div 
-        v-if="$i18n.locale=='en'"
+        v-if="$i18n.locale=='en' || siteid==8"
         class="uk-container uk-padding-small">
         <select
           v-model="chosenCountry"
@@ -35,7 +35,7 @@ export default {
     if(this.$route.params.version){
       localStorage.version = '_v2'
     }
-    if(this.$i18n.locale=='en'){
+    if(this.$i18n.locale=='en' || this.siteid==8){
       try{
         const countries = await this.$axios.$get('/webapi/Country/GetKlarnaCountryList');
         this.countries = countries
@@ -83,6 +83,7 @@ export default {
   },
   data() {
     return {
+      siteid: process.env.SITE_ID,
       klarnahtml: null,
       countries: [],
       chosenCountry: null
