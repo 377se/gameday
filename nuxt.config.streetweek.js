@@ -166,7 +166,7 @@ export default {
     workbox: false
   },
   icon: {
-    fileName: 'icon_streetweek.png'
+    fileName: 'sw_favicon_23.png'
   },
   webfontloader: {
     google: {
