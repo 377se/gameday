@@ -83,7 +83,7 @@ export default {
   },
   data() {
     return {
-      siteid: process.env.SITE_ID,
+      siteid: -1, //process.env.SITE_ID,
       klarnahtml: null,
       countries: [],
       chosenCountry: null
