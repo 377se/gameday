@@ -7,7 +7,9 @@
       class="uk-navbar-container uk-navbar uk-margin header uk-margin-remove-bottom uk-light" 
       uk-navbar>
       <div class="header-wrapper">
-      <div class="uk-navbar-left uk-flex-nowrap">
+      <div
+        class="uk-navbar-left uk-flex-nowrap"
+        style="gap:15px;">
         <TheHamburger/>
         <nuxt-link 
           class="uk-navbar-item uk-logo" 
@@ -154,7 +156,7 @@ export default {
     width: 120px;
   }
   @media (min-width: 421px) { 
-    width: 150px;
+    width: 140px;
   }
   
 }
