@@ -114,6 +114,7 @@ export default {
 <style lang="scss">
 .gd-slider{
   background:#00caaa;
+  border-bottom:4px solid #fff;
 }
 .header-wrapper {
   position: relative;
@@ -165,6 +166,7 @@ export default {
 }
 
 .gd-subnav{
+  border-top:1px solid #fff;
   padding-top:8px;
   padding-bottom:8px;
   padding-right:20px;
