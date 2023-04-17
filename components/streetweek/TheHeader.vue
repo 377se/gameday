@@ -167,7 +167,6 @@ export default {
 }
 
 .gd-subnav{
-  border-top:1px solid #fff;
   padding-top:8px;
   padding-bottom:8px;
   padding-right:20px;
