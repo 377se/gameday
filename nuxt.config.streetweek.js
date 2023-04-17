@@ -170,7 +170,7 @@ export default {
   },
   webfontloader: {
     google: {
-      families: ['Archivo:wght@900','Lora'] //Loads Archivo and Lora
+      families: ['Poppins:800','Source+Sans+Pro'] //Loads Poppins and Source Sans
     }
   },
   /*
