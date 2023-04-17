@@ -146,6 +146,7 @@ export default {
 .header {
   height: 75px;
   background: #1e1e1e !important;
+  border-bottom:1px solid #fff;
 }
 
 .logo {
