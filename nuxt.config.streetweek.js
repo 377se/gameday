@@ -14,7 +14,7 @@ export default {
     ISO_LANG: 'sv',
     CURRENCY_CODE: 'SEK',
     STORYBLOK: 'rGRW1HEorfNfSoGS5CzoDwtt',
-    ZENDESK: 'fd07ec75-ec92-4ea1-ad6c-49e883112e6c',
+    ZENDESK: '8f06730a-1fa4-400c-ad0f-ee607b12a049',
     DEFAULT_SORT_ORDER: 3, //0 for recommended and 3 for latest
     LANG_HREF: {
       'sv-se':'https://www.streetweekshop.se'
@@ -22,6 +22,7 @@ export default {
     BASE_HREF: [{
       Culture:'sv-se',Url:''
     }]
+    
 
   },
   mode: 'universal',
