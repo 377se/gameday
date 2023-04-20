@@ -84,9 +84,12 @@ import TheHamburger from "./TheHamburger";
 import { mapGetters, mapActions } from 'vuex'
 export default {
   async fetch() {
+  
+  },
+  async mounted(){
     try {
       let [menu] = await Promise.all([
-          this.$axios.$get('/webapi/'+this.$i18n.locale+'/category/Get')
+          this.$axios.$get('/webapi/'+this.$i18n.locale+'/category/get')
       ]);
       this.menu = menu
     } catch (err) {
