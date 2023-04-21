@@ -35,7 +35,7 @@
              <li><nuxt-link :to="localeRoute($getCMSEntry(global_labels,'localepath_corporate_information', '/foretagsinformation'))">{{ $getCMSEntry(global_labels,'footer_company_information', 'Företagsinformation') }}</nuxt-link></li>
           </ul>
           <div class="uk-margin-medium uk-bottom-padding-large">
-            <a href="https://www.facebook.com/supporterprylar" target="_new"><span uk-icon="icon: facebook;ratio:1.5"></span></a>
+            <a href="https://www.facebook.com/groups/127396134413236" target="_new"><span uk-icon="icon: facebook;ratio:1.5"></span></a>
           </div>
         </div>
 
