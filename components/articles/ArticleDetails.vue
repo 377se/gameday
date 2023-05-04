@@ -110,7 +110,9 @@
             </label>
           </div>
           <div v-if="showNameNumber">
-            <div class="uk-margin-small">
+            <div
+              v-if="article.AddOn.Names"
+              class="uk-margin-small">
               <select 
                 v-model="nameNumber"
                 @change="setPrint()"
@@ -139,7 +141,9 @@
               </div>
             </div>
           </div>
-          <div class="uk-margin-small">
+          <div
+            v-if="patches"
+            class="uk-margin-small">
             <label>
               <input 
                 type="checkbox"
