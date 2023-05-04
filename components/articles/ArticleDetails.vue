@@ -142,7 +142,7 @@
             </div>
           </div>
           <div
-            v-if="patches"
+            v-if="article.AddOn.ShowPatch"
             class="uk-margin-small">
             <label>
               <input 
