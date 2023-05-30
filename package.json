@@ -5,7 +5,8 @@
   "author": "Mats Barkemo",
   "private": true,
   "engines": {
-    "node": "14.19.0"
+    "node": "14.19.0",
+    "npm": "8.19.2" 
   },
   "scripts": {
     "dev": "nuxt",
