@@ -49,7 +49,6 @@
             v-else
             v-bind:article="article"
             :showrelated="false"/>
-          
         </template>
       </div>
     </div>
