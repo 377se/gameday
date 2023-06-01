@@ -287,6 +287,11 @@
                     
             </div>
         </div>
+
+        <div id="businessmembers" class="uk-margin-medium-top uk-width-1-1 uk-width-2-3@m">
+            <h3 class="uk-margin-remove-bottom">Företagare?</h3>
+            <p class="uk-margin-remove-top">Är du företagare och älskar Liverpool? Gå med i 1892-klubben!<br><a class="uk-button uk-button-small uk-button-secondary uk-text-bold" href="https://www.lfc.se/1892-klubben">Läs mer här!</a></p>
+        </div>
     </div>
 </template>
 
