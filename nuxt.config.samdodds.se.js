@@ -197,7 +197,7 @@ export default {
     '/webapi': {
       target: process.env.NODE_ENV !== 'production'?'https://api.samdodds.com':'https://api.samdodds.com',
       secure: false,
-      changeOrigin: true
+      changeOrigin: false
     }
   },
   /*
