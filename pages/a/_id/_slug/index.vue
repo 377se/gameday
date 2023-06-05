@@ -4,6 +4,6 @@
 
 <script>
 export default {
-  cache: true
+  //cache: true
 }
 </script>

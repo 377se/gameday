@@ -39,7 +39,7 @@ export default {
     }
     next()
   },
-  cache: true,
+  //cache: true,
   mounted(){
     try{
       UIkit.modal('#modal-article').show()
