@@ -32,8 +32,8 @@
                 <div class="uk-padding-small account-container">
                     <h3 class="uk-margin-remove">{{ $getCMSEntry(global_labels, 'membership_become_member_how', 'Hur gör jag?') }}</h3>
                     <div class="uk-margin-small-top">
-                        Vill du endast köpa ett medlemsskap klickar du bara på "Lägg i varukorgen".
-                        <br>Vill du förlänga ditt medlemsskap? <nuxt-link :to="localePath('/login')">Logga in</nuxt-link>.
+                        Vill du endast köpa ett medlemskap klickar du bara på "Lägg i varukorgen".
+                        <br>Vill du förlänga ditt medlemskap? <nuxt-link :to="localePath('/login')">Logga in</nuxt-link>.
                         <br>
                         Har du familjemedlemmar som du också vill anmäla då lägger du till dessa i formuläret nedan innan du lägger i varukorgen.
                     </div>
@@ -68,7 +68,7 @@
                     <div style="line-height:1;"><small>{{ currentMembershipObject.SelectableInformation }}</small></div>
                 </div>
                 <div v-else>
-                    <strong>1</strong> Medlemsskap (Din leveransadress blir medlemsinformationen)
+                    <strong>1</strong> Medlemskap (Din leveransadress blir medlemsinformationen)
                 </div>
                 <div>
                     <strong v-if="currentMembershipObject.FamilyMembers!=null">{{ currentMembershipObject.FamilyMembers.length }}</strong><strong v-else>0</strong> Familjemedlemmar <a href="#familymembers" @click.prevent="showAddFamilyMember">Lägg till fler</a>
