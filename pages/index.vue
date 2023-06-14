@@ -19,7 +19,6 @@ import ArticleCardSimple from "@/components/articles/ArticleCardSimple";
 import Page from '@/components/Page'
 
 export default {
-  cache: true,
   components:{
     ArticleCardSimple,
     Page
