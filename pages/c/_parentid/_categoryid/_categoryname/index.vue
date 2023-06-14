@@ -69,6 +69,7 @@ import ArticleTeamListByCategory from "@/components/articles/ArticleTeamListByCa
 import Page from '@/components/Page'
 
 export default {
+  cache: true,
   asyncData(ctx){
     if(!ctx.route.params.categoryid){
       return ctx.redirect(301, '/')
