@@ -94,7 +94,7 @@ export default {
     '@nuxtjs/router-extras',
     ["@storyblok/nuxt-2/module", { accessToken: "rGRW1HEorfNfSoGS5CzoDwtt" }],
   ],
-  gtm: { id: 'GTM-PZ4NQSW' },
+  gtm: { id: 'GTM-T9CWRPGG' },
   /*
    ** Nuxt.js modules
    */
