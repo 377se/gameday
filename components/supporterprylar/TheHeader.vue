@@ -57,7 +57,9 @@
       </div>
       </div>
     </nav>
-    <div class="header-wrapper">
+    <div
+      class="header-wrapper"
+      style="display:none;">
     <ul 
       class="gd-subnav uk-subnav uk-margin-remove-top uk-margin-remove-bottom uk-flex-nowrap uk-flex-middle">
       <li
