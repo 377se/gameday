@@ -353,7 +353,8 @@ export default {
       "image": article.Images ? process.env.DETAILS_SRC + article.Images[0].Name:null,
       "inProductGroupWithID" : article.TeamName,
       "brand": article.BrandName,
-      "custom_label_0": this.league,
+      "customLabel0": this.league,
+      "customLabel1": article.TeamName,
       "offers": [
         {
           "@type": "Offer",
