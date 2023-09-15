@@ -61,7 +61,7 @@ export default {
     {src: '~/plugins/lottie-client.js', ssr:false},
     {src: '~/plugins/filters.js', ssr:false},
     {src: '~/plugins/supporterprylar.js'},
-    {src: '~/plugins/vue-placeholders.js'},
+    {src: '~/plugins/vue-placeholders.js', ssr:false},
     {src: "~/plugins/uikit.js", ssr: false },
     {src: '~/plugins/axios'},
     {src: '~/plugins/get'},
