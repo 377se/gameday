@@ -17,7 +17,7 @@
               :alt="article.Title"
               onerror="this.style.display='none'">
           </div>
-          <div class="lfc-text">{{ article.Preamble }}</div>
+          <div class="lfc-text" v-html="article.Preamble"></div>
           <div class="lfc-read-more"><strong><a target="_new" :href="article.Url">Läs mer...</a></strong></div>
         </li>
       </ul>
