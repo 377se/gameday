@@ -110,6 +110,17 @@ import ClickOutside from 'vue-click-outside'
 import TheHamburger from "./TheHamburger";
 import { mapGetters, mapActions } from 'vuex'
 export default {
+  async mounted(){
+    try {
+      let [menu] = await Promise.all([
+          this.$axios.$get('/webapi/'+this.$i18n.locale+'/category/Get')
+      ]);
+      this.menu = menu
+      this.locale = this.$i18n.locale
+    } catch (err) {
+      console.log(err);
+    }
+  },
   async fetch() {
     try {
       let [menu] = await Promise.all([
