@@ -154,6 +154,7 @@ export default {
     ]
   },
   pwa: {
+    workbox: false,
     meta:{
       name: 'Supporters Place',
       description: 'SupportersPlace.se',
@@ -168,8 +169,7 @@ export default {
     },
     icon: {
       fileName: 'icon_supportersplace_badge.png'
-    },
-    workbox: false
+    }
   },
   webfontloader: {
     google: {
