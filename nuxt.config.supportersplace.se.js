@@ -185,9 +185,7 @@ export default {
   },
   proxy: {
     '/webapi': {
-      target: 'http://api.supportersplace.com',
-      secure: false,
-      changeOrigin: true
+      target: 'https://api.supportersplace.com'
     }
   },
   /*
