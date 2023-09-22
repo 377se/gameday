@@ -70,7 +70,9 @@
                 </table>
               </div>
         </div>
-        
+        <div style="display:none">
+        {{ lastGame }}
+        </div>
       </div>
   </div>
 </template>
