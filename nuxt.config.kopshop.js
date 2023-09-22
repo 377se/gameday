@@ -181,7 +181,9 @@ export default {
   },
   proxy: {
     '/webapi': {
-      target: process.env.NODE_ENV !== 'production'?'https://api.kopshop.no':'https://api.kopshop.no'
+      target: process.env.NODE_ENV !== 'production'?'https://api.kopshop.no':'https://api.kopshop.no',
+      secure: false,
+      changeOrigin: true
     }
   },
   /*
