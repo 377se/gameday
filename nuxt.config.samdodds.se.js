@@ -195,7 +195,9 @@ export default {
   },
   proxy: {
     '/webapi': {
-      target: 'https://api.samdodds.com'
+      target: 'https://api.samdodds.com',
+      secure: false,
+      changeOrigin: true
     }
   },
   /*
