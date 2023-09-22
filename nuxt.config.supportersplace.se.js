@@ -185,8 +185,8 @@ export default {
   },
   proxy: {
     '/webapi': {
-      target: process.env.NODE_ENV !== 'production'?'https://api.supportersplace.com':'https://api.supportersplace.com',
-      secure: false,
+      target: 'https://api.supportersplace.com',
+      secure: true,
       changeOrigin: true
     }
   },
