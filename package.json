@@ -9,7 +9,7 @@
     "npm": "8.19.2" 
   },
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nuxt --config-file nuxt.config.samdodds.se.js",
     "dev:gameday-fi": "nuxt --config-file nuxt.config.gameday.fi.js",
     "dev:supportersplace": "nuxt --config-file nuxt.config.supportersplace.js",
     "dev:supportersplace-se": "nuxt --config-file nuxt.config.supportersplace.se.js",
@@ -29,7 +29,7 @@
     "build:samdodds-test": "nuxt build --config-file nuxt.config.samdodds.test.js",
     "build:kopshop": "nuxt build --config-file nuxt.config.kopshop.js",
     "build:streetweek": "nuxt build --config-file nuxt.config.streetweek.js",
-    "debug": "node --inspect node_modules/.bin/nuxt --config-file nuxt.config.js",
+    "debug": "node --inspect node_modules/.bin/nuxt --config-file nuxt.config.samdodds.se.js",
     "debug:supportersplace": "node --inspect node_modules/.bin/nuxt --config-file nuxt.config.supportersplace.js",
     "debug:laxen": "node --inspect node_modules/.bin/nuxt --config-file nuxt.config.laxen.js",
     "debug:samdodds": "node --inspect node_modules/.bin/nuxt --config-file nuxt.config.samdodds.js",
@@ -47,7 +47,7 @@
     "start:samdodds-test": "nuxt start --config-file nuxt.config.samdodds.test.js",
     "start:kopshop": "nuxt start --config-file nuxt.config.kopshop.js",
     "start:streetweek": "nuxt start --config-file nuxt.config.streetweek.js",
-    "generate": "nuxt generate --config-file nuxt.config.js",
+    "generate": "nuxt generate --config-file nuxt.config.samdodds.se.js",
     "generate:laxen": "nuxt generate --config-file nuxt.config.laxen.js",
     "generate:supportersplace": "nuxt generate --config-file nuxt.config.supportersplace.js",
     "generate:samdodds": "nuxt generate --config-file nuxt.config.samdodds.js",
