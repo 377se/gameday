@@ -151,6 +151,9 @@ export default {
     ]
   },
   pwa: {
+    workbox: {
+      enabled: false
+    },
     meta:{
       name: 'SupporterPrylar',
       description: 'SupporterPrylar.se',
@@ -165,8 +168,7 @@ export default {
     },
     icon: {
       fileName: 'icon_supporterprylar.png'
-    },
-    workbox: false
+    }
   },
   webfontloader: {
     google: {

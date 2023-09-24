@@ -154,7 +154,9 @@ export default {
     ]
   },
   pwa: {
-    workbox: false,
+    workbox: {
+      enabled: false
+    },
     meta:{
       name: 'Supporters Place',
       description: 'SupportersPlace.se',
