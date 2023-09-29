@@ -41,7 +41,6 @@ export default {
     }
     next()
   },
-  cache: true,
   mounted(){
     try{
       if(!this.ssr){

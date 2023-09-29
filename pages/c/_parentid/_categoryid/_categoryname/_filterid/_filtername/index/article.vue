@@ -39,7 +39,6 @@ export default {
     }
     next()
   },
-  cache: true,
   mounted(){
     try{
       UIkit.modal('#modal-article').show()
