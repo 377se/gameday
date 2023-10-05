@@ -182,7 +182,7 @@ export default {
     proxy: true
   },
   proxy: {
-    '/webapi': {
+    '/webapi/': {
       target: process.env.NODE_ENV !== 'production'?'https://api.supporterprylar.se':'https://api.supporterprylar.se'
     }
   },
