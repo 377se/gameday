@@ -105,7 +105,6 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
-    '@pi0/nuxt-cache',
     '@nuxtjs/redirect-module',
     // Doc: https://axios.nuxtjs.org/usage
     ['@dansmaculotte/nuxt-zendesk',
