@@ -134,7 +134,8 @@ export default {
     '@nuxtjs/axios',
     'cookie-universal-nuxt',
     'nuxt-webfontloader',
-    ['@nuxtjs/style-resources']    
+    ['@nuxtjs/style-resources'],
+    '@nuxtjs/proxy'
   ],
   redirect: [
     {
@@ -183,6 +184,7 @@ export default {
   },
   proxy: {
     '/webapi/': {
+      changeOrigin: false,
       target: process.env.NODE_ENV !== 'production'?'https://api.supporterprylar.se':'https://api.supporterprylar.se'
     }
   },
