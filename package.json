@@ -6,7 +6,7 @@
   "private": true,
   "engines": {
     "node": "14.19.0",
-    "npm": "8.19.2" 
+    "npm": "8.19.2"
   },
   "scripts": {
     "dev": "nuxt --config-file nuxt.config.samdodds.se.js",
@@ -62,7 +62,6 @@
     "@nuxtjs/i18n": "^7.3.0",
     "@nuxtjs/pwa": "^3.3.4",
     "@nuxtjs/redirect-module": "^0.3.1",
-    "@pi0/nuxt-cache": "^0.1.1",
     "@storyblok/nuxt-2": "^1.2.2",
     "cloudinary-core": "^2.11.3",
     "cloudinary-video-player": "^1.9.1",
