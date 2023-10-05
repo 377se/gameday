@@ -178,26 +178,15 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  /*axios: {
+  axios: {
     proxy: true,
-  },*/
-  publicRuntimeConfig: {
-    axios: {
-      browserBaseURL: 'https://api.supporterprylar.se/'
-    }
   },
-
-  privateRuntimeConfig: {
-    axios: {
-      baseURL: 'https://api.supporterprylar.se/'
-    }
-  },
-  /*proxy: {
-    '/webapi/': {
+  proxy: {
+    '/webapi/sv-se/': {
       target: process.env.NODE_ENV !== 'production'?'https://api.supporterprylar.se/':'https://api.supporterprylar.se/',
       pathRewrite: { '^/webapi/sv-se/': '/webapi/' }
     }
-  },*/
+  },
   /*
    ** Build configuration
    */
