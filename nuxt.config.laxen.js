@@ -181,12 +181,23 @@ export default {
   axios: {
     proxy: true,
   },
-  proxy: {
+  publicRuntimeConfig: {
+    axios: {
+      browserBaseURL: 'https://api.supporterprylar.se/'
+    }
+  },
+
+  privateRuntimeConfig: {
+    axios: {
+      baseURL: 'https://api.supporterprylar.se/'
+    }
+  },
+  /*proxy: {
     '/webapi/': {
       target: process.env.NODE_ENV !== 'production'?'https://api.supporterprylar.se/':'https://api.supporterprylar.se/',
       pathRewrite: { '^/webapi/sv-se/': '/webapi/' }
     }
-  },
+  },*/
   /*
    ** Build configuration
    */
