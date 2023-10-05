@@ -182,12 +182,9 @@ export default {
     proxy: true,
   },
   proxy: {
-    '/webapi/sv-se/': {
-      target: process.env.NODE_ENV !== 'production'?'https://api.supporterprylar.se/':'https://api.supporterprylar.se/',
-      pathRewrite: { '^/webapi/sv-se/': '/webapi/' }
-    },
     '/webapi/': {
       target: process.env.NODE_ENV !== 'production'?'https://api.supporterprylar.se/':'https://api.supporterprylar.se/',
+      pathRewrite: { '^/webapi/sv-se/': '/webapi/' }
     }
   },
   /*
