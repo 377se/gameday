@@ -1,1 +1,1 @@
-web: nuxt start --config-file nuxt.config.laxen.js
+web: nuxt start --config-file nuxt.config.supportersplace.se.js
