@@ -1,1 +1,1 @@
-web: nuxt start
+web: nuxt start --config-file nuxt.config.laxen.js
