@@ -1,1 +1,1 @@
-web: nuxt start --config-file nuxt.config.streetweek.js
+web: nuxt start --config-file nuxt.config.laxen.js
