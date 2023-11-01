@@ -153,9 +153,9 @@ export default {
         this.$axios.$get(
           `/webapi/${this.$i18n.locale}/Filter/GetGenderListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null`
         ),
-        /*this.$axios.$get(
+        this.$axios.$get(
           `/webapi/${this.$i18n.locale}/Filter/GetBrandListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null`
-        ),*/
+        ),
         this.$axios.$get(
           `/webapi/${this.$i18n.locale}/Filter/GetTeamListByCategory?categoryId=${this.$route.params.categoryid}&productTypeId=0&brandId=0`
         )
