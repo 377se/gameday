@@ -144,7 +144,8 @@
                         {{ cart.PriceToPayExShipping }}</strong>
                     </td>
                   </tr>
-                  <tr>
+                  <tr
+                    v-if="cart.Shipping != '0 SEK'">
                     <td colspan="2" style="text-align:right">
                       <strong><span>{{ $getCMSEntry(global_labels,'basket_shipping', 'Frakt') }}</span></strong>
                     </td>
@@ -152,7 +153,7 @@
                       <strong>{{ cart.Shipping }}</strong>
                     </td>
                   </tr>
-                  <tr>
+                  <tr v-if="cart.Shipping!='0 SEK'">
                     <td colspan="2" style="text-align:right">
                       <strong>{{ $getCMSEntry(global_labels,'basket_total', 'Totalt') }} <span>{{ $getCMSEntry(global_labels,'basket_inc_shipping', 'inkl.frakt') }}</span></strong>
                     </td>
