@@ -9,7 +9,7 @@
     "npm": "8.19.2"
   },
   "scripts": {
-    "dev": "nuxt --config-file nuxt.config.samdodds.se.js",
+    "dev": "nuxt --config-file nuxt.config.js",
     "dev:gameday-fi": "nuxt --config-file nuxt.config.gameday.fi.js",
     "dev:supportersplace": "nuxt --config-file nuxt.config.supportersplace.js",
     "dev:supportersplace-se": "nuxt --config-file nuxt.config.supportersplace.se.js",
