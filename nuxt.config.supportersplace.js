@@ -19,7 +19,7 @@ export default {
     LANG_HREF:{
       'fi-fi':'https://supportersplace.fi',
       'sv-se':'https://supportersplace.se',
-      'nb-no':'https://supportersplace.com/nb-no',
+      'nb-no':'https://supportersplace.no',
       'da-dk':'https://supportersplace.com/da-dk',
       'en-gb':'https://supportersplace.com/en',
       'en':'https://supportersplace.com/en'
