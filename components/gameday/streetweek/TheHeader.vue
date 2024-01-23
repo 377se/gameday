@@ -20,7 +20,7 @@
             <li
               :class="{'uk-active':locale==='da-dk'}"><a href="https://supportersplace.com/da-dk/street-week" style="vertical-align:middle"><img src="/flags/da-dk.svg" style="width:30px;margin-right:5px;"> Denmark</a></li>
             <li
-              :class="{'uk-active':locale==='nb-no'}"><a href="https://supportersplace.com/nb-no/street-week" style="vertical-align:middle"><img src="/flags/nb-no.svg" style="width:30px;margin-right:5px;"> Norway</a></li>
+              :class="{'uk-active':locale==='nb-no'}"><a href="https://supportersplace.no/street-week" style="vertical-align:middle"><img src="/flags/nb-no.svg" style="width:30px;margin-right:5px;"> Norway</a></li>
             <li
               :class="{'uk-active':locale==='fi-fi'}"><a href="https://supportersplace.fi/street-week" style="vertical-align:middle"><img src="/flags/fi-fi.svg" style="width:30px;margin-right:5px;"> Finland</a></li>
           </ul>
