@@ -43,6 +43,12 @@ export default {
         name: 'description',
         content: 'SamDodds.dk'
       }
+    ],
+    script: [
+      {
+        src: "/js/inmobi.js",
+        async: true
+      }
     ]
   },
   /*

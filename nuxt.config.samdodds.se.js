@@ -44,6 +44,12 @@ export default {
         content: 'Sam Dodds'
       }
     ],
+    script: [
+      {
+        src: "/js/inmobi.js",
+        async: true
+      }
+    ]
   },
   /*
    ** Customize the progress-bar color

@@ -47,6 +47,12 @@ export default {
         name: 'description',
         content: 'Supporters Place'
       }
+    ],
+    script: [
+      {
+        src: "/js/inmobi.js",
+        async: true
+      }
     ]
   },
   /*

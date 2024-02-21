@@ -37,6 +37,12 @@ export default {
         name: 'description',
         content: 'KopShop'
       }
+    ],
+    script: [
+      {
+        src: "/js/inmobi.js",
+        async: true
+      }
     ]
   },
   /*

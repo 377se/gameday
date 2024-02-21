@@ -38,6 +38,12 @@ export default {
         name: 'description',
         content: 'Supporterprylar'
       }
+    ],
+    script: [
+      {
+        src: "/js/inmobi.js",
+        async: true
+      }
     ]
   },
   /*
