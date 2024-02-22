@@ -146,11 +146,6 @@ export default {
             name: 'International (english)'
           },
           {
-            code: 'nb-no',
-            iso: 'nb',
-            name: 'Norway'
-          },
-          {
             code: 'da-dk',
             iso: 'da',
             name: 'Denmark'
