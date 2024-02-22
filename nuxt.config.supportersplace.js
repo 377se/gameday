@@ -173,22 +173,16 @@ export default {
     ]
   },
   pwa: {
-    meta:{
-      name: 'Supporters Place',
-      description: 'SupportersPlace.com',
-      lang: 'sv',
-      theme_color: '#ffffff'
-    },
+    workbox:false,
     manifest: {
       name: 'Supporters Place',
       short_name: 'SupportersPlace',
-      lang: 'sv',
+      lang: 'en',
       description: 'SupportersPlace.com',
     },
     icon: {
       fileName: 'icon_supportersplace_badge.png'
-    },
-    workbox: false
+    }
   },
   webfontloader: {
     google: {
