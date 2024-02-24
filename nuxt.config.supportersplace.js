@@ -132,8 +132,8 @@ export default {
       {
         detectBrowserLanguage: {
           useCookie: true,
-          alwaysRedirect: false,
-          cookieKey: 'i18n_redirectcmee',
+          alwaysRedirect: true,
+          cookieKey: 'i18n_redirected',
           onlyOnRoot: true,  // recommended
         },
         baseUrl: 'https://supportersplace.com',
