@@ -25,6 +25,21 @@ import TheRollingText from "@/components/TheRollingText";
 import ShopTopPromo from "@/components/ShopTopPromo";
 
 export default {
+  middleware({ route, redirect }) {
+    // If the user is not authenticated
+    if (process.env.SITE_ID === 1) { 
+      if (route.fullPath.includes('/nb-no')) {
+        let _url = route.fullPath.replace('nb-no', '').replace('//', '')
+        return redirect('https://supportersplace.no/' + _url)
+      } else if (route.fullPath.includes('/fi-fi')) {
+        let _url = route.fullPath.replace('fi-fi', '').replace('//', '')
+        return redirect('https://supportersplace.fi/' + _url)
+      } else if (route.fullPath.includes('/sv-se')) { 
+        let _url = route.fullPath.replace('sv-se', '').replace('//', '')
+        return redirect('https://supportersplace.se/' + _url)
+      }
+    }
+  },
   /*head () {
     let i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
     if(process.env.SITE_ID==2){ //Sam Dodds
