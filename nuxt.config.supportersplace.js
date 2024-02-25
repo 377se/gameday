@@ -146,6 +146,21 @@ export default {
             name: 'International (english)'
           },
           {
+            code: 'sv-se',
+            iso: 'sv',
+            name: 'Sweden'
+          },
+          {
+            code: 'fi-fi',
+            iso: 'fi',
+            name: 'Finland'
+          },
+          {
+            code: 'nb-no',
+            iso: 'nb',
+            name: 'Norway'
+          },
+          {
             code: 'da-dk',
             iso: 'da',
             name: 'Denmark'
