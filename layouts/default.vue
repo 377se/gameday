@@ -29,14 +29,14 @@ export default {
     // If the user is not authenticated
     if (process.env.SITE_ID === 1) { 
       if (route.fullPath.includes('/nb-no')) {
-        let _url = route.fullPath.replace('nb-no', '').replace('//', '')
-        return redirect('https://supportersplace.no/' + _url)
+        let _url = route.fullPath.replace('/nb-no', '')
+        return redirect(301, 'https://supportersplace.no' + _url)
       } else if (route.fullPath.includes('/fi-fi')) {
-        let _url = route.fullPath.replace('fi-fi', '').replace('//', '')
-        return redirect('https://supportersplace.fi/' + _url)
+        let _url = route.fullPath.replace('/fi-fi', '')
+        return redirect(301, 'https://supportersplace.fi' + _url)
       } else if (route.fullPath.includes('/sv-se')) { 
-        let _url = route.fullPath.replace('sv-se', '').replace('//', '')
-        return redirect('https://supportersplace.se/' + _url)
+        let _url = route.fullPath.replace('/sv-se', '')
+        return redirect(301, 'https://supportersplace.se/' + _url)
       }
     }
   },
