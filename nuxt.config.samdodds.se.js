@@ -46,8 +46,7 @@ export default {
     ],
     script: [
       {
-        src: "/js/inmobi.js",
-        async: true
+        src: "/js/inmobi.js"
       }
     ]
   },
