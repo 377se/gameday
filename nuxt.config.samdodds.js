@@ -43,12 +43,6 @@ export default {
         name: 'description',
         content: 'SamDodds.dk'
       }
-    ],
-    script: [
-      {
-        src: "/js/inmobi.js",
-        async: true
-      }
     ]
   },
   /*
@@ -68,6 +62,7 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
+    {src: '~/plugins/inmobi.js', ssr: false},
     {src: '~/plugins/jsonld.js'},
     {src: '~/plugins/lottie-client.js', ssr:false},
     {src: '~/plugins/filters.js', ssr:false},

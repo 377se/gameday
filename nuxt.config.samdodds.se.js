@@ -43,12 +43,6 @@ export default {
         name: 'description',
         content: 'Sam Dodds'
       }
-    ],
-    script: [
-      {
-        src: "/js/inmobi.js",
-        async: true
-      }
     ]
   },
   /*
@@ -68,6 +62,7 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
+    {src: '~/plugins/inmobi.js', ssr: false},
     {src: '~/plugins/jsonld.js'},
     {src: '~/plugins/samdodds.js'},
     {src: '~/plugins/vue-placeholders.js'},
