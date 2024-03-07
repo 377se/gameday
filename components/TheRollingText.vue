@@ -8,17 +8,17 @@
           <ul class="uk-slider-items uk-child-width-1-1 uk-text-small"> 
             <li>
               <div class="uk-text-center gd-slider-item uk-padding-small">
-                <strong>{{ $getCMSEntry(labels,'rolling_text_one', 'Alltid 30 Dagars öppet köp och fria returer') }}</strong>
+                <strong v-html="$getCMSEntry(labels, 'rolling_text_one', 'Alltid 30 Dagars öppet köp och fria returer')"></strong>
               </div>
             </li>
             <li>
               <div class="uk-text-center gd-slider-item uk-padding-small">
-                <strong>{{ $getCMSEntry(labels,'rolling_text_two', 'Snabba leveranser från vårt lager') }}</strong>
+                <strong v-html="$getCMSEntry(labels, 'rolling_text_two', 'Snabba leveranser från vårt lager')"></strong>
               </div>
             </li>
             <li>
               <div class="uk-text-center gd-slider-item uk-padding-small">
-                <strong>{{ $getCMSEntry(labels,'rolling_text_three', 'Every day is... Gameday!') }}</strong>
+                <strong v-html="$getCMSEntry(labels, 'rolling_text_three', 'Every day is... Gameday!')"></strong>
               </div>
             </li>
           </ul>

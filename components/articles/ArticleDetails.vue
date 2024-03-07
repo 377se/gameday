@@ -393,7 +393,7 @@ export default {
     
     showLegend(line, sizeTypeId) {
       if (sizeTypeId==1 || sizeTypeId==2) {
-        return line==0 ? 'Längd' : 'Bredd'
+        return line==0 ? this.$getCMSEntry(this.global_labels, 'sizeguide_length', 'Längd') : this.$getCMSEntry(this.global_labels, 'sizeguide_width', 'Bredd')
       } else {
         return line==0 ? 'EU' : line==1 ? 'UK' : 'US'
       }
