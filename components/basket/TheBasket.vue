@@ -222,10 +222,14 @@
                       uk-scrollspy="target: > td; cls: uk-animation-slide-left; repeat: true; delay: 250"
                       >
                       <td style="padding-left:6px;" class="uk-width-1-3"> <!-- BILD -->
-                        <img
-                          class="uk-width-1-1"
-                          :src="extension.ImageName"
-                          :alt="extension.ProductName"/>
+                        <nuxt-link
+                          :to="localePath('/a/'+extension.ProductId+'/'+extension.UrlSafeName)"
+                          @click.native="close()">
+                          <img
+                            class="uk-width-1-1"
+                            :src="extension.ImageName"
+                            :alt="extension.ProductName"/>
+                        </nuxt-link>
                       </td>
                       <td class="article-data uk-width-2-3"> <!-- ARTIKELDATA -->
                         <span class="article-name">
