@@ -6,7 +6,7 @@
         class="uk-link-reset">
         <div class="article-image uk-card-media-top">
           <img 
-            :src="list_src +article.ImageName" 
+            :src="list_src +article.ImageName"
             :alt="article.ProductName" 
             loading="lazy"
             ref="mainImage">

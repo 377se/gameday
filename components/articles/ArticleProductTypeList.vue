@@ -53,7 +53,8 @@
             v-for="article in articles"
             :key="article.ProductId"
             :article="article"
-            :url="(siteid==6)?`/article/${article.TeamNameSeo}/${article.UrlSafeName}`:`/a/${article.ProductId}/${article.UrlSafeName}`"
+            :OLDurl="(siteid==6)?`/article/${article.TeamNameSeo}/${article.UrlSafeName}`:`/a/${article.ProductId}/${article.UrlSafeName}`"
+            :url="`/a/${article.ProductId}/${article.UrlSafeName}`"
           />
           <div
             v-if="articles.length<1"
