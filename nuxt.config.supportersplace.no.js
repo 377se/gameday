@@ -45,7 +45,13 @@ export default {
         name: 'description',
         content: 'Supporters Place'
       }
-    ]
+    ],
+     script: [
+      {
+        src: 'https://www.googletagmanager.com/gtag/js?id=AW-471024068',
+        defer: true,
+      }
+    ],
   },
   /*
    ** Customize the progress-bar color
@@ -64,6 +70,7 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
+    {src: '~/plugins/gtag-sp-no.js', ssr: false},
     {src: '~/plugins/inmobi.js', ssr: false},
     {src: '~/plugins/jsonld.js'},
     {src: '~/plugins/lottie-client.js', ssr:false},
