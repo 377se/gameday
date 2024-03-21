@@ -76,6 +76,8 @@ export default {
       }&articleName=${this.$route.params.slug}`;
       const article = await this.$axios.$get(url);
 
+      this.$nuxt.context.redirect(301, '/a/'+article.RedirectUrl)
+
       this.article = article
       var _this = this
       try{
