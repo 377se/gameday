@@ -46,6 +46,7 @@
         </div>
         <ArticleDetails 
           v-bind:article="article"
+          :metadata="metadata"
           :league="league"/>
       </template>
   </div>

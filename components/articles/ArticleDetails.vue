@@ -304,6 +304,11 @@ export default {
       required: false,
       default: ''
     },
+    metadata:{
+      type: Array,
+      required: false,
+      default: []
+    },
     article: {
       type: Object,
       default: () => ({
@@ -344,6 +349,10 @@ export default {
   },
   jsonld() {
     var article = this.article
+    let _md = ''
+    try {
+      _md = this.metadata.Breadcrumb[0].ItemList[this.metadata.Breadcrumb[0].ItemList.length-1]
+    }catch(err){ _md=''}
     return {
       '@context': 'http://schema.org',
       '@type': 'Product',
@@ -355,6 +364,7 @@ export default {
       "url": process.env.SITE_URL + this.$route.path,
       "image": article.Images ? process.env.DETAILS_SRC + article.Images[0].Name:null,
       "inProductGroupWithID": article.TeamName,
+      "product_type": _md,
       "keywords": this.league,
       "brand": {
           "@type": "Brand",
