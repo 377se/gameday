@@ -313,6 +313,7 @@ export default {
         AddOn: null,
         Name: "",
         Images: [],
+        Gtin: '',
         SizeList: [],
         SizeGuide: [],
         Description: "",
