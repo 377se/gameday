@@ -350,6 +350,7 @@ export default {
       "sku" : article.ProductId,
       "name":article.MetaTitle,
       "description":article.Description,
+      "gtin": article.Gtin,
       "url": process.env.SITE_URL + this.$route.path,
       "image": article.Images ? process.env.DETAILS_SRC + article.Images[0].Name:null,
       "inProductGroupWithID": article.TeamName,
