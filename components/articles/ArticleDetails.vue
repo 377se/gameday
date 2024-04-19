@@ -313,7 +313,8 @@ export default {
       type: Object,
       default: () => ({
         Id: 0,
-        ProductTypeId:0,
+        ProductTypeId: 0,
+        ProductType:'',
         CategoryId:0,
         AddOn: null,
         Name: "",
@@ -364,6 +365,7 @@ export default {
       "url": process.env.SITE_URL + this.$route.path,
       "image": article.Images ? process.env.DETAILS_SRC + article.Images[0].Name:null,
       "inProductGroupWithID": article.TeamName,
+      "product_type": article.ProductType,
       "keywords": this.league,
       "brand": {
           "@type": "Brand",
