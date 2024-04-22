@@ -364,7 +364,6 @@ export default {
       "gtin": article.Gtin,
       "url": process.env.SITE_URL + this.$route.path,
       "image": article.Images ? process.env.DETAILS_SRC + article.Images[0].Name:null,
-      "category": article.ProductType,
       "inProductGroupWithID": article.TeamName,
       "product_type": article.ProductType,
       "keywords": this.league,
