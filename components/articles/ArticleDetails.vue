@@ -377,7 +377,7 @@ export default {
       "offers": [
         {
           "@type": "Offer",
-          "price": article.DiscountType==2?article.Price.toFixed(2):article.PriceOnSale.toFixed(2),
+          "price": article.DiscountType == 2 ? article.Price.toFixed(2) : article.PriceOnSale > 0 ? article.PriceOnSale.toFixed(2) : article.Price.toFixed(2),
           "priceCurrency": process.env.CURRENCY_CODE,
           "itemCondition": "https://schema.org/NewCondition",
           "availability": article.IsSoldOut?"https://schema.org/OutOfStock":"https://schema.org/InStock"
