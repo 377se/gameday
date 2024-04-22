@@ -366,6 +366,7 @@ export default {
       "image": article.Images ? process.env.DETAILS_SRC + article.Images[0].Name:null,
       "inProductGroupWithID": article.TeamName,
       "product_type": article.ProductType,
+      "productType": article.ProductType,
       "keywords": this.league + ',' + article.ProductType,
       "brand": {
           "@type": "Brand",
