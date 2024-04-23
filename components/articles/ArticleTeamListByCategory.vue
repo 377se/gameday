@@ -144,7 +144,7 @@ export default {
     let sortorder = this.$route.query.sortorder?this.$route.query.sortorder:this.defaultSortOrder
 
     try {
-      const [a, p, c, s, g, /*b,*/ t] = await Promise.all([
+      const [a, p, c, s, g, b, t] = await Promise.all([
         this.$axios.$get(
           '/webapi/'+this.$i18n.locale+'/Article/getArticleListByCategoryId?sortorder='+sortorder+'&pageSize=0&lookUpBrand=false&brand='+brand+'&attribute='+attribute+'&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +this.$route.params.categoryid
         ),
@@ -160,9 +160,9 @@ export default {
         this.$axios.$get(
           `/webapi/${this.$i18n.locale}/Filter/GetGenderListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null`
         ),
-        /*this.$axios.$get(
+        this.$axios.$get(
           `/webapi/${this.$i18n.locale}/Filter/GetBrandListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null`
-        ),*/
+        ),
         this.$axios.$get(
           `/webapi/${this.$i18n.locale}/Filter/GetTeamListByCategory?categoryId=${this.$route.params.categoryid}&productTypeId=0&brandId=0`
         )
@@ -173,7 +173,7 @@ export default {
       this.colors=c
       this.sizes=s
       this.gender=g
-      //this.brands=b
+      this.brands=b
       this.teamlist=t
       this.article=a
       this.pageNum=pageNum
