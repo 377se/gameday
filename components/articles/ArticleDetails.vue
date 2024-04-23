@@ -374,7 +374,7 @@ export default {
         },
       "customLabel0": this.league,
       "customLabel1": article.TeamName,
-      "customLabel1": article.ProductType,
+      "customLabel2": article.ProductType,
       "offers": [
         {
           "@type": "Offer",
