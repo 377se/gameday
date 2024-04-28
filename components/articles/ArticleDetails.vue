@@ -365,9 +365,6 @@ export default {
       "url": process.env.SITE_URL + this.$route.path,
       "image": article.Images ? process.env.DETAILS_SRC + article.Images[0].Name:null,
       "inProductGroupWithID": article.TeamName,
-      "category": article.ProductType,
-      "product_type": article.ProductType,
-      "productType": article.ProductType,
       "keywords": this.league + ',' + article.ProductType,
       "brand": {
           "@type": "Brand",
