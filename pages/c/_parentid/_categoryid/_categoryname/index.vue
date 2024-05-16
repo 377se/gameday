@@ -84,7 +84,7 @@ export default {
           cv: this.$store.getters.version
         })
       ]);
-      this.story=sb.data.stories.length>0?sb.data.stories[0]:{ content: {} }
+      this.story = sb.data.stories.length > 0 ? sb.data.stories[data.stories.length-1]:{ content: {} }
     
     const [metadata] = await Promise.all([
       this.$axios.$get(
