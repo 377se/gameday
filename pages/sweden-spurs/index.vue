@@ -1,0 +1,175 @@
+<template>
+  <section>
+    <div class="uk-background-muted">
+      <div class="uk-container uk-container-xsmall uk-padding">
+        <component 
+          v-if="story.content.component" 
+          :key="story.content._uid" 
+          :blok="story.content" 
+          :is="story.content.component" />
+        <form 
+          method="post"
+          @submit.prevent="login">
+          <fieldset class="uk-fieldset">
+
+            <div  
+              class="uk-margin">
+              <label class="uk-form-label">{{ $getCMSEntry(labels,'memberid', 'Medlemsnummer') }}</label>
+              <div class="uk-form-controls">
+                <input 
+                  v-model="form.memberid"
+                  class="uk-input" 
+                  type="text"
+                  name="memberid">
+              </div>
+            </div>
+            <div 
+              class="uk-margin" >
+              <label class="uk-form-label">{{ $getCMSEntry(labels,'lastname', 'Efternamn') }}</label>
+              <div class="uk-form-controls">
+                <input 
+                  v-model="form.password"
+                  class="uk-input" 
+                  type="text"
+                  name="lastname">
+              </div>
+            </div>
+
+          <Alert 
+            v-if="errors.length>0"
+            :errorlist="errors"
+            message=""
+          />
+
+            <div class="uk-margin uk-text-center">
+              <ButtonSubmit 
+                :is-submitting="isSubmitting"
+                theme="uk-button-primary"
+                :button-text="$getCMSEntry(labels,'next', 'Nästa')"
+                :is-submit="true"/>
+            </div>
+
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script>
+import { mapGetters, mapMutations } from 'vuex'
+import Alert from '@/components/Alert'
+import Page from '@/components/Page'
+import ButtonSubmit from '@/components/ButtonSubmit'
+
+export default {
+  async fetch () {
+    // Check if we are in the editor mode
+    let version = this.$nuxt.context.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
+    try{
+      let [storyblok, sb] = await Promise.all([
+          this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+this.$i18n.locale +"&datasource=fe-labels-login&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version),
+          this.$nuxt.context.app.$storyapi.get(`cdn/stories?starts_with=${process.env.STORYBLOK_CATALOGUE.replace('/','')}/${this.$i18n.locale}/login`, {
+            version: version,
+            cv: this.$nuxt.context.store.getters.version
+          })
+      ]);
+      this.labels = storyblok.datasource_entries
+      this.story=sb.data.stories.length>0?sb.data.stories[0]:{ content: {SEO:{title:'',description:''}} }
+    }catch(error){
+      console.log(error);
+    }
+  },
+  beforeRouteLeave(to, from, next){
+  try{
+      this.errors = []
+      //Iterate through each object field, key is name of the object field`
+      let _this = this
+      Object.keys(_this.form).forEach(function(key,index) {
+        _this.form[key] = ''
+      })
+    }catch(err){console.log(err)}
+    next() 
+  },
+    head () {
+    return {
+      title: 'Sweden Spurs',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Sweden Spurs',
+        },
+        {
+          hid: 'og:title',
+          name:  'og:title',
+          content: 'Sweden Spurs',
+        },
+        {
+          hid: 'og:description',
+          name:  'og:description',
+          content: 'Sweden Spurs',
+        }
+      ]
+    }
+  },
+  components:{
+    Alert,
+    ButtonSubmit,
+    Page
+  },
+  data() {
+    return {
+      story: { content: {SEO:{title:'',description:''}} },
+      form:{
+        memberid: '',
+        lastname: ''
+      },
+      labels: [],
+      errors: [],    
+      isSubmitting: false
+    }
+  },
+  mounted(){
+    this.$storybridge(() => {
+      const storyblokInstance = new StoryblokBridge()
+
+      storyblokInstance.on(['input', 'published', 'change'], (event) => {
+        if (event.action == 'input') {
+          if (event.story.id === this.story.id) {
+            this.story.content = event.story.content
+          }
+        } else {
+          window.location.reload()
+        }
+      })
+    }, (error) => {
+      console.error(error)
+    })
+  },
+  methods: {
+    async nextstep(event) {
+      var _this = this
+      this.isSubmitting=true
+      await this.$axios.post('/webapi/'+this.$i18n.locale+'/spurs/GetMember', {
+        MemberShipNumber: this.form.memberid,
+        LastName: this.form.lastname
+      }).then(function (response) {
+        _this.isSubmitting=false
+          if(response.data.ErrorList.length>0){
+            _this.errors = response.data.ErrorList
+          }else{
+            alert('Gick fint')
+          }
+      })
+      .catch(function (error) {
+        _this.isSubmitting=false
+        console.log(error)
+      })
+    }
+  }
+}
+</script>
+<style lang="scss">
+
+</style>
