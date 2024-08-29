@@ -1,9 +1,10 @@
 <template>
   <section>
+    <component v-if="story.content.component" :key="story.content._uid" :blok="story.content"
+      :is="story.content.component" :remove-padding="true" />
     <div v-if="membershipnumber < 1" class="uk-background-muted">
       <div class="uk-container uk-container-xsmall uk-padding">
-        <component v-if="story.content.component" :key="story.content._uid" :blok="story.content"
-          :is="story.content.component" />
+        <h2 class="uk-margin-small-bottom">Skriv in dina uppgifter här</h2>
         <form method="post" @submit.prevent="nextstep">
           <fieldset class="uk-fieldset">
 
@@ -49,7 +50,7 @@ export default {
     try{
       let [storyblok, sb, a] = await Promise.all([
           this.$axios.$get("https://api.storyblok.com/v1/cdn/datasource_entries?dimension="+this.$i18n.locale +"&datasource=fe-labels-login&token="+process.env.STORYBLOK +"&cv="+this.$store.getters.version),
-          this.$nuxt.context.app.$storyapi.get(`cdn/stories?starts_with=${process.env.STORYBLOK_CATALOGUE.replace('/','')}/${this.$i18n.locale}/login`, {
+          this.$nuxt.context.app.$storyapi.get(`cdn/stories?starts_with=${process.env.STORYBLOK_CATALOGUE.replace('/','')}/${this.$i18n.locale}/sweden-spurs`, {
             version: version,
             cv: this.$nuxt.context.store.getters.version
           }),
