@@ -67,7 +67,7 @@
 
         <div
           v-if="!article.IsOneSize" 
-          class="uk-flex uk-child-width-expand">
+          class="uk-flex uk-child-width-expand uk-margin-top">
           <div>
             <strong>{{$getCMSEntry(global_labels,'article_details_choose_size', 'Välj storlek')}}</strong>
           </div>
@@ -374,7 +374,7 @@ export default {
             _this.$store.commit('basket/add', response.data)
             if(response.data.CartId && response.data.CartId>0 && response.data.IsMemberPackage){
               _this.$router.push(_this.localePath('/extension/'+_this.$route.params.id+'?cartid='+response.data.CartId))
-            }else{
+            } else {
               UIkit.modal('#offscreen-basket').show();
             }
             try{
@@ -384,7 +384,9 @@ export default {
               content_ids: [_this.article.ArticleNumber],
               content_type: 'product',
               currency: process.env.CURRENCY_CODE
-            }});
+            }
+            });
+              _this.$router.push(_this.localePath('/c/204/223/tottenham-hotspur-fc'))
             }catch(err){
               console.log(err)
             }   

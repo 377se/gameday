@@ -1,6 +1,6 @@
 <template>
   <section>
-    <component v-if="story.content.component" :key="story.content._uid" :blok="story.content"
+    <component v-if="membershipnumber<1 && story.content.component" :key="story.content._uid" :blok="story.content"
       :is="story.content.component" :remove-padding="true" />
     <div v-if="membershipnumber < 1" class="uk-background-muted">
       <div class="uk-container uk-container-xsmall uk-padding">
@@ -142,10 +142,13 @@ export default {
         LastName: this.form.lastname
       }).then(function (response) {
         _this.isSubmitting = false
-        if (response.data.IsOkToProceed){
+        if (response.data && response.data.IsOkToProceed) {
+          window.scrollTo(0, 0)
           _this.membershipnumber = _this.form.memberid
-        }else{
+        } else if (response.data) {
           alert(response.data.Message)
+        } else { 
+          alert('Kontrollera medlemsnummer och efternamn, vi fick nämnligen ingen träff.')
         }
       })
       .catch(function (error) {
