@@ -182,7 +182,7 @@ export default {
   },
   webfontloader: {
     google: {
-      families: ['Poppins:800','Source+Sans+Pro'] //Loads Poppins and Source Sans
+      families: ['Poppins:800','Source+Sans+3'] //Loads Poppins and Source Sans
     }
   },
   /*
