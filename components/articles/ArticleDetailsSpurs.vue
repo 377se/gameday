@@ -1,6 +1,6 @@
 <template>
   <section 
-    class="uk-container uk-container-large uk-padding-small uk-padding-remove-top uk-background-default">
+    class="uk-container uk-container-large uk-padding-small uk-background-default">
     <div 
       class="uk-grid uk-grid-small"
       uk-grid>
