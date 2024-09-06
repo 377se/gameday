@@ -4,7 +4,7 @@
       :is="story.content.component" :remove-padding="true" />
     <div v-if="membershipnumber < 1" class="uk-background-muted">
       <div class="uk-container uk-container-xsmall uk-padding">
-        <h2 class="uk-margin-small-bottom">Skriv in dina uppgifter här</h2>
+        <h3 class="uk-margin-small-bottom">Skriv in dina uppgifter här</h3>
         <form method="post" @submit.prevent="nextstep">
           <fieldset class="uk-fieldset">
 
@@ -24,7 +24,7 @@
             <Alert v-if="errors.length>0" :errorlist="errors" message="" />
 
             <div class="uk-margin uk-text-center">
-              <ButtonSubmit :is-submitting="isSubmitting" theme="uk-button-primary"
+              <ButtonSubmit :is-submitting="isSubmitting" theme="uk-button-spurs"
                 :button-text="$getCMSEntry(labels,'next', 'Nästa')" :is-submit="true" />
             </div>
 
@@ -160,5 +160,16 @@ export default {
 }
 </script>
 <style lang="scss">
+.uk-button-spurs {
+  background-color: #121834;
+  color: #fff;
+}
 
+/* Hover + Focus */
+
+/* OnClick + Active */
+.uk-button-spurs.uk-active, .uk-button-spurs:hover, .uk-button-spurs:active {
+  background-color: #121834;
+  color: #fff;
+}
 </style>

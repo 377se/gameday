@@ -88,7 +88,7 @@
             <button 
               type="button"
               class="button-add-to-cart uk-button uk-width-1-1"
-              :class="{'uk-button-default':chosenSize!==size.value, 'uk-button-primary':chosenSize===size.Value, 'uk-disabled':size.ItemsInStock<=0}"
+              :class="{'uk-button-default':chosenSize!==size.value, 'uk-button-spurs':chosenSize===size.Value, 'uk-disabled':size.ItemsInStock<=0}"
               @click.prevent="setSize(size.Value)">
               {{size.Name}}
 
@@ -159,7 +159,7 @@
           v-if="!article.IsSoldOut"
           :is-submitting="isSubmitting"
           :button-text="$getCMSEntry(global_labels,'article_details_add_to_cart', 'Lägg i varukorgen')"
-          theme="uk-button uk-button-primary uppercase uk-width-1-1 uk-margin-small"
+          theme="uk-button uk-button-spurs uppercase uk-width-1-1 uk-margin-small"
           :class="{'uk-button-disabled':chosenSize!==-1 && !article.IsOneSize}"
           @button-click="addToCart()"
         />
