@@ -79,7 +79,7 @@ export default {
     let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
     try {
       const [sb] = await Promise.all([
-        this.$storyapi.get('cdn/stories?sort_by=slug:asc&starts_with=' + process.env.STORYBLOK_CATALOGUE.replace('/','') + '/' +this.$i18n.locale+ '/c/'+this.$route.params.parentid+'/'+this.$route.params.categoryid, {
+        this.$storyapi.get('cdn/stories?sort_by=slug:desc&starts_with=' + process.env.STORYBLOK_CATALOGUE.replace('/','') + '/' +this.$i18n.locale+ '/c/'+this.$route.params.parentid+'/'+this.$route.params.categoryid, {
           version: version,
           cv: this.$store.getters.version
         })
