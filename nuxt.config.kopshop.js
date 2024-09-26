@@ -143,6 +143,34 @@ export default {
         statusCode: 301
     },
   ],
+  /*auth:{
+    strategies: {
+      awsCognito: {
+        scheme: "oauth2",
+        endpoints: {
+          authorization: "https://liverpoolno.auth.eu-central-1.amazoncognito.com/login",
+          token: "https://liverpoolno.auth.eu-central-1.amazoncognito.com/oauth2/token",
+          userInfo: "https://liverpoolno.auth.eu-central-1.amazoncognito.com/oauth2/userInfo",
+          logout: "https://liverpoolno.auth.eu-central-1.amazoncognito.com/logout"
+        },
+        token: {
+          property: "access_token",
+          type: "Bearer",
+          maxAge: 3600
+        },
+        refreshToken: {
+          property: "refresh_token",
+          maxAge: 60 * 60 * 24 * 30
+        },
+        responseType: "token",
+        redirectUri: "http://localhost:3000/login",
+        logoutRedirectUri: "http://localhost:3000/login",
+        clientId: "65qi5lmu89hgcr4ma1aipaleus",
+        scope: ["email", "openid", "profile"],
+        codeChallengeMethod: "S256"
+      }
+    }
+  },*/
   styleResources: {
     scss: [
     './assets/scss/vars.samdodds.scss',
