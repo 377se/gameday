@@ -245,7 +245,7 @@
                             </div>
                             <div class="uk-flex uk-flex-start uk-flex-nowrap">
                               <div class="uk-text-bold uk-text-danger">{{ extension.PriceOnSaleDisplay }}</div>
-                              <div class="line-through uk-margin-small-left">{{ $getCMSEntry(global_labels,'article_details_original_price', 'ord.') }} {{ extension.Price }}</div>
+                              <div class="line-through uk-margin-small-left">{{ $getCMSEntry(global_labels,'article_details_original_price', 'ord.') }} {{ extension.PriceDisplay }}</div>
                             </div>
                           </div>
                           <div> <!-- DROP & KNAPP -->
