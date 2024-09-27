@@ -1,5 +1,6 @@
 <template>
   <section>
+    
     <component v-if="membershipnumber<1 && story.content.component" :key="story.content._uid" :blok="story.content"
       :is="story.content.component" :remove-padding="true" />
     <div v-if="membershipnumber < 1" class="uk-background-muted">
