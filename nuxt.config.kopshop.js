@@ -143,7 +143,7 @@ export default {
         statusCode: 301
     },
   ],
-  /*auth:{
+  auth:{
     strategies: {
       awsCognito: {
         scheme: "oauth2",
@@ -170,7 +170,7 @@ export default {
         codeChallengeMethod: "S256"
       }
     }
-  },*/
+  },
   styleResources: {
     scss: [
     './assets/scss/vars.samdodds.scss',
