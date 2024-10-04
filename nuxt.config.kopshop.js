@@ -169,7 +169,8 @@ export default {
         redirectUri: "https://kopshop.no/callback/cognito/login",
         logoutRedirectUri: "http://localhost:3000/login",
         clientId: "65qi5lmu89hgcr4ma1aipaleus",
-        scope: ["email", "openid", "profile"]
+        scope: ["email", "openid", "profile"],
+        codeChallengeMethod: "S256"
       }
     }
   },
