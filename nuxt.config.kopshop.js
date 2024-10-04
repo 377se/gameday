@@ -134,7 +134,7 @@ export default {
     '@nuxtjs/axios',
     'cookie-universal-nuxt',
     'nuxt-webfontloader',
-    ['@nuxtjs/style-resources']    
+    ['@nuxtjs/style-resources',"@nuxtjs/auth-next"]    
   ],
   redirect: [
     {
