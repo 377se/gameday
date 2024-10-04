@@ -165,12 +165,11 @@ export default {
           property: "refresh_token",
           maxAge: 60 * 60 * 24 * 30
         },
-        responseType: "token",
+        responseType: "code",
         redirectUri: "https://kopshop.no/callback/cognito/login",
         logoutRedirectUri: "http://localhost:3000/login",
         clientId: "65qi5lmu89hgcr4ma1aipaleus",
-        scope: ["email", "openid", "profile"],
-        codeChallengeMethod: "S256"
+        scope: ["email", "openid", "profile"]
       }
     }
   },
