@@ -39,6 +39,7 @@ export default {
       }
     ]
   },
+  components: true,
   /*
    ** Customize the progress-bar color
    */
@@ -91,13 +92,17 @@ export default {
     '@nuxtjs/router-extras',
     '@nuxtjs/gtm', 
     '@nuxtjs/pwa',
-    ["@storyblok/nuxt-2/module", { accessToken: "rGRW1HEorfNfSoGS5CzoDwtt" }],
+    ["@storyblok/nuxt-2/module",
+    { accessToken: "rGRW1HEorfNfSoGS5CzoDwtt" }],
   ],
   gtm: { id: 'GTM-K7K2MN' },
   /*
    ** Nuxt.js modules
    */
   modules: [
+    "@nuxtjs/auth-next",
+    '@nuxtjs/axios',
+    'cookie-universal-nuxt',
     '@nuxtjs/redirect-module',
     // Doc: https://axios.nuxtjs.org/usage
     ['@dansmaculotte/nuxt-zendesk',
@@ -131,10 +136,8 @@ export default {
         seo:false
       }
     ],
-    '@nuxtjs/axios',
-    'cookie-universal-nuxt',
     'nuxt-webfontloader',
-    ['@nuxtjs/style-resources',"@nuxtjs/auth-next"]    
+    ['@nuxtjs/style-resources']    
   ],
   redirect: [
     {
