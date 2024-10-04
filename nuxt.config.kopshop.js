@@ -163,7 +163,7 @@ export default {
           maxAge: 60 * 60 * 24 * 30
         },
         responseType: "token",
-        redirectUri: "http://localhost:3000/login",
+        redirectUri: "https://kopshop.no/callback/cognito/login",
         logoutRedirectUri: "http://localhost:3000/login",
         clientId: "65qi5lmu89hgcr4ma1aipaleus",
         scope: ["email", "openid", "profile"],
