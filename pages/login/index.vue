@@ -52,7 +52,6 @@
                 :button-text="$getCMSEntry(labels,'btn_login', 'Logga in')"
                 :is-submit="true"/>
             </div>
-            <button class="uk-button" @click="goToLogin">Login</button>
 
             <div class="uk-margin uk-text-center">
               <strong>{{ $getCMSEntry(labels,'no_account', 'Har du inget konto ännu?') }}</strong><br><nuxt-link :to="localePath('/register')">{{ $getCMSEntry(labels,'get_an_account', 'Skaffa ett här!') }}</nuxt-link>
