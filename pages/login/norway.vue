@@ -4,7 +4,7 @@
     <div
       v-else>
       <p>You are not logged in. </p>
-      <button class="uk-button" @click="login">Login</button>
+      <a href="https://auth.a.liverpool.no/login?client_id=65qi5lmu89hgcr4ma1aipaleus&response_type=code&scope=email+openid+phone+profile&redirect_uri=https%3A%2F%2Fkopshop.no%2Fcallback%2Fcognito%2Flogin" class="uk-button">Login</a>
     </div>
   </div>
 </template>
@@ -16,9 +16,7 @@ export default {
       loggedIn: false
     };
   },
-  created() {
-    this.loggedIn = this.$auth.strategy.token.get();
-  },
+  
   methods: {
     login() {
       this.$auth.loginWith("awsCognito");
