@@ -10,14 +10,14 @@
 
 export default {
   async fetch(){
-    const token = await this.$axios.get('/webapi/kopshop/CreateToken?code='+this.$route.query.code) 
+    const token = await this.$axios.post('/webapi/kopshop/CreateToken?code='+this.$route.query.code) 
   },
   mounted(){
     alert('KUKEN')
   },
   methods:{
     async sendToNorway(){
-      const token = await this.$axios.get('/webapi/kopshop/CreateToken?code='+this.$route.query.code) 
+      const token = await this.$axios.post('/webapi/kopshop/CreateToken?code='+this.$route.query.code) 
     }
   }
 };
