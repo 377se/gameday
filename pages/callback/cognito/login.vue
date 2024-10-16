@@ -1,7 +1,7 @@
 <template>
   <div>Sending code to backend-api</div>
-  <div>{{this.$route.query.code}}</div>
-  <div>{{ token }}</div>
+  <div>Query {{$route.query.code}}</div>
+  <div>Token {{ token }}</div>
 
 </template>
 <script>
