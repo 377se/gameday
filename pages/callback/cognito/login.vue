@@ -9,9 +9,6 @@
 <script>
 
 export default {
-  async fetch(){
-    const token = await this.$axios.post('/webapi/kopshop/CreateToken?code='+this.$route.query.code) 
-  },
   mounted(){
     alert('KUKEN')
   },
