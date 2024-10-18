@@ -97,7 +97,7 @@
                         >
                         {{ $getCMSEntry(global_labels, 'membership_', 'Lägg till familjemedlem') }}
                     </button></h3>
-                <p class="uk-margin-remove-top">Här kan du lägga till dina familjemedlemmar. En familjemedlem är skriven på samma adress som huvudkontot. Alla familjemedlemmar får ett eget konto hos LFC.se</p>
+                <p class="uk-margin-remove-top">Här kan du lägga till dina familjemedlemmar. En familjemedlem är skriven på samma adress som huvudkontot. Alla familjemedlemmar får ett eget konto hos LFC.se och behöver en egen mailadress</p>
                 <!-- FAMILJE-LISTA -->
                 <div class="uk-list uk-list-striped">
                     <div
