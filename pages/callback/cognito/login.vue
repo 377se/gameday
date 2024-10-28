@@ -8,7 +8,7 @@
 export default {
   data(){
     return{
-      error: null
+      errors: null
     }
   },
   async mounted(){
@@ -19,15 +19,16 @@ export default {
       var _this = this
       await this.$axios.post('/webapi/kopshop/CreateToken?code='+this.$route.query.code).then(function (response) {
           if(!response.IsLoggedIn){
-            _this.errors = response.ErrorList
+            _this.errors = response
           }else{
+            _this.errors = response
             _this.$store.commit('setCid', response.Id)
             _this.$cookies.set('cid', response.Id)
             _this.$router.push(_this.localePath('/')) 
           }
       })
       .catch(function (error) {
-        _this.error = error
+        _this.errors = error
         console.log(error)
       })
     
