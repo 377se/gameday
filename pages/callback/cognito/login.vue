@@ -1,20 +1,36 @@
 <template>
   <div>
-    <div>Sending code to backend-api</div>
-    <div>Query {{$route.query.code}}</div>
-    <div>Token {{ token }}</div>
-    <div><button type="button" @click="sendToNorway()">Skicka</button></div>
+    <div>{{error}}</div>
   </div>
 </template>
 <script>
 
 export default {
-  mounted(){
-    alert('KUKEN')
+  data(){
+    return{
+      error: null
+    }
+  },
+  async fetch(){
+    this.sendToNorway()
   },
   methods:{
     async sendToNorway(){
-      const token = await this.$axios.post('/webapi/kopshop/CreateToken?code='+this.$route.query.code) 
+      var _this = this
+      await this.$axios.post('/webapi/kopshop/CreateToken?code='+this.$route.query.code).then(function (response) {
+          if(response.data.ErrorList.length>0){
+            _this.errors = response.data.ErrorList
+          }else{
+            _this.$store.commit('setCid', response.data.Id)
+            _this.$cookies.set('cid', response.data.Id)
+            _this.$router.push(_this.localePath('/')) 
+          }
+      })
+      .catch(function (error) {
+        _this.error = error
+        console.log(error)
+      })
+    
     }
   }
 };
