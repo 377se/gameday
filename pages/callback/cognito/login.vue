@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div>{{errors}}</div>
+    <div v-if="errors">{{errors}}</div>
+    <div v-else>Loading...</div>
   </div>
 </template>
 <script>
