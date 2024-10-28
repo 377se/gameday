@@ -11,7 +11,7 @@ export default {
       error: null
     }
   },
-  async fetch(){
+  async mounted(){
     this.sendToNorway()
   },
   methods:{
