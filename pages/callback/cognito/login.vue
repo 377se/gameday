@@ -18,12 +18,11 @@ export default {
     async sendToNorway(){
       var _this = this
       await this.$axios.post('/webapi/kopshop/CreateToken?code='+this.$route.query.code).then(function (response) {
-          if(!response.IsLoggedIn){
+          if(!response.data && !response.data.IsLoggedIn){
             _this.errors = response
           }else{
-            _this.errors = response
-            _this.$store.commit('setCid', response.Id)
-            _this.$cookies.set('cid', response.Id)
+            _this.$store.commit('setCid', response.data.Id)
+            _this.$cookies.set('cid', response.data.Id)
             _this.$router.push(_this.localePath('/')) 
           }
       })
