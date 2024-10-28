@@ -1,6 +1,13 @@
 <template>
   <section>
     <div class="uk-background-muted">
+      <div class="uk-container uk-container-xsmall uk-padding uk-background-primary">
+        <label class="uk-form-label" style="color:#fff;">Logg inn via Liverpool.no</label>
+        <div class="uk-flex uk-flex-middle">
+          <img src="logo-liverpool-no" width="200" style="margin-right:20px;"/>
+          <a href="https://auth.a.liverpool.no/login?client_id=65qi5lmu89hgcr4ma1aipaleus&response_type=code&scope=email+openid+phone+profile&redirect_uri=https%3A%2F%2Fkopshop.no%2Fcallback%2Fcognito%2Flogin" class="uk-button uk-button-secondary">Logg inn via Liverpool.no</button>
+        </div>
+      </div>
       <div class="uk-container uk-container-xsmall uk-padding">
         <component 
           v-if="story.content.component" 
