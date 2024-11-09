@@ -101,7 +101,7 @@ export default {
     let sortorder = this.$route.query.sortorder?this.$route.query.sortorder:process.env.DEFAULT_SORT_ORDER
     
     try {
-      const [a, c, s, g, b, t] = await Promise.all([
+      const [a, c, s, g, t] = await Promise.all([
         this.$axios.$get(
           '/webapi/'+this.$i18n.locale+'/Article/getArticleList?attribute='+attribute+'&sortorder='+sortorder+'&pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=null'
         ),
@@ -115,15 +115,12 @@ export default {
           '/webapi/'+this.$i18n.locale+'/Filter/GetGenderList?categoryName=null&teamName=null&garmentName='+productType
         ),
         this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Filter/GetBrandList?categoryName=null&teamName=null&garmentName='+productType
-        ),
-        this.$axios.$get(
           '/webapi/'+this.$i18n.locale+'/Filter/GetTeamListByCategory?categoryId=0&productTypeId='+productType+'&brandId=0'
         )
       ]);
       this.attribute = attribute
       this.articles=a.ArticleList
-      this.brands=b
+     
       this.colors=c
       this.sizes=s
       this.gender=g
@@ -131,6 +128,18 @@ export default {
       this.pageNum=pageNum
       this.teams = t
     } catch (err) {
+      console.log('_team error')
+      console.log(err);
+      console.log(err.request);
+    }
+    try {
+      const [a, c, s, g, b, t] = await Promise.all([
+        this.$axios.$get(
+            '/webapi/'+this.$i18n.locale+'/Filter/GetBrandList?categoryName=null&teamName=null&garmentName='+productType
+          ),
+        ]);
+        this.brands=b
+    }catch(err){
       console.log('_team error')
       console.log(err);
       console.log(err.request);
