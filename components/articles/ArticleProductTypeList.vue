@@ -133,12 +133,12 @@ export default {
       console.log(err.request);
     }
     try {
-      const [a, c, s, g, b, t] = await Promise.all([
+      /*const [a, c, s, g, b, t] = await Promise.all([
         this.$axios.$get(
             '/webapi/'+this.$i18n.locale+'/Filter/GetBrandList?categoryName=null&teamName=null&garmentName='+productType
           ),
-        ]);
-        this.brands=b
+        ]);*/
+        this.brands=null
     }catch(err){
       console.log('_team error')
       console.log(err);
