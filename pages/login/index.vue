@@ -1,11 +1,13 @@
 <template>
   <section>
     <div class="uk-background-muted">
-      <div class="uk-container uk-container-xsmall uk-padding uk-background-primary">
+      <div
+        v-if="siteid==3"
+        class="uk-container uk-container-xsmall uk-padding uk-background-primary">
         <h4 style="color:#fff;">Logg inn via Liverpool.no</h4>
         <div class="uk-flex uk-flex-middle uk-margin-top">
           <img src="/logo-liverpool-no.svg" width="100" style="margin-right:60px;" />
-          <a href="https://auth.a.liverpool.no/login?client_id=65qi5lmu89hgcr4ma1aipaleus&response_type=code&scope=email+openid+phone+profile&redirect_uri=https%3A%2F%2Fkopshop.no%2Fcallback%2Fcognito%2Flogin" class="uk-button uk-button-secondary">Logg inn via Liverpool.no</button>
+          <a href="https://auth.a.liverpool.no/login?client_id=65qi5lmu89hgcr4ma1aipaleus&response_type=code&scope=email+openid+phone+profile&redirect_uri=https%3A%2F%2Fkopshop.no%2Fcallback%2Fcognito%2Flogin" class="uk-button uk-button-secondary">Logg inn via Liverpool.no</a>
         </div>
       </div>
       <div class="uk-container uk-container-xsmall uk-padding">
@@ -142,7 +144,8 @@ export default {
       },
       labels: [],
       errors: [],    
-      isSubmitting: false
+      isSubmitting: false,
+      siteid: process.env.SITE_ID
     }
   },
   mounted(){
