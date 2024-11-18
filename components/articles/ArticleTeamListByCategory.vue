@@ -259,6 +259,7 @@ export default {
       } 
     },
     onIntersect(entry, unobserve) {
+      this.server=false
       // After loading Cancel monitoring, optimise performance
       if (this.pageNum < this.article.TotalPages) {
         this.pageNum++
