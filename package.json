@@ -85,6 +85,7 @@
     "uikit": "3.15.14",
     "vue-click-outside": "^1.1.0",
     "vue-content-placeholders": "^0.2.1",
+    "vue-intersection-observer": "^0.1.9",
     "vue-meta": "^2.4.0",
     "vuex": "^3.6.0"
   },

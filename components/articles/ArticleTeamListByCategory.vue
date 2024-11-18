@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section style="min-height:60vh;">
     <template v-if="$fetchState.pending">
       <div class="uk-container uk-container-large uk-padding-small">
         <content-placeholders :rounded="true">
@@ -106,17 +106,22 @@
               {{ $getCMSEntry(global_labels,'info_no_items_found', 'Vi hittade inga produkter för det aktuella urvalet.') }}
             </div>
           </div>
+          <Observer rootMargin="100px 0px 100px 0px" @on-change="onIntersect">
+            <div style="height: 20px"></div>
+         </Observer>
           <ul 
-            v-if="article.TotalPages>1"
+            v-if="server && article.TotalPages>1"
             class="uk-pagination uk-flex-center uk-margin-large uk-margin-bottom">
-            <li>
+            <li
+              v-if="pageNum>1">
               <a 
-                href="#"
+                :href="$route.path+'?page='+pageNum-1"
                 @click.stop.prevent="previous()"><span uk-pagination-previous></span> {{ $getCMSEntry(global_labels,'paging_previous', 'Föregående') }}</a></li>
             <li><span>{{ pageNum }}/{{ article.TotalPages }}</span></li>
-            <li>
+            <li
+              v-if="pageNum<article.TotalPages">
               <a 
-                href="#"
+                :href="$route.path+'?page='+pageNum-1"
                 @click.stop.prevent="next()">{{ $getCMSEntry(global_labels,'paging_next', 'Nästa') }} <span uk-pagination-next></span></a></li>
           </ul>
       </div>
@@ -132,57 +137,9 @@ import SortItems from "@/components/filter/SortItems";
 
 export default {
   async fetch () {
-    let pageNum = this.$route.query.page?this.$route.query.page:1
-    let color = this.$route.query.color?this.$route.query.color:null
-    let gender = this.$route.query.gender?this.$route.query.gender:null
-    let productType = this.$route.query.producttype?this.$route.query.producttype:(this.$route.params.filterid?this.$route.params.filterid:(this.blok.producttype?this.blok.producttype:null))
-    let size = this.$route.query.size?this.$route.query.size:null
-    let attribute = this.$route.query.attribute?this.$route.query.attribute:null
-    let sale = this.$route.query.sale?this.$route.query.sale:false
-    let brand = this.$route.query.brand?this.$route.query.brand:null
-    let team = this.$route.query.team?this.$route.query.team:null
-    let sortorder = this.$route.query.sortorder?this.$route.query.sortorder:this.defaultSortOrder
-
-    try {
-      const [a, p, c, s, g, b, t] = await Promise.all([
-        this.$axios.$get(
-          '/webapi/'+this.$i18n.locale+'/Article/getArticleListByCategoryId?sortorder='+sortorder+'&pageSize=0&lookUpBrand=false&brand='+brand+'&attribute='+attribute+'&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +this.$route.params.categoryid
-        ),
-        this.$axios.$get(
-          `/webapi/${this.$i18n.locale}/Filter/GetProductTypeListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null`
-        ),
-        this.$axios.$get(
-          `/webapi/${this.$i18n.locale}/Filter/GetColourListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null&brandName=null`
-        ),
-        this.$axios.$get(
-          `/webapi/${this.$i18n.locale}/Filter/GetSizeListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null&brandName=null`
-        ),
-        this.$axios.$get(
-          `/webapi/${this.$i18n.locale}/Filter/GetGenderListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null`
-        ),
-        this.$axios.$get(
-          `/webapi/${this.$i18n.locale}/Filter/GetBrandListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null`
-        ),
-        this.$axios.$get(
-          `/webapi/${this.$i18n.locale}/Filter/GetTeamListByCategory?categoryId=${this.$route.params.categoryid}&productTypeId=0&brandId=0`
-        )
-      ]);
-      this.attribute = attribute
-      this.articles=a.ArticleList
-      this.producttypes=p
-      this.colors=c
-      this.sizes=s
-      this.gender=g
-      this.brands=b
-      this.teamlist=t
-      this.article=a
-      this.pageNum=pageNum
-    } catch (err) {
-      console.log('_team error')
-      console.log(err);
-      console.log(err.request);
-    }
-
+    this.server = process.server
+    this.pageNum = this.$route.query.page ? this.$route.query.page : 1
+    await this.fetchArticles()
   },
   components:{
     ArticleCardSimple,
@@ -219,7 +176,8 @@ export default {
       numOfProducts: 1,
       attribute: '',
       readmore: true,
-      siteid: process.env.SITE_ID
+      siteid: process.env.SITE_ID,
+      server: false
     }
   },
   computed: {
@@ -235,6 +193,57 @@ export default {
     }
   },
   methods:{
+    async fetchArticles(){
+    let pageNum = this.pageNum
+    let color = this.$route.query.color?this.$route.query.color:null
+    let gender = this.$route.query.gender?this.$route.query.gender:null
+    let productType = this.$route.query.producttype?this.$route.query.producttype:(this.$route.params.filterid?this.$route.params.filterid:(this.blok.producttype?this.blok.producttype:null))
+    let size = this.$route.query.size?this.$route.query.size:null
+    let attribute = this.$route.query.attribute?this.$route.query.attribute:null
+    let sale = this.$route.query.sale?this.$route.query.sale:false
+    let brand = this.$route.query.brand?this.$route.query.brand:null
+    let team = this.$route.query.team?this.$route.query.team:null
+    let sortorder = this.$route.query.sortorder?this.$route.query.sortorder:this.defaultSortOrder
+
+    try {
+      const [a, p, c, s, g, b, t] = await Promise.all([
+        this.$axios.$get(
+          '/webapi/'+this.$i18n.locale+'/Article/getArticleListByCategoryId?sortorder='+sortorder+'&pageSize=0&lookUpBrand=false&brand='+brand+'&attribute='+attribute+'&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName=' +this.$route.params.categoryid
+        ),
+        this.$axios.$get(
+          `/webapi/${this.$i18n.locale}/Filter/GetProductTypeListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null`
+        ),
+        this.$axios.$get(
+          `/webapi/${this.$i18n.locale}/Filter/GetColourListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null&brandName=null`
+        ),
+        this.$axios.$get(
+          `/webapi/${this.$i18n.locale}/Filter/GetSizeListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null&brandName=null`
+        ),
+        this.$axios.$get(
+          `/webapi/${this.$i18n.locale}/Filter/GetGenderListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null`
+        ),
+        this.$axios.$get(
+          `/webapi/${this.$i18n.locale}/Filter/GetBrandListByCategoryId?categoryId=${this.$route.params.categoryid}&teamName=null&garmentName=null`
+        ),
+        this.$axios.$get(
+          `/webapi/${this.$i18n.locale}/Filter/GetTeamListByCategory?categoryId=${this.$route.params.categoryid}&productTypeId=0&brandId=0`
+        )
+      ]);
+      this.attribute = attribute
+      this.articles.push(...a.ArticleList)
+      this.producttypes=p
+      this.colors=c
+      this.sizes=s
+      this.gender=g
+      this.brands=b
+      this.teamlist=t
+      this.article=a
+    } catch (err) {
+      console.log('_team error')
+      console.log(err);
+      console.log(err.request);
+    }
+    },
     setReadMore(){
       this.readmore=false
     },
@@ -245,8 +254,17 @@ export default {
     },
     previous(){
       if(this.pageNum>1){
-        this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)-1)}})
+        //this.$router.push({query: {...this.$route.query, page: (parseInt(this.pageNum)-1)}})
+        this.pageNum++
       } 
+    },
+    onIntersect(entry, unobserve) {
+      // After loading Cancel monitoring, optimise performance
+      this.pageNum++
+      this.fetchArticles()
+      /*if (entry.isIntersecting) {
+        unobserve()
+      }*/
     }
   }
 }
