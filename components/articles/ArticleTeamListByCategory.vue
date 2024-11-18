@@ -106,9 +106,6 @@
               {{ $getCMSEntry(global_labels,'info_no_items_found', 'Vi hittade inga produkter för det aktuella urvalet.') }}
             </div>
           </div>
-          <Observer rootMargin="100px 0px 100px 0px" @on-change="onIntersect">
-            <div style="height: 20px"></div>
-         </Observer>
           <ul 
             v-if="server && article.TotalPages>1"
             class="uk-pagination uk-flex-center uk-margin-large uk-margin-bottom">
@@ -124,6 +121,9 @@
                 :href="$route.path+'?page='+pageNum-1"
                 @click.stop.prevent="next()">{{ $getCMSEntry(global_labels,'paging_next', 'Nästa') }} <span uk-pagination-next></span></a></li>
           </ul>
+          <Observer rootMargin="100px 0px 100px 0px" @on-change="onIntersect">
+            <div style="height: 150px"></div>
+         </Observer>
       </div>
     </template>
   </section>
@@ -260,8 +260,10 @@ export default {
     },
     onIntersect(entry, unobserve) {
       // After loading Cancel monitoring, optimise performance
-      this.pageNum++
-      this.fetchArticles()
+      if (this.pageNum < this.article.TotalPages) {
+        this.pageNum++
+        this.fetchArticles()
+      }
       /*if (entry.isIntersecting) {
         unobserve()
       }*/
