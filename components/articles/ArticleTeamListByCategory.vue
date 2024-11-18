@@ -259,7 +259,8 @@ export default {
       } 
     },
     async onIntersect(entry, unobserve) {
-      this.server=false
+      this.server = false
+      console.log('intersct')
       // After loading Cancel monitoring, optimise performance
       if (this.pageNum < this.article.TotalPages) {
         this.pageNum++
