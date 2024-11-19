@@ -103,6 +103,11 @@ export default {
     if(this.klarnahtml!=null){
       this.loadScripts()
     }
+    try{
+      this.$gtm.push({event:'InitiateCheckout'})
+    }catch(err){
+      console.log(err)
+    }
   },
   methods:{
     async loadKlarna(){

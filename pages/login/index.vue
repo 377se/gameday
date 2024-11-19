@@ -164,6 +164,11 @@ export default {
     }, (error) => {
       console.error(error)
     })
+    try{
+      this.$gtm.push({event:'Login'})
+    }catch(err){
+      console.log(err)
+    }
   },
   methods: {
     goToLogin() {

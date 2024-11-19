@@ -136,6 +136,17 @@ export default {
     }, (error) => {
       console.error(error)
     })
+
+    try{
+      this.$gtm.push({event:'ViewContentCategory',
+        data: {
+          content_name: story.content.SEO.title,
+          content_type: 'category'
+        }
+      })
+    }catch(err){
+      console.log(err)
+    }
   },
   methods:{
     setReadMore(){
