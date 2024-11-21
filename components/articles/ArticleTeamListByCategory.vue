@@ -138,6 +138,7 @@ import SortItems from "@/components/filter/SortItems";
 export default {
   async fetch () {
     this.server = process.server
+    this.articles = []
     this.pageNum = this.$route.query.page ? this.$route.query.page : 1
     await this.fetchArticles()
   },
