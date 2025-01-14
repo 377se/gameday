@@ -8,7 +8,7 @@ export default {
     STORYBLOK_LABELS: 'streetweek',
     SITE_URL: 'https://www.streetweekshop.se',
     X_DEFAULT: 'https://www.streetweekshop.se',
-    LOGO_URL: '/sites/streetweek/SW-shop-2024.png',
+    LOGO_URL: '/sites/streetweek/SW-shop-2025_gradient.png',
     SITE_ID: 8,
     MEMBER_PRICES: false,
     ISO_LANG: 'sv',
