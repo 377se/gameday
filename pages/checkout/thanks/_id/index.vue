@@ -97,8 +97,8 @@ export default {
     var _this = this;
 
     try {
-      const _organic = this.siteid=='4'?'&click_id=organic':''
-      const click_id = (this.siteid=='4' && this.$cookies.get("click_id"))?'&click_id='+this.$cookies.get("click_id"):_organic;
+      const _organic = this.siteid=='4'?'&clickid=organic':''
+      const click_id = (this.siteid=='4' && this.$cookies.get("click_id"))?'&clickid='+this.$cookies.get("click_id"):_organic;
       const url = `/webapi/klarnacheckout3/GetKlarnaAcknowledge?id=${this.$route.params.id}${click_id}`;
       const klarnahtml = await this.$axios.$get(url);
       this.klarnahtml=klarnahtml;
