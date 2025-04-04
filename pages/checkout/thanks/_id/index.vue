@@ -46,7 +46,8 @@ export default {
     return {
       klarnahtml: null,
       obj: null,
-      currencycode: process.env.CURRENCY_CODE
+      currencycode: process.env.CURRENCY_CODE,
+      siteid: process.env.SITE_ID
     };
   },
   mounted(){
@@ -96,7 +97,9 @@ export default {
     var _this = this;
 
     try {
-      const url = `/webapi/klarnacheckout3/GetKlarnaAcknowledge?id=${this.$route.params.id}`;
+      const _organic = this.siteid=='4'?'&click_id=organic':''
+      const click_id = (this.siteid=='4' && this.$cookies.get("click_id"))?'&click_id='+this.$cookies.get("click_id"):_organic;
+      const url = `/webapi/klarnacheckout3/GetKlarnaAcknowledge?id=${this.$route.params.id}${click_id}`;
       const klarnahtml = await this.$axios.$get(url);
       this.klarnahtml=klarnahtml;
       try{

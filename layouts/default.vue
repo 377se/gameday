@@ -102,6 +102,17 @@ export default {
     }*/
     //UIkit.notification("", {status:'primary'})
     //Make sure default is in place before inmobi is loaded.
+    try{ //Handling click_id for campaigns and trackers.
+      if(this.$route.query.gclid || this.$route.query.ttclid || this.$route.query.fbclid){
+        let _q
+        if(!this.$route.query.fbclid){
+          _q = this.$route.query.gclid?this.$route.query.gclid:this.$route.query.ttclid;
+        }else{
+          _q = 'fb.1.'+Date.now()+'.'+this.$route.query.fbclid
+        }
+        this.$cookies.set("click_id", _q);
+      }
+    }catch(err){console.log('click_id set error: '+err)}
     try{
       if(this.$cookies.get('cid')!=undefined){
         this.$store.commit('setCid', this.$cookies.get('cid'))
