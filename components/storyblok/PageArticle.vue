@@ -68,6 +68,7 @@ export default {
       league:''
     }
   },
+  fetchOnServer: false,
   async fetch() {
     try {
       if(process.server)

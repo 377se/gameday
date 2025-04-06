@@ -305,9 +305,9 @@ export default {
       default: ''
     },
     metadata:{
-      type: Array,
+      type: Object,
       required: false,
-      default: []
+      default: {}
     },
     article: {
       type: Object,
