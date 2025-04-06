@@ -21,6 +21,7 @@
       <template
         v-else>
         <SeoHead
+          v-if="article"
           :title="article.MetaTitle"
           :description="`${article.MetaDescription}`.replace(/<\/?[^>]+(>|$)/g, '')"
           :canonical="metadata.Canonical"
@@ -45,6 +46,7 @@
           </ul>
         </div>
         <ArticleDetails 
+          v-if="article"
           v-bind:article="article"
           :metadata="metadata"
           :league="league"/>
@@ -61,7 +63,7 @@ export default {
   },
   data() {
     return {
-      article: {},
+      article: null,
       detailsSrc: process.env.DETAILS_SRC,
       metadata: {Canonical:this.$route.path, LangHref:[]},
       siteid: process.env.SITE_ID,
@@ -70,16 +72,13 @@ export default {
   },
   async fetch() {
     try {
-      if(process.server)
-        console.log('server article')
-      else
-      console.log('client article')
       const url = `/webapi/${this.$i18n.locale}/Article/GetArticleDetailsById?teamName=null&articleId=${this.$route.params.id}`;
       const metadataurl = `/webapi/${this.$i18n.locale}/MetaData/GetMetaData?url=/a/${this.$route.params.id}/${this.$route.params.slug}`;
       const article = await this.$axios.$get(url);
+      this.article=article
+
       const metadata = await this.$axios.$get(metadataurl);
  
-      this.article=article
       this.metadata = metadata
       var _this = this
       try{
@@ -109,6 +108,10 @@ export default {
 
     } catch (err) {
       console.log(err);
+      this.$nuxt.error({
+          statusCode: 404,
+          message: err.response.data,
+        });
     }
   }
 };
