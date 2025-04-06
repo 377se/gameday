@@ -68,7 +68,6 @@ export default {
       league:''
     }
   },
-  fetchOnServer: false,
   async fetch() {
     try {
       if(process.server)
@@ -96,6 +95,10 @@ export default {
         })
       }catch(err){
         console.log(err)
+        this.$nuxt.error({
+          statusCode: 404,
+          message: err.response.data,
+        });
       }
 
       try{
