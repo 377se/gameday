@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <span class="uk-heading-xsmall">{{teamtitle}}</span>
-    <h2 class="uk-heading-xsmall uk-margin-remove-top">{{title}}</h2>
-    <span class="uk-heading-xsmall">{{subtitle}}</span>
-  </div>
+  <h1>
+    <span class="uk-heading-xsmall" style="font-family:'Source Sans 3';font-size:16px;">{{teamtitle}}</span>
+    <div class="uk-h2 uk-margin-remove">{{title}}</div>
+    <span class="uk-heading-xsmall" style="font-family:'Source Sans 3';font-size:16px;">{{subtitle}}</span>
+  </h1>
 </template>
 
 <script>
