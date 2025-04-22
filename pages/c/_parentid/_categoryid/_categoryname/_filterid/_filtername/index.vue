@@ -27,6 +27,7 @@
       <template
         v-else>
         <SeoHead
+          v-if="metadata"
           :title="''"
           :description="''"
           :canonical="metadata.Canonical"
@@ -34,7 +35,7 @@
         <div
           class="uk-container uk-container-large uk-padding-small uk-padding-remove-bottom">
           <ul
-            v-if="metadata.Breadcrumb && metadata.Breadcrumb.length>0" 
+            v-if="metadata && metadata.Breadcrumb && metadata.Breadcrumb.length>0" 
             class="uk-breadcrumb">
             <li>
               <nuxt-link :to="localePath('/')">
@@ -72,18 +73,25 @@ export default {
   async fetch () {
     // Check if we are in the editor mode
     let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
+    let cname = this.$route.params.categoryname=='undefined'?'wrong':this.$route.params.categoryname
+
     try {
       const [sb, metadata] = await Promise.all([
-        this.$storyapi.get('cdn/stories?starts_with=' + process.env.STORYBLOK_CATALOGUE.replace('/','') + '/' +this.$i18n.locale+ '/c/'+this.$route.params.parentid+'/'+this.$route.params.categoryid +'/'+this.$route.params.categoryname +'/'+this.$route.params.filterid +'/', {
+        this.$storyapi.get('cdn/stories?starts_with=' + process.env.STORYBLOK_CATALOGUE.replace('/','') + '/' +this.$i18n.locale+ '/c/'+this.$route.params.parentid+'/'+this.$route.params.categoryid +'/'+cname +'/'+this.$route.params.filterid +'/', {
           version: version,
           cv: this.$store.getters.version
         }),
         this.$axios.$get(
-          `/webapi/${this.$i18n.locale}/MetaData/GetMetadataForCategory?url=/c/${this.$route.params.parentid}/${this.$route.params.categoryid}/${this.$route.params.categoryname}/${this.$route.params.filterid}`
+          `/webapi/${this.$i18n.locale}/MetaData/GetMetadataForCategory?url=/c/${this.$route.params.parentid}/${this.$route.params.categoryid}/${cname}/${this.$route.params.filterid}`
         )
       ]);
       this.metadata = metadata
       this.story=sb.data.stories.length>0?sb.data.stories[0]:{ content: {} }
+
+      if(cname=='wrong'){
+        this.$nuxt.context.redirect(301, metadata.Canonical)
+      }
+        
     } catch (err) {
       console.log('_team error')
       console.log(err);
