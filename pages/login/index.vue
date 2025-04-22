@@ -169,6 +169,11 @@ export default {
     }catch(err){
       console.log(err)
     }
+    try{
+      zaraz.track('Login')
+    }catch(err){
+      console.log(err)
+    }
   },
   methods: {
     goToLogin() {

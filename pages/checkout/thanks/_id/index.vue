@@ -71,6 +71,9 @@ export default {
       var _this = this
       this.$gtm.push({ event: 'purchase', ecommerce: _this.obj })
     }catch(err){console.log(err)}
+    try{
+      zaraz.ecommerce('purchase',  _this.obj )
+    }catch(err){console.log(err)}
   },
   methods:{
     loadScripts(){
@@ -108,6 +111,7 @@ export default {
         var _obj = {currencyCode: process.env.CURRENCY_CODE, purchase: {actionField: google.actionField, products: google.products}}
         this.obj = _obj
         this.$gtm.push({ event: 'purchase', ecommerce: _obj })
+        zaraz.track('purchase',_obj)
       }catch(err){console.log(err)}
     } catch (err) {
       this.klarnahtml={Ordernumber:'', Html: '<div class="uk-container" style="padding-left:20px;padding-right:20px;"><h3>Tack!</h3><p>Din order är nu hos oss. Var vänlig kolla din mail och se så att du fått en orderbekräftelse.</p></div>'}

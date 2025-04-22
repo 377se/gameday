@@ -108,6 +108,11 @@ export default {
     }catch(err){
       console.log(err)
     }
+    try{
+      zaraz.track('InitiateCheckout')
+    }catch(err){
+      console.log(err)
+    }
   },
   methods:{
     async loadKlarna(){
