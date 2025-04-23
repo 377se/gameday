@@ -38,16 +38,6 @@ export default {
         name: 'description',
         content: 'Supporterprylar'
       },
-      {
-        httpEquiv:"Content-Security-Policy",
-        content:"default-src 'self'; script-src 'self' *.zaraz.cloudflare.com;"
-      }
-    ],
-    script: [
-      {
-        src: '/cdn-cgi/zaraz/i.js',
-        referrerpolicy:'origin'
-      }
     ],
   },
   /*
