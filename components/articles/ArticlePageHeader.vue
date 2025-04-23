@@ -1,8 +1,8 @@
 <template>
   <h1>
-    <span class="uk-heading-xsmall" style="font-family:'Source Sans 3';font-size:16px;">{{teamtitle}}</span>
+    <span class="uk-heading-xsmall" style="font-size:16px;">{{teamtitle}}</span>
     <div class="uk-h2 uk-margin-remove">{{title}}</div>
-    <span class="uk-heading-xsmall" style="font-family:'Source Sans 3';font-size:16px;">{{subtitle}}</span>
+    <span class="uk-heading-xsmall" style="font-size:16px;">{{subtitle}}</span>
   </h1>
 </template>
 
