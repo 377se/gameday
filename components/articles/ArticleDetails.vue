@@ -455,14 +455,14 @@ export default {
             }
             
             try{
-              zaraz.track('AddToCart', {content:{
+              zaraz.track('AddToCart', {
                 content_name: _this.article.Name, 
                 content_category: _this.article.HeadCategory,
                 content_ids: [_this.article.ArticleNumber],
                 content_type: 'product',
                 value: _this.article.Price.toFixed(2),
                 currency: process.env.CURRENCY_CODE
-              }});
+              });
             }catch(err){
               console.log(err)
             }   
