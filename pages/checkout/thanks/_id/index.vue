@@ -73,6 +73,7 @@ export default {
     }catch(err){console.log(err)}
     try{
       var _obj = this.obj
+      zaraz.track('test-purchase')
       zaraz.track('purchase', _obj)
     }catch(err){console.log(err)}
   },
