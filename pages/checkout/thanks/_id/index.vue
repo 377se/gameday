@@ -72,7 +72,8 @@ export default {
       this.$gtm.push({ event: 'purchase', ecommerce: _this.obj })
     }catch(err){console.log(err)}
     try{
-      zaraz.track('purchase',  _this.obj )
+      var _obj = this.obj
+      zaraz.track('purchase', _obj)
     }catch(err){console.log(err)}
   },
   methods:{
