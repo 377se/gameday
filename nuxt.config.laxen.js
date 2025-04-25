@@ -90,12 +90,12 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     //'@nuxtjs/eslint-module'
-    //'@nuxtjs/gtm', 
+    '@nuxtjs/gtm', 
     '@nuxtjs/pwa',
     '@nuxtjs/router-extras',
     ["@storyblok/nuxt-2/module", { accessToken: "rGRW1HEorfNfSoGS5CzoDwtt" }],
   ],
-  //gtm: { id: 'GTM-PZ4NQSW' },
+  gtm: { id: 'GTM-PZ4NQSW' },
   /*
    ** Nuxt.js modules
    */
