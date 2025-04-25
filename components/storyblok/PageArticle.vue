@@ -91,6 +91,16 @@ export default {
             value: _this.article.Price.toFixed(2),
             currency: process.env.CURRENCY_CODE
         })
+        zaraz.ecommerce('Product Viewed',{
+          product_id: _this.article.ArticleNumber,
+          sku: _this.article.ProductId,
+          category: _this.article.HeadCategory,
+          name:  _this.article.Name,
+          brand: _this.article.BrandName,
+          price: _this.article.Price.toFixed(2),
+          currency: process.env.CURRENCY_CODE,
+          value: _this.article.Price.toFixed(2)
+        })
             }catch(err){
               console.log(err)
             }   
