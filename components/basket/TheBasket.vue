@@ -60,11 +60,13 @@
                           class="article-size">
                           {{ item.SizeDisplay }}<br/>
                         </span>
-                        <span
-                          v-for="size in item.Size"
-                          :key="size.Value"
-                          class="article-size">
-                          {{ size.Name }}<br/>
+                        <span v-else>
+                          <span
+                            v-for="size in item.Size"
+                            :key="size.Value"
+                            class="article-size">
+                            {{ size.Name }}<br/>
+                          </span>
                         </span>
                       </td>
                       <td
