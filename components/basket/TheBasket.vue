@@ -56,6 +56,11 @@
                         </span>
                         <br/>
                         <span
+                          v-if="item.SizeDisplay"
+                          class="article-size">
+                          {{ item.SizeDisplay }}<br/>
+                        </span>
+                        <span
                           v-for="size in item.Size"
                           :key="size.Value"
                           class="article-size">
