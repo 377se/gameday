@@ -77,7 +77,7 @@ export default {
 
     try {
       const [sb, metadata] = await Promise.all([
-        this.$storyapi.get('cdn/stories?starts_with=' + process.env.STORYBLOK_CATALOGUE.replace('/','') + '/' +this.$i18n.locale+ '/c/'+this.$route.params.parentid+'/'+this.$route.params.categoryid +'/'+cname +'/'+this.$route.params.filterid +'/', {
+        this.$storyapi.get('cdn/stories?starts_with=' + process.env.STORYBLOK_CATALOGUE.replace('/','') + '/' +this.$i18n.locale+ '/c/'+this.$route.params.parentid+'/'+this.$route.params.categoryid +'/'+this.$route.params.filterid +'/', {
           version: version,
           cv: this.$store.getters.version
         }),
