@@ -138,9 +138,10 @@ export default {
     })
 
     try{
+      var _this = this
       this.$gtm.push({event:'ViewContentCategory',
         data: {
-          content_name: story.content.SEO.title,
+          content_name: _this.story.content.SEO.title,
           content_type: 'category'
         }
       })
