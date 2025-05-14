@@ -27,9 +27,8 @@
       <template
         v-else>
         <SeoHead
-          v-if="metadata"
-          :title="''"
-          :description="''"
+          :title="(story.content.SEO && story.content.SEO.title)?story.content.SEO.title:''"
+          :description="(story.content.SEO && story.content.SEO.title)?`${story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ''):''"
           :canonical="metadata.Canonical"
           :lang-hrefs="metadata.LangHref" />
         <div
