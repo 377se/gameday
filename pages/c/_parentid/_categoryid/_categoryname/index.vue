@@ -93,6 +93,7 @@ export default {
         )
         ]);
       if(!metadata){
+        this.$nuxt.context.error({ statusCode: 404, message: 'Post not found' })
         return error({ statusCode: 404, message: 'Post not found' })
       }
       this.metadata = metadata
