@@ -88,7 +88,7 @@ export default {
     
     const [metadata] = await Promise.all([
       this.$axios.$get(
-          `/webapi/${this.$i18n.locale}/MetaData/GetMetadataForCategory?url=/c/${this.$route.params.parentid}/${this.$route.params.categoryid}`
+          `/webapi/${this.$i18n.locale}/MetaData/GetMetadataForCategory?url=/c/${this.$route.params.categoryid}`
         )
         ]);
       this.metadata = metadata

@@ -70,33 +70,43 @@ import Page from '@/components/Page'
 
 export default {
   async fetch () {
-    // Check if we are in the editor mode
-    let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
-    let cname = this.$route.params.categoryname=='undefined'?'wrong':this.$route.params.categoryname
+    if(this.$route.params.filtername===''){
+      this.$nuxt.error({
+          statusCode: 404,
+          message: 'Wrong link'
+        });
+    }else{
+      // Check if we are in the editor mode
+      let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
+      let cname = this.$route.params.categoryname=='undefined'?'wrong':this.$route.params.categoryname
 
-    try {
-      const [sb, metadata] = await Promise.all([
-        this.$storyapi.get('cdn/stories?starts_with=' + process.env.STORYBLOK_CATALOGUE.replace('/','') + '/' +this.$i18n.locale+ '/c/'+this.$route.params.parentid+'/'+this.$route.params.categoryid +'/'+this.$route.params.filterid +'/', {
-          version: version,
-          cv: this.$store.getters.version
-        }),
-        this.$axios.$get(
-          `/webapi/${this.$i18n.locale}/MetaData/GetMetadataForCategory?url=/c/${this.$route.params.parentid}/${this.$route.params.categoryid}/${cname}/${this.$route.params.filterid}`
-        )
-      ]);
-      this.metadata = metadata
-      this.story=sb.data.stories.length>0?sb.data.stories[0]:{ content: {} }
+      try {
+        const [sb, metadata] = await Promise.all([
+          this.$storyapi.get('cdn/stories?starts_with=' + process.env.STORYBLOK_CATALOGUE.replace('/','') + '/' +this.$i18n.locale+ '/c/'+this.$route.params.parentid+'/'+this.$route.params.categoryid +'/'+this.$route.params.filterid +'/', {
+            version: version,
+            cv: this.$store.getters.version
+          }),
+          this.$axios.$get(
+            `/webapi/${this.$i18n.locale}/MetaData/GetMetadataForCategory?url=/c/${this.$route.params.categoryid}/${cname}/${this.$route.params.filterid}`
+          )
+        ]);
+        this.metadata = metadata
+        this.story=sb.data.stories.length>0?sb.data.stories[0]:{ content: {} }
 
-      if(cname=='wrong'){
-        this.$nuxt.context.redirect(301, metadata.Canonical)
+        if(cname=='wrong'){
+          this.$nuxt.context.redirect(301, metadata.Canonical)
+        }
+          
+      } catch (err) {
+        console.log('_team error')
+        console.log(err);
+        console.log(err.request);
+        this.$nuxt.error({
+          statusCode: 404,
+          message: 'Wrong link'
+        });
       }
-        
-    } catch (err) {
-      console.log('_team error')
-      console.log(err);
-      console.log(err.request);
     }
-
   },
   fetchDelay: 0,
   activated() {
