@@ -126,6 +126,7 @@ export default {
       article: {},
       readmore: true,
       shop: '',
+      siteid: process.env.SITE_ID,
       clientside: !process.server
     }
   },
