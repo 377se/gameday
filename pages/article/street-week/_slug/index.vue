@@ -91,10 +91,12 @@ export default {
         })*/
       }catch(err){
         console.log(err)
+        return error({ statusCode: 404, message: 'Post not found' })
       }
 
     } catch (err) {
       console.log(err)
+      return error({ statusCode: 404, message: 'Post not found' })
     }
   },
   activated(){

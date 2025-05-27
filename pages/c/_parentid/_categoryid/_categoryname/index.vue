@@ -29,7 +29,7 @@
         <SeoHead
           :title="(story.content.SEO && story.content.SEO.title)?story.content.SEO.title:''"
           :description="(story.content.SEO && story.content.SEO.title)?`${story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ''):''"
-          :canonical="metadata.Canonical"
+          :canonical="metadata.Canonical.replace(`/c/${$route.params.categoryid}`,`/c/${$route.params.parentid}/${$route.params.categoryid}`)"
           :lang-hrefs="metadata.LangHref" />
         <div
           class="uk-container uk-container-large uk-padding-small uk-padding-remove-bottom">
@@ -97,6 +97,7 @@ export default {
       console.log('_team error')
       console.log(err);
       console.log(err.request);
+      return error({ statusCode: 404, message: 'Post not found' })
     }
 
   },
