@@ -86,9 +86,10 @@ export default {
       ]);
       this.story = sb.data.stories.length > 0 ? sb.data.stories[sb.data.stories.length-1]:{ content: {} }
     
+    let pid =  this.siteid==7?'':this.$route.params.parentid+'/' 
     const [metadata] = await Promise.all([
       this.$axios.$get(
-          `/webapi/${this.$i18n.locale}/MetaData/GetMetadataForCategory?url=/c/${this.$route.params.categoryid}`
+          `/webapi/${this.$i18n.locale}/MetaData/GetMetadataForCategory?url=/c/${pid}${this.$route.params.categoryid}`
         )
         ]);
       this.metadata = metadata

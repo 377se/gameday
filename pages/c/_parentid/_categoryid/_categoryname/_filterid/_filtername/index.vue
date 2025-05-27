@@ -80,6 +80,7 @@ export default {
       let version = this.$route.query._storyblok || this.$nuxt.context.isDev ? 'draft' : 'published'
       let cname = this.$route.params.categoryname=='undefined'?'wrong':this.$route.params.categoryname
 
+      let pid =  this.siteid==7?'':this.$route.params.parentid+'/'
       try {
         const [sb, metadata] = await Promise.all([
           this.$storyapi.get('cdn/stories?starts_with=' + process.env.STORYBLOK_CATALOGUE.replace('/','') + '/' +this.$i18n.locale+ '/c/'+this.$route.params.parentid+'/'+this.$route.params.categoryid +'/'+this.$route.params.filterid +'/', {
@@ -87,7 +88,7 @@ export default {
             cv: this.$store.getters.version
           }),
           this.$axios.$get(
-            `/webapi/${this.$i18n.locale}/MetaData/GetMetadataForCategory?url=/c/${this.$route.params.categoryid}/${cname}/${this.$route.params.filterid}`
+            `/webapi/${this.$i18n.locale}/MetaData/GetMetadataForCategory?url=/c/${pid}${this.$route.params.categoryid}/${cname}/${this.$route.params.filterid}`
           )
         ]);
         this.metadata = metadata
