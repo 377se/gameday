@@ -92,12 +92,14 @@ export default {
           `/webapi/${this.$i18n.locale}/MetaData/GetMetadataForCategory?url=/c/${pid}${this.$route.params.categoryid}`
         )
         ]);
+      if(!metadata){
+        return error({ statusCode: 404, message: 'Post not found' })
+      }
       this.metadata = metadata
     } catch (err) {
       console.log('_team error')
       console.log(err);
       console.log(err.request);
-      return error({ statusCode: 404, message: 'Post not found' })
     }
 
   },
