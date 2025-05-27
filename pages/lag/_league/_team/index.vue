@@ -41,6 +41,9 @@ export default {
       ]);
       this.shop=shop
       this.story=sb.data.stories.length>0?sb.data.stories[0]:{ content: {} }
+      if(sb.data.stories.length===0){
+        return error({ statusCode: 404, message: 'Post not found' })
+      }
     } catch (err) {
       console.log('_team error')
       console.log(err);
