@@ -187,6 +187,7 @@ export default {
       console.log('_produkttyp error')
       console.log(err);
       console.log(err.request);
+      return error({ statusCode: 404, message: 'Post not found' })
     }
 
   },
