@@ -172,6 +172,31 @@ export default {
         clientId: "65qi5lmu89hgcr4ma1aipaleus",
         scope: ["email", "openid", "phone", "profile"],
         codeChallengeMethod: "S256"
+      },
+      subrite: {
+        scheme: "oauth2",
+        endpoints: {
+          authorization: process.env.SUBRITE_URL + "/api/oidc/auth",
+          token: process.env.SUBRITE_URL + "/api/oidc/token",
+          userInfo: process.env.SUBRITE_URL + "/api/oidc/userinfo",
+          logout: process.env.SUBRITE_URL + "/api/oidc/session/end"
+        },
+        token: {
+          property: "access_token",
+          type: "Bearer",
+          maxAge: 3600
+        },
+        refreshToken: {
+          property: "refresh_token",
+          maxAge: 60 * 60 * 24 * 30
+        },
+        responseType: "code",
+        redirectUri: process.env.SUBRITE_REDIRECT_URI || "https://kopshop.no/callback/subrite/login",
+        logoutRedirectUri: process.env.SUBRITE_LOGOUT_REDIRECT_URI || "https://kopshop.no/login",
+        clientId: process.env.SUBRITE_CLIENT_ID,
+        clientSecret: process.env.SUBRITE_CLIENT_SECRET,
+        scope: ["openid", "offline_access"],
+        codeChallengeMethod: "S256"
       }
     }
   },
