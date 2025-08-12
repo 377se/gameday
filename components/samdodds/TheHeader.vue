@@ -27,7 +27,7 @@
           uk-dropdown>
             <ul 
               class="uk-nav uk-dropdown-nav uk-text-left">
-                <li>
+                <!--li>
                   <a
                     href="https://www.samdodds.dk"
                     style="vertical-align:middle"><img src="/flags/da-dk.svg" style="width:30px;margin-right:5px;" /> Denmark</a>
@@ -36,7 +36,7 @@
                   <a
                     href="https://www.samdodds.com/fi-fi"
                     style="vertical-align:middle"><img src="/flags/fi-fi.svg" style="width:30px;margin-right:5px;" /> Suomi</a>
-                </li>
+                </li-->
                 <li>
                   <a
                     href="https://www.kopshop.no"
