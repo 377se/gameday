@@ -173,14 +173,14 @@ export default {
         scope: ["email", "openid", "phone", "profile"],
         codeChallengeMethod: "S256"
       },
-      subrite: {
-        scheme: "oauth2",
-        endpoints: {
-          authorization: process.env.SUBRITE_URL + "/api/oidc/auth",
-          token: process.env.SUBRITE_URL + "/api/oidc/token",
-          userInfo: process.env.SUBRITE_URL + "/api/oidc/userinfo",
-          logout: process.env.SUBRITE_URL + "/api/oidc/session/end"
-        },
+              subrite: {
+          scheme: "oauth2",
+          endpoints: {
+            authorization: process.env.SUBRITE_URL + "/api/oidc/auth",
+            token: process.env.SUBRITE_URL + "/api/oidc/token",
+            userInfo: process.env.SUBRITE_URL + "/api/oidc/userinfo",
+            logout: process.env.SUBRITE_URL + "/api/oidc/session/end"
+          },
         token: {
           property: "access_token",
           type: "Bearer",
