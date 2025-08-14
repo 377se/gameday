@@ -11,16 +11,7 @@
           <ul 
             class="uk-nav uk-text-left">
             <li
-              :class="{'uk-active':locale==='en'}">
-              <a 
-                href="https://supportersplace.com/en"  
-                style="vertical-align:middle"
-                @click.stop.prevent="switchLang('en')"><img src="/flags/en.svg" style="width:30px;margin-right:5px;"> International (english)</a></li>
-            <li
               ><a href="https://supportersplace.se" style="vertical-align:middle"><img src="/flags/sv-se.svg" style="width:30px;margin-right:5px;"> Sweden</a></li>
-            <li
-              :class="{'uk-active':locale==='da-dk'}"
-              @click.stop.prevent="switchLang('da-dk')"><a href="https://supportersplace.com/da-dk" style="vertical-align:middle"><img src="/flags/da-dk.svg" style="width:30px;margin-right:5px;"> Denmark</a></li>
             <li
               ><a href="https://supportersplace.no" style="vertical-align:middle"><img src="/flags/nb-no.svg" style="width:30px;margin-right:5px;"> Norway</a></li>
             <li
