@@ -8,16 +8,16 @@ The application has been migrated from AWS Cognito to Subrite Auth, an OAuth 2.0
 
 ## Required Environment Variables
 
-Add the following environment variables to your deployment configuration:
+The following environment variables can be set to override the default staging configuration:
 
 ```bash
-# The base URL of your Subrite server (STAGING)
+# The base URL of your Subrite server (defaults to staging)
 SUBRITE_URL=https://stage.minside.liverpool.no
 
-# Your Subrite application's client ID (STAGING)
+# Your Subrite application's client ID (defaults to staging)
 SUBRITE_CLIENT_ID=7b35e1436d73411880f2
 
-# Your Subrite application's client secret (STAGING)
+# Your Subrite application's client secret (REQUIRED - no default for security)
 SUBRITE_CLIENT_SECRET=7a794a7da32d4dbf919c7b7dee0340dc
 
 # The redirect URI where Subrite will send users after authentication
@@ -26,6 +26,8 @@ SUBRITE_REDIRECT_URI=https://kopshop.no/callback/subrite/login
 # The URL where users will be redirected after logout
 SUBRITE_LOGOUT_REDIRECT_URI=https://kopshop.no/login
 ```
+
+**Note:** Default staging values are built into the configuration, but you should set `SUBRITE_CLIENT_SECRET` as an environment variable for security.
 
 ## Backend Integration
 

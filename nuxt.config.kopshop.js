@@ -21,7 +21,12 @@ export default {
     },
     BASE_HREF: [{
       Culture:'nb-no',Url:''
-    }]
+    }],
+    // Subrite Configuration - exposed to client-side
+    SUBRITE_URL: process.env.SUBRITE_URL || 'https://stage.minside.liverpool.no',
+    SUBRITE_CLIENT_ID: process.env.SUBRITE_CLIENT_ID || '7b35e1436d73411880f2',
+    SUBRITE_REDIRECT_URI: process.env.SUBRITE_REDIRECT_URI || 'https://kopshop.no/callback/subrite/login',
+    SUBRITE_LOGOUT_REDIRECT_URI: process.env.SUBRITE_LOGOUT_REDIRECT_URI || 'https://kopshop.no/login'
   },
   mode: 'universal',
   /*
