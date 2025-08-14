@@ -181,10 +181,10 @@ export default {
       subrite: {
         scheme: "oauth2",
         endpoints: {
-          authorization: process.env.SUBRITE_URL + "/api/oidc/auth",
-          token: process.env.SUBRITE_URL + "/api/oidc/token",
-          userInfo: process.env.SUBRITE_URL + "/api/oidc/userinfo",
-          logout: process.env.SUBRITE_URL + "/api/oidc/session/end"
+          authorization: "https://stage.minside.liverpool.no/api/oidc/auth",
+          token: "https://stage.minside.liverpool.no/api/oidc/token",
+          userInfo: "https://stage.minside.liverpool.no/api/oidc/userinfo",
+          logout: "https://stage.minside.liverpool.no/api/oidc/session/end"
         },
         token: {
           property: "access_token",
@@ -196,10 +196,10 @@ export default {
           maxAge: 60 * 60 * 24 * 30
         },
         responseType: "code",
-        redirectUri: process.env.SUBRITE_REDIRECT_URI || "https://kopshop.no/callback/subrite/login",
-        logoutRedirectUri: process.env.SUBRITE_LOGOUT_REDIRECT_URI || "https://kopshop.no/login",
-        clientId: process.env.SUBRITE_CLIENT_ID,
-        clientSecret: process.env.SUBRITE_CLIENT_SECRET,
+        redirectUri: "https://kopshop.no/callback/subrite/login",
+        logoutRedirectUri: "https://kopshop.no/login",
+        clientId: "7b35e1436d73411880f2",
+        clientSecret: process.env.SUBRITE_CLIENT_SECRET || "7a794a7da32d4dbf919c7b7dee0340dc",
         scope: ["openid", "offline_access"],
         codeChallengeMethod: "S256"
       }
