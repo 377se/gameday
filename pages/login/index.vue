@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="uk-background-muted">
-      <div
+      <!--div
         v-if="siteid==3"
         class="uk-container uk-container-xsmall uk-padding uk-background-primary">
         <h4 style="color:#fff;">Logg inn via Liverpool.no</h4>
@@ -9,7 +9,7 @@
           <img src="/logo-liverpool-no.svg" width="100" style="margin-right:60px;" />
           <a href="https://auth.a.liverpool.no/login?client_id=65qi5lmu89hgcr4ma1aipaleus&response_type=code&scope=email+openid+phone+profile&redirect_uri=https%3A%2F%2Fkopshop.no%2Fcallback%2Fcognito%2Flogin" class="uk-button uk-button-secondary">Logg inn via Liverpool.no</a>
         </div>
-      </div>
+      </div-->
       <div class="uk-container uk-container-xsmall uk-padding">
         <component 
           v-if="story.content.component" 
