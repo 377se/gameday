@@ -21,7 +21,12 @@ export default {
     },
     BASE_HREF: [{
       Culture:'nb-no',Url:''
-    }]
+    }],
+    // Subrite Configuration - exposed to client-side
+    SUBRITE_URL: process.env.SUBRITE_URL || 'https://stage.minside.liverpool.no',
+    SUBRITE_CLIENT_ID: process.env.SUBRITE_CLIENT_ID || '7b35e1436d73411880f2',
+    SUBRITE_REDIRECT_URI: process.env.SUBRITE_REDIRECT_URI || 'https://kopshop.no/callback/subrite/login',
+    SUBRITE_LOGOUT_REDIRECT_URI: process.env.SUBRITE_LOGOUT_REDIRECT_URI || 'https://kopshop.no/login'
   },
   mode: 'universal',
   /*
@@ -171,6 +176,31 @@ export default {
         logoutRedirectUri: "http://localhost:3000/login",
         clientId: "65qi5lmu89hgcr4ma1aipaleus",
         scope: ["email", "openid", "phone", "profile"],
+        codeChallengeMethod: "S256"
+      },
+      subrite: {
+        scheme: "oauth2",
+        endpoints: {
+          authorization: "https://stage.minside.liverpool.no/api/oidc/auth",
+          token: "https://stage.minside.liverpool.no/api/oidc/token",
+          userInfo: "https://stage.minside.liverpool.no/api/oidc/userinfo",
+          logout: "https://stage.minside.liverpool.no/api/oidc/session/end"
+        },
+        token: {
+          property: "access_token",
+          type: "Bearer",
+          maxAge: 3600
+        },
+        refreshToken: {
+          property: "refresh_token",
+          maxAge: 60 * 60 * 24 * 30
+        },
+        responseType: "code",
+        redirectUri: "https://kopshop.no/callback/subrite/login",
+        logoutRedirectUri: "https://kopshop.no/login",
+        clientId: "7b35e1436d73411880f2",
+        clientSecret: process.env.SUBRITE_CLIENT_SECRET || "7a794a7da32d4dbf919c7b7dee0340dc",
+        scope: ["openid", "offline_access"],
         codeChallengeMethod: "S256"
       }
     }
