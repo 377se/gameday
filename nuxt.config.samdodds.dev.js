@@ -62,7 +62,6 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    {src: '~/plugins/inmobi.js', ssr: false},
     {src: '~/plugins/jsonld.js'},
     {src: '~/plugins/samdodds.js'},
     {src: '~/plugins/vue-placeholders.js'},

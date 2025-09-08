@@ -72,7 +72,6 @@ export default {
   plugins: [
     {src: '~/plugins/vue-intersection-observer.js', ssr: false},
     {src: '~/plugins/gtag-sp-no.js', ssr: false},
-    {src: '~/plugins/inmobi.js', ssr: false},
     {src: '~/plugins/jsonld.js'},
     {src: '~/plugins/lottie-client.js', ssr:false},
     {src: '~/plugins/filters.js', ssr:false},

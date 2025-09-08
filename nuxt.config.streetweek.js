@@ -40,6 +40,8 @@ export default {
         content: 'Streetweek'
       }
     ],
+    // InMobi CMP Script - Commented out to test via GTM
+    /*
     script: [
       {
         hid: 'inmobi-cmp',
@@ -368,7 +370,7 @@ export default {
         async: true
       }
     ],
-    __dangerouslyDisableSanitizers: ['script']
+    */
   },
   /*
    ** Customize the progress-bar color

@@ -46,6 +46,8 @@ export default {
         content: 'Supporters Place'
       }
     ],
+    // InMobi CMP Script - Commented out to test via GTM
+    /*
     script: [
       {
         hid: 'inmobi-cmp',
@@ -374,7 +376,7 @@ export default {
         async: true
       }
     ],
-    __dangerouslyDisableSanitizers: ['script']
+    */
   },
   /*
    ** Customize the progress-bar color
@@ -394,7 +396,6 @@ export default {
    */
   plugins: [
     {src: '~/plugins/vue-intersection-observer.js', ssr: false},
-    {src: '~/plugins/inmobi.js', ssr: false},
     {src: '~/plugins/jsonld.js'},
     {src: '~/plugins/lottie-client.js', ssr:false},
     {src: '~/plugins/filters.js', ssr:false},
