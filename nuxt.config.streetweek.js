@@ -41,7 +41,7 @@ export default {
       }
     ],
     // InMobi CMP Script - Commented out to test via GTM
-    /*
+    
     script: [
       {
         hid: 'inmobi-cmp',
@@ -370,7 +370,6 @@ export default {
         async: true
       }
     ],
-    */
   },
   /*
    ** Customize the progress-bar color

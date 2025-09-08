@@ -21,16 +21,12 @@ export default {
       'sv-se':'https://supportersplace.se',
       'nb-no':'https://supportersplace.no',
       'da-dk':'https://supportersplace.com/da-dk',
-      'en-gb':'https://supportersplace.com/en',
-      'en':'https://supportersplace.com/en'
     },
     BASE_HREF: [
       {Culture:'fi-fi', Url:''},
       {Culture:'sv-se', Url:''},
       {Culture:'nb-no', Url:''},
       {Culture:'da-dk', Url:''},
-      {Culture:'en-gb', Url:''},
-      {Culture:'en', Url:''}
     ]
   },
   mode: 'universal',
