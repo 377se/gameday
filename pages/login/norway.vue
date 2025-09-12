@@ -34,16 +34,67 @@ export default {
   },
   
   methods: {
-    loginWithSubrite() {
+    async loginWithSubrite() {
       try {
-        // Use Nuxt Auth to handle the OAuth flow
-        this.$auth.loginWith("subrite");
+        const subriteUrl = process.env.SUBRITE_URL || 'https://stage.minside.liverpool.no'
+        const clientId = process.env.SUBRITE_CLIENT_ID || '7b35e1436d73411880f2'
+        const redirectUri = process.env.SUBRITE_REDIRECT_URI || 'https://kopshop.no/callback/subrite/login'
+
+        const codeVerifier = this.generateCodeVerifier(64)
+        sessionStorage.setItem('subrite_pkce_verifier', codeVerifier)
+
+        const codeChallenge = await this.generateCodeChallenge(codeVerifier)
+        const state = this.generateState(32)
+        sessionStorage.setItem('subrite_oauth_state', state)
+
+        const authUrl = `${subriteUrl}/api/oidc/auth?` +
+          `client_id=${encodeURIComponent(clientId)}` +
+          `&scope=${encodeURIComponent('openid offline_access')}` +
+          `&response_type=code` +
+          `&redirect_uri=${encodeURIComponent(redirectUri)}` +
+          `&code_challenge=${encodeURIComponent(codeChallenge)}` +
+          `&code_challenge_method=S256` +
+          `&state=${encodeURIComponent(state)}`
+
+        window.location.href = authUrl
       } catch (error) {
-        console.error('Error with Subrite login:', error)
-        // Fallback to direct redirect
+        console.error('Error starting Subrite login:', error)
+        // Fallback to direct redirect (will not work without code_challenge)
         window.location.href = this.subriteLoginUrl
       }
     },
+
+    generateCodeVerifier(length = 64) {
+      const allowed = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~'
+      const random = new Uint8Array(length)
+      window.crypto.getRandomValues(random)
+      let result = ''
+      for (let i = 0; i < random.length; i++) {
+        result += allowed.charAt(random[i] % allowed.length)
+      }
+      return result
+    },
+
+    async generateCodeChallenge(codeVerifier) {
+      const data = new TextEncoder().encode(codeVerifier)
+      const digest = await window.crypto.subtle.digest('SHA-256', data)
+      return this.base64UrlEncode(new Uint8Array(digest))
+    },
+
+    base64UrlEncode(bytes) {
+      let str = ''
+      for (let i = 0; i < bytes.byteLength; i++) {
+        str += String.fromCharCode(bytes[i])
+      }
+      return btoa(str).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
+    },
+
+    generateState(length = 32) {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+      const arr = new Uint8Array(length)
+      window.crypto.getRandomValues(arr)
+      return Array.from(arr, n => chars[n % chars.length]).join('')
+    }
     
     // Keep the old method for reference (commented out)
     // login() {
