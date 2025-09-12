@@ -10,6 +10,30 @@
           Or <a :href="subriteLoginUrl" class="uk-link">click here for direct Subrite login</a>
         </small>
       </p>
+
+      <!-- Debug / Manual Test Panel -->
+      <div class="uk-card uk-card-default uk-card-body uk-margin" v-if="debug.show">
+        <h4 class="uk-margin-remove">PKCE Debug</h4>
+        <div class="uk-text-small uk-margin-small">code_verifier (current tab):</div>
+        <pre><code>{{ debug.verifier || '(none)' }}</code></pre>
+        <div class="uk-text-small uk-margin-small">state (current tab):</div>
+        <pre><code>{{ debug.state || '(none)' }}</code></pre>
+
+        <div class="uk-margin">
+          <button class="uk-button uk-button-default uk-margin-small-right" @click="startLoginInNewTab">Open Subrite login in new tab</button>
+          <button class="uk-button uk-button-text" @click="refreshDebug">Refresh values</button>
+        </div>
+
+        <div class="uk-margin">
+          <div class="uk-text-small uk-margin-small">Paste code and state from the redirected URL (new tab):</div>
+          <input class="uk-input uk-margin-small" placeholder="code from URL" v-model="debug.manualCode" />
+          <input class="uk-input uk-margin-small" placeholder="state from URL (optional)" v-model="debug.manualState" />
+          <div class="uk-text-small uk-margin-small">Manual token exchange curl:</div>
+          <pre><code>{{ debug.manualCurl }}</code></pre>
+        </div>
+      </div>
+
+      <button class="uk-button uk-button-text uk-margin-top" @click="toggleDebug">{{ debug.show ? 'Hide' : 'Show' }} PKCE debug</button>
     </div>
   </div>
 </template>
@@ -34,6 +58,44 @@ export default {
   },
   
   methods: {
+    toggleDebug() {
+      this.debug.show = !this.debug.show
+      if (this.debug.show) {
+        this.refreshDebug()
+      }
+    },
+
+    refreshDebug() {
+      this.debug.verifier = sessionStorage.getItem('subrite_pkce_verifier') || ''
+      this.debug.state = sessionStorage.getItem('subrite_oauth_state') || ''
+      this.buildManualCurl()
+    },
+
+    buildManualCurl() {
+      const tokenEndpoint = (process.env.SUBRITE_URL || 'https://stage.minside.liverpool.no') + '/api/oidc/token'
+      const clientId = process.env.SUBRITE_CLIENT_ID || '7b35e1436d73411880f2'
+      const redirectUri = process.env.SUBRITE_REDIRECT_URI || 'https://kopshop.no/callback/subrite/login'
+      const code = this.debug.manualCode || ''
+      const verifier = this.debug.verifier || ''
+
+      if (!verifier || !code) {
+        this.debug.manualCurl = '(Waiting for code and code_verifier)'
+        return
+      }
+
+      const parts = [
+        'curl -X POST',
+        `'${tokenEndpoint}'`,
+        "-H 'Content-Type: application/x-www-form-urlencoded'",
+        "-d 'grant_type=authorization_code'",
+        `-d 'code=${encodeURIComponent(code)}'`,
+        `-d 'redirect_uri=${encodeURIComponent(redirectUri)}'`,
+        `-d 'client_id=${encodeURIComponent(clientId)}'`,
+        `-d 'code_verifier=${encodeURIComponent(verifier)}'`
+      ]
+      this.debug.manualCurl = parts.join(' ')
+    },
+
     async loginWithSubrite() {
       try {
         const subriteUrl = process.env.SUBRITE_URL || 'https://stage.minside.liverpool.no'
@@ -61,6 +123,35 @@ export default {
         console.error('Error starting Subrite login:', error)
         // Fallback to direct redirect (will not work without code_challenge)
         window.location.href = this.subriteLoginUrl
+      }
+    },
+
+    async startLoginInNewTab() {
+      try {
+        const subriteUrl = process.env.SUBRITE_URL || 'https://stage.minside.liverpool.no'
+        const clientId = process.env.SUBRITE_CLIENT_ID || '7b35e1436d73411880f2'
+        const redirectUri = process.env.SUBRITE_REDIRECT_URI || 'https://kopshop.no/callback/subrite/login'
+
+        const codeVerifier = this.generateCodeVerifier(64)
+        sessionStorage.setItem('subrite_pkce_verifier', codeVerifier)
+
+        const codeChallenge = await this.generateCodeChallenge(codeVerifier)
+        const state = this.generateState(32)
+        sessionStorage.setItem('subrite_oauth_state', state)
+
+        const authUrl = `${subriteUrl}/api/oidc/auth?` +
+          `client_id=${encodeURIComponent(clientId)}` +
+          `&scope=${encodeURIComponent('openid offline_access')}` +
+          `&response_type=code` +
+          `&redirect_uri=${encodeURIComponent(redirectUri)}` +
+          `&code_challenge=${encodeURIComponent(codeChallenge)}` +
+          `&code_challenge_method=S256` +
+          `&state=${encodeURIComponent(state)}`
+
+        this.refreshDebug()
+        window.open(authUrl, '_blank', 'noopener')
+      } catch (error) {
+        console.error('Error starting Subrite login in new tab:', error)
       }
     },
 
