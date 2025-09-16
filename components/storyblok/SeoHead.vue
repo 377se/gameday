@@ -183,13 +183,11 @@ export default {
         }
       }
     }
-    if(process.env.SITE_ID!='7'){
-      _link.push({
-        hid: 'i18n-can',
-        rel: 'canonical',
-        href: `${process.env.LANG_HREF[this.$i18n.locale]}${canonical}`
-      })
-    }
+    _link.push({
+      hid: 'i18n-can',
+      rel: 'canonical',
+      href: `${process.env.LANG_HREF[this.$i18n.locale]}${canonical}`
+    })
     return {
       title: title,
       htmlAttrs: {
