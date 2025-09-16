@@ -160,32 +160,36 @@ export default {
     */
     let i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
     let _link = []
-    for(var i=0;i<this.langHrefs.length;i++){
-      let _obj = {
-                  'hid':'i18n-alt-'+this.langHrefs[i].Culture.split('-')[0],
-                  'rel': 'alternate',
-                  'href': process.env.LANG_HREF[this.langHrefs[i].Culture.toLowerCase()]+this.langHrefs[i].Url,
-                  'hreflang': this.langHrefs[i].Culture.split('-')[0]
-                }
-      /*if(this.siteid!=2 || (this.siteid!=2 && this.langHrefs[i].Culture!='en-gb')){
-        _link.push(_obj)
-      } */
-      _link.push(_obj)
-      if(this.langHrefs[i].Culture.toLowerCase()==this.$i18n.defaultLocale){
+    if(process.env.SITE_ID!='7'){
+      for(var i=0;i<this.langHrefs.length;i++){
         let _obj = {
-                  'hid':'i18n-xd',
-                  'rel': 'alternate',
-                  'href': process.env.LANG_HREF[this.langHrefs[i].Culture.toLowerCase()] + this.langHrefs[i].Url,
-                  'hreflang': 'x-default'
-                }
-      _link.push(_obj)
+                    'hid':'i18n-alt-'+this.langHrefs[i].Culture.split('-')[0],
+                    'rel': 'alternate',
+                    'href': process.env.LANG_HREF[this.langHrefs[i].Culture.toLowerCase()]+this.langHrefs[i].Url,
+                    'hreflang': this.langHrefs[i].Culture.split('-')[0]
+                  }
+        /*if(this.siteid!=2 || (this.siteid!=2 && this.langHrefs[i].Culture!='en-gb')){
+          _link.push(_obj)
+        } */
+        _link.push(_obj)
+        if(this.langHrefs[i].Culture.toLowerCase()==this.$i18n.defaultLocale){
+          let _obj = {
+                    'hid':'i18n-xd',
+                    'rel': 'alternate',
+                    'href': process.env.LANG_HREF[this.langHrefs[i].Culture.toLowerCase()] + this.langHrefs[i].Url,
+                    'hreflang': 'x-default'
+                  }
+        _link.push(_obj)
+        }
       }
     }
+    if(process.env.SITE_ID!='7'){
       _link.push({
         hid: 'i18n-can',
         rel: 'canonical',
         href: `${process.env.LANG_HREF[this.$i18n.locale]}${canonical}`
       })
+    }
     return {
       title: title,
       htmlAttrs: {
