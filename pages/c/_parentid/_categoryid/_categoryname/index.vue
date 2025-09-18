@@ -27,7 +27,7 @@
       <template
         v-else>
         <SeoHead
-          :title="(story.content.SEO && story.content.SEO.title)?story.content.SEO.title:''"
+          :title="(story.content.SEO && story.content.SEO.title)?story.content.SEO.title:generateFallbackTitle()"
           :description="(story.content.SEO && story.content.SEO.title)?`${story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ''):''"
           :canonical="metadata.Canonical.replace(`/c/${$route.params.categoryid}`,`/c/${$route.params.parentid}/${$route.params.categoryid}`)"
           :lang-hrefs="metadata.LangHref" />
@@ -155,6 +155,27 @@ export default {
     }
   },
   methods:{
+    generateFallbackTitle(){
+      // Create a meaningful title from URL parameters
+      const categoryName = this.$route.params.categoryname || ''
+      
+      // Site-specific branding based on SITE_ID
+      let siteName = 'Gameday'
+      switch(parseInt(process.env.SITE_ID)) {
+        case 1: siteName = 'Supporters Place'; break;
+        case 2: siteName = 'Sam Dodds'; break;
+        case 3: siteName = 'Kopshop'; break;
+        case 7: siteName = 'Supporterprylar'; break;
+        case 8: siteName = 'Street Week Shop'; break;
+        default: siteName = 'Gameday'; break;
+      }
+      
+      if (categoryName) {
+        return `${categoryName} | ${siteName}`
+      } else {
+        return siteName
+      }
+    },
     setReadMore(){
       this.readmore=false
     },
