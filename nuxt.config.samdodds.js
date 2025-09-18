@@ -19,13 +19,11 @@ export default {
     LANG_HREF: 
       {'fi-fi':'https://www.samdodds.com/fi-fi',
       'sv-se':'https://www.samdodds.com/sv-se',
-      'en-gb':'https://www.samdodds.com/en',
       'da-dk':'https://www.samdodds.dk'
     },
     BASE_HREF: [
       {Culture:'fi-fi',Url:''},
       {Culture:'sv-se',Url:''},
-      {Culture:'en-gb',Url:''},
       {Culture:'da-dk',Url:''}
     ]
   },
