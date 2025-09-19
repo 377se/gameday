@@ -162,14 +162,15 @@ export default {
     let _link = []
     if(process.env.SITE_ID!='7'){
       for(var i=0;i<this.langHrefs.length;i++){
-        let _obj = {
-                    'hid':'i18n-alt-'+this.langHrefs[i].Culture.split('-')[0],
-                    'rel': 'alternate',
-                    'href': process.env.LANG_HREF[this.langHrefs[i].Culture.toLowerCase()]+this.langHrefs[i].Url,
-                    'hreflang': this.langHrefs[i].Culture.split('-')[0]
-                  }
-        if(this.langHrefs[i].Culture!='en-gb' && this.langHrefs[i].Culture!='en' ){
-          _link.push(_obj)
+        if(this.langHrefs[i].Culture.toLowerCase()!='en-gb' && this.langHrefs[i].Culture.toLowerCase()!='en' ){
+          let _obj = {
+                      'hid':'i18n-alt-'+this.langHrefs[i].Culture.split('-')[0],
+                      'rel': 'alternate',
+                      'href': process.env.LANG_HREF[this.langHrefs[i].Culture.toLowerCase()]+this.langHrefs[i].Url,
+                      'hreflang': this.langHrefs[i].Culture.split('-')[0]
+                    }
+          
+            _link.push(_obj)
         } 
         /*_link.push(_obj)*/
         if(this.langHrefs[i].Culture.toLowerCase()==this.$i18n.defaultLocale){
