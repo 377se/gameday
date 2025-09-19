@@ -168,10 +168,10 @@ export default {
                     'href': process.env.LANG_HREF[this.langHrefs[i].Culture.toLowerCase()]+this.langHrefs[i].Url,
                     'hreflang': this.langHrefs[i].Culture.split('-')[0]
                   }
-        /*if(this.siteid!=2 || (this.siteid!=2 && this.langHrefs[i].Culture!='en-gb')){
+        if(this.langHrefs[i].Culture!='en-gb'){
           _link.push(_obj)
-        } */
-        _link.push(_obj)
+        } 
+        /*_link.push(_obj)*/
         if(this.langHrefs[i].Culture.toLowerCase()==this.$i18n.defaultLocale){
           let _obj = {
                     'hid':'i18n-xd',
