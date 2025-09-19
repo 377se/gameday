@@ -42,7 +42,15 @@
 export default {
   data() {
     return {
-      loggedIn: false
+      loggedIn: false,
+      debug: {
+        show: false,
+        verifier: '',
+        state: '',
+        manualCode: '',
+        manualState: '',
+        manualCurl: ''
+      }
     };
   },
   
