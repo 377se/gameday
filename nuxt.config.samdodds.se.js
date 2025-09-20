@@ -44,7 +44,7 @@ export default {
     ],
     // InMobi CMP Script - Commented out to test via GTM
     script: [
-      {
+      /*{
         hid: 'inmobi-cmp',
         innerHTML: `
 (function() {
@@ -369,7 +369,7 @@ export default {
         `,
         type: 'text/javascript',
         async: true
-      }
+      }*/
     ],
   },
   /*
