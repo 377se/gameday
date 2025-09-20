@@ -160,7 +160,7 @@ export default {
     */
     let i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
     let _link = []
-    if(process.env.SITE_ID!='7'){
+    if(process.env.SITE_ID!='7' && process.env.SITE_ID!='6'){
       for(var i=0;i<this.langHrefs.length;i++){
         if(this.langHrefs[i].Culture.toLowerCase()!='en-gb' && this.langHrefs[i].Culture.toLowerCase()!='en' ){
           let _obj = {
