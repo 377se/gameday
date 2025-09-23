@@ -166,7 +166,7 @@ export default {
           let _obj = {
                       'hid':'i18n-alt-'+this.langHrefs[i].Culture.split('-')[0],
                       'rel': 'alternate',
-                      'href': process.env.LANG_HREF[this.langHrefs[i].Culture.toLowerCase()]+this.langHrefs[i].Url,
+                      'href': process.env.LANG_HREF[this.langHrefs[i].Culture.toLowerCase()]+this.langHrefs[i].Url.replaceAll('ø', 'o'),
                       'hreflang': this.langHrefs[i].Culture.split('-')[0]
                     }
           
@@ -187,7 +187,7 @@ export default {
     _link.push({
       hid: 'i18n-can',
       rel: 'canonical',
-      href: `${process.env.LANG_HREF[this.$i18n.locale]}${canonical}`
+      href: `${process.env.LANG_HREF[this.$i18n.locale]}${canonical.replaceAll('ø', 'o')}`
     })
     return {
       title: title,
