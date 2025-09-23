@@ -174,7 +174,7 @@ export default {
     let team = this.$route.query.team?this.$route.query.team:null
     let brand = this.$route.query.brand?this.$route.query.brand:null
     try {
-      const [a, p, c, s, g, b] = await Promise.all([
+      const [a, p, c, s, g] = await Promise.all([
         this.$axios.$get(
           '/webapi/'+this.$i18n.locale+'/Article/getArticleList?sortorder=3&pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale='+sale+'&pageNum='+ pageNum +'&seoName='+this.blok.league
         ),
@@ -189,17 +189,17 @@ export default {
         ),
         this.$axios.$get(
           '/webapi/'+this.$i18n.locale+'/Filter/GetGenderList?categoryName='+this.blok.league+'&teamName=null&garmentName=null'
-        ),
+        )/*,
         this.$axios.$get(
           '/webapi/'+this.$i18n.locale+'/Filter/GetBrandList?categoryName='+this.blok.league+'&teamName=null&garmentName=null'
-        )
+        )*/
       ]);
         this.articles= a.ArticleList
         this.producttypes= p
         this.colors= c
         this.sizes= s
         this.gender= g
-        this.brands= b
+        this.brands= null
         this.article= a
         this.pageNum= pageNum
     } catch (err) {

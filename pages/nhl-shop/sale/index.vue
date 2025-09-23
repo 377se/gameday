@@ -185,7 +185,7 @@ export default {
     let team = this.$route.query.team?this.$route.query.team:null
     let brand = this.$route.query.brand?this.$route.query.brand:null
     try {
-      const [a, p, c, s, g, b, sb] = await Promise.all([
+      const [a, p, c, s, g, sb] = await Promise.all([
         this.$axios.$get(
           '/webapi/'+this.$i18n.locale+'/Article/getArticleList?sortorder=0&pageSize=0&lookUpBrand=false&brand='+brand+'&attribute=null&teamList='+team+'&color='+color+'&size='+size+'&gender='+gender+'&productType='+productType+'&sale=true&pageNum='+ pageNum +'&seoName=nhl'
         ),
@@ -201,9 +201,9 @@ export default {
         this.$axios.$get(
           '/webapi/'+this.$i18n.locale+'/Filter/GetGenderList?categoryName=nhl&teamName=null&garmentName=null'
         ),
-        this.$axios.$get(
+        /*this.$axios.$get(
           '/webapi/'+this.$i18n.locale+'/Filter/GetBrandList?categoryName=nhl&teamName=null&garmentName=null'
-        ),
+        ),*/
         this.$storyapi.get(`cdn/stories${process.env.STORYBLOK_CATALOGUE}/${this.$i18n.locale}/nhl-shop/sale`, {
           version: version,
           cv: this.$store.getters.version
@@ -214,7 +214,7 @@ export default {
         this.colors= c
         this.sizes= s
         this.gender= g
-        this.brands= b
+        this.brands= null
         this.article= a
         this.pageNum= pageNum
         this.story=sb.data.story
