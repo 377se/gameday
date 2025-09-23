@@ -245,8 +245,8 @@
             v-for="article in relatedarticles"
             :key="article.ProductId"
             :article="article"
-            :OLDurl="(siteid==6)?`/article/${article.TeamNameSeo}/${article.UrlSafeName}`:`/a/${article.ProductId}/${article.UrlSafeName}`"
-            :url="`/a/${article.ProductId}/${article.UrlSafeName}`"
+            :OLDurl="(siteid==6)?`/article/${article.TeamNameSeo}/${article.UrlSafeName.replace('ø', 'o')}`:`/a/${article.ProductId}/${article.UrlSafeName.replace('ø', 'o')}`"
+            :url="`/a/${article.ProductId}/${article.UrlSafeName.replace('ø', 'o')}`"
             />
         </div>
       </section>

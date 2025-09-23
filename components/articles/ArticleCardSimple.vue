@@ -82,7 +82,7 @@ export default {
       if(this.url!=undefined){
         return this.$nuxt.context.app.localePath(this.url)
       }
-      return this.$nuxt.context.app.localePath('/article/'+this.article.ProductId+'/'+this.article.UrlSafeName)
+      return this.$nuxt.context.app.localePath('/article/'+this.article.ProductId+'/'+this.article.UrlSafeName.replace('ø', 'o'))
     }
   },
     computed: {

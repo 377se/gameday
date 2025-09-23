@@ -96,8 +96,8 @@
               v-for="article in articles"
               :key="article.Id"
               :article="article"
-              :OLDurl="`/a/${article.ProductId}/${article.UrlSafeName}`"
-              :url="`/a/${article.ProductId}/${article.UrlSafeName}`"
+              :OLDurl="`/a/${article.ProductId}/${article.UrlSafeName.replace('ø', 'o')}`"
+              :url="`/a/${article.ProductId}/${article.UrlSafeName.replace('ø', 'o')}`"
             />
             <div
               v-if="articles.length<1"
