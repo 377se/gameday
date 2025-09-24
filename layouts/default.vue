@@ -26,7 +26,7 @@ import ShopTopPromo from "@/components/ShopTopPromo";
 
 export default {
   middleware({ route, redirect, error }) {
-    if (route.path && (route.path.includes('/undefined') || route.path.includes('/null') || route.path.includes('/NaN') || route.path.includes('/startsida'))) {
+    if (route.path && (route.path.includes('/undefined') || route.path.includes('/null') || route.path.includes('/startsida'))) {
       return error({ statusCode: 404, message: 'Page not found' })
     }
     // If the user is not authenticated

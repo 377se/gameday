@@ -23,8 +23,8 @@ export default {
       Culture:'nb-no',Url:''
     }],
     // Subrite Configuration - exposed to client-side
-    SUBRITE_URL: process.env.SUBRITE_URL || 'https://stage.minside.liverpool.no',
-    SUBRITE_CLIENT_ID: process.env.SUBRITE_CLIENT_ID || '7b35e1436d73411880f2',
+    SUBRITE_URL: process.env.SUBRITE_URL || 'https://minside.liverpool.no',
+    SUBRITE_CLIENT_ID: process.env.SUBRITE_CLIENT_ID || 'dca4a564d8e54f5bb070',
     SUBRITE_REDIRECT_URI: process.env.SUBRITE_REDIRECT_URI || 'https://kopshop.no/callback/subrite/login',
     SUBRITE_LOGOUT_REDIRECT_URI: process.env.SUBRITE_LOGOUT_REDIRECT_URI || 'https://kopshop.no/login'
   },
@@ -509,10 +509,10 @@ export default {
       subrite: {
         scheme: "oauth2",
         endpoints: {
-          authorization: "https://stage.minside.liverpool.no/api/oidc/auth",
-          token: "https://stage.minside.liverpool.no/api/oidc/token",
-          userInfo: "https://stage.minside.liverpool.no/api/oidc/userinfo",
-          logout: "https://stage.minside.liverpool.no/api/oidc/session/end"
+          authorization: "https://minside.liverpool.no/api/oidc/auth",
+          token: "https://minside.liverpool.no/api/oidc/token",
+          userInfo: "https://minside.liverpool.no/api/oidc/userinfo",
+          logout: "https://minside.liverpool.no/api/oidc/session/end"
         },
         token: {
           property: "access_token",

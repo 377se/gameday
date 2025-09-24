@@ -53,8 +53,8 @@ export default {
       }
 
       // Build manual curl for testing
-      const tokenEndpoint = (process.env.SUBRITE_URL || 'https://stage.minside.liverpool.no') + '/api/oidc/token'
-      const clientId = process.env.SUBRITE_CLIENT_ID || '7b35e1436d73411880f2'
+      const tokenEndpoint = (process.env.SUBRITE_URL || 'https://minside.liverpool.no') + '/api/oidc/token'
+      const clientId = process.env.SUBRITE_CLIENT_ID || 'dca4a564d8e54f5bb070'
       const redirectUri = process.env.SUBRITE_REDIRECT_URI || 'https://kopshop.no/callback/subrite/login'
       this.redirectUri = redirectUri
 
