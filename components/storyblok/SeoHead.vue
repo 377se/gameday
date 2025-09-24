@@ -184,11 +184,19 @@ export default {
         }
       }
     }
-    _link.push({
-      hid: 'i18n-can',
-      rel: 'canonical',
-      href: `${process.env.LANG_HREF[this.$i18n.locale]}${canonical.replace(/ø/gi,'o')}`
-    })
+    if(process.env.SITE_ID=='7'){
+      _link.push({
+        hid: 'i18n-can',
+        rel: 'canonical',
+        href: `${process.env.LANG_HREF[this.$i18n.locale]}${canonical.replace(`/c/${this.$route.params.categoryid}`,`/c/${this.$route.params.parentid}/${this.$route.params.categoryid}`)}`
+      })
+    }else{
+      _link.push({
+        hid: 'i18n-can',
+        rel: 'canonical',
+        href: `${process.env.LANG_HREF[this.$i18n.locale]}${canonical.replace(/ø/gi,'o')}`
+      })
+    }
     return {
       title: title,
       htmlAttrs: {
