@@ -29,7 +29,7 @@
         <SeoHead
           :title="(story.content.SEO && story.content.SEO.title)?story.content.SEO.title:generateFallbackTitle()"
           :description="(story.content.SEO && story.content.SEO.title)?`${story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ''):''"
-          :canonical="metadata.Canonical.replace(`/c/${$route.params.categoryid}`,`/c/${$route.params.parentid}/${$route.params.categoryid}`)"
+          :canonical="metadata.Canonical"
           :lang-hrefs="metadata.LangHref" />
         <div
           class="uk-container uk-container-large uk-padding-small uk-padding-remove-bottom">
