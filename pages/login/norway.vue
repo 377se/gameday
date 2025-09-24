@@ -41,7 +41,7 @@ export default {
     subriteLoginUrl() {
       // Fallback direct URL construction for testing
       const subriteUrl = process.env.SUBRITE_URL || 'https://minside.liverpool.no'
-      const clientId = process.env.SUBRITE_CLIENT_ID || '7b35e1436d73411880f2'
+      const clientId = process.env.SUBRITE_CLIENT_ID || 'dca4a564d8e54f5bb070'
       const redirectUri = encodeURIComponent(process.env.SUBRITE_REDIRECT_URI || 'https://kopshop.no/callback/subrite/login')
       
       return `${subriteUrl}/api/oidc/auth?client_id=${clientId}&scope=openid%20offline_access&response_type=code&redirect_uri=${redirectUri}&code_challenge_method=S256`
@@ -52,7 +52,7 @@ export default {
     async loginWithSubrite() {
       try {
         const subriteUrl = process.env.SUBRITE_URL || 'https://minside.liverpool.no'
-        const clientId = process.env.SUBRITE_CLIENT_ID || '7b35e1436d73411880f2'
+        const clientId = process.env.SUBRITE_CLIENT_ID || 'dca4a564d8e54f5bb070'
         const redirectUri = process.env.SUBRITE_REDIRECT_URI || 'https://kopshop.no/callback/subrite/login'
 
         const codeVerifier = this.generateCodeVerifier(64)
