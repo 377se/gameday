@@ -160,26 +160,26 @@ export default {
     */
     let i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
     let _link = []
-    if(process.env.SITE_ID!='7' && process.env.SITE_ID!='6'){
+    if(process.env.SITE_ID!='7' && process.env.SITE_ID!='6' && process.env.SITE_ID!='8'){
       for(var i=0;i<this.langHrefs.length;i++){
         if(this.langHrefs[i].Culture.toLowerCase()!='en-gb' && this.langHrefs[i].Culture.toLowerCase()!='en' ){
           let _obj = {
                       'hid':'i18n-alt-'+this.langHrefs[i].Culture.split('-')[0],
                       'rel': 'alternate',
-                      'href': process.env.LANG_HREF[this.langHrefs[i].Culture.toLowerCase()]+this.langHrefs[i].Url.replaceAll('ø', 'o'),
+                      'href': process.env.LANG_HREF[this.langHrefs[i].Culture.toLowerCase()]+this.langHrefs[i].Url.replace(/ø/gi,'o'),
                       'hreflang': this.langHrefs[i].Culture.split('-')[0]
                     }
           
             _link.push(_obj)
         } 
         /*_link.push(_obj)*/
-        if(this.langHrefs[i].Culture.toLowerCase()==this.$i18n.defaultLocale){
+        if((this.langHrefs[i].Culture.toLowerCase()==this.$i18n.defaultLocale && process.env.SITE_ID!='3') || (this.langHrefs[i].Culture.toLowerCase()=='sv-se' && (process.env.SITE_ID=='1' || process.env.SITE_ID=='2'))){ //Kopshop uses nb-no as default language, the others sv-se
           let _obj = {
-                    'hid':'i18n-xd',
-                    'rel': 'alternate',
-                    'href': process.env.LANG_HREF[this.langHrefs[i].Culture.toLowerCase()] + this.langHrefs[i].Url,
-                    'hreflang': 'x-default'
-                  }
+              'hid':'i18n-xd',
+              'rel': 'alternate',
+              'href': process.env.LANG_HREF[this.langHrefs[i].Culture.toLowerCase()] + this.langHrefs[i].Url.replace(/ø/gi,'o'),
+              'hreflang': 'x-default'
+            }
         _link.push(_obj)
         }
       }
@@ -187,7 +187,7 @@ export default {
     _link.push({
       hid: 'i18n-can',
       rel: 'canonical',
-      href: `${process.env.LANG_HREF[this.$i18n.locale]}${canonical.replaceAll('ø', 'o')}`
+      href: `${process.env.LANG_HREF[this.$i18n.locale]}${canonical.replace(/ø/gi,'o')}`
     })
     return {
       title: title,
