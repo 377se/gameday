@@ -25,7 +25,10 @@ import TheRollingText from "@/components/TheRollingText";
 import ShopTopPromo from "@/components/ShopTopPromo";
 
 export default {
-  middleware({ route, redirect }) {
+  middleware({ route, redirect, error }) {
+    if (route.path && route.path.includes('undefined')) {
+      return error({ statusCode: 404, message: 'Page not found' })
+    }
     // If the user is not authenticated
     if (process.env.SITE_ID === 1) { 
       if (route.fullPath.includes('/nb-no')) {
