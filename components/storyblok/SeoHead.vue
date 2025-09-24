@@ -173,7 +173,7 @@ export default {
             _link.push(_obj)
         } 
         /*_link.push(_obj)*/
-        if((this.langHrefs[i].Culture.toLowerCase()==this.$i18n.defaultLocale && process.env.SITE_ID!='3') || (this.langHrefs[i].Culture.toLowerCase()=='sv-se' && (process.env.SITE_ID=='1' || process.env.SITE_ID=='2'))){ //Kopshop uses nb-no as default language, the others sv-se
+        if((this.langHrefs[i].Culture.toLowerCase()==this.$i18n.defaultLocale && process.env.SITE_ID=='3') || (this.langHrefs[i].Culture.toLowerCase()=='sv-se' && (process.env.SITE_ID=='1' || process.env.SITE_ID=='2'))){ //Kopshop uses nb-no as default language, the others sv-se
           let _obj = {
               'hid':'i18n-xd',
               'rel': 'alternate',
