@@ -40,7 +40,7 @@ export default {
   computed: {
     subriteLoginUrl() {
       // Fallback direct URL construction for testing
-      const subriteUrl = process.env.SUBRITE_URL || 'https://stage.minside.liverpool.no'
+      const subriteUrl = process.env.SUBRITE_URL || 'https://minside.liverpool.no'
       const clientId = process.env.SUBRITE_CLIENT_ID || '7b35e1436d73411880f2'
       const redirectUri = encodeURIComponent(process.env.SUBRITE_REDIRECT_URI || 'https://kopshop.no/callback/subrite/login')
       
@@ -51,7 +51,7 @@ export default {
   methods: {
     async loginWithSubrite() {
       try {
-        const subriteUrl = process.env.SUBRITE_URL || 'https://stage.minside.liverpool.no'
+        const subriteUrl = process.env.SUBRITE_URL || 'https://minside.liverpool.no'
         const clientId = process.env.SUBRITE_CLIENT_ID || '7b35e1436d73411880f2'
         const redirectUri = process.env.SUBRITE_REDIRECT_URI || 'https://kopshop.no/callback/subrite/login'
 
