@@ -43,8 +43,8 @@
             v-for="article in articles"
             :key="article.ProductId"
             :article="article"
-            :OLDurl="(siteid==6)?`/article/${article.TeamNameSeo}/${article.UrlSafeName.replace(/ø/gi,'o')}`:`/a/${article.ProductId}/${article.UrlSafeName.replace(/ø/gi,'o')}`"
-            :url="`/a/${article.ProductId}/${article.UrlSafeName.replace(/ø/gi,'o')}`"
+            :OLDurl="(siteid==6)?`/article/${article.TeamNameSeo}/${$normalize(article.UrlSafeName)}`:`/a/${article.ProductId}/${$normalize(article.UrlSafeName)}`"
+            :url="`/a/${article.ProductId}/${$normalize(article.UrlSafeName)}`"
           />
           <div
             v-if="articles.length<1"

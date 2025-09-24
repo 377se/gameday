@@ -60,7 +60,7 @@
           v-for="cat in menu"
           :key="cat.Id">
           <nuxt-link
-            :to="localePath('/c/0/'+cat.Id+'/'+cat.UrlSafeName)">{{ cat.Name }}</nuxt-link>
+            :to="localePath('/c/0/'+cat.Id+'/'+$normalize(cat.UrlSafeName))">{{ cat.Name }}</nuxt-link>
         </li>
       </ul>
     </div>

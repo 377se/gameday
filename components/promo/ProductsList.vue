@@ -11,8 +11,8 @@
       v-for="article in articles"
       :key="article.Id"
       :article="article"
-      :OLDurl="(siteid==6)?`/article/${article.TeamNameSeo}/${article.UrlSafeName.replace(/ø/gi,'o')}`:`/a/${article.Id}/${article.UrlSafeName.replace(/ø/gi,'o')}`"
-      :url="`/a/${article.ProductId}/${article.UrlSafeName.replace(/ø/gi,'o')}`"
+      :OLDurl="(siteid==6)?`/article/${article.TeamNameSeo}/${$normalize(article.UrlSafeName)}`:`/a/${article.Id}/${$normalize(article.UrlSafeName)}`"
+      :url="`/a/${article.ProductId}/${$normalize(article.UrlSafeName)}`"
     />
   </div>
 </template>

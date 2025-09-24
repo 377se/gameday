@@ -23,7 +23,7 @@
               :class="{'uk-parent':cat.SubCategoryList.length>0}">
               <nuxt-link
                 v-if="!cat.SubCategoryList.length>0"
-                :to="localePath('/c/0/'+cat.Id+'/'+cat.UrlSafeName)">
+                :to="localePath('/c/0/'+cat.Id+'/'+$normalize(cat.UrlSafeName))">
                 <img
                   v-if="cat.ImageThumb" 
                   :alt="cat.Name"
@@ -38,7 +38,7 @@
                   <li
                     v-for="(sub, index) in cat.SubCategoryList"
                     :key="sub.Id">
-                    <nuxt-link :to="localePath('/c/'+(index>0?cat.Id:0)+'/'+sub.Id+'/'+sub.UrlSafeName)">
+                    <nuxt-link :to="localePath('/c/'+(index>0?cat.Id:0)+'/'+sub.Id+'/'+$normalize(sub.UrlSafeName))">
                     <img
                       v-if="sub.ImageThumb" 
                       :alt="sub.Name"

@@ -166,7 +166,7 @@ export default {
           let _obj = {
                       'hid':'i18n-alt-'+this.langHrefs[i].Culture.split('-')[0],
                       'rel': 'alternate',
-                      'href': process.env.LANG_HREF[this.langHrefs[i].Culture.toLowerCase()]+this.langHrefs[i].Url.replace(/ø/gi,'o'),
+                      'href': process.env.LANG_HREF[this.langHrefs[i].Culture.toLowerCase()]+this.$normalize(this.langHrefs[i].Url),
                       'hreflang': this.langHrefs[i].Culture.split('-')[0]
                     }
           
@@ -177,7 +177,7 @@ export default {
           let _obj = {
               'hid':'i18n-xd',
               'rel': 'alternate',
-              'href': process.env.LANG_HREF[this.langHrefs[i].Culture.toLowerCase()] + this.langHrefs[i].Url.replace(/ø/gi,'o'),
+              'href': process.env.LANG_HREF[this.langHrefs[i].Culture.toLowerCase()] + this.$normalize(this.langHrefs[i].Url),
               'hreflang': 'x-default'
             }
         _link.push(_obj)
@@ -194,7 +194,7 @@ export default {
       _link.push({
         hid: 'i18n-can',
         rel: 'canonical',
-        href: `${process.env.LANG_HREF[this.$i18n.locale]}${canonical.replace(/ø/gi,'o')}`
+        href: `${process.env.LANG_HREF[this.$i18n.locale]}${this.$normalize(this.canonical)}`
       })
     }
     return {

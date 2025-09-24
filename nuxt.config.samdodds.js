@@ -398,6 +398,7 @@ export default {
     {src: "~/plugins/uikit.js", ssr: false },
     {src: '~/plugins/axios'},
     {src: '~/plugins/get'},
+    {src: '~/plugins/charMap.js'}
   ],
   render: {
     http2: {
