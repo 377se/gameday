@@ -390,6 +390,7 @@ export default {
     {src: '~/plugins/lottie-client.js', ssr:false},
     {src: '~/plugins/filters.js', ssr:false},
     {src: '~/plugins/gameday.js'},
+    {src: '~/plugins/charMap.js'},
     {src: '~/plugins/vue-placeholders.js'},
     {src: "~/plugins/uikit.js", ssr: false },
     {src: '~/plugins/axios'},
