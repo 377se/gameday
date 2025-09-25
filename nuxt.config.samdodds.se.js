@@ -375,7 +375,7 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: false ,
+  loading: false,
   /*
    ** Global CSS
    */
@@ -396,7 +396,7 @@ export default {
     {src: "~/plugins/uikit.js", ssr: false },
     {src: '~/plugins/axios'},
     {src: '~/plugins/get'},
-    {src: '~/plugins/charMap.js'}
+    {src: '~/plugins/charMap.js'},
     {src: '~/plugins/lottie-client.js', ssr:false},
     {src: '~/plugins/filters.js', ssr:false},
   ],
