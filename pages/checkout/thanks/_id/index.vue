@@ -67,24 +67,36 @@ export default {
     }catch(err){
       console.log(err)
     }
-    try{
-      var _this = this
-      this.$gtm.push({ event: 'purchase', ecommerce: _this.obj })
-    }catch(err){console.log(err)}
-    try{
-      console.log(this.klarnahtml)
-      var _obj = this.obj
-      zaraz.track('test-purchase')
-      zaraz.track('purchase', {
-        transaction_id: this.klarnahtml.Ordernumber,
-        order_id: this.klarnahtml.Ordernumber,
-        currency: process.env.CURRENCY_CODE,
-        value: this.klarnahtml.Total,
-        shipping: this.klarnahtml.Shipping,
-        products: this.klarnahtml.Products
-      })
-      zaraz.track('purchase', _obj)
-    }catch(err){console.log(err)}
+    if(this.obj!=null){
+      try{
+        var _this = this
+        this.$gtm.push({ event: 'purchase', ecommerce: _this.obj })
+        }catch(err){console.log(err)}
+        try{
+        var _obj = this.obj
+        console.log('Klarnahtml: ',this.klarnahtml)
+        console.log('Obj: ',_obj)
+        this.$gtm.push({ event: 'purchase', ecommerce: 
+          {
+            transaction_id: this.klarnahtml.Ordernumber,
+            order_id: this.klarnahtml.Ordernumber,
+            currency: process.env.CURRENCY_CODE,
+            value: _obj.purchase.actionField.value,
+            shipping: _obj.purchase.actionField.shipping,
+            items: _obj.purchase.items
+          }
+        })
+        zaraz.track('purchase',{
+          transaction_id: this.klarnahtml.Ordernumber,
+          order_id: this.klarnahtml.Ordernumber,
+          currency: process.env.CURRENCY_CODE,
+          value: _obj.purchase.actionField.value,
+          shipping: _obj.purchase.actionField.shipping,
+          items: _obj.purchase.items
+        })
+        zaraz.track('purchase', _obj)
+      }catch(err){console.log(err)}
+    }
   },
   methods:{
     loadScripts(){
