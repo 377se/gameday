@@ -67,36 +67,7 @@ export default {
     }catch(err){
       console.log(err)
     }
-    if(this.obj!=null){
-      try{
-        var _this = this
-        this.$gtm.push({ event: 'purchase', ecommerce: _this.obj })
-        }catch(err){console.log(err)}
-        try{
-        var _obj = this.obj
-        console.log('Klarnahtml: ',this.klarnahtml)
-        console.log('Obj: ',_obj)
-        this.$gtm.push({ event: 'purchase', ecommerce: 
-          {
-            transaction_id: this.klarnahtml.Ordernumber,
-            order_id: this.klarnahtml.Ordernumber,
-            currency: process.env.CURRENCY_CODE,
-            value: _obj.purchase.actionField.value,
-            shipping: _obj.purchase.actionField.shipping,
-            items: _obj.purchase.items
-          }
-        })
-        zaraz.track('purchase',{
-          transaction_id: this.klarnahtml.Ordernumber,
-          order_id: this.klarnahtml.Ordernumber,
-          currency: process.env.CURRENCY_CODE,
-          value: _obj.purchase.actionField.value,
-          shipping: _obj.purchase.actionField.shipping,
-          items: _obj.purchase.items
-        })
-        zaraz.track('purchase', _obj)
-      }catch(err){console.log(err)}
-    }
+    this.sendToGoogleAds()
   },
   methods:{
     loadScripts(){
@@ -117,6 +88,33 @@ export default {
       }catch(err){
         console.log(err)
       }
+    },
+    sendToGoogleAds(){
+      try{
+        var _obj = this.obj
+        console.log('Klarnahtml: ',this.klarnahtml)
+        console.log('Obj: ',_obj)
+        this.$gtm.push({ event: 'purchase', ecommerce: 
+          {
+            transaction_id: this.klarnahtml.Ordernumber,
+            order_id: this.klarnahtml.Ordernumber,
+            currency: process.env.CURRENCY_CODE,
+            value: _obj?.actionField?.revenue || 0,
+            tax: _obj?.actionField?.tax || 0,
+            shipping: _obj?.actionField?.shipping || 0,
+            items: _obj?.products || []
+          }
+        })
+        zaraz.track('purchase',{
+          transaction_id: this.klarnahtml.Ordernumber,
+          order_id: this.klarnahtml.Ordernumber,
+          currency: process.env.CURRENCY_CODE,
+          value: _obj?.actionField?.revenue || 0,
+          tax: _obj?.actionField?.tax || 0,
+          shipping: _obj?.actionField?.shipping || 0,
+          items: _obj?.products || []
+        })
+      }catch(err){console.log(err)}
     }
   },
   async fetch() {
@@ -131,10 +129,12 @@ export default {
       try{
         const url = `/webapi/Google/GetPurchaseObject?orderId=${klarnahtml.Ordernumber}`;
         const google = await this.$axios.$get(url);
-        var _obj = {currencyCode: process.env.CURRENCY_CODE, purchase: {actionField: google.actionField, products: google.products}}
+        this.obj = google;
+        this.sendToGoogleAds()
+        /*var _obj = {currencyCode: process.env.CURRENCY_CODE, purchase: {actionField: google.actionField, products: google.products}}
         this.obj = _obj
         this.$gtm.push({ event: 'purchase', ecommerce: _obj })
-        zaraz.track('purchase',_obj)
+        zaraz.track('purchase',_obj)*/
       }catch(err){console.log(err)}
     } catch (err) {
       this.klarnahtml={Ordernumber:'', Html: '<div class="uk-container" style="padding-left:20px;padding-right:20px;"><h3>Tack!</h3><p>Din order är nu hos oss. Var vänlig kolla din mail och se så att du fått en orderbekräftelse.</p></div>'}
