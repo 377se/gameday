@@ -72,8 +72,17 @@ export default {
       this.$gtm.push({ event: 'purchase', ecommerce: _this.obj })
     }catch(err){console.log(err)}
     try{
+      console.log(this.klarnahtml)
       var _obj = this.obj
       zaraz.track('test-purchase')
+      zaraz.track('purchase', {
+        transaction_id: this.klarnahtml.Ordernumber,
+        order_id: this.klarnahtml.Ordernumber,
+        currency: process.env.CURRENCY_CODE,
+        value: this.klarnahtml.Total,
+        shipping: this.klarnahtml.Shipping,
+        products: this.klarnahtml.Products
+      })
       zaraz.track('purchase', _obj)
     }catch(err){console.log(err)}
   },
