@@ -67,7 +67,7 @@ export default {
     }catch(err){
       console.log(err)
     }
-    this.sendToGoogleAds()
+    //this.sendToGoogleAds()
   },
   methods:{
     loadScripts(){
@@ -104,15 +104,6 @@ export default {
             shipping: _obj?.actionField?.shipping || 0,
             items: _obj?.products || []
           }
-        })
-        zaraz.track('purchase',{
-          transaction_id: this.klarnahtml.Ordernumber,
-          order_id: this.klarnahtml.Ordernumber,
-          currency: process.env.CURRENCY_CODE,
-          value: _obj?.actionField?.revenue || 0,
-          tax: _obj?.actionField?.tax || 0,
-          shipping: _obj?.actionField?.shipping || 0,
-          items: _obj?.products || []
         })
       }catch(err){console.log(err)}
     }
