@@ -179,59 +179,6 @@ export default {
 };
 </script>
 
-
-<script>
-import ClickOutside from 'vue-click-outside'
-import TheHamburger from "./TheHamburger";
-import { mapGetters, mapActions } from 'vuex'
-export default {
-  async fetch() {
-    try {
-      let [menu] = await Promise.all([
-          this.$axios.$get('/webapi/'+this.$i18n.locale+'/category')
-      ]);
-      this.menu = menu
-    } catch (err) {
-      console.log(err);
-    }
-  },
-  components: {
-    TheHamburger
-  },
-  data(){
-    return{
-      logo:process.env.LOGO_URL,
-      menu: null,
-      chosenDropDown: 0,
-      timeout: null
-    }
-  },
-  computed: {
-    ...mapGetters({
-      global_labels: 'labels',
-      counter: 'basket/counter',
-      cid: 'cid'
-    })
-  },
-  directives: {
-    ClickOutside
-  },
-  methods:{
-    hideDropDown(){
-      var _this = this
-      setTimeout(function(){
-        _this.chosenDropDown = 0
-      },200)
-    },
-    showDropDown(num){
-      var _this = this
-      clearTimeout(_this.timeout)
-      this.chosenDropDown = this.chosenDropDown!=num?num:0
-    }
-  }
-};
-</script>
-
 <style lang="scss" scoped>
 /*Overriding styles in layout-default*/
 .gd-slider{
