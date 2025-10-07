@@ -114,6 +114,7 @@ export default {
           _q = 'fb.1.'+Date.now()+'.'+this.$route.query.fbclid
         }
         this.$cookies.set("click_id", _q);
+        localStorage.setItem("click_id", _q)
       }
     }catch(err){console.log('click_id set error: '+err)}
     try{
