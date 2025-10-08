@@ -254,16 +254,23 @@ export default function ({ app, $axios, $cookies, route, store }, inject) {
         ...eventData
       }
 
-      // Send to internal API (which distributes to all platforms)
+      // Send to internal API (server handles EVERYTHING)
       const response = await $axios.$post('/webapi/tracking/event', payload)
       
-      // If GTM event returned, push to dataLayer
+      // GTM client-side events (GTM handles client-side tracking via dataLayer)
       if (response.gtmEvent && window.dataLayer) {
         window.dataLayer.push(response.gtmEvent)
-        console.log('[Tracking] Pushed to GTM dataLayer:', response.gtmEvent)
+        console.log('[Tracking] ✓ GTM dataLayer:', response.gtmEvent.event)
       }
       
-      console.log('[Tracking] Event sent:', eventName, response)
+      // Log server-side API results
+      console.log('[Tracking] Server-side:', {
+        gtm: response.platforms?.gtm?.success ? '✓' : '✗',
+        googleAds: response.platforms?.googleAds?.success ? '✓ API' : (response.platforms?.googleAds?.skipped ? '⊘' : '✗'),
+        metaAds: response.platforms?.metaAds?.success ? '✓ CAPI' : (response.platforms?.metaAds?.skipped ? '⊘' : '✗'),
+        ga4: response.platforms?.ga4?.success ? '✓' : (response.platforms?.ga4?.skipped ? '⊘' : '✗')
+      })
+      
       return response
       
     } catch (error) {

@@ -21,6 +21,9 @@ const SITE_CONFIGS = {
       purchaseLabel: process.env.GOOGLE_ADS_PURCHASE_LABEL_SP,
       addToCartLabel: process.env.GOOGLE_ADS_ADD_TO_CART_LABEL_SP,
       beginCheckoutLabel: process.env.GOOGLE_ADS_BEGIN_CHECKOUT_LABEL_SP,
+      // Google Ads API credentials
+      developerToken: process.env.GOOGLE_ADS_DEVELOPER_TOKEN_SP,
+      accessToken: process.env.GOOGLE_ADS_ACCESS_TOKEN_SP,
     },
     metaAds: {
       enabled: process.env.META_ADS_ENABLED_SP === 'true',
@@ -43,6 +46,8 @@ const SITE_CONFIGS = {
       purchaseLabel: process.env.GOOGLE_ADS_PURCHASE_LABEL_SAMDODDS,
       addToCartLabel: process.env.GOOGLE_ADS_ADD_TO_CART_LABEL_SAMDODDS,
       beginCheckoutLabel: process.env.GOOGLE_ADS_BEGIN_CHECKOUT_LABEL_SAMDODDS,
+      developerToken: process.env.GOOGLE_ADS_DEVELOPER_TOKEN_SAMDODDS,
+      accessToken: process.env.GOOGLE_ADS_ACCESS_TOKEN_SAMDODDS,
     },
     metaAds: {
       enabled: process.env.META_ADS_ENABLED_SAMDODDS === 'true',
@@ -65,6 +70,8 @@ const SITE_CONFIGS = {
       purchaseLabel: process.env.GOOGLE_ADS_PURCHASE_LABEL_KOPSHOP,
       addToCartLabel: process.env.GOOGLE_ADS_ADD_TO_CART_LABEL_KOPSHOP,
       beginCheckoutLabel: process.env.GOOGLE_ADS_BEGIN_CHECKOUT_LABEL_KOPSHOP,
+      developerToken: process.env.GOOGLE_ADS_DEVELOPER_TOKEN_KOPSHOP,
+      accessToken: process.env.GOOGLE_ADS_ACCESS_TOKEN_KOPSHOP,
     },
     metaAds: {
       enabled: process.env.META_ADS_ENABLED_KOPSHOP === 'true',
@@ -87,6 +94,8 @@ const SITE_CONFIGS = {
       purchaseLabel: process.env.GOOGLE_ADS_PURCHASE_LABEL_GAMEDAY,
       addToCartLabel: process.env.GOOGLE_ADS_ADD_TO_CART_LABEL_GAMEDAY,
       beginCheckoutLabel: process.env.GOOGLE_ADS_BEGIN_CHECKOUT_LABEL_GAMEDAY,
+      developerToken: process.env.GOOGLE_ADS_DEVELOPER_TOKEN_GAMEDAY,
+      accessToken: process.env.GOOGLE_ADS_ACCESS_TOKEN_GAMEDAY,
     },
     metaAds: {
       enabled: process.env.META_ADS_ENABLED_GAMEDAY === 'true',
@@ -109,6 +118,8 @@ const SITE_CONFIGS = {
       purchaseLabel: process.env.GOOGLE_ADS_PURCHASE_LABEL_SUPPORTERPRYLAR,
       addToCartLabel: process.env.GOOGLE_ADS_ADD_TO_CART_LABEL_SUPPORTERPRYLAR,
       beginCheckoutLabel: process.env.GOOGLE_ADS_BEGIN_CHECKOUT_LABEL_SUPPORTERPRYLAR,
+      developerToken: process.env.GOOGLE_ADS_DEVELOPER_TOKEN_SUPPORTERPRYLAR,
+      accessToken: process.env.GOOGLE_ADS_ACCESS_TOKEN_SUPPORTERPRYLAR,
     },
     metaAds: {
       enabled: process.env.META_ADS_ENABLED_SUPPORTERPRYLAR === 'true',
@@ -131,6 +142,8 @@ const SITE_CONFIGS = {
       purchaseLabel: process.env.GOOGLE_ADS_PURCHASE_LABEL_STREETWEEK,
       addToCartLabel: process.env.GOOGLE_ADS_ADD_TO_CART_LABEL_STREETWEEK,
       beginCheckoutLabel: process.env.GOOGLE_ADS_BEGIN_CHECKOUT_LABEL_STREETWEEK,
+      developerToken: process.env.GOOGLE_ADS_DEVELOPER_TOKEN_STREETWEEK,
+      accessToken: process.env.GOOGLE_ADS_ACCESS_TOKEN_STREETWEEK,
     },
     metaAds: {
       enabled: process.env.META_ADS_ENABLED_STREETWEEK === 'true',

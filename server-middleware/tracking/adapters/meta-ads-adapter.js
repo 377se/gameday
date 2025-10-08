@@ -84,7 +84,8 @@ function buildFacebookEvent(event, config) {
 }
 
 /**
- * Send event to Facebook CAPI
+ * Send event to Facebook Conversions API (CAPI)
+ * Full server-side implementation
  */
 async function sendToFacebook(fbEvent, config) {
   return new Promise((resolve, reject) => {
@@ -106,36 +107,44 @@ async function sendToFacebook(fbEvent, config) {
       }
     }
     
-    // For now, just log (implement actual API call when adding Meta)
-    console.log('[Meta Ads] CAPI Event:', JSON.stringify({
+    console.log('[Meta Ads] Sending to CAPI:', {
       pixel_id: config.pixelId,
-      event: fbEvent
-    }, null, 2))
-    
-    resolve({
-      platform: 'meta_ads',
-      sent: true,
-      pixel_id: config.pixelId,
-      event_name: fbEvent.event_name
+      event_name: fbEvent.event_name,
+      has_user_data: !!fbEvent.user_data?.em,
+      has_fbc: !!fbEvent.user_data?.fbc,
+      has_fbp: !!fbEvent.user_data?.fbp,
+      value: fbEvent.custom_data?.value
     })
     
-    /* Uncomment when implementing:
     const req = https.request(options, (res) => {
       let data = ''
       res.on('data', chunk => data += chunk)
       res.on('end', () => {
         if (res.statusCode >= 200 && res.statusCode < 300) {
-          resolve({ success: true, response: JSON.parse(data) })
+          const response = JSON.parse(data || '{}')
+          console.log('[Meta Ads] ✓ Event sent successfully:', response)
+          resolve({
+            platform: 'meta_ads',
+            success: true,
+            statusCode: res.statusCode,
+            pixel_id: config.pixelId,
+            event_name: fbEvent.event_name,
+            response
+          })
         } else {
-          reject(new Error(`Facebook CAPI error: ${res.statusCode} ${data}`))
+          console.error('[Meta Ads] ✗ API Error:', res.statusCode, data)
+          reject(new Error(`Meta CAPI error: ${res.statusCode} ${data}`))
         }
       })
     })
     
-    req.on('error', reject)
+    req.on('error', (error) => {
+      console.error('[Meta Ads] ✗ Request error:', error)
+      reject(error)
+    })
+    
     req.write(postData)
     req.end()
-    */
   })
 }
 
