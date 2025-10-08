@@ -377,18 +377,12 @@ export default {
             } else {
               UIkit.modal('#offscreen-basket').show();
             }
-            try{
-            _this.$gtm.push({event: 'AddToCart', content:{
-              content_name: _this.article.Name, 
-              content_category: _this.article.HeadCategory,
-              content_ids: [_this.article.ArticleNumber],
-              content_type: 'product',
-              currency: process.env.CURRENCY_CODE
-            }
-            });
+            // ✅ Unified Tracking - Single call distributes to GTM, Google Ads, Meta, GA4
+            try {
+              _this.$track.addToCart(_this.article, 1)
               _this.$router.push(_this.localePath('/c/204/223/tottenham-hotspur-fc'))
-            }catch(err){
-              console.log(err)
+            } catch(err) {
+              console.log('Tracking error:', err)
             }   
           }
           //console.log(response)

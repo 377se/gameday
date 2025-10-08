@@ -142,16 +142,14 @@ export default {
       console.error(error)
     })
 
-    try{
-      var _this = this
-      this.$gtm.push({event:'ViewContentCategory',
-        data: {
-          content_name: _this.story.content.SEO.title,
-          content_type: 'category'
-        }
+    // ✅ Unified Tracking - Single call distributes to GTM, Google Ads, Meta, GA4
+    try {
+      this.$track.viewItemList({
+        Name: this.story.content.SEO?.title || this.$route.params.categoryname,
+        CategoryId: this.$route.params.categoryid
       })
-    }catch(err){
-      console.log(err)
+    } catch(err) {
+      console.log('Tracking error:', err)
     }
   },
   methods:{

@@ -94,16 +94,26 @@ export default {
         var _obj = this.obj
         console.log('Klarnahtml: ',this.klarnahtml)
         console.log('Obj: ',_obj)
-        this.$gtm.push({ event: 'purchase', ecommerce: 
-          {
-            transaction_id: this.klarnahtml.Ordernumber,
-            order_id: this.klarnahtml.Ordernumber,
-            currency: process.env.CURRENCY_CODE,
-            value: _obj?.actionField?.revenue || 0,
-            tax: _obj?.actionField?.tax || 0,
-            shipping: _obj?.actionField?.shipping || 0,
-            items: _obj?.products || []
-          }
+        
+        // ✅ Unified Tracking - Single call distributes to GTM, Google Ads, Meta, GA4
+        this.$track.purchase({
+          orderId: this.klarnahtml.Ordernumber,
+          transactionId: this.klarnahtml.Ordernumber,
+          total: _obj?.actionField?.revenue || 0,
+          value: _obj?.actionField?.revenue || 0,
+          tax: _obj?.actionField?.tax || 0,
+          shipping: _obj?.actionField?.shipping || 0,
+          items: _obj?.products || [],
+          
+          // Enhanced Conversion data for Google Ads & Meta CAPI
+          email: this.klarnahtml.Email,
+          phone: this.klarnahtml.Phone,
+          firstName: this.klarnahtml.FirstName,
+          lastName: this.klarnahtml.LastName,
+          street: this.klarnahtml.Street,
+          city: this.klarnahtml.City,
+          postalCode: this.klarnahtml.PostalCode,
+          country: this.klarnahtml.Country,
         })
       }catch(err){console.log(err)}
     }

@@ -441,39 +441,11 @@ export default {
             }else{
               UIkit.modal('#offscreen-basket').show();
             }
-            try{
-            _this.$gtm.push({event: 'AddToCart', content:{
-              content_name: _this.article.Name, 
-              content_category: _this.article.HeadCategory,
-              content_ids: [_this.article.ArticleNumber],
-              content_type: 'product',
-              value: _this.article.Price.toFixed(2),
-              currency: process.env.CURRENCY_CODE
-            }});
-            }catch(err){
-              console.log(err)
-            }
-            
-            try{
-              zaraz.track('AddToCart', {
-                content_name: _this.article.Name, 
-                content_category: _this.article.HeadCategory,
-                content_ids: [_this.article.ArticleNumber],
-                content_type: 'product',
-                value: _this.article.Price.toFixed(2),
-                currency: process.env.CURRENCY_CODE
-              });
-              zaraz.ecommerce('Product Added',{
-                product_id: _this.article.ArticleNumber,
-                sku: _this.article.ProductId,
-                category: _this.article.HeadCategory,
-                name:  _this.article.Name,
-                brand: _this.article.BrandName,
-                price: _this.article.Price.toFixed(2),
-                currency: process.env.CURRENCY_CODE
-              })
-            }catch(err){
-              console.log(err)
+            // ✅ Unified Tracking - Single call distributes to GTM, Google Ads, Meta, GA4
+            try {
+              _this.$track.addToCart(_this.article, 1)
+            } catch(err) {
+              console.log('Tracking error:', err)
             }   
           }
           //console.log(response)
