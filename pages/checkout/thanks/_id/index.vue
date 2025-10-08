@@ -108,13 +108,16 @@ export default {
       }catch(err){console.log(err)}
     }
   },
-  fetchOnServer: false,
   async fetch() {
     var _this = this;
 
     try {
       const _organic = '&clickid=organic'
-      const click_id = (localStorage.getItem("click_id"))?'&clickid='+localStorage.getItem("click_id"):_organic;
+      let clickIdValue = this.$cookies.get('click_id')
+      if(!clickIdValue && process.client){
+        try{ clickIdValue = localStorage.getItem('click_id') }catch(e){}
+      }
+      const click_id = clickIdValue ? '&clickid=' + clickIdValue : _organic;
       const url = `/webapi/klarnacheckout3/GetKlarnaAcknowledge?id=${this.$route.params.id}${click_id}`;
       const klarnahtml = await this.$axios.$get(url);
       this.klarnahtml=klarnahtml;

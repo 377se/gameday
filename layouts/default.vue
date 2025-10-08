@@ -113,7 +113,12 @@ export default {
         }else{
           _q = 'fb.1.'+Date.now()+'.'+this.$route.query.fbclid
         }
-        this.$cookies.set("click_id", _q);
+        this.$cookies.set("click_id", _q, {
+          path: '/',
+          sameSite: 'Lax',
+          secure: location.protocol === 'https:',
+          maxAge: 60 * 60 * 24 * 90 // 90 days
+        });
         localStorage.setItem("click_id", _q)
       }
     }catch(err){console.log('click_id set error: '+err)}
