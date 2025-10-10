@@ -5,8 +5,26 @@
  */
 
 export default function ({ app, $axios, $cookies, route, store }, inject) {
-  // Only run on client side
-  if (process.server) return
+  // Create a no-op tracking object for server-side to prevent errors
+  if (process.server) {
+    const noopTracking = {
+      track: () => Promise.resolve({ success: false, reason: 'server_side' }),
+      pageView: () => Promise.resolve({ success: false, reason: 'server_side' }),
+      viewItem: () => Promise.resolve({ success: false, reason: 'server_side' }),
+      viewItemList: () => Promise.resolve({ success: false, reason: 'server_side' }),
+      addToCart: () => Promise.resolve({ success: false, reason: 'server_side' }),
+      beginCheckout: () => Promise.resolve({ success: false, reason: 'server_side' }),
+      purchase: () => Promise.resolve({ success: false, reason: 'server_side' }),
+      hasConsent: () => true,
+      getClientId: () => null,
+      getUserId: () => null,
+      getGclid: () => null,
+      getFbclid: () => null,
+      getFbp: () => null
+    }
+    inject('track', noopTracking)
+    return
+  }
 
   const siteId = parseInt(process.env.SITE_ID) || 6
   const currency = process.env.CURRENCY_CODE || 'SEK'

@@ -9,6 +9,35 @@ const crypto = require('crypto')
 const https = require('https')
 
 /**
+ * Normalize IP address for Meta CAPI
+ * Meta requires valid IPv4 or IPv6, rejects localhost/private IPs
+ */
+function normalizeIpAddress(ipAddress) {
+  if (!ipAddress) return undefined
+  
+  // If x-forwarded-for has multiple IPs (comma-separated), take the first one
+  const ip = ipAddress.split(',')[0].trim()
+  
+  // Reject localhost/private IPs
+  if (ip === '127.0.0.1' || 
+      ip === '::1' || 
+      ip.startsWith('192.168.') || 
+      ip.startsWith('10.') ||
+      ip.startsWith('172.16.') ||
+      ip.startsWith('::ffff:127.') ||
+      ip.startsWith('::ffff:192.168.')) {
+    return undefined // Don't send private IPs to Meta
+  }
+  
+  // Remove IPv6 prefix if present (::ffff:123.45.67.89 → 123.45.67.89)
+  if (ip.startsWith('::ffff:')) {
+    return ip.substring(7)
+  }
+  
+  return ip
+}
+
+/**
  * Hash user data for Facebook CAPI (SHA-256, lowercase)
  */
 function hashUserData(value) {
@@ -60,7 +89,7 @@ function buildFacebookEvent(event, config) {
       st: event.userData?.region ? hashUserData(event.userData.region) : undefined,
       zp: event.userData?.postalCode ? hashUserData(event.userData.postalCode) : undefined,
       country: event.userData?.country ? hashUserData(event.userData.country) : undefined,
-      client_ip_address: event.ipAddress,
+      client_ip_address: normalizeIpAddress(event.ipAddress),
       client_user_agent: event.userAgent,
       // Facebook click identifier (from _fbc cookie or fbclid parameter)
       fbc: event.fbclid ? `fb.1.${event.timestamp}.${event.fbclid}` : undefined,
@@ -173,6 +202,7 @@ async function sendEvent(event, config) {
 module.exports = {
   sendEvent,
   hashUserData,
+  normalizeIpAddress,
   mapEventName,
   buildFacebookEvent
 }
