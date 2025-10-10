@@ -13,11 +13,14 @@ export default function ({ app, $axios, $cookies, route, store }, inject) {
 
   /**
    * Check if user has consented to tracking cookies
+   * CURRENTLY DISABLED - All tracking fires immediately
    */
   function hasConsent() {
-    // Adapt to your consent management system
-    const consent = $cookies.get('cookie_consent')
-    return consent && (consent.analytics || consent.marketing)
+    // TODO: Re-enable consent management when ready
+    // const consent = $cookies.get('cookie_consent')
+    // return consent && (consent.analytics || consent.marketing)
+    
+    return true // Always fire events for now
   }
 
   /**
@@ -216,10 +219,11 @@ export default function ({ app, $axios, $cookies, route, store }, inject) {
    * Main tracking method - sends event to unified API
    */
   async function track(eventName, eventData = {}) {
-    if (!hasConsent()) {
-      console.log('[Tracking] No consent - event not sent:', eventName)
-      return { success: false, reason: 'no_consent' }
-    }
+    // Consent check disabled - all events fire
+    // if (!hasConsent()) {
+    //   console.log('[Tracking] No consent - event not sent:', eventName)
+    //   return { success: false, reason: 'no_consent' }
+    // }
 
     try {
       // Build unified event payload

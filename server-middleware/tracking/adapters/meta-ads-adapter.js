@@ -72,6 +72,7 @@ function buildFacebookEvent(event, config) {
     custom_data: {
       currency: event.currency,
       value: event.value,
+      order_id: event.transactionId, // For deduplication
       content_ids: event.items?.map(item => item.id) || [],
       content_type: 'product',
       contents: event.items?.map(item => ({
@@ -89,9 +90,9 @@ function buildFacebookEvent(event, config) {
  */
 async function sendToFacebook(fbEvent, config) {
   return new Promise((resolve, reject) => {
+    // Don't include access_token in body - send via query string instead
     const payload = {
-      data: [fbEvent],
-      access_token: config.accessToken
+      data: [fbEvent]
     }
     
     const postData = JSON.stringify(payload)
@@ -99,7 +100,7 @@ async function sendToFacebook(fbEvent, config) {
     const options = {
       hostname: 'graph.facebook.com',
       port: 443,
-      path: `/v18.0/${config.pixelId}/events`,
+      path: `/v21.0/${config.pixelId}/events?access_token=${config.accessToken}`, // Access token in URL
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

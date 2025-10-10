@@ -1,10 +1,10 @@
 /**
- * Google Ads Conversion Tracking Adapter
+ * Google Ads S2S Conversion Tracking Adapter
+ * Uses official google-ads-api library for server-to-server conversion uploads
  * Handles Enhanced Conversions with PII hashing
  */
 
 const crypto = require('crypto')
-const https = require('https')
 
 /**
  * Hash PII data according to Google's requirements
@@ -74,34 +74,36 @@ function buildEnhancedConversionData(userData) {
 }
 
 /**
- * Get conversion label based on event name
+ * Get S2S conversion action ID based on event name
+ * Returns the conversion action resource name for S2S API uploads
  */
-function getConversionLabel(config, eventName) {
+function getConversionActionId(config, eventName) {
   switch (eventName) {
     case 'purchase':
-      return config.purchaseLabel
+      return config.purchaseConversionActionId
     case 'add_to_cart':
-      return config.addToCartLabel
-    case 'begin_checkout':
-      return config.beginCheckoutLabel
+      return config.addToCartConversionActionId
+    case 'page_view':
+      return config.pageViewConversionActionId
     default:
       return null
   }
 }
 
 /**
- * Map event to Google Ads format
+ * Map event to Google Ads S2S format
  */
 function mapEventToGoogleAds(event, config) {
-  const conversionLabel = getConversionLabel(config, event.eventName)
+  const conversionActionId = getConversionActionId(config, event.eventName)
   
-  if (!conversionLabel) {
-    return null // This event doesn't need conversion tracking
+  if (!conversionActionId) {
+    return null // This event doesn't have a configured S2S conversion action
   }
   
+  // Build S2S conversion data
   const gadsEvent = {
-    // Conversion tracking
-    send_to: `${config.conversionId}/${conversionLabel}`,
+    // Conversion action ID (not label - we use S2S API now!)
+    conversionActionId: conversionActionId,
     
     // Transaction data
     value: event.value,
@@ -118,7 +120,7 @@ function mapEventToGoogleAds(event, config) {
     }))
   }
   
-  // Enhanced Conversion data
+  // Enhanced Conversion data (hashed user data)
   if (event.userData && Object.keys(event.userData).length > 0) {
     gadsEvent.user_data = buildEnhancedConversionData(event.userData)
   }
@@ -127,137 +129,128 @@ function mapEventToGoogleAds(event, config) {
 }
 
 /**
- * Send Enhanced Conversion to Google Ads API
- * Uses Google Ads Enhanced Conversions REST API
- * Endpoint: https://googleads.googleapis.com/v15/customers/{customer_id}/conversionUploads:uploadClickConversions
+ * Send S2S Conversion to Google Ads API
+ * Uses official google-ads-api library with gRPC
  */
 async function sendToGoogleAds(gadsEvent, config, event) {
-  return new Promise((resolve, reject) => {
-    // Extract customer ID from conversion ID (AW-123456789 → 123456789)
-    const customerId = config.conversionId.replace('AW-', '').replace(/-/g, '')
+  const { GoogleAdsApi } = require('google-ads-api')
+  
+  try {
+    // Initialize Google Ads API client
+    const client = new GoogleAdsApi({
+      client_id: config.clientId,
+      client_secret: config.clientSecret,
+      developer_token: config.developerToken
+    })
     
-    // Build Enhanced Conversions API payload
-    const payload = {
-      conversions: [{
-        // Conversion action (from conversion label)
-        conversionAction: `customers/${customerId}/conversionActions/${config.conversionId}`,
-        
-        // Conversion value
-        conversionValue: gadsEvent.value,
-        currencyCode: gadsEvent.currency,
-        
-        // Click identifier (gclid)
-        gclid: gadsEvent.gclid,
-        
-        // Conversion time (ISO 8601)
-        conversionDateTime: new Date(event.timestamp).toISOString(),
-        
-        // Enhanced conversion data (hashed user data)
-        userIdentifiers: gadsEvent.user_data ? [
-          {
-            hashedEmail: gadsEvent.user_data.em,
-            hashedPhoneNumber: gadsEvent.user_data.ph,
-            addressInfo: {
-              hashedFirstName: gadsEvent.user_data.fn,
-              hashedLastName: gadsEvent.user_data.ln,
-              hashedStreetAddress: gadsEvent.user_data.st,
-              city: gadsEvent.user_data.ct,
-              state: gadsEvent.user_data.rg,
-              postalCode: gadsEvent.user_data.zp,
-              countryCode: gadsEvent.user_data.country
-            }
-          }
-        ] : undefined,
-        
-        // Cart data for dynamic remarketing
-        cartData: gadsEvent.items ? {
-          items: gadsEvent.items
-        } : undefined
-      }],
-      partialFailure: true
+    // Create customer instance
+    const customer = client.Customer({
+      customer_id: config.customerId,
+      login_customer_id: config.managerAccountId,
+      refresh_token: config.refreshToken
+    })
+    
+    // Build conversion payload
+    const conversion = {
+      gclid: gadsEvent.gclid,
+      conversion_action: `customers/${config.customerId}/conversionActions/${gadsEvent.conversionActionId}`,
+      conversion_date_time: new Date(event.timestamp).toISOString().replace('T', ' ').substring(0, 19) + '+00:00',
+      conversion_value: gadsEvent.value || 0,
+      currency_code: gadsEvent.currency,
+      order_id: gadsEvent.transaction_id || `event-${Date.now()}`
     }
     
-    const postData = JSON.stringify(payload)
-    
-    // Google Ads API endpoint
-    const options = {
-      hostname: 'googleads.googleapis.com',
-      port: 443,
-      path: `/v15/customers/${customerId}/conversionUploads:uploadClickConversions`,
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Length': Buffer.byteLength(postData),
-        'Authorization': `Bearer ${config.accessToken}`, // OAuth token
-        'developer-token': config.developerToken,
-        'login-customer-id': customerId
+    // Add enhanced conversion data (hashed PII) if available
+    if (gadsEvent.user_data) {
+      const userIdentifiers = []
+      
+      if (gadsEvent.user_data.em) {
+        userIdentifiers.push({ hashed_email: gadsEvent.user_data.em })
+      }
+      if (gadsEvent.user_data.ph) {
+        userIdentifiers.push({ hashed_phone_number: gadsEvent.user_data.ph })
+      }
+      if (gadsEvent.user_data.fn || gadsEvent.user_data.ln) {
+        userIdentifiers.push({
+          address_info: {
+            hashed_first_name: gadsEvent.user_data.fn,
+            hashed_last_name: gadsEvent.user_data.ln,
+            hashed_street_address: gadsEvent.user_data.st,
+            city: gadsEvent.user_data.ct,
+            state: gadsEvent.user_data.rg,
+            postal_code: gadsEvent.user_data.zp,
+            country_code: gadsEvent.user_data.country
+          }
+        })
+      }
+      
+      if (userIdentifiers.length > 0) {
+        conversion.user_identifiers = userIdentifiers
       }
     }
     
-    console.log('[Google Ads] Sending Enhanced Conversion to API:', {
-      customer_id: customerId,
-      conversion_action: gadsEvent.send_to,
+    console.log('[Google Ads] Uploading S2S conversion:', {
+      customer_id: config.customerId,
+      conversion_action: conversion.conversion_action,
+      event_name: event.eventName,
       has_gclid: !!gadsEvent.gclid,
       has_enhanced_data: !!gadsEvent.user_data,
       value: gadsEvent.value
     })
     
-    const req = https.request(options, (res) => {
-      let data = ''
-      res.on('data', chunk => data += chunk)
-      res.on('end', () => {
-        if (res.statusCode >= 200 && res.statusCode < 300) {
-          console.log('[Google Ads] ✓ Conversion sent successfully')
-          resolve({
-            platform: 'google_ads',
-            success: true,
-            statusCode: res.statusCode,
-            conversion_id: config.conversionId,
-            response: JSON.parse(data || '{}')
-          })
-        } else {
-          console.error('[Google Ads] ✗ API Error:', res.statusCode, data)
-          reject(new Error(`Google Ads API error: ${res.statusCode} ${data}`))
-        }
-      })
+    // Upload conversion using official library
+    const response = await customer.conversionUploads.uploadClickConversions({
+      customer_id: config.customerId,
+      conversions: [conversion],
+      partial_failure: true,
+      validate_only: false
     })
     
-    req.on('error', (error) => {
-      console.error('[Google Ads] ✗ Request error:', error)
-      reject(error)
-    })
+    console.log('[Google Ads] ✓ S2S conversion uploaded successfully')
     
-    req.write(postData)
-    req.end()
-  })
+    return {
+      platform: 'google_ads',
+      success: true,
+      conversion_action_id: gadsEvent.conversionActionId,
+      response: response
+    }
+    
+  } catch (error) {
+    console.error('[Google Ads] ✗ S2S upload error:', error.message)
+    throw error
+  }
 }
 
 /**
- * Main adapter function - sends event to Google Ads API
+ * Main adapter function - sends event to Google Ads S2S API
+ * Now uses official google-ads-api library
  */
-async function sendEvent(event, config) {
-  if (!config.conversionId) {
+async function sendEvent(event, config, siteKey) {
+  // Check for required account configuration
+  if (!config.customerId) {
     return {
       skipped: true,
-      reason: 'No conversion ID configured'
+      reason: 'No customer ID configured'
     }
   }
   
-  if (!config.accessToken || !config.developerToken) {
-    console.warn('[Google Ads] Missing API credentials - skipping server-side send')
+  // Check for required OAuth credentials
+  if (!config.developerToken || !config.clientId || !config.clientSecret || !config.refreshToken) {
+    console.warn('[Google Ads] Missing OAuth credentials - skipping')
     return {
       skipped: true,
-      reason: 'Missing Google Ads API credentials (accessToken or developerToken)'
+      reason: 'Missing Google Ads OAuth credentials (need: developerToken, clientId, clientSecret, refreshToken)'
     }
   }
   
-  // Map event to Google Ads format
+  // Map event to Google Ads S2S format
   const gadsEvent = mapEventToGoogleAds(event, config)
   
   if (!gadsEvent) {
+    // Event not configured for S2S tracking (no conversion action ID)
     return {
       skipped: true,
-      reason: 'Event not tracked in Google Ads'
+      reason: `Event '${event.eventName}' not configured for S2S (no conversion action ID)`
     }
   }
   
@@ -270,12 +263,12 @@ async function sendEvent(event, config) {
     }
   }
   
-  // Send to Google Ads API
+  // Send to Google Ads S2S API
   try {
     const result = await sendToGoogleAds(gadsEvent, config, event)
     return result
   } catch (error) {
-    console.error('[Google Ads] Error:', error)
+    console.error('[Google Ads] S2S upload error:', error.message)
     throw error
   }
 }

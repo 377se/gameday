@@ -8,3 +8,6 @@ static/workbox-sw*.js
 nvm.*
 *.nvm
 nvm-exec
+
+# Tracking test scripts and documentation
+TRACKING-TEST-FOLDER/
