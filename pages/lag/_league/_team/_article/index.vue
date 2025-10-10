@@ -82,10 +82,13 @@ export default {
       this.article = article
       this.shop = shop
       // ✅ Unified Tracking - Single call distributes to GTM, Google Ads, Meta, GA4
-      try {
-        this.$track.viewItem(this.article)
-      } catch(err) {
-        console.log('Tracking error:', err)
+      // Only track on client-side (not during SSR)
+      if (process.client && this.$track && this.$track.viewItem) {
+        try {
+          this.$track.viewItem(this.article)
+        } catch(err) {
+          // Silent - tracking errors don't block page
+        }
       }
 
     } catch (err) {

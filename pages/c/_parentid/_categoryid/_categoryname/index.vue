@@ -143,13 +143,16 @@ export default {
     })
 
     // ✅ Unified Tracking - Single call distributes to GTM, Google Ads, Meta, GA4
-    try {
-      this.$track.viewItemList({
-        Name: this.story.content.SEO?.title || this.$route.params.categoryname,
-        CategoryId: this.$route.params.categoryid
-      })
-    } catch(err) {
-      console.log('Tracking error:', err)
+    // Only track on client-side (not during SSR)
+    if (process.client && this.$track && this.$track.viewItemList) {
+      try {
+        this.$track.viewItemList({
+          Name: this.story.content.SEO?.title || this.$route.params.categoryname,
+          CategoryId: this.$route.params.categoryid
+        })
+      } catch(err) {
+        // Silent - tracking errors don't block page
+      }
     }
   },
   methods:{

@@ -442,10 +442,12 @@ export default {
               UIkit.modal('#offscreen-basket').show();
             }
             // ✅ Unified Tracking - Single call distributes to GTM, Google Ads, Meta, GA4
-            try {
-              _this.$track.addToCart(_this.article, 1)
-            } catch(err) {
-              console.log('Tracking error:', err)
+            if (_this.$track && _this.$track.addToCart) {
+              try {
+                _this.$track.addToCart(_this.article, 1)
+              } catch(err) {
+                // Silent - tracking errors don't block page
+              }
             }   
           }
           //console.log(response)

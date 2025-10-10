@@ -104,11 +104,13 @@ export default {
       this.loadScripts()
     }
     // ✅ Unified Tracking - Single call distributes to GTM, Google Ads, Meta, GA4
-    try {
-      const cart = this.$store.getters['basket/cart']
-      this.$track.beginCheckout(cart)
-    } catch(err) {
-      console.log('Tracking error:', err)
+    if (this.$track && this.$track.beginCheckout) {
+      try {
+        const cart = this.$store.getters['basket/cart']
+        this.$track.beginCheckout(cart)
+      } catch(err) {
+        // Silent - tracking errors don't block page
+      }
     }
   },
   methods:{

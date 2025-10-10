@@ -96,7 +96,8 @@ export default {
         console.log('Obj: ',_obj)
         
         // ✅ Unified Tracking - Single call distributes to GTM, Google Ads, Meta, GA4
-        this.$track.purchase({
+        if (this.$track && this.$track.purchase) {
+          this.$track.purchase({
           orderId: this.klarnahtml.Ordernumber,
           transactionId: this.klarnahtml.Ordernumber,
           total: _obj?.actionField?.revenue || 0,
@@ -114,7 +115,8 @@ export default {
           city: this.klarnahtml.City,
           postalCode: this.klarnahtml.PostalCode,
           country: this.klarnahtml.Country,
-        })
+          })
+        }
       }catch(err){console.log(err)}
     }
   },
