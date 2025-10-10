@@ -244,11 +244,19 @@ export default function ({ app, $axios, $cookies, route, store }, inject) {
     // }
 
     try {
+      const timestamp = Date.now()
+      
+      // Generate event_id for Meta deduplication (client-side generates, server uses same)
+      const eventId = eventData.transactionId 
+        ? `${eventData.transactionId}_${eventName}`
+        : `${timestamp}_${eventName}_${Math.random().toString(36).substring(2, 10)}`
+      
       // Build unified event payload
       const payload = {
         // Event basics
         eventName,
-        timestamp: Date.now(),
+        timestamp,
+        eventId, // For Meta client/server deduplication
         
         // Site context
         siteId,
@@ -277,7 +285,14 @@ export default function ({ app, $axios, $cookies, route, store }, inject) {
       }
 
       // Send to internal API (server handles EVERYTHING)
-      const response = await $axios.$post('/webapi/tracking/event', payload)
+      const headers = {}
+      
+      // Add API key header if configured (for security)
+      if (process.env.TRACKING_API_KEY) {
+        headers['x-tracking-api-key'] = process.env.TRACKING_API_KEY
+      }
+      
+      const response = await $axios.$post('/webapi/tracking/event', payload, { headers })
       
       // GTM client-side events (GTM handles client-side tracking via dataLayer)
       if (response.gtmEvent && window.dataLayer) {

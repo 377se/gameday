@@ -12,6 +12,7 @@
 function mapEventToGTM(event) {
   const gtmEvent = {
     event: mapEventName(event.eventName),
+    eventId: event.eventId, // For Meta Pixel eventID parameter
   }
 
   // Add event-specific data based on event type

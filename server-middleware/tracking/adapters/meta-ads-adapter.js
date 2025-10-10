@@ -73,7 +73,7 @@ function mapEventName(eventName) {
  * Build Facebook CAPI event payload
  */
 function buildFacebookEvent(event, config) {
-  return {
+  const payload = {
     event_name: mapEventName(event.eventName),
     event_time: Math.floor(event.timestamp / 1000),
     event_source_url: event.pageUrl,
@@ -111,6 +111,13 @@ function buildFacebookEvent(event, config) {
       })) || []
     }
   }
+  
+  // Add event_id only if client sent it (for client/server deduplication)
+  if (event.eventId) {
+    payload.event_id = event.eventId
+  }
+  
+  return payload
 }
 
 /**

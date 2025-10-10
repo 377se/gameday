@@ -157,7 +157,8 @@ async function sendToGoogleAds(gadsEvent, config, event) {
       conversion_date_time: new Date(event.timestamp).toISOString().replace('T', ' ').substring(0, 19) + '+00:00',
       conversion_value: gadsEvent.value || 0,
       currency_code: gadsEvent.currency,
-      order_id: gadsEvent.transaction_id || `event-${Date.now()}`
+      // For purchase: use real order ID. For others (AddToCart, PageView): use event_id for deduplication
+      order_id: gadsEvent.transaction_id || event.eventId || `event-${Date.now()}`
     }
     
     // Add enhanced conversion data (hashed PII) if available

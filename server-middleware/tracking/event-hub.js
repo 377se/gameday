@@ -216,6 +216,7 @@ function normalizeEvent(rawEvent) {
     // Event basics
     eventName: rawEvent.eventName,
     timestamp: rawEvent.timestamp || Date.now(),
+    eventId: rawEvent.eventId, // For Meta client/server deduplication
     
     // Site context
     siteId: parseInt(rawEvent.siteId) || 6,
@@ -344,6 +345,21 @@ module.exports = function (req, res, next) {
   // Only handle POST requests to tracking endpoint
   if (req.method !== 'POST' || !req.url.startsWith('/webapi/tracking/event')) {
     return next()
+  }
+  
+  // Security: Validate tracking API key header
+  const expectedApiKey = process.env.TRACKING_API_KEY
+  if (expectedApiKey) {
+    const providedApiKey = req.headers['x-tracking-api-key']
+    if (providedApiKey !== expectedApiKey) {
+      console.warn('[Tracking] Invalid or missing API key from:', req.headers.origin || req.headers.referer)
+      res.statusCode = 403
+      res.setHeader('Content-Type', 'application/json')
+      return res.end(JSON.stringify({ 
+        success: false,
+        error: 'Forbidden: Invalid API key' 
+      }))
+    }
   }
   
   let body = ''
