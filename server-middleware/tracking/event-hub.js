@@ -272,9 +272,7 @@ async function distributeEvent(normalizedEvent, siteConfig) {
   
   const promises = []
   
-  // GTM - PAUSED FOR NOW (not sending to GTM temporarily)
-  // TODO: Re-enable GTM when ready
-  /*
+  // GTM - Always send (existing system, works alongside S2S)
   promises.push(
     gtmAdapter.sendEvent(normalizedEvent, {})
       .then(result => {
@@ -289,10 +287,6 @@ async function distributeEvent(normalizedEvent, siteConfig) {
         console.error('GTM error:', error)
       })
   )
-  */
-  
-  // Mark GTM as skipped
-  results.platforms.gtm = { skipped: true, reason: 'GTM paused for now' }
   
   // Google Ads
   if (siteConfig.googleAds.enabled) {
