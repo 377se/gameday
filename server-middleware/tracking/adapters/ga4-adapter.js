@@ -86,36 +86,39 @@ async function sendToGA4(ga4Event, config) {
       }
     }
     
-    // For now, just log (implement actual API call when adding GA4)
-    console.log('[GA4] Measurement Protocol Event:', JSON.stringify({
+    console.log('[GA4] Sending to Measurement Protocol:', {
       measurement_id: config.measurementId,
-      event: ga4Event
-    }, null, 2))
-    
-    resolve({
-      platform: 'ga4',
-      sent: true,
-      measurement_id: config.measurementId,
-      event_name: ga4Event.events[0].name
+      event_name: ga4Event.events[0].name,
+      value: ga4Event.events[0].params?.value
     })
     
-    /* Uncomment when implementing:
     const req = https.request(options, (res) => {
       let data = ''
       res.on('data', chunk => data += chunk)
       res.on('end', () => {
         if (res.statusCode >= 200 && res.statusCode < 300) {
-          resolve({ success: true, statusCode: res.statusCode })
+          console.log('[GA4] ✓ Event sent successfully')
+          resolve({ 
+            platform: 'ga4', 
+            success: true, 
+            statusCode: res.statusCode,
+            measurement_id: config.measurementId,
+            event_name: ga4Event.events[0].name
+          })
         } else {
+          console.error('[GA4] ✗ API Error:', res.statusCode, data)
           reject(new Error(`GA4 API error: ${res.statusCode} ${data}`))
         }
       })
     })
     
-    req.on('error', reject)
+    req.on('error', (error) => {
+      console.error('[GA4] ✗ Request error:', error)
+      reject(error)
+    })
+    
     req.write(postData)
     req.end()
-    */
   })
 }
 

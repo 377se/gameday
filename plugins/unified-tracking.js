@@ -264,21 +264,15 @@ export default function ({ app, $axios, $cookies, route, store }, inject) {
       // GTM client-side events (GTM handles client-side tracking via dataLayer)
       if (response.gtmEvent && window.dataLayer) {
         window.dataLayer.push(response.gtmEvent)
-        console.log('[Tracking] ✓ GTM dataLayer:', response.gtmEvent.event)
+        // Silent - no console logs
       }
       
-      // Log server-side API results
-      console.log('[Tracking] Server-side:', {
-        gtm: response.platforms?.gtm?.success ? '✓' : '✗',
-        googleAds: response.platforms?.googleAds?.success ? '✓ API' : (response.platforms?.googleAds?.skipped ? '⊘' : '✗'),
-        metaAds: response.platforms?.metaAds?.success ? '✓ CAPI' : (response.platforms?.metaAds?.skipped ? '⊘' : '✗'),
-        ga4: response.platforms?.ga4?.success ? '✓' : (response.platforms?.ga4?.skipped ? '⊘' : '✗')
-      })
+      // Silent tracking - no console logs to browser
       
       return response
       
     } catch (error) {
-      console.error('[Tracking] Error sending event:', eventName, error)
+      // Silent - no console logs
       return { success: false, error: error.message }
     }
   }

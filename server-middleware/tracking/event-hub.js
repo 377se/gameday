@@ -122,16 +122,20 @@ const SITE_CONFIGS = {
       apiSecret: process.env.GA4_API_SECRET_KOPSHOP,
     }
   },
-  6: { // Gameday
+  6: { // Gameday - ✅ CONFIGURED
     siteId: 6,
     siteName: 'Gameday',
     currency: 'SEK',
     googleAds: {
       enabled: process.env.GOOGLE_ADS_ENABLED_GAMEDAY === 'true',
       conversionId: process.env.GOOGLE_ADS_CONVERSION_ID_GAMEDAY,
-      purchaseLabel: process.env.GOOGLE_ADS_PURCHASE_LABEL_GAMEDAY,
-      addToCartLabel: process.env.GOOGLE_ADS_ADD_TO_CART_LABEL_GAMEDAY,
-      beginCheckoutLabel: process.env.GOOGLE_ADS_BEGIN_CHECKOUT_LABEL_GAMEDAY,
+      // S2S Conversion Action IDs for API uploads (Type 7)
+      purchaseConversionActionId: process.env.GOOGLE_ADS_PURCHASE_CONVERSION_ID_GAMEDAY,
+      addToCartConversionActionId: process.env.GOOGLE_ADS_ADD_TO_CART_CONVERSION_ID_GAMEDAY,
+      pageViewConversionActionId: process.env.GOOGLE_ADS_PAGE_VIEW_CONVERSION_ID_GAMEDAY,
+      // Customer account details (from env)
+      customerId: process.env.GOOGLE_ADS_CUSTOMER_ID_GAMEDAY,
+      managerAccountId: process.env.GOOGLE_ADS_MANAGER_ACCOUNT_ID,
       // Shared OAuth credentials (same for all sites)
       ...SHARED_OAUTH
     },
