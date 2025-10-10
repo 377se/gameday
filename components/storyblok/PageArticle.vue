@@ -80,47 +80,11 @@ export default {
       const metadata = await this.$axios.$get(metadataurl);
  
       this.metadata = metadata
-      var _this = this
-      try{
-        zaraz.track('ViewContent',
-          {
-            content_name: _this.article.Name,
-            content_category: _this.article.HeadCategory,
-            content_ids: [_this.article.ArticleNumber],
-            content_type: 'product',
-            value: _this.article.Price.toFixed(2),
-            currency: process.env.CURRENCY_CODE
-        })
-        zaraz.ecommerce('Product Viewed',{
-          product_id: _this.article.ArticleNumber,
-          sku: _this.article.ProductId,
-          category: _this.article.HeadCategory,
-          name:  _this.article.Name,
-          brand: _this.article.BrandName,
-          price: _this.article.Price.toFixed(2),
-          currency: process.env.CURRENCY_CODE,
-          value: _this.article.Price.toFixed(2)
-        })
-            }catch(err){
-              console.log(err)
-            }   
-      try{
-        this.$gtm.push({event:'ViewContent',
-          data: {
-            content_name: _this.article.Name,
-            content_category: _this.article.HeadCategory,
-            content_ids: [_this.article.ArticleNumber],
-            content_type: 'product',
-            value: _this.article.Price.toFixed(2),
-            currency: process.env.CURRENCY_CODE
-          }
-        })
-      }catch(err){
-        console.log(err)
-        this.$nuxt.error({
-          statusCode: 404,
-          message: err.response.data,
-        });
+      // ✅ Unified Tracking - Single call distributes to GTM, Google Ads, Meta, GA4
+      try {
+        this.$track.viewItem(this.article)
+      } catch(err) {
+        console.log('Tracking error:', err)
       }
 
       try{

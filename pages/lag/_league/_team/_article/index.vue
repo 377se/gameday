@@ -81,34 +81,11 @@ export default {
 
       this.article = article
       this.shop = shop
-      var _this = this
-      try{
-        this.$gtm.push({event:'ViewContent',
-          data: {
-            content_name: _this.article.Name,
-            content_category: _this.shop + '/lag/'+_this.$route.params.league+'/'+_this.$route.params.team+'/'+article.HeadCategory,
-            content_ids: [_this.article.ArticleNumber],
-            content_type: 'product',
-            value: _this.article.Price.toFixed(2),
-            currency: process.env.CURRENCY_CODE
-          }
-        })
-      }catch(err){
-        console.log(err)
-      }
-      try{
-        zaraz.track('ViewContent',
-          {
-            content_name: _this.article.Name,
-            content_category: _this.shop + '/lag/'+_this.$route.params.league+'/'+_this.$route.params.team+'/'+article.HeadCategory,
-            content_ids: [_this.article.ArticleNumber],
-            content_type: 'product',
-            value: _this.article.Price.toFixed(2),
-            currency: process.env.CURRENCY_CODE
-          }
-        )
-      }catch(err){
-        console.log(err)
+      // ✅ Unified Tracking - Single call distributes to GTM, Google Ads, Meta, GA4
+      try {
+        this.$track.viewItem(this.article)
+      } catch(err) {
+        console.log('Tracking error:', err)
       }
 
     } catch (err) {

@@ -398,7 +398,11 @@ export default {
     {src: "~/plugins/uikit.js", ssr: false },
     {src: '~/plugins/axios'},
     {src: '~/plugins/get'},
-    {src: '~/plugins/charMap.js'}
+    {src: '~/plugins/charMap.js'},
+    {src: '~/plugins/unified-tracking.js', mode: 'client'}
+  ],
+  serverMiddleware: [
+    '~/server-middleware/tracking/event-hub.js'
   ],
   render: {
     http2: {

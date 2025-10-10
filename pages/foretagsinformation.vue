@@ -70,10 +70,13 @@ export default {
     }, (error) => {
       console.error(error)
     })
-    try{
-      this.$gtm.push({event:'Contact'})
-    }catch(err){
-      console.log(err)
+    // ✅ Unified Tracking - Single call distributes to GTM, Google Ads, Meta, GA4
+    try {
+      this.$track.track('contact', {
+        form_type: 'business_information'
+      })
+    } catch(err) {
+      console.log('Tracking error:', err)
     }
   },
   async fetch () {

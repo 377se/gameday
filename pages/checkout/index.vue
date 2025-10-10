@@ -103,15 +103,12 @@ export default {
     if(this.klarnahtml!=null){
       this.loadScripts()
     }
-    try{
-      this.$gtm.push({event:'InitiateCheckout'})
-    }catch(err){
-      console.log(err)
-    }
-    try{
-      zaraz.track('InitiateCheckout')
-    }catch(err){
-      console.log(err)
+    // ✅ Unified Tracking - Single call distributes to GTM, Google Ads, Meta, GA4
+    try {
+      const cart = this.$store.getters['basket/cart']
+      this.$track.beginCheckout(cart)
+    } catch(err) {
+      console.log('Tracking error:', err)
     }
   },
   methods:{

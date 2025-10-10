@@ -164,15 +164,13 @@ export default {
     }, (error) => {
       console.error(error)
     })
-    try{
-      this.$gtm.push({event:'Login'})
-    }catch(err){
-      console.log(err)
-    }
-    try{
-      zaraz.track('Login')
-    }catch(err){
-      console.log(err)
+    // ✅ Unified Tracking - Single call distributes to GTM, Google Ads, Meta, GA4
+    try {
+      this.$track.track('login', {
+        method: 'email'
+      })
+    } catch(err) {
+      console.log('Tracking error:', err)
     }
   },
   methods: {
