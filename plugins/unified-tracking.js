@@ -487,6 +487,14 @@ export default function ({ app, $axios, $cookies, route, store }, inject) {
       tracking.pageView()
     }, 100)
   })
+  
+  // IMPORTANT: Also track initial page load (not just route changes)
+  // This captures the landing page with gclid in URL
+  if (process.client) {
+    setTimeout(() => {
+      tracking.pageView()
+    }, 500) // Wait for cookies to be set
+  }
 
   // Monitor for _fbp cookie creation by Meta Pixel and backup to localStorage
   if (process.client) {
