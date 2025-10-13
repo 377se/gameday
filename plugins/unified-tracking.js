@@ -341,6 +341,16 @@ export default function ({ app, $axios, $cookies, route, store }, inject) {
         ...eventData
       }
 
+      // ⚡ CRITICAL: Push eventId/externalId to dataLayer IMMEDIATELY
+      // This ensures GTM tags have deduplication IDs available BEFORE any tags fire
+      // We push a minimal object first, then the full event after server responds
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          eventId: payload.eventId,
+          externalId: payload.externalId,
+        })
+      }
+      
       // Send to internal API (server handles EVERYTHING)
       const headers = {}
       
@@ -352,6 +362,7 @@ export default function ({ app, $axios, $cookies, route, store }, inject) {
       const response = await $axios.$post('/webapi/tracking/event', payload, { headers })
       
       // GTM client-side events (GTM handles client-side tracking via dataLayer)
+      // The response.gtmEvent will have the SAME eventId/externalId, just with more data
       if (response.gtmEvent && window.dataLayer) {
         window.dataLayer.push(response.gtmEvent)
         // Silent - no console logs
