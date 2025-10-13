@@ -13,6 +13,7 @@ function mapEventToGTM(event) {
   const gtmEvent = {
     event: mapEventName(event.eventName),
     eventId: event.eventId, // For Meta Pixel eventID parameter
+    externalId: event.externalId, // For Meta external_id and Google user_id
   }
 
   // Add event-specific data based on event type
@@ -22,18 +23,26 @@ function mapEventToGTM(event) {
       gtmEvent.data = {
         content_name: event.items?.[0]?.name,
         content_category: event.items?.[0]?.category,
-        content_ids: event.items?.map(i => i.id),
+        content_ids: event.items?.filter(i => i.id).map(i => String(i.id)) || [],
         content_type: 'product',
         value: event.value,
-        currency: event.currency
+        currency: event.currency,
+        contents: event.items?.filter(i => i.id).map(i => ({
+          id: String(i.id),
+          quantity: i.quantity || 1,
+          item_price: i.price || 0
+        })) || []
       }
       break
 
     case 'view_item_list':
-      gtmEvent.event = 'ViewContentCategory'
+      gtmEvent.event = 'ViewContent'  // Use ViewContent for categories too
       gtmEvent.data = {
         content_name: event.item_list_name,
-        content_type: 'category'
+        content_category: event.item_list_id,
+        content_type: 'product_group',  // Distinguish from individual products
+        content_ids: [],  // Empty for categories
+        currency: event.currency
       }
       break
 
@@ -42,19 +51,31 @@ function mapEventToGTM(event) {
       gtmEvent.content = {
         content_name: event.items?.[0]?.name,
         content_category: event.items?.[0]?.category,
-        content_ids: event.items?.map(i => i.id),
+        content_ids: event.items?.filter(i => i.id).map(i => String(i.id)) || [],
         content_type: 'product',
         value: event.value,
-        currency: event.currency
+        currency: event.currency,
+        contents: event.items?.filter(i => i.id).map(i => ({
+          id: String(i.id),
+          quantity: i.quantity || 1,
+          item_price: i.price || 0
+        })) || []
       }
       break
 
     case 'begin_checkout':
       gtmEvent.event = 'InitiateCheckout'
       gtmEvent.data = {
+        content_ids: event.items?.filter(i => i.id).map(i => String(i.id)) || [],
+        content_type: 'product',
         value: event.value,
         currency: event.currency,
-        items: event.items
+        contents: event.items?.filter(i => i.id).map(i => ({
+          id: String(i.id),
+          quantity: i.quantity || 1,
+          item_price: i.price || 0
+        })) || [],
+        num_items: event.items?.length || 0
       }
       break
 
@@ -104,11 +125,13 @@ function mapEventToGTM(event) {
 function mapEventName(eventName) {
   const eventMap = {
     'view_item': 'ViewContent',
-    'view_item_list': 'ViewContentCategory',
+    'view_item_list': 'ViewContent',  // Categories also use ViewContent (with content_type: 'product_group')
     'add_to_cart': 'AddToCart',
     'begin_checkout': 'InitiateCheckout',
     'purchase': 'purchase',
-    'page_view': 'PageView'
+    'page_view': 'PageView',
+    'login': 'CompleteRegistration',  // Map to Meta standard event
+    'contact': 'Contact'  // Map to Meta standard event
   }
   
   return eventMap[eventName] || eventName

@@ -55,15 +55,19 @@ function hashUserData(value) {
 
 /**
  * Map event name to Facebook standard event
+ * Returns null for events that shouldn't be sent to Meta
  */
 function mapEventName(eventName) {
   const eventMap = {
     'page_view': 'PageView',
     'view_item': 'ViewContent',
-    'view_item_list': 'ViewContent',
+    'view_item_list': 'ViewContent',  // Category views also use ViewContent (but structured differently)
     'add_to_cart': 'AddToCart',
     'begin_checkout': 'InitiateCheckout',
-    'purchase': 'Purchase'
+    'purchase': 'Purchase',
+    // Map custom events to Meta standard events for compliance & optimization
+    'login': 'CompleteRegistration',  // Login = user registration/account creation
+    'contact': 'Contact'  // Contact form = Meta's standard Contact event
   }
   
   return eventMap[eventName] || 'CustomEvent'
@@ -94,7 +98,9 @@ function buildFacebookEvent(event, config) {
       // Facebook click identifier (from _fbc cookie or fbclid parameter)
       fbc: event.fbclid ? `fb.1.${event.timestamp}.${event.fbclid}` : undefined,
       // Facebook browser pixel (_fbp cookie - required for CAPI)
-      fbp: event.fbp
+      fbp: event.fbp,
+      // External ID for user matching (consistent identifier across browser/server)
+      external_id: event.externalId
     },
     
     // Custom data
@@ -102,12 +108,16 @@ function buildFacebookEvent(event, config) {
       currency: event.currency,
       value: event.value,
       order_id: event.transactionId, // For deduplication
-      content_ids: event.items?.map(item => item.id) || [],
-      content_type: 'product',
-      contents: event.items?.map(item => ({
-        id: item.id,
-        quantity: item.quantity,
-        item_price: item.price
+      content_ids: event.items?.filter(item => item.id).map(item => String(item.id)) || [],
+      // For product pages: 'product', for category pages: 'product_group'
+      content_type: event.eventName === 'view_item_list' ? 'product_group' : 'product',
+      // For categories, include category name/ID
+      content_name: event.item_list_name || event.items?.[0]?.name,
+      content_category: event.item_list_id || event.items?.[0]?.category,
+      contents: event.items?.filter(item => item.id).map(item => ({
+        id: String(item.id),
+        quantity: item.quantity || 1,
+        item_price: item.price || 0
       })) || []
     }
   }
@@ -147,11 +157,23 @@ async function sendToFacebook(fbEvent, config) {
     console.log('[Meta Ads] Sending to CAPI:', {
       pixel_id: config.pixelId,
       event_name: fbEvent.event_name,
+      event_id: fbEvent.event_id,
       has_user_data: !!fbEvent.user_data?.em,
+      has_external_id: !!fbEvent.user_data?.external_id,
       has_fbc: !!fbEvent.user_data?.fbc,
       has_fbp: !!fbEvent.user_data?.fbp,
-      value: fbEvent.custom_data?.value
+      value: fbEvent.custom_data?.value,
+      content_ids_count: fbEvent.custom_data?.content_ids?.length || 0
     })
+    
+    // Warn if ViewContent has incomplete product data
+    if (fbEvent.event_name === 'ViewContent' && (!fbEvent.custom_data?.content_ids?.length || !fbEvent.custom_data?.value)) {
+      console.warn('[Meta Ads] ⚠️ ViewContent missing data:', {
+        has_value: !!fbEvent.custom_data?.value,
+        has_content_ids: !!fbEvent.custom_data?.content_ids?.length,
+        event_id: fbEvent.event_id
+      })
+    }
     
     const req = https.request(options, (res) => {
       let data = ''
@@ -198,6 +220,15 @@ async function sendEvent(event, config) {
   
   try {
     const fbEvent = buildFacebookEvent(event, config)
+    
+    // Skip if event shouldn't go to Meta
+    if (!fbEvent) {
+      return {
+        skipped: true,
+        reason: `Event '${event.eventName}' not mapped to Meta`
+      }
+    }
+    
     const result = await sendToFacebook(fbEvent, config)
     return result
   } catch (error) {

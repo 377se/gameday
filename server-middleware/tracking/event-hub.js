@@ -217,6 +217,7 @@ function normalizeEvent(rawEvent) {
     eventName: rawEvent.eventName,
     timestamp: rawEvent.timestamp || Date.now(),
     eventId: rawEvent.eventId, // For Meta client/server deduplication
+    externalId: rawEvent.externalId, // For Meta user matching
     
     // Site context
     siteId: parseInt(rawEvent.siteId) || 6,
@@ -400,10 +401,10 @@ module.exports = function (req, res, next) {
       
       // Log for monitoring
       console.log(`[Tracking] ${normalizedEvent.eventName} - Site ${siteConfig.siteName}:`, {
-        gtm: results.platforms.gtm?.skipped ? '⊘ paused' : (results.platforms.gtm?.success ? '✓' : '✗'),
-        googleAds: results.platforms.googleAds?.success ? '✓' : (results.platforms.googleAds?.skipped ? '⊘' : '✗'),
-        metaAds: results.platforms.metaAds?.success ? '✓' : (results.platforms.metaAds?.skipped ? '⊘' : '✗'),
-        ga4: results.platforms.ga4?.success ? '✓' : (results.platforms.ga4?.skipped ? '⊘' : '✗'),
+        gtm: results.platforms.gtm?.success ? '✓' : (results.platforms.gtm?.skipped ? 'X skipped' : '✗ error'),
+        googleAds: results.platforms.googleAds?.success ? '✓' : (results.platforms.googleAds?.skipped ? `X skipped: ${results.platforms.googleAds.reason}` : '✗ error'),
+        metaAds: results.platforms.metaAds?.success ? '✓' : (results.platforms.metaAds?.skipped ? `X skipped: ${results.platforms.metaAds.reason}` : '✗ error'),
+        ga4: results.platforms.ga4?.success ? '✓' : (results.platforms.ga4?.skipped ? 'X skipped' : '✗ error'),
       })
       
       // Return success

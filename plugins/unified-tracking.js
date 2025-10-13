@@ -89,43 +89,95 @@ export default function ({ app, $axios, $cookies, route, store }, inject) {
    * Uses your existing click_id cookie + Meta's standard cookies as fallback
    */
   function getFbclid() {
-    // 1. Check URL parameter (your existing system captures this)
-    const urlParams = new URLSearchParams(window.location.search)
-    const fbclidFromUrl = urlParams.get('fbclid')
-    if (fbclidFromUrl) {
-      // Don't create separate cookie - your system handles it in click_id
-      return fbclidFromUrl
-    }
-    
-    // 2. Check your existing click_id cookie
-    const clickId = $cookies.get('click_id')
-    if (clickId && clickId.startsWith('fb.1.')) {
-      // If click_id is in fbclid format: fb.1.timestamp.IwAR...
-      // Extract the actual fbclid (last part)
-      const parts = clickId.split('.')
-      if (parts.length >= 4) {
-        return parts[3]
+    try {
+      // 1. Check URL parameter (your existing system captures this)
+      const urlParams = new URLSearchParams(window.location.search)
+      const fbclidFromUrl = urlParams.get('fbclid')
+      if (fbclidFromUrl) {
+        // Save to localStorage backup for future use
+        try {
+          localStorage.setItem('_fbclid_backup', fbclidFromUrl)
+        } catch (err) {
+          // Silent fail
+        }
+        return fbclidFromUrl
       }
-    }
-    
-    // 3. Fallback to Meta's standard _fbc cookie
-    const fbc = $cookies.get('_fbc')
-    if (fbc) {
-      // Format: fb.1.1234567890.IwAR...
-      const parts = fbc.split('.')
-      if (parts.length >= 4) {
-        return parts[3] // The actual fbclid value
+      
+      // 2. Check your existing click_id cookie
+      const clickId = $cookies.get('click_id')
+      if (clickId && clickId.startsWith('fb.1.')) {
+        // If click_id is in fbclid format: fb.1.timestamp.IwAR...
+        // Extract the actual fbclid (last part)
+        const parts = clickId.split('.')
+        if (parts.length >= 4) {
+          return parts[3]
+        }
       }
+      
+      // 3. Fallback to Meta's standard _fbc cookie
+      const fbc = $cookies.get('_fbc')
+      if (fbc) {
+        // Format: fb.1.1234567890.IwAR...
+        const parts = fbc.split('.')
+        if (parts.length >= 4) {
+          return parts[3] // The actual fbclid value
+        }
+      }
+      
+      // 4. Fallback to localStorage backup
+      const storedFbclid = localStorage.getItem('_fbclid_backup')
+      if (storedFbclid) {
+        return storedFbclid
+      }
+      
+      return undefined
+    } catch (err) {
+      return undefined
     }
-    
-    return undefined
   }
   
   /**
    * Get Facebook Pixel cookie (_fbp) for Meta CAPI
+   * With fallbacks for when consent blocks the cookie
    */
   function getFbp() {
-    return $cookies.get('_fbp')
+    try {
+      // 1. Try standard _fbp cookie (if consent allows)
+      let fbp = $cookies.get('_fbp')
+      if (fbp) return fbp
+      
+      // 2. Try localStorage backup (in case cookie was blocked but we saved it)
+      const storedFbp = localStorage.getItem('_fbp_backup')
+      if (storedFbp) {
+        // Validate format: fb.1.timestamp.randomid
+        if (storedFbp.startsWith('fb.1.')) {
+          return storedFbp
+        }
+      }
+      
+      // 3. Generate a temporary FBP-like identifier for attribution
+      // Format: fb.1.timestamp.randomid (same as Meta's format)
+      // This allows server-side matching even without the official cookie
+      const tempFbp = `fb.1.${Date.now()}.${Math.random().toString(36).substring(2, 15)}`
+      
+      // Try to store it for future use
+      try {
+        localStorage.setItem('_fbp_backup', tempFbp)
+        // Also try to set as cookie (might work if consent changes)
+        $cookies.set('_fbp', tempFbp, {
+          path: '/',
+          maxAge: 60 * 60 * 24 * 90 // 90 days (Meta's standard)
+        })
+      } catch (err) {
+        // Silent fail if storage blocked
+      }
+      
+      return tempFbp
+      
+    } catch (err) {
+      // If everything fails, return undefined
+      return undefined
+    }
   }
 
   /**
@@ -251,12 +303,17 @@ export default function ({ app, $axios, $cookies, route, store }, inject) {
         ? `${eventData.transactionId}_${eventName}`
         : `${timestamp}_${eventName}_${Math.random().toString(36).substring(2, 10)}`
       
+      // Generate external_id for Meta user matching (consistent user identifier)
+      // Use userId if logged in, otherwise use stable clientId
+      const externalId = getUserId() || getClientId()
+      
       // Build unified event payload
       const payload = {
         // Event basics
         eventName,
         timestamp,
         eventId, // For Meta client/server deduplication
+        externalId, // For Meta user matching across browser/server
         
         // Site context
         siteId,
@@ -371,7 +428,7 @@ export default function ({ app, $axios, $cookies, route, store }, inject) {
         name: item.Name,
         category: item.Category,
         brand: item.BrandName,
-        price: parseFloat(item.PriceTotal) || 0,
+        price: parseFloat(item.PriceTotal || item.Price || item.UnitPrice || item.PricePerItem || item.ItemPrice || 0),
         quantity: item.Quantity || 1
       }))
 
@@ -430,6 +487,25 @@ export default function ({ app, $axios, $cookies, route, store }, inject) {
       tracking.pageView()
     }, 100)
   })
+
+  // Monitor for _fbp cookie creation by Meta Pixel and backup to localStorage
+  if (process.client) {
+    const checkFbpInterval = setInterval(() => {
+      try {
+        const fbp = $cookies.get('_fbp')
+        if (fbp && fbp.startsWith('fb.1.')) {
+          // Official Meta Pixel cookie exists - backup to localStorage
+          localStorage.setItem('_fbp_backup', fbp)
+          clearInterval(checkFbpInterval) // Stop checking once found
+        }
+      } catch (err) {
+        // Silent fail
+      }
+    }, 1000) // Check every second for first 30 seconds
+    
+    // Stop checking after 30 seconds
+    setTimeout(() => clearInterval(checkFbpInterval), 30000)
+  }
 
   // Inject into Vue context
   inject('track', tracking)

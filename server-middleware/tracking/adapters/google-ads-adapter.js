@@ -45,30 +45,35 @@ function formatPhoneNumber(phone, countryCode = '46') {
 /**
  * Build Enhanced Conversion user data
  */
-function buildEnhancedConversionData(userData) {
-  if (!userData) return undefined
+function buildEnhancedConversionData(userData, externalId) {
+  if (!userData && !externalId) return undefined
   
   const enhanced = {}
   
+  // External ID (first-party user identifier for better matching)
+  if (externalId) {
+    enhanced.external_id = externalId
+  }
+  
   // Email (required for best match rate)
-  if (userData.email) {
+  if (userData?.email) {
     enhanced.em = hashPII(userData.email)
   }
   
   // Phone number (E.164 format)
-  if (userData.phone) {
+  if (userData?.phone) {
     const formatted = formatPhoneNumber(userData.phone, userData.countryCode || '46')
     enhanced.ph = hashPII(formatted)
   }
   
   // Address components
-  if (userData.firstName) enhanced.fn = hashPII(userData.firstName)
-  if (userData.lastName) enhanced.ln = hashPII(userData.lastName)
-  if (userData.street) enhanced.st = hashPII(userData.street)
-  if (userData.city) enhanced.ct = hashPII(userData.city)
-  if (userData.region) enhanced.rg = hashPII(userData.region)
-  if (userData.postalCode) enhanced.zp = hashPII(userData.postalCode)
-  if (userData.country) enhanced.country = hashPII(userData.country)
+  if (userData?.firstName) enhanced.fn = hashPII(userData.firstName)
+  if (userData?.lastName) enhanced.ln = hashPII(userData.lastName)
+  if (userData?.street) enhanced.st = hashPII(userData.street)
+  if (userData?.city) enhanced.ct = hashPII(userData.city)
+  if (userData?.region) enhanced.rg = hashPII(userData.region)
+  if (userData?.postalCode) enhanced.zp = hashPII(userData.postalCode)
+  if (userData?.country) enhanced.country = hashPII(userData.country)
   
   return Object.keys(enhanced).length > 0 ? enhanced : undefined
 }
@@ -120,9 +125,10 @@ function mapEventToGoogleAds(event, config) {
     }))
   }
   
-  // Enhanced Conversion data (hashed user data)
-  if (event.userData && Object.keys(event.userData).length > 0) {
-    gadsEvent.user_data = buildEnhancedConversionData(event.userData)
+  // Enhanced Conversion data (hashed user data + external ID)
+  const userData = buildEnhancedConversionData(event.userData, event.externalId)
+  if (userData) {
+    gadsEvent.user_data = userData
   }
   
   return gadsEvent
@@ -165,6 +171,13 @@ async function sendToGoogleAds(gadsEvent, config, event) {
     if (gadsEvent.user_data) {
       const userIdentifiers = []
       
+      // External ID (first-party user identifier) - NOT hashed
+      if (gadsEvent.user_data.external_id) {
+        userIdentifiers.push({ 
+          user_id: gadsEvent.user_data.external_id 
+        })
+      }
+      
       if (gadsEvent.user_data.em) {
         userIdentifiers.push({ hashed_email: gadsEvent.user_data.em })
       }
@@ -196,6 +209,7 @@ async function sendToGoogleAds(gadsEvent, config, event) {
       event_name: event.eventName,
       has_gclid: !!gadsEvent.gclid,
       has_enhanced_data: !!gadsEvent.user_data,
+      has_external_id: !!gadsEvent.user_data?.external_id,
       value: gadsEvent.value
     })
     

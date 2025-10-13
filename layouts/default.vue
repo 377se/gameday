@@ -113,8 +113,12 @@ export default {
         }else{
           _q = 'fb.1.'+Date.now()+'.'+this.$route.query.fbclid
         }
+        // Get root domain (e.g., supporterprylar.se from www.supporterprylar.se)
+        const rootDomain = '.' + window.location.hostname.split('.').slice(-2).join('.')
+        
         this.$cookies.set("click_id", _q, {
           path: '/',
+          domain: rootDomain, // Works for both www and non-www
           sameSite: 'Lax',
           secure: location.protocol === 'https:',
           maxAge: 60 * 60 * 24 * 90 // 90 days
