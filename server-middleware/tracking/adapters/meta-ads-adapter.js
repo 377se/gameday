@@ -18,22 +18,22 @@ function normalizeIpAddress(ipAddress) {
   // If x-forwarded-for has multiple IPs (comma-separated), take the first one
   const ip = ipAddress.split(',')[0].trim()
   
-  // Reject localhost/private IPs
+  // Reject localhost/private IPs (IPv4 and IPv6)
   if (ip === '127.0.0.1' || 
       ip === '::1' || 
       ip.startsWith('192.168.') || 
       ip.startsWith('10.') ||
       ip.startsWith('172.16.') ||
       ip.startsWith('::ffff:127.') ||
-      ip.startsWith('::ffff:192.168.')) {
+      ip.startsWith('::ffff:192.168.') ||
+      ip.startsWith('::ffff:10.') ||
+      ip.startsWith('::ffff:172.16.')) {
     return undefined // Don't send private IPs to Meta
   }
   
-  // Remove IPv6 prefix if present (::ffff:123.45.67.89 → 123.45.67.89)
-  if (ip.startsWith('::ffff:')) {
-    return ip.substring(7)
-  }
-  
+  // ✅ Keep IPv6 format! Meta prefers IPv6 over IPv4
+  // Don't convert ::ffff:123.45.67.89 to 123.45.67.89
+  // Meta wants the full IPv6 address
   return ip
 }
 
@@ -211,6 +211,7 @@ async function sendToFacebook(fbEvent, config) {
  * Main adapter function
  */
 async function sendEvent(event, config) {
+  // Check config first
   if (!config.pixelId || !config.accessToken) {
     return {
       skipped: true,
@@ -220,6 +221,13 @@ async function sendEvent(event, config) {
   
   try {
     const fbEvent = buildFacebookEvent(event, config)
+    
+    // 🔍 DEBUG: Show EXACT payload being sent to Meta (PRODUCTION-SAFE)
+    const payloadToSend = { data: [fbEvent] }
+    console.warn('════════════════════════════════════════════')
+    console.warn('[Meta CAPI] 📤 SENDING TO META:')
+    console.warn(JSON.stringify(payloadToSend, null, 2))
+    console.warn('════════════════════════════════════════════')
     
     // Skip if event shouldn't go to Meta
     if (!fbEvent) {

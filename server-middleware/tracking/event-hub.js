@@ -324,7 +324,8 @@ async function distributeEvent(normalizedEvent, siteConfig) {
         })
         .catch(error => {
           results.platforms.metaAds = { success: false, error: error.message }
-          console.error('Meta Ads error:', error)
+          console.error('Meta Ads error:', error.message)
+          console.error('Meta Ads error stack:', error.stack)
         })
     )
   }
