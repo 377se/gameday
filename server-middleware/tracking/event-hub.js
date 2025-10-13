@@ -296,7 +296,12 @@ async function distributeEvent(normalizedEvent, siteConfig) {
     promises.push(
       googleAdsAdapter.sendEvent(normalizedEvent, siteConfig.googleAds, siteKey)
         .then(result => {
-          results.platforms.googleAds = { success: true, ...result }
+          // Don't override success if adapter returned skipped
+          if (result.skipped) {
+            results.platforms.googleAds = result
+          } else {
+            results.platforms.googleAds = { success: true, ...result }
+          }
         })
         .catch(error => {
           results.platforms.googleAds = { success: false, error: error.message }
@@ -310,7 +315,12 @@ async function distributeEvent(normalizedEvent, siteConfig) {
     promises.push(
       metaAdsAdapter.sendEvent(normalizedEvent, siteConfig.metaAds)
         .then(result => {
-          results.platforms.metaAds = { success: true, ...result }
+          // Don't override success if adapter returned skipped
+          if (result.skipped) {
+            results.platforms.metaAds = result
+          } else {
+            results.platforms.metaAds = { success: true, ...result }
+          }
         })
         .catch(error => {
           results.platforms.metaAds = { success: false, error: error.message }
@@ -324,7 +334,12 @@ async function distributeEvent(normalizedEvent, siteConfig) {
     promises.push(
       ga4Adapter.sendEvent(normalizedEvent, siteConfig.ga4)
         .then(result => {
-          results.platforms.ga4 = { success: true, ...result }
+          // Don't override success if adapter returned skipped
+          if (result.skipped) {
+            results.platforms.ga4 = result
+          } else {
+            results.platforms.ga4 = { success: true, ...result }
+          }
         })
         .catch(error => {
           results.platforms.ga4 = { success: false, error: error.message }
