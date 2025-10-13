@@ -203,11 +203,12 @@ async function sendToGoogleAds(gadsEvent, config, event) {
     if (gadsEvent.user_data) {
       const userIdentifiers = []
       
-      if (gadsEvent.user_data.external_id) {
-        userIdentifiers.push({ 
-          user_identifier: gadsEvent.user_data.external_id 
-        })
-      }
+      // Skip external_id for now - causes API errors
+      // if (gadsEvent.user_data.external_id) {
+      //   userIdentifiers.push({ 
+      //     user_id: gadsEvent.user_data.external_id 
+      //   })
+      // }
       
       if (gadsEvent.user_data.em) {
         userIdentifiers.push({ hashed_email: gadsEvent.user_data.em })
