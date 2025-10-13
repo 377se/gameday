@@ -27,7 +27,7 @@
       <template
         v-else>
         <SeoHead
-          :title="(story.content.SEO && story.content.SEO.title)?story.content.SEO.title:generateFallbackTitle()"
+          :title="(story.content.SEO && story.content.SEO.title)?story.content.SEO.title:(article.SeoTitle ? `${article.SeoTitle.replace(' - ', ' ')} | ${getSiteName()}` : generateFallbackTitle())"
           :description="(story.content.SEO && story.content.SEO.title)?`${story.content.SEO.description}`.replace(/<\/?[^>]+(>|$)/g, ''):''"
           :canonical="metadata.Canonical"
           :lang-hrefs="metadata.LangHref" />
@@ -75,14 +75,29 @@ export default {
     let cname = this.$route.params.categoryname=='undefined'?'wrong':this.$route.params.categoryname
 
     let pid =  this.siteid==7?'':this.$route.params.parentid+'/'
+    
+    // Extract dynamic parameters from route
+    let color = this.$route.query.color?this.$route.query.color:null
+    let gender = this.$route.query.gender?this.$route.query.gender:null
+    let productType = this.$route.params.filterid
+    let size = this.$route.query.size?this.$route.query.size:null
+    let attribute = this.$route.query.attribute?this.$route.query.attribute:null
+    let sale = this.$route.query.sale?this.$route.query.sale:false
+    let brand = this.$route.query.brand?this.$route.query.brand:null
+    let team = this.$route.query.team?this.$route.query.team:null
+    let sortorder = this.$route.query.sortorder?this.$route.query.sortorder:(process.env.DEFAULT_SORT_ORDER || 3)
+    
     try {
-      const [sb, metadata] = await Promise.all([
+      const [sb, metadata, articleData] = await Promise.all([
         this.$storyapi.get('cdn/stories?starts_with=' + process.env.STORYBLOK_CATALOGUE.replace('/','') + '/' +this.$i18n.locale+ '/c/'+this.$route.params.parentid+'/'+this.$route.params.categoryid +'/'+this.$route.params.filterid +'/', {
           version: version,
           cv: this.$store.getters.version
         }),
         this.$axios.$get(
           `/webapi/${this.$i18n.locale}/MetaData/GetMetadataForCategory?url=/c/${pid}${this.$route.params.categoryid}/${cname}/${this.$route.params.filterid}`
+        ),
+        this.$axios.$get(
+          `/webapi/${this.$i18n.locale}/Article/getArticleListByCategoryId?sortorder=${sortorder}&pageSize=0&lookUpBrand=false&brand=${brand}&attribute=${attribute}&teamList=${team}&color=${color}&size=${size}&gender=${gender}&productType=${productType}&sale=${sale}&pageNum=1&seoName=${this.$route.params.categoryid}`
         )
       ]);
       if(!metadata){
@@ -91,6 +106,7 @@ export default {
       }
       this.metadata = metadata
       this.story=sb.data.stories.length>0?sb.data.stories[0]:{ content: {} }
+      this.article = articleData
 
 
       if(cname=='wrong'){
@@ -118,7 +134,7 @@ export default {
     return {
       story: { content: {} },
       metadata: {Canonical: '', LangHref:[]},
-      article: {},
+      article: {SeoTitle: ''},
       readmore: true,
       shop: '',
       siteid: process.env.SITE_ID,
@@ -143,11 +159,7 @@ export default {
     })
   },
   methods:{
-    generateFallbackTitle(){
-      // Create a meaningful title from URL parameters
-      const categoryName = this.$route.params.categoryname || ''
-      const filterName = this.$route.params.filtername || ''
-      
+    getSiteName(){
       // Site-specific branding based on SITE_ID
       let siteName = 'Gameday'
       switch(parseInt(process.env.SITE_ID)) {
@@ -158,9 +170,16 @@ export default {
         case 8: siteName = 'Street Week Shop'; break;
         default: siteName = 'Gameday'; break;
       }
+      return siteName
+    },
+    generateFallbackTitle(){
+      // Create a meaningful title from URL parameters
+      const categoryName = this.$route.params.categoryname || ''
+      const filterName = this.$route.params.filtername || ''
+      const siteName = this.getSiteName()
       
       if (filterName && categoryName) {
-        return `${filterName} - ${categoryName} | ${siteName}`
+        return `${filterName} ${categoryName} | ${siteName}`
       } else if (categoryName) {
         return `${categoryName} | ${siteName}`
       } else {
