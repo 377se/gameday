@@ -135,46 +135,77 @@ function mapEventToGoogleAds(event, config) {
 }
 
 /**
- * Send S2S Conversion to Google Ads API
- * Uses official google-ads-api library with gRPC
+ * Get OAuth access token
  */
-async function sendToGoogleAds(gadsEvent, config, event) {
-  const { GoogleAdsApi } = require('google-ads-api')
+async function getAccessToken(config) {
+  const https = require('https')
   
-  try {
-    // Initialize Google Ads API client
-    const client = new GoogleAdsApi({
+  return new Promise((resolve, reject) => {
+    const postData = new URLSearchParams({
       client_id: config.clientId,
       client_secret: config.clientSecret,
-      developer_token: config.developerToken
+      refresh_token: config.refreshToken,
+      grant_type: 'refresh_token'
+    }).toString()
+
+    const options = {
+      hostname: 'oauth2.googleapis.com',
+      port: 443,
+      path: '/token',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Length': Buffer.byteLength(postData)
+      }
+    }
+
+    const req = https.request(options, (res) => {
+      let data = ''
+      res.on('data', (chunk) => { data = data + chunk })
+      res.on('end', () => {
+        if (res.statusCode >= 200 && res.statusCode < 300) {
+          const response = JSON.parse(data)
+          resolve(response.access_token)
+        } else {
+          reject(new Error('OAuth error: ' + res.statusCode + ' ' + data))
+        }
+      })
     })
-    
-    // Create customer instance
-    const customer = client.Customer({
-      customer_id: config.customerId,
-      login_customer_id: config.managerAccountId,
-      refresh_token: config.refreshToken
-    })
+
+    req.on('error', reject)
+    req.write(postData)
+    req.end()
+  })
+}
+
+/**
+ * Send S2S Conversion to Google Ads API
+ * Uses REST API instead of library (Node 14 compatible)
+ */
+async function sendToGoogleAds(gadsEvent, config, event) {
+  const https = require('https')
+  
+  try {
+    // Get OAuth access token
+    const accessToken = await getAccessToken(config)
     
     // Build conversion payload
     const conversion = {
       gclid: gadsEvent.gclid,
-      conversion_action: `customers/${config.customerId}/conversionActions/${gadsEvent.conversionActionId}`,
+      conversion_action: 'customers/' + config.customerId + '/conversionActions/' + gadsEvent.conversionActionId,
       conversion_date_time: new Date(event.timestamp).toISOString().replace('T', ' ').substring(0, 19) + '+00:00',
       conversion_value: gadsEvent.value || 0,
       currency_code: gadsEvent.currency,
-      // For purchase: use real order ID. For others (AddToCart, PageView): use event_id for deduplication
-      order_id: gadsEvent.transaction_id || event.eventId || `event-${Date.now()}`
+      order_id: gadsEvent.transaction_id || event.eventId || 'event-' + Date.now()
     }
     
     // Add enhanced conversion data (hashed PII) if available
     if (gadsEvent.user_data) {
       const userIdentifiers = []
       
-      // External ID (first-party user identifier) - NOT hashed
       if (gadsEvent.user_data.external_id) {
         userIdentifiers.push({ 
-          user_id: gadsEvent.user_data.external_id 
+          user_identifier: gadsEvent.user_data.external_id 
         })
       }
       
@@ -209,26 +240,60 @@ async function sendToGoogleAds(gadsEvent, config, event) {
       event_name: event.eventName,
       has_gclid: !!gadsEvent.gclid,
       has_enhanced_data: !!gadsEvent.user_data,
-      has_external_id: !!gadsEvent.user_data?.external_id,
+      has_external_id: !!(gadsEvent.user_data && gadsEvent.user_data.external_id),
       value: gadsEvent.value
     })
     
-    // Upload conversion using official library
-    const response = await customer.conversionUploads.uploadClickConversions({
-      customer_id: config.customerId,
+    // Upload conversion using REST API
+    const payload = {
       conversions: [conversion],
-      partial_failure: true,
-      validate_only: false
-    })
-    
-    console.log('[Google Ads] ✓ S2S conversion uploaded successfully')
-    
-    return {
-      platform: 'google_ads',
-      success: true,
-      conversion_action_id: gadsEvent.conversionActionId,
-      response: response
+      partial_failure: true
     }
+    
+    const postData = JSON.stringify(payload)
+    
+    const options = {
+      hostname: 'googleads.googleapis.com',
+      port: 443,
+      path: '/v16/customers/' + config.customerId + ':uploadClickConversions',
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + accessToken,
+        'developer-token': config.developerToken,
+        'login-customer-id': config.managerAccountId || config.customerId,
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(postData)
+      }
+    }
+    
+    return new Promise((resolve, reject) => {
+      const req = https.request(options, (res) => {
+        let data = ''
+        res.on('data', (chunk) => { data = data + chunk })
+        res.on('end', () => {
+          if (res.statusCode >= 200 && res.statusCode < 300) {
+            console.log('[Google Ads] ✓ S2S conversion uploaded successfully')
+            resolve({
+              platform: 'google_ads',
+              success: true,
+              conversion_action_id: gadsEvent.conversionActionId,
+              response: JSON.parse(data)
+            })
+          } else {
+            console.error('[Google Ads] ✗ API Error:', res.statusCode, data)
+            reject(new Error('Google Ads API error: ' + res.statusCode + ' ' + data))
+          }
+        })
+      })
+      
+      req.on('error', (error) => {
+        console.error('[Google Ads] ✗ Request error:', error)
+        reject(error)
+      })
+      
+      req.write(postData)
+      req.end()
+    })
     
   } catch (error) {
     console.error('[Google Ads] ✗ S2S upload error:', error.message)
