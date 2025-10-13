@@ -255,7 +255,7 @@ async function sendToGoogleAds(gadsEvent, config, event) {
     const options = {
       hostname: 'googleads.googleapis.com',
       port: 443,
-      path: '/v16/customers/' + config.customerId + ':uploadClickConversions',
+      path: '/v21/customers/' + config.customerId + ':uploadClickConversions',
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + accessToken,
